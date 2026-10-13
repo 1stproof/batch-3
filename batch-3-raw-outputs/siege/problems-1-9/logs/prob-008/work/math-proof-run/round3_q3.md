@@ -1,0 +1,145 @@
+kind: attempt
+Open question attempted: the dynamical core (open item of this run): a C^infinity flow on a compact connected manifold that preserves a smooth volume omega, is uniquely ergodic, and is cohomology-free with tame estimates (hypothesis H: every omega-mean-zero smooth f equals Xu with u smooth and ||u||_{C^r} <= C_r ||f||_{C^{m(r)}}) — and which is moreover globally hypoelliptic (GH, as in the problem below) — has zero topological entropy, INCLUDING the case where omega has zero Lyapunov exponents transverse to the flow. (Under H, h_top = h_omega by unique ergodicity and the variational principle, and h_omega = integral of the sum of positive exponents by Pesin's formula; so the claim is that omega has no positive exponent. The case where all transverse exponents of omega are nonzero follows from Katok's closing lemma for flows: periodic orbits would exist, contradicting unique ergodicity with a smooth volume.)
+
+This query asks for a QUANTITATIVE-RECURRENCE / COMBINATORIAL lens, avoiding the dead ends listed in R-c (single-pair Lipschitz bounds, derivative growth versus the tame estimate, pure spectral arguments). The key quantitative facts available under H:
+ (F1) Uniform polynomial discrepancy: for every point z, every scale epsilon and every bump f_{z,epsilon} adapted to the epsilon-ball at z (so ||f||_{C^m} <= C epsilon^{-m}), every orbit segment of length T satisfies integral_0^T f(g_t x) dt = T omega(f) + O(epsilon^{-m}), uniformly in x, T, z (R-c, P1).
+ (F2) Uniform Lipschitz property of ergodic integrals: for every smooth f, x -> integral_0^T f(g_t x) dt equals u(g_T x) - u(x), hence is Lipschitz in x with constant 2 ||du||_{C^0} <= C ||f||_{C^{m(1)}}, uniformly in T. The same holds for any finite family f_1, ..., f_N simultaneously, and for higher derivatives with C^r bounds.
+ (F3) Iterated solvability: for every j, f = X^j u_j with tame bounds (R-c, P4).
+Suggested directions (you may take another): (i) Katok's entropy formula / Brin–Katok: h_omega = lim_{eps->0} liminf_T -(1/T) log omega(B_T(x, eps)) for omega-a.e. x, where B_T is the Bowen ball. Try to show Bowen balls contain sets of volume at least exp(-o(T)) — for instance by showing that the map x -> (u_i(g_t x))_{i <= N}, t in [0, T], built from finitely many solutions u_i (chosen so that (u_1, ..., u_N) is an embedding of M, possible by H since any smooth function minus its mean is in the range... note: u_i themselves are arbitrary smooth mean-zero functions, since X maps C^infinity_0 onto the mean-zero functions; so ANY smooth embedding coordinates u_i can be used, with f_i = X u_i) controls d(g_t x, g_t y). Observe: u_i(g_t x) - u_i(g_t y) = [u_i(x) - u_i(y)] + integral_0^t (f_i(g_s x) - f_i(g_s y)) ds — investigate whether (F1)/(F2) applied to functions built from f_i and to bump functions give a sub-exponential bound for the growth of the separation of orbits for most pairs. (ii) Show that positive entropy forces, for some fixed scale epsilon, orbit segments of length T (T large, polynomial in 1/epsilon) whose empirical measure deviates from omega at scale epsilon by more than C epsilon^{-m}/T — contradicting (F1). E.g. use Ornstein–Weiss / Shannon–McMillan–Breiman to find many (T, epsilon)-separated orbit segments and a pigeonhole on their visit patterns to a fixed partition of mesh epsilon, combined with the fact that orbit segments that stay close for time T must share visit patterns. (iii) Prove that H forces the flow to be equicontinuous or to have pure point spectrum (then Kushnirenko's theorem gives h_omega = 0).
+
+Background you may use follows.
+
+=== ESTABLISHED BACKGROUND (proved in earlier work; you may use it, quoted verbatim) ===
+
+[Text A, from one earlier result]
+Notation: GH means: if u ∈ D'(M), f ∈ C^∞ and Xu = f, then u ∈ C^∞. Fix a smooth positive density ω₀ (no invariance assumed). Sobolev spaces H^s are taken with respect to it, and c(u) = ∫u ω₀ / ∫ω₀.
+
+## L1 (proved). ker(X on D') = constants.
+Proof. Suppose Xu = 0 with u ∈ D'. By GH, u is smooth. Suppose u is not constant. Choose c with min u < c < max u. Then U₊ = {u>c} and U₋ = {u<c} are nonempty open sets. Take smooth nondecreasing functions H_ε on R with H_ε(t) = 0 for t ≤ -ε and H_ε(t) = 1 for t ≥ 0, and set v_ε = H_ε(u-c). This is smooth and Xv_ε = H_ε'(u-c)·Xu = 0. As ε→0, v_ε → v = 1_{U₊} pointwise and boundedly, hence in L¹, hence in D'. Since X is continuous on D', Xv = 0. By GH, v agrees a.e. with a continuous function w. Then w ∈ {0,1} a.e., hence everywhere by continuity. Since M is connected, w is constant. But w = 1 a.e. on U₊ and w = 0 on U₋, and both sets have positive measure. Contradiction. ∎
+
+## L2 (proved). For every r there are k and C with ||u-c(u)||_{H^r} ≤ C||Xu||_{H^k} for all u ∈ C^∞. Hence X(C^∞) is closed in C^∞.
+Proof. Fix s. Let F_s = {u ∈ H^{-s} : Xu ∈ C^∞} with the seminorms ||u||_{H^{-s}} + ||Xu||_{H^j}, j ∈ N. F_s is Fréchet: a Cauchy sequence converges in H^{-s} to u, and Xu_n converges in C^∞ to some g; since X: H^{-s} → H^{-s-1} is continuous, g = Xu.
+
+By GH, F_s ⊂ C^∞. The inclusion has closed graph, because both spaces embed continuously in H^{-s}. By the closed graph theorem for Fréchet spaces (a linear map between Fréchet spaces with closed graph is continuous), the inclusion is continuous. So for each r there are j and C with
+(*) ||u||_{H^r} ≤ C(||u||_{H^{-s}} + ||Xu||_{H^j}).
+
+Now fix r > -s, take j large enough that (*) holds both for r and for r+1, and suppose the claimed estimate fails with k = j. Then there are smooth u_n with c(u_n) = 0, ||u_n||_{H^r} = 1 and ||Xu_n||_{H^j} → 0. By (*) at level r+1 (note ||u_n||_{H^{-s}} ≤ ||u_n||_{H^r} = 1), the u_n are bounded in H^{r+1}. By Rellich (H^{r+1} → H^r is compact on a compact manifold), a subsequence converges in H^r to some u with ||u||_{H^r} = 1 and c(u) = 0. Moreover Xu = lim Xu_n = 0 in H^{r-1}. By L1, u is constant, and then c(u) = 0 forces u = 0. Contradiction.
+
+Closed range: suppose Xu_n → f in C^∞. Apply the estimate to u_n - c(u_n): this sequence is Cauchy in every H^r, so it converges in C^∞ to some u, and Xu = f. ∎
+
+Duality consequence: X(C^∞) is exactly the annihilator of the X-invariant distribution densities. Indeed, by Hahn–Banach, a closed subspace of C^∞ equals the annihilator of its annihilator in D'-densities, and that annihilator is {T : L_X T = 0}.
+
+[Text B, from another earlier result; C^k form of the estimate]
+**Convention.** Fix a smooth positive density ν on M. A distribution is a continuous linear functional on smooth densities. Using ν, identify distributions u with functionals φ ↦ ⟨u, φν⟩ on C^∞(M). Then L_X u is defined by ⟨L_X u, ρ⟩ = −⟨u, L_X ρ⟩. Write d = div_ν X, so that L_X(φν) = (Xφ + dφ)ν. For smooth u, L_X u = Xu. The facts below do not depend on this choice of identification.
+## Lemma 2 (a priori estimate; Peetre-type argument). For every k there are m and C such that ‖u‖_{C^k} ≤ C‖Xu‖_{C^m} for all u ∈ C^∞ with ∫u dν = 0.
+*Proof.* Fix s > n/2 + 1. Let Y = {u ∈ H^{-s} : Xu ∈ C^∞}. Give Y the Fréchet topology defined by the seminorms ‖u‖_{-s} and ‖Xu‖_{C^j}, j ≥ 0. Y is complete, because X: H^{-s} → H^{-s-1} is continuous. By hypothesis Y ⊂ C^∞. The inclusion Y → C^∞ has closed graph, since both topologies are finer than D'. By the closed graph theorem for Fréchet spaces, the inclusion is continuous. So
+(∗) ‖u‖_{C^k} ≤ C(‖u‖_{-s} + ‖Xu‖_{C^m}) for some m and C.
+
+Suppose the estimate of the lemma fails. Then there are u_n with zero mean, ‖u_n‖_{C^k} = 1 and Xu_n → 0 in C^m. A bounded set in C^k is precompact in H^{-s} (Rellich), so a subsequence is Cauchy in H^{-s}. By (∗) that subsequence is Cauchy in C^k, so u_n → u in C^k. In the limit Xu = 0 in D', so u is constant by Lemma 1. Also u has mean 0, so u = 0. This contradicts ‖u‖_{C^k} = 1. ∎
+
+## Corollary 3. X(C^∞) is closed in C^∞, and X: C^∞_0 → X(C^∞) is a topological isomorphism. Here C^∞_0 denotes the smooth functions with ν-mean zero.
+*Proof.* Suppose Xu_n → f with u_n ∈ C^∞_0. By Lemma 2, (u_n) is Cauchy in every C^k, so u_n → u and Xu = f. ∎
+
+[Further observations, elementary; check them as you use them]
+(O1) Dual estimate. From the C^k estimate (Text B, Lemma 2): for every k there are m, C such that for every distribution T in (C^k)' with T(1) = 0 there is a distribution density S in (C^m)' with S(Xu) = T(u) for all smooth u (i.e. S solves the transposed equation -L_X S = T up to sign convention), and ||S||_{(C^m)'} <= C ||T||_{(C^k)'}. (Hahn–Banach applied to Xu -> T(u) on the closed subspace X(C^infinity).) In particular for points x, y one gets S_{x,y} with S(Xu) = u(x) - u(y) and ||S_{x,y}|| <= C d(x,y).
+(O2) If X preserves a smooth positive density omega, then for any invariant probability measure mu the distribution v = mu/omega satisfies Xv = 0 (because L_X(v omega) = (Xv) omega when div_omega X = 0), so by Lemma L1 v is constant: mu = omega. Hence a smooth invariant volume gives at once: unique ergodicity, minimality, no zeros of X, no periodic orbits (dim M >= 2), and (by the duality consequence in Text A) every omega-mean-zero smooth f equals Xu with u smooth, with the tame estimate of Text B.
+(O3) With nu any smooth positive density and d = div_nu X: if d = c + Xa with c constant and a smooth, then e^{-a} nu is invariant (and c = 0 automatically, integrating L_X(e^{-a}nu) = c e^{-a} nu over M). Conversely a smooth invariant density rho nu gives d = -X log rho. So "smooth invariant volume" is equivalent to d lying in R + X(C^infinity), equivalently (closed range) to T(d) = c T(1) for every X-invariant distribution density T, for one constant c.
+(O4) GH is preserved under time changes hX (h > 0 smooth), under X -> -X, and under conjugation X -> X + Xa = e^{-a} X e^{a} (as operators on distributions).
+=== END OF BACKGROUND ===
+
+=== FURTHER RESULTS PROVED IN THE PREVIOUS ROUND (quoted verbatim from the workers' answers; each labelled with its source) ===
+
+[R-a: at zeros]
+Convention (Text B): ν is a smooth positive density, d = div_ν X, and a distribution u corresponds to the density uν. Then L_X(uν) = (Xu + d u)ν, so Xu = (L_X(uν))/ν − d u.
+
+## P1 (proved). If X(p) = 0, then d(p) ≠ 0.
+*Proof.* Let u be the distribution with uν = δ_p, i.e. ⟨u, φν⟩ = φ(p). For a test function φ, ⟨L_X δ_p, φ⟩ = −⟨δ_p, Xφ⟩ = −(Xφ)(p) = 0, because X(p) = 0. So L_X(uν) = 0, and therefore Xu = −d u = −d(p) u. (The product d·δ_p equals d(p)δ_p.) If d(p) = 0, then Xu = 0 with u not smooth. This contradicts GH (equivalently L1). ∎
+
+The conclusion of P1 does not depend on the choice of ν. If ν' = e^{a}ν, then div_{ν'} X = d + Xa, and Xa(p) = 0 at a zero p.
+
+[R-b: periodic orbits]
+### Observation P (proved). How a periodic orbit interacts with GH.
+Let γ be a closed orbit of period T, and let ν be a smooth positive density with d = div_ν X. The invariant measure μ_γ = ∫_0^T δ_{γ(t)} dt is a distribution density with L_X μ_γ = 0. As a distribution *function* u = μ_γ/ν it satisfies Xu = −d·u. This is a distribution supported on γ, so it is never smooth when dim M ≥ 2. Replacing ν by e^{a}ν (or using the time change hX, which by (O4) keeps GH) changes d into d + Xa (resp. h d + Xh). Restricted to γ, the equation d + Xa = 0 is solvable iff ∫_0^T d(γ(t)) dt = 0. That integral is the log of the Jacobian of the Poincaré return map, so this holds only when the Poincaré map preserves volume.
+**Conclusion (proved):** if GH holds and dim M ≥ 2, X has no periodic orbit along which the linearised return map has Jacobian determinant 1. (Proof: if ∫_γ d = 0, pick a with d + Xa = 0 on γ. Then for ν' = e^{a}ν, div_{ν'}X vanishes on γ, so u = μ_γ/ν' satisfies Xu = −d' u = 0 (d' vanishes on supp u, and d'u as a product of a smooth function with a measure is 0). Hence u is constant by L1, which is a contradiction.)
+This does not exclude dissipative periodic orbits. Horseshoes, and so positive entropy, can occur where all periodic orbits are dissipative. So P does not reach the goal.
+
+[R-c: consequences of hypothesis H = smooth invariant volume omega + unique ergodicity + every omega-mean-zero smooth f is Xu with u smooth (tame estimates)]
+Standing assumptions are those of (S). In particular, ω is a smooth invariant probability volume. Every ω-mean-zero smooth f equals Xu with u smooth. Text B, Lemma 2 then gives, for each k, constants m = m(k) and C_k with ||u||_{C^k} ≤ C_k ||f||_{C^m} when u is normalised to ω-mean zero.
+
+## P1 (proved). Uniformly bounded ergodic integrals.
+For every smooth f, every x and every T:
+|∫_0^T f(g_t x) dt − T ω(f)| ≤ 2C_0 ||f − ω(f)||_{C^m} ≤ 4C_0 ||f||_{C^m}.
+*Proof.* Write f − ω(f) = Xu. Then d/dt u(g_t x) = (f − ω(f))(g_t x). Integrate and use |u| ≤ C_0 ||f − ω(f)||_{C^m}. ∎
+
+## P2 (proved). The unstable-leaf formula with an ambient Lipschitz bound.
+Let x, y satisfy d(g_{−t}x, g_{−t}y) → 0 as t → ∞, with the integral below converging. This holds, for example, for y on the Pesin unstable manifold of an ω-regular x, where the convergence is exponential. Then for every smooth f:
+(i) u(x) − u(y) = ∫_{−∞}^0 (f(g_t x) − f(g_t y)) dt;
+(ii) |∫_{−∞}^0 (f(g_t x) − f(g_t y)) dt| ≤ 2C_1 ||f||_{C^{m(1)}} d(x,y).
+
+*Proof.* The constant ω(f) cancels in the difference, so we may take f of mean zero, with Xu = f. Then
+u(x) − u(y) − [u(g_{−T}x) − u(g_{−T}y)] = ∫_{−T}^0 (f(g_t x) − f(g_t y)) dt.
+The bracket tends to 0 because u is uniformly continuous. For (ii), use ||du||_{C^0} ≤ C_1 ||f − ω(f)||_{C^{m(1)}} and a geodesic between x and y. ∎
+
+The analogous statements hold for stable manifolds, with the integral taken over [0, ∞).
+
+## P3 (proved). The derivative cocycle identity.
+For smooth f with f − ω(f) = Xu, every tangent vector v and every t:
+du(Dg_t v) = du(v) + ∫_0^t df(Dg_s v) ds.
+Consequently |∫_0^t df(Dg_s v) ds| ≤ 2C_1 ||f||_{C^{m(1)}} (|v| + |Dg_t v|).
+
+*Proof.* We have L_X du = d(Xu) = df. Differentiate α(Dg_s v) in s, with α = du. ∎
+
+## P4 (proved). Spectral decay at zero frequency.
+Iterate the cohomological equation. For smooth mean-zero f there are smooth u_j with X^j u_j = f. Hence the spectral measure satisfies σ_f = λ^{2j} σ_{u_j}, so σ_f([−ε, ε]) ≤ ||u_j||_{L^2}^2 ε^{2j}.
+
+## Dead ends (checked)
+1. **P4 with Pinsker / Lebesgue spectrum.** This does not give a contradiction. In a countable Lebesgue spectrum component, the vectors whose spectral measure vanishes near 0 are dense, so the linear spectral data alone is consistent with positive entropy.
+
+2. **P2 with Pesin theory, at first order.** For y on W^u(x), the integral in P2(i) is at most about ∫ |Dg_t (y − x)| dt ≈ d(x,y)/λ. This is already O(d(x,y)), so the Lipschitz bound P2(ii) produces no contradiction. To get one, a single f with bounded C^m norm would need df aligned with the displacement along the whole backward orbit. A recurrent orbit returns to the same region with different displacement directions, so such an f does not exist.
+
+3. **P3.** The bound grows with |Dg_t v| itself, so it cannot rule out exponential growth of Dg_t. The identity is a tautology for exact forms. A contradiction would need solvability of L_X α = β for some non-exact 1-forms β, which (S) does not provide.
+
+4. **Derivative growth against the tame estimate.** As the planner noted, this fails because derivatives are lost: ||f ∘ g_s||_{C^m} ~ e^{mLs}.
+
+[R-d: spectral form, under the same hypothesis H]
+## 1. Spectral estimate (proved)
+
+Setting: omega is a smooth invariant probability volume. Then X is skew-symmetric on C^∞ ⊂ L²(omega), and its closure is skew-adjoint because the flow is unitary on L²(omega) (Stone's theorem). Write X = iA with A self-adjoint, and let P_ε = 1_{[-ε,ε]}(A) be the spectral projection.
+
+**Proposition S.** There are m and C such that for every smooth f with ∫f omega = 0 and every ε > 0,
+ ||P_ε f||_{L²} ≤ C ε ||f||_{C^m}.
+Equivalently, the spectral measure σ_f satisfies σ_f([-ε,ε]) ≤ C² ε² ||f||²_{C^m}, and ∫ s^{-2} dσ_f(s) ≤ C²||f||²_{C^m}.
+
+*Proof.*
+1. By H (or by O2 together with Text B, Lemma 2 with ν = omega and k = 0), f = Xu, where u is smooth with mean zero and ||u||_{C^0} ≤ C||f||_{C^m}. Hence ||u||_{L²} ≤ C||f||_{C^m}.
+2. Then P_ε f = i P_ε A u = i (A P_ε) u. Since ||A P_ε|| ≤ ε, we get ||P_ε f|| ≤ ε||u||.
+3. For the second form: σ_f = s² σ_u, so ∫ s^{-2} dσ_f = ||u||². ∎
+
+**Consequences.**
+- The spectral measure of every smooth mean-zero f vanishes to second order at 0, uniformly in the C^m norm.
+- In particular, the Green–Kubo variance of every smooth mean-zero f is 0. Equivalently, the ergodic integrals ∫_0^T f∘g_t are uniformly bounded (by 2C||f||_{C^m}), so no smooth observable satisfies a CLT with nondegenerate variance.
+
+## 2. Missing lemma (open)
+
+**(M)** Let g_t be a C^∞ flow that preserves a smooth volume omega, with h_omega(g_1) > 0. Then for every m there are smooth mean-zero f_n and ε_n → 0 such that
+ ||P_{ε_n} f_n|| / (ε_n ||f_n||_{C^m}) → ∞.
+
+(M) together with Proposition S contradicts H. Then Pesin's formula and the variational principle (the reduction in the earlier partial result) give h_top = 0.
+
+**Why (M) is plausible.** By Rokhlin–Sinai, positive entropy gives countable Lebesgue spectrum on the orthocomplement of L²(Pinsker) (cited from memory). So there is F ∈ L² with σ_F equal to Lebesgue measure near 0, and hence ||P_ε F||² ≈ 2ε, which is much larger than ε².
+
+**Why (M) is not proved.** Smooth f_n → F in L² need not inherit this: ||P_ε f_n|| can be as small as about ε·||f_n||_{C^m}, because the C^m norms blow up. One would need to approximate F by smooth functions whose C^m norm grows slower than ε^{-1/2} at the scale where ||P_ε(F − f_n)|| is small. This is a quantitative "smooth observables see the Lebesgue spectrum" statement, and it is exactly where the hard dynamics enters.
+
+**The tame estimate alone cannot settle it (consistent with D1).** For Anosov flows, generic smooth f has positive Green–Kubo variance, so (M) holds there trivially. But that proof uses the hyperbolic structure (CLT for smooth observables), which is not available here. A plausible route is a CLT, or merely positive variance for a single smooth observable, for nonuniformly hyperbolic smooth-volume flows with positive entropy. Such a result is known in special cases (e.g. Young towers) but not, to my knowledge, in general.
+
+=== END OF FURTHER RESULTS ===
+
+=== NEW PLANNER OBSERVATIONS (elementary; believed correct but NOT yet checked by a worker — verify each one before you use it, and say so if one is wrong) ===
+Fix a smooth positive density nu, d = div_nu X, and let J_t(x) = log Jac_nu(g_t)(x) = integral_0^t d(g_s x) ds (log of the nu-Jacobian of g_t).
+(N1) Lebesgue ergodicity. If B is a Borel set with g_t(B) = B for all t, then u = 1_B (an L^infinity function, hence a distribution) satisfies Xu = 0 in D': <Xu, phi nu> = -integral_B L_X(phi nu) = -(d/dt)|_{t=0} integral_{g_t B} phi nu = 0. By L1, nu(B) = 0 or nu(M \ B) = 0. More generally every measurable F with F o g_t = F nu-a.e. for every t is nu-a.e. constant. So under GH the flow is ergodic as a nonsingular (measure-class-preserving) flow for Lebesgue measure class.
+(N2) Conservativity. By (N1) and the Hopf decomposition M = C u D (conservative / dissipative parts, both invariant), either nu(D) = 0 or D = M a.e.; in the latter case the flow is totally dissipative and ergodic, which forces nu to be carried by a single orbit — impossible when dim M >= 2. So under GH (dim M >= 2) the flow is conservative for Lebesgue measure: there is no wandering set of positive volume, no attracting periodic orbit or attractor whose basin has positive volume but not full volume, etc. (Any invariant open set is either of full volume or empty.)
+(N3) Measurable Livsic regularity. If u is in L^1(nu) (or more generally defines a distribution) and for every t, u o g_t - u = integral_0^t f(g_s .) ds nu-a.e., with f smooth, then Xu = f in D', so u is smooth by GH. In particular: if there is a sigma-finite invariant measure rho nu absolutely continuous w.r.t. nu with log rho in L^1(nu), then a = log rho satisfies a o g_t - a = -J_t, so X a = -d in D', so a is smooth by GH and e^a nu is a smooth invariant volume (statement (V)).
+(N4) Reformulations of (V): (V) <=> d - c lies in X(D') for some constant c (then GH makes the solution smooth, and integrating over M forces c = 0) <=> for some m, d - c lies in the C^m-norm closure of X(C^infinity) (by the C^0 estimate ||u||_{C^0} <= C ||Xu||_{C^m}, a C^m-Cauchy sequence Xu_n gives a C^0-convergent u_n, i.e. a continuous solution) <=> the Jacobian cocycle J_t is a measurable coboundary with L^1 transfer function <=> T(d) = c T(1) for every invariant distribution density T. Note mu(d) = sum of all Lyapunov exponents of mu for an ergodic invariant probability mu, so (V) implies that this sum vanishes for every invariant measure.
+=== END OF NEW PLANNER OBSERVATIONS ===
+
+Deliverable: a complete rigorous proof that under H (and GH) the flow has zero topological entropy, with every lemma proved (standard theorems — Pesin's formula, Ruelle's inequality, Brin–Katok, variational principle, Kushnirenko, Oseledets — may be cited precisely). If you cannot, prove a precise statement that is strictly easier than the core and still implies it (a reduction), or a genuine partial result (for example: zero entropy when dim M <= 4, or when the unstable dimension of omega is 1), and state the exact missing lemma. Mark every step that is only sketched. Do not answer "this is an open problem": try to settle it.

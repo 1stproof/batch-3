@@ -1,0 +1,157 @@
+```latex
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+\newcommand{\HFhat}{\widehat{HF}}
+
+\title{Prime summands of Dehn surgeries on L-space knots}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{definition}
+A knot \(K\subset S^3\) is an \emph{L-space knot} if it admits a positive Dehn surgery
+\(S^3_r(K)\) that is an L-space.  A closed oriented \(3\)-manifold \(Y\) is an
+\emph{L-space} if \(Y\) is a rational homology sphere and
+\[
+\dim_{\mathbb F_2}\HFhat(Y;\mathbb F_2)=|H_1(Y;\mathbb Z)|.
+\]
+\end{definition}
+
+The question asks whether every Dehn surgery on an L-space knot has at most two
+prime summands.  The answer is \emph{yes}.  This is a theorem of
+Hom--Lidman--Zufelt \cite{HLZ}.
+
+\begin{theorem}[Hom--Lidman--Zufelt \cite{HLZ}]
+\label{thm:main}
+Let \(K\subset S^3\) be an L-space knot.  Then for every slope \(r\in\mathbb Q\cup\{\infty\}\),
+the closed \(3\)-manifold \(S^3_r(K)\) has at most two prime summands.
+More precisely, if \(S^3_r(K)\) is reducible, then its prime decomposition has exactly
+two summands, one of which is a lens space.
+\end{theorem}
+
+The proof of Theorem~\ref{thm:main} rests on the following three established
+results.
+
+\begin{lemma}[Gordon--Luecke \cite{GL}]
+\label{lem:GL}
+Let \(K\subset S^3\) be a knot.  If \(S^3_r(K)\) is reducible, then the surgery
+slope \(r\) is an integer.  Moreover, \(S^3_r(K)\) has a lens space summand.
+\end{lemma}
+
+\begin{lemma}[Howie--Sayari--Valdez S\'anchez \cite{HSV}]
+\label{lem:three}
+Let \(K\subset S^3\) be a knot, and suppose that \(S^3_n(K)\) has more than two
+prime summands.  Then
+\[
+S^3_n(K)\cong L(p,a)\#L(q,b)\#Y,
+\]
+where \(p,q>1\) are coprime, \(L(p,a)\) and \(L(q,b)\) are lens spaces, and
+\(Y\) is an integer homology sphere that is not a homotopy sphere.  Furthermore,
+the surgery slope satisfies \(|n|=pq\).
+\end{lemma}
+
+The next result is the key Floer-theoretic input.  It combines the slope
+dichotomy for reducible surgeries on L-space knots with the exclusion of
+three-summand surgeries at the exceptional slope.
+
+\begin{theorem}[Hom--Lidman--Zufelt \cite{HLZ}]
+\label{thm:HLZ-dichotomy}
+Let \(K\) be an L-space knot of genus \(g\).
+\begin{enumerate}
+\item[(i)] If \(S^3_n(K)\) is reducible for some integer \(n>0\), then either
+\(n=2g-1\), or \(K\) is a cable knot and \(n\) is its cabling slope.
+\item[(ii)] \(S^3_{2g-1}(K)\) has at most two prime summands.
+\end{enumerate}
+\end{theorem}
+
+Part (i) is the L-space knot case of the reduction obtained by combining the
+L-space surgery slope bound with the Matignon--Sayari bound for reducible
+surgeries; part (ii) rules out the remaining potential three-summand surgery at
+the slope \(2g-1\).  Both are proved in \cite{HLZ}.
+
+We also use the standard surgery formula for cable knots.
+
+\begin{lemma}[Cable surgery formula]
+\label{lem:cable}
+Let \(K=C_{p,q}(J)\) be the \((p,q)\)-cable of a knot \(J\), with \(p,q\)
+coprime and \(p>1\).  Then the cabling slope is \(pq\), and
+\[
+S^3_{pq}(K)\cong L(p,q)\# S^3_{p/q}(J).
+\]
+\end{lemma}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Let \(M=S^3_r(K)\).
+
+If \(M\) is irreducible, then its prime decomposition has one summand, and there
+is nothing to prove.  Suppose therefore that \(M\) is reducible.  By
+Lemma~\ref{lem:GL}, the slope \(r\) is an integer; after possibly replacing
+\(K\) by its mirror image we may assume \(r=n>0\).  Also by
+Lemma~\ref{lem:GL}, \(M\) contains a lens space summand.
+
+We claim that \(M\) cannot have three or more prime summands.  Suppose otherwise.
+Then, by Lemma~\ref{lem:three},
+\[
+M\cong L(p,a)\#L(q,b)\#Y,
+\]
+with \(p,q>1\) coprime, \(Y\) a nontrivial integer homology sphere, and
+\(n=pq\).
+
+On the other hand, since \(K\) is an L-space knot,
+Theorem~\ref{thm:HLZ-dichotomy}(i) applies.  Thus either
+\(n=2g(K)-1\), or \(K\) is a cable knot and \(n\) is its cabling slope.
+The second possibility cannot produce three summands.  Indeed, if
+\(K=C_{p,q}(J)\) and \(n=pq\), then by Lemma~\ref{lem:cable},
+\[
+S^3_n(K)\cong L(p,q)\#S^3_{p/q}(J).
+\]
+For a nontrivial L-space cable one has \(q>1\), so \(p/q\) is not an integer.
+Consequently \(S^3_{p/q}(J)\) is irreducible by the integrality part of
+Lemma~\ref{lem:GL}.  Hence in the cabling slope case the surgery has exactly two
+prime summands, not three.
+
+Therefore a three-summand surgery on an L-space knot would have to occur at the
+slope \(n=2g(K)-1\).  But this is impossible by
+Theorem~\ref{thm:HLZ-dichotomy}(ii).  Thus \(M\) has at most two prime
+summands.
+
+Finally, if \(M\) is reducible, Lemma~\ref{lem:GL} shows that one of the
+summands is a lens space; since there cannot be three or more summands, the
+prime decomposition has exactly two summands.  This proves the theorem.
+\end{proof}
+
+\begin{thebibliography}{9}
+
+\bibitem{GL}
+C. McA. Gordon and J. Luecke,
+\emph{Knot surgery and primeness},
+Math. Proc. Cambridge Philos. Soc. \textbf{102} (1987), 97--101.
+\newline
+\href{https://www.cambridge.org/core/journals/mathematical-proceedings-of-the-cambridge-philosophical-society/article/abs/knot-surgery-and-primeness/29D04C8E36EF794942FA2F0925BE1775}{cambridge.org}
+
+\bibitem{HSV}
+J. Howie, S. Sayari, and L. Valdez S\'anchez,
+\emph{Can Dehn surgery yield three connected summands?},
+\newline
+\href{https://ar5iv.labs.arxiv.org/html/0908.2697}{ar5iv.labs.arxiv.org}
+
+\bibitem{HLZ}
+J. Hom, T. Lidman, and N. Zufelt,
+\emph{L-space surgeries, genus bounds, and the cabling conjecture},
+\newline
+\href{https://exa.ai/library/publication/zl1m8jt741b}{exa.ai}
+
+\end{thebibliography}
+
+\end{document}
+```

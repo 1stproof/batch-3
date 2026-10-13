@@ -1,0 +1,744 @@
+=== latexmk ===
+Rc files read:
+  NONE
+Latexmk: This is Latexmk, John Collins, 7 Jan. 2023. Version 4.79.
+No existing .aux file, so I'll make a simple one, and require run of *latex.
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Category 'other':
+  Rerun of 'pdflatex' forced or previously required
+
+------------
+Run number 1 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex -no-shell-escape  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/tmp/first-proof-latex-xpkxlwxq"  "/work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex)
+entering extended mode
+(/work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex
+LaTeX2e <2022-11-01> patch level 1
+L3 programming layer <2023-01-16>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mathtools.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(/tmp/first-proof-latex-xpkxlwxq/solution.aux)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+))))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(./solution.out) (./solution.out)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+
+LaTeX Warning: Reference `lem:Linv' on page 1 undefined on input line 82.
+
+
+LaTeX Warning: Reference `prop:lower' on page 1 undefined on input line 86.
+
+
+LaTeX Warning: Reference `prop:upper' on page 1 undefined on input line 87.
+
+
+LaTeX Warning: Reference `prop:lower' on page 1 undefined on input line 90.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+
+LaTeX Warning: Reference `eq:u0prop' on page 2 undefined on input line 179.
+
+
+LaTeX Warning: Reference `eq:DeltaT' on page 2 undefined on input line 181.
+
+
+LaTeX Warning: Reference `lem:Linv' on page 2 undefined on input line 201.
+
+
+LaTeX Warning: Reference `lem:fourier' on page 2 undefined on input line 203.
+
+
+LaTeX Warning: Reference `lem:scale2' on page 2 undefined on input line 203.
+
+[2]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 206.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 206.
+
+
+LaTeX Warning: Reference `lem:lin' on page 3 undefined on input line 226.
+
+
+LaTeX Warning: Reference `lem:invert' on page 3 undefined on input line 235.
+
+
+Overfull \hbox (3.13841pt too wide) in paragraph at lines 270--279
+\OT1/cmr/m/n/10.95 equip $(0\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 1)$ with t
+he mea-sure $\OML/cmm/m/it/10.95 d^^V\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ^^
+Z\OT1/cmr/m/n/10.95 ) = \OML/cmm/m/it/10.95 ^^Z[]d^^Z$\OT1/cmr/m/n/10.95 , so t
+hat $\OML/cmm/m/it/10.95 ^^V\OT1/cmr/m/n/10.95 (0\OML/cmm/m/it/10.95 ; ^^Z\OT1/
+cmr/m/n/10.95 ) = \OML/cmm/m/it/10.95 ^^Z[]=d$ \OT1/cmr/m/n/10.95 and $\OMS/cms
+y/m/n/10.95 k\OML/cmm/m/it/10.95 g\OMS/cmsy/m/n/10.95 k[] \OT1/cmr/m/n/10.95 = 
+[][]\OMS/cmsy/m/n/10.95 k\OML/cmm/m/it/10.95 ^^M\OMS/cmsy/m/n/10.95 k[]\OML/cmm
+/m/it/10.95 d^^[\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ^^R\OT1/cmr/m/n/10.95 )
+$.
+[3]
+
+LaTeX Warning: Reference `lem:lin' on page 4 undefined on input line 340.
+
+
+LaTeX Warning: Reference `lem:scale2' on page 4 undefined on input line 343.
+
+
+LaTeX Warning: Reference `lem:Linv' on page 4 undefined on input line 347.
+
+
+LaTeX Warning: Reference `lem:lin' on page 4 undefined on input line 347.
+
+
+LaTeX Warning: Reference `lem:Linv' on page 4 undefined on input line 350.
+
+
+LaTeX Warning: Reference `lem:scale2' on page 4 undefined on input line 353.
+
+[4]
+
+LaTeX Warning: Reference `eq:veryweak' on page 5 undefined on input line 445.
+
+
+LaTeX Warning: Reference `eq:veryweak' on page 5 undefined on input line 447.
+
+
+LaTeX Warning: Reference `eq:veryweak' on page 5 undefined on input line 450.
+
+
+LaTeX Warning: Reference `eq:veryweak' on page 5 undefined on input line 480.
+
+[5]
+
+LaTeX Warning: Reference `rem:crux' on page 6 undefined on input line 549.
+
+
+Overfull \hbox (21.88121pt too wide) detected at line 570
+[][][]\OMS/cmsy/m/n/10.95 k j\OML/cmm/m/it/10.95 ^^X\OMS/cmsy/m/n/10.95 j[][]\O
+T1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ^^X\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.
+95 k[]  \OT1/cmr/m/n/10.95 =  [] \OMS/cmsy/m/n/10.95 kj\OML/cmm/m/it/10.95 ^^X\
+OMS/cmsy/m/n/10.95 j[] \OML/cmm/m/it/10.95 ^^X \OMS/cmsy/m/n/10.95 ^^A r[][]\OT
+1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ^^X\OT1/cmr/m/n/10.95 )\OMS/cmsy/m/n/10.95
+ k[]\OML/cmm/m/it/10.95 ;  \OMS/cmsy/m/n/10.95 k\OML/cmm/m/it/10.95 U[]\OMS/cms
+y/m/n/10.95 k[] ^^P \OML/cmm/m/it/10.95 ^^N\OMS/cmsy/m/n/10.95 k[]k[]  []\OT1/c
+mr/m/n/10.95 2[] \OMS/cmsy/m/n/10.95 ^^P \OML/cmm/m/it/10.95 ^^N[];
+
+LaTeX Warning: Reference `eq:fourierL' on page 6 undefined on input line 594.
+
+
+LaTeX Warning: Reference `eq:shell' on page 6 undefined on input line 594.
+
+
+LaTeX Warning: Reference `eq:shell' on page 6 undefined on input line 604.
+
+
+LaTeX Warning: Reference `lem:ao' on page 6 undefined on input line 605.
+
+
+LaTeX Warning: Reference `eq:scale2' on page 6 undefined on input line 607.
+
+
+LaTeX Warning: Reference `lem:scale2' on page 6 undefined on input line 608.
+
+
+LaTeX Warning: Reference `eq:shell' on page 6 undefined on input line 609.
+
+[6]
+
+LaTeX Warning: Reference `eq:aobound' on page 7 undefined on input line 667.
+
+
+LaTeX Warning: Reference `eq:aobound' on page 7 undefined on input line 682.
+
+[7]
+
+LaTeX Warning: Reference `eq:fourierL' on page 8 undefined on input line 713.
+
+
+LaTeX Warning: Reference `eq:shell' on page 8 undefined on input line 717.
+
+
+LaTeX Warning: Reference `lem:ao' on page 8 undefined on input line 732.
+
+
+LaTeX Warning: Reference `eq:fourierL' on page 8 undefined on input line 778.
+
+
+LaTeX Warning: Reference `lem:ao' on page 8 undefined on input line 800.
+
+[8]
+
+LaTeX Warning: Reference `lem:harmonic' on page 9 undefined on input line 834.
+
+
+LaTeX Warning: Reference `eq:qbound' on page 9 undefined on input line 873.
+
+
+LaTeX Warning: Reference `lem:invert' on page 9 undefined on input line 881.
+
+
+LaTeX Warning: Reference `eq:scale2' on page 9 undefined on input line 884.
+
+
+LaTeX Warning: Reference `lem:scale2' on page 9 undefined on input line 895.
+
+
+LaTeX Warning: Reference `eq:scale2' on page 9 undefined on input line 903.
+
+
+LaTeX Warning: Reference `lem:scale2' on page 9 undefined on input line 919.
+
+
+LaTeX Warning: Reference `lem:scale2' on page 9 undefined on input line 937.
+
+
+LaTeX Warning: Reference `lem:scale2' on page 9 undefined on input line 940.
+
+[9]
+
+LaTeX Warning: Reference `lem:scale2' on page 10 undefined on input line 993.
+
+
+LaTeX Warning: Reference `lem:scale2' on page 10 undefined on input line 997.
+
+
+LaTeX Warning: Reference `lem:quad' on page 10 undefined on input line 1004.
+
+
+LaTeX Warning: Reference `eq:KL' on page 10 undefined on input line 1019.
+
+
+LaTeX Warning: Reference `lem:fano' on page 10 undefined on input line 1039.
+
+[10]
+
+LaTeX Warning: Reference `prop:lower' on page 11 undefined on input line 1046.
+
+
+Overfull \hbox (15.31592pt too wide) in paragraph at lines 1050--1054
+[][]\OT1/cmr/bx/n/10.95 Lemma 4.2 \OT1/cmr/m/n/10.95 (Fano, ap-plied form)\OT1/
+cmr/bx/n/10.95 . []\OT1/cmr/m/it/10.95 Let $\OMS/cmsy/m/n/10.95 j\OT1/cmr/m/n/1
+0.95 ^^B\OMS/cmsy/m/n/10.95 j \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 N \OMS/c
+msy/m/n/10.95 ^^U \OT1/cmr/m/n/10.95 2$\OT1/cmr/m/it/10.95 , $\OMS/cmsy/m/n/10.
+95 f\OML/cmm/m/it/10.95 P[]\OMS/cmsy/m/n/10.95 g[]$ \OT1/cmr/m/it/10.95 prob-a-
+bil-ity mea-sures with $[] [][] []\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 P[]\O
+MS/cmsy/m/n/10.95 k\OML/cmm/m/it/10.95 P[]\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10
+.95 ^^T
+
+LaTeX Warning: Reference `lem:invert' on page 11 undefined on input line 1097.
+
+
+LaTeX Warning: Reference `eq:veryweak' on page 11 undefined on input line 1126.
+
+
+[11]
+
+LaTeX Warning: Reference `eq:approx' on page 12 undefined on input line 1139.
+
+
+LaTeX Warning: Reference `eq:finebias' on page 12 undefined on input line 1141.
+
+
+
+LaTeX Warning: Reference `eq:infsup' on page 12 undefined on input line 1153.
+
+
+LaTeX Warning: Reference `lem:apriori' on page 12 undefined on input line 1153.
+
+
+
+LaTeX Warning: Reference `lem:scale2' on page 12 undefined on input line 1162.
+
+
+LaTeX Warning: Reference `lem:origin' on page 12 undefined on input line 1177.
+
+
+LaTeX Warning: Reference `rem:modewise' on page 12 undefined on input line 1179
+.
+
+
+LaTeX Warning: Reference `eq:DeltaT' on page 12 undefined on input line 1184.
+
+
+LaTeX Warning: Reference `rem:modewise' on page 12 undefined on input line 1194
+.
+
+
+LaTeX Warning: Reference `lem:origin' on page 12 undefined on input line 1196.
+
+
+LaTeX Warning: Reference `eq:DeltaT' on page 12 undefined on input line 1197.
+
+
+LaTeX Warning: Reference `eq:origingain' on page 12 undefined on input line 121
+7.
+
+
+LaTeX Warning: Reference `lem:scale2' on page 12 undefined on input line 1217.
+
+
+LaTeX Warning: Reference `lem:ao' on page 12 undefined on input line 1225.
+
+[12]
+
+LaTeX Warning: Reference `lem:scale2' on page 13 undefined on input line 1242.
+
+
+LaTeX Warning: Reference `eq:qbound' on page 13 undefined on input line 1244.
+
+
+LaTeX Warning: Reference `lem:invert' on page 13 undefined on input line 1249.
+
+
+LaTeX Warning: Reference `rem:modewise' on page 13 undefined on input line 1253
+.
+
+
+LaTeX Warning: Reference `lem:scale2' on page 13 undefined on input line 1262.
+
+
+LaTeX Warning: Reference `lem:scale2' on page 13 undefined on input line 1263.
+
+
+LaTeX Warning: Reference `lem:ao' on page 13 undefined on input line 1266.
+
+
+LaTeX Warning: Reference `lem:scale2' on page 13 undefined on input line 1281.
+
+
+LaTeX Warning: Reference `eq:Uupper' on page 13 undefined on input line 1282.
+
+
+LaTeX Warning: Reference `eq:qbound' on page 13 undefined on input line 1294.
+
+
+LaTeX Warning: Reference `eq:spectail' on page 13 undefined on input line 1318.
+
+
+
+LaTeX Warning: Reference `lem:scale2' on page 13 undefined on input line 1323.
+
+
+LaTeX Warning: Reference `rem:degree1' on page 13 undefined on input line 1324.
+
+
+
+LaTeX Warning: Reference `lem:origin' on page 13 undefined on input line 1328.
+
+
+LaTeX Warning: Reference `eq:finebias' on page 13 undefined on input line 1336.
+
+
+
+LaTeX Warning: Reference `eq:infsup' on page 13 undefined on input line 1337.
+
+
+LaTeX Warning: Reference `lem:scale2' on page 13 undefined on input line 1339.
+
+
+LaTeX Warning: Reference `lem:scale2' on page 13 undefined on input line 1340.
+
+[13]
+
+LaTeX Warning: Reference `eq:approx' on page 14 undefined on input line 1351.
+
+
+LaTeX Warning: Reference `lem:quad' on page 14 undefined on input line 1361.
+
+
+LaTeX Warning: Reference `eq:opdiff' on page 14 undefined on input line 1375.
+
+
+LaTeX Warning: Reference `lem:scale2' on page 14 undefined on input line 1393.
+
+
+LaTeX Warning: Reference `lem:scale2' on page 14 undefined on input line 1397.
+
+
+LaTeX Warning: Reference `eq:Uupper' on page 14 undefined on input line 1398.
+
+
+Overfull \hbox (7.65211pt too wide) in paragraph at lines 1374--1401
+\OT1/cmr/m/n/10.95 To see the iden-tity in [], sub-tract the lin-earized equa-t
+ions: $[](\OMS/cmsy/m/n/10.95 r\OML/cmm/m/it/10.95 T[]h\OT1/cmr/m/n/10.95 ) = \
+OMS/cmsy/m/n/10.95 ^^@ []\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 h\OMS/cmsy/m/n
+/10.95 r\OML/cmm/m/it/10.95 u[]\OT1/cmr/m/n/10.95 )$ and $[](\OMS/cmsy/m/n/10.9
+5 r\OML/cmm/m/it/10.95 Th\OT1/cmr/m/n/10.95 ) =
+
+LaTeX Warning: Reference `lem:invert' on page 14 undefined on input line 1419.
+
+
+LaTeX Warning: Reference `eq:opdiff' on page 14 undefined on input line 1420.
+
+
+LaTeX Warning: Reference `lem:invert' on page 14 undefined on input line 1422.
+
+
+LaTeX Warning: Reference `eq:basic' on page 14 undefined on input line 1424.
+
+
+LaTeX Warning: Reference `rem:modewise' on page 14 undefined on input line 1425
+.
+
+[14]
+
+LaTeX Warning: Reference `lem:quad' on page 15 undefined on input line 1434.
+
+
+LaTeX Warning: Reference `eq:absorb' on page 15 undefined on input line 1481.
+
+
+LaTeX Warning: Reference `eq:infsupapp' on page 15 undefined on input line 1481
+.
+
+
+LaTeX Warning: Reference `eq:basic0' on page 15 undefined on input line 1488.
+
+
+LaTeX Warning: Reference `eq:basic0' on page 15 undefined on input line 1495.
+
+
+LaTeX Warning: Reference `eq:veryweak' on page 15 undefined on input line 1506.
+
+
+
+LaTeX Warning: Reference `eq:approx' on page 15 undefined on input line 1509.
+
+
+LaTeX Warning: Reference `eq:approx' on page 15 undefined on input line 1513.
+
+
+LaTeX Warning: Reference `lem:scale2' on page 15 undefined on input line 1524.
+
+
+LaTeX Warning: Reference `eq:qbound' on page 15 undefined on input line 1526.
+
+
+LaTeX Warning: Reference `lem:apriori' on page 15 undefined on input line 1529.
+
+
+
+LaTeX Warning: Reference `eq:basic' on page 15 undefined on input line 1554.
+
+
+LaTeX Warning: Reference `eq:finebias' on page 15 undefined on input line 1562.
+
+
+[15]
+
+LaTeX Warning: Reference `prop:lower' on page 16 undefined on input line 1580.
+
+
+LaTeX Warning: Reference `prop:upper' on page 16 undefined on input line 1582.
+
+
+LaTeX Warning: Reference `lem:lin' on page 16 undefined on input line 1592.
+
+
+LaTeX Warning: Reference `lem:Linv' on page 16 undefined on input line 1592.
+
+
+LaTeX Warning: Reference `lem:fourier' on page 16 undefined on input line 1593.
+
+
+
+LaTeX Warning: Reference `lem:quad' on page 16 undefined on input line 1596.
+
+
+LaTeX Warning: Reference `rem:alpha>1' on page 16 undefined on input line 1598.
+
+
+
+LaTeX Warning: Reference `eq:veryweak' on page 16 undefined on input line 1608.
+
+
+
+LaTeX Warning: Reference `sec:forward' on page 16 undefined on input line 1609.
+
+
+[16] (/tmp/first-proof-latex-xpkxlwxq/solution.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
+(see the transcript file for additional information) </root/.texlive2022/texmf-
+var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </root/.texlive2022/texmf-var/f
+onts/pk/ljfour/jknappen/ec/tcti1095.600pk></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cme
+xtra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+mi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/s
+ymbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/sy
+mbols/msbm10.pfb>
+Output written on /tmp/first-proof-latex-xpkxlwxq/solution.pdf (16 pages, 35781
+6 bytes).
+Transcript written on /tmp/first-proof-latex-xpkxlwxq/solution.log.
+Latexmk: Getting log file '/tmp/first-proof-latex-xpkxlwxq/solution.log'
+Latexmk: Examining '/tmp/first-proof-latex-xpkxlwxq/solution.fls'
+Latexmk: Examining '/tmp/first-proof-latex-xpkxlwxq/solution.log'
+Latexmk: References changed.
+Latexmk: Log file says output to '/tmp/first-proof-latex-xpkxlwxq/solution.pdf'
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Changed files or newly in use/created:
+  /tmp/first-proof-latex-xpkxlwxq/solution.aux
+  /tmp/first-proof-latex-xpkxlwxq/solution.out
+
+------------
+Run number 2 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex -no-shell-escape  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/tmp/first-proof-latex-xpkxlwxq"  "/work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex)
+entering extended mode
+(/work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex
+LaTeX2e <2022-11-01> patch level 1
+L3 programming layer <2023-01-16>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mathtools.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(/tmp/first-proof-latex-xpkxlwxq/solution.aux)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+))))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/tmp/first-proof-latex-xpkxlwxq/solution.out)
+(/tmp/first-proof-latex-xpkxlwxq/solution.out)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd) [1{/var/lib/texmf/fo
+nts/map/pdftex/updmap/pdftex.map}] [2]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 206.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 206.
+
+
+Overfull \hbox (3.13841pt too wide) in paragraph at lines 270--279
+\OT1/cmr/m/n/10.95 equip $(0\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 1)$ with t
+he mea-sure $\OML/cmm/m/it/10.95 d^^V\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ^^
+Z\OT1/cmr/m/n/10.95 ) = \OML/cmm/m/it/10.95 ^^Z[]d^^Z$\OT1/cmr/m/n/10.95 , so t
+hat $\OML/cmm/m/it/10.95 ^^V\OT1/cmr/m/n/10.95 (0\OML/cmm/m/it/10.95 ; ^^Z\OT1/
+cmr/m/n/10.95 ) = \OML/cmm/m/it/10.95 ^^Z[]=d$ \OT1/cmr/m/n/10.95 and $\OMS/cms
+y/m/n/10.95 k\OML/cmm/m/it/10.95 g\OMS/cmsy/m/n/10.95 k[] \OT1/cmr/m/n/10.95 = 
+[][]\OMS/cmsy/m/n/10.95 k\OML/cmm/m/it/10.95 ^^M\OMS/cmsy/m/n/10.95 k[]\OML/cmm
+/m/it/10.95 d^^[\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ^^R\OT1/cmr/m/n/10.95 )
+$.
+[3] [4] [5]
+Overfull \hbox (21.88121pt too wide) detected at line 570
+[][][]\OMS/cmsy/m/n/10.95 k j\OML/cmm/m/it/10.95 ^^X\OMS/cmsy/m/n/10.95 j[][]\O
+T1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ^^X\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.
+95 k[]  \OT1/cmr/m/n/10.95 =  [] \OMS/cmsy/m/n/10.95 kj\OML/cmm/m/it/10.95 ^^X\
+OMS/cmsy/m/n/10.95 j[] \OML/cmm/m/it/10.95 ^^X \OMS/cmsy/m/n/10.95 ^^A r[][]\OT
+1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ^^X\OT1/cmr/m/n/10.95 )\OMS/cmsy/m/n/10.95
+ k[]\OML/cmm/m/it/10.95 ;  \OMS/cmsy/m/n/10.95 k\OML/cmm/m/it/10.95 U[]\OMS/cms
+y/m/n/10.95 k[] ^^P \OML/cmm/m/it/10.95 ^^N\OMS/cmsy/m/n/10.95 k[]k[]  []\OT1/c
+mr/m/n/10.95 2[] \OMS/cmsy/m/n/10.95 ^^P \OML/cmm/m/it/10.95 ^^N[];
+[6] [7] [8] [9] [10]
+Overfull \hbox (15.31592pt too wide) in paragraph at lines 1050--1054
+[][]\OT1/cmr/bx/n/10.95 Lemma 4.2 \OT1/cmr/m/n/10.95 (Fano, ap-plied form)\OT1/
+cmr/bx/n/10.95 . []\OT1/cmr/m/it/10.95 Let $\OMS/cmsy/m/n/10.95 j\OT1/cmr/m/n/1
+0.95 ^^B\OMS/cmsy/m/n/10.95 j \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 N \OMS/c
+msy/m/n/10.95 ^^U \OT1/cmr/m/n/10.95 2$\OT1/cmr/m/it/10.95 , $\OMS/cmsy/m/n/10.
+95 f\OML/cmm/m/it/10.95 P[]\OMS/cmsy/m/n/10.95 g[]$ \OT1/cmr/m/it/10.95 prob-a-
+bil-ity mea-sures with $[] [][] []\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 P[]\O
+MS/cmsy/m/n/10.95 k\OML/cmm/m/it/10.95 P[]\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10
+.95 ^^T
+[11] [12] [13]
+Overfull \hbox (6.7093pt too wide) in paragraph at lines 1374--1401
+\OT1/cmr/m/n/10.95 To see the iden-tity in [], sub-tract the lin-earized equa-t
+ions: $[](\OMS/cmsy/m/n/10.95 r\OML/cmm/m/it/10.95 T[]h\OT1/cmr/m/n/10.95 ) = \
+OMS/cmsy/m/n/10.95 ^^@ []\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 h\OMS/cmsy/m/n
+/10.95 r\OML/cmm/m/it/10.95 u[]\OT1/cmr/m/n/10.95 )$ and $[](\OMS/cmsy/m/n/10.9
+5 r\OML/cmm/m/it/10.95 Th\OT1/cmr/m/n/10.95 ) =
+[14] [15]
+Overfull \hbox (0.11615pt too wide) in paragraph at lines 1594--1601
+[]\OT1/cmr/bx/n/10.95 Role of $\OML/cmm/m/it/10.95  > \OT1/cmr/m/n/10.95 1$\OT
+1/cmr/bx/n/10.95 . \OT1/cmr/m/n/10.95 Used de-ci-sively in both bounds to make 
+the quadratic re-main-der $\OML/cmm/m/it/10.95 R\OT1/cmr/m/n/10.95 (\OML/cmm/m/
+it/10.95 h\OT1/cmr/m/n/10.95 )$ (Lemma [][]2.7[][])
+[16] (/tmp/first-proof-latex-xpkxlwxq/solution.aux) )
+(see the transcript file for additional information) </root/.texlive2022/texmf-
+var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </root/.texlive2022/texmf-var/f
+onts/pk/ljfour/jknappen/ec/tcti1095.600pk></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cme
+xtra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+mi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/s
+ymbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/sy
+mbols/msbm10.pfb>
+Output written on /tmp/first-proof-latex-xpkxlwxq/solution.pdf (16 pages, 36300
+8 bytes).
+Transcript written on /tmp/first-proof-latex-xpkxlwxq/solution.log.
+Latexmk: Getting log file '/tmp/first-proof-latex-xpkxlwxq/solution.log'
+Latexmk: Examining '/tmp/first-proof-latex-xpkxlwxq/solution.fls'
+Latexmk: Examining '/tmp/first-proof-latex-xpkxlwxq/solution.log'
+Latexmk: Log file says output to '/tmp/first-proof-latex-xpkxlwxq/solution.pdf'
+Latexmk: All targets () are up-to-date
+
+
+=== pdfinfo ===
+Title:           
+Subject:         
+Keywords:        
+Author:          
+Creator:         LaTeX with hyperref
+Producer:        pdfTeX-1.40.24
+CreationDate:    Sat Oct  3 09:50:54 2026 UTC
+ModDate:         Sat Oct  3 09:50:54 2026 UTC
+Custom Metadata: yes
+Metadata Stream: no
+Tagged:          no
+UserProperties:  no
+Suspects:        no
+Form:            none
+JavaScript:      no
+Pages:           16
+Encrypted:       no
+Page size:       612 x 792 pts (letter)
+Page rot:        0
+File size:       363008 bytes
+Optimized:       no
+PDF version:     1.5

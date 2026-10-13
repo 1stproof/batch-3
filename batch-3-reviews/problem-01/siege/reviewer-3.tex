@@ -1,0 +1,571 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[shortlabels]{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{construction}[theorem]{Construction}
+\newtheorem{convention}[theorem]{Convention}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\gp}{\mathrm{gp}}
+\newcommand{\face}{\operatorname{face}}
+\newcommand{\Prin}{\operatorname{Pr}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\lin}{\operatorname{lin}}
+\newcommand{\cone}{\operatorname{cone}}
+\newcommand{\Lan}{\operatorname{Lan}}
+\newcommand{\colim}{\operatorname*{colim}}
+\newcommand{\rfl}{\mathrm{int,sat,sharp}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\fB}{\mathfrak{B}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\Sh}{\operatorname{Sh}}
+\newcommand{\PSh}{\operatorname{PSh}}
+\newcommand{\set}{\operatorname{set}}
+\newcommand{\Qrat}{Q_{\QQ}}
+
+\newcommand{\fptitle}{Review of Problem 1 -- Siege}
+\newcommand{\reviewtag}{Reviewer 3}
+\usepackage{fp-review}
+
+\begin{document}
+\maketitle
+
+\section{Review}
+
+Global opinion: it is essentially correct. Arguments are standard compared to human solution. What is different: it somehow seems to prefer working directly in high generality, rather than reducing to a smaller case. This difference makes the proof less modular, and hence more difficult to follows.
+Exposition-wise it is also really difficult to understand. It uses notation from multiple pages ago, sometimes referring to four things defined ov Example: ``By Lemma~\ref{lem:2} and (G3), $N(\Qrat)$ is the full subcomplex $N_\tau(J')$ of $N_\tau$ on $J'$, and $C^\bullet(\Qrat)$ is its augmented ordered cochain complex,'' where the reader has to scroll back at least a page to find out what any of the components ($N, Q, \tau, J', \dots$) of the notation means.
+
+\paragraph{Correctness.}
+I believe this to be essentially flawless. It is difficult to be certain due to the very poor exposition, but wherever I checked in detail, it was rigorous and correct.
+
+\noindent Score: 1
+
+\paragraph{Exposition.}
+This does a good job in my opinion of sign-posting, explaining the proof.
+
+The arguments are extremely difficult to follow. It introduces lots of notation. For the proof of the key theorem (Section 9.6), it is 5 steps, a total of \~15 lines in the pdf, and I count roughly 20 notational entities. Sample sentence: 
+
+``By Lemma~\ref{lem:2} and (G3), $N(\Qrat)$ is the full subcomplex $N_\tau(J')$ of $N_\tau$ on $J'$, and $C^\bullet(\Qrat)$ is its augmented ordered cochain complex.''
+
+Context clues tell us only that $J'$ is a finite set (not what kind of elements are in it), $N_\tau$ is defined three pages earlier, and $C^\bullet$ 2.5 pages earlier, and $N$ two pages earlier. Lemma 9.5 and (G3) are in yet other places.
+
+This is a large outlier from Otter and Lynx (the two other correct solutions I have reviewed). Three possible explanation.
+
+\noindent Score: -1
+
+\paragraph{Attributions.}
+\begin{itemize}
+	\item  1: solutions contains fully appropriate attributions
+		to related work and theorems being used.
+	\item  0: moderate issues with missing attributions or hallucinated references
+	\item  $-1$: blatant plagiarism or hallucinations
+\end{itemize}
+
+This paper cites a lot more than the other correct solutions I have seen (Lynx, Otter). I'd argue that it cites more than necessary, but that is not a problem.
+
+
+\noindent Score: 1
+
+\newpage
+\section{Submission with inline comments}
+
+
+\section{The problem}
+
+Throughout, a \emph{monoid} is an integral, saturated, sharp, commutative, unital semigroup; monoids are written additively. A monoid $M$ induces a translation invariant partial order on its associated group $M^{\gp}$ such that $x\ge 0$ if and only if $x\in M$. A \emph{valuative monoid} is a monoid in which the associated partial order is a total order. If $M$ is a monoid, $x\in M^{\gp}$ and $y\in M$, we write $x\prec y$ to mean that there are integers $m$ and $n$ such that $my\le x\le ny$. A monoid homomorphism $f\colon M\to N$ is called \emph{infinitesimal} if the following condition holds:
+\begin{itemize}
+\item if there are $x\in M^{\gp}$ and $y\in M$ such that $f(x)\in N$, $x\prec y$ and $f(y)\prec f(x)$, then $x\in M$.
+\end{itemize}
+If $P\xrightarrow{f}Q\xrightarrow{g}N$ are monoid homomorphisms, we say that $f$ is \emph{birhizomic at $g$} if it is of finite presentation in the category of (integral, saturated, sharp) monoids and, for every factorization of $gf$ through monoid homomorphisms $P\xrightarrow{h}M\xrightarrow{p}N$ with $p$ infinitesimal, there is a unique monoid homomorphism $u\colon Q\to M$ with $pu=g$ and $uf=h$. A family of morphisms $P\to Q_i$ is called a \emph{birhizomic cover} if, for every valuative monoid $V$ and every homomorphism $v\colon P\to V$, there is a factorization of $v$ through some $Q_i\to V$ such that $P\to Q_i$ is birhizomic at $Q_i\to V$.
+
+Let $P$ be a monoid and let $A_P$ be the category of monoid homomorphisms $P\to Q$. The birhizomic covers form a Grothendieck topology on $A_P^{\mathrm{op}}$. For any $x\in P$ there is an initial monoid homomorphism $P\to P[-x]^\sharp$ that sends $x$ to $0$. Let $B_P$ be the full subcategory of $A_P$ consisting of the homomorphisms $P\to P[-x]^\sharp$, $x\in P$. Give $A_P^{\mathrm{op}}$ the birhizomic topology and $B_P^{\mathrm{op}}$ the trivial topology, in which all presheaves are sheaves. The inclusion $B_P^{\mathrm{op}}\subset A_P^{\mathrm{op}}$ is left exact; by left Kan extension and sheafification it extends to a functor $\pi^{-1}\colon \Sh(B_P)\to\Sh(A_P)$ on the categories of sheaves. Let $\pi_*$ be the right adjoint of $\pi^{-1}$.
+
+\medskip\noindent\textbf{Question.} \emph{Is it the case that, for all presheaves of abelian groups $F$ on $B_P^{\mathrm{op}}$, the morphism $F\to \mathrm{R}\pi_*\pi^{-1}F$ is a quasi-isomorphism?}
+
+\section{The result}
+
+The answer is \textbf{yes}, for every monoid $P$.
+
+\begin{theorem}[Main Theorem]\label{thm:main}
+Let $P$ be a monoid (integral, saturated, sharp, commutative; $P$ is \emph{not} assumed to be finitely generated). For every presheaf of abelian groups $F$ on $B_P^{\mathrm{op}}$:
+\begin{enumerate}[(a)]
+\item the unit $F\to\pi_*\pi^{-1}F$ is an isomorphism;
+\item $\mathrm{R}^p\pi_*\pi^{-1}F=0$ for all $p>0$.
+\end{enumerate}
+Consequently $F\to\mathrm{R}\pi_*\pi^{-1}F$ is a quasi-isomorphism.
+\end{theorem}
+
+\begin{convention}[Reading of the problem]\label{conv}
+We make the following natural readings explicit.
+\begin{enumerate}[(i)]
+\item The problem defines birhizomic covers only with base $P$. For an object $P\to Q$ of $A_P$, the covering families of $Q$ are the birhizomic covers $\{Q\to Q_i\}$ with base $Q$ (a map under $P$ out of $Q$ is just a map out of $Q$), and the topology on $A_P^{\mathrm{op}}$ is the one these families generate. Lemma~\ref{lem:pretop} checks that they form a pretopology. The argument below only uses property~$(\star)$ of Section~\ref{sec:site}.
+\item ``Of finite presentation in the category of monoids'' is read as compactness in the under-category; see Definition~\ref{def:fp}.
+\item $\pi^{-1}F=(\Lan F)^\#$, where $\Lan$ is the left Kan extension of presheaves and $\#$ is sheafification, as described in the problem.
+\item \emph{Size.} Fix universes $\mathbb U\in\mathbb V$ with $P\in\mathbb U$; $A_P$ consists of the maps $P\to Q$ with $Q\in\mathbb U$, and presheaves take values in $\mathbb V$-small abelian groups, so the usual theory (plus construction, enough injectives, derived functors) applies to the site $A_P^{\mathrm{op}}$ \cite[Exp.~I]{SGA4}. Nothing below depends on this choice.
+\end{enumerate}
+\end{convention}
+
+\begin{remark}
+The proof never uses the infinitesimality condition in the definition of ``birhizomic''. It uses only two properties of a birhizomic cover $\{Q\to Q_i\}$: every valuation of $Q$ (a homomorphism to a valuative monoid) factors through some member $Q\to Q_i$ at which that member is birhizomic, and such members are of finite presentation.
+\end{remark}
+
+\section{Overview of the proof}
+
+By the universal property of $P[-x]^\sharp$, the category $B_P$ is a preorder, equivalent to the directed poset $\Prin(P)$ of principal faces $\face(x)=\{y\in P: y\le nx \text{ for some } n\}$ of $P$. For an object $f\colon P\to Q$ of $A_P$, the value $(\Lan F)(Q)$ is the filtered colimit of $F$ over the principal faces contained in the \emph{kernel face} $\Phi_Q=f^{-1}(0)$. Two algebraic results drive the proof.
+
+\emph{Theorem~\ref{thm:B}:} if $Q$ is of finite presentation under $P$, then $\Phi_Q$ is principal, so $(\Lan F)(Q)=F(\Phi_Q)$ is a single value of $F$. The proof writes $Q$ as a retract of a finitely presented reflection, describes $\Phi_Q$ through a finitely generated monoid of relations (Gordan's lemma), and uses a rank argument in a finitely generated free abelian group.
+
+\emph{Theorem~\ref{thm:D} (nerve theorem):} for a family of finitely presented maps $Q\to Q_i$ through which every valuation of $Q$ factors, and for a subset $\tau\supset\Phi_Q$, the simplicial complex of those finite $\sigma$ whose pushout $Q_\sigma$ has kernel face inside $\tau$ is acyclic. We translate this into convex geometry over $\QQ$. Valuations of $Q$ correspond to \emph{total cones} $W$ in $Q^{\gp}\otimes\QQ$. By Fourier--Motzkin elimination, the total cones $W$ whose valuation $v_W$ extends to $Q_i$ are exactly those containing a certain finite set $X_i$. The kernel faces of the pushouts are read off from the lineality spaces of the cones generated by the $X_i$. Compactness of the space of total cones yields a finite subcover. Finally an induction on the number of undecided sign conditions, using a double complex, proves acyclicity of an abstract cochain complex built from cones (Theorem~\ref{thm:T}).
+
+The sheaf-theoretic part (Section~\ref{sec:sheaf}) then runs as follows. Presheaves on $B_P$ have injective resolutions by products of simple injectives $I_{\tau,A}$. By Theorem~\ref{thm:D}, the left Kan extensions of these have exact Čech complexes on all covers of finitely presented objects by finitely presented maps. From this we deduce that $\Lan F$ already satisfies the sheaf condition on finitely presented objects, so sheafification does not change its values there; this gives the unit isomorphism. A version of Cartan's criterion, proved here, shows that the sheaves $\pi^{-1}I^k$ have no higher cohomology on finitely presented objects. Since every object of $B_P$ is finitely presented, the higher derived functors $\mathrm R^p\pi_*\pi^{-1}F$ vanish.
+
+\emph{What is known and what is argued here.} We use, as known results: Zorn's lemma, Tychonoff's theorem, Gordan's lemma \cite{Gordan,Fulton}, Fourier--Motzkin elimination \cite{Schrijver} (the version over ordered $\QQ$-vector spaces is argued below), the universal coefficient theorem \cite{Hatcher}, the acyclic assembly lemma for double complexes \cite{Weibel}, Kan extensions \cite{MacLane}, the passage from a pretopology to a topology, the plus construction and enough injectives for sheaves \cite{SGA4,Tohoku}. Theorems~\ref{thm:B}, \ref{thm:D}, \ref{thm:T}, the version of Cartan's criterion (Proposition~\ref{prop:cartan}) and the remaining steps are proved in full below.
+
+\section{Monoids}\label{sec:monoids}
+
+\subsection{Notation}
+Let $\cC$ be the category of monoids (integral, saturated, sharp, commutative). For a monoid $B$, $B/\cC$ is the category of maps $B\to M$ in $\cC$, with maps under $B$ as morphisms; its Hom-sets are written $\Hom_B(M,N)$. For $f\colon P\to Q$ write $\Phi_Q:=f^{-1}(0)$. On $P^{\gp}$, $y\le z$ means $z-y\in P$. For $x\in P$ put $\face(x):=\{y\in P: y\le nx\text{ for some }n\ge1\}$. A \emph{face} of $P$ is a submonoid $F$ with $a+b\in F\Rightarrow a,b\in F$; it is \emph{principal} if $F=\face(x)$ for some $x$. Write $\Prin(P)$ for the set of principal faces.
+
+\begin{lemma}[Torsion-freeness]\label{lem:tf}
+For $M\in\cC$, $M^{\gp}$ is torsion-free. Consequently $nx=ny\Rightarrow x=y$ in $M^{\gp}$ for $n\ge1$, and $M\subset M^{\gp}\subset M^{\gp}\otimes\QQ$.
+\end{lemma}
+\begin{proof}
+If $nx=0$ then $nx\in M$, so $x\in M$ by saturation; likewise $-x\in M$, so $x=0$ by sharpness.
+\end{proof}
+
+\begin{lemma}[Filtered colimits]\label{lem:filt}
+A filtered colimit of objects of $\cC$, computed in commutative monoids, lies in $\cC$. Hence filtered colimits in $\cC$ and in $B/\cC$ are computed on underlying sets.
+\end{lemma}
+\begin{proof}
+Each axiom is witnessed at a finite stage. \emph{Integrality:} if $a+c=b+c$ in the colimit, this already holds at some stage, so $a=b$ there. \emph{Saturation:} the group of the colimit is the colimit of the groups, and an element $x$ of it is a difference $x=a-b$ of elements $a,b$ of the colimit monoid, which come from some stage $k$. If $nx=m$ with $m$ in the colimit monoid, then $na=nb+m$ holds in the monoid at some stage $k'\ge k$ where $m$ is also represented. At that stage $a-b$ lies in the group of the stage monoid and $n(a-b)$ lies in the stage monoid, so $a-b$ lies in the stage monoid by saturation; hence $x$ lies in the colimit monoid. \emph{Sharpness:} $x+y=0$ already holds at some stage.
+\end{proof}
+
+\begin{construction}[The reflection; pushouts]\label{con:refl}
+Let $N$ be a commutative monoid and $E\subset N\times N$ a set of relations. Let $G$ be the group completion of the quotient monoid $N/E$, $M_0$ the image of $N/E$ in $G$, $M_1=\{g\in G: ng\in M_0\text{ for some }n\ge1\}$, and $T:=M_1/M_1^*$. We write $T=(N/E)^{\rfl}$.
+\begin{itemize}
+\item $T\in\cC$. It is integral as a submonoid of the group $G/M_1^*$, and it is sharp. It is saturated: if $ng\in T$ for $g\in G/M_1^*$, then a lift $\tilde g$ has $n\tilde g\in M_1$, so $\tilde g\in M_1$.
+\item Every map $N\to X$ with $X\in\cC$ that respects $E$ factors uniquely through $T$: it extends to $G\to X^{\gp}$; it sends $M_1$ into $X$ because $X$ is saturated (and $X^{\gp}$ is torsion-free); and it kills $M_1^*$ because $X$ is sharp.
+\end{itemize}
+Pushouts in $\cC$ are formed in this way from pushouts of commutative monoids. Fibre products in $A_P^{\mathrm{op}}$ are pushouts under $P$.
+\end{construction}
+
+\begin{definition}\label{def:fp}
+A map $B\to M$ in $\cC$ is \emph{of finite presentation} (\emph{f.p.}) if $\Hom_B(M,-)$ commutes with filtered colimits in $B/\cC$. An object $P\to Q$ of $A_P$ is called f.p.\ if this map is f.p.
+\end{definition}
+
+\begin{lemma}[The objects $b_x$]\label{lem:bx}
+Let $x\in P$.
+\begin{enumerate}[(a)]
+\item $P[-x]:=\{p-nx: p\in P,\ n\ge0\}\subset P^{\gp}$ is integral and saturated, and $P[-x]^\sharp:=P[-x]/P[-x]^*$ lies in $\cC$. Write $b_x$ for the object $P\to P[-x]^\sharp$ of $A_P$.
+\item For $f\colon P\to Q$ in $A_P$, a map $P[-x]^\sharp\to Q$ under $P$ exists if and only if $f(x)=0$, and it is then unique.
+\item $\Phi_{b_x}=\face(x)$.
+\item For every $f\colon P\to Q$, $\Phi_Q$ is a face; a map $Q\to Q'$ under $P$ gives $\Phi_Q\subset\Phi_{Q'}$; and $x\in\Phi_Q$ iff $\face(x)\subset\Phi_Q$.
+\item $\Hom_{A_P}(b_x,b_y)$ is a point if $\face(x)\subset\face(y)$ and empty otherwise. So $B_P$ is a preorder, equivalent to the poset $\Prin(P)$. This poset is directed, since $\face(x),\face(y)\subset\face(x+y)$, and has least element $\face(0)=\{0\}$, with $b_0=P$.
+\end{enumerate}
+For $\tau\in\Prin(P)$ we write $b_\tau$ for any $b_x$ with $\face(x)=\tau$, and $F(\tau):=F(b_\tau)$ for a presheaf $F$ on $B_P^{\mathrm{op}}$.
+\end{lemma}
+\begin{proof}
+(a) Integrality is clear. If $mg\in P[-x]$ for $g\in P^{\gp}$, then $m(g+kx)\in P$ for some $k$, so $g+kx\in P$ by saturation of $P$, i.e.\ $g\in P[-x]$. A quotient of an integral saturated monoid by its units is in $\cC$.
+(b) If $f(x)=0$, $f$ extends uniquely to $P[-x]$, which is generated by $P$ and $-x$, and the extension kills units because $Q$ is sharp. Conversely $x$ is a unit in $P[-x]$, so it maps to $0$ in $P[-x]^\sharp$.
+(c) $y\in P$ maps to $0$ iff $y$ is a unit of $P[-x]$, iff $-y=p-nx$ for some $p\in P$, $n\ge0$, iff $y+p=nx$, iff $y\le nx$.
+(d) $f(a)+f(b)=0$ forces $f(a)=f(b)=0$ in the sharp monoid $Q$. The other two statements are clear (for the last, $\face(x)\ni y$ with $y\le nx$ and $nx\in\Phi_Q$ give $y\in\Phi_Q$ since $\Phi_Q$ is a face).
+(e) By (b), a map $b_x\to b_y$ exists iff $x\in\Phi_{b_y}=\face(y)$, iff $\face(x)\subset\face(y)$, and it is unique.
+\end{proof}
+
+\begin{lemma}\label{lem:fp}
+The following hold.
+\begin{enumerate}[(a)]
+\item Composites of f.p.\ maps are f.p.
+\item If $Q\to Q'$ is f.p.\ and $Q\to R$ is arbitrary, then $R\to Q'\sqcup_Q R$ is f.p.
+\item Each $P\to P[-x]^\sharp$ is f.p.
+\end{enumerate}
+Hence every finite iterated pushout over $Q$ of f.p.\ maps $Q\to Q_i$, with $Q$ f.p.\ under $P$, is f.p.\ under $P$.
+\end{lemma}
+\begin{proof}
+(b) $\Hom_R(Q'\sqcup_Q R,X)=\Hom_Q(Q',X)$, and a filtered colimit under $R$ is also one under $Q$.
+
+(a) Let $P\to Q\to Q'$ be f.p.\ and $X=\colim_k X_k$ a filtered colimit under $P$. A map $Q'\to X$ under $P$ is a pair $(a,c)$ of a map $a\colon Q\to X$ under $P$ and a map $c\colon Q'\to X$ under $Q$, where $X$ is viewed under $Q$ via $a$.
+\emph{Surjectivity of $\colim_k\Hom_P(Q',X_k)\to\Hom_P(Q',X)$:} $a$ factors through some $X_k$ ($Q$ is f.p.\ under $P$); the $X_{k'}$ with $k'\ge k$, viewed under $Q$ via $a$, form a filtered system with colimit $X$ under $Q$, so $c$ factors through some $X_{k'}$ ($Q'$ is f.p.\ under $Q$).
+\emph{Injectivity:} let $c_1,c_2\colon Q'\to X_k$ be maps under $P$ with the same image in $\Hom_P(Q',X)$. Their restrictions to $Q$ have the same image in $\Hom_P(Q,X)$, so they agree after composing with $X_k\to X_{k_1}$ for some $k_1\ge k$. View the $X_{k'}$, $k'\ge k_1$, under $Q$ via this common restriction; the images of $c_1,c_2$ in $X_{k_1}$ are maps under $Q$ with the same image in $\Hom_Q(Q',X)$, so they agree in some $X_{k_2}$, $k_2\ge k_1$.
+
+(c) By Lemma~\ref{lem:bx}(b), $\Hom_P(P[-x]^\sharp,X)$ is a point if $x\mapsto0$ in $X$ and empty otherwise; in a filtered colimit, $x\mapsto 0$ holds iff it holds at some stage (Lemma~\ref{lem:filt}).
+\end{proof}
+
+\begin{lemma}[Retract of a finite presentation]\label{lem:retract}
+Let $B\in\cC$ and let $B\to M$ be f.p. Then there are a finite set $S$ and a finite set $R$ of relations in $B\oplus\N^S$ such that $M$ is a retract under $B$ of $T:=((B\oplus\N^S)/R)^{\rfl}$. (Here $T$ is this object itself, not its image in $M$.)
+\end{lemma}
+\begin{proof}
+Consider pairs $(S,R)$ with $S\subset M$ finite and $R$ a finite set of pairs $(a,b)$ of elements of $B\oplus\N^S$ having the same image in $M$ under the obvious map. These pairs are directed by inclusion. Let $T(S,R)$ be the reflection (Construction~\ref{con:refl}); the maps $T(S,R)\to M$ and the transition maps exist by its universal property. Let $L=\colim T(S,R)$ (Lemma~\ref{lem:filt}).
+$L\to M$ is surjective: $m\in M$ is the image of the generator of $T(\{m\},\emptyset)$.
+$L\to M$ is injective: let $x,y$ lie in a common $T(S,R)$ and have the same image in $M$. By construction of the reflection there is $n\ge1$ with $nx=[a]$ and $ny=[b]$ for some $a,b\in B\oplus\N^S$. Then $a,b$ have equal images in $M$, and in $T(S,R\cup\{(a,b)\})$ we get $nx=ny$, hence $x=y$ by Lemma~\ref{lem:tf}.
+So $M=\colim T(S,R)$ in $B/\cC$. Since $M$ is f.p., $\mathrm{id}_M$ factors through some $T=T(S,R)$: there is $s\colon M\to T$ under $B$ whose composite with $T\to M$ is $\mathrm{id}_M$.
+\end{proof}
+
+\begin{remark}
+Conversely, any $T$ as in Lemma~\ref{lem:retract} is f.p.\ under $B$: by Construction~\ref{con:refl}, $\Hom_B(T,X)$ is the set of $y\in X^S$ satisfying the finitely many relations $R$, and this commutes with filtered colimits by Lemma~\ref{lem:filt}.
+\end{remark}
+
+\section{The site}\label{sec:site}
+
+\begin{definition}
+For an object $Q$ of $A_P$, a \emph{birhizomic cover of $Q$} is a family $\{a_i\colon Q\to Q_i\}$ of maps under $P$ that is a birhizomic cover in the sense of the problem, with $Q$ as base. Its \emph{witness set} is $I_0=\{i:\text{there are a valuative } V \text{ and } g\colon Q_i\to V \text{ such that } a_i \text{ is birhizomic at } g\}$. By definition of ``birhizomic at'', $a_i$ is f.p.\ for every $i\in I_0$.
+\end{definition}
+
+\begin{lemma}[Pretopology axioms]\label{lem:pretop}
+Birhizomic covers satisfy the following.
+\begin{enumerate}[(a)]
+\item Isomorphisms are birhizomic covers.
+\item Base change: if $\{a_i\colon Q\to Q_i\}$ is a cover and $c\colon Q\to Q'$, then $\{Q'\to Q'_i:=Q'\sqcup_Q Q_i\}$ is a cover.
+\item Composition: if $\{a_i\colon Q\to Q_i\}$ is a cover and each $\{b_{ij}\colon Q_i\to Q_{ij}\}$ is a cover, then $\{b_{ij}a_i\}$ is a cover.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) Let $\varphi\colon Q\to Q'$ be an isomorphism and $v$ a valuation of $Q$. Then $v=(v\varphi^{-1})\varphi$ and $\varphi$ is f.p. Given $h\colon Q\to M$ and an infinitesimal $p\colon M\to V$ with $ph=v$, the map $u=h\varphi^{-1}$ is the unique one with $u\varphi=h$, and $pu=v\varphi^{-1}$.
+
+(b) Let $v'$ be a valuation of $Q'$. Then $v'c=g_ia_i$ with $a_i$ birhizomic at $g_i$. Put $g'=(v',g_i)\colon Q'_i\to V$. The map $Q'\to Q'_i$ is f.p.\ by Lemma~\ref{lem:fp}(b). Let $h\colon Q'\to M$ and an infinitesimal $p\colon M\to V$ satisfy $ph=v'$. Then $(hc,p)$ factors $g_ia_i$, so there is a unique $u_i\colon Q_i\to M$ with $pu_i=g_i$ and $u_ia_i=hc$. The map $u=(h,u_i)\colon Q'_i\to M$ has $pu=g'$ and restricts to $h$ on $Q'$. Any such $u$ restricts on $Q_i$ to a map with the defining properties of $u_i$, which gives uniqueness.
+
+(c) Let $v$ be a valuation of $Q$. Write $v=g_ia_i$ with $a_i$ birhizomic at $g_i$, and $g_i=g_{ij}b_{ij}$ with $b_{ij}$ birhizomic at $g_{ij}$. The composite $b_{ij}a_i$ is f.p.\ by Lemma~\ref{lem:fp}(a). Given $(h,p)$ with $p$ infinitesimal and $ph=v$, take the unique $u_i$ with $pu_i=g_i$ and $u_ia_i=h$, then the unique $u$ with $pu=g_{ij}$ and $ub_{ij}=u_i$; it satisfies $ub_{ij}a_i=h$. If $u'$ has these properties, then $u'b_{ij}$ has those of $u_i$, so $u'b_{ij}=u_i$, and then $u'=u$.
+\end{proof}
+
+Hence (by the standard passage from a pretopology to a topology \cite[Exp.~II, \S1]{SGA4}) the Grothendieck topology $\cJ$ that the birhizomic covers define on $A_P^{\mathrm{op}}$ has as covering sieves of $Q$ exactly the sieves containing (the sieve generated by) some birhizomic cover of $Q$, and its sheaves are the presheaves satisfying the sheaf condition for birhizomic covers. The property we use is:
+
+\smallskip
+$(\star)$ \emph{every covering sieve of every object $Q$ contains all members of some birhizomic cover of $Q$.}
+
+\begin{lemma}[Witness subfamily]\label{lem:witness}
+$\{Q\to Q_i\}_{i\in I_0}$ is a birhizomic cover of $Q$, all of whose members are f.p.
+\end{lemma}
+\begin{proof}
+For a valuation $v$ of $Q$, the cover property gives $i$ and a factorization through $Q_i$ at which $a_i$ is birhizomic; then $i\in I_0$.
+\end{proof}
+
+\section{Kernel faces of finitely presented maps are principal}\label{sec:B}
+
+\begin{theorem}\label{thm:B}
+For every monoid $P$ and every f.p.\ map $f\colon P\to Q$, there is $s\in P$ with $\Phi_Q=\face(s)$.
+\end{theorem}
+\begin{proof}
+\emph{Step 1: reduction.} By Lemma~\ref{lem:retract} with $B=P$, $Q$ is a retract under $P$ of $Q'=((P\oplus\N^k)/R)^{\rfl}$ with $R$ finite. Then $\ker(P\to Q)=\ker(P\to Q')$: if $x$ dies in $Q'$, it dies in $Q$, the image of $Q'$ under the retraction; if $x$ dies in $Q$, apply the section $Q\to Q'$, which is a map under $P$.
+
+\emph{Step 2: the kernel of $P\to Q'$.} Write the relations as pairs $(r_j,s_j)$ in $P\oplus\N^k$, $j=1,\dots,\ell$, and put $\lambda_j=r_j-s_j\in P^{\gp}\oplus\Z^k$. Let $L$ be the subgroup they generate and $G=(P^{\gp}\oplus\Z^k)/L$. As in Construction~\ref{con:refl}, $M_0$ is the image of $P\oplus\N^k$ in $G$, $M_1$ is its saturation in $G$, and $Q'=M_1/M_1^*$. Now $x\in P$ dies in $Q'$ iff its image is a unit of $M_1$, iff $-x\in M_1$, iff $-nx\in M_0$ for some $n\ge1$, iff $(-nx-p,-m)\in L$ for some $p\in P$, $m\in\N^k$. Write the element of $L$ as $\sum_jc_j\lambda_j$ with $c\in\Z^\ell$.
+\begin{itemize}
+\item The $\Z^k$-component condition says that $c$ lies in $\Lambda:=\{c\in\Z^\ell:\text{the }\Z^k\text{-part of }\sum_jc_j\lambda_j\text{ lies in }-\N^k\}$.
+\item $\Lambda$ is the set of lattice points of a rational polyhedral cone, so it is a finitely generated monoid by Gordan's lemma \cite{Gordan}, \cite[\S1.2]{Fulton}.
+\item Let $\psi\colon\Lambda\to P^{\gp}$ be the $P^{\gp}$-part of $c\mapsto-\sum_jc_j\lambda_j$. It is additive, so $Y:=\psi(\Lambda)$ is a finitely generated submonoid of $P^{\gp}$.
+\item The condition reads $nx+p=\psi(c)$. Conversely, for $c\in\Lambda$ with $\psi(c)=nx+p$, put $m:=-(\Z^k\text{-part of }\sum_jc_j\lambda_j)\in\N^k$.
+\end{itemize}
+Hence $x$ dies iff $nx+p\in Y$ for some $n\ge1$ and $p\in P$, i.e.\ iff $nx\le y$ for some $y\in S:=Y\cap P$. Since $x\le nx$, this holds iff $x\le y$ for some $y\in S$. So $\Phi_Q$ is the face generated by the submonoid $S$, namely $\bigcup_{t\in S}\face(t)$.
+
+\emph{Step 3: principality.} The family $\{\face(t):t\in S\}$ is directed, since $\face(t+t')\supset\face(t),\face(t')$. Consider a strictly increasing chain $\face(s_1)\subsetneq\face(s_2)\subsetneq\cdots$ with $s_i\in S$, and put $G_i:=\face(s_i)^{\gp}\cap Y^{\gp}$.
+\begin{itemize}
+\item For any face $F$ of $P$, $F^{\gp}\cap P=F$: if $x=a-b$ with $a,b\in F$ and $x\in P$, then $x+b=a\in F$, so $x\in F$.
+\item If $ns_{i+1}\in G_i$ for some $n\ge1$, then $ns_{i+1}\in\face(s_i)^{\gp}\cap P=\face(s_i)$, so $s_{i+1}\in\face(s_i)$, contradicting strictness.
+\item So $s_{i+1}\in G_{i+1}$ has infinite order modulo $G_i$. Since $G_i\subset G_{i+1}$, the ranks strictly increase inside the finitely generated free abelian group $Y^{\gp}$ ($P^{\gp}$ is torsion-free).
+\end{itemize}
+Hence chains have length at most $\operatorname{rk}Y^{\gp}+1$, and there is a maximal $\face(s)$ with $s\in S$ (start from $s=0$). By directedness it contains every $\face(t)$, $t\in S$, so $\Phi_Q=\face(s)$.
+\end{proof}
+
+\section{The nerve theorem}\label{sec:D}
+
+\begin{definition}[Ordered complexes]
+Let $N$ be a simplicial complex on a vertex set $I$. Its \emph{augmented ordered chain complex} $\tilde C(N)$ has $\tilde C_p$ free on the tuples $(i_0,\dots,i_p)\in I^{p+1}$ (repetitions allowed) with $\{i_0,\dots,i_p\}\in N$, for $p\ge0$, and $\tilde C_{-1}=\Z$; the differential is $d=\sum_j(-1)^j(\text{delete }i_j)$, each vertex mapping to $1\in\tilde C_{-1}$. The \emph{augmented ordered cochain complex} with coefficients in an abelian group $A$ is $\Hom(\tilde C(N),A)$. For a tuple $t$, $\set(t)$ denotes its set of entries.
+\end{definition}
+
+\begin{theorem}\label{thm:D}
+Let $P$ be any monoid, $f\colon P\to Q$ any map in $\cC$, and $\{Q\to Q_i\}_{i\in I}$ a family of f.p.\ maps under $Q$ such that every valuation $v\colon Q\to V$ ($V$ valuative) factors through some $Q_i$. For finite nonempty $\sigma\subset I$ let $Q_\sigma$ be the pushout of the $Q_i$ ($i\in\sigma$) over $Q$ in $\cC$, and put $\Phi_\sigma:=\ker(P\to Q_\sigma)$. Let $\tau\subset P$ be any subset with $\Phi_Q\subset\tau$, and put $N_\tau:=\{\sigma:\Phi_\sigma\subset\tau\}$. Then:
+\begin{enumerate}[(a)]
+\item $N_\tau$ is a nonempty simplicial complex (closed under nonempty subsets, since $Q_{\sigma'}\to Q_\sigma$ for $\sigma'\subset\sigma$);
+\item its augmented ordered chain complex is exact;
+\item its augmented ordered cochain complex with coefficients in any abelian group $A$ is exact.
+\end{enumerate}
+\end{theorem}
+
+The proof occupies the rest of this section.
+
+\subsection{Cones and valuations}
+Put $U:=Q^{\gp}\otimes\QQ$; then $Q\subset U$ (Lemma~\ref{lem:tf}). Let $\Qrat:=\QQ_{\ge0}\cdot Q$. A \emph{cone} is a subset $K\subset U$ with $0\in K$, $K+K\subset K$ and $\QQ_{>0}K\subset K$; its \emph{lineality} is the subspace $\lin K:=K\cap(-K)$. A cone $W$ is \emph{total} if $W\cup(-W)=U$. For $X\subset U$, $\cone(X)$ is the set of finite $\QQ_{\ge0}$-combinations of elements of $X$ ($\cone(\emptyset)=\{0\}$).
+\begin{itemize}
+\item $\lin\Qrat=0$: if $x=q/n$ and $-x=q'/n'$ with $q,q'\in Q$, then $n'q+nq'=0$ in $Q^{\gp}$, so $q=q'=0$ by sharpness.
+\item A valuation $v\colon Q\to V$ gives the total cone $W_v:=\{x\in U: v(x)\ge0\text{ in }V^{\gp}\otimes\QQ\}\supset\Qrat$. Here $v$ is extended $\QQ$-linearly, and the divisible hull $V^{\gp}\otimes\QQ$ of the totally ordered group $V^{\gp}$ is totally ordered.
+\item Conversely, a total cone $W\supset\Qrat$ gives a valuation $v_W\colon Q\to V_W:=W/\lin W$. Here $V_W$ is the nonnegative part of the totally ordered $\QQ$-vector space $H_W:=U/\lin W$, so it is integral, saturated, sharp and valuative. Moreover $v_W(x)\ge0$ iff $x\in W$, and $v_W(x)=0$ iff $x\in\lin W$ (for $x\in U$).
+\end{itemize}
+
+\begin{lemma}\label{lem:Z}
+Every cone $K$ is contained in a total cone $W$ with $\lin W=\lin K$.
+\end{lemma}
+\begin{proof}
+Cones $K'\supset K$ with $\lin K'=\lin K$ are closed under unions of chains, so Zorn's lemma gives a maximal one, $K'$. Suppose $x\notin K'\cup(-K')$ and put $K''=K'+\QQ_{\ge0}x$. If $y\in\lin K''$, write $y=k_1+ax$ and $-y=k_2+bx$ with $k_i\in K'$ and $a,b\ge0$. Then $k_1+k_2=-(a+b)x$. If $a+b>0$, dividing gives $-x\in K'$, a contradiction. So $a=b=0$ and $y\in\lin K'$. Thus $\lin K''=\lin K'$ while $K''\supsetneq K'$, contradicting maximality. So $K'$ is total.
+\end{proof}
+
+\emph{Injective valuations.} Every $M\in\cC$ has a valuation $\iota\colon M\to V$ with $\iota(m)=0$ only for $m=0$: apply Lemma~\ref{lem:Z} to $M_{\QQ}\subset M^{\gp}\otimes\QQ$, which has lineality $0$, and take $v_W$.
+
+\subsection{Lifting loci are given by finitely many sign conditions}
+For $i\in I$ let $E_i$ be the set of total cones $W\supset\Qrat$ such that $v_W$ extends to $Q_i$, i.e.\ there is $g\colon Q_i\to V_W$ under $Q$.
+
+\begin{lemma}\label{lem:1}
+For each $i$ there is a finite set $X_i\subset U$ such that:
+\begin{enumerate}[(a)]
+\item $E_i=\{W: X_i\subset W\}$;
+\item for every valuation $v\colon Q\to V$, if $v$ extends to $Q_i$ then $X_i\subset W_v$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(i) By Lemma~\ref{lem:retract} with $B=Q$, $M:=Q_i$ is a retract under $Q$ of $T=((Q\oplus\N^S)/R)^{\rfl}$ with $S,R$ finite. A map out of $Q$ extends (under $Q$) to $M$ iff it extends to $T$: compose with $T\to M$ in one direction and with $M\to T$ in the other.
+
+(ii) Let $H$ be a totally ordered $\QQ$-vector space and $v\colon Q\to H_{\ge0}$ a map. Since $H_{\ge0}\in\cC$, by Construction~\ref{con:refl} a map $T\to H_{\ge0}$ under $Q$ is the same as a vector $y\in H^S$ with $y\ge0$ satisfying the relations. Write the $j$-th relation as $(a_j,\alpha_j)=(b_j,\beta_j)$ with $a_j,b_j\in Q$ and $\alpha_j,\beta_j\in\N^S$. It reads $(\alpha_j-\beta_j)\cdot y=c_j$, where $c_j:=v(b_j-a_j)$ and $v$ is extended $\QQ$-linearly to $U$.
+
+(iii) \emph{Fourier--Motzkin elimination} (cf.\ \cite{Schrijver}). The system $\{y\ge0;\ (\alpha_j-\beta_j)\cdot y-c_j=0\}$ is a finite homogeneous system of non-strict linear inequalities with rational coefficients in the unknowns $(y,c)$, each equation counting as two inequalities. Eliminating one unknown $y_s$ replaces the system by all sums of a lower bound and an upper bound for $y_s$ (after scaling by positive rationals), together with the inequalities not involving $y_s$. This preserves solvability over any totally ordered $\QQ$-vector space $H$: given the other unknowns, take $y_s$ to be the maximum of its finitely many lower bounds, or the minimum of its upper bounds if there are no lower bounds, or $0$ if there are neither. Eliminating all of $y$ gives finitely many rational vectors $u_m$, obtained by a formal procedure independent of $H$, such that
+\[
+\text{the system is solvable in }H\iff u_m\cdot c\ge0\text{ for all }m.
+\]
+Put $x_m:=\sum_ju_{mj}(b_j-a_j)\in U$ and $X_i:=\{x_m\}$. Then $u_m\cdot c=v(x_m)$.
+
+(a) Take $H=H_W$ and $v=v_W$. Then $v_W$ extends to $Q_i$ iff $v_W(x_m)\ge0$ for all $m$, iff $X_i\subset W$.
+
+(b) Take $H=V^{\gp}\otimes\QQ$, which contains $V$ in $H_{\ge0}$. If $v$ extends to $Q_i$, it extends to $T$ with values in $V\subset H_{\ge0}$, so $v(x_m)\ge0$ for all $m$, i.e.\ $X_i\subset W_v$.
+\end{proof}
+
+\subsection{The nerve condition as a cone condition}
+For finite $\sigma$ put $X_\sigma:=\bigcup_{i\in\sigma}X_i$ and $K_\sigma:=\Qrat+\cone(X_\sigma)$. For a cone $K\supset\Qrat$ put $f^{-1}(\lin K):=\{p\in P: f(p)\in\lin K\}$; since $f(p)\in\Qrat\subset K$, this is $\{p: -f(p)\in K\}$.
+
+\begin{lemma}\label{lem:2}
+$\Phi_\sigma=f^{-1}(\lin K_\sigma)$. The same holds for an ordered tuple $t=(i_0,\dots,i_p)$ with repetitions and $Q_t:=Q_{i_0}\sqcup_Q\cdots\sqcup_Q Q_{i_p}$: $\Phi_t:=\ker(P\to Q_t)$ equals $\Phi_{\set(t)}$.
+\end{lemma}
+\begin{proof}
+A map $Q_\sigma\to V_W$ under $Q$ is a family of maps $Q_i\to V_W$ under $Q$, $i\in\sigma$, because $Q_\sigma$ is the pushout in $\cC$ and $V_W\in\cC$. So $v_W$ extends to $Q_\sigma$ iff $W\in\bigcap_{i\in\sigma}E_i$, iff $K_\sigma\subset W$ (Lemma~\ref{lem:1}(a)).
+
+($\subset$) Let $p\in\Phi_\sigma$. Take $W\supset K_\sigma$ total with $\lin W=\lin K_\sigma$ (Lemma~\ref{lem:Z}). Then $v_W$ extends to $Q_\sigma$ and kills the image of $p$, so $f(p)\in\lin W=\lin K_\sigma$.
+
+($\supset$) Let $f(p)\in\lin K_\sigma$. Take an injective valuation $\iota\colon Q_\sigma\to V$ and let $v$ be its restriction to $Q$. Then $v$ extends to each $Q_i$, $i\in\sigma$, so by Lemma~\ref{lem:1}(b), $X_\sigma\subset W_v$ and $K_\sigma\subset W_v$. Hence $v(f(p))=0$ in $V^{\gp}\otimes\QQ$, so it is $0$ in $V$ (Lemma~\ref{lem:tf}). Thus $\iota$ kills the image $\bar p$ of $p$ in $Q_\sigma$, and $\bar p=0$.
+
+For tuples, maps out of $Q_t$ are again tuples of maps out of the $Q_{i_j}$, so the same argument gives $\Phi_t=f^{-1}(\lin K_{\set(t)})=\Phi_{\set(t)}$.
+\end{proof}
+
+Let $\cG:=\{\text{cones }K\supset\Qrat: f^{-1}(\lin K)\subset\tau\}$. By Lemma~\ref{lem:2}, $N_\tau=\{\sigma: K_\sigma\in\cG\}$, and:
+\begin{enumerate}[label=(G\arabic*),start=0]
+\item if $\Qrat\subset K\subset K'$ and $K'\in\cG$, then $K\in\cG$;
+\item if $K\in\cG$ and $W\supset K$ is a cone with $\lin W=\lin K$, then $W\in\cG$;
+\item for a cone $K\supset\Qrat$ and $z\in U$, $f^{-1}(\lin(K+\QQ z))=f^{-1}(\lin(K+\QQ_{\ge0}z))\cup f^{-1}(\lin(K+\QQ_{\ge0}(-z)))$ (write $-f(p)=k+tz$ and split on the sign of $t$); hence if $K+\QQ_{\ge0}z$ and $K+\QQ_{\ge0}(-z)$ are both in $\cG$, so is $K+\QQ z$;
+\item $\Qrat\in\cG$, because $f^{-1}(\lin\Qrat)=f^{-1}(0)=\Phi_Q\subset\tau$.
+\end{enumerate}
+
+\subsection{A finite subcover}
+\begin{lemma}\label{lem:3}
+There is a finite $J_0\subset I$ such that every total cone $W\supset\Qrat$ lies in $\bigcup_{i\in J_0}E_i$.
+\end{lemma}
+\begin{proof}
+The set $\cT$ of total cones $W\supset\Qrat$ is a closed subset of $\{0,1\}^U$, since each defining condition involves finitely many coordinates: $z\in W$ or $-z\in W$; $z,z'\in W\Rightarrow z+z'\in W$; $z\in W\Rightarrow rz\in W$ ($r\in\QQ_{>0}$); $q\in W$ for $q\in\Qrat$. So $\cT$ is compact by Tychonoff's theorem. Each $E_i=\{W: X_i\subset W\}$ is open since $X_i$ is finite. The $E_i$ cover $\cT$: $v_W$ is a valuation, so it factors through some $Q_i$, i.e.\ $W\in E_i$. Take a finite subcover.
+\end{proof}
+
+\subsection{Abstract acyclicity}
+Fix a $\QQ$-vector space $U$, a cone $K_0\subset U$, a family $\cG$ of cones containing $K_0$ satisfying (G0), (G1) and (G2) for cones containing $K_0$, a finite family $(X_j)_{j\in J}$ of finite subsets of $U$, and an abelian group $A$. For a tuple $\sigma=(j_0,\dots,j_p)$ write $\cone X_\sigma:=\cone X_{j_0}+\dots+\cone X_{j_p}$ (and $\{0\}$ for the empty tuple). For a cone $K'$ let $A(K')=A$ if $K'\in\cG$ and $A(K')=0$ otherwise. For a cone $K\supset K_0$ let $C^\bullet(K)$ be the complex with
+\[
+C^p(K)=\prod_{\sigma\in J^{p+1}}A(K+\cone X_\sigma)\qquad(p\ge-1),
+\]
+where the term for $p=-1$ is $A(K)$, the component maps are $\mathrm{id}_A$ when both ends are $A$ and $0$ otherwise (this is well defined by (G0), since a coface map goes to a larger cone, so a pattern $0\to A$ never occurs), and $d$ is the alternating sum of the deletions. If $K\in\cG$, $C^\bullet(K)$ is the augmented ordered cochain complex of the simplicial complex $N(K):=\{\sigma:K+\cone X_\sigma\in\cG\}$. If $K\notin\cG$, $C^\bullet(K)=0$ by (G0).
+
+\begin{theorem}\label{thm:T}
+If every total cone $W\supset K$ contains some $X_j$, then $C^\bullet(K)$ is exact.
+\end{theorem}
+\begin{proof}
+Let $Z:=\bigcup_jX_j$ (finite); call $z\in Z$ \emph{undecided} for $K$ if $z\notin K$ and $-z\notin K$. We induct on the number $m(K)$ of undecided elements. We may assume $K\in\cG$.
+
+\emph{Cone lemma.} Suppose there is $j^*$ with $\{j^*\}\in N(K)$ such that $\sigma\in N(K)\Rightarrow\sigma\cup\{j^*\}\in N(K)$. Define $(hc)(j_0,\dots,j_{p-1}):=c(j^*,j_0,\dots,j_{p-1})$. Then $h$ is well defined: if the target tuple carries $A$, its set lies in $N(K)$, so the set with $j^*$ added does too, and the source tuple carries $A$; if the target carries $0$ there is nothing to check. The standard computation gives $dh+hd=\mathrm{id}$: on a tuple $t$ carrying $A$, every tuple involved has its set inside $\set(t)\cup\{j^*\}\in N(K)$, so all component maps are identities; in degree $-1$, $(hdc)()=(dc)(j^*)=c()$, which uses $\{j^*\}\in N(K)$ and $K\in\cG$. So $C^\bullet(K)$ is contractible.
+
+\emph{Base case $m(K)=0$.} Take $W\supset K$ total with $\lin W=\lin K$ (Lemma~\ref{lem:Z}) and some $X_{j^*}\subset W$. Let $z\in X_{j^*}$. If $z\notin K$, then $-z\in K$ because $z$ is decided, so $z\in\lin W=\lin K\subset K$, a contradiction. So $X_{j^*}\subset K$ and $K+\cone X_{j^*}=K$. Hence $j^*$ is a cone point and the cone lemma applies.
+
+\emph{Row lemma.} For any cone $K'\supset K_0$ and $z\in U$, the complex built as above from $K'$ and the two-member family $X_+=\{z\}$, $X_-=\{-z\}$ is exact. If $K'\notin\cG$ it is zero. Otherwise some total $W\supset K'$ with $\lin W=\lin K'$ lies in $\cG$ (Lemma~\ref{lem:Z} and (G1)); $W$ contains $z$ or $-z$, so $K'+\QQ_{\ge0}z$ or $K'+\QQ_{\ge0}(-z)$ lies in $\cG$ by (G0), i.e.\ one vertex is in the nerve; and if both vertices are, so is the edge, because $K'+\cone\{z,-z\}=K'+\QQ z$ (G2). So the nerve is a vertex or an edge, and the cone lemma applies.
+
+\emph{Inductive step, $m(K)>0$.} Pick an undecided $z\in Z$ and form the double complex
+\[
+D^{p,q}=\prod_{\sigma\in J^{p+1},\ \rho\in\{\pm\}^{q+1}}A\bigl(K+\cone X_\sigma+\cone\{\rho_0z,\dots,\rho_qz\}\bigr),\qquad p,q\ge-1,
+\]
+with the two commuting deletion differentials.
+\begin{itemize}
+\item \emph{Rows.} For fixed $p$, the row is the product over $\sigma$ of row-lemma complexes on $K+\cone X_\sigma$, hence exact.
+\item \emph{Columns $q\ge0$.} The column is $\prod_\rho C^\bullet(K_\rho)$ with $K_\rho:=K+\cone\{\rho_0z,\dots,\rho_qz\}\in\{K+\QQ_{\ge0}z,\ K+\QQ_{\ge0}(-z),\ K+\QQ z\}$. The cover hypothesis passes to $K_\rho\supset K$, and $m(K_\rho)<m(K)$ because $z$ becomes decided and decided elements stay decided. So these columns are exact by induction.
+\item \emph{Column $q=-1$} is $C^\bullet(K)$.
+\end{itemize}
+Each total degree involves finitely many $(p,q)$. Filtering by $p$, with exact rows, shows that $\operatorname{Tot}D$ is acyclic (acyclic assembly lemma \cite[\S2.7]{Weibel}). The columns $q\ge0$ form a subcomplex of $\operatorname{Tot}D$, since the vertical differential raises $q$; filtering it by $q$ shows it is acyclic. The quotient is column $-1$, i.e.\ $C^\bullet(K)$ up to shift and sign, so the long exact sequence shows that $C^\bullet(K)$ is exact.
+\end{proof}
+
+\subsection{Proof of Theorem~\ref{thm:D}}
+\review{[Exp] The following proof is not very human-readable. It relies on notation built up in the past three pages, and it is very difficult for a human to remember what 10 symbols meant (humans can remember 10 meanings, not 10 symbols). I almost think this might be because it's \emph{too} good: it tries to write something comprehensible, and with its large working memory and near instant recollection it finds this perfectly comprehensible.}
+
+\begin{enumerate}[1.]
+
+
+\item \emph{Finite pieces.} Let $J'\supset J_0$ be finite. Apply Theorem~\ref{thm:T} with $U=Q^{\gp}\otimes\QQ$, $K_0=K=\Qrat$, the family $\cG$ above, and $(X_i)_{i\in J'}$. Every total $W\supset\Qrat$ contains some $X_i$ with $i\in J_0$, by Lemmas~\ref{lem:3} and~\ref{lem:1}(a). By Lemma~\ref{lem:2} and (G3), $N(\Qrat)$ is the full subcomplex $N_\tau(J')$ of $N_\tau$ on $J'$, and $C^\bullet(\Qrat)$ is its augmented ordered cochain complex. So this complex is exact for every $A$.
+\item \emph{Nonemptiness.} Take $W_0\supset\Qrat$ total with $\lin W_0=0$ (Lemma~\ref{lem:Z}). Then $W_0\in\cG$ by (G3) and (G1). $W_0$ contains some $X_i$, so $K_{\{i\}}\subset W_0$ and $\{i\}\in N_\tau$ by (G0).
+\item \emph{Chains, finite case.} $\tilde C:=\tilde C(N_\tau(J'))$ is a complex of free abelian groups. The universal coefficient theorem \cite[\S3.1]{Hatcher} gives a surjection $H^n(\Hom(\tilde C,A))\to\Hom(H_n\tilde C,A)$. Taking $A=H_n\tilde C$ shows $H_n\tilde C=0$.
+\item \emph{Chains, general case.} $\tilde C(N_\tau)$ is the directed union of the $\tilde C(N_\tau(J'))$ over finite $J'\supset J_0$, so it is exact.
+\item \emph{Cochains, general case.} An exact complex of free abelian groups is split: each boundary group $B_{n-1}\subset\tilde C_{n-1}$ is free, so $0\to Z_n\to\tilde C_n\to B_{n-1}\to0$ splits. Hence $\Hom(\tilde C(N_\tau),A)$ is exact for every $A$. \qed
+\end{enumerate}
+
+\section{The sheaf-theoretic part}\label{sec:sheaf}
+
+Presheaves on $A_P^{\mathrm{op}}$ (resp.\ $B_P^{\mathrm{op}}$) are functors $A_P\to\mathrm{Ab}$ (resp.\ $B_P\to\mathrm{Ab}$); $\iota\colon B_P\to A_P$ is the inclusion. Since the topology on $B_P^{\mathrm{op}}$ is trivial, exactness in $\Sh(B_P)=\PSh(B_P)$ is objectwise.
+
+\subsection{\texorpdfstring{Kan extension, $\pi^{-1}$ and $\pi_*$}{Kan extension}}
+The left Kan extension is $(\Lan F)(Q)=\colim_{(b,\,b\to Q)\in\iota/Q}F(b)$ \cite[Ch.~X]{MacLane}. By Lemma~\ref{lem:bx}, a pair $(b_x,b_x\to Q)$ exists iff $x\in\Phi_Q$, and the map is then unique. So $\iota/Q$ is equivalent to the poset $\{\face(x):x\in\Phi_Q\}$, which is nonempty (it contains $\{0\}$) and directed ($x,y\in\Phi_Q\Rightarrow x+y\in\Phi_Q$). Hence $(\Lan F)(Q)$ is a filtered colimit, and \textbf{$\Lan$ is exact.}
+
+\begin{lemma}\label{lem:lanfp}
+Let $Q$ be f.p.\ under $P$. By Theorem~\ref{thm:B}, $\Phi_Q=\face(x_Q)$ for some $x_Q$; put $b(Q):=b_{x_Q}$.
+\begin{enumerate}[(a)]
+\item $(b(Q),b(Q)\to Q)$ is terminal in $\iota/Q$, so $F(\Phi_Q):=F(b(Q))\to(\Lan F)(Q)$ is an isomorphism, natural in $F$.
+\item For a map $Q\to Q'$ of f.p.\ objects, $(\Lan F)(Q\to Q')$ corresponds to $F(b(Q)\to b(Q'))$.
+\item For $b\in B_P$, the unit $F(b)\to(\Lan F)(b)$ is an isomorphism.
+\item $(\Lan\prod_jF_j)(Q)=\prod_j(\Lan F_j)(Q)$ naturally for f.p.\ $Q$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) $b(Q)\to Q$ exists since $x_Q\in\Phi_Q$. If $b_x\to Q$, then $x\in\Phi_Q=\face(x_Q)$, so there is a unique map $b_x\to b(Q)$ (Lemma~\ref{lem:bx}(e)), automatically compatible with the maps to $Q$ by uniqueness. (b) $\Phi_Q\subset\Phi_{Q'}$ gives the map $b(Q)\to b(Q')$, compatible with the colimit maps. (c) $b$ is terminal in $\iota/b$. (d) Both sides are evaluation at $b(Q)$ by (a).
+\end{proof}
+
+\emph{$\pi^{-1}$ and $\pi_*$.} $\pi^{-1}F=(\Lan F)^\#$, where $\#$ is sheafification for $\cJ$; it is exact since $\Lan$ and $\#$ are. For a sheaf $G$, $\Hom(\pi^{-1}F,G)=\Hom(\Lan F,G)=\Hom(F,G\circ\iota)$, so \textbf{$\pi_*G=G|_{B_P}$}. The unit $F\to\pi_*\pi^{-1}F$ at $b$ is the composite $F(b)\cong(\Lan F)(b)\to(\Lan F)^\#(b)$.
+
+\subsection{Injectives}
+For $\tau\in\Prin(P)$ and an abelian group $A$, let $I_{\tau,A}(b)=A$ if $\Phi_b\subset\tau$ and $0$ otherwise, with transition maps $\mathrm{id}_A$ or $0$. This is a functor on $B_P$: $b\to b'$ gives $\Phi_b\subset\Phi_{b'}$, so a pattern $0\to A$ never occurs.
+
+\begin{lemma}\label{lem:inj}
+$\Hom(F,I_{\tau,A})\cong\Hom(F(\tau),A)$. Hence $I_{\tau,A}$ is injective when $A$ is.
+\end{lemma}
+\begin{proof}
+If $\Phi_b\subset\tau$, there is a unique map $b\to b_\tau$, and naturality forces $\varphi_b=\varphi_{b_\tau}\circ F(b\to b_\tau)$. Conversely this formula, with $\varphi_b=0$ otherwise, defines a natural map, because $B_P$ is a preorder. So $\Hom(-,I_{\tau,A})=\Hom(\mathrm{ev}_{b_\tau}(-),A)$, which is exact when $A$ is injective.
+\end{proof}
+
+\emph{Resolution.} Let $E(-)$ denote an injective embedding of abelian groups. Then $F\to\prod_{\tau\in\Prin(P)}I_{\tau,E(F(\tau))}$ is a monomorphism: at $b$, the component $\tau=\Phi_b$ is $F(b)\hookrightarrow E(F(b))$. Iterating on cokernels gives an objectwise exact injective resolution $0\to F\to I^0\to I^1\to\cdots$ with $I^k=\prod_\tau I_{\tau,A_{k,\tau}}$ (possibly infinite products, $A_{k,\tau}$ injective).
+
+\subsection{\texorpdfstring{The system $\Cov$}{The system Cov}}
+Let $\fB$ be the set of f.p.\ objects of $A_P$, and let $\Cov$ be the set of birhizomic covers $\{Q\to Q_i\}$ with $Q\in\fB$ and every $Q\to Q_i$ f.p.
+
+\begin{lemma}\label{lem:cov}
+The system $\Cov$ has the following properties.
+\begin{enumerate}[(i)]
+\item Every member of $\Cov$ is a covering family for $\cJ$.
+\item For $\cU\in\Cov$, every $Q_i$ and every iterated pushout $Q_t=Q_{i_0}\sqcup_Q\cdots\sqcup_QQ_{i_p}$ lies in $\fB$.
+\item For $Q\in\fB$ and every covering sieve $R$ of $Q$, there is $\cU\in\Cov$ all of whose members lie in $R$.
+\item For $\cU\in\Cov$, every valuation of $Q$ factors through some member.
+\end{enumerate}
+Moreover every $b\in B_P$ lies in $\fB$.
+\end{lemma}
+\begin{proof}
+(i) and (iv) are clear; (ii) is Lemma~\ref{lem:fp}. (iii) By $(\star)$, $R$ contains a birhizomic cover, and its witness subfamily (Lemma~\ref{lem:witness}) lies in $\Cov$. The last claim is Lemma~\ref{lem:fp}(c).
+\end{proof}
+
+\subsection{Čech complexes}
+For a presheaf $G$ and $\cU=\{Q\to Q_i\}_{i\in I}$, the augmented Čech complex is $\check C^p(\cU,G)=\prod_{t\in I^{p+1}}G(Q_t)$ for $p\ge0$ and $\check C^{-1}=G(Q)$, with the alternating restriction differential (all ordered tuples, repetitions allowed). $\check H^p(\cU,G)$ denotes the cohomology of the non-augmented complex ($p\ge0$).
+
+\begin{proposition}\label{prop:cech}
+Let $Q\in\fB$, $\cU\in\Cov$ over $Q$, $\tau\in\Prin(P)$ and $G=\Lan I_{\tau,A}$. If $\Phi_Q\not\subset\tau$, the augmented Čech complex of $G$ on $\cU$ is $0$; otherwise it is the augmented ordered cochain complex of $N_\tau$ with coefficients $A$ (notation of Theorem~\ref{thm:D}). In both cases it is exact.
+\end{proposition}
+\begin{proof}
+All $Q_t$ are f.p.\ (Lemma~\ref{lem:cov}(ii)), so $G(Q_t)=I_{\tau,A}(\Phi_{Q_t})$ by Lemma~\ref{lem:lanfp}, which is $A$ iff $\Phi_{Q_t}\subset\tau$; the restriction maps between nonzero terms are $\mathrm{id}_A$. If $\Phi_Q\not\subset\tau$, every term vanishes since $\Phi_Q\subset\Phi_{Q_t}$. Otherwise $\Phi_{Q_t}=\Phi_{\set(t)}$ by Lemma~\ref{lem:2}, applied to the composite $P\to Q$ (and $Q_t$ is the same pushout), so the complex is $\Hom(\tilde C(N_\tau),A)$. Exactness is Theorem~\ref{thm:D}, whose hypotheses hold: the members are f.p.\ under $Q$, every valuation of $Q$ factors through one (Lemma~\ref{lem:cov}(iv)), and $\Phi_Q\subset\tau$.
+\end{proof}
+
+\begin{corollary}\label{cor:cech}
+For $Q\in\fB$ and $\cU\in\Cov$ over $Q$, the augmented Čech complex of each $\Lan I^k$ on $\cU$ is exact.
+\end{corollary}
+\begin{proof}
+Only objects of $\fB$ occur, and on $\fB$, $\Lan I^k=\prod_\tau\Lan I_{\tau,A_{k,\tau}}$ naturally (Lemma~\ref{lem:lanfp}(d)). Products of exact complexes are exact.
+\end{proof}
+
+\subsection{Sheafification does not change values on f.p.\ objects}
+We use the standard facts \cite[Exp.~II, \S3]{SGA4}: for a sieve $R$ generated by a family $\{U_i\to U\}$ with pushouts, $\Hom_{\PSh}(R,G)$ is the equalizer of $\prod G(U_i)\rightrightarrows\prod G(U_{ij})$; $G^+(U)=\colim_{R\in\cJ(U)}\Hom(R,G)$; and $G^\#=G^{++}$.
+
+\begin{lemma}\label{lem:plus}
+Let $G$ be a presheaf such that for all $Q\in\fB$ and $\cU\in\Cov$ over $Q$ the sequence $0\to G(Q)\to\prod G(Q_i)\rightrightarrows\prod G(Q_{ij})$ is exact (an equalizer). Then $G(Q)\to G^\#(Q)$ is an isomorphism for every $Q\in\fB$.
+\end{lemma}
+\begin{proof}
+$\cJ(Q)$ is directed under reverse inclusion (the intersection of two covering sieves is covering), and $G^+(Q)$ is the colimit over it. By Lemma~\ref{lem:cov}(iii), the sieves generated by members of $\Cov$ are cofinal in $\cJ(Q)$; a cofinal subset of a directed set is directed and computes the same colimit. On each of them $\Hom(R,G)=G(Q)$, compatibly with the transition maps, so $G(Q)\cong G^+(Q)$. For $\cU\in\Cov$, all of $Q,Q_i,Q_{ij}$ lie in $\fB$, where $G\to G^+$ is an isomorphism, so $G^+$ satisfies the same hypothesis. Repeating gives the claim for $G^{++}=G^\#$.
+\end{proof}
+
+\begin{corollary}\label{cor:unit}
+The following hold.
+\begin{enumerate}[(a)]
+\item $\Lan F$ satisfies the hypothesis of Lemma~\ref{lem:plus}.
+\item For $Q\in\fB$, $F(\Phi_Q)\cong(\Lan F)(Q)\cong(\pi^{-1}F)(Q)$, naturally. In particular the unit $F\to\pi_*\pi^{-1}F$ is an isomorphism.
+\item $(\pi^{-1}I^k)(Q)=I^k(\Phi_Q)$ on $\fB$, and $\check H^p(\cU,\pi^{-1}I^k)=0$ for $p>0$ and $\cU\in\Cov$.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+(a) Use the exact sequence $0\to\Lan F\to\Lan I^0\to\Lan I^1$ and Corollary~\ref{cor:cech} in degrees $-1,0,1$. If $s\in(\Lan F)(Q)$ restricts to $0$ on every $Q_i$, its image in $(\Lan I^0)(Q)$ does too, hence is $0$, so $s=0$. A compatible family $(s_i)$ glues in $\Lan I^0$ to some $t$; the image of $t$ in $(\Lan I^1)(Q)$ has all restrictions $0$, hence is $0$; so $t$ comes from some $s\in(\Lan F)(Q)$, and $s$ restricts to $s_i$ by injectivity of $(\Lan F)(Q_i)\to(\Lan I^0)(Q_i)$.
+(b) follows from (a), Lemma~\ref{lem:plus} and Lemma~\ref{lem:lanfp}(a); the unit at $b$ is $F(b)\cong(\Lan F)(b)\to(\Lan F)^\#(b)$ and $b\in\fB$.
+(c) The first statement is (b) for $F=I^k$. Hence on $\cU\in\Cov$ the Čech complex of $\pi^{-1}I^k$ is isomorphic to that of $\Lan I^k$, which is exact by Corollary~\ref{cor:cech}.
+\end{proof}
+
+\subsection{A Cartan-type criterion}
+The following is a version of a classical criterion of H.~Cartan for comparing Čech and derived functor cohomology; we include a proof adapted to the system $\Cov$.
+
+\begin{lemma}\label{lem:fact}
+For an injective abelian sheaf $\cI$ on $(A_P^{\mathrm{op}},\cJ)$ and any family $\cU=\{U\to U_i\}_{i\in I}$ in $A_P$ (pushouts exist), $\check H^p(\cU,\cI)=0$ for $p>0$.
+\end{lemma}
+\begin{proof}
+For an object $V$ let $\Z_V$ be the free abelian presheaf on $h_V=\Hom_{A_P}(V,-)$. Let $K_p=\bigoplus_{t\in I^{p+1}}\Z_{U_t}$ with the alternating face differential; by Yoneda, $\Hom_{\PSh}(K_\bullet,G)=\check C^\bullet(\cU,G)$. Evaluate at $W$: $K_\bullet(W)$ splits as a sum over $\psi\colon U\to W$, and the summand for $\psi$ is the ordered chain complex of the full simplex (with repetitions) on $T_\psi=\{(i,\varphi):\varphi\colon U_i\to W\text{ compatible with }\psi\}$. Prepending a fixed element of $T_\psi$ contracts it in positive degrees, and $H_0$ is $\Z$ if $T_\psi\neq\emptyset$ and $0$ otherwise. So $K_\bullet$ resolves the presheaf $\Z_R$ of the sieve $R$ generated by $\cU$. Sheafification is exact and $\Hom_{\Sh}(-,\cI)$ is exact, so $\check C^\bullet(\cU,\cI)=\Hom_{\Sh}(K_\bullet^\#,\cI)$ is exact in positive degrees.
+\end{proof}
+
+\begin{proposition}\label{prop:cartan}
+Let $G$ be an abelian sheaf on $(A_P^{\mathrm{op}},\cJ)$ with $\check H^p(\cU,G)=0$ for all $p>0$ and all $\cU\in\Cov$. Then $H^p(U,G)=0$ for all $p>0$ and all $U\in\fB$.
+\end{proposition}
+\begin{proof}
+Embed $G\hookrightarrow\cI$ with $\cI$ an injective sheaf (abelian sheaves on a site form an abelian category with enough injectives \cite{Tohoku}), and let $\cQ=\cI/G$ (sheaf quotient). Then $G(W)=\ker(\cI(W)\to\cQ(W))$ for all $W$.
+
+(a) \emph{$\cI(V)\to\cQ(V)$ is onto for $V\in\fB$.} Take $s\in\cQ(V)$. It lifts locally on some covering sieve $R$. By Lemma~\ref{lem:cov}(iii) choose $\cV=\{V\to V_i\}\in\Cov$ with members in $R$ and lifts $t_i$ of $s|_{V_i}$. Then $c_{ij}:=t_j-t_i$ on $V_{ij}$ lies in $G(V_{ij})$ and is a Čech $1$-cocycle for $G$. Since $\check H^1(\cV,G)=0$, $c=dg$ with $g\in\check C^0(\cV,G)$. The family $(t_i-g_i)$ is compatible, so it glues in the sheaf $\cI$ to some $t$, and $t$ maps to $s$ because $\cQ$ is a sheaf and $t$, $s$ have the same restrictions to all $V_i$.
+
+(b) \emph{$\cQ$ satisfies the hypothesis.} For $\cU\in\Cov$ all the $U_t$ lie in $\fB$, so $0\to\check C(\cU,G)\to\check C(\cU,\cI)\to\check C(\cU,\cQ)\to0$ is exact by (a). In the long exact sequence $\check H^p(\cU,\cI)\to\check H^p(\cU,\cQ)\to\check H^{p+1}(\cU,G)$ the left term is $0$ for $p\ge1$ by Lemma~\ref{lem:fact} and the right term is $0$ by hypothesis, so $\check H^p(\cU,\cQ)=0$ for $p\ge1$.
+
+(c) \emph{Conclusion.} From $0\to G\to\cI\to\cQ\to0$ and $H^{>0}(U,\cI)=0$ we get $H^1(U,G)=\operatorname{coker}(\cI(U)\to\cQ(U))=0$ by (a), and $H^p(U,G)\cong H^{p-1}(U,\cQ)$ for $p\ge2$. Induction on $p$, applied to all sheaves satisfying the hypothesis at once, finishes the proof.
+\end{proof}
+
+\subsection{Proof of the Main Theorem}
+By Corollary~\ref{cor:unit}(c) and Proposition~\ref{prop:cartan}, $H^p(U,\pi^{-1}I^k)=0$ for $p>0$ and $U\in\fB$. Since $\pi^{-1}$ is exact, $\pi^{-1}F\to\pi^{-1}I^\bullet$ is a resolution by $\Gamma(U,-)$-acyclic sheaves. So for $U\in\fB$, $H^p(U,\pi^{-1}F)=H^p(I^\bullet(\Phi_U))$ (Corollary~\ref{cor:unit}(c)), which is $F(\Phi_U)$ for $p=0$ and $0$ for $p>0$ because $I^\bullet$ is an objectwise exact resolution of $F$.
+
+Since $\pi_*$ is restriction, taking an injective resolution $G\to\mathcal E^\bullet$ of a sheaf $G$ gives $(\mathrm R^p\pi_*G)(b)=H^p(\mathcal E^\bullet(b))=H^p(b,G)$, as cohomology of presheaves on $B_P$ is computed objectwise. Every $b\in B_P$ is f.p.\ (Lemma~\ref{lem:cov}), hence $\mathrm R^p\pi_*\pi^{-1}F=0$ for $p>0$. On $H^0$, the derived unit $F\to\pi_*\pi^{-1}F\to\mathrm R\pi_*\pi^{-1}F$ induces the underived unit, which is an isomorphism by Corollary~\ref{cor:unit}(b). So $F\to\mathrm R\pi_*\pi^{-1}F$ is a quasi-isomorphism. \qed
+
+\begin{thebibliography}{9}
+\bibitem{SGA4}
+M.~Artin, A.~Grothendieck, J.-L.~Verdier, \emph{Théorie des topos et cohomologie étale des schémas (SGA~4), Tome~1}, Lecture Notes in Mathematics 269, Springer, 1972.
+
+\bibitem{Fulton}
+W.~Fulton, \emph{Introduction to Toric Varieties}, Annals of Mathematics Studies 131, Princeton University Press, 1993.
+
+\bibitem{Gordan}
+P.~Gordan, Ueber die Auflösung linearer Gleichungen mit reellen Coefficienten, \emph{Math. Ann.} 6 (1873).
+
+\bibitem{Tohoku}
+A.~Grothendieck, Sur quelques points d'algèbre homologique, \emph{Tôhoku Math. J.} (2) 9 (1957), 119--221.
+
+\bibitem{Hatcher}
+A.~Hatcher, \emph{Algebraic Topology}, Cambridge University Press, 2002.
+
+\bibitem{MacLane}
+S.~Mac~Lane, \emph{Categories for the Working Mathematician}, Graduate Texts in Mathematics 5, Springer, 1971.
+
+\bibitem{Schrijver}
+A.~Schrijver, \emph{Theory of Linear and Integer Programming}, Wiley, 1986.
+
+\bibitem{Weibel}
+C.~A.~Weibel, \emph{An Introduction to Homological Algebra}, Cambridge Studies in Advanced Mathematics 38, Cambridge University Press, 1994.
+\end{thebibliography}
+
+\end{document}

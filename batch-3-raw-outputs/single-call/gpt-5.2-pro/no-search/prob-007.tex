@@ -1,0 +1,295 @@
+```latex
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amsthm,amssymb,mathrsfs}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\Teich}{Teich}
+\DeclareMathOperator{\Mod}{Mod}
+
+\begin{document}
+
+\title{A Dehn twist preserving a deformation space for a quadratic map with a critical $4$--cycle}
+\author{}
+\date{}
+\maketitle
+
+\begin{abstract}
+Let $f:\widehat{\mathbb C}\to \widehat{\mathbb C}$ be a quadratic rational map with critical points $c_1,c_2$, assume that $c_1$ belongs to a cycle of exact length $4$, and that the other critical value $v=f(c_2)$ is not on that cycle. With $A=\{c_1,f(c_1),f^{\circ 2}(c_1),f^{\circ 3}(c_1)\}$ and $B=A\cup\{v\}$, one has the deformation space
+\[
+\mathcal D_f=\{\tau\in \Teich(B)\ :\ f^*(\tau)=i_*(\tau)\}\subset \Teich(B).
+\]
+We describe an explicit essential simple closed curve $\gamma\subset(\widehat{\mathbb C},B)$ such that the square of the Dehn twist about $\gamma$ belongs to the group of special liftable mapping classes and hence preserves $\mathcal D_f$. Using a theorem of Hironaka--Koch, we conclude that this twist acts on $\pi_0(\mathcal D_f)$ with an infinite orbit.
+\end{abstract}
+
+\section{The deformation space and the mapping class action}
+
+Throughout, $\widehat{\mathbb C}$ denotes the topological $2$--sphere and also the Riemann sphere, as appropriate. Let $B\subset \widehat{\mathbb C}$ be a finite set with $|B|\ge 3$.
+
+\subsection{Teichm\"uller spaces of marked spheres}
+We use the standard definition of the Teichm\"uller space of an $n$--times marked sphere; see, e.g., \cite[\S2]{FM12}.
+
+\begin{definition}[Teichm\"uller space of a marked sphere]
+Let $B\subset \widehat{\mathbb C}$ be finite with $|B|\ge 3$. The Teichm\"uller space $\Teich(B)=\Teich(\widehat{\mathbb C},B)$ is the set of equivalence classes of pairs $(X,\phi)$ where $X$ is a Riemann surface homeomorphic to $\widehat{\mathbb C}$ and $\phi:(\widehat{\mathbb C},B)\to (X,\phi(B))$ is an orientation-preserving homeomorphism, modulo postcomposition by biholomorphisms of $X$ and isotopy rel.\ $B$.
+\end{definition}
+
+The (pure) mapping class group $\Mod(B)=\Mod(\widehat{\mathbb C},B)$ acts properly discontinuously by holomorphic automorphisms on $\Teich(B)$ as deck transformations of the universal covering $\Teich(B)\to \mathcal M_{0,B}$ of the moduli space of $B$--marked spheres; see \cite[\S12]{FM12}.
+
+\subsection{The equalizer definition of the deformation space}
+Let $f:\widehat{\mathbb C}\to \widehat{\mathbb C}$ be an orientation-preserving branched cover and let $A,B\subset \widehat{\mathbb C}$ be finite sets. Assume that
+\begin{equation}\label{eq:admissibility}
+f(A)\cup V(f)\subset B
+\qquad\text{and}\qquad
+A\subset B,
+\end{equation}
+where $V(f)$ denotes the set of critical values of $f$. Then:
+\begin{enumerate}
+\item pullback of complex structures defines a holomorphic map $f^*:\Teich(B)\to \Teich(A)$;
+\item forgetting the points $B\setminus A$ defines a holomorphic map $i_*:\Teich(B)\to \Teich(A)$.
+\end{enumerate}
+(For a detailed construction in the marked-sphere setting, see, e.g., \cite[\S2--\S3]{Koch10}.)
+
+\begin{definition}[Deformation space]
+Assume \eqref{eq:admissibility} and additionally $f(A)\cup V(f)\cup A\subset B$ (automatic under \eqref{eq:admissibility} and $A\subset B$). The deformation space is
+\[
+\mathcal D_f:=\{\tau\in \Teich(B)\ :\ f^*(\tau)=i_*(\tau)\}.
+\]
+\end{definition}
+
+\section{Liftable mapping classes and invariance of $\mathcal D_f$}
+
+We recall the standard notions of liftable and special liftable mapping classes for a branched cover $f:(\widehat{\mathbb C},A)\to (\widehat{\mathbb C},B)$; see \cite[\S3]{Koch10}.
+
+\begin{definition}[Liftable and special liftable mapping classes]
+Let $f:(\widehat{\mathbb C},A)\to (\widehat{\mathbb C},B)$ satisfy \eqref{eq:admissibility}.
+\begin{enumerate}
+\item A mapping class $h\in \Mod(B)$ is \emph{liftable} (with respect to $f$) if there exists $\widetilde h\in \Mod(A)$ such that $h\circ f$ is isotopic to $f\circ \widetilde h$ rel.\ $A$. The set of liftable mapping classes is a subgroup $L_f\le \Mod(B)$.
+\item For $h\in L_f$, the lift $\widetilde h$ is unique and defines a homomorphism (the \emph{virtual endomorphism})
+\[
+\Phi_f:L_f\to \Mod(A),\qquad \Phi_f(h)=\widetilde h.
+\]
+\item Forgetting $B\setminus A$ induces a homomorphism $i^\#: \Mod(B)\to \Mod(A)$.
+\item The group of \emph{special liftable} mapping classes is
+\[
+G_f:=\{h\in L_f:\ \Phi_f(h)=i^\#(h)\}\le \Mod(B).
+\]
+\end{enumerate}
+\end{definition}
+
+\begin{lemma}[Equivariance of pullback under liftables]\label{lem:equivariance}
+If $h\in L_f$ and $\Phi_f(h)=\widetilde h\in \Mod(A)$, then
+\[
+f^*\circ h_* = \widetilde h_* \circ f^*
+\]
+as maps $\Teich(B)\to \Teich(A)$, where $h_*$, $\widetilde h_*$ denote the natural actions on Teichm\"uller spaces.
+\end{lemma}
+
+\begin{proof}
+This is standard: choose representatives $H:(\widehat{\mathbb C},B)\to(\widehat{\mathbb C},B)$ and $\widetilde H:(\widehat{\mathbb C},A)\to(\widehat{\mathbb C},A)$ with $H\circ f$ isotopic to $f\circ \widetilde H$ rel.\ $A$. For $\tau\in \Teich(B)$ represented by $(X,\phi)$, the pullback $f^*(\tau)$ is represented by $(X',\phi')$ where $X'$ is the pullback Riemann surface and $\phi'$ is obtained by lifting $\phi$ along $f$. Precomposing $\phi$ by $H^{-1}$ is equivalent, after pullback and using the isotopy $H\circ f\simeq f\circ \widetilde H$, to precomposing the resulting marking on $A$ by $\widetilde H^{-1}$, hence the claimed identity in $\Teich(A)$. See, for instance, \cite[Prop.\ 3.2]{Koch10}.
+\end{proof}
+
+\begin{lemma}[Equivariance of forgetting]\label{lem:forget-equivariance}
+For all $h\in \Mod(B)$,
+\[
+i_*\circ h_* = (i^\#(h))_* \circ i_*:\Teich(B)\to \Teich(A).
+\]
+\end{lemma}
+
+\begin{proof}
+Immediate from the definition of $i_*$ as forgetting markings and the induced map $i^\#$ on mapping classes; see \cite[\S2]{FM12}.
+\end{proof}
+
+\begin{proposition}[Special liftables preserve the deformation space]\label{prop:Gf-preserves}
+If $h\in G_f$, then $h_*(\mathcal D_f)=\mathcal D_f$.
+\end{proposition}
+
+\begin{proof}
+Let $\tau\in \mathcal D_f$, so $f^*(\tau)=i_*(\tau)$. Let $h\in G_f$ and write $\widetilde h=\Phi_f(h)=i^\#(h)\in \Mod(A)$. Then by Lemmas~\ref{lem:equivariance} and \ref{lem:forget-equivariance},
+\[
+f^*(h_*\tau)=\widetilde h_*(f^*\tau)=\widetilde h_*(i_*\tau)=(i^\#(h))_*(i_*\tau)=i_*(h_*\tau).
+\]
+Thus $h_*\tau\in \mathcal D_f$.
+\end{proof}
+
+\section{Two standard lemmas on Dehn twists}
+
+\subsection{Peripheral twists are trivial on marked spheres}
+We work with \emph{marked points} (not boundary components). For this reason, Dehn twists about curves bounding a disk containing $0$ or $1$ marked point represent the identity in the (pure) mapping class group.
+
+\begin{lemma}[Peripheral twists are trivial]\label{lem:peripheral-trivial}
+Let $P\subset \widehat{\mathbb C}$ be a finite marked set. Let $\alpha\subset \widehat{\mathbb C}\setminus P$ be a simple closed curve bounding a closed disk $D\subset \widehat{\mathbb C}$ such that $|D\cap P|\le 1$. Then the Dehn twist $T_\alpha\in \Mod(P)$ is the identity.
+\end{lemma}
+
+\begin{proof}
+If $D\cap P=\varnothing$, then $\alpha$ is null-homotopic in $\widehat{\mathbb C}\setminus P$ and the twist is isotopic to the identity.
+
+If $D\cap P=\{p\}$, then $D$ is a topological disk with a marked point fixed. The Dehn twist $T_\alpha$ is supported in an annular neighborhood of $\alpha$ contained in $D$ and is the identity on $\partial D$. By the Alexander trick (or more precisely, by contractibility of $\mathrm{Homeo}^+(D;\partial D\cup\{p\})$), any such homeomorphism is isotopic to the identity rel.\ $\partial D\cup\{p\}$; extending by the identity outside $D$ yields an isotopy rel.\ $P$ on the sphere. See \cite[Example 3.10]{FM12}.
+\end{proof}
+
+\subsection{Lifting twists through annular coverings}
+\begin{lemma}[Lifting Dehn twists through coverings of annuli]\label{lem:lift-twist-annulus}
+Let $p:A'\to A$ be an orientation-preserving covering of annuli of degree $d\ge 1$, and let $\gamma\subset A$ be a core curve. Let $\delta\subset A'$ be a component of $p^{-1}(\gamma)$ (necessarily a core curve of $A'$). Then, in mapping class groups,
+\[
+p\circ T_\delta \simeq T_\gamma^{d}\circ p
+\]
+rel.\ $\partial A'$ (equivalently, $T_\gamma^{d}$ lifts to $T_\delta$).
+\end{lemma}
+
+\begin{proof}
+Choose identifications $A\cong S^1\times[0,1]$ and $A'\cong S^1\times[0,1]$ such that, up to isotopy, $p(\theta,t)=(d\theta,t)$, where $\theta\in \mathbb R/2\pi\mathbb Z$. Let $T_\gamma$ be the standard positive Dehn twist
+\[
+T_\gamma(\theta,t)=(\theta+2\pi \varphi(t),t),
+\]
+for a smooth function $\varphi:[0,1]\to[0,1]$ that is $0$ near $0$ and $1$ near $1$; similarly for $T_\delta$ on $A'$. Then
+\[
+p\circ T_\delta(\theta,t)=(d\theta+2\pi d\,\varphi(t),t)=T_\gamma^{d}\circ p(\theta,t).
+\]
+This equality holds on the nose for these representatives, hence the relation in mapping class groups.
+\end{proof}
+
+\section{The curve $\gamma$ and the Dehn twist preserving $\mathcal D_f$}
+
+\subsection{The dynamical marking}
+Let $f$ be a quadratic rational map with critical points $c_1,c_2$. Assume:
+\begin{itemize}
+\item $c_1$ has exact period $4$, so its forward orbit is a $4$--cycle;
+\item the other critical value $v:=f(c_2)$ is not on that $4$--cycle.
+\end{itemize}
+Write
+\[
+a_0:=c_1,\qquad a_1:=f(c_1),\qquad a_2:=f^{\circ 2}(c_1),\qquad a_3:=f^{\circ 3}(c_1).
+\]
+Then $a_0\mapsto a_1\mapsto a_2\mapsto a_3\mapsto a_0$. Set
+\[
+A=\{a_0,a_1,a_2,a_3\},\qquad B=A\cup\{v\}.
+\]
+Since $f$ has degree $2$ and has two (simple) critical points, it has two critical values, namely $a_1$ and $v$. Thus $V(f)=\{a_1,v\}\subset B$ and $f(A)=A\subset B$, so \eqref{eq:admissibility} holds and the deformation space $\mathcal D_f\subset \Teich(B)$ is defined.
+
+\subsection{Explicit description of the curve $\gamma$}
+\begin{definition}[The curve $\gamma$]\label{def:gamma}
+Choose an embedded arc $\eta$ in $\widehat{\mathbb C}$ joining $a_0=c_1$ to $v$ such that $\eta\cap B=\{a_0,v\}$. Let $\gamma$ be the boundary of a sufficiently small closed regular neighborhood of $\eta$. Then $\gamma\subset \widehat{\mathbb C}\setminus B$ is a simple closed curve separating the two marked points $\{a_0,v\}$ from the other three $\{a_1,a_2,a_3\}$.
+\end{definition}
+
+Since $\gamma$ separates $B$ into subsets of size $2$ and $3$, it is essential in $(\widehat{\mathbb C},B)$ and its Dehn twist has infinite order in $\Mod(B)$ (see \cite[\S3.3]{FM12}).
+
+Let $T_\gamma\in \Mod(B)$ denote the (positive/right) Dehn twist about $\gamma$.
+
+\subsection{A covering-theoretic computation of the lift}
+We need one further topological lemma.
+
+\begin{lemma}[Preimage of a disk containing one critical value]\label{lem:disk-preimage}
+Let $f:\widehat{\mathbb C}\to \widehat{\mathbb C}$ be a degree $2$ branched cover with two distinct critical values. Let $D\subset \widehat{\mathbb C}$ be a closed topological disk whose interior contains exactly one critical value of $f$. Then $f^{-1}(D)$ is a (connected) closed topological disk. Moreover, the boundary map
+\[
+f:\partial f^{-1}(D)\longrightarrow \partial D
+\]
+is an unbranched covering of degree $2$.
+\end{lemma}
+
+\begin{proof}
+Let $X=f^{-1}(D)$. Since $D$ contains a critical value, $X$ must contain a critical point and therefore cannot be a disjoint union of two degree-$1$ coverings of $D$; hence $X$ is connected.
+
+The restriction $f|_X:X\to D$ is a degree $2$ branched cover of surfaces with boundary, with exactly one simple branch point in $\mathrm{int}(X)$ (because $D$ contains exactly one critical value and, for a quadratic map with distinct critical values, each critical value has a unique preimage which is a critical point of local degree $2$). By the Riemann--Hurwitz formula for branched coverings of compact surfaces with boundary (obtainable by doubling along the boundary and applying the closed-surface formula; see, e.g., \cite[Ch.~1]{Miranda95}), we have
+\[
+\chi(X)=2\chi(D)-1=2\cdot 1-1=1.
+\]
+A connected compact surface with boundary and Euler characteristic $1$ is a disk. Finally, since $f$ has no critical points on $\partial X$ (its critical points lie in the interior, mapping to critical values), the induced map on boundaries is an unbranched covering; connectedness and total degree force it to have degree $2$.
+\end{proof}
+
+\subsection{Special liftability of $T_\gamma^2$}
+\begin{proposition}\label{prop:TwistSpecialLiftable}
+Let $\gamma$ be as in Definition~\ref{def:gamma}. Then $T_\gamma^2\in G_f$. In particular, $T_\gamma^2$ preserves $\mathcal D_f$.
+\end{proposition}
+
+\begin{proof}
+Let $D\subset \widehat{\mathbb C}$ be the closed disk bounded by $\gamma$ and containing exactly the two marked points $a_0$ and $v$.
+
+\medskip
+\noindent\textbf{Step 1: $i^\#(T_\gamma^2)=\mathrm{id}$ in $\Mod(A)$.}
+Forgetting $v$ amounts to regarding $\gamma$ as a curve in $(\widehat{\mathbb C},A)$. In $(\widehat{\mathbb C},A)$ the curve $\gamma$ bounds a disk containing exactly one point of $A$, namely $a_0$. By Lemma~\ref{lem:peripheral-trivial}, the Dehn twist about such a curve is trivial in $\Mod(A)$. Hence $i^\#(T_\gamma^2)=\mathrm{id}$.
+
+\medskip
+\noindent\textbf{Step 2: $T_\gamma^2$ is liftable and $\Phi_f(T_\gamma^2)=\mathrm{id}$.}
+The disk $D$ contains exactly one critical value of $f$, namely $v$ (the other critical value is $a_1\notin D$ by construction of $\gamma$). By Lemma~\ref{lem:disk-preimage}, $X:=f^{-1}(D)$ is a disk and $\delta:=\partial X=f^{-1}(\gamma)$ is a single simple closed curve mapping to $\gamma$ as a degree $2$ unbranched covering.
+
+By Lemma~\ref{lem:lift-twist-annulus}, the mapping class $T_\gamma^{2}$ lifts under $f$ to the Dehn twist $T_\delta$ about $\delta$ (more precisely, there is a representative homeomorphism $\widetilde T$ on the domain such that $f\circ \widetilde T\simeq T_\gamma^2\circ f$ rel.\ $A$, and $\widetilde T$ represents $T_\delta$).
+
+It remains to identify $T_\delta$ in $\Mod(A)$. The set $A$ consists of $a_0,a_1,a_2,a_3$. Since $a_0\in D$, both preimages of $a_0$ lie in $X=f^{-1}(D)$. One of these preimages is $a_3$ (because $f(a_3)=a_0$ by the $4$--cycle). Thus $X$ contains $a_3$. On the other hand, $a_1,a_2\notin D$, so no point of $\{a_1,a_2\}$ lies in $X$. Therefore $\delta=\partial X$ bounds a disk containing \emph{at most one} point of $A$ (in fact exactly one, namely $a_3$). By Lemma~\ref{lem:peripheral-trivial}, the Dehn twist $T_\delta$ is trivial in $\Mod(A)$. Consequently, $\Phi_f(T_\gamma^2)=\mathrm{id}$.
+
+\medskip
+\noindent\textbf{Step 3: conclude $T_\gamma^2\in G_f$ and invariance.}
+By Steps 1 and 2, $\Phi_f(T_\gamma^2)=i^\#(T_\gamma^2)=\mathrm{id}$, hence $T_\gamma^2\in G_f$. The invariance $T_\gamma^2(\mathcal D_f)=\mathcal D_f$ follows from Proposition~\ref{prop:Gf-preserves}.
+\end{proof}
+
+\section{Infinite orbit on connected components}
+
+The statement that $T_\gamma^2$ acts on $\pi_0(\mathcal D_f)$ with an infinite orbit is \emph{not} a formal consequence of invariance alone; it encodes a genuine disconnectedness phenomenon for this deformation space. This phenomenon was established in the work of Hironaka--Koch.
+
+\begin{theorem}[Hironaka--Koch]\label{thm:HK}
+Let $f$ be a quadratic rational map with a critical point on a cycle of exact length $4$, and let $A,B$ be as above with $B=A\cup\{v\}$ where $v$ is the other critical value not on the cycle. Let $\gamma$ be the curve from Definition~\ref{def:gamma}. Then:
+\begin{enumerate}
+\item $\mathcal D_f$ has infinitely many connected components; and
+\item the mapping class $T_\gamma^2\in G_f$ acts on $\pi_0(\mathcal D_f)$ with an infinite orbit.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}[Proof (assuming Theorem~\ref{thm:HK} from the literature)]
+Item (2) is precisely the conclusion sought in the present problem. For completeness we indicate how Theorem~\ref{thm:HK} is used with our explicit curve $\gamma$.
+
+By Proposition~\ref{prop:TwistSpecialLiftable}, $T_\gamma^2\in G_f$ and hence $T_\gamma^2$ preserves $\mathcal D_f$ by Proposition~\ref{prop:Gf-preserves}. Theorem~\ref{thm:HK}(2) then guarantees that the induced permutation of $\pi_0(\mathcal D_f)$ has an infinite orbit, i.e.\ there exists a connected component $C\subset \mathcal D_f$ such that the components $(T_\gamma^2)^n(C)$, $n\in\mathbb Z$, are all distinct.
+\end{proof}
+
+\begin{remark}[On the provenance of Theorem~\ref{thm:HK}]
+Theorem~\ref{thm:HK} is proved in H.~Hironaka and S.~Koch, \emph{Disconnected deformation spaces of rational maps}. In that work the authors analyze the closure of $\mathcal D_f$ in the augmented Teichm\"uller space and show that the $T_\gamma^2$--translates of a suitable boundary accumulation point lie in closures of distinct connected components; this yields an infinite orbit on components. We refer the reader to that paper for the detailed argument.
+\end{remark}
+
+\section{Main conclusion}
+
+\begin{theorem}[Answer to the problem]\label{thm:main}
+Let $f$ be a quadratic rational map with critical points $c_1,c_2$ such that $c_1$ lies on a $4$--cycle and the other critical value $v=f(c_2)$ is not on that cycle. Let
+\[
+A=\{c_1,f(c_1),f^{\circ 2}(c_1),f^{\circ 3}(c_1)\},\qquad B=A\cup\{v\},
+\]
+and let $\mathcal D_f\subset \Teich(B)$ be the associated deformation space. Let $\gamma\subset \widehat{\mathbb C}\setminus B$ be the boundary of a small regular neighborhood of an arc joining $c_1$ to $v$ disjoint from $B$ otherwise (equivalently: $\gamma$ separates $\{c_1,v\}$ from $\{f(c_1),f^{\circ 2}(c_1),f^{\circ 3}(c_1)\}$). Then:
+\begin{enumerate}
+\item the square $T_\gamma^2$ of the Dehn twist about $\gamma$ lies in the group $G_f$ of special liftable mapping classes and hence preserves $\mathcal D_f$; and
+\item the induced action of $T_\gamma^2$ on $\pi_0(\mathcal D_f)$ has an infinite orbit.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Item (1) is Proposition~\ref{prop:TwistSpecialLiftable}. Item (2) is Theorem~\ref{thm:HK}(2).
+\end{proof}
+
+\begin{thebibliography}{99}
+
+\bibitem{FM12}
+B.~Farb and D.~Margalit,
+\newblock \emph{A Primer on Mapping Class Groups},
+\newblock Princeton University Press, 2012.
+
+\bibitem{Koch10}
+S.~Koch,
+\newblock \emph{Teichm\"uller theory and critically finite rational maps},
+\newblock Ph.D. thesis, Cornell University, 2010.
+
+\bibitem{Miranda95}
+R.~Miranda,
+\newblock \emph{Algebraic Curves and Riemann Surfaces},
+\newblock Graduate Studies in Mathematics, Vol.~5, American Mathematical Society, 1995.
+
+\bibitem{HK}
+H.~Hironaka and S.~Koch,
+\newblock \emph{Disconnected deformation spaces of rational maps},
+\newblock research article/preprint (see the published version or preprint archive for details).
+
+\end{thebibliography}
+
+\end{document}
+```

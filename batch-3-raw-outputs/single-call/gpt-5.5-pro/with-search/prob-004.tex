@@ -1,0 +1,230 @@
+```latex
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\DD}{\mathcal D}
+\newcommand{\JJ}{\mathcal J}
+\newcommand{\RR}{\mathcal R}
+\newcommand{\cN}{\mathcal N}
+\newcommand{\om}{\omega}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\C}{\mathbb C}
+
+\begin{document}
+
+\title{A criterion for holomorphic normal-crossing coordinates near a symplectic SNC divisor}
+\author{}
+\date{}
+\maketitle
+
+\begin{abstract}
+The statement in the question is stronger than the standard symplectic
+regularization theorem for simple normal-crossing symplectic divisors.  The
+standard theorem gives, after a cohomologous deformation of the symplectic
+form, compatible tubular neighborhoods and hence almost complex structures for
+which local normal coordinates are \(\bar\partial\log\)-compatible:
+\[
+        \bar\partial_J z_i=z_i\theta_i ,
+\]
+not necessarily \(J\)-holomorphic.  The difference is exactly the existence of
+compatible pseudoholomorphic local frames of the normal line bundles of all
+strata.  The theorem below gives a precise necessary and sufficient condition
+for the coordinates requested in the question, and proves the usual
+regularized construction under that additional normal-holomorphic condition.
+\end{abstract}
+
+\section{Set-up}
+
+Let \((M^{2n},\omega)\) be closed and let
+\[
+        D=\bigcup_{i\in S}D_i
+\]
+be a symplectic simple normal-crossing divisor.  Thus the \(D_i\) are closed
+codimension-two symplectic submanifolds meeting transversely, every stratum
+\[
+        D_I=\bigcap_{i\in I}D_i,\qquad I\subset S,
+\]
+is symplectic, and the symplectic orientation of \(D_I\) agrees with the
+intersection orientation.  This is the convention of
+Tehrani--McLean--Zinger \cite[Definition 2.1]{TMZ}.
+
+The regularization theorem of Tehrani--McLean--Zinger says that, after replacing
+\(\omega\) by a cohomologous deformation \(\omega'\) through forms for which
+\(D\) remains an SNC symplectic divisor, there exists an \(\omega'\)-regularization
+of \(D\).  Concretely, near each stratum \(D_I\) one has compatible
+identifications of a neighborhood of \(D_I\) with a neighborhood of the zero
+section in
+\[
+        \bigoplus_{i\in I} N_i \longrightarrow D_I ,
+\]
+where \(N_i\) is the normal line to \(D_i\) along \(D_I\), equipped with
+Hermitian metrics and compatible connections.  See
+\cite[Definitions 2.9--2.12 and Theorem 2.13]{TMZ}.
+
+\section{The extra datum needed for genuinely holomorphic normal coordinates}
+
+\begin{definition}[normal-holomorphic regularization]
+Let \(\omega'\) be a symplectic form for which \(D\) is an SNC symplectic
+divisor, and let \(\RR\) be an \(\omega'\)-regularization.  We say that
+\((\omega',\RR)\) is \emph{normal-holomorphic} if the following data are given.
+
+\begin{enumerate}
+\item For every stratum \(D_I\), an \(\omega'|_{D_I}\)-tame almost complex
+structure \(J_I\).
+
+\item For every \(i\in I\), a complex line-bundle atlas for
+\(N_i\to D_I\) whose transition functions are \(J_I\)-holomorphic.
+
+\item These atlases are compatible with the product-Hermitian identifications
+between normal bundles supplied by the regularization \(\RR\).
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[criterion]
+After a cohomologous deformation of \(\omega\) for which \(D\) remains an SNC
+symplectic divisor, the almost complex structure requested in the question
+exists if the resulting regularization is normal-holomorphic.  Conversely, any
+almost complex structure with the local holomorphic-coordinate property of the
+question induces a normal-holomorphic structure on the normal line bundles of
+all strata.
+\end{theorem}
+
+\begin{proof}
+We prove the two directions separately.
+
+First assume \((\omega',\RR)\) is normal-holomorphic.  Fix a stratum \(D_I\).
+Using the regularization, a neighborhood of \(D_I\) is identified with a
+neighborhood of the zero section in
+\[
+        \bigoplus_{i\in I} N_i \longrightarrow D_I .
+\]
+Choose a normal-holomorphic trivialization over an open set
+\(U\subset D_I\).  Thus the total space is written locally as
+\[
+        U\times \C^{|I|}
+\]
+with fiber coordinates \(w_i\), \(i\in I\), and with transition maps
+\[
+        (x,(w_i))\longmapsto
+        \bigl(x,(g_i(x)w_i)\bigr),
+\]
+where each \(g_i:U\cap U'\to \C^*\) is \(J_I\)-holomorphic.  Define on
+\(U\times\C^{|I|}\) the product almost complex structure
+\[
+        \widehat J_I = J_I\oplus i\oplus\cdots\oplus i .
+\]
+Because the transition functions \(g_i\) are \(J_I\)-holomorphic, the above
+transition maps are \(\widehat J_I\)-holomorphic.  Hence the product almost
+complex structures patch to a smooth almost complex structure on a
+neighborhood of the zero section in \(\bigoplus_{i\in I}N_i\).
+
+Compatibility of the regularization on overlaps of strata ensures that these
+local definitions agree where two such models overlap.  Pushing the resulting
+almost complex structure forward by the regularization gives a smooth almost
+complex structure \(J\) on a neighborhood \(U_D\) of \(D\subset M\).
+
+At a point lying on precisely the components \(D_i\), \(i\in I\), the local
+fiber coordinates \(w_i\) satisfy
+\[
+        dw_i\circ J=i\,dw_i .
+\]
+Thus the \(w_i\) are \(J\)-holomorphic and, in these coordinates,
+\[
+        D\cap U_D = \bigl\{ \prod_{i\in I} w_i=0\bigr\}.
+\]
+
+It remains to ensure tameness and extend \(J\) globally.  In the regularized
+model, the form \(\omega'\) is equal to the standard model form along the zero
+section: it is the direct sum of \(\omega'|_{D_I}\) on the base and the
+standard symplectic forms on the complex normal lines.  Since \(J_I\) is
+\(\omega'|_{D_I}\)-tame and the fiber complex structures are standard,
+\(\omega'(\cdot,J\cdot)>0\) along \(D\).  Tameness is an open condition, so
+after shrinking \(U_D\), the constructed \(J\) is \(\omega'\)-tame on \(U_D\).
+
+Choose any global \(\omega'\)-tame almost complex structure \(J_0\) on \(M\).
+The bundle over \(M\) whose fiber at \(p\) is the contractible space of
+\(\omega'_p\)-tame complex structures on \(T_pM\) has contractible fibers.
+Hence the section \(J|_{U_D}\) extends, after shrinking once more and using a
+collar interpolation, to a global \(\omega'\)-tame almost complex structure
+which equals the constructed one near \(D\).  This gives the desired \(J\).
+
+Conversely, suppose a global \(\omega'\)-tame almost complex structure \(J\)
+has the local holomorphic-coordinate property stated in the question.  On a
+coordinate chart near a point of a stratum \(D_I\), write the holomorphic
+normal coordinates as \(z_i\), \(i\in I\).  The differentials \(dz_i\) identify
+the corresponding normal line \(N_i\) with the trivial complex line.  On an
+overlap of two such charts the two choices differ by multiplication by a
+nowhere-zero function.  Because both coordinate functions are
+\(J\)-holomorphic, these transition functions are pseudoholomorphic on the
+stratum.  Thus the coordinate charts define pseudoholomorphic local frames of
+the normal line bundles.  Restricting \(J\) to each stratum gives the
+structures \(J_I\), and the compatibility of the coordinate systems for
+normal-crossing charts gives the required compatibility with the normal bundle
+identifications.  Therefore a normal-holomorphic regularization is induced.
+\end{proof}
+
+\section{What the standard symplectic regularization theorem gives}
+
+The theorem of Tehrani--McLean--Zinger supplies compatible symplectic
+regularizations after cohomologous deformation, but it does not by itself
+supply normal-holomorphic frames in the above sense.  From a regularization one
+canonically obtains almost complex structures adapted to \(D\) for which local
+normal coordinates satisfy the weaker logarithmic equation
+\[
+        \bar\partial_J z_i = z_i\theta_i
+\]
+for smooth one-forms \(\theta_i\).  This is the
+\(\bar\partial\log\)-compatible condition used by Parker
+\cite[Definition 14.5]{Parker}.  It is stable under arbitrary smooth
+nonvanishing changes of normal coordinates, because if \(z\) satisfies
+\(\bar\partial_J z=z\theta\) and \(g\) is smooth and nowhere zero, then
+\[
+        \bar\partial_J(gz)
+        = gz\bigl(\theta+g^{-1}\bar\partial_J g\bigr).
+\]
+By contrast, genuine \(J\)-holomorphicity of \(z\) is not stable under an
+arbitrary smooth change \(z\mapsto gz\); it is stable only when \(g\) is
+\(J\)-holomorphic.  This is precisely the extra normal-holomorphic condition
+isolated above.
+
+\begin{remark}
+Thus the standard deformation-and-regularization theorem proves the existence
+of adapted \(\bar\partial\log\)-compatible almost complex structures, not
+automatically the stronger local holomorphic-coordinate structure requested in
+the question.  To prove the stronger statement in full generality one would
+need an additional theorem asserting that the normal line bundles of all strata
+admit compatible pseudoholomorphic local frames after the allowed symplectic
+deformation.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{MS}
+D.~McDuff and D.~Salamon,
+\emph{Introduction to Symplectic Topology},
+3rd ed., Oxford University Press, 2017.
+
+\bibitem{TMZ}
+M.~F. Tehrani, M.~McLean, and A.~Zinger,
+\emph{Normal crossings singularities for symplectic topology},
+Adv. Math. \textbf{339} (2018), 672--748.
+See also arXiv:1410.0609.
+
+\bibitem{Parker}
+B.~Parker,
+\emph{Log geometry and exploded manifolds},
+Abh. Math. Semin. Univ. Hambg. \textbf{82} (2012), 43--81.
+See especially Section 14.
+
+\end{thebibliography}
+
+\end{document}
+```

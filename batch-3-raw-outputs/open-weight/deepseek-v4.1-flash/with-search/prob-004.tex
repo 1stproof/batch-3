@@ -1,0 +1,128 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Local holomorphic equations for symplectic simple normal crossings divisors}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Statement and main result}
+
+Let $(M,\omega)$ be a closed symplectic manifold. A \emph{symplectic divisor} is a closed submanifold $D\subset M$ of real codimension $2$ such that $\omega|_D$ is symplectic. A \emph{symplectic simple normal crossings (SNC) divisor} is a finite union
+\[
+D=\bigcup_{i\in S}D_i
+\]
+of smooth symplectic divisors $D_i$ which intersect transversely, and which is locally modelled on a union of coordinate hyperplanes. Thus for every $p\in M$ there is a set $I(p)\subset S$ with $p\in D_i$ exactly when $i\in I(p)$, and smooth complex coordinates $(z_1,\dots,z_n)$ near $p$ such that
+\[
+D=\{z_1\cdots z_r=0\},\qquad r=|I(p)|.
+\]
+An almost complex structure $J$ on $M$ is \emph{$\omega$-tame} if $\omega(v,Jv)>0$ for every nonzero $v\in TM$. A smooth function $f:U\to\mathbb C$ is \emph{$J$-holomorphic} if
+\[
+df\circ J=i\,df.
+\]
+
+The purpose of this note is to prove the following theorem.
+
+\begin{theorem}\label{thm:main}
+Let $(M,\omega)$ be a closed symplectic manifold and let $D\subset M$ be a symplectic simple normal crossings divisor. Then there exists a smooth path $(\omega_t)_{t\in[0,1]}$ of symplectic forms on $M$ such that
+\begin{enumerate}
+\item $\omega_0=\omega$;
+\item $[\omega_t]=[\omega]$ for every $t$;
+\item $D$ is a symplectic simple normal crossings divisor with respect to every $\omega_t$;
+\item with $\omega_1$ in place of $\omega$, there exists an $\omega_1$-tame almost complex structure $J$ on $M$ with the following property: for every $p\in M$ there exist a neighborhood $U$ of $p$ and smooth complex coordinates $(z_1,\dots,z_n)$ on $U$ such that, for some $0\le r\le n$,
+\[
+D\cap U=\{z_1\cdots z_r=0\},
+\]
+and $z_1,\dots,z_r$ are $J$-holomorphic.
+\end{enumerate}
+\end{theorem}
+
+The proof rests on the regularization theorem for symplectic normal crossing divisors, due to Tehrani--McLean--Zinger. We state it in the form needed below.
+
+\begin{theorem}[Regularization theorem; {\rm\href{https://www.numdam.org/item/10.1016/j.crma.2018.02.009.pdf}{numdam.org}}, \href{https://ar5iv.labs.arxiv.org/html/2112.13125}{ar5iv.labs.arxiv.org}]\label{thm:reg}
+Let $(M,\omega)$ be a closed symplectic manifold and let $D\subset M$ be a symplectic simple normal crossings divisor. Then there exists a smooth path $(\omega_t)_{t\in[0,1]}$ of cohomologous symplectic forms with $\omega_0=\omega$, along which $D$ remains a symplectic simple normal crossings divisor, and such that $(M,D,\omega_1)$ admits an $\omega_1$-regularization $\mathcal R$. Moreover, there exists an $\omega_1$-tame almost complex structure $J$ on $M$ such that $(\omega_1,\mathcal R,J)$ belongs to the space $\mathrm{AK}(M,D)$ of almost Kähler data.
+\end{theorem}
+
+We recall the only property of $\mathrm{AK}(M,D)$ that will be used.
+
+\begin{proposition}[Local form of $\mathrm{AK}$-structures; {\rm\href{https://www.numdam.org/item/10.1016/j.crma.2018.02.009.pdf}{numdam.org}}, \href{https://ar5iv.labs.arxiv.org/html/2112.13125}{ar5iv.labs.arxiv.org}]\label{prop:localform}
+Let $\mathcal R$ be an $\omega$-regularization of $D$ and let $J\in\mathrm{AK}(M,D)$. Then $J$ is very regular around $D$. In particular, near every $p\in D$ the following holds. Let $I=\{i\in S:p\in D_i\}$ and put $V_I=\cap_{i\in I}D_i$. In a tubular neighborhood of $V_I$, identified with the normal bundle $N_{V_I}M$, the bundle splits as
+\[
+N_{V_I}M=\bigoplus_{i\in I}N_i,
+\]
+where $N_i$ is the normal bundle of $D_i$ restricted to $V_I$. In a $\mathbb C^\times$-equivariant local trivialization $(w_1,\dots,w_{n-r},\zeta_1,\dots,\zeta_r)$ of $N_{V_I}M$, with $w$ coordinates on $V_I$ and $\zeta_i\in\mathbb C$ the fiber coordinate on $N_i$, the almost complex structure $J$ preserves the horizontal distribution $\langle\partial_{w_1},\dots,\partial_{w_{n-r}}\rangle$ and the vertical distribution $\langle\partial_{\zeta_1},\dots,\partial_{\zeta_r}\rangle$, and on each vertical line $N_i$ it acts as multiplication by $i$:
+\[
+J\partial_{\zeta_i}=i\,\partial_{\zeta_i}.
+\]
+\end{proposition}
+
+\begin{proof}[Proof of Proposition~\ref{prop:localform}]
+This is precisely the content of the ``very regular'' property of $\mathrm{AK}$-structures established in \href{https://www.numdam.org/item/10.1016/j.crma.2018.02.009.pdf}{numdam.org} and \href{https://ar5iv.labs.arxiv.org/html/2112.13125}{ar5iv.labs.arxiv.org}. The regularization provides the tubular neighborhood, the splitting of the normal bundle into the line bundles $N_i$, and the $\mathbb C^\times$-action on each $N_i$ by scalar multiplication. The definition of $\mathrm{AK}(M,D)$ requires that $J$ respect this $\mathbb C^\times$-action and restrict to the standard complex structure on each fiber. The statement about the preservation of the horizontal and vertical distributions follows by differentiating the equivariance relation: in a $\mathbb C^\times$-equivariant frame, a horizontal vector is fixed while a vertical vector in $N_i$ is multiplied by $\lambda\in\mathbb C^\times$. If $J$ sent a horizontal vector to a vector with a nonzero vertical component, equivariance would force that component to be simultaneously fixed and multiplied by $\lambda$, which is impossible unless it vanishes. The same argument applies to the vertical-to-horizontal component. Hence $J$ is block diagonal with respect to the horizontal/vertical splitting, and on each $N_i$ it is multiplication by $i$.
+\end{proof}
+
+\begin{lemma}\label{lem:coordinates}
+Let $\mathcal R$ be an $\omega$-regularization of $D$ and let $J\in\mathrm{AK}(M,D)$. Then for every $p\in M$ there exist a neighborhood $U$ of $p$ and smooth complex coordinates $(z_1,\dots,z_n)$ on $U$ such that, for some $0\le r\le n$,
+\[
+D\cap U=\{z_1\cdots z_r=0\},
+\]
+and $z_1,\dots,z_r$ are $J$-holomorphic.
+\end{lemma}
+
+\begin{proof}
+Fix $p\in M$. If $p\notin D$, take $r=0$ and any smooth complex coordinates near $p$; there is nothing to prove. Assume therefore that $p\in D$. Let
+\[
+I=\{i\in S:p\in D_i\},\qquad r=|I|.
+\]
+By Proposition~\ref{prop:localform}, in a $\mathbb C^\times$-equivariant tubular neighborhood of $V_I=\cap_{i\in I}D_i$ we have coordinates
+\[
+(w_1,\dots,w_{n-r},\zeta_1,\dots,\zeta_r)
+\]
+such that the projection to the $w$-coordinates is a coordinate chart on $V_I$, and $\zeta_i$ is the fiber coordinate on the normal bundle $N_i$ of $D_i$ restricted to $V_I$. The zero set of $\zeta_i$ is exactly $D_i$ in this neighborhood. Since $D$ is a simple normal crossings divisor, the functions $\zeta_1,\dots,\zeta_r$ have linearly independent differentials along $V_I$, and
+\[
+D\cap U=\{\zeta_1\cdots\zeta_r=0\}.
+\]
+By Proposition~\ref{prop:localform}, $J$ preserves the horizontal distribution and acts as multiplication by $i$ on each vertical line $N_i$. We claim that each $\zeta_i$ is $J$-holomorphic. Indeed, let $v$ be any tangent vector. Decompose $v=v_H+v_V$ into horizontal and vertical parts. Since $\zeta_i$ vanishes on the horizontal directions, $d\zeta_i(v_H)=0$, and because $J$ preserves the horizontal distribution, $d\zeta_i(Jv_H)=0$. On the vertical part, $J$ acts as $i$ on $N_j$, so
+\[
+d\zeta_i(Jv_V)=i\,d\zeta_i(v_V).
+\]
+Hence
+\[
+d\zeta_i(Jv)=i\,d\zeta_i(v),
+\]
+which is exactly the $J$-holomorphicity of $\zeta_i$.
+
+Set $z_i=\zeta_i$ for $1\le i\le r$, and complete the coordinates by setting $z_{r+1}=w_1,\dots,z_n=w_{n-r}$. Then $(z_1,\dots,z_n)$ are smooth complex coordinates on $U$, the divisor is given by $z_1\cdots z_r=0$, and $z_1,\dots,z_r$ are $J$-holomorphic. This proves the lemma.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Apply Theorem~\ref{thm:reg}. It produces a path $(\omega_t)_{t\in[0,1]}$ of cohomologous symplectic forms with $\omega_0=\omega$, along which $D$ remains a symplectic simple normal crossings divisor, an $\omega_1$-regularization $\mathcal R$ of $D$, and an $\omega_1$-tame almost complex structure $J$ with $(\omega_1,\mathcal R,J)\in\mathrm{AK}(M,D)$. By Lemma~\ref{lem:coordinates}, for every $p\in M$ there are smooth complex coordinates $(z_1,\dots,z_n)$ near $p$ such that, for some $0\le r\le n$, $D=\{z_1\cdots z_r=0\}$ and $z_1,\dots,z_r$ are $J$-holomorphic. This is precisely the assertion of the theorem.
+\end{proof}
+
+\begin{remark}
+The condition that $z_1,\dots,z_r$ be $J$-holomorphic is weaker than full integrability of $J$. It only requires that the conormal directions to the components of $D$ are complex with respect to $J$. The regularization theorem guarantees exactly this amount of compatibility. In the smooth-divisor case, this is equivalent to the first-order integrability condition
+\[
+N_J(v_1,v_2)\in T_xD\qquad(x\in D,\ v_1,v_2\in T_xM),
+\]
+where $N_J$ is the Nijenhuis tensor; see \href{https://ar5iv.labs.arxiv.org/html/1710.00224}{ar5iv.labs.arxiv.org}. The local holomorphic equations then follow from the standard Newlander--Nirenberg type argument when $\bar\partial^2=0$, and in the normal-crossings case from the regularized normal form above; cf.\ \href{https://mathoverflow.net/questions/154302/local-holomorphic-equations-for-symplectic-divisors}{mathoverflow.net}.
+\end{remark}
+
+\section*{References}
+\begin{itemize}
+\item M.~F. Tehrani, M.~McLean, A.~Zinger, \emph{Singularities and semistable degenerations for symplectic topology}, C. R. Acad. Sci. Paris Ser. I \textbf{356} (2018), 420--432. \href{https://www.numdam.org/item/10.1016/j.crma.2018.02.009.pdf}{numdam.org}.
+\item M.~F. Tehrani, M.~McLean, A.~Zinger, \emph{Normal crossings singularities for symplectic topology: structures}, arXiv:2112.13125. \href{https://ar5iv.labs.arxiv.org/html/2112.13125}{ar5iv.labs.arxiv.org}.
+\item M.~F. Tehrani, M.~McLean, A.~Zinger, \emph{Pseudoholomorphic curves relative to a normal crossings symplectic divisor: compactification}, arXiv:1710.00224. \href{https://ar5iv.labs.arxiv.org/html/1710.00224}{ar5iv.labs.arxiv.org}.
+\item MathOverflow, \emph{Local holomorphic equations for symplectic divisors}. \href{https://mathoverflow.net/questions/154302/local-holomorphic-equations-for-symplectic-divisors}{mathoverflow.net}.
+\end{itemize}
+
+\end{document}

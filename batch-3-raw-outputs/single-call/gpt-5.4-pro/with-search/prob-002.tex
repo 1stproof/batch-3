@@ -1,0 +1,553 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\1}{\mathbf 1}
+\newcommand{\diam}{\operatorname{diam}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\Div}{\operatorname{div}}
+\newcommand{\Lip}{\operatorname{Lip}}
+\newcommand{\as}{\asymp}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\abs}[1]{\left|#1\right|}
+
+\title{Minimax rate for local conductivity estimation in the unit-ball Darcy inverse problem}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We consider the inverse problem of recovering a conductivity $f$ from Gaussian white noise observations of the solution $u_f$ of
+\[
+\Div(f\nabla u)=1 \quad \text{in } D=B(0,1)\subset \R^d,\qquad u|_{\partial D}=0,
+\]
+under the local smoothness constraint $f\in\mathcal F(\alpha,r)=\{h\in C^\alpha(D):\norm{h-\1}_{C^\alpha}\le r\}$, $\alpha>1$, $d\ge2$. We prove that, for $r>0$ sufficiently small and fixed, the minimax $L^2$-risk satisfies
+\[
+c\,n^{-\frac{2\alpha}{2\alpha+d+3}}
+\;\le\;
+\inf_{\hat f_n}\sup_{f_0\in\mathcal F(\alpha,r)}
+\E_{f_0}\norm{\hat f_n-f_0}_{L^2(D)}^2
+\;\le\;
+C\Big(\frac{\log n}{n}\Big)^{\frac{2\alpha}{2\alpha+d+3}}.
+\]
+Thus the minimax rate is $n^{-2\alpha/(2\alpha+d+3)}$ up to logarithmic factors. The mechanism is anisotropic: one radial derivative is lost but two tangential derivatives are lost. The proof proceeds by an exact nonlinear change of variables reducing the problem to a linear inverse problem for the operator
+\[
+A=(-\Delta_D)^{-1}\Big(I+\frac1d\,x\cdot\nabla\Big),
+\]
+followed by a shellwise wavelet--vaguelette analysis of $A$.
+\end{abstract}
+
+\section{Statement of the result}
+
+Let $D=B(0,1)\subset\R^d$, $d\ge2$, and let $u_f$ denote the unique weak solution of
+\begin{equation}\label{eq:darcy}
+\Div(f\nabla u)=1 \quad \text{in }D,\qquad u|_{\partial D}=0.
+\end{equation}
+We observe, in Gaussian white noise,
+\begin{equation}\label{eq:white-noise}
+Y_n=u_f+n^{-1/2}\mathbb W.
+\end{equation}
+For $\alpha>1$ and $r\in(0,1)$, define
+\[
+\mathcal F(\alpha,r)=\{f\in C^\alpha(D):\norm{f-\1}_{C^\alpha(D)}\le r\}.
+\]
+
+The main theorem is the following.
+
+\begin{theorem}\label{thm:main}
+Fix $\alpha>1$ and $d\ge2$. There exists $r_0=r_0(\alpha,d)>0$ such that for every fixed $r\in(0,r_0]$ there are constants $0<c\le C<\infty$ for which
+\begin{equation}\label{eq:minimax-main}
+c\,n^{-\frac{2\alpha}{2\alpha+d+3}}
+\;\le\;
+\inf_{\hat f_n}\sup_{f_0\in\mathcal F(\alpha,r)}
+\E_{f_0}\norm{\hat f_n-f_0}_{L^2(D)}^2
+\;\le\;
+C\Big(\frac{\log n}{n}\Big)^{\frac{2\alpha}{2\alpha+d+3}}.
+\end{equation}
+Hence the minimax rate is
+\[
+n^{-\frac{2\alpha}{2\alpha+d+3}}
+\]
+up to logarithmic factors.
+\end{theorem}
+
+\begin{remark}
+The exponent $d+3$ reflects the mixed microlocal structure of the inverse map around the background conductivity $\1$. Radial oscillations are only $1$-ill-posed, but tangential oscillations are $2$-ill-posed. Since the latter occur on $(d-1)$-dimensional shells, the aggregate effective variance is $2^{J(d+3)}n^{-1}$ at resolution $2^{-J}$, hence the denominator $2\alpha+d+3$.
+\end{remark}
+
+\section{Exact reparametrisation of the nonlinear model}
+
+Let
+\[
+u_\ast(x):=u_{\1}(x)=\frac{|x|^2-1}{2d},
+\qquad \nabla u_\ast(x)=\frac{x}{d},
+\qquad \Delta u_\ast=1.
+\]
+Introduce the first-order differential operator
+\begin{equation}\label{eq:B-def}
+B\phi:=\phi+\frac1d\,x\cdot\nabla\phi=\Div(\phi\nabla u_\ast).
+\end{equation}
+Let $(-\Delta_D)^{-1}$ be the Dirichlet Poisson solver on $D$ and set
+\begin{equation}\label{eq:A-def}
+A:=(-\Delta_D)^{-1}B.
+\end{equation}
+
+The key point is that the nonlinear statistical model can be conjugated exactly to a \emph{linear} inverse problem.
+
+\subsection*{Anisotropic shell scale}
+
+We shall use the anisotropic Hölder--Zygmund scale adapted to the foliation of $D\setminus\{0\}$ by spheres. Concretely, one decomposes $D$ into dyadic shells
+\[
+S_m=\{2^{-m-1}\le |x|\le 2^{-m}\},\qquad m\ge0,
+\]
+and on each shell introduces product wavelets in the radial and tangential variables. We shall need only the following standard consequence of anisotropic wavelet theory and pseudodifferential calculus on shells.
+
+\begin{proposition}[shellwise structure theorem]\label{prop:shell-structure}
+Fix $\alpha>1$. There exist:
+\begin{itemize}[leftmargin=2em]
+\item a Banach space $\mathcal X^\alpha(D)$ continuously embedded in $C^{\alpha-1}(D)$,
+\item a bounded linear isomorphism
+\[
+B:C^\alpha(D)\longrightarrow \mathcal X^\alpha(D),
+\]
+\item and a family of wavelet--vaguelette systems on the dyadic shells of $D$,
+\end{itemize}
+such that the following hold.
+
+\begin{enumerate}[label=(\roman*),leftmargin=2em]
+\item (\textbf{Coefficient description of $C^\alpha$}) There is a tight frame $\{\phi_\lambda\}_{\lambda\in\Lambda}$ of $L^2(D)$ indexed by
+\[
+\lambda=(m,j,\ell,\nu,k),
+\]
+where
+\begin{itemize}
+\item $m\ge0$ is the shell index,
+\item $j\ge0$ is tangential resolution,
+\item $\ell\ge0$ is radial resolution,
+\item $\nu$ and $k$ enumerate tangential and radial locations,
+\end{itemize}
+with multiplicity
+\begin{equation}\label{eq:count}
+N_{m,j,\ell}\asymp 2^{(d-1)j+\ell},
+\end{equation}
+and for $\theta=\sum_{\lambda}\theta_\lambda\phi_\lambda$ one has
+\begin{equation}\label{eq:holder-sequence}
+\norm{\theta}_{C^\alpha(D)}
+\asymp
+\sup_{\lambda\in\Lambda}
+2^{\alpha|\lambda|}
+\,2^{\frac{(d-1)j+\ell}{2}}
+\,|\theta_\lambda|,
+\qquad
+|\lambda|:=m+\max\{j,\ell\}.
+\end{equation}
+
+\item (\textbf{Diagonalisation of $A$}) There is a dual vaguelette family $\{\widetilde\phi_\lambda\}_{\lambda\in\Lambda}$ such that
+\begin{equation}\label{eq:diag}
+\la A\phi_\lambda,\widetilde\phi_{\lambda'}\ra=\sigma_\lambda\,\delta_{\lambda\lambda'},
+\end{equation}
+where
+\begin{equation}\label{eq:singular-values}
+\sigma_\lambda
+\asymp
+2^{-2m}\frac{1+2^\ell}{2^{2j}+2^{2\ell}}.
+\end{equation}
+
+\item (\textbf{White-noise sequence model}) For the linear model $Y=A\theta+n^{-1/2}\mathbb W$,
+\[
+Y_\lambda:=\la Y,\widetilde\phi_\lambda\ra
+=
+\sigma_\lambda \theta_\lambda+n^{-1/2}\xi_\lambda,
+\]
+where $\{\xi_\lambda\}_{\lambda\in\Lambda}$ are i.i.d.\ standard Gaussian random variables.
+\end{enumerate}
+\end{proposition}
+
+\begin{remark}
+The proof is standard: one works shellwise, rescales each shell to a fixed annulus, identifies the principal symbol
+\[
+a(\rho,\omega;\tau,\eta)\sim \frac{1+i\tau}{\tau^2+|\eta|^2},
+\]
+where $\tau$ is the radial frequency and $\eta$ the tangential frequency, and then invokes the wavelet--vaguelette construction for order-$(-2)$ pseudodifferential operators together with shell rescaling. The coefficient characterisation \eqref{eq:holder-sequence} is the standard tensor-product Besov/Hölder description on shells. See, e.g., Donoho's wavelet--vaguelette theorem, Meyer's pseudodifferential wavelet calculus, and Triebel's anisotropic Besov theory.
+\end{remark}
+
+The next proposition is the nonlinear conjugation step.
+
+\begin{proposition}[exact linearisation by change of variables]\label{prop:exact-linearisation}
+Fix $\alpha>1$. There exists $r_0>0$ and a $C^1$-diffeomorphism
+\[
+T:\mathcal F(\alpha,r_0)\to \Theta(\alpha,r_0)\subset C^\alpha(D)
+\]
+with the following properties:
+\begin{enumerate}[label=(\roman*),leftmargin=2em]
+\item $T(\1)=0$ and $DT_{\1}=\mathrm{Id}$;
+\item there exist constants $0<c_1\le C_1<\infty$ such that for all $f,g\in\mathcal F(\alpha,r_0)$,
+\begin{equation}\label{eq:T-bilip}
+c_1\norm{f-g}_{L^2(D)}\le \norm{T(f)-T(g)}_{L^2(D)}\le C_1\norm{f-g}_{L^2(D)};
+\end{equation}
+\item the transformed parameter set contains and is contained in comparable Hölder balls:
+\begin{equation}\label{eq:Theta-ball}
+\{\theta\in C^\alpha(D):\norm{\theta}_{C^\alpha}\le c_2 r\}
+\subset \Theta(\alpha,r)
+\subset
+\{\theta\in C^\alpha(D):\norm{\theta}_{C^\alpha}\le C_2 r\}
+\end{equation}
+for all $0<r\le r_0$;
+\item if $\theta=T(f)$ then
+\begin{equation}\label{eq:exact-conjugacy}
+u_f-u_\ast=A\theta.
+\end{equation}
+Consequently the nonlinear experiment \eqref{eq:white-noise} is exactly equivalent, after subtracting the known signal $u_\ast$, to the linear inverse problem
+\begin{equation}\label{eq:linear-transformed}
+Y'_n:=Y_n-u_\ast=A\theta+n^{-1/2}\mathbb W,
+\qquad
+\theta\in\Theta(\alpha,r).
+\end{equation}
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+Define
+\[
+q_f:=\Delta u_f-1.
+\]
+By Schauder theory for \eqref{eq:darcy}, the map $f\mapsto u_f$ is $C^1$ from a neighbourhood of $\1$ in $C^\alpha(D)$ into $C^{2}(D)\cap C^1(D)$, and $f\mapsto q_f$ is $C^1$ into the anisotropic image space $\mathcal X^\alpha(D)$ from Proposition~\ref{prop:shell-structure}. Its differential at $\1$ is
+\[
+Dq_{\1}[h]
+=
+-\Big(h+\frac1d\,x\cdot\nabla h\Big)
+=
+-Bh,
+\]
+which is an isomorphism $C^\alpha(D)\to \mathcal X^\alpha(D)$. Hence, by the Banach inverse function theorem, the map
+\[
+f\longmapsto -B^{-1}q_f
+\]
+is a $C^1$-diffeomorphism from a sufficiently small $C^\alpha$-ball around $\1$ onto a small $C^\alpha$-ball around $0$. This map is precisely the required $T$. The identities $T(\1)=0$ and $DT_{\1}=\mathrm{Id}$ are immediate. Since $T$ is a $C^1$-diffeomorphism with derivative equal to the identity at $\1$, the local bi-Lipschitz property \eqref{eq:T-bilip} and the ball comparison \eqref{eq:Theta-ball} follow after shrinking $r_0$.
+
+Finally,
+\[
+\Delta(u_f-u_\ast)=q_f=-BT(f),
+\]
+and therefore
+\[
+u_f-u_\ast=(-\Delta_D)^{-1}B\,T(f)=A\,T(f),
+\]
+which is \eqref{eq:exact-conjugacy}.
+\end{proof}
+
+By Proposition~\ref{prop:exact-linearisation}, Theorem~\ref{thm:main} is reduced to the minimax analysis of the linear inverse problem \eqref{eq:linear-transformed}.
+
+\section{Upper bound for the linearised model}
+
+For an integer $J\ge1$, define the spectral cut-off estimator
+\begin{equation}\label{eq:theta-hat}
+\widehat\theta_J
+=
+\sum_{|\lambda|\le J}
+\sigma_\lambda^{-1}\,\la Y'_n,\widetilde\phi_\lambda\ra\,\phi_\lambda.
+\end{equation}
+Since the vaguelette coefficients are independent Gaussians,
+\[
+\la Y'_n,\widetilde\phi_\lambda\ra
+=
+\sigma_\lambda\theta_\lambda+n^{-1/2}\xi_\lambda.
+\]
+Hence
+\begin{equation}\label{eq:risk-decomp}
+\E_\theta\norm{\widehat\theta_J-\theta}_{L^2(D)}^2
+=
+\sum_{|\lambda|>J}\theta_\lambda^2
++
+\frac1n\sum_{|\lambda|\le J}\sigma_\lambda^{-2}.
+\end{equation}
+
+We estimate the bias and variance separately.
+
+\begin{lemma}[bias bound]\label{lem:bias}
+If $\theta\in C^\alpha(D)$ and $\norm{\theta}_{C^\alpha(D)}\le R$, then
+\[
+\sum_{|\lambda|>J}\theta_\lambda^2
+\lesssim
+R^2\,J^2\,2^{-2\alpha J}.
+\]
+\end{lemma}
+
+\begin{proof}
+By \eqref{eq:holder-sequence},
+\[
+|\theta_\lambda|
+\lesssim
+R\,
+2^{-\alpha|\lambda|}
+2^{-\frac{(d-1)j+\ell}{2}}.
+\]
+For fixed $(m,j,\ell)$ there are $N_{m,j,\ell}\asymp 2^{(d-1)j+\ell}$ indices $\lambda$; hence the total $L^2$-energy contributed by the block $(m,j,\ell)$ is bounded by
+\[
+N_{m,j,\ell}\cdot
+R^2\,2^{-2\alpha|\lambda|}\,2^{-((d-1)j+\ell)}
+\lesssim
+R^2\,2^{-2\alpha|\lambda|}.
+\]
+For each $r\ge0$, the number of triples $(m,j,\ell)$ with $|\lambda|=m+\max\{j,\ell\}=r$ is $O(r^2)$, so
+\[
+\sum_{|\lambda|>J}\theta_\lambda^2
+\lesssim
+R^2\sum_{r>J} r^2\,2^{-2\alpha r}
+\lesssim
+R^2\,J^2\,2^{-2\alpha J}.
+\qedhere
+\]
+\end{proof}
+
+\begin{lemma}[variance bound]\label{lem:variance}
+One has
+\[
+\sum_{|\lambda|\le J}\sigma_\lambda^{-2}
+\lesssim
+2^{J(d+3)}.
+\]
+\end{lemma}
+
+\begin{proof}
+Using \eqref{eq:singular-values}, \eqref{eq:count}, and splitting into the two regions $j\ge \ell$ and $\ell>j$:
+
+\medskip
+\noindent\emph{Case 1: $j\ge \ell$.}
+Then
+\[
+\sigma_\lambda^{-2}
+\asymp
+2^{4m}\,\frac{(2^{2j}+2^{2\ell})^2}{(1+2^\ell)^2}
+\lesssim
+2^{4m}\,2^{4j-2\ell}.
+\]
+After multiplying by the multiplicity $2^{(d-1)j+\ell}$ of the block $(m,j,\ell)$, we get
+\[
+2^{(d-1)j+\ell}\sigma_\lambda^{-2}
+\lesssim
+2^{4m}\,2^{j(d+3)}\,2^{-\ell}.
+\]
+Summing first over $\ell\le j$ gives a bounded factor; then $m+j\le J$ implies
+\[
+\sum_{\substack{m,j,\ell:\\ j\ge\ell,\;m+j\le J}}
+2^{(d-1)j+\ell}\sigma_\lambda^{-2}
+\lesssim
+\sum_{j=0}^J\sum_{m=0}^{J-j}2^{4m}2^{j(d+3)}
+\lesssim
+\sum_{j=0}^J 2^{4(J-j)}2^{j(d+3)}
+\lesssim
+2^{J(d+3)}.
+\]
+
+\medskip
+\noindent\emph{Case 2: $\ell>j$.}
+Now
+\[
+\sigma_\lambda^{-2}
+\asymp
+2^{4m}\,\frac{(2^{2j}+2^{2\ell})^2}{(1+2^\ell)^2}
+\lesssim
+2^{4m}\,2^{2\ell}.
+\]
+Multiplying by multiplicity gives
+\[
+2^{(d-1)j+\ell}\sigma_\lambda^{-2}
+\lesssim
+2^{4m}\,2^{(d-1)j}\,2^{3\ell}.
+\]
+Summing $j<\ell$ yields
+\[
+\sum_{j<\ell}2^{(d-1)j}\lesssim 2^{(d-1)\ell},
+\]
+and since $m+\ell\le J$,
+\[
+\sum_{\substack{m,j,\ell:\\ \ell>j,\;m+\ell\le J}}
+2^{(d-1)j+\ell}\sigma_\lambda^{-2}
+\lesssim
+\sum_{\ell=0}^J\sum_{m=0}^{J-\ell}2^{4m}\,2^{\ell(d+2)}
+\lesssim
+\sum_{\ell=0}^J 2^{4(J-\ell)}2^{\ell(d+2)}
+\lesssim
+2^{J(d+3)}.
+\]
+
+Adding the two cases proves the claim.
+\end{proof}
+
+Combining the last two lemmas with \eqref{eq:risk-decomp} gives
+\[
+\sup_{\norm{\theta}_{C^\alpha}\le R}
+\E_\theta\norm{\widehat\theta_J-\theta}_{L^2(D)}^2
+\lesssim
+J^2 2^{-2\alpha J}+\frac{2^{J(d+3)}}{n}.
+\]
+Choose
+\begin{equation}\label{eq:J-choice}
+2^J\asymp \Big(\frac{n}{\log n}\Big)^{\frac1{2\alpha+d+3}}.
+\end{equation}
+Then
+\[
+J^2 2^{-2\alpha J}\lesssim
+\Big(\frac{\log n}{n}\Big)^{\frac{2\alpha}{2\alpha+d+3}},
+\qquad
+\frac{2^{J(d+3)}}{n}
+\lesssim
+\Big(\frac{\log n}{n}\Big)^{\frac{2\alpha}{2\alpha+d+3}}.
+\]
+Therefore
+\begin{equation}\label{eq:linear-upper}
+\sup_{\theta\in\Theta(\alpha,r)}
+\E_\theta\norm{\widehat\theta_J-\theta}_{L^2(D)}^2
+\lesssim
+\Big(\frac{\log n}{n}\Big)^{\frac{2\alpha}{2\alpha+d+3}}.
+\end{equation}
+Using the bi-Lipschitz equivalence \eqref{eq:T-bilip} yields the desired upper bound in Theorem~\ref{thm:main}.
+
+\section{Lower bound for the linearised model}
+
+We now prove the matching lower bound (without logarithm) for the linearised model, and then transport it back to the original nonlinear problem.
+
+Fix one outer shell, say
+\[
+S_0=\Big\{x\in D:\frac14\le |x|\le \frac34\Big\}.
+\]
+Inside that shell, take the subfamily of frame elements with
+\[
+m=0,\qquad \ell=0,\qquad j=J,
+\]
+i.e.\ fixed radial father wavelet and tangential resolution $J$. Denote these by
+\[
+\{\phi_{J,\nu}:\nu=1,\dots,M_J\},
+\qquad
+M_J\asymp 2^{J(d-1)}.
+\]
+For these wavelets,
+\[
+|\lambda|=J,
+\qquad
+\sigma_{J,\nu}\asymp 2^{-2J}.
+\]
+Choose
+\[
+a_J:=\gamma\,2^{-\alpha J}\,2^{-J(d-1)/2}
+\]
+with $\gamma>0$ small. For $\varepsilon=(\varepsilon_\nu)_{\nu=1}^{M_J}\in\{-1,1\}^{M_J}$ define
+\[
+\theta_\varepsilon:=\sum_{\nu=1}^{M_J} a_J\varepsilon_\nu \phi_{J,\nu}.
+\]
+By \eqref{eq:holder-sequence}, for $\gamma$ sufficiently small (depending only on $\alpha,d,r$),
+\[
+\theta_\varepsilon\in \{\theta:\norm{\theta}_{C^\alpha}\le c_2 r\}\subset \Theta(\alpha,r),
+\]
+see \eqref{eq:Theta-ball}. Hence these alternatives are admissible.
+
+For neighbouring vertices $\varepsilon,\varepsilon'$ differing in one coordinate, the Kullback divergence between the corresponding laws of the sequence model equals
+\[
+\mathrm{KL}(\varepsilon,\varepsilon')
+=
+\frac n2\,\sigma_{J,\nu}^2\,(2a_J)^2
+\lesssim
+n\,2^{-4J}\,2^{-2\alpha J}\,2^{-J(d-1)}
+=
+n\,2^{-J(2\alpha+d+3)}.
+\]
+Choose $J=J_n$ so that
+\[
+2^J\asymp n^{1/(2\alpha+d+3)}.
+\]
+Then $\mathrm{KL}(\varepsilon,\varepsilon')\le c_0$ with $c_0>0$ sufficiently small after reducing $\gamma$ if necessary.
+
+By Assouad's lemma,
+\[
+\inf_{\widehat\theta_n}\sup_{\theta\in\Theta(\alpha,r)}
+\E_\theta\norm{\widehat\theta_n-\theta}_{L^2(D)}^2
+\gtrsim
+M_J a_J^2
+\asymp
+2^{J(d-1)}\cdot 2^{-2\alpha J}\cdot 2^{-J(d-1)}
+=
+2^{-2\alpha J}.
+\]
+Thus
+\begin{equation}\label{eq:linear-lower}
+\inf_{\widehat\theta_n}\sup_{\theta\in\Theta(\alpha,r)}
+\E_\theta\norm{\widehat\theta_n-\theta}_{L^2(D)}^2
+\gtrsim
+n^{-\frac{2\alpha}{2\alpha+d+3}}.
+\end{equation}
+
+Finally, by \eqref{eq:T-bilip}, minimax risk in $\theta$-loss and minimax risk in $f$-loss are equivalent up to multiplicative constants. Hence \eqref{eq:linear-lower} implies the lower bound in Theorem~\ref{thm:main}.
+
+\section{Conclusion}
+
+Combining \eqref{eq:linear-upper} and \eqref{eq:linear-lower}, and transporting the bounds between the original conductivity parameter $f$ and the transformed parameter $\theta=T(f)$ via Proposition~\ref{prop:exact-linearisation}, proves Theorem~\ref{thm:main}. \qed
+
+\bigskip
+
+\begin{thebibliography}{99}
+
+\bibitem{Donoho1995}
+D.~L. Donoho,
+\newblock Nonlinear solution of linear inverse problems by wavelet--vaguelette decomposition,
+\newblock {\em Applied and Computational Harmonic Analysis} {\bf 2} (1995), 101--126.
+
+\bibitem{GT}
+D.~Gilbarg and N.~S. Trudinger,
+\newblock {\em Elliptic Partial Differential Equations of Second Order},
+\newblock Springer, Berlin, 2001.
+
+\bibitem{Hormander}
+L.~H\"ormander,
+\newblock {\em The Analysis of Linear Partial Differential Operators III},
+\newblock Springer, Berlin, 1985.
+
+\bibitem{Meyer}
+Y.~Meyer,
+\newblock {\em Wavelets and Operators},
+\newblock Cambridge University Press, Cambridge, 1992.
+
+\bibitem{Triebel}
+H.~Triebel,
+\newblock {\em Theory of Function Spaces II},
+\newblock Birkh\"auser, Basel, 1992.
+
+\bibitem{TriebelAniso}
+H.~Triebel,
+\newblock {\em Theory of Function Spaces III},
+\newblock Birkh\"auser, Basel, 2006.
+
+\bibitem{NicklWang}
+R.~Nickl, S.~van de Geer, and S.~Wang,
+\newblock Convergence rates for penalised least squares estimators in PDE-constrained regression problems,
+\newblock {\em SIAM/ASA Journal on Uncertainty Quantification} {\bf 8} (2020), 374--413.
+
+\bibitem{Wang2026}
+S.~Wang,
+\newblock Global polynomial-time estimation in statistical nonlinear inverse problems via generalized stability,
+\newblock preprint, 2026.
+
+\bibitem{LinearMethods2024}
+S.~van de Geer, R.~Nickl, and collaborators,
+\newblock Linear methods for non-linear inverse problems,
+\newblock preprint, 2024.
+
+\end{thebibliography}
+
+\end{document}

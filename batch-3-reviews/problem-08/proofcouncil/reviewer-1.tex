@@ -1,0 +1,1229 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{fullpage}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\D}{\mathcal D'}
+\newcommand{\LX}{\mathcal L_X}
+\newcommand{\htop}{h_{\mathrm{top}}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\divg}{\operatorname{div}}
+\newcommand{\Lip}{\operatorname{Lip}}
+
+\newcommand{\fptitle}{Review of Problem 8 -- ProofCouncil}
+\newcommand{\reviewtag}{Reviewer 1}
+\usepackage{fp-review}
+
+\begin{document}
+\maketitle
+
+\section{Review}
+
+\paragraph{Correctness.}
+\begin{itemize}
+	\item  1: essentially flawless mathematical argument
+	\item  0.5: minor errors that are easily corrected
+	\item  0: blank solution, or acknowledged partial result
+	\item  $-0.5$: major errors
+	\item  $-1$: proposed proof makes no progress towards the result.
+\end{itemize}
+Note that points should be docked for wrong statements/ solutions.
+
+\noindent Score:1
+
+\paragraph{Exposition.}
+\begin{itemize}
+	\item  1: well-written and clear solution.
+	\item  0: argument that is possible to follow with serious effort
+	\item  $-1$: very poor exposition
+\end{itemize}
+
+\noindent Score: 0
+
+\paragraph{Attributions.}
+\begin{itemize}
+	\item  1: solutions contains fully appropriate attributions
+		to related work and theorems being used.
+	\item  0: moderate issues with missing attributions or hallucinated references
+	\item  $-1$: blatant plagiarism or hallucinations
+\end{itemize}
+
+\noindent Score:1
+\review{It is a nice solution of a result that is way stronger than the seek problem. The proof gives that the distribution is not a measure, this should have been stated that way, and there are certainly more applications. There are some mistakes that are not serious that I would not count against  correctness, it is just some sloppiness, like when someone does not go through the file a second time. But exposition was lacking in not been sharp, lack of sharpness in exposition makes it harder to understand the concepts. Section 8 would have benefit a lot if draw a picture, explain that it was doing the obvious construction to test the distribution, explained what needs to be controlled for the obvious construction to work and explain how Saussol's Lemma 4.1. comes to the rescue. Also, in general, lot of space is spend in explaining almost trivial or not complicated stuff, while it could have been used to explain the ideas.}
+\newpage
+\section{Submission with inline comments}
+
+
+\section{Introduction}
+\label{sec:intro}
+
+\subsection{The problem}
+
+Let \(M\) be a compact connected smooth manifold and \(X\) a smooth
+vector field on \(M\).  Manifolds are understood to have no
+boundary, so \(X\) generates a complete flow \((g_t)_{t\in\R}\) of
+diffeomorphisms; connectedness will play no role.  The question concerns the following regularity
+property of \(X\), called \emph{global hypoellipticity}: whenever
+\(u\) is a distribution on \(M\) and \(\LX u=Xu=f\) is a smooth
+function, \(u\) itself is smooth (the action of \(X\) on
+distributions is recalled in Section~\ref{sec:conventions}).  We are
+asked to show that under this hypothesis every time map \(g_t\) has
+zero topological entropy.
+
+The property goes back to Greenfield and Wallach
+\cite{GreenfieldWallach1973}, who conjectured that a globally
+hypoelliptic vector field on a compact manifold is smoothly conjugate
+to a Diophantine linear flow on a torus (there distributions are
+dual to smooth functions, not to densities; cf.\
+Section~\ref{sec:conventions}); the closely related Katok
+conjecture concerns cohomology-free vector fields (every smooth
+\(f\) is \(Xu+\mathrm{const}\) for some smooth \(u\)); see Forni
+\cite{Forni2008} for the state of these conjectures.
+The statement proved here is a necessary condition in that direction:
+positive entropy produces an invariant distribution which is not a
+smooth function.
+Building invariant distributions by summation along orbits has
+precedents in the theory of cocycles over hyperbolic systems
+(periodic cycle functionals; see Katok--Robinson
+\cite{KatokRobinson2001}); the particular construction below is set
+up from scratch.
+
+\subsection{Conventions on distributions}
+\label{sec:conventions}
+
+We interpret distributions as generalized scalar functions, that is,
+as continuous linear functionals on the space of smooth densities on
+\(M\).  A smooth function \(\varphi\) is a distribution via
+\(\omega\mapsto\int_M\varphi\,\omega\), and the action of \(X\) on
+distributions is the negative transpose of the Lie derivative on
+densities:
+\[
+ (Xu)(\omega)=-u(\mathcal L_X\omega).
+\]
+This agrees with the ordinary derivative on smooth functions, since
+\(\LX(\varphi\omega)=(X\varphi)\omega+\varphi\LX\omega\) and the
+integral of \(\LX(\varphi\omega)\) over \(M\) vanishes.
+Fix once and for all a positive smooth probability density \(m\) on
+\(M\), and define the smooth function \(b\) and the positive smooth
+functions \(J_t\) by
+\[
+ \mathcal L_Xm=bm,\qquad g_t^*m=J_tm .
+\]
+No invariance of \(m\) is assumed; \(b\) is the divergence of \(X\)
+with respect to \(m\), and \(J_t\) is the Jacobian of \(g_t\)
+with respect to \(m\).  Every smooth density is \(\varphi m\) for a
+unique \(\varphi\in C^\infty(M)\), and in this notation
+\begin{equation}\label{eq:scalar}
+ (Xu)(\varphi m)=-u((X\varphi+b\varphi)m),\qquad
+ J_t(x)=\exp\!\left(\int_0^t b(g_sx)\,ds\right).
+\end{equation}
+With this convention a flow-invariant probability measure \(\nu\),
+viewed as the scalar distribution \(\varphi m\mapsto\int\varphi\,d\nu\),
+need not belong to the kernel of \(X\) (it does when \(b=0\)); so
+invariant measures do not by themselves supply elements of
+\(\ker X\).
+Elsewhere invariant distributions are often taken dual to smooth
+functions; if \(X\) preserves a positive smooth density \(\mu\),
+multiplication by \(\mu\) intertwines the scalar and the
+function-dual formulations (see \cite[Section~3]{Forni2008}).  The
+proof below never identifies the two notions and does not require a
+smooth invariant density.
+
+\subsection{Main result}
+
+Topological entropy of the flow means \(\htop(g_1)\).
+We prove the following assertion, which contains the result in the
+question.
+
+\begin{theorem}\label{thm:obstruction}
+If a smooth flow \((g_t)\) on a compact manifold has positive
+topological entropy, \(\htop(g_1)>0\), then there is a scalar
+distribution \(u\) with \(Xu=0\) which is not a smooth function.
+\end{theorem}
+
+\begin{corollary}\label{cor:answer}
+If \(X\) is globally hypoelliptic, then \(\htop(g_t)=0\) for every
+\(t\in\R\).
+\end{corollary}
+
+\begin{proof}[Proof of the corollary from the theorem]
+If \(\htop(g_1)>0\), Theorem~\ref{thm:obstruction} gives a nonsmooth
+\(u\) with \(Xu=0\); the regularity hypothesis with the smooth
+right-hand side \(f=0\) says that \(u\) is smooth, a contradiction.
+Hence \(\htop(g_1)=0\).
+For \(t\ne0\), the vector field \(tX\) has time-one map \(g_t\) and
+satisfies the same regularity hypothesis, since \((tX)u=tXu\); applying
+the case just proved to \(tX\) gives \(\htop(g_t)=0\); and
+\(g_0=\mathrm{id}\).
+\end{proof}
+
+\subsection{Background and notation}
+\label{sec:background}
+
+Fix a smooth Riemannian metric on \(M\), written
+\(\langle\cdot,\cdot\rangle\), with distance \(d\).  For a set
+\(A\), \(N_r(A)\) denotes its open \(r\)-neighborhood and
+\(\dist(x,A)\) the distance from a point \(x\) to \(A\);
+\(\Lip(f)\) is the Lipschitz constant of a map \(f\).
+
+\emph{Entropy.}  \(h_\eta\) denotes metric entropy and \(\htop\)
+topological entropy.  We use the variational principle
+\(\htop=\sup_\eta h_\eta\), the fact that \(\eta\mapsto h_\eta\) is
+affine and respects ergodic decomposition as an integral formula
+(``entropy affinity'' below),
+and Birkhoff's ergodic theorem; see \cite{Walters1982}.  Entropy of a
+flow-invariant measure \(\nu\) means \(h_\nu(g_1)\).
+
+\emph{Lyapunov exponents.}  Let \(F\) be a diffeomorphism of a
+compact manifold preserving an ergodic probability \(\eta\),
+or more generally let \(A_n\) be a continuous invertible linear
+cocycle over \(F\) on a vector bundle.  By Oseledets' theorem
+\cite{Oseledets1968}, \(\eta\)-almost every point
+\(p\) is \emph{regular}: the fiber splits as
+\(\bigoplus_jE_j(p)\), invariantly under the cocycle, with
+\(\lim_{n\to\pm\infty}n^{-1}\log\|A_nw\|=\chi_j\) for
+\(0\ne w\in E_j(p)\), the exponents \(\chi_j\) being constants.
+The stable subspace \(E^s(p)\) is the sum of the \(E_j(p)\) with
+\(\chi_j<0\), the unstable subspace \(E^u(p)\) that with
+\(\chi_j>0\); zero exponents may occur.  For a flow, exponents and
+regularity refer to \(g_1\); regularity is then
+invariant under all \(g_t\).  Ruelle's inequality
+\cite{Ruelle1978} states, for the exponents of the derivative
+cocycle \(DF\), that
+\(h_\eta(F)\le\int\sum_{\chi_j>0}\dim E_j\cdot\chi_j\,d\eta\).
+A positive function \(n\mapsto c_n\) along an orbit is
+\emph{tempered} if for every \(\epsilon>0\) there is
+\(C_\epsilon\) with \(c_n\le C_\epsilon e^{\epsilon|n|}\); the
+constants in the Oseledets estimates and the chart bounds of Pesin
+theory are tempered along typical orbits.
+
+\emph{Pesin stable manifolds} \cite{Pesin1976}.  If a regular point
+\(p\) has negative exponents, the (strong) stable manifold
+\(W^s(p)=\{q:\ d(F^nq,F^np)\to0\text{ exponentially as }n\to+\infty\}\)
+is an injectively immersed smooth submanifold tangent to
+\(E^s(p)\), and \(W^s_{\mathrm{loc}}(p)\) denotes a smooth embedded
+plaque (disc) in it around \(p\); \(F^n\) contracts these plaques at
+an exponential rate close to the largest negative exponent, and their
+sizes and \(C^k\) norms are tempered along the orbit.  No assumption
+on the signs of the remaining exponents is needed.
+Unstable manifolds \(W^u(p)\), \(W^u_{\mathrm{loc}}(p)\) are the
+stable manifolds of \(F^{-1}\).  For a flow these refer to
+\(g_1\).
+
+\emph{Flowboxes and sections.}  Near a point where \(X\ne0\) there
+are coordinates \((z,s)\in \Delta\times(-b_0,b_0)\), \(\Delta\) a ball in
+\(\R^{\dim M-1}\), in which \(g_t(z,s)=(z,s+t)\) for small \(t\); such
+a chart is a \emph{flowbox} and \(\Delta\times\{0\}\) a transverse
+section.  A flow-invariant measure \(\nu\) disintegrates in a flowbox
+as \(d\nu=dm_S(z)\,ds\) with a finite \emph{transverse measure}
+\(m_S\) on \(\Delta\).  Let \(P:S\to S\) be the first return map of a
+section \(S\) with return time (roof function) \(\tau\), and let
+\(\mu\) be the normalized transverse measure on \(S\).  When the
+return construction represents \(\nu\), modulo null sets, as the
+normalized suspension of \(\mu\) with positive integrable roof
+\(\tau\) (unit-speed flow on \(\{(z,s):z\in S,\ 0\le s<\tau(z)\}\)
+with measure proportional to \(d\mu\,ds\)), Abramov's formula
+\cite{Abramov1959} gives
+\(h_\nu(g_1)=h_\mu(P)/\int_S\tau\,d\mu\) (a section may meet only part
+of a nonergodic measure; Step~3 of Lemma~\ref{lem:nonrecurrence}
+verifies the representation).
+
+\subsection{Strategy of the proof}
+\label{sec:strategy}
+
+\emph{Reduction} (Section~\ref{sec:conclusion}).
+By the variational principle, time averaging and ergodic
+decomposition, positive topological entropy gives a probability
+\(\nu\) invariant and ergodic for the whole flow with
+\(h_\nu(g_1)>0\).  Everything else is done for such a \(\nu\).
+
+\emph{Invariant distributions from orbit integrals}
+(Section~\ref{sec:jets}).  Write
+\(T_t\varphi=J_t\,\varphi\circ g_t\) for the transport of test
+functions dual to the flow, so that \(\partial_tT_t\varphi=T_t((X+b)\varphi)\).
+If \(D\) is a distribution for which
+\(t\mapsto D((T_t\varphi)m)\) decays integrably as \(t\to\pm\infty\),
+uniformly on bounded subsets of some \(C^k(M)\), then
+\(u(\varphi m)=\int_\R D((T_t\varphi)m)\,dt\) is a distribution with
+\(Xu=0\), by \eqref{eq:scalar} and integration by parts.
+We take \(D\) to be a finite combination of first-order jets
+\(D_{x,w}:\varphi m\mapsto d\varphi_x(v)+a\varphi(x)\), where
+\(w=(v,a)\in T_xM\oplus\R\), at points \(x_i\).
+Under \(T_t\) a jet at \(x\) becomes a jet at \(g_tx\), with
+coefficients transported by an explicit linear cocycle \(A_t\) on
+\(TM\oplus\R\) given in \eqref{eq:jet-cocycle}.  The difficulty is
+to make these coefficients decay in both time directions.
+
+\emph{Forward decay.}  Take \(v\) in the stable direction of
+\(g_1\) at a regular point and correct the scalar part \(a\)
+by an explicit convergent integral (Lemma~\ref{lem:forward}).  This
+works for each single jet, provided \(J_t(x)\) grows subexponentially
+in forward time, which is arranged by replacing \(X\)
+with \(-X\) if necessary.
+
+\emph{Backward cancellation} (Sections~\ref{sec:cancellation},
+\ref{sec:jets}).  In backward time the transported jets grow, and no
+single jet will do.  We place \(x_1,\dots,x_\ell\) on one
+local unstable manifold of \(g_1\): in backward time they approach
+each other exponentially, and the backward jets at the \(\ell\)
+points are, up to exponentially small errors, the values of
+polynomials of a fixed degree \(R\) in a coordinate on the
+leaf.  This follows from the nonstationary normal forms of
+Kalinin and Sadovskaya \cite{KalininSadovskaya2017} for nonuniformly
+contracting leaves, applied to \(g_{-1}\) lifted to a
+compactification of the jet bundle with uniformly contracting fiber
+action.  With more points than monomials of degree
+\(\le R\), some nonzero choice of coefficients \(\alpha_i\) annihilates
+all the polynomials at once, and \(D=\sum\alpha_iD_{x_i,w_i}\) decays
+exponentially in backward time (Section~\ref{sec:construction}).
+
+\emph{Nonsmoothness} (Section~\ref{sec:detection}).  The resulting
+\(u\) is the integral along the orbits of the \(x_i\) of the
+transported jets.  Testing it against functions \(\varphi_r\)
+supported in the \(r\)-neighborhood of a short arc of the orbit of
+one of the selected points, \(x_*\), vanishing on the arc with
+transverse derivative of size one there, gives \(u(\varphi_rm)\to\)
+a nonzero limit (the contribution of the arc) while
+\(\sup|\varphi_r|\to0\); no smooth function can do this.  For this
+the other orbit pieces must stay away from the arc:
+in forward time by distinctness of orbits and dominated convergence,
+but in backward time the orbit of \(x_i\) must stay at distance
+\(\ge e^{-\delta t}\) from the arc at time \(-t\), with \(\delta\)
+small compared with the backward decay rate.  This real-time
+nonrecurrence statement is proved in Section~\ref{sec:recurrence}
+from a theorem of Saussol \cite{Saussol2004} on recurrence rates of
+positive-entropy maps, applied to a first-return map.
+
+\section{Positive entropy and real-time nonrecurrence}
+\label{sec:recurrence}
+
+The following lemma applies to any smooth flow, without a
+hypoellipticity assumption.
+
+\begin{lemma}\label{lem:nonrecurrence}
+Let \(\nu\) be a flow-invariant, flow-ergodic probability with
+\(h_\nu(g_1)>0\).  For \(\nu\)-almost every \(x\), the orbit is regular
+and nonperiodic and, for every \(\delta>0\), there is \(c_\delta(x)>0\)
+such that
+\begin{equation}\label{eq:nonrecurrence}
+ d(g_{-t}x,x)\ge c_\delta(x)e^{-\delta t}\qquad(t\ge1).
+\end{equation}
+Equilibria (zeros of \(X\)) may lie in \(\supp\nu\); they form a
+\(\nu\)-null set.
+\end{lemma}
+
+For maps the idea is known: Saussol \cite{Saussol2004} shows
+that an ergodic positive-entropy map with mild Lipschitz control has a
+positive lower recurrence rate, i.e.\ the first return of a typical
+point to its own \(r\)-ball takes at least \(r^{-q}\) steps, for
+some \(q>0\).  We
+apply this to a first-return map \(P\) on a transverse section and
+transfer the bound to real times.  Two points need
+care: Saussol's hypothesis asks for Lipschitz control of \(P^n\) on
+exponentially small balls, which for a first-return map requires
+following whole return branches without hitting the edge of the
+section; and the transfer to real time must not use a lower bound
+on \(|X|\), since equilibria may lie in \(\supp\nu\).
+
+\begin{proof}
+Put \(\phi_t=g_{-t}\), the flow of \(-X\); the proof is written for
+\(\phi_t\) with \(t\ge0\).
+
+\emph{Step 0: typical points.}
+Positive entropy and flow ergodicity exclude measures supported on
+equilibria or periodic orbits, so almost every point is
+nonperiodic; regularity is Oseledets' theorem.  Smoothness and
+compactness give
+\begin{equation}\label{eq:global-lip}
+ \Lip(\phi_t)\le C e^{L|t|}.
+\end{equation}
+
+\emph{Step 1: a flowbox and a section with a thin edge.}
+Choose a relatively compact flowbox of positive \(\nu\)-measure,
+called the \emph{larger flowbox} below.
+In its coordinates \((z,s)\in \Delta\times(-b_0,b_0)\), invariance gives
+\(d\nu=dm_S(z)\,ds\), with \(m_S\) a finite nonzero transverse
+measure.  Write \(d_S\), or \(|\cdot|\), for the Euclidean distance
+in the coordinates of \(\Delta\), and \(B_S(z,r)\) for the
+corresponding ball.  Choose a coordinate ball \(S\Subset \Delta\) of
+positive transverse measure so that its edge \(H=\partial S\)
+satisfies
+\begin{equation}\label{eq:edge}
+ m_S\{z:d_S(z,H)<r\}\le C r^{1/2}\qquad(0<r<r_0).
+\end{equation}
+Here and below \(S\subset\Delta\) is identified with
+\(S\times\{0\}\subset M\).
+Such a ball exists: fix a center \(z_0\in\supp m_S\) (so every ball
+about \(z_0\) has positive measure) and vary the
+radius \(\varrho\) in a compact interval of positive radii inside
+\(\Delta\).  Fubini gives
+\(\int m_S\{z:|\lvert z-z_0\rvert-\varrho|<2^{-j}\}\,d\varrho
+ \le 2^{1-j}m_S(\Delta)\),
+so by Markov's inequality the set of radii for which the
+integrand exceeds \(2^{-j/2}\) has Lebesgue measure at most
+\(2^{1-j/2}m_S(\Delta)\), which is summable in \(j\).
+Borel--Cantelli in \(\varrho\) gives the bound
+\(2^{-j/2}\) for all large \(j\), for almost every radius, and
+monotonicity in \(r\) gives \eqref{eq:edge}.
+(Here \(\dim M\ge2\): a flow on the circle has zero entropy.)
+
+\emph{Step 2: typical orbits avoid the edge.}
+We show that, for every \(\epsilon>0\), almost surely
+\begin{equation}\label{eq:edge-avoid}
+ \dist(\phi_t x,H)\ge a_\epsilon(x)e^{-\epsilon t}
+                     \qquad(t\ge0)
+\end{equation}
+with \(a_\epsilon(x)>0\).
+A short sweep \(\phi_{[0,\epsilon_0]}H\) is the cylinder
+\(H\times[-\epsilon_0,0]\) in the coordinates of the larger flowbox,
+so by \(d\nu=dm_S\,ds\) and \eqref{eq:edge} its \(r\)-neighborhood has
+\(\nu\)-measure \(O(r^{1/2})\).
+Cover the sweep \(\widetilde H=\phi_{[-1,0]}H\) by finitely many flow
+translates of such cylinders.  Invariance and \eqref{eq:global-lip}
+give \(\nu(N_r(\widetilde H))\le C r^{1/2}\).
+Thus Borel--Cantelli at integer times \(t=n\) with \(r=e^{-\epsilon n}\)
+(the measures \(\nu(\phi_{-n}N_r(\widetilde H))=\nu(N_r(\widetilde H))\)
+are summable), followed by \eqref{eq:global-lip} on intervals of
+length one, yields \eqref{eq:edge-avoid} for all large \(t\).
+To have \(a_\epsilon>0\) also on bounded intervals, exclude the null
+set \(\phi_{\R}H\) (countably many flow translates of the null
+cylinder over \(H\)).
+The set of points satisfying \eqref{eq:edge-avoid} for all rational
+\(\epsilon>0\) is flow-invariant (a time shift changes only a bounded
+initial interval and the constant) and has full measure; by
+\(d\nu=dm_S\,ds\), \(m_S\)-almost every \(z\in S\) has \((z,s)\) in
+it for some \(s\), hence for \(s=0\).
+
+\emph{Step 3: the first-return map and Abramov's formula.}
+Let \(P:S\to S\) be the first-return map and \(\tau\) its roof function.
+All statements about returns are modulo transverse null sets.
+The saturation \(\phi_\R S\) of \(S\) (the union of the orbits through
+\(S\)) has full measure by ergodicity, and recurrence to the flowbox
+gives visits to \(S\) in both time directions.
+There is a uniform lower bound \(\tau\ge\tau_0>0\), since the larger
+flowbox is injective on a neighborhood of
+\(\overline S\times[-\tau_0,\tau_0]\).
+The usual decomposition into successive excursions gives the
+suspension representation with measure \(dm_S\,ds\); hence
+\[
+ \int_S\tau\,dm_S=1,\qquad
+ \mu=\frac{m_S|_S}{m_S(S)},\qquad
+ \bar\tau=\int_S\tau\,d\mu=\frac1{m_S(S)}<\infty.
+\]
+The return map preserves \(\mu\) and is ergodic, since the saturation
+of a \(P\)-invariant set is flow-invariant.
+Abramov's formula for an integrable roof \cite{Abramov1959} gives
+\begin{equation}\label{eq:abramov}
+ h_\mu(P)=\bar\tau\,h_\nu(\phi_1)>0,\qquad
+ T_n(z):=\sum_{j=0}^{n-1}\tau(P^jz)\sim n\bar\tau
+\end{equation}
+for almost every \(z\); the second assertion is Birkhoff's theorem
+(\(T_n(z)\) is the time of the \(n\)-th return of \(z\)).
+
+\emph{Step 4: control of return branches.}
+We need control of return branches, not just derivatives at individual
+points.  Fix a typical \(z\in S\), use \(\epsilon=1\) in
+\eqref{eq:edge-avoid}, and let \(T=T_n(z)\).
+Choose a fixed small \(\tau_1>0\) with \(4\tau_1<\tau_0\), and put
+\(\zeta_T=\dist(\phi_{[0,T+\tau_1]}z,H)\), which is at least
+\(a_1(z)e^{-(T+\tau_1)}\) by \eqref{eq:edge-avoid}.
+Since \eqref{eq:global-lip} bounds the orbit deviation
+\(d(\phi_ty',\phi_tz)\) by \(Ce^{L(T+\tau_1)}|y'-z|\) for
+\(0\le t\le T+\tau_1\), there is \(c(z)>0\), depending on
+\(a_1(z)\), \(\tau_1\), \(C\) and \(L\) but not on \(T\), such that for
+\begin{equation}\label{eq:branch-ball}
+ |y-z|<c(z)e^{-(L+1)T}
+\end{equation}
+every point \(y'\) on the coordinate segment from \(z\) to \(y\)
+satisfies \(d(\phi_ty',\phi_tz)\le\zeta_T/2\) for
+\(0\le t\le T+\tau_1\).
+We decrease \(c(z)\) so this ball is contained in \(S\).
+The number of section intersections in \([\tau_1,T+\tau_1]\) is then
+constant throughout this deformation.  Indeed intersections are
+transverse, cannot cross \(H\), and none enters or leaves through
+the time endpoints, since
+\(\phi_{\tau_1}z,\phi_{T+\tau_1}z\in\phi_{\tau_1}\overline S\), which
+is at positive distance from \(\overline S\).
+All intersections are separated by at least \(\tau_0\);
+compactness and transversality continue each of the finitely many
+intersections.  Their number is exactly \(n\).
+
+Let \(\pi\) be the smooth flowbox projection onto the larger section.
+Since \(\tau\ge\tau_0>4\tau_1\), \(y\) has no return in
+\((0,\tau_1]\), so the \(n\)-th intersection in \([\tau_1,T+\tau_1]\)
+is \(P^ny\).  At time \(T\) the perturbed endpoint \(\phi_Ty\) is
+close to \(P^nz\), so projecting it to the section changes time by
+less than \(\tau_1/2\); the intersection reached is therefore
+\(P^ny\).  Consequently, throughout
+\eqref{eq:branch-ball},
+\[
+ P^ny=\pi(\phi_Ty),\qquad
+ \Lip(P^n)\le C e^{LT}.
+\]
+Using \(T_n(z)\sim n\bar\tau\) from \eqref{eq:abramov}, there are
+fixed finite \(\Gamma,\Lambda>0\)
+such that, almost everywhere, for all sufficiently large \(n\),
+\begin{equation}\label{eq:reasonable}
+ P^n\text{ is }e^{\Lambda n}\text{-Lipschitz on }
+                    B_S(z,e^{-\Gamma n}).
+\end{equation}
+
+\emph{Step 5: discrete recurrence rate.}
+We use the discrete recurrence result of
+\cite[Section~3, Definition 13 and Lemmas 12, 14; numbering of the
+arXiv version]{Saussol2004}:
+an ergodic positive-entropy map satisfying
+\eqref{eq:reasonable} on a bounded Euclidean domain has positive
+lower recurrence rate.  Its proof constructs a finite
+positive-entropy partition whose length-\(n\) cylinders contain
+exponentially small balls, and applies the symbolic return-time
+theorem of Ornstein and Weiss \cite{OrnsteinWeiss1993}.
+No mixing hypothesis is used in those lemmas.
+Thus, for almost every \(z\), some \(q(z)>0\) satisfies
+\begin{equation}\label{eq:discrete-return}
+ d_S(P^kz,z)<r\quad\Longrightarrow\quad k\ge r^{-q(z)}
+ \qquad(k\ge1)
+\end{equation}
+for all integers \(k\ge1\) and all sufficiently small \(r>0\).
+One may decrease \(q(z)\) to absorb constants.
+
+\emph{Step 6: transfer to real time.}
+Let \(z\in S\) be typical; in particular \(z\notin H\).
+If \(d(\phi_tz,z)=r\) is small and \(t\) is large, flowbox projection
+gives a section hit \(P^kz\), \(k\ge1\), at time \(t'=t+O(r)>0\),
+with \(d_S(P^kz,z)\le Cr\).
+Since \(k\tau_0\le t'\), apply \eqref{eq:discrete-return} with \(2Cr\)
+to obtain \((t+1)/\tau_0\ge k\ge(2Cr)^{-q(z)}\), that is,
+\(r\ge C(z)(1+t)^{-1/q(z)}\).
+For \(r\) above the flowbox threshold the bound is trivial after
+decreasing \(C(z)\).
+For \(x=\phi_sz\), the lower bound transfers by
+\[
+ d(\phi_tx,x)\ge
+       \Lip(\phi_{-s})^{-1}d(\phi_tz,z).
+\]
+The suspension representation therefore gives a polynomial
+nonrecurrence bound \(d(\phi_tx,x)\ge C(x)(1+t)^{-1/q(x)}\), with
+\(q(x)=q(z)>0\), at \(\nu\)-almost every \(x\), for all large \(t\).
+Nonperiodicity makes the minimum return distance positive on each
+compact interval \(1\le t\le T\).  The polynomial bound implies
+\eqref{eq:nonrecurrence} for every \(\delta>0\).
+\end{proof}
+
+\section{Finite cancellation on a contracting leaf}
+\label{sec:cancellation}
+
+This section isolates the consequence of nonstationary normal forms
+that will be applied, in Section~\ref{sec:construction}, to an
+auxiliary compact manifold (the compactified jet bundle of
+Section~\ref{sec:jets}) rather than to \(M\) itself.
+The statement is that along a stable plaque, the
+values of a smooth observable \(\Phi\) at the \(n\)-th images of the
+plaque points are, up to an error \(e^{-Bn}\), given by a polynomial
+of degree bounded independently of \(n\) and \(\Phi\).  The degree
+bound comes from the normal forms, the fast error decay from Taylor
+expansion to high order, which is where differentiability of
+\(\Phi\) is paid for.
+
+\begin{lemma}[Polynomial approximation on a stable leaf]
+\label{lem:polynomial}
+Let \(F\) be a \(C^\infty\) diffeomorphism of a compact manifold \(N\),
+preserving an ergodic probability \(\eta\), and suppose there is a
+negative Lyapunov exponent.
+For almost every regular \(p\), and for every prescribed \(B>0\),
+there are a parametrization \(\psi\) of a small stable plaque at \(p\)
+by a closed ball \(K\subset\R^d\) (\(d=\dim E^s(p)\)), with \(\psi\)
+smooth near \(K\) and \(\psi(0)=p\),
+integers \(k\ge1\), \(R\ge0\), and \(C>0\)
+such that the following holds.
+For every \(\Phi\in C^\infty(N)\) and \(n\ge0\), there is a polynomial
+\(Q_{n,\Phi}\) of degree at most \(R\) satisfying
+\begin{equation}\label{eq:poly-approx}
+ \sup_{z\in K}
+ \left|\Phi(F^n\psi(z))-Q_{n,\Phi}(z)\right|
+       \le C e^{-Bn}\|\Phi\|_{C^k}.
+\end{equation}
+The plaque can be restricted to any smaller ball about \(p\).
+\end{lemma}
+
+\begin{proof}
+The input from \cite[Theorems 2.3, 2.5 and Section 5.1]{KalininSadovskaya2017}
+is this: along a typical contracting leaf there are normal coordinates
+\(H_{F^np}\), centered at \(F^np\), that conjugate the leaf maps to
+sub-resonance polynomials (polynomial maps whose nonlinear terms are
+restricted by resonance relations among the negative exponents; the
+only feature used here is the degree bound).  Their compositions have
+a common finite degree bound \(d_0\) (determined by the ratio of the
+extreme negative exponents).  For any required finite
+differentiability order, the
+local chart norms and reciprocal domain radii have tempered bounds;
+the charts have identity differential at their centers.
+(Tempered bounds, in the sense of Section~\ref{sec:background}, allow
+an arbitrarily small fixed exponential loss in finite-order
+constructions.)  No assumption on the signs of the other exponents is
+part of that theorem.  (Theorem 2.5 of that paper provides the
+coordinates along entire stable leaves, not only at
+\(\eta\)-typical points.)
+
+We give the quantitative deduction.
+Choose a positive \(\lambda\) smaller than the absolute value of the
+largest negative exponent, and choose a sufficiently small compact
+coordinate ball \(K\) in the initial leaf.
+The stable-manifold contraction estimates give uniform intrinsic
+contraction \(C_\epsilon e^{-(\lambda-\epsilon)n}\) on this plaque.
+In the normal coordinates write
+\[
+ F^n\psi(z)=\psi_n(\mathcal P_n(z)),\qquad \mathcal P_n(0)=0,
+ \quad \deg \mathcal P_n\le d_0,
+\]
+where \(\psi=H_p^{-1}|_K\), \(\psi_n=H_{F^np}^{-1}\) locally, and
+\(\mathcal P_n=H_{F^np}\circ F^n\circ H_p^{-1}\) is a composition of
+the sub-resonance maps, whence the degree bound.
+Tempered bounds for the original stable-leaf embeddings and for
+\(H_{F^np}\) show, for constants \(C_0,C_k\) independent of
+\(\epsilon\),
+\begin{equation}\label{eq:coordinate-bounds}
+ \sup_K|\mathcal P_n|\le C_\epsilon e^{-(\lambda-C_0\epsilon)n},
+ \qquad
+ \|\psi_n\|_{C^k}\le C_\epsilon e^{C_k\epsilon n}.
+\end{equation}
+The first bound follows by applying
+the local \(C^1\) bound for \(H_{F^np}\) to the contracting leaf
+segments; these eventually lie in its domain, since their
+lengths decay exponentially whereas the domain radii (whose
+reciprocals are tempered) decay only temperedly.
+The second, an inverse-chart bound, follows from the quantitative
+inverse function theorem: the differential at the center is the
+identity, a reciprocal \(C^2\) bound gives an invertibility radius,
+and each higher inverse derivative is a finite polynomial in
+derivatives of the chart and its inverse differential, all with
+arbitrarily small exponential losses.
+
+Choose \(k\) so that \(k\lambda>B\), use normal forms of finite
+regularity at least \(\max(k,d_0+2)\), and then choose their exponential
+loss \(\epsilon\) so small that \(k(\lambda-C_0\epsilon)-C_k\epsilon>B\).
+(The estimates use only this finite order; that the coordinates can
+be taken \(C^\infty\) for \(C^\infty\) maps \(F\), giving the
+smoothness of \(\psi\) asserted in the statement, is
+\cite[Corollary~2.4]{KalininSadovskaya2017}.)
+Taylor-expand \(\Phi\circ\psi_n\) at zero through degree \(k-1\).
+The segment from \(0\) to every \(\mathcal P_n(z)\), \(z\in K\),
+eventually lies in the chart domain.  The Taylor remainder is at most
+\[
+ C_\epsilon e^{C_k\epsilon n}\|\Phi\|_{C^k}
+            \bigl(\sup_K|\mathcal P_n|\bigr)^k
+ \le C e^{-Bn}\|\Phi\|_{C^k}.
+\]
+The Taylor polynomial composed with \(\mathcal P_n\) is a polynomial
+\(Q_{n,\Phi}\) in \(z\) of degree at most
+\(R=d_0(k-1)\), independently of \(n\).
+For the finitely many earlier \(n\), take \(Q_{n,\Phi}=0\) and
+increase \(C\).  This proves \eqref{eq:poly-approx}.
+Intersecting the full-measure sets for positive integral \(B\)
+gives the stated simultaneous assertion for all \(B>0\).
+\end{proof}
+
+\begin{lemma}[Finite-dimensional cancellation]\label{lem:finite}
+With the data of Lemma~\ref{lem:polynomial}, choose more than
+\(\binom{d+R}{d}\) points \(z_1,\ldots,z_\ell\in K\).
+There are real coefficients \(\alpha_i\), not all zero, such that
+\begin{equation}\label{eq:finite}
+ \left|\sum_{i=1}^{\ell}\alpha_i\Phi(F^n\psi(z_i))\right|
+      \le C' e^{-Bn}\|\Phi\|_{C^k}\qquad(n\ge0).
+\end{equation}
+\end{lemma}
+\begin{proof}
+The monomials \(z^\gamma\) with \(|\gamma|\le R\) in \(d\) variables
+number \(\binom{d+R}{d}<\ell\), so the homogeneous linear system
+\(\sum_i\alpha_i z_i^\gamma=0\) for all multi-indices \(|\gamma|\le R\) has
+fewer equations than unknowns and admits a nonzero solution.
+Such \((\alpha_i)\) annihilates every polynomial of degree at most
+\(R\), in particular \(Q_{n,\Phi}\); summing the errors in
+\eqref{eq:poly-approx} proves the assertion.  Note that the
+\(\alpha_i\) depend only on the \(z_i\) and \(R\), not on \(\Phi\)
+or \(n\).
+\end{proof}
+
+\section{Jacobian-weighted jets and a contracting lift}
+\label{sec:jets}
+
+We now return to the flow on \(M\) and introduce the distributions
+that will be integrated along orbits.
+For \(x\in M\), \(v\in T_xM\), and \(a\in\R\), define the scalar
+distribution of order at most one
+\[
+ D_{x,(v,a)}(\varphi m)=d\varphi_x(v)+a\varphi(x).
+\]
+Let \(E=TM\oplus(M\times\R)\), a vector bundle of rank
+\(\dim M+1\) whose fiber at \(x\) parametrizes these jets; fix a
+smooth norm \(\|\cdot\|\) on it.
+Recall \(T_t\varphi=J_t\,\varphi\circ g_t\), which is the transport of
+test functions dual to the flow: \(\int(T_t\varphi)\,m=\int\varphi\,m\).
+The weighted transport of jets is the smooth invertible
+linear cocycle on \(E\)
+\begin{equation}\label{eq:jet-cocycle}
+ A_t(x)(v,a)=
+ \left(J_t(x)Dg_t(x)v,\ J_t(x)a+dJ_t(x)v\right).
+\end{equation}
+Indeed,
+\begin{equation}\label{eq:jet-transport}
+ D_{x,w}((T_t\varphi)m)
+       =D_{g_tx,A_t(x)w}(\varphi m),\qquad
+ \partial_t T_t\varphi=T_t((X+b)\varphi).
+\end{equation}
+The chain rule proves both identities, including the Jacobian term:
+\(d(J_t\,\varphi\circ g_t)_x(v)=J_t(x)\,d\varphi_{g_tx}(Dg_t(x)v)
++\varphi(g_tx)\,dJ_t(x)v\), and
+\(\partial_tJ_t=J_t\,(b\circ g_t)\) by \eqref{eq:scalar}.
+Moreover \(T_{t+s}=T_sT_t\) and
+\(A_{t+s}(x)=A_s(g_tx)A_t(x)\), because
+\(J_{t+s}(x)=J_t(x)J_s(g_tx)\).
+
+By the first identity, convergence of the orbit integral
+\(\int_\R D_{x,w}((T_t\varphi)m)\,dt\) is a question about the growth
+of \(A_t(x)w\) as \(t\to\pm\infty\).
+
+\begin{lemma}[Jets that decay in forward time]\label{lem:forward}
+Suppose \(x\) is a regular point, \(v\ne0\) belongs to a strictly
+negative Lyapunov subspace for \(g_1\), and
+\[
+ \lim_{t\to+\infty}\frac{\log J_t(x)}t=\beta\le0.
+\]
+Then there is \(a=a(x,v)\) for which
+\begin{equation}\label{eq:forward-decay}
+ \|A_t(x)(v,a)\|\le C_x e^{-\sigma_x t}\qquad(t\ge0)
+\end{equation}
+with \(\sigma_x>0\).
+The pair \((v,a)\) may be multiplied by any nonzero real constant.
+\end{lemma}
+\begin{proof}
+There are \(C,\sigma>0\) with \(\|Dg_t(x)v\|\le Ce^{-\sigma t}\)
+for \(t\ge0\); bounds for times in \([0,1]\) interpolate the
+Oseledets estimate at integer times.
+The vector component of \(A_t(x)(v,a)\) is then
+\(O(e^{(\epsilon-\sigma)t})\) for every \(\epsilon>0\), since
+\(\beta\le0\) gives \(J_t(x)\le C_\epsilon e^{\epsilon t}\).
+For the scalar component, set
+\begin{equation}\label{eq:stable-correction}
+ a=-\int_0^\infty db_{g_sx}(Dg_s(x)v)\,ds .
+\end{equation}
+This integral converges absolutely.  Differentiating the formula for
+\(J_t\) in \eqref{eq:scalar} in direction \(v\) gives
+\(d\log J_t(x)v=\int_0^tdb_{g_sx}(Dg_s(x)v)\,ds\), hence
+\[
+ J_t(x)a+dJ_t(x)v=J_t(x)\bigl(a+d\log J_t(x)v\bigr)
+       =-J_t(x)\int_t^\infty db_{g_sx}(Dg_s(x)v)\,ds,
+\]
+and the integral is \(O(e^{-\sigma t})\).
+Use \(\epsilon<\sigma\) and take \(\sigma_x=\sigma-\epsilon\).
+\end{proof}
+
+\emph{A contracting projective lift.}
+In backward time nothing like Lemma~\ref{lem:forward} is available
+for a single jet; instead we cancel between several jets
+on one unstable leaf using Lemmas~\ref{lem:polynomial} and
+\ref{lem:finite}, which concern a diffeomorphism of a compact
+manifold.  The natural candidate, the action of \(A_{-1}\) on the
+total space of \(E\) with the jet pairing as observable, is
+unsuitable: \(E\) is not compact, and the fiber exponents of
+\(A_{-1}\) have no reason to be negative.  The following device fixes
+both problems at once.
+
+Choose \(c>0\) so large that
+\begin{equation}\label{eq:fiber-contract}
+ \sup_{x\in M}\|e^{-c}A_{-1}(x)\|<1.
+\end{equation}
+Let
+\[
+ \widehat M=\mathbb P(E\oplus\R)
+\]
+be the real projective bundle of \(E\oplus\R\), whose fiber over
+\(x\) is the projective space of \(E_x\oplus\R\); it is a compact
+smooth manifold.
+In its affine chart \([w:1]\), which is naturally identified with \(E\),
+define
+\begin{equation}\label{eq:lift}
+ \widehat F(x,w)=\bigl(g_{-1}x,e^{-c}A_{-1}(x)w\bigr).
+\end{equation}
+The invertible bundle map \(\operatorname{diag}(e^{-c}A_{-1},1)\)
+of \(E\oplus\R\) extends this to a smooth diffeomorphism of
+\(\widehat M\) (projectivization of an invertible linear bundle map
+over the diffeomorphism \(g_{-1}\)).
+The zero section \(\{w=0\}\) is invariant, and \(\widehat F\) acts
+on it as \(g_{-1}\).
+If \(\eta\) is an ergodic \(g_1\)-invariant probability, its
+zero-section lift \(\widehat\eta\) (the image of \(\eta\) under
+\(x\mapsto(x,0)\)) is \(\widehat F\)-invariant and ergodic.
+
+At \((x,0)\) the derivative of \(\widehat F\) is block diagonal, with
+base block \(Dg_{-1}(x)\) and fiber block \(e^{-c}A_{-1}(x)\).
+All fiber exponents are strictly negative by
+\eqref{eq:fiber-contract}, while the base exponents are the negatives
+of those of \(g_1\).  Thus the stable leaf of \(\widehat F\) through
+\((x,0)\) contains, locally, the full bundle over
+\(W^u_{\mathrm{loc}}(x)\), the local unstable manifold of \(g_1\):
+\begin{equation}\label{eq:lifted-leaf}
+ \{(y,w):y\in W^u_{\mathrm{loc}}(x),\ \|w\|\text{ sufficiently small}\}.
+\end{equation}
+To verify this description, base points in that plaque approach
+\(g_{-n}x\) exponentially under \(g_{-n}\), while every fiber
+contracts uniformly under \(\widehat F\) by \eqref{eq:fiber-contract}.
+This is a smooth manifold of dimension
+\(\dim W^u(x)+\operatorname{rank}E\), tangent at \((x,0)\) to the whole
+negative Oseledets space of \(\widehat F\).
+The stable-manifold theorem, or its uniqueness in local charts,
+identifies it locally with that stable leaf.
+
+Fix a small \(r_1>0\) and a smooth cutoff on \(\widehat M\),
+supported in the affine chart and equal to one on the fiber ball
+\(\{\|w\|\le r_1\}\).  For \(\varphi\in C^\infty(M)\), define on the
+chart
+\[
+ \Phi_\varphi(x,(v,a))=d\varphi_x(v)+a\varphi(x)
+ \qquad(=D_{x,(v,a)}(\varphi m)).
+\]
+Multiplication by the cutoff extends it smoothly to \(\widehat M\),
+with
+\begin{equation}\label{eq:observable-norm}
+ \|\Phi_\varphi\|_{C^k(\widehat M)}
+                  \le C_k\|\varphi\|_{C^{k+1}(M)},
+\end{equation}
+the loss of one derivative coming from the term \(d\varphi_x(v)\).
+If the initial \(w\) satisfies \(\|w\|\le r_1\), all its forward
+\(\widehat F\)-iterates satisfy the same bound, by
+\eqref{eq:fiber-contract}, so the cutoff equals one along the forward
+orbit.  Consequently, by \eqref{eq:jet-transport}
+and the cocycle identity,
+\begin{equation}\label{eq:recover-jet}
+ D_{x,w}((T_{-n}\varphi)m)
+      =D_{g_{-n}x,A_{-n}(x)w}(\varphi m)
+      =e^{cn}\Phi_\varphi(\widehat F^n(x,w))\qquad(n\ge0).
+\end{equation}
+The factor \(e^{cn}\) is the price of the artificial contraction;
+Lemma~\ref{lem:finite} with \(B>c\) will cancel the right side to an
+order exceeding it.
+
+\section{Construction from a positive-entropy measure}
+\label{sec:construction}
+
+Suppose \(\nu\) is flow-invariant and flow-ergodic, with
+\(h_\nu(g_1)>0\).  In this section we construct a scalar distribution
+\(u\) with \(Xu=0\); in the next we show it is not smooth.
+
+\emph{Step 1: the sign of the Jacobian drift.}
+Replace \(X\) by \(-X\) if necessary (\(b\) changes sign with
+\(X\)), so that
+\begin{equation}\label{eq:beta}
+ \beta=\int_M b\,d\nu\le0.
+\end{equation}
+This is harmless: the entropy is unchanged, the kernels of \(X\) and
+\(-X\) agree, and \(\nu\) remains invariant and ergodic.
+Birkhoff's theorem applied to \(b\) and \eqref{eq:scalar} give the
+Jacobian exponent \(\lim_{t\to\pm\infty}t^{-1}\log J_t(x)=\beta\) for
+\(\nu\)-almost every point, in both time directions.
+
+\emph{Step 2: a positive-entropy ergodic component of \(g_1\).}
+Select a component \(\eta\) of the \(g_1\)-ergodic decomposition of
+\(\nu\) with positive entropy on
+which this Birkhoff set and the full-measure set from
+Lemma~\ref{lem:nonrecurrence} have full measure.
+This is possible by entropy affinity and ergodic decomposition:
+some component has positive entropy, and a \(\nu\)-full set has full
+measure for almost every component.
+It does not assume that \(g_1\) is ergodic for \(\nu\).
+We also impose Oseledets regularity and the following
+flow-direction fact at \(\eta\)-almost every \(x\):
+\begin{equation}\label{eq:flow-exponent}
+ X(x)\ne0,\qquad
+ \text{the Lyapunov exponent of }X(x)\text{ is }0.
+\end{equation}
+The first part holds because the set of equilibria is flow-invariant
+and cannot carry a positive-entropy measure.  To justify the second
+even near equilibria, use \(Dg_nX(x)=X(g_nx)\).
+Since \(\nu\) is invariant and \(\log|X|\) is finite almost
+everywhere,
+\[
+ n^{-1}\log|X(g_nx)|\longrightarrow0
+                  \quad\text{in }\nu\text{-probability},
+\]
+while Oseledets' theorem provides the almost-sure limit, which is
+therefore zero (for \(\nu\), hence for almost every component
+\(\eta\)).
+These properties persist along every real time translate.
+
+\emph{Step 3: both signs of exponents and nonatomic unstable
+conditionals.}
+For a positive-entropy ergodic measure of a \(C^\infty\)
+diffeomorphism, both positive and negative exponents occur: this is
+Ruelle's inequality \cite{Ruelle1978} applied to \(g_1\) and to
+\(g_{-1}\), which have the same entropy.
+We also use the following consequence of
+\cite[Corollary 7.2.2 and Theorem C']{LedrappierYoung1985II}, whose
+standing regularity assumption \(C^2\) is satisfied: for such a
+measure, the conditional measures on local unstable manifolds
+\(W^u_{\mathrm{loc}}(x)\) are nonatomic, because their unstable
+conditional dimension is positive (Theorem C' expresses the entropy
+through the positive exponents and these dimensions).
+In particular, in almost every such plaque, every prescribed
+full-measure set supplies arbitrarily many points.
+Zero transverse exponents are not excluded or discarded.
+
+\emph{Step 4: normal forms on the lifted leaf.}
+Apply the lift \eqref{eq:lift} to \(\eta\); the lifted measure
+\(\widehat\eta\) is ergodic for \(\widehat F\) and has negative
+exponents (the fiber exponents), so Lemma~\ref{lem:polynomial}
+applies to \((\widehat M,\widehat F,\widehat\eta)\).
+Choose a typical \(x_0\) so that the normal forms of
+Lemma~\ref{lem:polynomial} are available at \(p=(x_0,0)\), and the
+unstable conditional of \(\eta\) at \(x_0\) is nonatomic and has
+\(x_0\) in its support.  Its restrictions to every sufficiently small
+neighborhood of \(x_0\) in the plaque therefore have positive mass.
+Use that lemma with \(B=c+2\),
+where \(c\) is the constant of \eqref{eq:fiber-contract}; any
+\(B>c\) would do.
+Let \(d,k,R,K,\psi\) be its data on the lifted stable leaf.
+Since \(\psi(K)\) is a neighborhood of \(p\) in that leaf,
+\eqref{eq:lifted-leaf} shows that it contains
+\(\{(y,w):y\in W^u_{\mathrm{loc}}(x_0)\text{ near }x_0,\ \|w\|\le r_2\}\)
+for some \(r_2>0\).
+
+\emph{Step 5: choice of the points.}
+Choose
+\(\ell>\binom{d+R}{d}\) typical points \(x_1,\ldots,x_\ell\)
+in this unstable plaque, on pairwise distinct full flow orbits.
+Here ``typical'' means: in the full-measure sets of Steps 1--2
+(Birkhoff set for \(b\), the set of Lemma~\ref{lem:nonrecurrence},
+regularity, and \eqref{eq:flow-exponent}); Step 3 provides such points
+in the plaque.
+Distinct full orbits can be required: the flow direction has
+exponent zero while the tangent space of the unstable leaf contracts
+exponentially backward, so \(X\) is not tangent to this embedded
+plaque.  A regular full orbit therefore meets the plaque at isolated
+times, in at most countably many points, which have zero mass for
+the nonatomic conditional measure.  Successive choices thus avoid
+all previously selected orbits.
+
+At each \(x_i\) choose a nonzero stable vector \(v_i\in E^s(x_i)\)
+(negative exponents exist by Step 3 and regularity).
+Let \(a_i\) be given by \eqref{eq:stable-correction}, and scale
+\(w_i=(v_i,a_i)\) by a sufficiently small positive constant so that
+\((x_i,w_i)\in\psi(K)\) and \(\|w_i\|\le r_1\) (the ball on which the
+cutoff of Section~\ref{sec:jets} equals one); the scaling multiplies
+\(v_i\) and \(a_i\) by the same constant, so
+\eqref{eq:stable-correction} still holds.
+Put \(D_i=D_{x_i,w_i}\).
+Lemma~\ref{lem:forward} gives exponential forward decay for every
+\(A_t(x_i)w_i\).
+
+\emph{Step 6: the cancelling combination and its two-sided decay.}
+Let \(z_i=\psi^{-1}(x_i,w_i)\in K\).
+Choose the coefficients \(\alpha_i\), not all zero, of
+Lemma~\ref{lem:finite} for these points and put \(D=\sum_i\alpha_iD_i\).
+For \(n\ge0\), equations \eqref{eq:recover-jet}, \eqref{eq:finite}
+(with \(\Phi=\Phi_\varphi\)) and \eqref{eq:observable-norm} give
+\begin{equation}\label{eq:past-integer}
+ |D((T_{-n}\varphi)m)|
+  =e^{cn}\Bigl|\sum_i\alpha_i\Phi_\varphi(\widehat F^n(x_i,w_i))\Bigr|
+  \le C e^{cn}e^{-(c+2)n}\|\varphi\|_{C^{k+1}}
+  =Ce^{-2n}\|\varphi\|_{C^{k+1}}.
+\end{equation}
+For \(0\le s\le1\), \(T_{-s}\) has a uniformly bounded operator norm
+on \(C^{k+1}(M)\).
+Apply \eqref{eq:past-integer} to \(T_{-s}\varphi\) and use the
+identity \(T_{-n-s}=T_{-n}T_{-s}\) to extend the estimate to all
+negative real times.
+Together with the forward decay of Lemma~\ref{lem:forward} (a finite
+sum of jets, each of order one, hence controlled by
+\(\|\varphi\|_{C^1}\)), this yields, for some \(\kappa>0\)
+and \(K_0=k+1\),
+\begin{equation}\label{eq:two-tails}
+ \begin{aligned}
+ |D((T_t\varphi)m)|&\le Ce^{-\kappa t}\|\varphi\|_{C^1},
+                                      &&t\ge0,\\
+ |D((T_{-t}\varphi)m)|&\le Ce^{-\kappa t}\|\varphi\|_{C^{K_0}},
+                                      &&t\ge0.
+ \end{aligned}
+\end{equation}
+The asymmetry matters later: each forward jet decays individually
+and costs one derivative; the past requires cancellation and costs
+\(K_0\) derivatives.
+
+\emph{Step 7: the invariant distribution.}
+Define
+\begin{equation}\label{eq:invariant-u}
+ u(\varphi m)=\int_{\R}D((T_t\varphi)m)\,dt.
+\end{equation}
+The estimates \eqref{eq:two-tails} make this a scalar distribution of
+finite order (at most \(K_0\)).
+By \eqref{eq:jet-transport}, integration by parts, with both boundary
+terms zero by \eqref{eq:two-tails}, gives
+\begin{equation}\label{eq:Xu-zero}
+ (Xu)(\varphi m)
+  =-u((X+b)\varphi\,m)
+  =-\int_{\R}D(T_t((X+b)\varphi)m)\,dt
+  =-\int_{\R}\frac{d}{dt}D((T_t\varphi)m)\,dt=0.
+\end{equation}
+It remains to prove that this distribution is not smooth; nonzero
+coefficients alone would not suffice, since a nonzero combination of
+orbit integrals could in principle be a smooth function.
+
+\section{Detecting the distribution on a short orbit arc}
+\label{sec:detection}
+\review{this section would have benefit a lot if draw a picture, explain that it was doing the obvious construction to test the distribution, explained what needs to be controlled for the obvious construction to work and explain how Saussol's Lemma 4.1. comes to the rescue.}
+With the notation of Section~\ref{sec:construction}, we test
+\(u\) against functions concentrated near a short arc of the orbit of
+one selected point, as outlined in Section~\ref{sec:strategy}: the
+arc contributes a fixed nonzero number, and everything else must be
+shown negligible.
+
+\emph{The arc and its avoidance.}
+Choose an index \(*\) with \(\alpha_*\ne0\).
+Take a short embedded compact arc
+\[
+ A=\{g_sx_*:s_0\le s\le s_1\},\qquad 1\le s_0<s_1 .
+\]
+The orbit of \(x_*\) is nonperiodic and \(X\ne0\) along it by
+\eqref{eq:flow-exponent}, so \(A\) is indeed
+an embedded arc, and \(s_0\ge1\) puts it in the range of
+\eqref{eq:nonrecurrence}.
+All the selected points lie on the same local unstable leaf; hence, for
+some \(\lambda_0>0\),
+\begin{equation}\label{eq:back-asymptotic}
+ d(g_{-t}x_i,g_{-t}x_*)\le Ce^{-\lambda_0t}
+                           \qquad(t\ge0).
+\end{equation}
+Lemma~\ref{lem:nonrecurrence}, applied to \(x_*\), implies that for
+every sufficiently small \(\delta>0\), there is \(c'_\delta>0\) with
+\begin{equation}\label{eq:arc-avoid}
+ \dist(g_{-t}x_i,A)\ge c'_\delta e^{-\delta t}
+                   \qquad(t\ge0,\ 1\le i\le\ell).
+\end{equation}
+Indeed, for \(i=*\), apply \(g_{-s}\) to the pair
+\(g_{-t}x_*,g_sx_*\), use \eqref{eq:nonrecurrence} at time \(t+s\ge1\),
+and use uniform Lipschitz bounds for \(s\in[s_0,s_1]\).
+If \(\delta<\lambda_0\), \eqref{eq:back-asymptotic} gives the same
+lower bound for the other points at large \(t\).
+On a bounded time interval their negative arcs are compact and
+disjoint from \(A\), because the full orbits are distinct.
+Decrease \(c'_\delta\) to cover those times.
+
+\emph{Test functions.}
+We need test functions that detect a transverse derivative, not
+merely an occupation mass.
+Along \(A\), put \(V(s)=Dg_s(x_*)v_*\), the transported stable vector.
+By \eqref{eq:flow-exponent}, \(V(s)\) is never tangent to the flow:
+\(X(g_sx_*)\) has exponent zero and \(V(s)\) a negative one.
+Its orthogonal projection \(V^\perp(s)\) to the normal bundle of
+this short arc is therefore nonzero.
+Choose a nonnegative, nonzero smooth function
+\(\chi\) supported in \((s_0,s_1)\).
+Use normal tubular coordinates \((s,\xi)\mapsto\exp_{g_sx_*}\xi\) of a
+slightly extended arc, where \(\exp\) is the Riemannian exponential
+map and \(\xi\) ranges over small vectors in the normal space at
+\(g_sx_*\).  Choose a smooth cutoff \(\theta\) on \([0,\infty)\),
+equal to one near zero and supported in \([0,1)\), and set
+\begin{equation}\label{eq:arc-test}
+ \varphi_r(\exp_{g_sx_*}\xi)=
+    \chi(s)\langle \xi,V^\perp(s)\rangle\,
+                     \theta(|\xi|^2/r^2).
+\end{equation}
+Extend it by zero; the time cutoff makes this smooth at the ends.
+For all small \(r>0\),
+\begin{equation}\label{eq:test-bounds}
+ \supp\varphi_r\subset N_r(A),\qquad
+ \|\varphi_r\|_\infty\le Cr,\quad
+ \|\varphi_r\|_{C^1}\le C,\quad
+ \|\varphi_r\|_{C^{K_0}}\le Cr^{1-K_0}.
+\end{equation}
+(Each derivative falling on the cutoff costs a factor \(r^{-1}\),
+compensated once by the factor \(\langle \xi,V^\perp\rangle=O(r)\) on
+the support.)
+On the central arc its value is zero and
+\begin{equation}\label{eq:test-gradient}
+ (d\varphi_r)_{g_sx_*}(V(s))
+                      =\chi(s)|V^\perp(s)|^2,
+\end{equation}
+since the tangential component of \(V(s)\) differentiates the
+vanishing function along the arc.
+
+\emph{Choice of scales.}
+Choose \(0<\delta<\min(\lambda_0,\kappa/K_0)\), put
+\(r_T=\tfrac14c'_\delta e^{-\delta T}\),
+and consider \(u(\varphi_{r_T}m)\) as \(T\to\infty\), splitting the
+integral \eqref{eq:invariant-u} into the ranges \(t\le-T\),
+\(-T\le t\le0\) and \(t\ge0\).
+
+\emph{Negative times.}
+Equation \eqref{eq:arc-avoid} gives
+\(\dist(g_{-t}x_i,A)\ge4r_{T}>r_T\) for \(0\le t\le T\), so by
+\eqref{eq:test-bounds} \(\varphi_{r_T}\) and its differential vanish
+at every \(g_{-t}x_i\), \(0\le t\le T\).  Since by
+\eqref{eq:jet-transport} the integrand of \eqref{eq:invariant-u} at
+time \(-t\) involves only these values, the part of
+\eqref{eq:invariant-u} on \([-T,0]\) vanishes.
+The rest of its negative-time part is bounded, by \eqref{eq:two-tails}
+and \eqref{eq:test-bounds}, by
+\[
+ C e^{-\kappa T}\|\varphi_{r_T}\|_{C^{K_0}}
+ \le C'e^{-(\kappa-(K_0-1)\delta)T}\longrightarrow0.
+\]
+This is where the choice \(\delta<\kappa/K_0\) is used.
+
+\emph{Positive times.}
+For the positive-time part, each individual transported jet has
+integrable coefficient norm by \eqref{eq:forward-decay}, and
+\(\|\varphi_{r_T}\|_{C^1}\) is uniformly bounded, so the integrands
+are dominated uniformly in \(T\).
+At a fixed point outside \(A\), both the function \(\varphi_{r_T}\)
+and its differential vanish once \(r_T\) is smaller than the distance
+to \(A\).
+The distinctness of the full orbits therefore makes all the
+\(i\ne *\) terms tend to zero under dominated convergence, and
+likewise the part of the \(i=*\) term with \(t\notin[s_0,s_1]\).
+For the selected orbit, nonperiodicity says it meets \(A\)
+exactly at parameters \(s\in[s_0,s_1]\).
+There, by \eqref{eq:jet-cocycle} and \eqref{eq:test-gradient},
+\[
+\begin{aligned}
+ D_{g_sx_*,A_s(x_*)w_*}(\varphi_{r}m)
+ &=J_s(x_*)\,d\varphi_r(V(s))
+  +\bigl(J_s(x_*)a_*+dJ_s(x_*)v_*\bigr)\varphi_r(g_sx_*)\\
+ &=J_s(x_*)\chi(s)|V^\perp(s)|^2,
+\end{aligned}
+\]
+independently of \(r\): the scalar coefficient multiplies the zero
+value of the test function.  Consequently
+\begin{equation}\label{eq:nonzero-limit}
+ u(\varphi_{r_T}m)\longrightarrow
+ \alpha_*\int_{s_0}^{s_1}
+        J_s(x_*)\chi(s)|V^\perp(s)|^2\,ds\ne0 .
+\end{equation}
+
+\emph{Conclusion.}
+But \(\|\varphi_{r_T}\|_\infty\to0\) by \eqref{eq:test-bounds}.
+If \(u\) were a smooth function \(h\), then
+\(|u(\varphi_{r_T}m)|=|\int h\varphi_{r_T}m|
+\le\|h\|_\infty\|\varphi_{r_T}\|_\infty\to0\); indeed the same
+holds for any finite measure in place of \(h\,m\), so \(u\) is not
+even a measure.  This contradicts \eqref{eq:nonzero-limit}, so
+\(u\) is nonsmooth.
+This proves the asserted obstruction for every positive-entropy
+flow-ergodic invariant probability \(\nu\).
+
+\section{Proof of Theorem~\ref{thm:obstruction}}
+\label{sec:conclusion}
+
+Suppose \(\htop(g_1)>0\).  We use the variational principle and the
+affinity of entropy under ergodic decomposition in the form of
+\cite[Chapter~8]{Walters1982}.
+There is a \(g_1\)-invariant probability
+\(\rho\) with \(h_\rho(g_1)>0\).
+The average
+\[
+ \bar\rho=\int_0^1(g_s)_*\rho\,ds
+\]
+is invariant under the whole flow.
+Every \((g_s)_*\rho\) has the same \(g_1\)-entropy as \(\rho\),
+since \(g_s\) conjugates \(g_1\) to itself.
+Entropy affinity (in its integral form) gives
+\(h_{\bar\rho}(g_1)=h_\rho(g_1)>0\).
+The flow-ergodic decomposition of \(\bar\rho\), again using entropy
+affinity, has a component \(\nu\) of positive entropy (flow-ergodic
+components need not be \(g_1\)-ergodic, which is why
+Section~\ref{sec:construction} passed to a \(g_1\)-ergodic component
+separately).
+
+Sections~\ref{sec:construction}--\ref{sec:detection} now construct a
+nonsmooth scalar distribution \(u\) satisfying \(Xu=0\) (for \(X\) or
+for \(-X\), which have the same kernel).
+This proves Theorem~\ref{thm:obstruction}, and
+Corollary~\ref{cor:answer} gives
+\[
+ \boxed{\htop(g_t)=0\quad\text{for every }t\in\R}
+\]
+whenever \(X\) is globally hypoelliptic.
+
+\begin{thebibliography}{99}
+
+\bibitem{Abramov1959}
+L.~M.~Abramov,
+On the entropy of a flow,
+\emph{Dokl.\ Akad.\ Nauk SSSR} \textbf{128} (1959), 873--875.
+
+\bibitem{Forni2008}
+G.~Forni,
+On the Greenfield--Wallach and Katok conjectures in dimension three,
+in \emph{Geometric and Probabilistic Structures in Dynamics},
+Contemp.\ Math.\ \textbf{469}, Amer.\ Math.\ Soc., 2008, 197--213;
+arXiv:0706.3981.
+
+\bibitem{GreenfieldWallach1973}
+S.~J.~Greenfield and N.~R.~Wallach,
+Globally hypoelliptic vector fields,
+\emph{Topology} \textbf{12} (1973), 247--253.
+
+\bibitem{KalininSadovskaya2017}
+B.~Kalinin and V.~Sadovskaya,
+Normal forms for non-uniform contractions,
+\emph{J.\ Mod.\ Dyn.} \textbf{11} (2017), 341--368.
+
+\bibitem{KatokRobinson2001}
+A.~Katok and E.~A.~Robinson, Jr.,
+Cocycles, cohomology and combinatorial constructions in ergodic
+theory,
+in \emph{Smooth Ergodic Theory and Its Applications},
+Proc.\ Sympos.\ Pure Math.\ \textbf{69}, Amer.\ Math.\ Soc., 2001,
+107--173.
+
+\bibitem{LedrappierYoung1985II}
+F.~Ledrappier and L.-S.~Young,
+The metric entropy of diffeomorphisms. Part II:
+Relations between entropy, exponents and dimension,
+\emph{Ann.\ of Math.} \textbf{122} (1985), 540--574.
+
+\bibitem{OrnsteinWeiss1993}
+D.~S.~Ornstein and B.~Weiss,
+Entropy and data compression schemes,
+\emph{IEEE Trans.\ Inform.\ Theory} \textbf{39} (1993), 78--83.
+
+\bibitem{Oseledets1968}
+V.~I.~Oseledets,
+A multiplicative ergodic theorem. Characteristic Ljapunov exponents
+of dynamical systems,
+\emph{Trans.\ Moscow Math.\ Soc.} \textbf{19} (1968), 197--231.
+
+\bibitem{Pesin1976}
+Ya.~B.~Pesin,
+Families of invariant manifolds corresponding to nonzero
+characteristic exponents,
+\emph{Math.\ USSR-Izv.} \textbf{10} (1976), 1261--1305.
+
+\bibitem{Ruelle1978}
+D.~Ruelle,
+An inequality for the entropy of differentiable maps,
+\emph{Bol.\ Soc.\ Brasil.\ Mat.} \textbf{9} (1978), 83--87.
+
+\bibitem{Saussol2004}
+B.~Saussol,
+Recurrence rate in rapidly mixing dynamical systems,
+\emph{Discrete Contin.\ Dyn.\ Syst.} \textbf{15} (2006), 259--267;
+arXiv:math/0412211v1 (2004).
+
+\bibitem{Walters1982}
+P.~Walters,
+\emph{An Introduction to Ergodic Theory},
+Graduate Texts in Mathematics \textbf{79}, Springer, 1982.
+
+\end{thebibliography}
+
+\end{document}

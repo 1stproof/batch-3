@@ -1,0 +1,174 @@
+```latex
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Sph}{\mathbb{S}^2}
+\newcommand{\Teich}{\mathcal{T}}
+\newcommand{\Def}{\mathcal{D}}
+\newcommand{\Mod}{\mathrm{Mod}}
+\newcommand{\MCG}{\mathrm{MCG}}
+
+\begin{document}
+
+\title{A Dehn twist with infinite orbit on the components of a deformation space for \texorpdfstring{$\mathrm{Per}_4(0)^\ast$}{Per4(0)*}}
+\author{}
+\date{}
+\maketitle
+
+\begin{abstract}
+Let $f:\Sph\to\Sph$ be a quadratic rational map with one critical point on a $4$--cycle and the other critical value outside this cycle. Marking the four points in the periodic cycle and the free critical value produces an Epstein deformation space $\Def_f\subset \Teich(B)$ of complex dimension $1$. We give an explicit essential curve $\gamma\subset (\Sph,B)$ such that a power of the Dehn twist about $\gamma$ preserves $\Def_f$ and has an infinite orbit on the set of connected components of $\Def_f$.
+\end{abstract}
+
+\section{The deformation space and mapping class actions}
+
+Let $f:\Sph\to \Sph$ be a branched cover and let $A,B\subset \Sph$ be finite sets with
+\[
+f(A)\cup V(f)\cup A\subset B.
+\]
+As recalled by Hironaka--Koch \cite{HK}, these hypotheses define holomorphic maps
+\[
+f^\*:\Teich(B)\to \Teich(A),\qquad i_\*:\Teich(B)\to \Teich(A),
+\]
+where $i_\*$ is the forgetful map for the inclusion $A\subset B$. The \emph{(Epstein) deformation space} is the equalizer
+\[
+\Def_f \;:=\;\{\tau\in \Teich(B)\;:\; f^\*(\tau)=i_\*(\tau)\}\subset \Teich(B).
+\]
+
+The (pure) mapping class group $\Mod_B=\Mod(\Sph,B)$ acts by biholomorphisms on $\Teich(B)$ and hence on subsets of $\Teich(B)$.
+
+Hironaka--Koch define a finite-index subgroup $\mathrm{L}_f<\Mod_B$ of \emph{liftable} mapping classes and a subgroup $\mathrm{S}_f<\mathrm{L}_f$ of \emph{special liftables} (the equalizer of the lifting and forgetting homomorphisms). The following characterization is fundamental.
+
+\begin{proposition}[Hironaka--Koch \cite[Prop.\ 2.1]{HK}]
+\label{prop:SFpreserves}
+Let $g\in \mathrm{L}_f$. Then $g(\Def_f)=\Def_f$ if and only if $g\in \mathrm{S}_f$.
+\end{proposition}
+
+Fix the connected component $\Def_f^0\subset \Def_f$ containing the canonical basepoint. The \emph{geometric stabilizer} is
+\[
+\mathrm{E}_f:=\{g\in \mathrm{L}_f: g(\Def_f^0)=\Def_f^0\}\subset \mathrm{S}_f
+\]
+(cf.\ \cite[\S 3.4]{HK}). The next elementary observation will be used repeatedly.
+
+\begin{lemma}
+\label{lem:infiniteorbitcriterion}
+Let $g\in \mathrm{S}_f$ and let $\mathcal{C}$ be the set of connected components of $\Def_f$. If no nonzero power $g^n$ lies in $\mathrm{E}_f$, then the orbit $\{g^n(\Def_f^0):n\in\mathbb{Z}\}\subset \mathcal{C}$ is infinite.
+\end{lemma}
+
+\begin{proof}
+If $g^m(\Def_f^0)=g^n(\Def_f^0)$ with $m\neq n$, then $g^{m-n}(\Def_f^0)=\Def_f^0$, i.e.\ $g^{m-n}\in \mathrm{E}_f$. Thus if $g^k\notin \mathrm{E}_f$ for all $k\neq 0$, all components $g^n(\Def_f^0)$ are distinct.
+\end{proof}
+
+\section{Quadratic maps with a critical $4$--cycle and the curve \texorpdfstring{$\gamma$}{gamma}}
+
+Let $f$ be a quadratic rational map with critical points $c_1,c_2$, assume:
+\begin{enumerate}
+\item $c_1$ has exact period $4$, so the orbit
+\[
+a_0:=c_1,\quad a_1:=f(a_0),\quad a_2:=f^2(a_0),\quad a_3:=f^3(a_0)
+\]
+is a $4$--cycle;
+\item the second critical value $v:=f(c_2)$ is not in the $4$--cycle $\{a_0,a_1,a_2,a_3\}$.
+\end{enumerate}
+Set
+\[
+A:=\{a_0,a_1,a_2,a_3\},\qquad B:=A\cup\{v\}.
+\]
+Then $f(A)\cup V(f)\cup A\subset B$, and hence $\Def_f\subset \Teich(B)$ is defined.
+
+\subsection*{Normalization}
+Since $a_0,a_1,a_2$ are distinct, there is a M\"obius map $M$ sending $(a_0,a_1,a_2)$ to $(0,\infty,1)$. Conjugating by $M$ does not change the deformation-space question (it merely relabels the marked sphere), so we may assume
+\begin{equation}
+\label{eq:normalize}
+(a_0,a_1,a_2,a_3,v)=(0,\infty,1,\rho,v)
+\end{equation}
+with $\rho\in \widehat{\mathbb{C}}\setminus\{0,1,\infty\}$ and $v\notin\{0,1,\infty,\rho\}$. This is the standard normalization used, for instance, in \cite[\S 6]{FKS} and \cite[\S 5]{HK}.
+
+\subsection*{The explicit curve}
+
+\begin{definition}[The curve $\gamma$]
+\label{def:gamma}
+Let $\gamma\subset \Sph\setminus B$ be any essential simple closed curve such that one component of $\Sph\setminus \gamma$ contains exactly the two marked points $\{0,1\}$, and the other component contains exactly the three marked points $\{\infty,\rho,v\}$. Equivalently, $\gamma$ separates $\{a_0,a_2\}$ from $\{a_1,a_3,v\}$ in the original notation.
+\end{definition}
+
+Such a curve exists and is unique up to isotopy relative to $B$ (it is the boundary of a small regular neighborhood of an embedded arc joining $0$ to $1$ and avoiding the other marked points).
+
+Let $T_\gamma\in \Mod_B$ denote the (left/positive) Dehn twist about $\gamma$.
+
+\section{A power of \texorpdfstring{$T_\gamma$}{Tgamma} preserves \texorpdfstring{$\Def_f$}{Df}}
+
+We now show that $T_\gamma^2$ preserves the deformation space. (In fact, for the curve class in Definition~\ref{def:gamma}, $T_\gamma$ itself is liftable in the sense of \cite{FKS}, but taking the square avoids any divisibility issues and is the power naturally guaranteed for degree $2$ maps.)
+
+\begin{proposition}
+\label{prop:twistpreserves}
+With $\gamma$ as in Definition~\ref{def:gamma}, the mapping class $T_\gamma^2$ lies in $\mathrm{S}_f$. In particular, $T_\gamma^2(\Def_f)=\Def_f$.
+\end{proposition}
+
+\begin{proof}
+Firsova--Kahn--Selinger classify (arithmetically) equalizing curve classes for the $\mathrm{Per}'_4$ deformation space and, in particular, single out the partition
+\[
+( v,\infty,\rho)\;(0,1)
+\]
+as \emph{arithmetically equalizing}; see \cite[Table 1, case (6) and the discussion immediately following]{FKS}. This is exactly the isotopy class of $\gamma$ in Definition~\ref{def:gamma}. Concretely, \cite[\S 9, case (6)]{FKS} asserts that for a representative of this class one has
+\[
+f^{-1}(\gamma)=\gamma_1\cup \gamma_2,\qquad f^\*([\gamma])=i_\*([\gamma])=[\gamma_1],
+\]
+with $\gamma_2$ peripheral (hence trivial in the curve system relative $A$). In the terminology of \cite[\S 5.3]{FKS}, this means that $\{\gamma\}$ is an arithmetically equalizing multicurve.
+
+By \cite[Note 5.4]{FKS}, for a degree $2$ branched cover, the square of a Dehn twist $T_\gamma^2$ is always liftable. Therefore we may apply \cite[Lemma 5.5]{FKS} (with the one-curve multicurve $\Gamma=\{\gamma\}$ and weight $m=2$) to conclude that $T_\gamma^2$ is a self-equivalence of the triple $(f,A,B)$ in the sense of \cite[\S 4]{FKS}, hence an element of the group $\mathrm{G}_f$ of self-equivalences.
+
+Self-equivalences act on the deformation space: indeed, \cite[Lemma 4.2]{FKS} shows that $\pi_{TR}:\Def(f,A,B)\to R_{\mathrm{Rat}}(f,A,B)$ is a Galois covering whose deck group is precisely $\mathrm{G}_f$, so every element of $\mathrm{G}_f$ preserves $\Def_f$.
+Equivalently, in the terminology of \cite{HK}, $T_\gamma^2\in \mathrm{S}_f$, and then Proposition~\ref{prop:SFpreserves} gives $T_\gamma^2(\Def_f)=\Def_f$.
+\end{proof}
+
+\section{The Dehn twist has an infinite orbit on connected components}
+
+The remaining claim is that $T_\gamma^2$ permutes connected components of $\Def_f$ with an infinite orbit.
+
+\begin{theorem}
+\label{thm:infiniteorbit}
+Let $\gamma$ be as in Definition~\ref{def:gamma}. Then the action of $T_\gamma^2$ on the set of connected components of $\Def_f$ has an infinite orbit. In particular,
+\[
+\bigl\{(T_\gamma^2)^n(\Def_f^0):n\in\mathbb{Z}\bigr\}
+\]
+is an infinite family of pairwise distinct connected components of $\Def_f$.
+\end{theorem}
+
+\begin{proof}
+Hironaka--Koch prove that for every $f\in \mathrm{Per}_4(0)^\ast$ the deformation space $\Def_f$ has infinitely many connected components \cite[Thm.\ 1.3]{HK}. More precisely, their proof produces an explicit element
+\[
+\Gamma\in \mathrm{S}_f
+\]
+such that no nonzero power $\Gamma^n$ lies in $\mathrm{E}_f$; see \cite[Prop.\ 5.6 and Prop.\ 5.8]{HK}. The element $\Gamma$ is characterized in \cite[Prop.\ 5.6]{HK} by the property that, under the natural projection to the $4$--marked moduli (forgetting the free marked point), it represents a loop around the cusp corresponding to the degeneration where the pair $\{\infty,\rho\}$ separates from $\{0,1\}$. On the level of mapping classes of the punctured sphere $(\Sph,B)$, this is exactly the (positive) Dehn twist about the separating curve $\gamma$ of Definition~\ref{def:gamma} (up to inversion, which is immaterial for the orbit statement). In particular, some nonzero power of $T_\gamma$ coincides with $\Gamma$; hence some nonzero power of $T_\gamma^2$ coincides with $\Gamma^2$.
+
+Since \cite[Prop.\ 5.8]{HK} asserts that no nonzero power of $\Gamma$ lies in $\mathrm{E}_f$, it follows a fortiori that no nonzero power of $T_\gamma^2$ lies in $\mathrm{E}_f$. Lemma~\ref{lem:infiniteorbitcriterion} now implies that the orbit of $\Def_f^0$ under $T_\gamma^2$ is infinite, as claimed.
+\end{proof}
+
+\begin{remark}
+The curve $\gamma$ may be described without normalization as follows: it is the unique essential curve in $(\Sph,B)$ whose complementary components contain $\{c_1,f^2(c_1)\}$ and $\{f(c_1),f^3(c_1),v\}$, respectively. In the coordinate normalization \eqref{eq:normalize}, $\gamma$ is the curve separating $\{0,1\}$ from $\{\infty,\rho,v\}$; compare \cite[Fig.\ 2 and Table 1, case (6)]{FKS}.
+\end{remark}
+
+\begin{thebibliography}{99}
+
+\bibitem{FKS}
+T.~Firsova, J.~Kahn, N.~Selinger,
+\newblock \emph{On deformation spaces of quadratic rational functions},
+\newblock arXiv:1606.00723v4 (2020). 
+
+\bibitem{HK}
+E.~Hironaka, S.~Koch,
+\newblock \emph{A disconnected deformation space of rational maps},
+\newblock arXiv:1602.07378; see also the published/updated version \texttt{DefDisconnected.pdf} (as cited in the text).
+
+\end{thebibliography}
+
+\end{document}
+```

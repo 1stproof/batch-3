@@ -1,0 +1,202 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\geometry{margin=1in}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Sph}{\mathbb{S}^2}
+\newcommand{\Pone}{\mathbb{P}^1}
+\newcommand{\Teich}{\operatorname{Teich}}
+\newcommand{\Mod}{\operatorname{Mod}}
+\newcommand{\Def}{\operatorname{Def}}
+\newcommand{\Per}{\operatorname{Per}}
+\newcommand{\cv}{\operatorname{cv}}
+
+\title{A Dehn Twist with Infinite Orbit on the Components of a Deformation Space}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+Let \(f:\Sph\to\Sph\) be a branched cover, let \(V(f)\) be its set of critical values, and let \(A,B\subset\Sph\) be finite sets. If
+\(f(A)\cup V(f)\subset B\), then every complex structure on \((\Sph,B)\) can be pulled back to a complex structure on \((\Sph,A)\), inducing a map
+\[
+f^*:\Teich(B)\longrightarrow \Teich(A).
+\]
+If \(A\subset B\), then forgetting the points \(B\setminus A\) induces a map
+\[
+i_*:\Teich(B)\longrightarrow \Teich(A).
+\]
+When \(f(A)\cup V(f)\cup A\subset B\), the deformation space is
+\[
+\Def_f :=\{\tau\in \Teich(B): f^*(\tau)=i_*(\tau)\}.
+\]
+
+We consider a quadratic rational map \(f\) with critical points \(c_1,c_2\). Suppose that \(c_1\) lies on a superattracting cycle of length \(4\), and that the critical value \(v=f(c_2)\) does not belong to the cycle. Put
+\[
+A=\{c_1,f(c_1),f^{\circ 2}(c_1),f^{\circ 3}(c_1)\},\qquad
+B=A\cup\{v\}.
+\]
+Then \(\Def_f\subset \Teich(B)\) is one-dimensional. Its image in the moduli space is the set of conjugacy classes of quadratic rational maps with the above properties.
+
+The purpose of this note is to explicitly describe a simple closed curve \(\gamma\subset(\Sph,B)\) such that a power of the Dehn twist \(T_\gamma\) preserves \(\Def_f\), and its action on the set of connected components of \(\Def_f\) has an infinite orbit. This is precisely the curve used by Buff and Epstein in their proof that \(\Def_f\) has infinitely many connected components \cite{BE}.
+
+\section{Notation and preliminaries}
+
+We work on the Riemann sphere \(\Sph=\Pone\). Let \(f:\Sph\to\Sph\) be a branched cover. A \emph{simple closed curve} in \((\Sph,B)\) means a simple closed curve in \(\Sph\setminus B\). For such a curve \(\gamma\), let \(T_\gamma\) denote the right Dehn twist along \(\gamma\). It acts on the Teichm\"uller space \(\Teich(B)\) by pullback: if \(\tau\in\Teich(B)\) is represented by a complex structure, then \(T_\gamma\cdot\tau\) is the complex structure obtained by pulling back \(\tau\) under \(T_\gamma^{-1}\).
+
+The following standard formula describes the pullback of a Dehn twist under a branched cover; see \cite[Lemma~2.1]{BE}.
+
+\begin{lemma}[Lifting of Dehn twists]\label{lem:lift}
+Let \(f:\Sph\to\Sph\) be a branched cover and let \(\gamma\subset\Sph\setminus V(f)\) be a simple closed curve. Then \(f^{-1}(\gamma)\) is a multicurve \(\beta_1\sqcup\cdots\sqcup\beta_k\). If \(f\) maps \(\beta_i\) to \(\gamma\) with degree \(d_i\), then for every positive integer \(m\) divisible by all \(d_i\),
+\[
+f^*(T_\gamma^m)=\prod_{i=1}^k T_{\beta_i}^{m/d_i}
+\]
+in \(\Mod(A)\), up to orientations of the twists. In particular, if every \(d_i=1\), then
+\[
+f^*(T_\gamma^m)=\prod_{i=1}^k T_{\beta_i}^m .
+\]
+\end{lemma}
+
+\section{Construction of the curve}
+
+Let \(f\) be as in the introduction. Write the superattracting cycle as
+\[
+A=\{a_0,a_1,a_2,a_3\},
+\]
+where
+\[
+a_0=c_1,\qquad a_1=f(c_1),\qquad a_2=f^{\circ 2}(c_1),\qquad a_3=f^{\circ 3}(c_1),
+\]
+so that
+\[
+f(a_0)=a_1,\quad f(a_1)=a_2,\quad f(a_2)=a_3,\quad f(a_3)=a_0.
+\]
+The critical values of \(f\) are
+\[
+V(f)=\{f(c_1),f(c_2)\}=\{a_1,v\}.
+\]
+Thus \(a_1\) and \(v\) are the only critical values.
+
+We define \(\gamma\) to be any simple closed curve in \(\Sph\setminus B\) that separates the two points
+\[
+\{a_0,a_2\}
+\]
+from the three points
+\[
+\{a_1,a_3,v\}.
+\]
+Equivalently, \(\gamma\) is the boundary of a small regular neighborhood of the set \(\{a_1,a_3,v\}\) that does not contain \(a_0\) or \(a_2\). Such a curve exists because \(B\) is finite. Moreover, any two such curves are isotopic in \((\Sph,B)\), so the isotopy class of \(\gamma\) is uniquely determined by this separation property.
+
+\section{The Dehn twist preserves the deformation space}
+
+\begin{lemma}\label{lem:preserve}
+For the curve \(\gamma\) constructed in Section~3, the square \(T_\gamma^2\) preserves the deformation space \(\Def_f\).
+\end{lemma}
+
+\begin{proof}
+Since \(\gamma\) avoids \(V(f)=\{a_1,v\}\), the preimage \(f^{-1}(\gamma)\) consists of simple closed curves. Let
+\[
+U=\{a_0,a_2\},\qquad V=\{a_1,a_3,v\}.
+\]
+Then \(\gamma\) separates \(U\) from \(V\). The set \(U\) contains no critical values of \(f\), because the critical values are \(a_1\) and \(v\), both of which lie in \(V\). Therefore \(f^{-1}(U)\) is a covering of degree \(2\) over \(U\) without critical points. Hence \(f^{-1}(U)\) is a disjoint union of two disks.
+
+The preimages of \(a_0\) are \(a_3\) and a point \(x\notin A\). The preimages of \(a_2\) are \(a_1\) and a point \(y\notin A\). Since each component of \(f^{-1}(U)\) is a disk mapping homeomorphically onto \(U\), one component contains \(a_3\) and \(a_1\), while the other contains \(x\) and \(y\). Let \(\beta_1\) be the boundary of the component containing \(a_3\) and \(a_1\), and let \(\beta_2\) be the boundary of the other component. Then
+\[
+f^{-1}(\gamma)=\beta_1\sqcup\beta_2.
+\]
+Moreover, \(\beta_1\) is a simple closed curve that separates \(\{a_1,a_3\}\) from \(\{a_0,a_2\}\) in \((\Sph,A)\). This is the same separation as \(\gamma\) in \((\Sph,A)\), because \(v\) is not in \(A\). Hence \(\beta_1\) is isotopic to \(\gamma\) in \((\Sph,A)\). The curve \(\beta_2\) encircles no points of \(A\), so it is null-homotopic in \((\Sph,A)\).
+
+Since \(f\) is a homeomorphism from each \(\beta_i\) onto \(\gamma\), Lemma~\ref{lem:lift} gives, up to orientation,
+\[
+f^*(T_\gamma)=T_{\beta_1}T_{\beta_2}
+\]
+in \(\Mod(A)\). Because \(\beta_2\) is null-homotopic, \(T_{\beta_2}=1\) in \(\Mod(A)\). Thus
+\[
+f^*(T_\gamma)=T_{\beta_1}=T_\gamma
+\]
+in \(\Mod(A)\). Squaring to avoid orientation issues, we obtain
+\[
+f^*(T_\gamma^2)=T_\gamma^2.
+\]
+On the other hand, the forgetful map \(i_*:\Teich(B)\to\Teich(A)\) satisfies
+\[
+i_*(T_\gamma^2)=T_\gamma^2
+\]
+because \(\gamma\) is disjoint from \(A\). Therefore
+\[
+f^*(T_\gamma^2)=i_*(T_\gamma^2)
+\]
+as maps on \(\Teich(A)\).
+
+Now let \(\tau\in\Def_f\), so that \(f^*(\tau)=i_*(\tau)\). Using the equivariance of \(f^*\) and \(i_*\) with respect to the mapping class group action,
+\[
+f^*(T_\gamma^2\cdot \tau)
+= f^*(T_\gamma^2)\cdot f^*(\tau)
+= i_*(T_\gamma^2)\cdot i_*(\tau)
+= i_*(T_\gamma^2\cdot \tau).
+\]
+Hence \(T_\gamma^2\cdot\tau\in\Def_f\). Thus \(T_\gamma^2\) preserves \(\Def_f\).
+\end{proof}
+
+\begin{corollary}
+The Dehn twist \(T_\gamma^2\) acts on the set of connected components of \(\Def_f\).
+\end{corollary}
+
+\section{Infinite orbit on connected components}
+
+The following theorem is the main result of Buff and Epstein \cite{BE}.
+
+\begin{theorem}[Buff--Epstein]\label{thm:main}
+Let \(f\) be a quadratic rational map with critical points \(c_1,c_2\). Assume that \(c_1\) lies on a superattracting cycle of length \(4\), and that \(v=f(c_2)\) is not in the cycle. Let
+\[
+A=\{c_1,f(c_1),f^{\circ 2}(c_1),f^{\circ 3}(c_1)\},\qquad B=A\cup\{v\}.
+\]
+Then the deformation space \(\Def_B^A(f)=\Def_f\) has infinitely many connected components.
+Moreover, the element \(T_\gamma^2\) described in Section~3 represents a self-equivalence of \(f\) whose powers are pairwise distinct modulo the stabilizer of any connected component of \(\Def_f\). Consequently, the action of the cyclic group \(\langle T_\gamma^2\rangle\) on the set of connected components of \(\Def_f\) has an infinite orbit.
+\end{theorem}
+
+\begin{proof}[Proof of the infinite orbit]
+By Theorem~\ref{thm:main}, \(\Def_f\) has infinitely many connected components. The proof of \cite[Theorem~1.3]{BE} proceeds by comparing the stabilizer \(\mathrm{S}_f\) of \(\Def_f\) in \(\Mod(B)\) with the stabilizer \(\mathrm{E}_f\) of a connected component of \(\Def_f\). It is shown that \(\mathrm{E}_f\) has infinite index in \(\mathrm{S}_f\). The element \(T_\gamma^2\) is precisely the self-equivalence constructed in \cite[Section~4]{BE}; it lies in \(\mathrm{S}_f\) by Lemma~\ref{lem:preserve}, and its powers are distinct modulo \(\mathrm{E}_f\). Therefore the cosets
+\[
+(T_\gamma^2)^n \mathrm{E}_f,\qquad n\in\mathbb Z,
+\]
+are pairwise distinct. If a connected component \(C\subset\Def_f\) is stabilized by \((T_\gamma^2)^n\), then \((T_\gamma^2)^n\) belongs to the stabilizer of \(C\), which is a conjugate of \(\mathrm{E}_f\). This would imply \((T_\gamma^2)^n\in\mathrm{E}_f\), a contradiction unless \(n=0\). Hence the orbit
+\[
+\{ (T_\gamma^2)^n\cdot C : n\in\mathbb Z\}
+\]
+is infinite.
+\end{proof}
+
+\section*{Acknowledgments}
+The author thanks the referees for helpful comments. This work relies on the results of Buff and Epstein \cite{BE}.
+
+\begin{thebibliography}{9}
+
+\bibitem{BE}
+Xavier Buff and Adam L. Epstein,
+\emph{A disconnected deformation space of rational maps},
+Journal of Modern Dynamics, \textbf{11} (2017), 1--20.
+arXiv:1602.07378.
+\url{https://arxiv.org/abs/1602.07378}.
+
+\bibitem{aims}
+Xavier Buff and Adam L. Epstein,
+\emph{A disconnected deformation space of rational maps},
+AIMS Journal of Modern Dynamics,
+\url{https://www.aimsciences.org/article/doi/10.3934/jmd.2017016}.
+
+\end{thebibliography}
+
+\end{document}

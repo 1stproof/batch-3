@@ -1,0 +1,599 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\gp}{\mathrm{gp}}
+\newcommand{\sat}{\mathrm{sat}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\colim}{\operatorname*{colim}}
+\newcommand{\Ab}{\mathbf{Ab}}
+\newcommand{\Sh}{\operatorname{Sh}}
+\newcommand{\Lan}{\operatorname{Lan}}
+\newcommand{\cA}{\mathcal A}
+\newcommand{\cB}{\mathcal B}
+\newcommand{\cC}{\mathcal C}
+\newcommand{\cT}{\mathcal T}
+\newcommand{\cech}{\check{C}}
+\title{Problem 1 -- MerLean}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $P$ be an integral, saturated, sharp commutative monoid. We compare the birhizomic site of monoids under $P$ with the category of sharp localizations $P[-x]^\sharp$, equipped with the trivial topology. For every abelian presheaf $F$ on the latter category, we prove that the canonical morphism $F\to R\pi_*\pi^{-1}F$ is a quasi-isomorphism. In fact, the left Kan extension defining $\pi^{-1}F$ is already a sheaf and has vanishing positive-degree cohomology on every object. The proof refines arbitrary covers by finitely many inequality charts, reduces their relevant intersections to finitely generated monoids, and identifies the coefficient complexes with relative simplicial cochains. A separate descent argument passes from these finite complexes to derived cohomology. No finiteness or rank assumption on $P$, and no restriction on the abelian coefficient diagram, is required.
+\end{abstract}
+
+\section{The question and the result}
+
+The question is whether passing from sharp localizations of a monoid to a site tested by all valuations changes the cohomology of an arbitrary coefficient diagram. The localization category carries the trivial topology, for which every presheaf is a sheaf. The larger site admits nontrivial covers, including covers without a split member. Thus the assertion requires both preservation of sections under sheafification and a positive-degree vanishing theorem.
+
+Throughout, a \emph{monoid} means an integral, saturated, sharp, commutative monoid, written additively with identity $0$. Integrality means that the natural map to the groupification $M^{\gp}$, the universal abelian group receiving a map from $M$, is injective. Saturation means that $nz\in M$, for $z\in M^{\gp}$ and $n>0$, implies $z\in M$. Sharpness means that $0$ is the only invertible element. We use $\N=\{0,1,\ldots\}$. On $M^{\gp}$ set $z\leq w$ if $w-z\in M$. A monoid is \emph{valuative} if this order is total. A homomorphism to a valuative monoid will also be called a valuation; it need not be injective or have rank one.
+
+For $z\in M^{\gp}$ and $y\in M$, write
+\[
+ z\prec y\quad\Longleftrightarrow\quad
+ my\leq z\leq ny\text{ for some }m,n\in\Z.
+\]
+The notation for a monoid map also denotes its extension to groupifications. For an auxiliary submonoid $C$ of an abelian group $G$, not necessarily sharp, its saturation in $G$ is
+\[
+ \sat_G C=\{g\in G:ng\in C\text{ for some integer }n>0\}.
+\]
+
+\begin{definition}\label{def:topology}
+A map $p:M\to N$ is \emph{infinitesimal} if, whenever $z\in M^{\gp}$ and $y\in M$ satisfy
+\[
+ p(z)\in N,\qquad z\prec y,\qquad p(y)\prec p(z),
+\]
+then $z\in M$.
+Given $A\xrightarrow{f}Q\xrightarrow{g}N$, the map $f$ is \emph{birhizomic at $g$} if it is finitely presented in the category of monoids specified above and has the following property: for every factorization $gf=ph$, where $h:A\to M$ and $p:M\to N$ is infinitesimal, there is a unique $u:Q\to M$ such that $uf=h$ and $pu=g$.
+A family $\{A\to Q_i\}$ is a \emph{birhizomic cover} if every valuation $A\to V$ factors through some $Q_i\to V$ at which $A\to Q_i$ is birhizomic.
+\end{definition}
+
+Here finite presentation is relative: $A\to Q$ is finitely presented when $\Hom_A(Q,-)$ commutes with filtered colimits of monoids under $A$. All pushouts below are taken in the integral, saturated, sharp category. We use the given fact that the covers of Definition~\ref{def:topology} define a Grothendieck topology.
+
+Fix $P$. Let $\cA_P$ be the category of monoids under $P$, and give $\cC_P=\cA_P^{\mathrm{op}}$ this topology. For $x\in P$, let $B_x=P[-x]^\sharp$ be the initial monoid under $P$ in which $x$ becomes zero. Let $\cB_P\subset\cA_P$ be the full subcategory of these objects. We give $\cB_P^{\mathrm{op}}$ the trivial topology, so its abelian sheaves are precisely covariant functors $F:\cB_P\to\Ab$. As usual, the categories and their sheaves are understood in fixed universes large enough for these constructions.
+
+For the inclusion $i:\cB_P\hookrightarrow\cA_P$, left Kan extension followed by abelian sheafification defines $\pi^{-1}$. Its right adjoint is denoted $\pi_*$. These are the functors induced by the left exact inclusion of the opposite sites in the question.
+
+\begin{theorem}\label{thm:main}
+For every monoid $P$ and every abelian presheaf $F$ on $\cB_P^{\mathrm{op}}$, the canonical morphism
+\[
+ F\longrightarrow R\pi_*\pi^{-1}F
+\]
+is a quasi-isomorphism, with $F$ placed in degree zero.
+\end{theorem}
+
+We prove a more explicit assertion. Put $K_F=\Lan_iF$, viewed as a presheaf on $\cC_P$. Then $K_F$ is already a sheaf, and
+\begin{equation}\label{eq:strong}
+ H^n(Q,K_F)=0\qquad(Q\in\cA_P,\ n>0).
+\end{equation}
+Here $H^n(Q,-)$ denotes the right derived functor of evaluation at the site object $Q$. This is object cohomology in the sense of \cite[Tag 01FT]{stacks}, not cohomology of an auxiliary topological space.
+
+The monoid constructions belong to the setting of logarithmic geometry: saturation, sharp quotients, and valuative monoids are treated in Ogus \cite[Chapter I, \S\S1.2--1.3]{ogus}. His valuative monoids may have units; ours are sharp, so their orders are total orders rather than total preorders. We use elementary ordered-group arguments to retain arbitrary generation and arbitrary valuation rank. The topological input is Hatcher's open-cover nerve theorem \cite[Corollary 4G.3]{hatcher}. The cohomological method is the usual \v{C}ech-to-derived comparison, as in \cite[Tag 03AZ]{stacks}; we construct the finite ordered resolution needed here explicitly. The work specific to this topology is the finite refinement theorem and the description of the intersections on which a given monoid element remains nonzero. No comparison with another logarithmic topology is assumed.
+
+\section{Localizations and the coefficient presheaf}
+
+We first compute the Kan extension and identify the two assertions needed for Theorem~\ref{thm:main}.
+
+\begin{lemma}\label{lem:localization}
+Inside $P^{\gp}$ put $L_x=P+\N(-x)$ and $U_x=L_x\cap(-L_x)$. Then
+\[
+ B_x=L_x/U_x.
+\]
+Every element of $B_x$ has a representative in $P$, and $b\in P$ becomes zero in $B_x$ exactly when $nx-b\in P$ for some $n\in\N$. Consequently there is a map $B_x\to B_y$ over $P$ exactly when $x\leq ny$ for some $n\in\N$, and such a map is unique.
+\end{lemma}
+
+\begin{proof}
+The monoid $L_x$ is saturated. Indeed, if $ng=p-kx$ with $p\in P$, $n>0$, and $k\geq0$, then
+\[
+ n(g+kx)=p+(n-1)kx\in P,
+\]
+so $g+kx\in P$. Quotienting a saturated submonoid of a group by its unit subgroup preserves saturation and gives a sharp monoid: membership is unchanged by adding a unit, and this observation checks saturation on representatives. The quotient is integral as a submonoid of $P^{\gp}/U_x$.
+
+A map from $P$ to a sharp monoid killing $x$ extends uniquely to $L_x$ and kills $U_x$. This proves the universal property. Since $x$ becomes zero, $p-kx$ has the same class as $p$. Finally, $b$ dies precisely when $-b\in L_x$, which is the asserted inequality. The last statement follows from the universal property applied to the image of $x$ in $B_y$.
+\end{proof}
+
+For $q:P\to Q$, let $I_Q$ be the category of maps $B_x\to Q$ over $P$. Such a map exists precisely when $q(x)=0$, and it is unique. The category is filtered: it contains $B_0=P$; if $q(x)=q(y)=0$, then $B_{x+y}$ is a common successor of $B_x$ and $B_y$; and there are no distinct parallel arrows. The Kan-extension formula therefore becomes
+\begin{equation}\label{eq:kan}
+ K_F(Q)=\colim_{(B_x\to Q)\in I_Q}F(B_x),\qquad
+ \pi^{-1}F=aK_F,
+\end{equation}
+where $a$ denotes abelian sheafification. At $Q=B_y$ the identity is terminal in $I_Q$, so
+\begin{equation}\label{eq:kan-unit}
+ F(B_y)\xrightarrow{\ \sim\ }K_F(B_y)
+\end{equation}
+is the canonical Kan unit.
+
+Two consequences of \eqref{eq:kan} will be used repeatedly. First, $F\mapsto K_F(Q)$ is exact and preserves arbitrary direct sums, since filtered colimits of abelian groups have these properties. Second, if a map $Q\to R$ preserves the set of elements of $P$ mapping to zero, it identifies the indexing categories and hence induces a canonical isomorphism
+\begin{equation}\label{eq:zero-kernel}
+ K_F(Q)\xrightarrow{\ \sim\ }K_F(R).
+\end{equation}
+This statement concerns zero sets in $P$, not kernels of maps on groupifications.
+
+The Kan-extension and sheafification adjunctions give
+\begin{equation}\label{eq:derived-evaluation}
+ (\pi_*\mathcal H)(B_x)=\mathcal H(B_x),\qquad
+ (R^n\pi_*\mathcal H)(B_x)=H^n(B_x,\mathcal H).
+\end{equation}
+For the second identity, take an injective resolution of $\mathcal H$ and use exactness of evaluation in the target presheaf category. Thus we must show that sheafification preserves \eqref{eq:kan-unit} and that the positive groups in \eqref{eq:derived-evaluation} vanish for $\mathcal H=aK_F$.
+
+\section{Ordered groups and finite submonoids}
+
+The first ingredient is an order-extension argument. It supplies valuations detecting equality and later allows finite inequalities to be tested in a finitely generated subgroup.
+
+\begin{lemma}\label{lem:order}
+Let $G$ be a torsion-free abelian group. Every saturated submonoid $C\subset G$ with $C\cap(-C)=\{0\}$ is contained in a saturated submonoid $T$ satisfying
+\[
+ T\cap(-T)=\{0\},\qquad T\cup(-T)=G.
+\]
+In particular, every monoid $Q$ embeds into a valuative monoid with the same groupification.
+\end{lemma}
+
+\begin{proof}
+A chain union of saturated submonoids with trivial unit group has the same properties. Choose a maximal such $T$ containing $C$. If neither $g$ nor $-g$ belongs to $T$, consider the saturation $T'$ of $T+\N g$ in $G$. Suppose $h,-h\in T'$. There are equations
+\[
+ nh=c+kg,\qquad -mh=d+\ell g
+\]
+with $c,d\in T$, $k,\ell\geq0$, and $m,n>0$. They imply
+\[
+ mc+nd+(mk+n\ell)g=0.
+\]
+If $mk+n\ell>0$, saturation implies $-g\in T$, a contradiction. Otherwise $k=\ell=0$, and sharpness gives $c=d=0$, whence $h=0$ by torsion-freeness. Thus $T'$ has trivial unit group and strictly contains $T$, a contradiction. The maximal cone is total.
+
+For the last assertion, $Q^{\gp}$ is torsion-free: if $ng=0$, saturation puts both $g$ and $-g$ in $Q$, and sharpness gives $g=0$. Apply the first assertion to $Q\subset Q^{\gp}$.
+\end{proof}
+
+\begin{corollary}\label{cor:separated}
+For every $P$ and $F$, the presheaf $K_F$ is separated for the birhizomic topology.
+\end{corollary}
+
+\begin{proof}
+Given a cover $\{Q\to Q_i\}$, embed $Q$ into a valuative monoid $V$. Some member factors $Q\hookrightarrow V$, so $Q\to Q_i$ is injective. It preserves the zero set of the structural map from $P$, and \eqref{eq:zero-kernel} makes $K_F(Q)\to K_F(Q_i)$ an isomorphism. Sections agreeing on the cover therefore agree on $Q$.
+\end{proof}
+
+We will also use total preorders that allow a nontrivial subgroup of elements equivalent to zero. More precisely, call $T\subset G$ a \emph{saturated total positive cone} if it contains $0$, is closed under addition, is saturated in $G$, and satisfies $T\cup(-T)=G$. It need not be sharp. Its unit subgroup $U_T=T\cap(-T)$ is pure, meaning that $ng\in U_T$ for $n>0$ implies $g\in U_T$. The quotient $T/U_T$ is a valuative monoid with groupification $G/U_T$.
+
+\begin{lemma}\label{lem:preorder-extension}
+If $G_0\subset G$ are torsion-free abelian groups, every saturated total positive cone $T_0$ on $G_0$ extends to such a cone $T$ on $G$ with $T\cap G_0=T_0$.
+\end{lemma}
+
+\begin{proof}
+Put $U_0=T_0\cap(-T_0)$ and $U=\{g\in G:ng\in U_0\text{ for some }n>0\}$. Purity of $U_0$ in $G_0$ gives $U\cap G_0=U_0$, and $G/U$ is torsion-free. The cone $T_0/U_0$ embeds in $G/U$. Its saturation there has trivial unit group: if opposite elements belong to that saturation, suitable positive multiples are opposite positive elements of the ordered subgroup $G_0/U_0$, so they vanish; torsion-freeness finishes the argument. By Lemma~\ref{lem:order}, extend this saturated cone to a total sharp cone on $G/U$. Its restriction to $G_0/U_0$ is the original cone, since adding a contrary sign would violate sharpness. The inverse image in $G$ is the required $T$.
+\end{proof}
+
+\begin{lemma}\label{lem:finite}
+Every monoid is a filtered union of finitely generated saturated sharp submonoids. A finitely presented map from a finitely generated monoid has finitely generated target. Every finitely generated sharp monoid $B\neq0$ admits a real group homomorphism strictly positive on $B\setminus\{0\}$.
+\end{lemma}
+
+\begin{proof}
+For a finite subset $E$ of a monoid $A$, let $G_E\subset A^{\gp}$ be the subgroup it generates and set
+\[
+ A_E=\sat_{G_E}\langle E\rangle,
+\]
+where $\langle E\rangle$ denotes the submonoid generated by $E$. It lies in $A$ and is sharp. The torsion-free finitely generated group $G_E$ is a lattice, and
+\[
+ A_E=\operatorname{cone}(E)\cap G_E,
+\]
+where $\operatorname{cone}(E)$ is the nonnegative real span of $E$ in $G_E\otimes_\Z\R$. Indeed, reduce a nonnegative real expression for a lattice point to linearly independent support by eliminating linear dependences. The coefficients on that support are rational, so a positive multiple of the point lies in $\langle E\rangle$. Subtracting integer parts of those coefficients leaves a lattice point in a bounded parallelepiped. There are finitely many supports and finitely many lattice points in each such bounded set. These remainders together with $E$ generate $A_E$. The $A_E$ form a filtered union equal to $A$.
+
+If $B\to R$ is finitely presented and $B$ is finitely generated, take finite subsets $E\subset R$ containing the images of generators of $B$. Then $R=\colim R_E$ as a $B$-monoid. Finite presentation factors $\mathrm{id}_R$ through some inclusion $R_E\hookrightarrow R$, forcing $R_E=R$.
+
+For the last assertion, choose nonzero generators of $B$. Their real cone is pointed, that is, it contains no nonzero vector together with its negative. Otherwise there would be a nontrivial nonnegative rational relation summing to zero (rational coefficients can be obtained by elimination in the finite rational system), and clearing denominators would contradict sharpness. Equivalently, zero is outside the convex hull of these finitely many generators. Strict separation of this compact convex hull from zero gives a functional positive on every generator, hence on every nonzero element of $B$.
+\end{proof}
+
+Filtered colimits in our monoid category are ordinary filtered monoid colimits. To see this, cancellation and sharpness of such a colimit are checked by moving an equality to a common stage. For saturation, represent an element of the groupification as a difference at one stage and move the equation asserting positivity of a positive multiple to a later stage; saturation there gives positivity of the element. Groupification commutes with colimits. These observations also show directly that finite systems of generators and relations have the expected relative finite-presentation property in our category. Relative finite presentation is stable under pushout and composition, by its filtered-$\Hom$ characterization.
+
+\section{Finite elementary refinements}
+
+We now construct charts whose extension property is governed by finitely many inequalities. The main point is to show that these charts refine every cover, even when the base monoid is not finitely generated.
+
+\begin{definition}\label{def:elementary}
+For a finite subset $D\subset A^{\gp}$, define the \emph{elementary chart}
+\[
+ A\langle D\rangle
+ =\bigl(\sat_{A^{\gp}}(A+\textstyle\sum_{z\in D}\N z)\bigr)^\sharp.
+\]
+Here $C^\sharp=C/(C\cap(-C))$ for a submonoid $C$ of a group. The purpose of the chart is to make each group element in $D$ nonnegative, allowing sharpening if this introduces units.
+\end{definition}
+
+\begin{lemma}\label{lem:elementary}
+A map $A\to R$ extends to $A\langle D\rangle$ exactly when all elements of $D$ have images in $R$, and the extension is unique. The chart is finitely presented and is an epimorphism in the monoid category. Moreover,
+\[
+ A\langle D\rangle\sqcup_A A\langle E\rangle
+ \simeq A\langle D\cup E\rangle.
+\]
+\end{lemma}
+
+\begin{proof}
+Extend the map to groupifications. Positivity on $D$ makes it positive on the generated monoid and then on its saturation, by saturation of $R$. Sharpness of $R$ kills the units. Uniqueness follows because all elements are represented in $A^{\gp}$. If $z_j=a_j-b_j$ with $a_j,b_j\in A$, the extension is equivalently specified by adjoining $t_j$ subject to
+\[
+ b_j+t_j=a_j.
+\]
+Solutions to these finitely many equations commute with ordinary filtered colimits. Thus the map is finitely presented. Uniqueness of extension proves epimorphicity, and the extension criterion proves the pushout formula.
+\end{proof}
+
+To refine a birhizomic chart we need an explicit infinitesimal factorization. For a map $h:A\to N$, define $C_h\subset A^{\gp}$ by
+\begin{equation}\label{eq:Ch}
+\begin{split}
+ z\in C_h\quad\Longleftrightarrow\quad
+ &\text{there exist }y\in A,\ m,n\in\Z_{\geq1}\text{ such that}\\
+ &my+z,\ my-z\in A,\qquad
+ h(z)\in N,\qquad nh(z)-h(y)\in N.
+\end{split}
+\end{equation}
+These are finite witnesses for exactly the antecedents in the infinitesimal condition: the two source bounds make $z\prec y$, while the image inequalities make $h(y)\prec h(z)$. Symmetric positive bounds can always be obtained by enlarging the original integer bounds.
+
+\begin{lemma}\label{lem:infinitesimal}
+The set $C_h$ is a saturated submonoid containing $A$. If $U=C_h\cap(-C_h)$, then
+\[
+ A\longrightarrow M_h=C_h/U\xrightarrow{p}N
+\]
+is a factorization of $h$ and $p$ is infinitesimal.
+\end{lemma}
+
+\begin{proof}
+For $z\in A$, take $y=z$ and $m=n=1$. To add two elements of $C_h$, add their witnesses and increase the two $m$-bounds and the two $n$-bounds to common maxima. If $kz\in C_h$, witnessed by $y,m,n$, then
+\[
+ k(my\pm z)=(my\pm kz)+(k-1)my\in A.
+\]
+Saturation gives the required source bounds for $z$; saturation in $N$ gives $h(z)\in N$, and $nkh(z)\geq h(y)$. Thus $C_h$ is saturated. Its unit subgroup $U$ is pure, $h(U)=0$, and its quotient is saturated and sharp. Since $A\subset C_h$, its groupification is $A^{\gp}/U$.
+
+To check infinitesimality, let $\bar z\in A^{\gp}/U$ and $\bar w\in M_h$ satisfy its antecedents; choose $w\in C_h$. There are $k,r\geq1$ with
+\[
+ k\bar w\pm\bar z\in M_h,\qquad
+ h(z)\in N,\qquad h(w)\leq rh(z).
+\]
+Positivity of $k\bar w+\bar z$ implies $b=kw+z\in C_h$, because adding a unit does not change membership in $C_h$. Choose witnesses $y_b,m_b,n_b$ and $y_w,m_w,n_w$ for $b$ and $w$. In the order defined by $A$, the element $z=b-kw$ is bounded in absolute value by
+\[
+ m_by_b+km_wy_w,
+\]
+and hence by a positive multiple of $Y=y_b+y_w$. In $N^{\gp}$ we have
+\[
+ h(Y)\leq n_bh(b)+n_wh(w)
+ \leq\bigl(n_b(kr+1)+n_wr\bigr)h(z).
+\]
+Together with $h(z)\in N$, these are witnesses for $z\in C_h$. Thus $\bar z\in M_h$, including when $h(z)=0$.
+\end{proof}
+
+The construction also has the following useful consequence. If $h=p'h'$ with $p':M'\to N$ infinitesimal, each witness in \eqref{eq:Ch} forces $h'(z)\in M'$. The group map $h'$ kills $U$ because $M'$ is sharp, so it induces a map $M_h\to M'$. This map is unique since $A$ generates $M_h^{\gp}$. We only need this observation in its finite form below.
+
+\begin{lemma}\label{lem:certificates}
+Suppose $f:A\to Q$ is birhizomic at $g:Q\to N$, and put $h=gf$. Then there are a finite set $D\subset C_h$ and compatible maps
+\[
+ Q\longrightarrow A\langle D\rangle\longrightarrow N.
+\]
+For each $z_j\in D$, choose witnesses $y_j,m_j,n_j$ in \eqref{eq:Ch}. For any $h':A\to N'$ satisfying
+\begin{equation}\label{eq:certificate}
+ h'(z_j)\in N',\qquad n_jh'(z_j)-h'(y_j)\in N'
+ \quad\text{for every }j,
+\end{equation}
+the chart $A\to A\langle D\rangle$ is birhizomic at the induced map to $N'$.
+\end{lemma}
+
+\begin{proof}
+The elementary charts $A\langle D\rangle$, for finite $D\subset C_h$, have filtered colimit $M_h$: their saturated cones fill $C_h$, and the unit quotients give $C_h/U$. Equivalently, this follows from their common extension criterion. Lemma~\ref{lem:infinitesimal} and birhizomicity give $Q\to M_h$ over $A$ and $N$. Finite presentation factors it through one elementary chart. Composing that factorization with the map to $N$ gives $g$.
+
+For the last assertion, consider $h'=p'h''$ with $p'$ infinitesimal. The source inequalities $m_jy_j\pm z_j\in A$ and \eqref{eq:certificate} imply $h''(z_j)\in M'$. Lemma~\ref{lem:elementary} gives the unique lift. The expressions $z_j=a_j-b_j$ show that the lift has the required composite to $N'$, so both triangle identities hold. Finite presentation was proved in Lemma~\ref{lem:elementary}.
+\end{proof}
+
+\begin{proposition}\label{prop:finite-refinement}
+Every birhizomic cover of $A$ has a finite elementary covering refinement
+\[
+ \{A\longrightarrow A\langle D_i\rangle\}_{i=1}^r,\qquad r\geq1.
+\]
+The refinement may be chosen with a finitely generated saturated sharp submonoid $A_0\subset A$ such that every $D_i\subset A_0^{\gp}$ and
+\[
+ \{A_0\longrightarrow A_0\langle D_i\rangle\}_{i=1}^r
+\]
+is a birhizomic cover. The original elementary family is its pushout along $A_0\to A$.
+\end{proposition}
+
+\begin{proof}
+Let $G=A^{\gp}$. Regard the saturated total positive cones on $G$ as a subspace $\cT(G)\subset\{0,1\}^G$, with the product topology and $\{0,1\}$ discrete. Each instance of a defining axiom involves finitely many coordinates and is closed; for example, failure of closure under addition or of saturation is detected by finitely many membership decisions. Thus $\cT(G)$ is compact. The subspace
+\[
+ \cT_A=\{T\in\cT(G):A\subset T\}
+\]
+is closed and nonempty (it contains $G$). Each $T\in\cT_A$ gives a valuation $A\to T/U_T$. Conversely, every valuation $v:A\to V$ has the associated cone
+\[
+ T_v=(v^{\gp})^{-1}(V)\in\cT_A.
+\]
+This includes valuations with nonzero kernel and valuations of arbitrary rank.
+
+For each $T\in\cT_A$, select a member of the given cover through which $A\to T/U_T$ factors birhizomically. Apply Lemma~\ref{lem:certificates} and choose finite witnesses. The conditions
+\begin{equation}\label{eq:WT}
+ z_j\in T',\qquad n_jz_j-y_j\in T'
+ \quad(z_j\in D)
+\end{equation}
+define a clopen neighborhood $W_T$ of $T$ in $\cT(G)$. For valuations whose associated cone belongs to $W_T$, the elementary chart is birhizomic by that lemma. Compactness supplies finitely many $W_1,\ldots,W_r$ covering $\cT_A$. Their charts refine the given cover and themselves form a cover. Nonemptiness of $\cT_A$ allows $r\geq1$.
+
+Write $W=\bigcup_iW_i$. The compact set $\cT(G)\setminus W$ is disjoint from $\cT_A$. For each cone in this complement some element of $A$ is absent. The corresponding open absence conditions cover the complement, so finitely many $a_\ell\in A$ suffice: every cone containing all $a_\ell$ lies in $W$.
+
+Choose a finite set $E\subset A$ containing these $a_\ell$, numerators and denominators for all $z_j\in D_i$, all $y_j$, and every element $m_jy_j\pm z_j\in A$ appearing in the source bounds. Set
+\[
+ G_0=\langle E\rangle_{\mathrm{group}},\qquad
+ A_0=\sat_{G_0}\langle E\rangle.
+\]
+Lemma~\ref{lem:finite} makes $A_0$ finitely generated, and all the source bounds hold in $A_0$. Given a valuation of $A_0$, extend its associated cone from $G_0$ to $G$ using Lemma~\ref{lem:preorder-extension}. The extension contains all $a_\ell$, so it lies in some $W_i$. All the coordinates in \eqref{eq:WT} belong to $G_0$. Consequently the original valuation of $A_0$ satisfies the inequalities \eqref{eq:certificate} for that chart, and Lemma~\ref{lem:certificates} proves the covering assertion over $A_0$.
+
+Finally, the extension criterion of Lemma~\ref{lem:elementary} identifies $A\langle D_i\rangle$ with $A\sqcup_{A_0}A_0\langle D_i\rangle$.
+\end{proof}
+
+Birhizomicity at a map is preserved by pushout. Indeed, a lifting problem for the pushed-out map restricts to the original one, and its unique solution combines with the given map from the new base by the pushout property. Finite presentation is also preserved. Hence the finite elementary covers of Proposition~\ref{prop:finite-refinement} remain covers after base change. In what follows we use these particular finite refinements and their finite-stage descriptions; no classification of all finitely presented maps is needed.
+
+\section{The intersections where an element remains nonzero}
+
+Fix a cover as in Proposition~\ref{prop:finite-refinement}, now written
+\[
+ Q\longrightarrow Q_i=Q\langle D_i\rangle\quad(1\leq i\leq r).
+\]
+For a nonempty subset $I\subset\{1,\ldots,r\}$ put
+\[
+ Q_I=Q\Bigl\langle\bigcup_{i\in I}D_i\Bigr\rangle.
+\]
+This is the iterated pushout over $Q$, hence the intersection object in the opposite site. If $b\in Q$ becomes zero in $Q_I$, it also becomes zero in $Q_J$ whenever $I\subset J$. Thus the subsets on which $b$ remains nonzero are the faces of a simplicial complex.
+
+\begin{lemma}\label{lem:stabilization}
+For any fixed $b\in Q$, there is a finitely generated saturated sharp submonoid $B\subset Q$ containing $b$, with $D_i\subset B^{\gp}$ for every $i$, such that $\{B\to B\langle D_i\rangle\}$ is a cover and, for every nonempty $I$,
+\[
+ b=0\text{ in }B\langle\textstyle\bigcup_{i\in I}D_i\rangle
+ \quad\Longleftrightarrow\quad b=0\text{ in }Q_I.
+\]
+\end{lemma}
+
+\begin{proof}
+Let $Q_0$ be supplied by Proposition~\ref{prop:finite-refinement}. The finitely generated saturated submonoids $Q_\beta\subset Q$ containing $Q_0$ and $b$ form a filtered union equal to $Q$. Their elementary families are covers by base change. The extension criterion gives
+\[
+ Q_I=\colim_\beta Q_\beta\Bigl\langle\bigcup_{i\in I}D_i\Bigr\rangle.
+\]
+These are ordinary filtered monoid colimits. If $b$ becomes zero in the colimit, the equality is witnessed at a stage. If it remains nonzero in the colimit, it remains nonzero at every stage. There are only finitely many nonempty subsets $I$, so a common stage gives all the equivalences. Only this one element is being stabilized.
+\end{proof}
+
+\begin{proposition}\label{prop:nerve}
+If $0\neq b\in Q$, the simplicial complex
+\[
+ N_b=\{\varnothing\}\cup
+ \{I\neq\varnothing:b\text{ remains nonzero in }Q_I\}
+\]
+has nonempty, contractible geometric realization.
+\end{proposition}
+
+\begin{proof}
+Choose $B$ as in Lemma~\ref{lem:stabilization}. Each intersection monoid
+$B_I=B\langle\bigcup_{i\in I}D_i\rangle$ is finitely generated, by Lemmas~\ref{lem:elementary} and~\ref{lem:finite}. Consider the finite-dimensional affine space of real functionals satisfying $\lambda(b)=1$, and its closed convex polyhedron
+\[
+ X=\{\lambda:B^{\gp}\to\R:\lambda(B)\geq0,\ \lambda(b)=1\}.
+\]
+It is nonempty: use a strictly positive functional from Lemma~\ref{lem:finite} and normalize at $b$.
+
+Let $E_i\subset X$ consist of those functionals that extend to $B\langle D_i\rangle\to\R_{\geq0}$. By Lemma~\ref{lem:elementary},
+\[
+ E_i=\{\lambda\in X:\lambda(z)\geq0\text{ for all }z\in D_i\},
+\]
+so $E_i$ is a closed convex polyhedron. The $E_i$ cover $X$, since every map $B\to\R_{\geq0}$ is a valuation tested by the cover. For each nonempty $I$,
+\begin{equation}\label{eq:nerve-identification}
+ \bigcap_{i\in I}E_i\neq\varnothing
+ \quad\Longleftrightarrow\quad b\neq0\text{ in }B_I.
+\end{equation}
+In the forward direction, the extensions combine through the pushout and send $b$ to $1$. In the reverse direction, a strictly positive functional on the finitely generated sharp monoid $B_I$, normalized at the nonzero image of $b$, restricts to a point in the intersection. By stabilization, the right side of \eqref{eq:nerve-identification} is exactly the condition defining $N_b$.
+
+To apply the open-cover nerve theorem, we next replace this closed polyhedral cover by an open convex cover with the same indexed nerve. Omit empty $E_i$. For any subfamily with empty intersection, combine its finite inequality descriptions into a system
+\[
+ Ax\leq c
+\]
+in the affine ambient space of $X$. The set of real $t$ for which $Ax\leq c+t\mathbf1$ is feasible is a closed polyhedron in $\R$. One can see this by Fourier--Motzkin elimination: eliminating a variable pairs its finitely many lower and upper bounds, leaving finitely many non-strict linear inequalities. The set of feasible $t$ is nonempty, upward closed, and does not contain $0$. It therefore has a positive minimum $\delta$.
+
+If a point has distance less than $\epsilon$ from every $E_i$ in this subfamily, it satisfies all the inequalities with error at most $L\epsilon$, where $L$ is the maximum of $1$ and their row norms. Taking $L\epsilon<\delta$ prevents this. There are only finitely many empty intersections, so a single $\epsilon>0$ prevents them all. Nonempty intersections remain nonempty upon enlargement. Therefore the open $\epsilon$-neighborhoods $U_i$ have exactly the same nerve as the $E_i$. Each $U_i$ and each nonempty intersection of them is convex. Their union is the $\epsilon$-neighborhood of $X$, hence is nonempty and convex as well.
+
+This union is an open subset of a finite-dimensional affine Euclidean space, so it is metrizable and paracompact. Hatcher's open-cover nerve theorem \cite[Corollary 4G.3, p.~459]{hatcher} applies to the cover $\{U_i\}$: all its nonempty finite intersections are contractible. The nerve is homotopy equivalent to the convex union. By \eqref{eq:nerve-identification}, that nerve is $N_b$, proving the assertion.
+\end{proof}
+
+\section{Exact coefficient complexes and sheaf descent}
+
+The nerve in Proposition~\ref{prop:nerve} controls free representable coefficients. Boundedness of a finite cover then permits passage to every abelian coefficient diagram.
+
+Fix a cover supplied by Proposition~\ref{prop:finite-refinement}. For $F:\cB_P\to\Ab$, define the augmented ordered \v{C}ech complex by
+\begin{equation}\label{eq:ordered-cech}
+ C_Q^{-1}(F)=K_F(Q),\qquad
+ C_Q^p(F)=\prod_{\substack{I\subset\{1,\ldots,r\}\\|I|=p+1}}K_F(Q_I)
+ \quad(0\leq p\leq r-1),
+\end{equation}
+with all other terms zero. Fix the usual order on the indices. For $J=\{j_0<\cdots<j_{p+1}\}$ the differential is
+\[
+ (dc)_J=\sum_{k=0}^{p+1}(-1)^k
+ \operatorname{res}_{J\setminus\{j_k\},J}(c_{J\setminus\{j_k\}}),
+\]
+and the augmentation consists of restrictions from $Q$. The arrows $Q_i\to Q$ in the opposite site are monomorphisms, by Lemma~\ref{lem:elementary}; in particular, $Q_i\sqcup_Q Q_i=Q_i$. Thus these are finite intersections of covering subobjects. We will construct their ordered sheaf resolution in Section~\ref{sec:derived}, rather than presume that deleting repeated indices is valid for every cover.
+
+\begin{lemma}\label{lem:free-cech}
+For $x\in P$, let $E_x=\Z[\Hom_{\cB_P}(B_x,-)]$ be the free abelian representable presheaf. Then $C_Q^\bullet(E_x)$ is exact.
+\end{lemma}
+
+\begin{proof}
+Left Kan extension takes a free representable to the corresponding free representable on $\cA_P$, by the adjunction and Yoneda's lemma. If $b$ is the image of $x$ in $Q$, the universal property of $B_x$ therefore gives
+\[
+ K_{E_x}(Q)=\Z[\Hom_{\cA_P}(B_x,Q)]
+ =\begin{cases}\Z,&b=0,\\0,&b\neq0.\end{cases}
+\]
+Whenever both groups are nonzero, their transition map is the identity on the canonical generator.
+
+If $b=0$, the complex is the augmented simplicial cochain complex of the full simplex $\Delta^{r-1}$ and is exact. A contraction is obtained by inserting a fixed vertex, with the sign of its ordered position and with repeated-vertex terms set equal to zero.
+
+If $b\neq0$, its degree $-1$ term is zero. The faces with zero coefficient are precisely those of $N_b$. Thus the nonaugmented part is the relative simplicial cochain complex
+\[
+ C^\bullet(\Delta^{r-1},N_b;\Z).
+\]
+This identification has the indicated direction because zero in the monoid persists under further pushout. Proposition~\ref{prop:nerve} says that $N_b$ is nonempty and contractible. The relative cohomology sequence for the pair, together with contractibility of the simplex, makes every relative cohomology group zero, including degree zero. This proves exactness.
+\end{proof}
+
+\begin{proposition}\label{prop:all-cech}
+The complex $C_Q^\bullet(F)$ is exact for every abelian presheaf $F$ on $\cB_P^{\mathrm{op}}$.
+\end{proposition}
+
+\begin{proof}
+Each term of \eqref{eq:ordered-cech} is an exact functor of $F$ and preserves arbitrary direct sums, by \eqref{eq:kan} and finiteness of the products. The $E_x$ freely generate the presheaf category: for each $s\in F(B_x)$, Yoneda gives a map $E_x\to F$, and the sum over all such pairs $(x,s)$ is objectwise surjective. Choose an exact sequence
+\[
+ 0\longrightarrow F_1\longrightarrow L\longrightarrow F\longrightarrow0
+\]
+with $L$ a direct sum of $E_x$. Lemma~\ref{lem:free-cech} and exactness of direct sums imply that $C_Q^\bullet(L)$ is exact. The short exact sequence of complexes yields
+\[
+ H^j C_Q^\bullet(F)\simeq H^{j+1}C_Q^\bullet(F_1).
+\]
+Repeat this construction for successive kernels. After finitely many shifts the degree exceeds $r-1$, where every such complex is zero. This proves the assertion in every degree, including $-1$ and $0$. The argument uses the bounded length of the complex, not finite projective dimension of $F$.
+\end{proof}
+
+\begin{corollary}\label{cor:sheaf}
+For every $P$ and $F$, the presheaf $K_F$ is a sheaf on $\cC_P$. In particular $\pi^{-1}F=K_F$ canonically, and the actual degree-zero unit $F\to\pi_*\pi^{-1}F$ is an isomorphism.
+\end{corollary}
+
+\begin{proof}
+Exactness in degrees $-1$ and $0$ is precisely unique gluing of matching sections for each finite elementary covering refinement. Let a matching family be given on any original cover of $Q$. Restrict it to a refinement from Proposition~\ref{prop:finite-refinement} and glue to $t\in K_F(Q)$. For each original member $Q_j$, pull the refinement back along $Q\to Q_j$. On this covering family the restriction of $t$ agrees with the prescribed section on $Q_j$, by the original matching condition. Corollary~\ref{cor:separated} implies equality on $Q_j$. It also gives uniqueness of $t$. Thus descent holds for every cover. The canonical sheafification map is an isomorphism, and \eqref{eq:kan-unit} identifies the asserted unit.
+\end{proof}
+
+\section{Passage to derived cohomology}\label{sec:derived}
+
+We now prove \eqref{eq:strong}. The additional step is essential: exactness of a presheaf complex for one cover would not by itself imply a derived vanishing statement.
+
+\begin{lemma}\label{lem:local-killing}
+For an abelian sheaf $\mathcal H$ and $n>0$, every class in $H^n(Q,\mathcal H)$ restricts to zero on some covering family of $Q$.
+\end{lemma}
+
+\begin{proof}
+Represent the class by a cycle in an injective resolution $\mathcal H\to\mathcal J^\bullet$ evaluated at $Q$. Exactness of the resolution as sheaves says that this cycle locally has a primitive in $\mathcal J^{n-1}$. On a covering family where such primitives exist the class is zero.
+\end{proof}
+
+\begin{lemma}\label{lem:spectral}
+For a finite elementary cover $\{Q\to Q_i\}_{i=1}^r$ and an abelian sheaf $\mathcal H$, there is a spectral sequence
+\begin{equation}\label{eq:spectral}
+ E_1^{p,q}=\prod_{|I|=p+1}H^q(Q_I,\mathcal H)
+ \quad\Longrightarrow\quad H^{p+q}(Q,\mathcal H),
+ \qquad 0\leq p\leq r-1,
+\end{equation}
+whose zero-row differential is the ordered \v{C}ech differential. Its edge map in degree $n$ is restriction to the $Q_i$.
+\end{lemma}
+
+\begin{proof}
+Write $h_R=\Hom_{\cC_P}(-,R)$ for the set-valued representable and $\Z_R=a\Z[h_R]$ for its free abelian sheaf. Then
+\[
+ \Hom(\Z_R,\mathcal H)=\mathcal H(R).
+\]
+There is an augmented ordered chain complex
+\begin{equation}\label{eq:sheaf-resolution}
+ 0\longrightarrow \bigoplus_{|I|=r}\Z_{Q_I}
+ \longrightarrow\cdots\longrightarrow
+ \bigoplus_{|I|=1}\Z_{Q_I}
+ \longrightarrow\Z_Q\longrightarrow0.
+\end{equation}
+We verify exactness without assuming that the site is subcanonical, meaning that every representable is a sheaf.
+
+Before sheafification, evaluate the analogous free-representable complex on a test object $T$. It decomposes over maps $t:T\to Q$ in $\cC_P$. For a fixed $t$, let $J_t$ be the set of indices through which $t$ factors. Such a factorization through $Q_i$ is unique because $Q_i\to Q$ is a monomorphism. The summand belonging to $t$ is the augmented simplex chain complex on $J_t$. If $J_t$ is nonempty, inserting a chosen vertex with its ordered sign gives a contraction; an insertion repeating a vertex is zero.
+
+A section of this free complex has finite support in the set of maps $t$. Pull the covering family back along each of these finitely many maps and take a common refinement. Locally, every needed $J_t$ is nonempty, so the insertion contraction proves that every local cycle is a boundary, including at the augmentation. All homology presheaves therefore sheafify to zero. Exactness of abelian sheafification proves \eqref{eq:sheaf-resolution}.
+
+Apply $\Hom(-,\mathcal J^q)$ to \eqref{eq:sheaf-resolution}, where $\mathcal J^\bullet$ is an injective resolution of $\mathcal H$. The resulting augmented rows are exact. Consequently the total complex of
+\[
+ D^{p,q}=\prod_{|I|=p+1}\mathcal J^q(Q_I)
+\]
+computes $H^*(Q,\mathcal H)$. Taking vertical cohomology gives \eqref{eq:spectral}. The horizontal direction is bounded, so convergence has no unbounded-totalization issue. The augmentation is evaluation followed by restriction; it identifies the edge map as stated. This is the finite ordered form of the usual comparison in \cite[Tag 03AZ]{stacks}.
+\end{proof}
+
+\begin{proposition}\label{prop:acyclic}
+For every $P$, every $F:\cB_P\to\Ab$, every $Q\in\cA_P$, and every $n>0$, one has $H^n(Q,K_F)=0$.
+\end{proposition}
+
+\begin{proof}
+By Corollary~\ref{cor:sheaf}, $K_F$ is a sheaf. Fix $F$ and argue by induction on $n$, simultaneously for every object $Q$. Let $\alpha\in H^n(Q,K_F)$. Lemma~\ref{lem:local-killing} supplies a cover killing $\alpha$, and Proposition~\ref{prop:finite-refinement} refines it to a finite elementary cover with the finite-stage description used in Proposition~\ref{prop:all-cech}.
+
+In \eqref{eq:spectral}, the induction hypothesis kills all rows $1\leq q<n$ at every intersection. The zero row has no positive cohomology by Proposition~\ref{prop:all-cech}. Hence all associated graded pieces of total degree $n$ with $p>0$ vanish. The remaining piece is $E_\infty^{0,n}$. There are no incoming differentials at horizontal degree zero, so this piece embeds into
+\[
+ E_1^{0,n}=\prod_i H^n(Q_i,K_F).
+\]
+It follows that the restriction map
+\[
+ H^n(Q,K_F)\longrightarrow\prod_iH^n(Q_i,K_F)
+\]
+is injective. The cover was chosen to kill $\alpha$, so $\alpha=0$. For $n=1$ the same reasoning applies with no lower positive rows. This completes the induction.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Corollary~\ref{cor:sheaf} identifies the degree-zero map with the isomorphism $F(B_x)\to K_F(B_x)$ for every $x\in P$. Proposition~\ref{prop:acyclic} and \eqref{eq:derived-evaluation} make every positive cohomology presheaf of $R\pi_*\pi^{-1}F$ zero. There is no negative cohomology for the right derived functor applied to a degree-zero object. The canonical morphism is therefore a quasi-isomorphism.
+\end{proof}
+
+\section{Valuative objects and a nonsplit cover}
+
+Two examples clarify the role of the cover argument. If $Q$ is valuative, the defining test applied to $\mathrm{id}_Q$ supplies a member $Q\to Q_i$ of any cover with a retraction $Q_i\to Q$. In the opposite site the covering arrow is split epic, so the generated sieve is maximal. Sheafification consequently preserves every presheaf value at $Q$. Evaluation on abelian sheaves is exact there: a local lift across an epimorphism can be pulled back along the section. Thus every abelian sheaf has vanishing positive object cohomology at a valuative $Q$. If $P$ is valuative, each $B_x$ is valuative, because every element of its quotient group has a representative with one sign in $P$. This gives a direct proof of the theorem in that special case.
+
+The analogous split-cover argument fails for general $P$. Let $P=\N^2$, with generators $a=(1,0)$ and $b=(0,1)$, and put
+\[
+ t_1=(2,-1),\qquad t_2=(-1,2),\qquad
+ Q_1=\langle a,b,t_1\rangle,\quad Q_2=\langle a,b,t_2\rangle\subset\Z^2.
+\]
+These monoids have the exact descriptions
+\[
+ Q_1=\{(r,s):r\geq0,\ r+2s\geq0\},\qquad
+ Q_2=\{(r,s):s\geq0,\ 2r+s\geq0\}.
+\]
+For example, writing $r=2k+\epsilon$ with $\epsilon\in\{0,1\}$ gives the unique normal form
+\[
+ (r,s)=\epsilon a+(s+k)b+kt_1.
+\]
+Thus $Q_1$ has relative presentation $b+t_1=2a$; the other chart has presentation $a+t_2=2b$. The inequalities show saturation and sharpness, and both charts are elementary and finitely presented.
+
+For a valuation $v:P\to V$, set $\lambda=v(a)$ and $\mu=v(b)$. If $\lambda\geq\mu$, the map extends to $Q_1$ by $t_1\mapsto2\lambda-\mu$. For an infinitesimal factorization $v=ph$, with $h:P\to M$ and $p:M\to V$, write $\alpha=h(a)$, $\beta=h(b)$, $z=2\alpha-\beta$, and $y=\alpha+\beta$. Then
+\[
+ z+y=3\alpha,\qquad 2y-z=3\beta,
+\]
+so $-y\leq z\leq2y$. Also
+\[
+ p(z)\geq\lambda\geq0,\qquad
+ 2p(z)-p(y)=3(\lambda-\mu)\geq0.
+\]
+Infinitesimality forces $z\in M$, and the presentation gives the unique required lift to $Q_1$. The symmetric argument applies to $Q_2$ when $\mu\geq\lambda$. This proves that the two charts form a birhizomic cover, including ties, zero valuations, and non-Archimedean orders. Neither chart retracts to $P$, since a retraction would send $t_1$ or $t_2$ to its displayed vector outside $\N^2$.
+
+Their mixed pushout is
+\[
+ R=\langle t_1,a,b,t_2\rangle
+   =\{(r,s):2r+s\geq0,\ r+2s\geq0\}.
+\]
+To check the equality, use $ra+sb$ when both coordinates are nonnegative, $(-s)t_1+(r+2s)a$ when $s<0$, and $(-r)t_2+(s+2r)b$ when $r<0$. The inequalities exclude two negative coordinates and prove saturation and sharpness. Compatible maps from $Q_1$ and $Q_2$ to any integral target induce the same group map from $\Z^2$, since they agree on $a,b$; that group map restricts uniquely to $R$. This proves the pushout property even for noninjective maps from $P$. The same-chart pushouts equal the corresponding chart by epimorphicity.
+
+All structural maps from $P$ in this intersection diagram are injective. Hence every coefficient value is canonically $A=F(P)$ and all transitions are identities. The ordered augmented complex is
+\[
+ 0\longrightarrow A\xrightarrow{c\mapsto(c,c)}A^2
+ \xrightarrow{(c_1,c_2)\mapsto c_2-c_1}A\longrightarrow0.
+\]
+The localization category for $\N^2$ has the four-object skeleton $P\to B_a,B_b\to0$, with $B_a\simeq B_b\simeq\N$, so $F$ here is an arbitrary commutative square of abelian groups. This example imposes no constant-coefficient assumption. Its elementary exact complex illustrates the method; the all-cover reduction and the derived argument above are what establish the general theorem.
+
+The general vanishing result concerns the sheaves $K_F$ induced from localization diagrams. It does not assert that every sheaf on the birhizomic site is acyclic, nor require the site to be subcanonical. Finite generation enters only in the intermediate polyhedral argument, after compactness and single-element stabilization have justified that reduction.
+
+\begin{thebibliography}{9}
+\raggedright
+\bibitem{hatcher}
+Allen Hatcher, \emph{Algebraic Topology}, Cambridge University Press, 2002. Additional Topics to Chapter~4, \S4.G, Corollary~4G.3, p.~459.
+\url{https://pi.math.cornell.edu/~hatcher/AT/ATch4.4.pdf}.
+
+\bibitem{ogus}
+Arthur Ogus, \emph{Lectures on Logarithmic Algebraic Geometry}, draft of September~15, 2006, Chapter~I, \S\S1.2--1.3.
+\url{https://math.colorado.edu/~sbc21/seminars/reading/logG/papers/oguslogbook.pdf}.
+
+\bibitem{stacks}
+The Stacks Project Authors, \emph{The Stacks Project}, chapter \emph{Cohomology on Sites}, version ed88ff78, July~14, 2026. Tags
+\href{https://stacks.math.columbia.edu/tag/01FT}{01FT} and
+\href{https://stacks.math.columbia.edu/tag/03AZ}{03AZ}.
+\url{https://stacks.math.columbia.edu/download/sites-cohomology.pdf}.
+\end{thebibliography}
+\end{document}

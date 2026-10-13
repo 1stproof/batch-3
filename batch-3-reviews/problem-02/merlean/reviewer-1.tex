@@ -1,0 +1,780 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\cF}{\mathcal F}
+\newcommand{\diver}{\operatorname{div}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\Lip}{\operatorname{Lip}}
+\newcommand{\HS}{\mathrm{HS}}
+\newcommand{\TV}{\operatorname{TV}}
+\newcommand{\KL}{\operatorname{KL}}
+\newcommand{\norm}[1]{\lVert #1\rVert}
+\newcommand{\abs}[1]{\lvert #1\rvert}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\newcommand{\nl}{\\}
+
+\newcommand{\fptitle}{Review of Problem 2 -- MerLean}
+\newcommand{\reviewtag}{Reviewer 1}
+\usepackage{fp-review}
+
+\begin{document}
+\maketitle
+
+\section{Review}
+
+The paper gives the correct solution of the requested minimax rate (up to log factors) using novel ideas for estimation and lower bound alternatives, compared to the published literature. The estimation relies on a plugin approach for the explicit reconstruction and detailed arguments to derive the correct convergence rate. The error decomposition is different from the human proof and simplifies some of their upper bounds. It uses, however, sample splitting and finite-dimensional approximations which seem too complicated.  The lower bound relies on spherical perturbations in the domain of the underlying nonlinear forward operator, which differs from the human and most AI proofs. The lower bound technique amounts precisely to the classical Assouad Lemma, which is not acknowledged. 
+
+
+\paragraph{Correctness.}
+
+The stated result is correct. The lower bound proof is very nicely detailed and seemingly correct. The upper bound is using sample splitting to produce an independent pilot estimator and finite-dimensional approximations. This does not seem necessary and complicates the proof strategy. Some parts of the proof are too sketchy, e.g. the use of a 'distributional generator' in the proof of Lemma 6.1. Generally, however, the text is very readable and the arguments can be followed so that this is somewhat minor.
+
+\begin{itemize}
+	\item  1: essentially flawless mathematical argument
+	\item  0.5: minor errors that are easily corrected
+	\item  0: blank solution, or acknowledged partial result
+	\item  $-0.5$: major errors
+	\item  $-1$: proposed proof makes no progress towards the result.
+\end{itemize}
+Note that points should be docked for wrong statements/ solutions.
+
+\noindent Score: 0.5
+
+\paragraph{Exposition.}
+
+The paper is nicely written in general. Some notation or vocabulary ('face jump distribution', 'solving event') are not explained and make it harder to understand. Several statements are known in the literature, but not referred to (just proved from scratch). This could be streamlined, enhancing readability (as well as getting rid of sample splitting, additional approximation if possible). A short overview and discussion of related work are appreciated. A correct score would lie somewhat in the middle between 0 and 1, but the latter leads to rounding up.
+
+\begin{itemize}
+	\item  1: well-written and clear solution.
+	\item  0: argument that is possible to follow with serious effort
+	\item  $-1$: very poor exposition
+\end{itemize}
+
+\noindent Score: 1
+
+\paragraph{Attributions.} There are several results proved from scratch although they are well known in the literature with Lemma 7.1, sample splitting and Section 5.2 as most prominent examples. This is not scholarly. Technical tools used are also not always referenced, e.g. Littlewood-Paley dyadic partitions. The discussion of related work is appreciated, but far from comprehensive with authors like Andrew Stuart and [name redacted] studying the same inverse problem, yet not for establishing minimax rates.
+\begin{itemize}
+	\item  1: solutions contains fully appropriate attributions
+		to related work and theorems being used.
+	\item  0: moderate issues with missing attributions or hallucinated references
+	\item  $-1$: blatant plagiarism or hallucinations
+\end{itemize}
+
+\noindent Score: 0
+
+\newpage
+\section{Submission with inline comments}
+
+
+\begin{abstract}
+We consider recovery of a conductivity from a single solution of Darcy's equation on the unit ball, observed in Gaussian white noise of variance $n^{-1}$. For a sufficiently small fixed H\"older--Zygmund ball of smoothness $\alpha>1$ around the constant conductivity, we prove that the minimax squared $L^2$ risk has polynomial order $n^{-2\alpha/(2\alpha+d+3)}$ in every dimension $d\ge2$. The upper bound differs from the lower bound by at most $(\log n)^2$. The parameter class includes integer smoothness indices and has no prescribed conductivity trace. The lower bound uses localized angular perturbations and uniform nonlinear comparison. For the upper bound, inversion along a contracting gradient flow yields an integrated variance estimate that remains valid at the interior critical point. An independent pilot, a finite-dimensional correction, and boundary extrapolation give an estimator on the whole ball.
+\end{abstract}
+
+\section{The problem and its rate}
+Let $D=\{x\in\R^d:\abs{x}<1\}$, where $d\ge2$. For a positive conductivity $f$, let $u_f$ solve
+\begin{equation}\label{eq:pde}
+ \diver(f\nabla u_f)=1\quad\text{in }D,
+ \qquad u_f=0\quad\text{on }\partial D.
+\end{equation}
+We use the weak solution: $u_f\in H_0^1(D)$ and
+$\int_D f\nabla u_f\cdot\nabla\varphi=-\int_D\varphi$ for every $\varphi\in H_0^1(D)$.
+Uniform positivity of $f$ gives existence and uniqueness by the coercive energy form.
+
+Write $C_*^s(D)=B^s_{\infty,\infty}(D)$ for the inhomogeneous H\"older--Zygmund restriction space. Thus its norm is the infimum of the global $B^s_{\infty,\infty}(\R^d)$ norms of extensions; a concrete definition is given in Section~\ref{sec:analytic}. For noninteger $s>0$ this is the usual H\"older space, with an equivalent norm. At integer indices we retain the Zygmund convention. Fix
+\begin{equation}\label{eq:class}
+ \cF(\alpha,r)=\{f:\norm{f-1}_{C_*^\alpha(D)}\le r\},
+ \qquad \alpha>1.
+\end{equation}
+The observation is the Gaussian process
+\begin{equation}\label{eq:model}
+ Y_n(\varphi)=\ip{u_f}{\varphi}_{L^2(D)}+n^{-1/2}W(\varphi),
+ \qquad \varphi\in L^2(D),
+\end{equation}
+where $W$ is isonormal: it is centered Gaussian with covariance
+$\E W(\varphi)W(\psi)=\ip{\varphi}{\psi}_{L^2(D)}$.
+Our loss is squared error in the conductivity, and the minimax risk is
+\[
+ R_n(\alpha,r)=\inf_{\widehat f}\sup_{f\in\cF(\alpha,r)}
+ \E_f\norm{\widehat f-f}_{L^2(D)}^2,
+\]
+where the infimum is over measurable $L^2(D)$-valued estimators based on~\eqref{eq:model}.
+
+\begin{theorem}\label{thm:main}
+For each integer $d\ge2$ and each $\alpha>1$, there is $r_0=r_0(d,\alpha)>0$ such that, for every fixed $0<r<r_0$, there are constants $c,C>0$ with
+\begin{equation}\label{eq:rate}
+ c\,n^{-2\alpha/(2\alpha+d+3)}
+ \le R_n(\alpha,r)
+ \le C(\log n)^2n^{-2\alpha/(2\alpha+d+3)}
+\end{equation}
+for all sufficiently large $n$. The constants may depend on $d,\alpha,r$ and the fixed norm convention. No boundary values of $f$ are supplied.
+\end{theorem}
+
+The geometry of the solution matters for this rate. At $f=1$,
+\begin{equation}\label{eq:base}
+ u_1(x)=\frac{\abs{x}^2-1}{2d},\qquad \nabla u_1(x)=\frac{x}{d}.
+\end{equation}
+Its gradient vanishes at the origin. Moreover, angular oscillations supported in a fixed annulus are attenuated by two powers of their frequency, while there are order $J^{d-1}$ disjoint angular perturbations at frequency $J$. These two facts lead to the denominator $2\alpha+(d-1)+4$ in~\eqref{eq:rate}. A fixed-direction linearization alone does not establish a minimax lower bound on a fixed nonlinear parameter ball; Section~\ref{sec:lower} controls the nonlinear errors uniformly over the whole testing family.
+
+The upper bound uses a different aspect of the same geometry. For small $r$, every $u_f$ is strictly convex. Inversion of $a\mapsto\diver(a\nabla u_f)$ along the inward gradient flow is bounded on $L^2$, including at its unique critical point. After smoothing at scale $h$, averaging along this flow reduces the integrated noise variance from order $n^{-1}h^{-d-4}$ to $n^{-1}h^{-d-3}$. The estimator must account for the unknown flow and the nonlinear dependence on the noise. We therefore construct a pilot from an independent part of the observation, and bound the inverse of a finite-dimensional correction before taking noise expectations.
+
+\paragraph{Related work.}
+Nickl, van de Geer and Wang~\cite{NVW} study penalized least squares in elliptic coefficient problems with Gaussian white noise. Their Section~3.2 gives prediction bounds, a matching lower bound for estimating $u_f$ in $H^2$, and a conductivity upper bound obtained through stability; see their Theorems~9--11. Those theorems use Sobolev classes with higher smoothness and prescribed boundary jets in~(3.1). Prediction loss and squared conductivity loss are distinct, so those results do not give~\eqref{eq:rate}. Nickl and Paternain~\cite[Sections~3.1--3.3]{NP} analyze the linearized Darcy map and illustrate its critical-point geometry by an interior minimum on the disk. Their principal model class is a smooth Sobolev neighborhood, and their differentiability theorem is stated for $d\le3$. Here the flow estimates are proved directly for the full class~\eqref{eq:class} in all fixed dimensions $d\ge2$.
+
+The elliptic regularity inputs are established results. We use Johnsen's boundary regularity theory in Besov spaces~\cite[Theorem~5.2 and Corollary~1.2]{Johnsen} to include integer Zygmund indices, and the global gradient estimate of Breit, Cianchi, Diening and Schwarzacher~\cite[Corollary~2.7]{BCDS} for the nonlinear testing family. The remaining approximation, transport and Gaussian estimates are proved below. The conclusion is local in the conductivity radius and determines the polynomial rate; no optimality of the logarithmic factor is asserted.
+
+\section{Regularity and smoothing}\label{sec:analytic}
+Throughout, $C$ denotes a finite constant that may change between occurrences, but is independent of $n$, $h$, the frequency $J$, and the member of~\eqref{eq:class}. We write $a\lesssim b$ when $a\le Cb$ and $a\asymp b$ for two such inequalities. Norms without a displayed domain refer to the domain under discussion.
+
+\subsection{Function spaces and elliptic estimates}
+Choose a smooth inhomogeneous dyadic partition of unity in frequency, and let $H_j$ denote its Fourier multiplier blocks, with $j=0$ the low-frequency block and $j\ge1$ supported where $\abs{\xi}\asymp2^j$. \review{Explain inhomogeneous dyadic partitions and $\xi$ or -- better -- point to a reference} For $s\in\R$,
+\[
+ \norm{H}_{C_*^s(\R^d)}=\sup_{j\ge0}2^{js}\norm{H_j}_\infty.
+\]
+Changing this fixed partition gives an equivalent norm. For $s>0$, an equivalent global norm is
+\begin{equation}\label{eq:diffnorm}
+ \norm{H}_\infty+
+ \sup_{0<\abs{z}\le1}\abs{z}^{-s}\norm{\Delta_z^N H}_\infty,
+ \qquad N\in\mathbb N,\quad N>s,
+\end{equation}
+where $\Delta_zH(x)=H(x+z)-H(x)$ and $\Delta_z^N$ is its $N$-fold iterate. To see the relevant estimates, each block satisfies
+\[
+ \norm{D^kH_j}_\infty\lesssim2^{jk}\norm{H_j}_\infty,
+ \qquad
+ \norm{\Delta_z^NH_j}_\infty
+ \lesssim\min\{1,(2^j\abs{z})^N\}\norm{H_j}_\infty.
+\]
+Summing at $2^j\asymp\abs{z}^{-1}$ gives the forward bound in~\eqref{eq:diffnorm}. The reverse follows by writing an annular block as a finite sum of smooth multipliers applied to differences at scale $2^{-j}$; on its frequency support one chooses coordinate increments for which the difference multiplier is bounded away from zero. The inverse multipliers have uniformly bounded convolution $L^1$ norms after rescaling.
+
+Derivatives lower the index by their order. For $s>0$, decomposition of a product into low--high, high--low and comparable-frequency terms gives
+\begin{equation}\label{eq:product}
+ \norm{FG}_{C_*^s}\lesssim
+ \norm{F}_\infty\norm{G}_{C_*^s}
+ +\norm{G}_\infty\norm{F}_{C_*^s}.
+\end{equation}
+In the first two sums the low-frequency factor is bounded in $L^\infty$; in the last, the tail above an output scale is summable because $s>0$. Restriction norms inherit these estimates by taking extensions with norm within a fixed factor of the infimum. In particular, $C_*^s(D)\subset C^k(\overline D)$ whenever $s>k$, as the derivative block series then converges uniformly.
+
+Let $P=(-\Delta_D)^{-1}$ be the zero-Dirichlet inverse. Energy and Poincar\'e inequalities give
+\begin{equation}\label{eq:energy}
+ \norm{PS}_2+\norm{\nabla PS}_2\lesssim\norm{S}_2,
+ \qquad
+ \norm{P\diver F}_{H^1}\lesssim\norm{F}_2.
+\end{equation}
+The divergence inverse in this display is defined weakly. \review{There is no divergence inverse in the formulas.}
+
+\begin{lemma}\label{lem:elliptic}
+For $s>1$ and $F\in C_*^s(D;\R^d)$,
+\begin{equation}\label{eq:ER}
+ \norm{P\diver F}_{C_*^{s+1}(D)}\le C_s\norm{F}_{C_*^s(D)}.
+\end{equation}
+There is also $\beta_0>0$, depending only on $d$, such that for $0<\beta<\min(1,\beta_0)$,
+\begin{equation}\label{eq:lowER}
+ \norm{\nabla P\diver F}_{C^\beta(D)}
+ \le C_\beta\norm{F}_{C^\beta(D)}.
+\end{equation}
+Here $C^\beta$ has its ordinary full H\"older norm.
+\end{lemma}
+\begin{proof}
+We specify the application of the two regularity results. For~\eqref{eq:ER}, apply~\cite[Theorem~5.2]{Johnsen} to $(-\Delta,\gamma_0)$ on the smooth ball, where $\gamma_0$ is the boundary trace. In that theorem its order is $2$, its class is $1$, and its row and column weights are $b=(0,-2)$ and $a=(0)$. The resulting mapping is
+\[
+ B^t_{p,q}(D)\longrightarrow
+ B^{t-2}_{p,q}(D)\times B^{t-1/p}_{p,q}(\partial D),
+ \qquad t>1+\max(1/p-1,d/p-d).
+\]
+The interior symbol is $\abs{\xi}^2$. At nonzero tangential frequency, a decaying homogeneous half-space solution is $c e^{-\abs{\xi'}x_d}$, whose boundary trace determines $c$. This verifies ellipticity of the Dirichlet boundary problem. Differential operators have the transmission property required there.
+
+The weak solution $w=P\diver F$ starts in $H_0^1(D)\subset B^1_{2,2}(D)$, an admissible triple since the threshold is $1/2$. Its data lie in $B^{s-1}_{\infty,\infty}(D)$ with zero boundary trace. The target triple $(s+1,\infty,\infty)$ is admissible, its threshold being zero. The inverse-regularity clause of Theorem~5.2, referring to Corollary~1.2, therefore gives $w\in C_*^{s+1}(D)$. These are the restriction spaces defined in~\cite[(2.21)--(2.22)]{Johnsen}. The solution map is bounded by the closed graph theorem: convergence of $F_j$ in $C_*^s$ implies convergence of the solutions in $H_0^1$ by~\eqref{eq:energy}; convergence in $C_*^{s+1}$ has the same weak limit. Thus its graph is closed. No density of smooth functions in $B^s_{\infty,\infty}$ is used.
+
+For~\eqref{eq:lowER}, specialize~\cite[Corollary~2.7]{BCDS} to the scalar case, exponent $p=2$, dimension $d$, and the smooth ball. Its equation is $-\Delta w=-\diver F$, so replace the datum by $-F$. The permitted range is $0<\beta<\beta_0(d,1,2)$. Its H\"older bound is a seminorm bound, under the convention~(2.2) of that paper. Since $w$ has zero trace, $\int_D\nabla w=0$. Averaging $\nabla w(x)-\nabla w(y)$ over $y\in D$ controls the supremum by the seminorm and proves the full-norm estimate.
+\end{proof}
+
+\begin{proposition}\label{prop:geometry}
+After choosing $r_0$ sufficiently small, every $f\in\cF(\alpha,r)$, $r<r_0$, satisfies $1/2\le f\le3/2$ and
+\begin{equation}\label{eq:regular}
+ \norm{u_f-u_1}_{C_*^{\alpha+1}(D)}\le Cr,
+ \qquad \norm{u_f-u_1}_{C^2(\overline D)}\le Cr.
+\end{equation}
+In particular, we may arrange
+\begin{equation}\label{eq:truegeometry}
+ \frac{3}{4d}I\le D^2u_f\le\frac{5}{4d}I,
+ \qquad \nabla u_f\cdot\nu\ge\frac{5}{8d}
+ \quad\text{on }\partial B(0,R),\quad 3/4\le R\le1.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Writing $q=f-1$ and $w=u_f-u_1$, the equation is
+\begin{equation}\label{eq:fixedpoint}
+ w=P\diver\{q\nabla(u_1+w)\}.
+\end{equation}
+On the closed zero-trace subspace of $C_*^{\alpha+1}(D)$, Lemma~\ref{lem:elliptic} and~\eqref{eq:product} bound the linear part in $w$ by $Cr$. For $Cr<1/2$ this is a contraction, with solution of norm at most $Cr$. Its weak equation identifies it with $u_f-u_1$ by uniqueness. The embedding into $C^2$ follows by summing $2^{-j(\alpha-1)}$. Reducing $r_0$ makes the Hessian perturbation at most $1/(4d)$ in operator norm and the gradient perturbation at most $1/(8d)$. Equation~\eqref{eq:base} gives~\eqref{eq:truegeometry}. The supremum embedding similarly gives the conductivity bounds.
+\end{proof}
+
+\subsection{A smoothing residual with the required bias}
+Choose a real kernel $K\in C_c^\infty(B(0,1))$ of mass one with all nonconstant moments through an integer $L>2\alpha+2$ equal to zero. Such a signed kernel can be made from $L+1$ distinct dilations of one smooth bump: solve the Vandermonde equations $\sum_i a_i\lambda_i^j=\mathbf1_{\{j=0\}}$, $0\le j\le L$, with dilation factors small enough to preserve the support. Set
+\[
+ K_h(x)=h^{-d}K(x/h),\quad
+ \Omega_h=B(0,1-2h),\quad \Lambda_h=\log(e/h),
+ \quad f_h=K_h*f,\quad u_h=K_h*u_f.
+\]
+We always take $0<h<1/8$. These convolutions and their derivatives on $\Omega_h$ use only values in $D$; extensions are needed only to bound them.
+
+For a global $H\in C_*^t$ and $0<t<L+1$, Taylor cancellation on a dyadic block gives
+\[
+ \norm{(K_h*-I)H_j}_\infty
+ \lesssim\min\{(h2^j)^{L+1},1\}\norm{H_j}_\infty.
+\]
+Splitting the sum at $2^j\asymp h^{-1}$ proves
+\begin{equation}\label{eq:smoothing}
+ \norm{K_h*H-H}_\infty\lesssim h^t\norm{H}_{C_*^t},
+\end{equation}
+including integer $t$. Derivative versions follow by applying the same estimate to derivatives. Consequently,
+\begin{equation}\label{eq:smoothfu}
+ \norm{f_h-f}_{L^2(\Omega_h)}\lesssim h^\alpha,
+ \quad \norm{f_h}_{W^{1,\infty}(\Omega_h)}\lesssim1,
+ \quad \norm{u_h-u_f}_{C^k(\overline\Omega_h)}
+ \lesssim h^{\alpha+1-k},\quad k=1,2.
+\end{equation}
+
+\begin{lemma}\label{lem:residual}
+Uniformly over $f\in\cF(\alpha,r)$,
+\begin{equation}\label{eq:residual}
+ r_h:=\diver(f_h\nabla u_h)-1,
+ \qquad \norm{r_h}_{L^2(\Omega_h)}\lesssim h^\alpha\Lambda_h.
+\end{equation}
+\end{lemma}
+\begin{proof}
+For $F\in C_*^\alpha$ and $G\in C_*^{\alpha-1}$ of bounded norm define
+\[
+ \mathcal C_h(F,G)=K_h*(FG)-(K_h*F)(K_h*G).
+\]
+With $\delta_zF(x)=F(x-z)-F(x)$ and similarly for $G$, the exact identity is
+\begin{equation}\label{eq:commidentity}
+ \mathcal C_h(F,G)=\int K_h(z)\delta_zF\,\delta_zG\,dz
+ -(K_h*F-F)(K_h*G-G).
+\end{equation}
+Let $k=\lceil\alpha\rceil-1$ and let $\epsilon_\alpha$ be $1$ if $\alpha$ is an integer and $0$ otherwise. The increment Taylor polynomials of $F,G$ have degrees $1$ through $k$ and $1$ through $k-1$, respectively; the second is zero if $k=1$. Their remainders are bounded by
+\[
+ C\abs{z}^\alpha\log(e/\abs{z})^{\epsilon_\alpha},
+ \qquad C\abs{z}^{\alpha-1}\log(e/\abs{z})^{\epsilon_\alpha}.
+\]
+For clarity, these endpoint Taylor estimates also follow from the dyadic blocks. For noninteger $t$, summing derivatives gives the usual H\"older remainder. If $t$ is an integer, derivatives through $t-1$ exist continuously; their top-order increments are bounded by $C\abs{z}\log(e/\abs{z})$. The blocks below $\abs{z}^{-1}$ contribute at most $C\abs{z}$ each, and their number is logarithmic; the high-frequency tail is geometric. Taylor's integral formula then gives the asserted remainder of order $t$.
+
+The product of the two increment polynomials has no constant term and degree at most $2k-1$, so its integral against $K_h$ vanishes. The largest mixed remainder term is bounded by $Ch\,h^{\alpha-1}\Lambda_h^{\epsilon_\alpha}$, since $F$ is Lipschitz. The product of remainders is bounded by $Ch^{2\alpha-1}\Lambda_h^{2\epsilon_\alpha}$, which is at most $Ch^\alpha\Lambda_h^{\epsilon_\alpha}$ because $\alpha>1$. By~\eqref{eq:smoothing}, the last product in~\eqref{eq:commidentity} is $O(h^{2\alpha-1})$. Thus
+\begin{equation}\label{eq:commbound}
+ \norm{\mathcal C_h(F,G)}_\infty\lesssim h^\alpha\Lambda_h.
+\end{equation}
+On $\Omega_h$, convolution of~\eqref{eq:pde} now gives
+\[
+ r_h=-\mathcal C_h(f,\Delta u_f)
+      -\sum_{i=1}^d\mathcal C_h(\partial_i u_f,\partial_i f).
+\]
+Proposition~\ref{prop:geometry} puts the first factor of each commutator in $C_*^\alpha$ and the second in $C_*^{\alpha-1}$. This proves~\eqref{eq:residual}.
+\end{proof}
+
+\section{The lower bound: angular perturbations}\label{sec:lower}
+We construct many perturbations in one fixed annulus, so that the radial direction does not contribute to their number. Put $m=d-1$, $b_0=(10\sqrt m)^{-1}$, and use the sphere chart
+\[
+ \kappa(y)=(y,\sqrt{1-\abs{y}^2}),\qquad y\in(-2b_0,2b_0)^m.
+\]
+Choose nonzero real $\eta\in C_c^\infty((-1/4,1/4)^m)$ and $a\in C_c^\infty((1/3,2/3))$. For a large integer $J$, take centers
+$y_k\in J^{-1}\mathbb Z^m\cap(-b_0/2,b_0/2)^m$, $1\le k\le M_J$, where $M_J\asymp J^m$. Define functions on the sphere by \review{Explain Laplace-Beltrami operator.}
+\begin{equation}\label{eq:packets}
+ \phi_k(\kappa(y))=\eta(J(y-y_k)),\qquad
+ \psi_k=J^{-2}(-\Delta_{\mathbb S^{d-1}})\phi_k,
+\end{equation}
+extending by zero outside the chart. The supports are disjoint and separated. Uniform bounds on the chart metric give
+\begin{equation}\label{eq:packetnorms}
+ \norm{\phi_k}_2\asymp J^{-m/2},\quad
+ \norm{\nabla_{\mathbb S^{d-1}}\phi_k}_2\asymp J^{1-m/2},\quad
+ \norm{\psi_k}_2\asymp J^{-m/2}.
+\end{equation}
+For the last lower bound, integrate by parts to obtain
+$J^2\ip{\phi_k}{\psi_k}=\norm{\nabla_{\mathbb S^{d-1}}\phi_k}_2^2$ and apply Cauchy--Schwarz. This construction gives the cancellation needed below without a spectral-localization assumption.
+
+For $\sigma\in\{-1,1\}^{M_J}$ set
+\begin{equation}\label{eq:family}
+ \Phi_\sigma=\sum_k\sigma_k\phi_k,
+ \quad \Psi_\sigma=\sum_k\sigma_k\psi_k,
+ \quad q_\sigma(\rho\omega)=\varepsilon J^{-\alpha}a(\rho)\Psi_\sigma(\omega),
+ \quad f_\sigma=1+q_\sigma.
+\end{equation}
+Extend $q_\sigma$ by zero to $\R^d$. Disjoint supports give, for each integer $s\ge0$,
+$\norm{D^s q_\sigma}_\infty\le C_s\varepsilon J^{s-\alpha}$.
+For an integer $N>\alpha$, therefore,
+\[
+ \norm{\Delta_z^Nq_\sigma}_\infty
+ \lesssim\varepsilon J^{-\alpha}\min\{1,(J\abs{z})^N\}.
+\]
+Equation~\eqref{eq:diffnorm} gives $\norm{q_\sigma}_{C_*^\alpha}\lesssim\varepsilon$, including integer $\alpha$. Choose a fixed $\varepsilon>0$, depending on $r$, small enough that all $f_\sigma$ belong to~\eqref{eq:class} and $\norm{q_\sigma}_\infty\le1/2$. If $H(\sigma,\tau)$ is their Hamming distance, orthogonality yields
+\begin{equation}\label{eq:lossgeometry}
+ \norm{f_\sigma-f_\tau}_2^2
+ =4\varepsilon^2J^{-2\alpha}
+ \left(\int a(\rho)^2\rho^{d-1}\,d\rho\right)
+ \sum_{k:\sigma_k\ne\tau_k}\norm{\psi_k}_2^2
+ \asymp\varepsilon^2J^{-2\alpha-m}H(\sigma,\tau).
+\end{equation}
+Only this testing subclass has conductivity equal to one near the boundary. \review{The word 'only' is misleading/wrong.}
+
+\subsection{Linear cancellation and a uniform nonlinear bound}
+Let
+\[
+ T=I+d^{-1}x\cdot\nabla,\qquad A=PT.
+\]
+For smooth $h$, differentiation of~\eqref{eq:pde} at $1$ gives the linear perturbation $Ah$. \review{in (1) are two functions, none is 'h'. It becomes clear in next sentence.}
+Equivalently, $-\Delta Ah=\diver(h\nabla u_1)=Th$, with zero trace. We will use an exact identity for this operator. Define the fixed radial functions
+\[
+ g=a+\rho a'/d,\qquad c=\rho^2g,\qquad
+ B=c''+(d-1)c'/\rho.
+\]
+Polar differentiation gives
+\[
+ -\Delta(J^{-2}c\phi_k)=g\psi_k-J^{-2}B\phi_k,
+ \qquad
+ A(a\psi_k)=J^{-2}\{c\phi_k+P(B\phi_k)\}.
+\]
+Thus
+\begin{equation}\label{eq:linearpacket}
+ Aq_\sigma=\varepsilon J^{-\alpha-2}
+ \{c\Phi_\sigma+P(B\Phi_\sigma)\}.
+\end{equation}
+Energy estimates~\eqref{eq:energy} imply that a single-sign difference $e=q_+-q_-$ satisfies \review{$q_+,q_-$ should be defined.}
+\begin{equation}\label{eq:singlelinear}
+ \norm{Ae}_2\lesssim J^{-2}\norm e_2,
+ \qquad \norm{\nabla Ae}_2\lesssim J^{-1}\norm e_2.
+\end{equation}
+Indeed, the $L^2$ norm of $B\phi_k$ is $O(J^{-m/2})$, while differentiation of $c\phi_k$ costs at most one factor $J$.
+
+Fix $0<\beta<\min(1,\alpha-1,\beta_0)$ as allowed in Lemma~\ref{lem:elliptic}. The disjoint packet bounds also give
+\[
+ \norm{q_\sigma}_{C^\beta}\lesssim\varepsilon J^{-\alpha+\beta},\quad
+ \norm{B\Phi_\sigma}_{C^\beta}\lesssim J^\beta,\quad
+ \norm{\nabla(c\Phi_\sigma)}_{C^\beta}\lesssim J^{1+\beta}.
+\]
+To apply~\eqref{eq:lowER} to a scalar source $S=B\Phi_\sigma$, extended by zero, write it as $\diver F$ with
+\[
+ F(x)=\left(\int_{-2}^{x_1}S(t,x_2,\ldots,x_d)\,dt,0,\ldots,0\right).
+\]
+Then $\norm F_{C^\beta(D)}\lesssim\norm S_{C^\beta(\R^d)}$. From~\eqref{eq:linearpacket},
+\begin{equation}\label{eq:linholder}
+ \norm{\nabla Aq_\sigma}_{C^\beta}\lesssim
+ \varepsilon J^{-\alpha-1+\beta}.
+\end{equation}
+
+Write $w_\sigma=u_{f_\sigma}-u_1$. Its exact equation is
+\begin{equation}\label{eq:nonlinpacket}
+ w_\sigma=Aq_\sigma+P\diver(q_\sigma\nabla w_\sigma).
+\end{equation}
+On the zero-trace space $C^{1,\beta}$ with norm $\norm{\nabla w}_{C^\beta}$, the last operator has norm at most $C\norm{q_\sigma}_{C^\beta}\le C\varepsilon$. Reducing the fixed $\varepsilon$ makes it a contraction of norm at most $1/2$. Its solution equals the weak solution by ellipticity. Hence
+\begin{equation}\label{eq:nonlinuniform}
+ \sup_\sigma\norm{\nabla w_\sigma}_\infty
+ \lesssim\varepsilon J^{-\alpha-1+\beta}.
+\end{equation}
+
+For neighboring signs put $\zeta=u_{f_+}-u_{f_-}$ and $R=\zeta-Ae$. Subtracting the PDEs gives, with zero trace,
+\[
+ \diver((1+q_+)\nabla R)
+ =-\diver(e\nabla w_-)-\diver(q_+\nabla Ae).
+\]
+By energy,~\eqref{eq:singlelinear} and~\eqref{eq:nonlinuniform},
+\begin{align}
+ \norm R_2
+ &\lesssim\norm e_2\norm{\nabla w_-}_\infty
+       +\norm{q_+}_\infty\norm{\nabla Ae}_2\notag\\
+ &\lesssim J^{-2}\norm e_2\,
+ \varepsilon\{J^{1+\beta-\alpha}+J^{1-\alpha}\}.
+ \label{eq:nonlinremainder}
+\end{align}
+Both exponents in braces are negative. Equations~\eqref{eq:lossgeometry} and~\eqref{eq:singlelinear} now imply the uniform neighboring bound
+\begin{equation}\label{eq:neighbor}
+ \norm{u_{f_+}-u_{f_-}}_2^2
+ \lesssim\varepsilon^2J^{-2\alpha-m-4}.
+\end{equation}
+
+\subsection{Gaussian testing}
+The Gaussian shift experiment~\eqref{eq:model} has exact relative entropy
+$\KL(\Prob_{f_+},\Prob_{f_-})=(n/2)\norm{u_{f_+}-u_{f_-}}_2^2$.
+Choose $J$ to be the ceiling of a sufficiently large constant times
+$n^{1/(2\alpha+m+4)}$. Then~\eqref{eq:neighbor} makes each neighboring relative entropy at most $1/8$, and Pinsker's inequality gives total variation at most $1/4$.
+
+Here is the full reduction from testing to loss. \review{This is Assouad's cube technique and must be acknowledged.} Put $h_k=\varepsilon J^{-\alpha}a\psi_k$; these functions are orthogonal in $L^2(D)$. For any estimator $\widehat f$, infer its $k$th sign from the sign of $\ip{\widehat f-1}{h_k}$, with a fixed convention at zero. A wrong sign entails squared projection error at least $\norm{h_k}_2^2$. For two parameter vectors differing only at $k$, the sum of the two testing error probabilities is at least $1-\TV\ge3/4$. Averaging uniformly over all sign vectors therefore gives error probability at least $3/8$ per coordinate. Bessel's inequality and~\eqref{eq:packetnorms} yield
+\[
+ \sup_{f\in\cF(\alpha,r)}\E_f\norm{\widehat f-f}_2^2
+ \ge\frac38\sum_{k=1}^{M_J}\norm{h_k}_2^2
+ \gtrsim\varepsilon^2J^{-2\alpha}.
+\]
+Since $m+4=d+3$, this proves the lower bound of Theorem~\ref{thm:main}.
+
+\section{Transport inversion and integrated variance}\label{sec:transport}
+The upper bound requires an inverse that uses the gradient geometry without dividing by its magnitude. We prove that inverse first for a deterministic potential $v$.
+
+\begin{lemma}\label{lem:transport}
+\review{Explain: $\nu$ is outward normal, $K_0\ge\kappa>0$ and defining equation for $\Phi_t$. What do you mean by 'in distributions'? (This actually holds in $L^2$.)}
+Let $\Omega=B(0,R)$ with $3/4\le R\le1$, and suppose $v\in C^2(\overline\Omega)$ satisfies
+\begin{equation}\label{eq:flowgeometry}
+ \kappa I\le D^2v\le K_0I,\qquad \nabla v\cdot\nu>0\text{ on }\partial\Omega,
+ \qquad \kappa>0.
+\end{equation}
+Let $\Phi_t$ be the flow of $-\nabla v$, and set
+\[
+ j_t(x)=\det D\Phi_t(x)
+ =\exp\left\{-\int_0^t\Delta v(\Phi_sx)\,ds\right\},
+ \quad T_va=\diver(a\nabla v),
+ \quad R_vg(x)=\int_0^\infty j_t(x)g(\Phi_tx)\,dt.
+\]
+Then $R_v$ extends to a bounded operator on $L^2(\Omega)$ with
+\begin{equation}\label{eq:transportbound}
+ \norm{R_v}_{2\to2}\le\frac{2}{d\kappa}.
+\end{equation}
+For Lipschitz $a$, $R_vT_va=a$. Also $T_vR_vg=g$ in distributions for $g\in L^2(\Omega)$. No boundary value of $a$ is required.
+\end{lemma}
+\begin{proof}
+Strict convexity and the outward gradient imply that the unique minimizer $z_0$ of $v$ lies in $\Omega$, with $\nabla v(z_0)=0$. The inward flow remains in $\Omega$ for all $t\ge0$. Strong convexity gives \review{Give reference (they exist!) or write short proof.}
+\begin{equation}\label{eq:flowcontraction}
+ \abs{\Phi_tx-z_0}\le e^{-\kappa t}\abs{x-z_0},
+ \qquad 0<j_t(x)\le e^{-d\kappa t}.
+\end{equation}
+For smooth bounded $a$,
+\[
+ \frac{d}{dt}\{j_t(x)a(\Phi_tx)\}=-j_t(x)(T_va)(\Phi_tx).
+\]
+The terminal value vanishes by~\eqref{eq:flowcontraction}, proving the first inverse identity. \review{Refer to an equation number instead 'first inverse identity' and argue more precisely why it is implied.} The same identity holds almost everywhere for Lipschitz $a$ by the characteristic chain rule. Alternatively, approximate in $W^{1,2}$ by smooth functions and use the boundedness below.
+
+For $S_tg=j_t(g\circ\Phi_t)$, changing variables $y=\Phi_tx$ gives
+\[
+ \norm{S_tg}_2^2
+ =\int_{\Phi_t(\Omega)}j_t(\Phi_t^{-1}y)\abs{g(y)}^2\,dy
+ \le e^{-d\kappa t}\norm g_2^2.
+\]
+Minkowski's inequality proves~\eqref{eq:transportbound} and defines the integral for every $g\in L^2$. Finally $S_t$ is a strongly continuous semigroup on $L^2$, and its distributional generator is $-T_v$. \review{This is sloppy: semigroup property, domain of generator etc.}  Its semigroup identity gives
+$S_\tau R_vg=R_vg-\int_0^\tau S_tg\,dt$.
+Dividing by $\tau$ and letting $\tau\downarrow0$ proves $T_vR_vg=g$ in distributions.
+\end{proof}
+
+For a coefficient $b\in W^{1,\infty}(\Omega_h)$, write $L_bz=\diver(b\nabla z)$, where weak derivatives of $b$ are understood. The Hilbert--Schmidt norm of an integral operator with kernel $H(x,y)$ is $(\int\int\abs{H(x,y)}^2\,dy\,dx)^{1/2}$. Its square is the expected squared $L^2$ norm of the operator applied to isonormal white noise.
+
+\begin{lemma}\label{lem:variance}
+Suppose $v$ satisfies~\eqref{eq:flowgeometry} on $\Omega_h$, with fixed bounds $\kappa,K_0$, and $\norm b_{W^{1,\infty}}\le C_0$. The operator from $L^2(D)$ to $L^2(\Omega_h)$ defined by $R_vL_b(K_h*\,\cdot\,)$ satisfies
+\begin{equation}\label{eq:HS}
+ \norm{R_vL_bK_h}_{\HS}^2\lesssim h^{-d-3}.
+\end{equation}
+The constant is uniform under these bounds.
+\end{lemma}
+\begin{proof}
+Its kernel is
+\begin{align*}
+ H_h(x,y)=\int_0^\infty j_t(x)\big[&b(\Phi_tx)\Delta K_h(\Phi_tx-y)\\
+ &+\nabla b(\Phi_tx)\cdot\nabla K_h(\Phi_tx-y)\big]dt.
+\end{align*}
+The bracket has $L^2(dy)$ norm at most $Ch^{-d/2-2}$. Two such brackets have disjoint supports when their centers are more than $2h$ apart. Expanding the square and applying Cauchy--Schwarz in $y$ therefore bounds the squared kernel norm by $Ch^{-d-4}I_h$, where
+\[
+ I_h=\int_{\Omega_h}\int_0^\infty\int_0^\infty
+ j_s(x)j_t(x)\mathbf1_{\{\abs{\Phi_sx-\Phi_tx}\le2h\}}\,dt\,ds\,dx.
+\]
+By symmetry take $t=s+\tau$. Put $r_s=\abs{\Phi_sx-z_0}$. The reverse triangle inequality and~\eqref{eq:flowcontraction} give
+\[
+ \abs{\Phi_{s+\tau}x-\Phi_sx}\ge(1-e^{-\kappa\tau})r_s.
+\]
+If $r_s\ge4h$, overlap forces $\tau\le Ch/r_s$. If $r_s<4h$, use $j_{s+\tau}/j_s\le e^{-d\kappa\tau}$ without the indicator. In either case the $\tau$ integral is at most $Cj_s\min(1,h/r_s)$. Consequently,
+\begin{align*}
+ I_h&\lesssim\int_0^\infty\int_{\Omega_h}
+ j_s(x)^2\min\left(1,\frac h{\abs{\Phi_sx-z_0}}\right)dx\,ds\\
+ &\le C\int_0^\infty e^{-d\kappa s}ds
+ \int_{\Omega_h}\min\left(1,\frac h{\abs{y-z_0}}\right)dy
+ \lesssim h.
+\end{align*}
+For the last inequality, the region of radius $h$ contributes $O(h^d)$, and the remainder contributes at most $Ch\int_h^2\rho^{d-2}\,d\rho=O(h)$ when $d\ge2$. This explicitly includes a neighborhood of the critical point. Substitution proves~\eqref{eq:HS}.
+\end{proof}
+
+\section{Approximation and an independent pilot}\label{sec:construction}
+We next build the two auxiliary objects used by the estimator. A deterministic projection makes the correction finite dimensional and controls one derivative by $h^{-1}$. A pilot constructed from legitimate observation tests supplies the flow while remaining independent of the noise used in Lemma~\ref{lem:variance}. \review{It does not become clear why an additional finite-dimensional approximation is required, explain!}
+
+\subsection{A projection without boundary constraints}
+\begin{lemma}\label{lem:projection} \review{This result is standard in numerical literature for approximation spaces, e.g. finite elements or multiresaolution analysis of wavelets. References!} 
+There are deterministic spaces $V_h\subset W^{1,\infty}(\Omega_h)$ of dimension $O(h^{-d})$ and projections $Q_h:L^2(\Omega_h)\to V_h$ such that
+\begin{equation}\label{eq:projectionbounds}
+ \norm{Q_h}_{2\to2}\lesssim1,\qquad
+ \norm{\nabla a}_2\lesssim h^{-1}\norm a_2\quad(a\in V_h).
+\end{equation}
+For $f_h$ from Section~\ref{sec:analytic}, let $f_0=Q_hf_h$ and $\eta_h=f_h-f_0$. Then
+\begin{equation}\label{eq:approx}
+ \norm{\eta_h}_2+h\norm{\nabla\eta_h}_2\lesssim h^\alpha,
+ \qquad \norm{f_0}_{W^{1,\infty}}\lesssim1.
+\end{equation}
+The spaces impose no boundary values.
+\end{lemma}
+\begin{proof}
+We give a construction to keep the boundary and stability properties explicit. Let
+$P_0=\{x:\sum_i\abs{x_i}<1\}$, split into its $2^d$ sign simplices. Choose a smooth nondecreasing $\chi$, zero for $t\le1/(4\sqrt d)$ and one for $t\ge1/(2\sqrt d)$, and define
+\[
+ F(0)=0,\qquad
+ F(x)=x\left[1+\chi(\abs{x})\left(\frac{\abs{x}_1}{\abs{x}}-1\right)\right],
+ \qquad \abs{x}_1=\sum_i\abs{x_i}.
+\]
+Along $x=t\omega$, with $c=\abs{\omega}_1\in[1,\sqrt d]$, the new radius is
+$\rho=t[1+\chi(t)(c-1)]$ and
+$\partial_t\rho=1+(c-1)(\chi+t\chi')\ge1$.
+At the polytope boundary $t=1/c$, it equals one. Thus $F$ maps $P_0$ bijectively onto $D$. Its Jacobian is $(\rho/t)^{d-1}\partial_t\rho$, bounded above and below. On each sign simplex it is smooth with bounded derivatives of every fixed order; near zero it is the identity. The map and its inverse are globally Lipschitz. Hence $F_R=RF$, $R=1-2h$, has the same uniform properties as a map onto $\Omega_h$.
+
+For completeness, a conforming mesh of uniformly bounded shape ratios can be chosen as follows. On each sign simplex set $z_i=\abs{x_i}$ and $t_i=z_i+\cdots+z_d$. The simplex becomes $1\ge t_1\ge\cdots\ge t_d\ge0$. Subdivide cubes of side $1/m_h$, $m_h=\lceil1/h\rceil$, by ordering their coordinate fractions, and retain the simplices inside this ordered region. Pull them back by $z_i=t_i-t_{i+1}$, $t_{d+1}=0$. The faces $z_i=0$ correspond to $t_i=t_{i+1}$ (or $t_d=0$), so meshes on adjacent sign simplices agree. There are only finitely many rescaled element shapes, their volumes are comparable to $h^d$, and a node belongs to a bounded number of elements.
+
+Let $S_h$ be the continuous piecewise polynomial space of degree $p=\lceil\alpha\rceil$, with every Lagrange node retained, including boundary nodes. Set
+$V_h=\{A\circ F_R^{-1}:A\in S_h\}$.
+For each global node $i$, choose one incident simplex $S_i$. Let $\psi_i$ be the local polynomial dual to that node, meaning
+$\int_{S_i}\psi_i\varphi_j=\delta_{ij}$ for the local nodal basis functions. Inverting their positive definite mass matrix and rescaling gives
+\[
+ \norm{\psi_i}_2\lesssim\abs{S_i}^{-1/2},\quad
+ \norm{\psi_i}_1\lesssim1,\quad \int_{S_i}\psi_i=1.
+\]
+With $\varphi_i$ now denoting the global nodal functions, define
+\[
+ c_i(g)=\int_{S_i}g(F_Ry)\psi_i(y)\,dy,
+ \qquad Q_hg=\left(\sum_i c_i(g)\varphi_i\right)\circ F_R^{-1}.
+\]
+Local duality shows that $Q_h$ is a projection. On each target element, Cauchy--Schwarz bounds its coefficients by the $L^2$ norm on a bounded collection of nearby elements times $h^{-d/2}$. Summing, using bounded overlap and the Jacobian bounds, proves the first estimate in~\eqref{eq:projectionbounds}. Polynomial inverse estimates on the finite reference shapes give the second. Continuity across faces ensures membership in $W^{1,\infty}$.
+
+We verify the approximation order for the smoothed function. For each dyadic block of an extension $H$ of $f$, rapid decay of the Fourier transform of $K$ gives, for every fixed $q$ and $N$,
+\[
+ \norm{D^q(K_h*H_j)}_\infty
+ \lesssim 2^{j(q-\alpha)}(1+h2^j)^{-N}.
+\]
+This follows by localizing the smooth Fourier multiplier to its annulus, rescaling, and bounding its inverse Fourier kernel in $L^1$ by finitely many derivatives. Summing with $q=p+1>\alpha$ yields
+$\norm{D^{p+1}f_h}_\infty\lesssim h^{\alpha-p-1}$; all lower derivatives are bounded by the same envelope for $h<1$. On each sign simplex composition with $F_R$ preserves this bound. Taylor expansion on an element therefore proves that the ordinary nodal interpolant $I_hf_h\in V_h$ has errors
+\[
+ \norm{f_h-I_hf_h}_\infty\lesssim h^\alpha,
+ \qquad \norm{\nabla(f_h-I_hf_h)}_\infty\lesssim h^{\alpha-1}.
+\]
+The interpolants agree across faces because their node values agree. Since $Q_hI_hf_h=I_hf_h$, its local coefficient bounds applied to the remainder give the same estimates for $Q_hf_h$, proving the first part of~\eqref{eq:approx}.
+
+Finally, $Q_h$ preserves Lipschitz bounds uniformly. On a target element fix a point $y_*$. Every source simplex contributing to that element is within $Ch$ of $y_*$, and, because $\int\psi_i=1$, its coefficient differs from $(g\circ F_R)(y_*)$ by at most $Ch\Lip(g\circ F_R)$. The basis is a partition of unity and its gradients are $O(h^{-1})$. Subtracting that common constant before differentiating gives
+$\norm{Q_hg}_{W^{1,\infty}}\lesssim\norm g_{W^{1,\infty}}$.
+Apply this to~\eqref{eq:smoothfu} to finish the proof.
+\end{proof}
+
+\subsection{Reflection and Gaussian bounds for the pilot}
+A convolution near the boundary must use only observations in $D$. We implement it through the adjoint of an explicit extension. Let $s=\alpha+1>2$, choose an integer $M>s$, and put $J_0=M+1$. Choose coefficients $\lambda_j$, $1\le j\le J_0$, satisfying
+\[
+ \sum_{j=1}^{J_0}\lambda_j(-j)^\ell=1,\qquad 0\le\ell\le M.
+\]
+The system is invertible by the Vandermonde determinant. Fix $\delta_0<1/(4J_0)$ and a smooth cutoff $\eta_0$, equal to one near zero and vanishing before $\delta_0$. Define $Eg=g$ in $D$, and in the outer collar put
+\begin{equation}\label{eq:extension}
+ Eg((1+t)\omega)=\eta_0(t)\sum_{j=1}^{J_0}\lambda_j g((1-jt)\omega),
+ \quad 0<t<\delta_0;
+\end{equation}
+set it zero further away. The reflected radii are at least $3/4$, so radial changes of variables prove
+\begin{equation}\label{eq:Ebounded}
+ \norm E_{L^2(D)\to L^2(\R^d)}\lesssim1.
+\end{equation}
+Consequently its adjoint $E^*$ sends every $L^2(\R^d)$ kernel to a legitimate test function on $D$.
+
+The moment equations match all available normal derivatives at the boundary; tangential derivatives then agree as well. When $s$ is noninteger, the restriction dyadic bound gives the usual $C^{\lfloor s\rfloor,s-\lfloor s\rfloor}$ envelope for $u_f$. When $s$ is an integer, its derivatives through $s-1$ are continuous and the top derivatives have modulus $Ct\log(e/t)$, by the dyadic split in the proof of Lemma~\ref{lem:residual}. Smooth reflections preserve these envelopes. In boundary coordinates an increment crossing the interface can be split at the interface point, so the same modulus holds for~\eqref{eq:extension}. Taylor expansion using the moments of $K$ therefore gives
+\begin{equation}\label{eq:pilotbias}
+ \norm{K_b*Eu_f-u_f}_{C^k(\overline D)}
+ \lesssim b^{\alpha+1-k}\log(e/b),\qquad k=1,2.
+\end{equation}
+This argument needs only these classical or logarithmic regularity envelopes; it does not assume that $E$ is bounded in every integer Zygmund norm.
+
+Introduce an auxiliary white noise $W'$ independent of $Y_n$, and form
+\begin{equation}\label{eq:split}
+ Y^{(1)}=Y_n+n^{-1/2}W',\qquad
+ Y^{(2)}=Y_n-n^{-1/2}W'.
+\end{equation}
+Their noises are independent and each has variance $2/n$, as follows by computing the joint Gaussian covariance. \review{This sample splitting trick is known, give credit to literature.} Denote the corresponding normalized independent white noises by $W_1,W_2$. For $k_{b,x}(t)=K_b(x-t)$, set
+\begin{equation}\label{eq:pilot}
+ v(x)=Y^{(1)}(E^*k_{b,x}),\qquad x\in\overline D.
+\end{equation}
+Its mean is $K_b*Eu_f$. On $\Omega_h$ also set
+\begin{equation}\label{eq:Z}
+ Z=K_h*Y^{(2)}=u_h+N,\qquad N=\sqrt{2/n}\,K_h*W_2.
+\end{equation}
+Here $K_h*Y^{(2)}(x)$ means evaluation of $Y^{(2)}$ at $K_h(x-\cdot)$ restricted to $D$.
+
+\begin{lemma}\label{lem:pilot}
+Suppose $b$ and $h$ are fixed positive powers of $n^{-1}$. For every $A_0>0$, with probability at least $1-C_{A_0}n^{-A_0}$, uniformly over $f\in\cF(\alpha,r)$,
+\begin{align}
+ \norm{v-u_f}_{C^k(\overline D)}
+ &\le C_{A_0}\left[b^{\alpha+1-k}\log(e/b)
+       +n^{-1/2}b^{-d/2-k}\sqrt{\log n}\right],\quad k=1,2,
+ \label{eq:pilottail}\\
+ h^{-1}\norm{\nabla N}_\infty+\norm{\Delta N}_\infty
+ &\le C_{A_0}n^{-1/2}h^{-d/2-2}\sqrt{\log n}.
+ \label{eq:noisetail}
+\end{align}
+The fields can be chosen to be smooth and separable.
+\end{lemma}
+\begin{proof}
+By~\eqref{eq:Ebounded}, a derivative of order $k$ of the centered pilot has standard deviation at most
+$\sigma_k=Cn^{-1/2}b^{-d/2-k}$.
+Its increment standard deviation is bounded by
+$C\sigma_k\min(1,\abs{x-y}/b)$, using one more derivative of the kernel. The same estimates hold at every fixed derivative order. Gaussian moment bounds and a continuity criterion give continuous versions of all these derivative fields; the $L^2(D)$-valued differentiation identities for the kernels identify a smooth modification.
+
+Here a direct net argument gives the required tail, without an expectation bound left implicit. Cover a fixed cube containing $\overline D$ first by a grid of spacing $b$, then by successive refinements of spacing $b2^{-j}$. There are $O(b^{-d}2^{jd})$ points at level $j$, and each point differs from its parent by a Gaussian increment with standard deviation at most $C\sigma_k2^{-j}$. Union bounds with thresholds
+\[
+ D_{A_0}\sigma_k\sqrt{\log n}\quad\text{on the first grid},\qquad
+ D_{A_0}\sigma_k2^{-j}\sqrt{\log n+j}\quad\text{on level }j
+\]
+have total failure probability $O(n^{-A_0})$ when $D_{A_0}$ is sufficiently large: $b^{-d}$ is a fixed power of $n$, and the Gaussian exponential absorbs both that power and $2^{jd}$. The sum of the thresholds is $O(\sigma_k\sqrt{\log n})$. Continuity extends the conclusion to all points; a finite union treats derivatives through order two. Adding~\eqref{eq:pilotbias} proves~\eqref{eq:pilottail}. Apply the same argument to $K_h*W_2$ at orders one and two to obtain~\eqref{eq:noisetail}. \review{This is a nice 'quick argument', but refer to literature for more details or even the result itself.}
+\end{proof}
+
+\section{The estimator and the upper bound}\label{sec:upper}
+Choose
+\begin{equation}\label{eq:bandwidths}
+ q=2\alpha+d+3,\qquad h=n^{-1/q},\qquad
+ b=h^a,\qquad a=\frac{1+1/\alpha}{2}\in(1/\alpha,1).
+\end{equation}
+Only sufficiently large $n$ are relevant; for smaller $n$ the estimator may be set to one. Write $\delta=u_h-v$. The pilot and smoothing bounds give
+\begin{equation}\label{eq:deltasmall}
+ h^{-1}\norm{\nabla\delta}_\infty+\norm{\Delta\delta}_\infty=o(1)
+\end{equation}
+on events of probability $1-O(n^{-A_0})$, for any fixed $A_0$. We check this choice explicitly. The bias terms have powers $h^{\alpha-1}$, $h^{a\alpha-1}$ and $h^{a(\alpha-1)}$, all tending to zero since $a\alpha-1=(\alpha-1)/2>0$. With $n^{-1/2}=h^{q/2}$, the pilot noise powers are
+\[
+ q/2-1-a(d/2+1),\qquad q/2-a(d/2+2).
+\]
+Both are at least $\alpha-1/2>0$, since $a<1$. The second noise in~\eqref{eq:noisetail} has power $\alpha-1/2$ as well. Thus all the stated convergences hold despite the logarithmic factors. In particular, $v$ is uniformly $C^2$-close to $u_f$ with this probability.
+
+\subsection{An observable finite-dimensional equation}
+First check from $v$ whether
+\begin{equation}\label{eq:pilotgeometry}
+ \frac1{2d}I\le D^2v\le\frac3{2d}I\quad\text{on }\overline\Omega_h,
+ \qquad \nabla v\cdot\nu\ge\frac1{2d}\quad\text{on }\partial\Omega_h.
+\end{equation}
+If this fails, output the constant function one. Proposition~\ref{prop:geometry} and Lemma~\ref{lem:pilot} show that failure has probability $O(n^{-A_0})$.
+
+When~\eqref{eq:pilotgeometry} holds, $R_v$ is defined by Lemma~\ref{lem:transport}. For a smooth $z$ on $\overline\Omega_h$, define an operator on $V_h$ by
+\begin{equation}\label{eq:B}
+ B_z a=Q_hR_v\diver(a\nabla z).
+\end{equation}
+The projection and inverse inequalities imply, for a fixed deterministic constant $C_B$,
+\begin{equation}\label{eq:Bbound}
+ \norm{B_z}_{2\to2}
+ \le C_B\left(h^{-1}\norm{\nabla z}_\infty+\norm{\Delta z}_\infty\right).
+\end{equation}
+Indeed, $\diver(a\nabla z)=\nabla a\cdot\nabla z+a\Delta z$ belongs to $L^2$; continuity of $a$ excludes a face jump distribution. \review{The expression 'face jump distribution' is uncommon, clarify!}
+
+Use $z=Z-v=\delta+N$. Check whether the observable right side of~\eqref{eq:Bbound} is at most $1/2$. If not, output one. Otherwise solve the finite-dimensional equation
+\begin{equation}\label{eq:estimator}
+ (I+B_{Z-v})\widehat f^{\,\mathrm{int}}=Q_hR_v1
+ \quad\text{in }V_h.
+\end{equation}
+Its inverse exists with norm at most two. Equations~\eqref{eq:deltasmall} and~\eqref{eq:noisetail} imply that both checks succeed with probability at least $1-C_{A_0}n^{-A_0}$. The unknown $f_h,f_0$ and $\delta$ are comparison quantities in the proof; only $v,Z$ and the fixed constructions are used in~\eqref{eq:estimator}.
+
+All these operations are measurable. The smooth Gaussian fields have separable versions, so the suprema and geometry checks can be tested on countable dense sets. Fix a deterministic basis of $V_h$. Finite-time flows and Jacobians are measurable functions of the $C^2$ pilot; integrating fixed Borel representatives gives measurable matrix entries. The tail of $R_v$ beyond time $T$ has $L^2$ operator norm at most
+$(2/(d\kappa))e^{-d\kappa T/2}$, so its matrix entries are measurable limits of finite-time entries. Matrix inversion on the accepted event is measurable as well.
+
+\subsection{Risk on the interior}
+Recall $f_0=Q_hf_h$, $\eta_h=f_h-f_0$ and $r_h=\diver(f_h\nabla u_h)-1$. Since $f_h$ is smooth, the identity $R_vT_vf_h=f_h$ gives
+\begin{equation}\label{eq:comparison}
+ f_0+B_\delta f_0
+ =Q_hR_v1+Q_hR_vr_h
+    -Q_hR_v\diver(\eta_h\nabla\delta).
+\end{equation}
+To verify it directly, write
+$T_{u_h}f_h=T_vf_h+\diver(f_h\nabla\delta)=1+r_h$, apply $Q_hR_v$, and split $f_h=f_0+\eta_h$ only in the second term. Subtracting~\eqref{eq:comparison} from~\eqref{eq:estimator} yields the exact error identity on the solving event:
+\begin{align}
+ (I+B_{\delta+N})(\widehat f^{\,\mathrm{int}}-f_0)
+ ={}&-Q_hR_vr_h+Q_hR_v\diver(\eta_h\nabla\delta)\notag\\
+ &-Q_hR_v\diver(f_0\nabla N).
+ \label{eq:erroridentity}
+\end{align}
+The first term is $O(h^\alpha\Lambda_h)$ by Lemma~\ref{lem:residual}. For the second,
+\begin{align*}
+ \norm{Q_hR_v\diver(\eta_h\nabla\delta)}_2
+ &\lesssim\norm{\nabla\eta_h}_2\norm{\nabla\delta}_\infty
+       +\norm{\eta_h}_2\norm{\Delta\delta}_\infty\\
+ &\lesssim h^\alpha
+\end{align*}
+on the high-probability pilot event, by~\eqref{eq:approx} and~\eqref{eq:deltasmall}.
+
+Conditional on the pilot, $W_2$ is independent, while $f_0$ is a deterministic function of the fixed true $f$. Lemmas~\ref{lem:variance} and~\ref{lem:projection} imply on the geometry event
+\begin{equation}\label{eq:conditionalvariance}
+ \E_f\left[\norm{Q_hR_v\diver(f_0\nabla N)}_2^2\mid v\right]
+ \lesssim n^{-1}h^{-d-3}.
+\end{equation}
+The solving event depends on $N$, but this causes no additional assumption in~\eqref{eq:conditionalvariance}: first use the deterministic inverse bound two in~\eqref{eq:erroridentity}; the resulting nonnegative noise square can then be integrated after dropping the solving-event indicator. \review{The expression 'solving event' is uncommon, clarify!} Thus the variance bound is applied only to a linear operator whose flow is independent of $W_2$.
+
+Combining these bounds with $\norm{f_0-f}_{L^2(\Omega_h)}\lesssim h^\alpha$ gives interior error, integrated over the good event, at most
+\begin{equation}\label{eq:interiorrisk}
+ C\{h^{2\alpha}\Lambda_h^2+n^{-1}h^{-d-3}\}.
+\end{equation}
+We now control the omitted boundary strip and bound the loss on all other events.
+
+\subsection{Boundary recovery and removal of randomization}
+Choose an integer $M_1>\alpha$ and set
+$w_k=(-1)^{k-1}\binom{M_1}{k}$, $1\le k\le M_1$. Define an extension from the interior ball by
+\begin{equation}\label{eq:stripextension}
+ E_hg=g\text{ on }\Omega_h,\qquad
+ E_hg(\rho\omega)=\sum_{k=1}^{M_1}w_kg((\rho-2kh)\omega),
+ \quad1-2h<\rho<1.
+\end{equation}
+For sufficiently small $h$, all sampled points lie in $\Omega_h$ and their radii exceed $1/2$. Radial changes of variables prove the uniform bound
+\begin{equation}\label{eq:stripL2}
+ \norm{E_hg}_{L^2(D)}\le C\norm g_{L^2(\Omega_h)}.
+\end{equation}
+For example, each translated annular integral has density ratio
+$\rho^{d-1}/(\rho-2kh)^{d-1}$ uniformly bounded; the number and weights of the terms are fixed.
+
+The coefficient identity
+$\sum_kw_k(-2k)^j=\mathbf1_{\{j=0\}}$ for $0\le j<M_1$
+shows that, for a true $f$, the strip error in~\eqref{eq:stripextension} is exactly
+\[
+ E_h(f|_{\Omega_h})(\rho\omega)-f(\rho\omega)
+ =(-1)^{M_1+1}\Delta_{-2h\omega}^{M_1}f(\rho\omega).
+\]
+Apply~\eqref{eq:diffnorm} to a global extension of $f$. It gives pointwise error $Ch^\alpha$ for every $\alpha<M_1$, including integer indices without a logarithm. Since the strip has volume $O(h)$,
+\begin{equation}\label{eq:stripbias}
+ \norm{E_h(f|_{\Omega_h})-f}_{L^2(D)}\lesssim h^{\alpha+1/2}.
+\end{equation}
+
+On successful checks, extend $\widehat f^{\,\mathrm{int}}$ by~\eqref{eq:stripextension} and clip its values to $[1/2,3/2]$. On failed checks use one. Denote the resulting randomized full-domain estimator by $\widetilde f$. Clipping cannot increase squared error against any $f$ in the class, and it bounds squared loss by $\abs D$ on every event. Equations~\eqref{eq:interiorrisk}--\eqref{eq:stripbias} and the probability bounds therefore give
+\begin{equation}\label{eq:fullrisk}
+ \sup_{f\in\cF(\alpha,r)}\E_f\norm{\widetilde f-f}_2^2
+ \le C\{h^{2\alpha}\Lambda_h^2+n^{-1}h^{-d-3}+n^{-A_0}\}.
+\end{equation}
+Take $A_0>2\alpha/q$ and substitute~\eqref{eq:bandwidths} to obtain the upper rate in~\eqref{eq:rate}.
+
+Finally, average $\widetilde f(Y_n,W')$ over the known law of the auxiliary $W'$ for each fixed $Y_n$. This is a bounded $L^2(D)$-valued integral and gives a measurable estimator $\widehat f(Y_n)$ in the original experiment. Independence of $W'$ from $Y_n$ and Jensen's inequality show that its risk is no greater than that of $\widetilde f$. This completes the proof of Theorem~\ref{thm:main}.
+
+\paragraph{Scope of the conclusion.}
+The small-radius condition supplies convexity of the solution uniformly over the parameter class. The argument does not establish the same rate for arbitrary positive conductivities or for other critical-point geometries. The restriction $d\ge2$ is used in the spatial overlap integral of Lemma~\ref{lem:variance}, and $\alpha>1$ is used both in the nonlinear testing remainder and in the pilot perturbation bounds. The estimator depends on $\alpha$; adaptation is not considered. The theorem determines the polynomial rate on the stated fixed-radius class, leaving the sharp logarithmic behavior open.
+
+\begin{thebibliography}{9}
+\bibitem{BCDS}
+D. Breit, A. Cianchi, L. Diening and S. Schwarzacher,
+\emph{Global Schauder estimates for the $p$-Laplace system},
+Archive for Rational Mechanics and Analysis \textbf{243} (2022), 201--255.
+\href{https://doi.org/10.1007/s00205-021-01712-w}{doi:10.1007/s00205-021-01712-w}.
+
+\bibitem{Johnsen}
+J. Johnsen,
+\emph{Elliptic boundary problems and the Boutet de Monvel calculus in Besov and Triebel--Lizorkin spaces},
+Mathematica Scandinavica \textbf{79} (1996), 25--85.
+\href{https://doi.org/10.7146/math.scand.a-12593}{doi:10.7146/math.scand.a-12593}.
+Author version: \href{https://arxiv.org/abs/1704.08555v1}{arXiv:1704.08555v1}; theorem numbering as in that version.
+
+\bibitem{NVW}
+R. Nickl, S. van de Geer and S. Wang,
+\emph{Convergence rates for penalized least squares estimators in PDE constrained regression problems},
+SIAM/ASA Journal on Uncertainty Quantification \textbf{8} (2020), 374--413.
+\href{https://doi.org/10.1137/18M1236137}{doi:10.1137/18M1236137}.
+Author version: \href{https://arxiv.org/abs/1809.08818v3}{arXiv:1809.08818v3}.
+
+\bibitem{NP}
+R. Nickl and G. P. Paternain,
+\emph{On some information-theoretic aspects of non-linear statistical inverse problems},
+Proceedings of the International Congress of Mathematicians 2022, Vol.~7,
+EMS Press, 5516--5538.
+\href{https://doi.org/10.4171/ICM2022/18}{doi:10.4171/ICM2022/18}.
+\end{thebibliography}
+
+\end{document}

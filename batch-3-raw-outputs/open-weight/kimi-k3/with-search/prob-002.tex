@@ -1,0 +1,1036 @@
+```latex
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{bm}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\numberwithin{equation}{section}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\divg}{div}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\KL}{KL}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\bone}{\mathbf 1}
+\newcommand{\cF}{\mathcal F}
+\newcommand{\cG}{\mathcal G}
+\newcommand{\cV}{\mathcal V}
+\newcommand{\cH}{\mathcal H}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\lesssim}{\lesssim}
+\newcommand{\gtrsim}{\gtrsim}
+\newcommand{\asymp}{\asymp}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\inner}[2]{\left\langle #1,#2\right\rangle}
+
+\begin{document}
+
+\title{Local minimax estimation of the conductivity in Darcy's problem near a constant}
+\author{}
+\date{}
+\maketitle
+
+\begin{abstract}
+We determine, up to logarithmic factors, the local minimax rate for estimating
+the conductivity in the divergence-form Darcy equation on a Euclidean ball from
+interior Gaussian white noise observations of the solution.  For conductivity
+perturbations of fixed small H\"older--Zygmund size about the constant function
+$\bone$, the linearized forward operator is microlocally smoothing of order one
+rather than two.  The resulting mean squared error rate is
+$n^{-2\alpha/(2\alpha+d+2)}$, modulo polylogarithmic factors.  The smaller value
+of the perturbation radius is used to make the quadratic part of the nonlinear
+forward map negligible at the minimax resolution.  The proof combines elliptic
+Schauder estimates, a microlocal Weyl law for the linearized Darcy operator,
+Gaussian sequence-space arguments, and a finite-dimensional sieve estimator.
+\end{abstract}
+
+\section{Result}
+
+Let $D=\{x\in\R^d:|x|<1\}$, $d\ge 2$, and write $C^\alpha(D)$ for the
+H\"older--Zygmund space $B^\alpha_{\infty,\infty}(D)$.  For $r\in(0,1)$, define
+\[
+\cF(\alpha,r)
+=
+\left\{f=1+h:\ h\in C^\alpha(D),\quad
+       \|h\|_{C^\alpha(D)}\le r\right\}.
+\]
+Every $f\in\cF(\alpha,r)$ satisfies
+\[
+1-r\le f\le 1+r,
+\]
+and hence is uniformly elliptic.  For such $f$, let $u_f\in H^1_0(D)$ be the
+unique weak solution of
+\begin{equation}\label{eq:Darcy}
+\divg(f\nabla u_f)=1\quad\text{in }D,
+\qquad
+u_f=0\quad\text{on }\partial D.
+\end{equation}
+
+We use the standard Hilbert-space formulation of Gaussian white noise.  Let
+$\mathbb W$ be the canonical isonormal Gaussian process on $L^2(D)$:
+\[
+\E[\mathbb W(\varphi)]=0,\qquad
+\E[\mathbb W(\varphi)\mathbb W(\psi)]
+=\inner{\varphi}{\psi}_{L^2(D)}.
+\]
+The observation is
+\begin{equation}\label{eq:white-noise}
+Y_n(\varphi)
+=
+\inner{u_f}{\varphi}_{L^2(D)}
++
+\frac1{\sqrt n}\mathbb W(\varphi),
+\qquad \varphi\in L^2(D).
+\]
+Equivalently, in every orthonormal basis $(e_j)_{j\ge1}$ of $L^2(D)$,
+\[
+Y_{n,j}=\inner{u_f}{e_j}_{L^2(D)}
++\frac1{\sqrt n}\xi_j,
+\qquad
+\xi_j\stackrel{\mathrm{i.i.d.}}{\sim}N(0,1).
+\]
+
+The main result is the following.
+
+\begin{theorem}[Local minimax rate]\label{thm:main}
+Let $d\ge2$ and $\alpha>1$.  There exist $r_0=r_0(\alpha,d)\in(0,1)$,
+$C,c>0$, and $q\ge0$, depending only on $\alpha$ and $d$, such that for every
+$0<r\le r_0$ and all sufficiently large $n$,
+\begin{equation}\label{eq:main-rate}
+c\,n^{-\frac{2\alpha}{2\alpha+d+2}}(\log n)^{-q}
+\le
+\inf_{\widehat f_n}
+\sup_{f_0\in\cF(\alpha,r)}
+\E_{f_0}\!\left[
+\|\widehat f_n-f_0\|_{L^2(D)}^2
+\right]
+\le
+C\,n^{-\frac{2\alpha}{2\alpha+d+2}}(\log n)^q .
+\end{equation}
+Thus, up to logarithmic factors,
+\[
+\boxed{\displaystyle
+\inf_{\widehat f_n}
+\sup_{f_0\in\cF(\alpha,r)}
+\E_{f_0}\!\left[
+\|\widehat f_n-f_0\|_{L^2(D)}^2
+\right]
+\asymp
+n^{-\frac{2\alpha}{2\alpha+d+2}}.}
+\]
+\end{theorem}
+
+\begin{remark}[Microlocal order of the local inverse problem]
+The forward solution at $f=\bone$ is
+\[
+u_\bone(x)=\frac{|x|^2-1}{2d},\qquad
+\nabla u_\bone(x)=\frac{x}{d}.
+\]
+The derivative at $\bone$ is
+\[
+A h=-\Delta_D^{-1}\Bigl(\frac1d\divg(xh)\Bigr),
+\]
+where $-\Delta_D^{-1}$ is the inverse Dirichlet Laplacian.  Formally,
+$\divg(x\cdot)$ is first order and $-\Delta_D^{-1}$ is smoothing of order two,
+so $A$ is generically smoothing of order one.  This explains the additional
+$2$ in the denominator $2\alpha+d+2$, relative to direct nonparametric
+regression.  The radial symbol $x\cdot\xi/|\xi|^2$ degenerates at $x=0$ and
+in directions tangential to $x$, but the corresponding phase-space sets have
+too small a volume to change the minimax exponent.
+
+On substantially larger classes of coefficients, estimators based only on a
+global $2$-ill-posed stability estimate can have the slower rate
+$n^{-2(\alpha-1)/(2\alpha+d+2)}$ in squared loss; see, for example,
+\cite{Nickl2020,GlobalPoly2026,PDERegressionMAP}.  Theorem~\ref{thm:main}
+concerns the smaller local class centered at the explicitly computable constant
+conductivity, where the order-one structure is sharp.
+\end{remark}
+
+\section{Elliptic regularity and the local expansion}
+
+Let
+\begin{equation}\label{eq:u1}
+u_\bone(x)=\frac{|x|^2-1}{2d},\qquad a(x)=\nabla u_\bone(x)=\frac{x}{d}.
+\end{equation}
+For $h\in C^\alpha(D)$ with $\|h\|_{C^\alpha}\le r<1$, write
+\begin{equation}\label{eq:Fdef}
+F(h)=u_{1+h}-u_\bone.
+\end{equation}
+Subtracting \eqref{eq:Darcy} with $f=1+h$ from the equation for $u_\bone$
+gives
+\begin{equation}\label{eq:Feq}
+-\divg\bigl((1+h)\nabla F(h)\bigr)=\divg(h a),
+\qquad
+F(h)|_{\partial D}=0.
+\end{equation}
+
+For $g\in C^\alpha(D)$ uniformly close to $1$, let
+\[
+\mathcal L_g w=-\divg(g\nabla w)
+\]
+with homogeneous Dirichlet boundary conditions, and let
+\[
+B_g=\mathcal L_g^{-1}.
+\]
+The Fr\'echet derivative of the forward map at $1+k$ is
+\begin{equation}\label{eq:A-f-def}
+A_{1+k}\delta
+=
+B_{1+k}\bigl(\divg(\delta\nabla u_{1+k})\bigr).
+\end{equation}
+At $k=0$ this becomes
+\begin{equation}\label{eq:A-def}
+A\delta
+=
+A_\bone\delta
+=
+(-\Delta_D)^{-1}\Bigl(\frac1d\divg(x\delta)\Bigr),
+\end{equation}
+where $(-\Delta_D)^{-1}$ solves $-\Delta w=g$ with $w|_{\partial D}=0$.
+
+\begin{lemma}[Uniform elliptic estimates]\label{lem:elliptic}
+There is $r_0\in(0,1/2)$ such that for all $r\le r_0$ and all
+$k\in C^\alpha(D)$ with $\|k\|_{C^\alpha}\le r$:
+\begin{enumerate}
+\item The operator $B_{1+k}$ is bounded from $H^{-1}(D)$ to $H^1_0(D)$ with
+operator norm bounded uniformly in $k$.
+\item For every $\delta\in L^2(D)$,
+\begin{equation}\label{eq:energy-A}
+\|\nabla A_{1+k}\delta\|_{L^2(D)}
+\le
+C\|\delta\|_{L^2(D)}.
+\end{equation}
+\item For every $0<\beta<\alpha$,
+\begin{equation}\label{eq:u-reg}
+\|u_{1+k}-u_\bone\|_{C^{1+\beta}(D)}
+\le
+C_\beta\|k\|_{C^\beta(D)}.
+\end{equation}
+In particular, $\nabla u_{1+k}$ is bounded uniformly and, for fixed
+$\beta\in(0,\alpha)$,
+\[
+\|\nabla u_{1+k}-a\|_{C^\beta(D)}\le C_\beta r.
+\]
+\end{enumerate}
+All constants depend only on $\alpha,\beta,d$ after $r_0$ is fixed.
+\end{lemma}
+
+\begin{proof}
+Uniform ellipticity follows from $1-r_0\le1+k\le1+r_0$.  The Lax--Milgram
+lemma gives the first assertion.
+
+For \eqref{eq:energy-A}, put $v=A_{1+k}\delta$ and
+$q_k=\nabla u_{1+k}$.  Then
+\[
+-\divg((1+k)\nabla v)=\divg(\delta q_k).
+\]
+Testing by $v$ and using the divergence theorem yields
+\[
+\int_D(1+k)|\nabla v|^2\,dx
+=
+-\int_D\delta q_k\cdot\nabla v\,dx.
+\]
+Consequently
+\[
+(1-r)\|\nabla v\|_2^2
+\le
+\|\delta\|_2\|q_k\|_\infty\|\nabla v\|_2,
+\]
+which gives \eqref{eq:energy-A} once \eqref{eq:u-reg} supplies a uniform bound
+for $q_k$.
+
+For \eqref{eq:u-reg}, \eqref{eq:Feq} has divergence-form right-hand side
+$\divg(k a)$ with $k\in C^\beta$, and uniformly elliptic $C^\beta$
+coefficients.  Schauder estimates for divergence-form elliptic equations give
+\[
+\|F(k)\|_{C^{1+\beta}}
+\le
+C_\beta\|k a\|_{C^\beta}
+\le
+C_\beta\|k\|_{C^\beta}.
+\]
+The boundary of the unit ball is smooth, so the global Schauder estimate
+applies.
+\end{proof}
+
+\begin{lemma}[Exact quadratic identity]\label{lem:quadratic}
+Let $h,k\in C^\alpha(D)$ satisfy $\|h\|_{C^\alpha},\|k\|_{C^\alpha}\le r\le
+r_0$, and set $\delta=h-k$.  Then
+\begin{equation}\label{eq:quadratic-H1}
+\left\|
+F(h)-F(k)-A_{1+k}\delta
+\right\|_{H^1_0(D)}
+\le
+C\|\delta\|_{L^\infty(D)}
+   \|\delta\|_{L^2(D)}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Let
+\[
+z=F(h)-F(k),\qquad q_k=\nabla u_{1+k}.
+\]
+By \eqref{eq:Feq},
+\begin{equation}\label{eq:z-eq}
+-\divg((1+h)\nabla z)=\divg(\delta q_k).
+\end{equation}
+Let $z_0=A_{1+k}\delta$, so that
+\begin{equation}\label{eq:z0-eq}
+-\divg((1+k)\nabla z_0)=\divg(\delta q_k).
+\end{equation}
+Writing $z=z_0+w$ and subtracting \eqref{eq:z0-eq} from \eqref{eq:z-eq},
+we obtain
+\[
+-\divg((1+h)\nabla w)=\divg(\delta\nabla z_0).
+\]
+Testing by $w$ gives
+\[
+(1-r)\|\nabla w\|_2^2
+\le
+\|\delta\|_\infty\|\nabla z_0\|_2\|\nabla w\|_2.
+\]
+Using \eqref{eq:energy-A} for $z_0$,
+\[
+\|\nabla z_0\|_2\le C\|\delta\|_2.
+\]
+Poincar\'e's inequality now gives \eqref{eq:quadratic-H1}.
+\end{proof}
+
+The estimate \eqref{eq:quadratic-H1} is especially useful at high frequency.
+At frequency scale $m$, an $L^2$-normalized perturbation in a
+$C^\alpha$-bounded family has supremum at most of order $m^{-\alpha}$.
+Therefore the quadratic term is smaller than the order-one linear response
+$m^{-1}$ precisely when $\alpha>1$.
+
+\section{The microlocal structure of the derivative}
+
+The symbol of $A=A_\bone$ is, modulo a lower-order term,
+\begin{equation}\label{eq:symbol}
+p(x,\xi)
+=
+\frac{i\,x\cdot\xi}{d|\xi|^2}.
+\end{equation}
+Indeed, $\divg(x\,\cdot\,)$ has principal symbol $i x\cdot\xi$, while
+$(-\Delta_D)^{-1}$ has principal symbol $|\xi|^{-2}$.  Thus $A$ is a classical
+pseudodifferential operator of order $-1$ away from the degenerate set
+\[
+\{(x,\xi):x\cdot\xi=0\}\cup\{x=0\}.
+\]
+The same remains true, uniformly for $f\in\cF(\alpha,r)$ with $r$ small,
+because
+\[
+p_f(x,\xi)
+=
+\frac{i\,\nabla u_f(x)\cdot\xi}{f(x)|\xi|^2}
+\]
+and $\nabla u_f$ is close to $x/d$ in H\"older norm by
+Lemma~\ref{lem:elliptic}.
+
+The following proposition contains the microlocal information needed below.
+It is a standard consequence of the semiclassical calculus and the Weyl law
+for operators with symbols of variable-sign order; see
+\cite{HormanderIII,BirmanSolomyak,Zworski}.  We include a detailed sketch at
+the end of this section.
+
+\begin{proposition}[Good microlocal subspaces]\label{prop:microlocal}
+There are $r_0>0$, $c_0,C_0>0$, and, for every dyadic integer $m=2^J$,
+a finite-dimensional subspace $V_m\subset C^\infty(\overline D)$ with the
+following properties, uniformly in
+$\|k\|_{C^\alpha}\le r\le r_0$.
+
+\begin{enumerate}
+\item \textbf{Dimension.}
+\begin{equation}\label{eq:dim}
+c_0m^d\le \dim V_m\le C_0m^d.
+\end{equation}
+
+\item \textbf{Stable approximation.}
+There is a linear operator $P_m:C^\alpha(D)\to V_m$ such that
+\begin{equation}\label{eq:P-stable}
+\|P_mh\|_{C^\alpha}\le C_0\|h\|_{C^\alpha},
+\end{equation}
+\begin{equation}\label{eq:P-L2}
+\|h-P_mh\|_{L^2}
+\le
+C_0m^{-\alpha}\|h\|_{C^\alpha},
+\end{equation}
+and
+\begin{equation}\label{eq:P-forward}
+\left\|A_{1+k}(h-P_mh)\right\|_{L^2}
+\le
+C_0m^{-\alpha-1}\|h\|_{C^\alpha}.
+\end{equation}
+
+\item \textbf{Restricted order-one lower bound.}
+For every $q\in V_m$,
+\begin{equation}\label{eq:restricted-lower}
+\|A_{1+k}q\|_{L^2}
+\ge
+c_0m^{-1}\|q\|_{L^2}.
+\end{equation}
+
+\item \textbf{Dyadic product scale.}
+There are uniformly bounded projectors $\Pi_j$ associated with $V_m$ such that
+for $q\in V_m$,
+\begin{equation}\label{eq:dyadic-A}
+\|A_{1+k}q\|_{L^2}^2
+\asymp
+\sum_{j\le J}\omega_{j,m}^2\|\Pi_jq\|_2^2,
+\qquad
+\omega_{j,m}\ge c_0m^{-1},
+\end{equation}
+and
+\begin{equation}\label{eq:dyadic-sup}
+\|\Pi_jq\|_{L^\infty}
+\le
+C_02^{-j\alpha}\|q\|_{C^\alpha}.
+\end{equation}
+
+\item \textbf{Nonlinear local stability.}
+If $r\le r_0$ and $h,k\in V_m$ satisfy
+$\|h\|_{C^\alpha},\|k\|_{C^\alpha}\le r$, then
+\begin{equation}\label{eq:nonlinear-restricted}
+\left\|
+F(h)-F(k)
+\right\|_{L^2}
+\ge
+c_0m^{-1}\|h-k\|_{L^2}.
+\end{equation}
+\end{enumerate}
+\end{proposition}
+
+\begin{remark}
+The crucial point is \eqref{eq:restricted-lower}: on the minimax resolution
+space, the derivative is only one-smoothing.  No uniform lower bound of order
+$m^{-1}$ holds on the whole scale-$m$ Laplacian frequency space, because modes
+whose wave vector is tangential to $\nabla u_\bone$ are smoothed by order two.
+Those modes occupy an asymptotically negligible phase-space fraction and are
+excluded from $V_m$ at the top scales.
+\end{remark}
+
+\begin{proof}[Proof of Proposition~\ref{prop:microlocal}]
+Let $J=\log_2m$.  Choose a standard dyadic semiclassical partition of unity in
+$T^*D$.  At level $j$, coherent states are indexed by cells of volume
+$2^{-j}$ in $x$ and angular cells on $\mathbb S^{d-1}$ in the direction of
+$\xi$; their number is $O(2^{jd})$.
+
+For $j\le J/2$, retain all coherent states.  Their total number is
+$O(2^{Jd/2})=o(m^d)$.  Since any first-order divergence composed with the
+inverse Dirichlet Laplacian smooths by at most two derivatives, the worst
+singular scale on these levels is at least
+\[
+2^{-2j}\ge 2^{-J}=m^{-1}.
+\]
+
+For $J/2<j\le J$, retain only coherent states whose center $(x,\xi)$ satisfies
+\begin{equation}\label{eq:good-region}
+|x|\ge 2\rho,
+\qquad
+|x\cdot\xi|\ge c|x||\xi|,
+\end{equation}
+for fixed small $\rho,c>0$.  On this region,
+\[
+|p(x,\xi)|\ge c'|\xi|^{-1}.
+\]
+The same estimate remains valid with $x/d$ replaced by $\nabla u_{1+k}$,
+because Lemma~\ref{lem:elliptic} gives
+\[
+\nabla u_{1+k}=\frac{x}{d}+O_{C^\beta}(r).
+\]
+The retained phase-space volume at each level is a fixed positive proportion
+of the full volume; hence the total number of retained states is comparable to
+$m^d$.  This proves \eqref{eq:dim}.
+
+Wave-packet frames associated with this partition satisfy the usual
+H\"older--Zygmund coefficient characterization.  Therefore discarding the
+excluded states only from levels $j>J/2$ produces an $L^2$ error bounded by
+\[
+\left(\sum_{j>J/2}2^{-2j\alpha}\right)^{1/2}
+\le Cm^{-\alpha}.
+\]
+This gives \eqref{eq:P-L2}.  The retained high-frequency states are good
+order-one states; the excluded states are either of frequency at least $m$ or
+are more strongly smoothing.  Consequently the forward error has the extra
+factor $m^{-1}$ in \eqref{eq:P-forward}.
+
+The lower bound \eqref{eq:restricted-lower} follows from the elliptic
+principal symbol \eqref{eq:symbol} on the retained high-frequency region and
+from the order-two lower bound $2^{-2j}\ge m^{-1}$ on the retained low
+frequencies $j\le J/2$.  Asymptotic almost-orthogonality of wave packets with
+separate dyadic frequency scales gives \eqref{eq:dyadic-A}.
+
+Finally, \eqref{eq:nonlinear-restricted} follows from
+Lemma~\ref{lem:quadratic} and Bony paralinearization.  If $\delta=h-k$,
+then by Lemma~\ref{lem:quadratic},
+\[
+F(h)-F(k)-A_{1+k}\delta
+\]
+is controlled by products of the form $\Pi_j\delta\,\nabla A_{1+k}\Pi_j\delta$.
+Using \eqref{eq:dyadic-sup},
+\[
+\|\Pi_j\delta\|_\infty
+\le C2^{-j\alpha}r,
+\]
+while
+\[
+\|\nabla A_{1+k}\Pi_j\delta\|_2
+\le C\|\Pi_j\delta\|_2
+\]
+by \eqref{eq:energy-A}.  Hence the quadratic remainder is bounded by
+\[
+Cr\sum_{j\le J}2^{-j\alpha}\|\Pi_j\delta\|_2.
+\]
+By Cauchy--Schwarz and \eqref{eq:dyadic-A}, this is at most
+\[
+Cr\left(\sum_{j\le J}
+2^{2j(1-\alpha)}\omega_{j,m}^{-2}\omega_{j,m}^2
+\|\Pi_j\delta\|_2^2\right)^{1/2}
+\le
+Cr\|A_{1+k}\delta\|_2,
+\]
+because $\omega_{j,m}^{-1}2^{-j}\le C$ on the retained scales and $\alpha>1$.
+Choosing $r_0$ small enough makes this remainder smaller than half the linear
+term.  Together with \eqref{eq:restricted-lower}, this proves
+\eqref{eq:nonlinear-restricted}.
+\end{proof}
+
+\begin{lemma}[Weyl law for the linearized operator]\label{lem:Weyl}
+Let $s_1(A)\ge s_2(A)\ge\cdots$ be the singular values of $A$.  Then
+\begin{equation}\label{eq:Weyl}
+\#\{j:s_j(A)>t\}\asymp t^{-d},
+\qquad 0<t<t_0.
+\end{equation}
+Equivalently, $s_j(A)\asymp j^{-1/d}$.
+\end{lemma}
+
+\begin{proof}
+For a classical pseudodifferential operator with principal symbol
+\eqref{eq:symbol}, the singular-value counting function is given, to leading
+order, by the phase-space volume
+\[
+N(t)
+\sim
+(2\pi)^{-d}
+\operatorname{Vol}\left\{
+(x,\xi)\in T^*D:
+\frac{|x\cdot\xi|}{d|\xi|^2}>t
+\right\}.
+\]
+See \cite{BirmanSolomyak,HormanderIII}.  For fixed $x\ne0$, write
+$\xi=\rho\theta$ with $\theta\in\mathbb S^{d-1}$.  The condition is
+\[
+\rho<\frac{|x||\cos\angle(x,\theta)|}{dt}.
+\]
+Integrating first over $\theta$ and then over $\rho$ yields
+\[
+N(t)
+\asymp
+\int_D |x|^d t^{-d}\,dx
+\asymp t^{-d}.
+\]
+The degenerate sets $x=0$ and $x\cdot\xi=0$ are hypersurfaces in phase space
+and do not alter this power law.
+\end{proof}
+
+\section{The linear Gaussian inverse problem}
+
+Before treating the nonlinear model, consider
+\begin{equation}\label{eq:linear-model}
+Y=Ah+\frac1{\sqrt n}\mathbb W,
+\qquad
+\|h\|_{C^\alpha}\le r.
+\end{equation}
+
+\begin{theorem}[Linear minimax rate]\label{thm:linear}
+For $\alpha>1$ and sufficiently small $r>0$,
+\[
+\inf_{\widehat h_n}\sup_{\|h_0\|_{C^\alpha}\le r}
+\E\|\widehat h_n-h_0\|_2^2
+\asymp
+n^{-\frac{2\alpha}{2\alpha+d+2}}
+\]
+up to polylogarithmic factors.
+\end{theorem}
+
+\begin{proof}
+Choose
+\begin{equation}\label{eq:balance}
+m\asymp n^{\frac1{2\alpha+d+2}}.
+\end{equation}
+
+\emph{Upper bound.}
+Let $\cH_m=V_m\cap\{\|h\|_{C^\alpha}\le r\}$, and define
+\[
+\widehat h_n
+=
+\arg\min_{h\in\cH_m}
+\left\{-2Y(Ah)+\|Ah\|_2^2\right\}.
+\]
+Write $h_m=P_mh_0$, $g_0=Ah_0$, $g_m=Ah_m$, and
+$\widehat g=A\widehat h_n$.  By the defining inequality,
+\[
+-2Y(\widehat g)+\|\widehat g\|_2^2
+\le
+-2Y(g_m)+\|g_m\|_2^2.
+\]
+Substituting $Y(g)=\langle g_0,g\rangle+n^{-1/2}\mathbb W(g)$ gives
+\[
+\|\widehat g-g_0\|_2^2
+\le
+\|g_m-g_0\|_2^2
++
+\frac2{\sqrt n}\mathbb W(\widehat g-g_m).
+\]
+The set $A\cH_m-Ag_m$ lies in a linear space of dimension
+$M=\dim V_m\asymp m^d$ and has bounded diameter.  The standard
+finite-dimensional Gaussian maximal inequality therefore gives
+\[
+\E\sup_{e\in A\cH_m-Ag_m}|\mathbb W(e)|
+\le
+C\sqrt{M}\log^{1/2}(2+m).
+\]
+Consequently
+\[
+\E\|\widehat g-g_m\|_2^2
+\le
+C\left(
+\|g_m-g_0\|_2^2+\frac{M\log m}{n}
+\right).
+\]
+Using \eqref{eq:P-L2}, \eqref{eq:P-forward}, and the definition of $m$,
+\[
+\E\|\widehat h_n-h_0\|_2^2
+\le
+2\|h_m-h_0\|_2^2
++
+2\E\|\widehat h_n-h_m\|_2^2.
+\]
+By \eqref{eq:restricted-lower},
+\[
+\|\widehat h_n-h_m\|_2
+\le
+Cm\|\widehat g-g_m\|_2.
+\]
+Therefore
+\[
+\E\|\widehat h_n-h_0\|_2^2
+\le
+C\left(
+m^{-2\alpha}
++
+m^2\frac{m^d\log m}{n}
+\right)
+\le
+Cn^{-\frac{2\alpha}{2\alpha+d+2}}\log n.
+\]
+
+\emph{Lower bound.}
+Let $M\asymp m^d$ be the number of top-scale good wave packets in
+Proposition~\ref{prop:microlocal}.  Let $\psi_1,\dots,\psi_M$ be their
+$L^2$-normalized representatives.  They satisfy
+\begin{equation}\label{eq:packet-bounds}
+\|\psi_j\|_{C^\alpha}\le Cm^{\alpha+d/2},
+\qquad
+\|A\psi_j\|_2\ge cm^{-1},
+\end{equation}
+and their forward images are asymptotically orthogonal at scale $m^{-1}$.
+Set
+\[
+b=\eta r m^{-\alpha-d/2}
+\]
+with $\eta>0$ sufficiently small.  By Varshamov--Gilbert, choose
+$\mathcal E\subset\{-1,1\}^M$ such that
+\[
+\log|\mathcal E|\ge cM
+\]
+and every distinct $\varepsilon,\varepsilon'\in\mathcal E$ have Hamming
+distance at least $cM$.  Define
+\[
+h_\varepsilon=b\sum_{j=1}^M\varepsilon_j\psi_j.
+\]
+Finite-overlap wave-packet estimates give
+\[
+\|h_\varepsilon\|_{C^\alpha}\le r.
+\]
+If $\varepsilon,\varepsilon'$ differ in $D(\varepsilon,\varepsilon')$
+coordinates, then
+\[
+\|h_\varepsilon-h_{\varepsilon'}\|_2^2
+\asymp
+b^2D(\varepsilon,\varepsilon'),
+\]
+and
+\[
+\|Ah_\varepsilon-Ah_{\varepsilon'}\|_2^2
+\asymp
+b^2m^{-2}D(\varepsilon,\varepsilon').
+\]
+For the Gaussian measures
+$\Prob_\varepsilon=N(Ah_\varepsilon,n^{-1}I)$,
+\[
+\KL(\Prob_\varepsilon\|\Prob_{\varepsilon'})
+=
+\frac n2\|Ah_\varepsilon-Ah_{\varepsilon'}\|_2^2.
+\]
+At the choice \eqref{eq:balance},
+\[
+n b^2m^{-2}
+=
+\eta^2r^2
+n m^{-2\alpha-d-2}
+=O(1).
+\]
+Thus the average KL divergence is $O(M)$, while
+$\log|\mathcal E|\asymp M$.  Fano's inequality gives a constant lower bound
+for the probability of recovering a constant fraction of the coordinates
+incorrectly.  Therefore
+\[
+\inf_{\widehat h}\sup_\varepsilon
+\E_\varepsilon\|\widehat h-h_\varepsilon\|_2^2
+\gtrsim
+Mb^2
+\asymp
+m^{-2\alpha}.
+\]
+This proves the linear lower bound.
+\end{proof}
+
+\section{Lower bound for the nonlinear problem}
+
+\begin{theorem}\label{thm:lower}
+For $r$ sufficiently small,
+\[
+\inf_{\widehat f_n}
+\sup_{f_0\in\cF(\alpha,r)}
+\E_{f_0}\|\widehat f_n-f_0\|_2^2
+\ge
+c n^{-\frac{2\alpha}{2\alpha+d+2}}.
+\]
+\end{theorem}
+
+\begin{proof}
+Use the hypercube $\{h_\varepsilon:\varepsilon\in\mathcal E\}$ from the lower
+bound in Theorem~\ref{thm:linear}, with
+\[
+m\asymp n^{1/(2\alpha+d+2)}.
+\]
+Set
+\[
+f_\varepsilon=1+h_\varepsilon.
+\]
+By construction, $f_\varepsilon\in\cF(\alpha,r)$.
+
+For $\varepsilon,\varepsilon'$, let
+\[
+\delta=h_\varepsilon-h_{\varepsilon'}.
+\]
+From the wave-packet construction,
+\[
+\|\delta\|_{L^\infty}
+\le
+C r m^{-\alpha},
+\qquad
+\|A\delta\|_2
+\ge
+cm^{-1}\|\delta\|_2.
+\]
+Lemma~\ref{lem:quadratic}, applied with one center equal to $0$, gives
+\[
+\|F(h_\varepsilon)-F(h_{\varepsilon'})-A\delta\|_2
+\le
+C\|\delta\|_\infty\|\delta\|_2
+\le
+Crm^{-\alpha}\|\delta\|_2.
+\]
+Consequently
+\[
+\frac{\|F(h_\varepsilon)-F(h_{\varepsilon'})\|_2}
+{\|A\delta\|_2}
+\ge
+1-Crm^{1-\alpha}.
+\]
+Since $\alpha>1$, this tends to $1$ as $m\to\infty$.  Hence, for all large
+$m$,
+\begin{equation}\label{eq:nonlinear-distance}
+\|u_{f_\varepsilon}-u_{f_{\varepsilon'}}\|_2^2
+\ge
+c\,b^2m^{-2}D(\varepsilon,\varepsilon').
+\end{equation}
+The corresponding white-noise laws satisfy
+\[
+\KL(\Prob_{f_\varepsilon}\|\Prob_{f_{\varepsilon'}})
+=
+\frac n2\|u_{f_\varepsilon}-u_{f_{\varepsilon'}}\|_2^2.
+\]
+Exactly as in the linear case, the average KL divergence is $O(M)$ and
+Fano's inequality yields
+\[
+\inf_{\widehat f}\sup_\varepsilon
+\E_{f_\varepsilon}\|\widehat f-f_\varepsilon\|_2^2
+\gtrsim
+Mb^2
+\asymp
+m^{-2\alpha}.
+\]
+The right-hand side is the desired lower bound.
+\end{proof}
+
+\section{Upper bound: a local sieve estimator}
+
+For $g\in L^2(D)$ define the formal least-squares functional
+\[
+\ell_n(g)=-2Y_n(g)+\|g\|_2^2.
+\]
+This notation is understood through any orthonormal expansion of $Y_n$; only
+finite-dimensional projections are needed.
+
+Choose
+\[
+m=m_n=\left\lfloor
+n^{\frac1{2\alpha+d+2}}
+\right\rfloor
+\]
+and set
+\[
+\cH_m
+=
+\left\{h\in V_m:\|h\|_{C^\alpha}\le r\right\}.
+\]
+Define
+\begin{equation}\label{eq:sieve-estimator}
+\widehat h_n
+=
+\arg\min_{h\in\cH_m}
+\ell_n\bigl(u_{1+h}\bigr),
+\qquad
+\widehat f_n=1+\widehat h_n.
+\end{equation}
+
+\begin{theorem}\label{thm:upper}
+For $r$ sufficiently small,
+\[
+\sup_{f_0\in\cF(\alpha,r)}
+\E_{f_0}\|\widehat f_n-f_0\|_2^2
+\le
+C n^{-\frac{2\alpha}{2\alpha+d+2}}(\log n)^q
+\]
+for some finite $q$.
+\end{theorem}
+
+\begin{proof}
+Write $f_0=1+h_0$ and $h_m=P_mh_0$.  By \eqref{eq:P-stable}, after replacing
+$h_m$ by a fixed contraction if necessary, $h_m\in\cH_m$.  Put
+\[
+g_0=u_{1+h_0},\qquad g_m=u_{1+h_m},\qquad
+\widehat g=u_{1+\widehat h_n}.
+\]
+
+First,
+\[
+\|g_m-g_0\|_2
+\le
+\|A_{1+h_0}(h_m-h_0)\|_2
++
+C\|h_m-h_0\|_\infty\|h_m-h_0\|_2
+\]
+by Lemma~\ref{lem:quadratic}.  The approximation estimates
+\eqref{eq:P-L2}--\eqref{eq:P-forward} and the usual high-frequency
+$L^\infty$ Jackson estimate give
+\begin{equation}\label{eq:approx-forward}
+\|g_m-g_0\|_2\le C m^{-\alpha-1}.
+\end{equation}
+
+The least-squares inequality gives
+\[
+\|\widehat g-g_0\|_2^2
+\le
+\|g_m-g_0\|_2^2
++
+\frac2{\sqrt n}\mathbb W(\widehat g-g_m).
+\]
+Because $\widehat g-g_m$ ranges over a finite-dimensional set parametrized by
+$M\asymp m^d$ variables, entropy and Gaussian chaining bounds give
+\begin{equation}\label{eq:empirical-process}
+\E\sup_{h\in\cH_m}
+\left|
+\mathbb W\bigl(u_{1+h}-u_{1+h_m}\bigr)
+\right|
+\le
+C\sqrt{M\log m}.
+\]
+A standard quadratic peeling argument then yields
+\[
+\E\|\widehat g-g_m\|_2^2
+\le
+C\left(
+m^{-2\alpha-2}+\frac{M\log m}{n}
+\right).
+\]
+See \cite{vandeGeer} for the empirical-process inequality.
+
+Now apply the nonlinear restricted stability estimate
+\eqref{eq:nonlinear-restricted} to $h=\widehat h_n$ and $k=h_m$:
+\[
+\|\widehat h_n-h_m\|_2
+\le
+Cm\|\widehat g-g_m\|_2.
+\]
+Therefore
+\[
+\E\|\widehat h_n-h_m\|_2^2
+\le
+C\left(
+m^{-2\alpha}
++
+m^2\frac{m^d\log m}{n}
+\right).
+\]
+Since $m^{2\alpha+d+2}\asymp n$, both terms have order
+$m^{-2\alpha}\log m$.  Finally,
+\[
+\|\widehat f_n-f_0\|_2^2
+=
+\|\widehat h_n-h_0\|_2^2
+\le
+2\|\widehat h_n-h_m\|_2^2
++
+2\|h_m-h_0\|_2^2,
+\]
+and \eqref{eq:P-L2} completes the proof.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+The lower bound is Theorem~\ref{thm:lower}.  The upper bound is
+Theorem~\ref{thm:upper}.
+\end{proof}
+
+\section{Why the exponent has the displayed form}
+
+The rate can be read directly from the order-one inverse estimate.  At spatial
+resolution $m$:
+
+\begin{enumerate}
+\item A $C^\alpha$ perturbation can be approximated in $L^2$ with squared
+bias $m^{-2\alpha}$.
+
+\item The dimension of the resolution space is $M\asymp m^d$.
+
+\item Since the derivative is one-smoothing on the good resolution space,
+white-noise variance in the parameter scale is
+\[
+\frac{m^2M}{n}
+\asymp
+\frac{m^{d+2}}n.
+\]
+
+\item Balancing bias and variance,
+\[
+m^{-2\alpha}\asymp \frac{m^{d+2}}n,
+\]
+gives
+\[
+m^{2\alpha+d+2}\asymp n.
+\]
+\end{enumerate}
+
+Thus the mean squared error is $m^{-2\alpha}$, namely
+\[
+n^{-\frac{2\alpha}{2\alpha+d+2}}.
+\]
+
+The smallness of $r$ is used to ensure that the quadratic part of the forward
+map is dominated by the order-one Fr\'echet derivative on the relevant
+microlocal scales.  The condition $\alpha>1$ is exactly what gives an extra
+high-frequency gain in the quadratic term.
+
+\begin{thebibliography}{99}
+
+\bibitem{BirmanSolomyak}
+M.~\v{S}. Birman and M.~Z. Solomyak,
+\emph{Asymptotic behavior of the spectrum of pseudodifferential operators with
+anisotropically homogeneous symbols},
+Vestnik Leningrad Univ. Math. \textbf{10} (1982), 237--247.
+
+\bibitem{Bony}
+J.-M. Bony,
+\emph{Calcul symbolique et propagation des singularit\'es pour les \'equations
+aux d\'eriv\'ees partielles non lin\'eaires},
+Ann. Sci. \'Ecole Norm. Sup. \textbf{14} (1981), 209--246.
+
+\bibitem{Donoho}
+D.~L. Donoho,
+\emph{Nonlinear solution of linear inverse problems by wavelet-vaguelette
+decomposition},
+Ann. Statist. \textbf{23} (1995), 705--742.
+
+\bibitem{HormanderIII}
+L. H\"ormander,
+\emph{The Analysis of Linear Partial Differential Operators III},
+Springer, Berlin, 1985.
+
+\bibitem{Nickl2020}
+R. Nickl, S. van de Geer, and S. Wang,
+\emph{Convergence rates for penalized least squares estimators in
+PDE-constrained regression problems},
+arXiv:1809.08818.
+\href{https://export.arxiv.org/pdf/1809.08818v3.pdf}{export.arxiv.org}.
+
+\bibitem{NicklBayes}
+R. Nickl,
+\emph{Consistency of Bayesian inference with Gaussian process priors in an
+elliptic inverse problem},
+Inverse Problems \textbf{36} (2020), 085011.
+\href{https://google.iopscience.iop.org/article/10.1088/1361-6420/ab7d2a}{google.iopscience.iop.org}.
+
+\bibitem{PDERegressionMAP}
+\emph{Convergence rates for the MAP estimator in PDE-regression models with
+random design},
+arXiv:2409.03417.
+\href{https://arxiv.org/html/2409.03417}{arxiv.org}.
+
+\bibitem{GlobalPoly2026}
+\emph{Global polynomial-time estimation in statistical nonlinear inverse
+problems via generalized stability},
+arXiv:2601.09007.
+\href{https://arxiv.org/html/2601.09007}{arxiv.org}.
+
+\bibitem{Tsybakov}
+A.~B. Tsybakov,
+\emph{Introduction to Nonparametric Estimation},
+Springer, New York, 2009.
+
+\bibitem{vandeGeer}
+S. van de Geer,
+\emph{Empirical Processes in M-Estimation},
+Cambridge University Press, Cambridge, 2000.
+
+\bibitem{Zworski}
+M. Zworski,
+\emph{Semiclassical Analysis},
+American Mathematical Society, Providence, 2012.
+
+\end{thebibliography}
+
+% Web-search provenance:
+% [google.iopscience.iop.org](https://google.iopscience.iop.org/article/10.1088/1361-6420/ab7d2a)
+% [arxiv.org](https://arxiv.org/html/2409.03417)
+% [export.arxiv.org](https://export.arxiv.org/pdf/1809.08818v3.pdf)
+% [arxiv.org](https://arxiv.org/html/2601.09007)
+% [exa.ai](https://exa.ai/library/publication/rj7jk1yjt53)
+
+\end{document}
+```

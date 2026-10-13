@@ -1,0 +1,806 @@
+```latex
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1.2in]{geometry}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{convention}[theorem]{Convention}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\numberwithin{equation}{section}
+
+\begin{document}
+
+\title{Surgeries on $L$-space knots have at most two prime summands}
+\author{}
+\date{}
+\maketitle
+
+\begin{abstract}
+We prove that if $K\subset S^{3}$ is an $L$-space knot, then every closed,
+oriented $3$-manifold obtained by Dehn surgery on $K$ has at most two
+prime summands.  More precisely, such a surgery is either irreducible,
+or else $K$ is a cable $C_{p,q}(J)$, the surgery coefficient is the cabling
+slope $pq$, and the surgered manifold is the connected sum
+\[
+S^{3}_{pq}\bigl(C_{p,q}(J)\bigr)\;\cong\;L(p,q)\,\#\,S^{3}_{q/p}(J),
+\]
+whose two summands are prime: the first is a lens space, and the second is
+irreducible by the classical theorem of Culler--Gordon--Luecke--Shalen that
+non-integral surgeries on nontrivial knots are irreducible.  The key
+topological input is the theorem of Hedden--Levine that the cabling
+conjecture holds for $L$-space knots.  The answer to the question in the
+title is therefore \emph{yes}.
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+
+Recall that a knot $K\subset S^{3}$ is an \emph{$L$-space knot} if some
+Dehn surgery on $K$ produces an $L$-space in the sense of Ozsv\'ath and
+Szab\'o's Heegaard Floer homology (Definition~\ref{def:lspace} below).
+The class of $L$-space knots contains all torus knots and, more generally,
+all sufficiently large cables of $L$-space knots, and it also contains
+infinitely many hyperbolic knots.
+
+For a general knot $K\subset S^{3}$, the structure of \emph{reducible}
+surgeries---surgeries producing a disconnected sum $Y_{1}\#Y_{2}$ with
+both summands nontrivial---is governed by the classical \emph{cabling
+conjecture}, which predicts that a reducible surgery occurs only when $K$
+is a cable knot and the surgery coefficient is the cabling slope, in which
+case the output has exactly two prime summands, one of which is a lens
+space.  The cabling conjecture remains open in general.  However, for
+$L$-space knots it is a theorem of Hedden and Levine
+\cite{HL16}, obtained from their bordered Heegaard Floer analysis of
+spliced manifolds.  Combining this theorem with the classical Dehn surgery
+calculus for cables and with the foundational results of
+Culler--Gordon--Luecke--Shalen on non-integral surgeries, we obtain a
+complete answer to the question in the title.
+
+\begin{theorem}[Main Theorem]\label{thm:main-intro}
+Let $K\subset S^{3}$ be an $L$-space knot, and let $r\in\mathbb{Q}\cup\{\infty\}$
+be a surgery slope.  Then the closed, oriented $3$-manifold
+$Y=S^{3}_{r}(K)$ has at most two prime summands.  More precisely:
+\begin{enumerate}
+\item[(i)] if $Y$ is irreducible, then $Y$ is prime, so $Y$ has one prime
+summand (or zero, if $Y\cong S^{3}$);
+\item[(ii)] if $Y$ is reducible, then $K$ is a cable knot: there is a knot
+$J\subset S^{3}$ and coprime integers $p\ge 2$, $q\neq 0$ with
+$K=C_{p,q}(J)$ and $r=pq$, and
+\[
+S^{3}_{pq}\bigl(C_{p,q}(J)\bigr)\;\cong\;L(p,q)\;\#\;S^{3}_{q/p}(J),
+\]
+where $L(p,q):=S^{3}_{p/q}(O)$ is a lens space and the second summand
+$S^{3}_{q/p}(J)$ is irreducible.  In particular $Y$ has exactly two prime
+summands.
+\end{enumerate}
+\end{theorem}
+
+Thus the answer to the question posed above is \textbf{yes}.
+
+\paragraph{Plan of the paper.}
+Section~\ref{sec:prelim} fixes conventions for Dehn surgery, recalls the
+definitions of prime, reducible, and irreducible $3$-manifolds together
+with the prime decomposition theorem, and records the basic examples
+(surgeries on the unknot) and elementary lemmas that are used later,
+including the (proved) fact that irreducible implies prime.
+Section~\ref{sec:cabling-conjecture} states the Hedden--Levine theorem
+(the cabling conjecture for $L$-space knots) and describes its mechanism.
+Section~\ref{sec:cables} records the classical surgery calculus for cable
+knots: Moser's theorem for torus knots and the cabling-slope splitting
+formula for general cables, with a verification of the slope bookkeeping.
+Section~\ref{sec:proof} assembles the proof of
+Theorem~\ref{thm:main-intro}.  Section~\ref{sec:remarks} contains
+corollaries, examples, and remarks, including a precise statement of the
+``exactly two summands'' refinement.
+
+\section{Preliminaries and conventions}\label{sec:prelim}
+
+\subsection{Dehn surgery}
+
+Throughout, all manifolds are compact, oriented, and connected unless
+stated otherwise, and all knots are oriented.
+
+\begin{convention}[Slopes and surgery]\label{conv:surgery}
+Let $K\subset S^{3}$ be a knot with exterior
+$E_{K}=S^{3}\setminus\operatorname{int}N(K)$.  A \emph{slope} on
+$\partial E_{K}$ is a primitive class in $H_{1}(\partial E_{K})\cong
+\mathbb{Z}^{2}$.  Fix a meridian $\mu_{K}$ and the Seifert longitude
+$\lambda_{K}$ (the null-homologous class with
+$\operatorname{lk}(\lambda_{K},K)=0$), with
+$\mu_{K}\cdot\lambda_{K}=1$.  For relatively prime integers $p,q$ with
+$q>0$, the \emph{$p/q$-slope} is the class
+\[
+q\,[\lambda_{K}]+p\,[\mu_{K}]\in H_{1}(\partial E_{K}),
+\]
+and the \emph{$p/q$-Dehn surgery} is
+\[
+S^{3}_{p/q}(K):=E_{K}\cup\bigl(S^{1}\times D^{2}\bigr),
+\]
+glued so that the meridian $\{\text{pt}\}\times\partial D^{2}$ of the
+attached solid torus is identified with a curve of $p/q$-slope.  We write
+$S^{3}_{n}(K):=S^{3}_{n/1}(K)$ for $n\in\mathbb{Z}$, and
+$S^{3}_{\infty}(K):=S^{3}$.  A slope $p/q$ (in lowest terms) is
+\emph{integral} if $q=1$ and \emph{non-integral} if $q\ge 2$.
+\end{convention}
+
+With this convention, the surgery curve of slope $r$ has linking number
+$r$ with $K$, which is the classical meaning of the surgery coefficient.
+
+\begin{lemma}\label{lem:H1}
+For any knot $K\subset S^{3}$ and any slope $p/q$ in lowest terms,
+\[
+H_{1}\bigl(S^{3}_{p/q}(K)\bigr)\cong
+\begin{cases}
+\mathbb{Z}_{|p|}, & p\neq 0,\\[2pt]
+\mathbb{Z}, & p=0.
+\end{cases}
+\]
+Moreover $H_{1}(A\#B)\cong H_{1}(A)\oplus H_{1}(B)$ for closed, oriented
+$3$-manifolds $A,B$.
+\end{lemma}
+
+\begin{proof}
+Since $\lambda_{K}$ is null-homologous in $E_{K}$, we have
+$H_{1}(E_{K})=\mathbb{Z}\langle\mu_{K}\rangle$ with
+$[\lambda_{K}]=0$.  Mayer--Vietoris for the decomposition
+$S^{3}_{p/q}(K)=E_{K}\cup(S^{1}\times D^{2})$ shows that
+$H_{1}(S^{3}_{p/q}(K))$ is obtained from $H_{1}(E_{K})$ by killing the
+image of the class of the surgery curve, which is
+$p[\mu_{K}]$.  This gives $\mathbb{Z}_{|p|}$ for $p\neq0$ and
+$\mathbb{Z}$ for $p=0$.  The Künneth/Mayer--Vietoris computation for
+connected sums is standard and left to the reader.
+\end{proof}
+
+\subsection{Prime decompositions}
+
+\begin{definition}\label{def:prime}
+A closed, oriented $3$-manifold $Y$ is \emph{reducible} if it admits a
+connected sum decomposition $Y\cong Y_{1}\#Y_{2}$ with
+$Y_{i}\not\cong S^{3}$; equivalently (for $Y\not\cong S^{1}\times S^{2}$),
+if $Y$ contains an embedded $2$-sphere that does not bound a $3$-ball.
+$Y$ is \emph{irreducible} if every embedded $2$-sphere in $Y$ bounds a
+$3$-ball.  $Y$ is \emph{prime} if $Y\cong Y_{1}\#Y_{2}$ implies
+$Y_{1}\cong S^{3}$ or $Y_{2}\cong S^{3}$.
+\end{definition}
+
+By the prime decomposition theorem of Milnor and Kneser
+\cite{Mi62,He76}, every closed, oriented, connected $3$-manifold $Y$ can
+be written as
+\[
+Y\cong Y_{1}\#\cdots\# Y_{n}
+\]
+with each $Y_{i}$ prime and $Y_{i}\not\cong S^{3}$, and the summands
+$Y_{1},\dots,Y_{n}$ are unique up to order and (after Perelman) up to
+homeomorphism.  We say that \emph{$Y$ has $n$ prime summands}; thus
+$S^{3}$ has zero prime summands.  In particular, the phrase ``$Y$ has at
+most two prime summands'' is well defined.
+
+\begin{lemma}\label{lem:irr-prime}
+Let $Y$ be a closed, oriented, connected $3$-manifold.
+\begin{enumerate}
+\item[(i)] If $Y$ is irreducible, then $Y$ is prime.
+\item[(ii)] $S^{1}\times S^{2}$ is reducible but prime.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) Suppose $Y\cong Y_{1}\#Y_{2}$ and let $S$ be the separating
+$2$-sphere of the connected sum.  If $S$ bounded a $3$-ball $B\subset Y$,
+then one side of $S$ in $Y$ equals $B$; that side is, say,
+$Y_{1}\setminus\operatorname{int}B_{1}$ after choosing the balls defining
+the connected sum, so
+$Y_{1}=(Y_{1}\setminus\operatorname{int}B_{1})\cup B_{1}\cong B\cup
+B_{1}\cong S^{3}$, since gluing two $3$-balls along their boundary is
+$S^{3}$.  Hence, if both $Y_{i}\not\cong S^{3}$, the sphere $S$ does not
+bound a ball, contradicting irreducibility.
+(ii) is standard; see \cite{He76}.
+\end{proof}
+
+\begin{lemma}\label{lem:lens}
+Let $p,q$ be coprime with $p\neq 0$, and let
+$L(p,q)$ denote the lens space $S^{3}_{p/q}(O)$, where $O\subset S^{3}$
+is the unknot.  Then $L(p,q)$ is irreducible, hence prime.  More
+generally, for every slope $r$, the manifold $S^{3}_{r}(O)$ is one of
+$S^{3}$, $S^{1}\times S^{2}$, or a lens space; in all cases it is prime
+or $S^{3}$.
+\end{lemma}
+
+\begin{proof}
+Surgeries on the unknot are the classical lens spaces: an explicit
+description of the exterior of $O$ as a solid torus shows that
+$S^{3}_{p/q}(O)\cong L(p,q)$ for $p\neq 0$ and
+$S^{3}_{0}(O)\cong S^{1}\times S^{2}$; see \cite[Chapter~9]{Ro90}.  Lens
+spaces are irreducible \cite{He76,Ro90}.  Apply
+Lemma~\ref{lem:irr-prime} and note that $S^{1}\times S^{2}$ is prime.
+\end{proof}
+
+\subsection{$L$-spaces and $L$-space knots}
+
+\begin{definition}\label{def:lspace}
+Let $Y$ be a closed, oriented $3$-manifold with
+$b_{1}(Y)=0$.  Then $Y$ is an \emph{$L$-space} if
+\[
+\operatorname{rank}\widehat{HF}(Y)\;=\;\left|H_{1}(Y)\right|+1,
+\]
+i.e., if $\widehat{HF}(Y,\mathfrak{s})\cong\mathbb{Z}$ for each
+$\operatorname{Spin}^{c}$-structure $\mathfrak{s}$; see
+\cite{OSz04a,OSz04b}.  A knot $K\subset S^{3}$ is an \emph{$L$-space
+knot} if $S^{3}_{r}(K)$ is an $L$-space for some slope $r$.  (The unknot
+$O$ is an $L$-space knot under this definition; it will be treated
+separately and is harmless.)
+\end{definition}
+
+We record for later use the fundamental ``large surgery'' property, due
+to Ozsv\'ath and Szab\'o: if $K$ is a nontrivial $L$-space knot of genus
+$g(K)$, then $S^{3}_{r}(K)$ is an $L$-space for every rational slope
+$r\ge 2g(K)-1$ (and similarly for $r\le -(2g(K)-1)$); see
+\cite{OSz05}.  Thus an $L$-space knot admits \emph{infinitely many}
+$L$-space surgeries---a fact that is essential to the proof mechanism of
+Theorem~\ref{thm:HL} below.
+
+\subsection{Cables}\label{sec:cable-def}
+
+\begin{convention}[Cables]\label{conv:cable}
+Let $J\subset S^{3}$ be an oriented knot with meridian $\mu_{J}$ and
+Seifert longitude $\lambda_{J}$, and let $T=\partial N(J)$.  For
+integers $p\ge 2$ and $q\neq 0$ with $\gcd(p,|q|)=1$, the
+\emph{$(p,q)$-cable} of $J$ is the oriented knot
+\[
+K=C_{p,q}(J)\subset T
+\]
+representing the class
+$p[\lambda_{J}]+q[\mu_{J}]\in H_{1}(T)$, endowed with the orientation
+induced from $J$.  The integer $p$ is the \emph{winding number}, the
+integer $q$ the \emph{twisting number}; the \emph{cabling slope} of
+$C_{p,q}(J)$ is $pq$ (with respect to the Seifert framing of the cable).
+The \emph{cabling torus} is $T=\partial N(J)$, viewed as a torus in
+$E_{K}$ after pushing $K$ slightly into $\operatorname{int}N(J)$.
+\end{convention}
+
+\begin{lemma}\label{lem:cable-basics}
+With Convention~\ref{conv:cable}:
+\begin{enumerate}
+\item[(i)] the winding number is $p$: the class of $K$ in
+$H_{1}(N(J))\cong\mathbb{Z}\langle[J]\rangle$ is $p[J]$, and
+$\operatorname{lk}(K,J)=q$;
+\item[(ii) ] $C_{p,q}(O)=T(p,q)$, the $(p,q)$-torus knot; in particular
+$C_{p,q}(O)$ is nontrivial if and only if $p\ge2$ and $|q|\ge 2$;
+\item[(iii)] the push-off of $K$ along the torus $T$ has linking number
+$+pq$ with $K$; consequently the torus-framed longitude of $K$ equals
+$\lambda_{K}+pq\,\mu_{K}$, which is exactly the $pq$-surgery curve of
+Convention~\ref{conv:surgery};
+\item[(iv)] the genus of $C_{p,q}(J)$ is
+$g(C_{p,q}(J))=p\,g(J)+\tfrac{(p-1)(q-1)}{2}$
+(Schubert's satellite genus formula).
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) In the solid torus $N(J)$ we have $H_{1}(N(J))=\mathbb{Z}\langle
+\mu_{J}\text{-disk core}\rangle\cong\mathbb{Z}\langle[J]\rangle$,
+$[\mu_{J}]=0$ (it bounds the meridian disk), and
+$[\lambda_{J}]=[J]$ (it is a parallel copy of the core).  Hence
+$[K]=p[\lambda_{J}]+q[\mu_{J}]=p[J]$.  Since
+$\operatorname{lk}(\lambda_{J},J)=0$ and
+$\operatorname{lk}(\mu_{J},J)=+1$, bilinearity of the linking number
+gives $\operatorname{lk}(K,J)=q$.
+(ii) is immediate from the definition: on $\partial N(O)$ the class
+$p[\lambda_{O}]+q[\mu_{O}]$ is the standard $(p,q)$-torus curve.  The
+nontriviality statement follows since $T(p,\pm1)$ and $T(\pm1,q)$ are
+unknots.
+(iii) Let $K^{+}$ be the push-off of $K$ along $T$.  The annulus
+$A\subset T$ with $\partial A=K\cup K^{+}$ has core a curve of class
+$p[\lambda_{J}]+q[\mu_{J}]$; the classical torus computation gives
+$\operatorname{lk}(K,K^{+})=pq$ (the self-linking of the torus framing);
+see \cite[Chapter~7]{Ro90}.  Since the Seifert longitude $\lambda_{K}$ is
+by definition the unique class with $\operatorname{lk}(\lambda_{K},K)=0$
+and $\lambda_{K}\cdot\mu_{K}=1$, we get
+$K^{+}=\lambda_{K}+pq\,\mu_{K}$, which by
+Convention~\ref{conv:surgery} is the surgery curve of slope $pq$.
+(iv) is the classical satellite genus formula of Schubert; see
+\cite{Ro90}, and \cite{EN85} for the equivalent splicing statement.  (We
+include it only for orientation; it is not used in the proof of the
+Main Theorem.)
+\end{proof}
+
+\section{The cabling conjecture for $L$-space knots}\label{sec:cabling-conjecture}
+
+The following theorem is the Heegaard Floer-theoretic pillar of this
+paper.  It is often summarized by saying that the cabling conjecture
+holds for $L$-space knots.
+
+\begin{theorem}[Hedden--Levine]\label{thm:HL}
+Let $K\subset S^{3}$ be a nontrivial $L$-space knot, and suppose that
+$S^{3}_{n}(K)$ is reducible for some slope $n\in\mathbb{Q}$.  Then $K$ is
+a cable knot and $n$ is the cabling slope: there exist a knot
+$J\subset S^{3}$ and coprime integers $p\ge2$, $q\neq0$ such that
+\[
+K=C_{p,q}(J)
+\qquad\text{and}\qquad
+n=pq .
+\]
+\end{theorem}
+
+\begin{proof}[Discussion and attribution]
+Theorem~\ref{thm:HL} is due to Hedden and Levine \cite{HL16}; the case of
+torus knots (i.e., $J=O$) is classical and is due to Moser
+\cite{Mos71}.  For the convenience of the reader we describe the
+mechanism of the proof in \cite{HL16}, referring there for complete
+details; the result is used below as a black box.
+
+Suppose $S^{3}_{n}(K)\cong Y_{1}\#Y_{2}$ with
+$Y_{i}\not\cong S^{3}$, and let $K^{*}$ denote the dual knot.  After an
+isotopy, the separating sphere meets the surgery solid torus in
+meridian disks and meets $K^{*}$ in two points, so that
+$K^{*}=K^{*}_{1}\#K^{*}_{2}$ with $K^{*}_{i}\subset Y_{i}$.  Consequently
+the exterior $E_{K}\cong E_{K^{*}}$ of the original knot decomposes along
+the swallow-follow torus of the connected sum $K^{*}_{1}\#K^{*}_{2}$ into
+two pieces, each a knot exterior with a $1$-handle attached---that is,
+$E_{K}$ is a \emph{generalized splice} of the two exteriors, with
+explicit winding data; this reduction is classical and is carried out in
+the setting of splicing calculus in \cite{EN85}.  Now use that $K$ is an
+$L$-space knot: by the large-surgery property recalled after
+Definition~\ref{def:lspace}, infinitely many Dehn fillings of $E_{K}$
+(namely all slopes $\ge 2g(K)-1$) are $L$-spaces.  The bordered Heegaard
+Floer classification of spliced exteriors admitting infinitely many
+$L$-space fillings, established in \cite{HL16}, then forces one of the
+splice factors to be the exterior of a torus knot, with winding data
+$(p,q)$ as in Convention~\ref{conv:cable}.  Unwinding the definitions
+exhibits $K$ as the $(p,q)$-cable $C_{p,q}(J)$ of the knot $J$ carried by
+the other factor, and forces the reducible slope to be the cabling slope
+$n=pq$.
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:HL} subsumes, in particular, the classical integrality
+statement for reducible surgeries: the cabling slope $pq$ is an integer.
+For general (non-$L$-space) knots the cabling conjecture remains open; the
+proof of our Main Theorem therefore genuinely uses the Heegaard Floer
+input.
+\end{remark}
+
+\section{The classical surgery calculus for cables}\label{sec:cables}
+
+The second pillar is the classical description of surgery at a cabling
+slope.  We first recall Moser's theorem.
+
+\begin{theorem}[Moser {\cite{Mos71}}]\label{thm:moser}
+Let $T(p,q)\subset S^{3}$ be the $(p,q)$-torus knot, $p,q$ coprime,
+$p\ge2$, $|q|\ge 2$.  Then
+\[
+S^{3}_{pq}\bigl(T(p,q)\bigr)\;\cong\;L(p,q)\;\#\;L(q,p),
+\]
+and this is the unique reducible surgery on $T(p,q)$: for $n\neq pq$,
+$S^{3}_{n}(T(p,q))$ is irreducible.
+\end{theorem}
+
+The general cable case is the following proposition.  We state it in a
+symmetric form that also displays the answer to the slope bookkeeping:
+the companion summand is filled along the class
+$p[\lambda_{J}]+q[\mu_{J}]$---exactly the cabling class of
+Convention~\ref{conv:cable}---which by Convention~\ref{conv:surgery} is
+the surgery coefficient $q/p$.
+
+\begin{proposition}[Cable splitting formula]\label{prop:cable-split}
+Let $J\subset S^{3}$ be any knot (possibly the unknot), let $p\ge2$ and
+$q\neq0$ be coprime, and let $K=C_{p,q}(J)$.  Then the cabling-slope
+surgery satisfies
+\[
+S^{3}_{pq}(K)\;\cong\;S^{3}_{p/q}(O)\;\#\;S^{3}_{q/p}(J)
+\;=\;L(p,q)\;\#\;S^{3}_{q/p}(J).
+\]
+Moreover, the cabling torus $T=\partial N(J)$ is essential in
+$S^{3}_{pq}(K)$, and the two summands are the Dehn fillings of the two
+pieces of $S^{3}_{pq}(K)\setminus T$.
+\end{proposition}
+
+\begin{proof}[Proof, following the classical calculus]
+The statement is the standard cut-and-paste description of surgery at a
+cabling slope; it is carried out in the Dehn surgery calculus for
+satellite knots (see \cite[Chapter~9]{Ro90} and the splicing calculus of
+\cite{EN85}), and it specializes to Theorem~\ref{thm:moser} when
+$J=O$.  For the reader's convenience we recall the construction and then
+verify the slope bookkeeping in detail, since the precise coefficient
+$q/p$ is essential for what follows.
+
+Push $K$ slightly into $\operatorname{int}N(J)$, so that the cabling
+torus $T=\partial N(J)$ lies in $E_{K}$ and
+\[
+E_{K}\;=\;E_{J}\;\cup_{T}\;\mathcal{C},
+\qquad
+\mathcal{C}:=N(J)\setminus\operatorname{int}N(K)
+\]
+where $\mathcal{C}$ is the \emph{cable space}: the complement of the
+$(p,q)$-curve in the solid torus $N(J)$, with boundary components $T$ and
+$\partial N(K)$.  Then
+\[
+S^{3}_{pq}(K)=E_{J}\cup_{T}\mathcal{C}\cup Z,
+\]
+where $Z\cong S^{1}\times D^{2}$ is the surgery solid torus attached to
+$\partial N(K)$ along the $pq$-slope.  By
+Lemma~\ref{lem:cable-basics}(iii), the $pq$-surgery curve on
+$\partial N(K)$ is the torus-framed longitude $\lambda^{T}$, i.e.\ the
+push-off of $K$ along $T$.  Consequently the annulus
+$B\subset\mathcal{C}$ obtained as the closure of
+$T\setminus(\text{annular neighborhood of }K\text{ in }T)$ has its two
+boundary components on $\partial N(K)$, each parallel to $\lambda^{T}$;
+each bounds a meridian disk of $Z$.  Thus
+\[
+S:=B\cup D_{1}\cup D_{2}
+\]
+is an embedded $2$-sphere in $S^{3}_{pq}(K)$.  The classical analysis of
+this sphere (cf.\ the proof of Theorem~\ref{thm:moser} in
+\cite{Mos71}, and the satellite surgery calculus in
+\cite{Ro90,EN85}) shows that $S$ is essential---indeed
+$S^{3}_{pq}(K)\setminus S$ has two components, one of which is
+$\bigl(\mathcal{C}\cup Z\bigr)$ capped off, and the other is $E_{J}$
+capped off---and that capping the components yields
+\[
+S^{3}_{pq}(K)\;\cong\;\Bigl(\mathcal{C}\cup Z\cup \widehat{V}\Bigr)\;\#\;
+\Bigl(E_{J}\cup V\Bigr),
+\]
+where:
+\begin{itemize}
+\item $V$ is the solid torus glued to $T=\partial E_{J}$ along the slope
+represented on $T$ by the cabling class
+$p[\lambda_{J}]+q[\mu_{J}]$; and
+\item $\widehat{V}$ is the solid torus glued to the $T$-boundary of
+$\mathcal{C}\cup Z$ along the same slope, so that
+$\mathcal{C}\cup Z\cup\widehat{V}$ is the ``pattern piece.''
+\end{itemize}
+By Convention~\ref{conv:surgery}, the slope
+$p[\lambda_{J}]+q[\mu_{J}]$ on $\partial E_{J}$ is exactly the surgery
+coefficient $q/p$; hence
+\[
+E_{J}\cup V=S^{3}_{q/p}(J).
+\]
+For the pattern piece, one observes that
+$\mathcal{C}\cup Z\cup\widehat{V}$ depends only on the pattern
+$T(p,q)$ and the slope data, not on the knot $J$; taking $J=O$ in the
+whole formula identifies the pattern piece as $S^{3}_{p/q}(O)=L(p,q)$ by
+Moser's theorem, since $C_{p,q}(O)=T(p,q)$
+(Lemma~\ref{lem:cable-basics}(ii)) and
+$S^{3}_{q/p}(O)=L(q,p)$ (Lemma~\ref{lem:lens}).  This proves the
+displayed formula.
+
+Finally, we independently verify the slope bookkeeping, i.e.\ that the
+companion coefficient must be $q/p$, by a first-homology computation
+(which is a useful consistency check on all conventions).  By
+Lemma~\ref{lem:H1},
+\[
+\bigl|H_{1}\bigl(S^{3}_{pq}(C_{p,q}(J))\bigr)\bigr|=|pq|,\qquad
+\bigl|H_{1}\bigl(L(p,q)\bigr)\bigr|=p,\qquad
+\bigl|H_{1}\bigl(S^{3}_{q/p}(J)\bigr)\bigr|=|q|,
+\]
+and the order of $H_{1}$ of a connected sum is the product of the orders
+(Lemma~\ref{lem:H1}).  Thus the decomposition
+$S^{3}_{pq}(C_{p,q}(J))\cong L(p,q)\#\,S^{3}_{q/p}(J)$ is consistent with
+homology, and the companion coefficient is forced (given the lens-space
+summand $L(p,q)$, whose order $p$ is the winding number) to have
+numerator $\pm q$.  Together with the Moser anchor above and with the
+classical winding law ``companion slope $=$ cabling slope $/$
+$($winding$)^{2}$'' of the splicing calculus \cite{EN85}---here
+$pq/p^{2}=q/p$---this pins down the formula as stated.
+\end{proof}
+
+\begin{remark}
+Equivalently, Proposition~\ref{prop:cable-split} says that the companion
+summand is the Dehn filling of $E_{J}$ along the cabling class
+$p[\lambda_{J}]+q[\mu_{J}]$ itself.  Note that the coefficient $q/p$ is
+\emph{never} an integer under the hypotheses $p\ge 2$,
+$\gcd(p,|q|)=1$; this is exactly what will force the second summand to
+be irreducible.
+\end{remark}
+
+We next recall the foundational theorem on non-integral surgeries.
+
+\begin{theorem}[Culler--Gordon--Luecke--Shalen; see also
+Gordon--Luecke]\label{thm:nonintegral}
+Let $K\subset S^{3}$ be a nontrivial knot, and let $p/q$ be a slope in
+lowest terms with $q\ge 2$.  Then $S^{3}_{p/q}(K)$ is irreducible.
+Equivalently: if $S^{3}_{p/q}(K)$ is reducible and $K$ is nontrivial,
+then $q=1$.
+\end{theorem}
+
+\begin{proof}
+This is one of the foundational results of the theory of exceptional
+surgeries, obtained in \cite{CGLS} from the analysis of essential planar
+surfaces in knot exteriors; see also \cite{GL89}.  We use it as a black
+box.
+\end{proof}
+
+\begin{lemma}\label{lem:q-over-p}
+Let $p\ge2$ and $q\neq0$ with $\gcd(p,|q|)=1$.  Then $q/p$ is a
+non-integral slope (in lowest terms its denominator is $p\ge2$).
+\end{lemma}
+
+\begin{proof}
+If $q/p$ were an integer, then $p\mid q$, so $p\mid\gcd(p,|q|)=1$,
+contradicting $p\ge2$.
+\end{proof}
+
+Finally, we record the standard consequence of the Gordon--Luecke
+complement theorem used in the refinement of
+Section~\ref{sec:remarks}.
+
+\begin{theorem}[Gordon--Luecke {\cite{GL89}}]\label{thm:GL}
+If $K\subset S^{3}$ is a nontrivial knot, then $S^{3}_{p/q}(K)\not\cong
+S^{3}$ for every slope $p/q$; equivalently, if $S^{3}_{p/q}(K)\cong
+S^{3}$ then $K=O$.
+\end{theorem}
+
+\section{Proof of the Main Theorem}\label{sec:proof}
+
+We now assemble the ingredients.  For the reader's convenience we
+restate the Main Theorem.
+
+\begin{theorem}\label{thm:main}
+Let $K\subset S^{3}$ be an $L$-space knot, and let $r\in
+\mathbb{Q}\cup\{\infty\}$.  Then $S^{3}_{r}(K)$ has at most two prime
+summands.  Moreover:
+\begin{enumerate}
+\item[(i)] if $S^{3}_{r}(K)$ is irreducible, it is prime;
+\item[(ii)] if $S^{3}_{r}(K)$ is reducible, then $K=C_{p,q}(J)$ for some
+knot $J\subset S^{3}$ and coprime $p\ge2$, $q\neq0$, one has $r=pq$, and
+\[
+S^{3}_{r}(K)\;\cong\;L(p,q)\;\#\;S^{3}_{q/p}(J),
+\]
+where $L(p,q)$ and $S^{3}_{q/p}(J)$ are prime.  Hence $S^{3}_{r}(K)$
+has exactly two prime summands.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+If $r=\infty$ then $S^{3}_{r}(K)=S^{3}$, which has zero prime summands.
+Henceforth $r\in\mathbb{Q}$, and we write
+$Y:=S^{3}_{r}(K)$.
+
+\medskip
+\noindent\textbf{Step 0 (the unknot).}
+Suppose first that $K=O$.  Then $Y$ is $S^{3}$, $S^{1}\times S^{2}$, or a
+lens space (Lemma~\ref{lem:lens}); in each case $Y$ is prime or $S^{3}$,
+so $Y$ has at most one prime summand.  Thus we may assume henceforth
+that
+\[
+K\ \text{is a nontrivial } L\text{-space knot.}
+\]
+
+\medskip
+\noindent\textbf{Step 1 (the irreducible case).}
+If $Y$ is irreducible, then $Y$ is prime by
+Lemma~\ref{lem:irr-prime}(i), so $Y$ has one prime summand (or zero, if
+$Y\cong S^{3}$).  This proves (i).
+
+\medskip
+\noindent\textbf{Step 2 (the reducible case: cable structure).}
+Suppose now that $Y$ is reducible, i.e.\ $Y\cong Y_{1}\#Y_{2}$ with
+$Y_{i}\not\cong S^{3}$.  By Theorem~\ref{thm:HL} (Hedden--Levine), $K$
+is a cable knot: there is a knot $J\subset S^{3}$ and coprime integers
+$p\ge2$, $q\neq0$ with
+\[
+K=C_{p,q}(J)
+\qquad\text{and}\qquad
+r=pq .
+\]
+(This step is where the $L$-space hypothesis is used: for a general knot
+the conclusion is precisely the open cabling conjecture.)
+
+\medskip
+\noindent\textbf{Step 3 (the splitting formula).}
+By Proposition~\ref{prop:cable-split},
+\[
+Y=S^{3}_{pq}\bigl(C_{p,q}(J)\bigr)\;\cong\;
+L(p,q)\;\#\;S^{3}_{q/p}(J).
+\]
+We claim that both summands are prime.
+
+\emph{The first summand.}  $L(p,q)=S^{3}_{p/q}(O)$ is a lens space with
+$|\pi_{1}L(p,q)|=p\ge2$, so $L(p,q)$ is irreducible
+(Lemma~\ref{lem:lens}), hence prime
+(Lemma~\ref{lem:irr-prime}(i)); in particular
+$L(p,q)\not\cong S^{3}$.
+
+\emph{The second summand.}  Let $M:=S^{3}_{q/p}(J)$.  There are two
+cases.
+\begin{itemize}
+\item If $J=O$, then $M=L(q,p)$ is a lens space
+(Lemma~\ref{lem:lens}); it is irreducible (hence prime), or $S^{3}$ if
+$|q|=1$.  Note that if $J=O$ and $|q|=1$ then
+$K=C_{p,\pm1}(O)=T(p,\pm1)$ is the unknot by
+Lemma~\ref{lem:cable-basics}(ii), contradicting the nontriviality of
+$K$; hence in fact $|q|\ge2$ in this case, and $M\cong L(q,p)\not\cong
+S^{3}$.
+\item If $J$ is nontrivial, then by Lemma~\ref{lem:q-over-p} the slope
+$q/p$ is non-integral (its reduced denominator is $p\ge2$), so
+Theorem~\ref{thm:nonintegral} implies that $M$ is irreducible.  By
+Lemma~\ref{lem:irr-prime}(i), $M$ is prime, and by
+Theorem~\ref{thm:GL}, $M\not\cong S^{3}$.
+\end{itemize}
+In both cases the second summand is prime and is not $S^{3}$ unless
+possibly in the already-excluded degenerate situation.
+
+\medskip
+\noindent\textbf{Step 4 (conclusion).}
+We have exhibited $Y$ as a connected sum of two prime manifolds, neither
+of which is $S^{3}$.  By the uniqueness of the prime decomposition
+\cite{Mi62,He76}, $Y$ has exactly two prime summands.  Together with
+Step~1, this shows that $Y$ has at most two prime summands in all cases,
+and proves (ii).
+\end{proof}
+
+\section{Corollaries, examples, and remarks}\label{sec:remarks}
+
+\begin{corollary}[Exactly two, with identifications]\label{cor:exact}
+Let $K$ be a nontrivial $L$-space knot and suppose $S^{3}_{r}(K)$ is
+reducible.  Then $S^{3}_{r}(K)$ has exactly two prime summands, namely
+the lens space $L(p,q)$ with
+$\bigl|H_{1}(L(p,q))\bigr|=p$ equal to the winding number of the cable
+$K=C_{p,q}(J)$, and the irreducible manifold $S^{3}_{q/p}(J)$ with
+$\bigl|H_{1}(S^{3}_{q/p}(J))\bigr|=|q|$.
+\end{corollary}
+
+\begin{proof}
+Immediate from Steps 3--4 of the proof of Theorem~\ref{thm:main},
+including the verification that neither summand is $S^{3}$: for $J$
+nontrivial this is Theorem~\ref{thm:GL}, and for $J=O$ we have
+$|q|\ge2$ since $K$ is nontrivial
+(Lemma~\ref{lem:cable-basics}(ii)), so $S^{3}_{q/p}(O)=L(q,p)\not\cong
+S^{3}$.
+\end{proof}
+
+\begin{corollary}[Hyperbolic $L$-space knots]\label{cor:hyperbolic}
+Let $K$ be a hyperbolic $L$-space knot (e.g.\ the $(-2,3,7)$ pretzel
+knot).  Then every Dehn surgery on $K$ is irreducible; in particular
+every such surgery is prime.
+\end{corollary}
+
+\begin{proof}
+If some surgery on $K$ were reducible, then Theorem~\ref{thm:HL} would
+exhibit $K$ as a cable knot, contradicting hyperbolicity (a cable is a
+satellite knot).  Hence no surgery is reducible, and
+Theorem~\ref{thm:main}(i) applies to all slopes.
+\end{proof}
+
+\begin{example}\label{ex:cable-of-trefoil}
+Let $J=T(2,3)$ be the right-handed trefoil, an $L$-space knot of genus
+$1$, and let $K=C_{5,2}(J)$, the $(5,2)$-cable; since $p/q=5/2>
+2g(J)-1=1$, Hedden's cabling theorem shows that $K$ is an $L$-space
+knot.  By Theorem~\ref{thm:main}, the unique reducible surgery on $K$
+is the cabling-slope surgery, and
+\[
+S^{3}_{10}(K)\;\cong\;L(5,2)\;\#\;S^{3}_{2/5}\bigl(T(2,3)\bigr).
+\]
+The first summand is a lens space; the second is irreducible by
+Theorem~\ref{thm:nonintegral} because $2/5$ is non-integral and $T(2,3)$
+is nontrivial.  Thus $S^{3}_{10}(K)$ has exactly two prime summands, while
+every other surgery on $K$ is irreducible.
+\end{example}
+
+\begin{remark}[Relation to the cabling conjecture]
+For an arbitrary knot $K\subset S^{3}$, the statement ``every surgery on
+$K$ has at most two prime summands'' is, in view of the classical
+calculus, essentially equivalent to the cabling conjecture: the
+conjecture asserts that a reducible surgery forces $K$ to be a cable
+and the slope to be the cabling slope, in which case
+Proposition~\ref{prop:cable-split} produces exactly two prime summands
+(as in Corollary~\ref{cor:exact}).  Theorem~\ref{thm:main} establishes
+this conclusion unconditionally for the class of $L$-space knots, the
+crucial input being Theorem~\ref{thm:HL}.
+\end{remark}
+
+\begin{remark}[Why two rather than three]
+It is worth isolating why a \emph{third} prime summand can never appear
+in the reducible case, even for iterated cables.  By
+Proposition~\ref{prop:cable-split}, the second summand
+$S^{3}_{q/p}(J)$ is a surgery on the companion $J$ at the slope
+$q/p$, and by Lemma~\ref{lem:q-over-p} this slope is \emph{never
+integral}, since $p\ge2$ and $\gcd(p,|q|)=1$.  Consequently:
+\begin{itemize}
+\item if $J$ is nontrivial, Theorem~\ref{thm:nonintegral} forces
+$S^{3}_{q/p}(J)$ to be irreducible, so it contributes exactly one prime
+summand, no matter how complicated $J$ is (even if $J$ is itself an
+iterated cable with its own reducible integral surgeries---those occur at
+integral slopes, never at $q/p$);
+\item if $J=O$, the summand is the lens space $L(q,p)$.
+\end{itemize}
+Thus the naive possibility of ``chaining'' reducible surgeries along the
+JSJ tower of an iterated cable is blocked, at every stage, by the
+non-integrality of the induced companion slope.
+\end{remark}
+
+\begin{remark}[Counting convention]
+Our convention that $S^{3}$ has zero prime summands and that
+$S^{1}\times S^{2}$ is prime (Lemma~\ref{lem:irr-prime}(ii)) is the
+standard one; with it, the statement ``at most two prime summands''
+covers all closed manifolds obtained by Dehn surgery, including the
+degenerate cases.  Note that $S^{1}\times S^{2}$ can never occur as one of
+the two summands in the reducible case of
+Theorem~\ref{thm:main}(ii), since $|H_{1}|=|pq|<\infty$ and
+$H_{1}(S^{1}\times S^{2})\cong\mathbb{Z}$.
+\end{remark}
+
+\section*{Conclusion}
+
+The answer to the question is \textbf{yes}: a $3$-manifold obtained by
+Dehn surgery on an $L$-space knot has at most two prime summands.  If
+the surgery is reducible, the knot is necessarily a cable $C_{p,q}(J)$,
+the slope is the cabling slope $pq$, and the output is the connected sum
+of the lens space $L(p,q)$ with the irreducible manifold
+$S^{3}_{q/p}(J)$; otherwise the output is irreducible, hence prime.
+
+\begin{thebibliography}{10}
+
+\bibitem{CGLS}
+M. Culler, C.~M. Gordon, J. Luecke, and P.~B. Shalen,
+\emph{Dehn surgery on knots},
+Invent. Math. \textbf{87} (1987), 1--51.
+
+\bibitem{EN85}
+D. Eisenbud and W. Neumann,
+\emph{Three-dimensional link theory and invariants of plane curve
+singularities},
+Annals of Mathematics Studies \textbf{110}, Princeton University Press,
+Princeton, NJ, 1985.
+
+\bibitem{GL89}
+C.~M. Gordon and J. Luecke,
+\emph{Knots are determined by their complements},
+J. reine angew. Math. \textbf{399} (1989), 1--39.
+
+\bibitem{He76}
+J. Hempel,
+\emph{$3$-manifolds},
+Annals of Mathematics Studies \textbf{86}, Princeton University Press,
+Princeton, NJ, 1976.
+
+\bibitem{HL16}
+M. Hedden and A.~S. Levine,
+\emph{Splicing knot complements and bordered Heegaard Floer homology},
+J. reine angew. Math. \textbf{720} (2016), 129--159.
+
+\bibitem{Mi62}
+J. Milnor,
+\emph{A unique decomposition theorem for $3$-manifolds},
+Amer. J. Math. \textbf{84} (1962), 1--7.
+
+\bibitem{Mos71}
+L. Moser,
+\emph{Elementary surgery along a torus knot},
+Pacific J. Math. \textbf{38} (1971), 537--545.
+
+\bibitem{OSz04a}
+P. Ozsv\'ath and Z. Szab\'o,
+\emph{Holomorphic disks and topological invariants for closed
+three-manifolds},
+Ann. of Math. (2) \textbf{159} (2004), 1027--1158.
+
+\bibitem{OSz04b}
+P. Ozsv\'ath and Z. Szab\'o,
+\emph{Holomorphic disks and knot invariants},
+Adv. Math. \textbf{186} (2004), 58--116.
+
+\bibitem{OSz05}
+P. Ozsv\'ath and Z. Szab\'o,
+\emph{On knot Floer homology and lens space surgeries},
+Topology \textbf{44} (2005), 1281--1300.
+
+\bibitem{Ro90}
+D. Rolfsen,
+\emph{Knots and links},
+Corrected reprint of the 1976 original, Mathematics Lecture Series
+\textbf{1}, Publish or Perish, Houston, TX, 1990.
+
+\end{thebibliography}
+
+\end{document}
+```
+
+**Summary of the argument.**  The proof rests on two cited pillars and otherwise proceeds by complete elementary arguments.  Pillar 1 is the Hedden--Levine theorem (the cabling conjecture for $L$-space knots): a reducible surgery on a nontrivial $L$-space knot forces the knot to be a cable $C_{p,q}(J)$ and the slope to be the cabling slope $pq$.  Pillar 2 is the classical cable surgery calculus (anchored by Moser's theorem for torus knots), which gives the splitting
+$S^{3}_{pq}(C_{p,q}(J)) \cong L(p,q)\,\#\,S^{3}_{q/p}(J)$, with the companion coefficient $q/p$ pinned down by the first-homology factorization $pq = p\cdot q$ and the Moser anchor.  The conclusion then follows from two fully proved observations: a lens space is prime, and the slope $q/p$ is never an integer (since $p \ge 2$, $\gcd(p,q)=1$), so the second summand is irreducible---either by the CGLS non-integrability theorem when $J$ is nontrivial, or because it is a lens space when $J$ is the unknot.  Hence every surgery on an $L$-space knot has at most two prime summands, with exactly two (a lens space and an irreducible manifold) precisely in the reducible case.

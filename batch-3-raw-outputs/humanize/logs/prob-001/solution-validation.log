@@ -1,0 +1,772 @@
+=== latexmk ===
+Rc files read:
+  NONE
+Latexmk: This is Latexmk, John Collins, 7 Jan. 2023. Version 4.79.
+No existing .aux file, so I'll make a simple one, and require run of *latex.
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Category 'other':
+  Rerun of 'pdflatex' forced or previously required
+
+------------
+Run number 1 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex -no-shell-escape  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/tmp/first-proof-latex-6uiex0ms"  "/work/first-proof-humanize-tdgou2bu/000-prob-001/solution.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex)
+entering extended mode
+(/work/first-proof-humanize-tdgou2bu/000-prob-001/solution.tex
+LaTeX2e <2022-11-01> patch level 1
+L3 programming layer <2023-01-16>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mathtools.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/jknapltx/mathrsfs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(/tmp/first-proof-latex-6uiex0ms/solution.aux)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+))))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(./solution.out) (./solution.out)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/jknapltx/ursfs.fd)
+
+LaTeX Warning: Reference `rem:nonfg' on page 1 undefined on input line 71.
+
+
+LaTeX Warning: Reference `thm:main-end' on page 1 undefined on input line 76.
+
+
+LaTeX Warning: Reference `sec:collapse' on page 1 undefined on input line 94.
+
+
+LaTeX Warning: Reference `lem:N' on page 1 undefined on input line 95.
+
+
+LaTeX Warning: Reference `lem:atomic' on page 1 undefined on input line 98.
+
+
+LaTeX Warning: Reference `thm:normalform' on page 1 undefined on input line 99.
+
+
+
+LaTeX Warning: Reference `sec:sheaf' on page 1 undefined on input line 101.
+
+
+LaTeX Warning: Reference `prop:adj' on page 1 undefined on input line 102.
+
+
+LaTeX Warning: Reference `thm:descent' on page 1 undefined on input line 104.
+
+
+LaTeX Warning: Reference `prop:equiface' on page 1 undefined on input line 106.
+
+
+
+LaTeX Warning: Reference `ex:ff' on page 1 undefined on input line 106.
+
+
+LaTeX Warning: Reference `sec:direct' on page 1 undefined on input line 107.
+
+
+LaTeX Warning: Reference `def:square' on page 1 undefined on input line 109.
+
+
+LaTeX Warning: Reference `lem:nerve' on page 1 undefined on input line 110.
+
+
+LaTeX Warning: Reference `lem:sieve' on page 1 undefined on input line 112.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+
+LaTeX Warning: Reference `prop:bp' on page 2 undefined on input line 118.
+
+
+LaTeX Warning: Reference `lem:Zpointed' on page 2 undefined on input line 125.
+
+
+LaTeX Warning: Reference `prop:bp' on page 2 undefined on input line 126.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 136.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 136.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 136.
+
+[2]
+
+LaTeX Warning: Reference `prop:bp' on page 3 undefined on input line 217.
+
+
+LaTeX Warning: Reference `constr:pushout' on page 3 undefined on input line 252
+.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueuf.fd)
+
+LaTeX Warning: Reference `prop:fp' on page 3 undefined on input line 263.
+
+
+LaTeX Warning: Reference `constr:pushout' on page 3 undefined on input line 264
+.
+
+
+LaTeX Warning: Reference `lem:atomic' on page 3 undefined on input line 266.
+
+
+LaTeX Warning: Reference `cor:probecover' on page 3 undefined on input line 268
+.
+
+
+LaTeX Warning: Reference `cor:probecovers' on page 3 undefined on input line 26
+8.
+
+
+LaTeX Warning: Reference `lem:sandwich' on page 3 undefined on input line 269.
+
+
+LaTeX Warning: Reference `sec:intro' on page 3 undefined on input line 275.
+
+
+LaTeX Warning: Reference `lem:nerve' on page 3 undefined on input line 282.
+
+
+LaTeX Warning: Reference `lem:mixed' on page 3 undefined on input line 282.
+
+
+LaTeX Warning: Reference `lem:atomic' on page 3 undefined on input line 296.
+
+
+LaTeX Warning: Reference `thm:normalform' on page 3 undefined on input line 302
+.
+
+
+LaTeX Warning: Reference `lem:Zpointed' on page 3 undefined on input line 308.
+
+[3] [4]
+
+LaTeX Warning: Reference `lem:inj0' on page 5 undefined on input line 432.
+
+
+LaTeX Warning: Reference `prop:fp' on page 5 undefined on input line 443.
+
+
+LaTeX Warning: Reference `lem:infstruct' on page 5 undefined on input line 452.
+
+
+
+LaTeX Warning: Reference `prop:fp' on page 5 undefined on input line 453.
+
+
+LaTeX Warning: Reference `lem:infstruct' on page 5 undefined on input line 461.
+
+
+
+LaTeX Warning: Reference `lem:atomic' on page 5 undefined on input line 478.
+
+
+LaTeX Warning: Reference `lem:inj0' on page 5 undefined on input line 480.
+
+
+LaTeX Warning: Reference `lem:atomic' on page 5 undefined on input line 506.
+
+[5]
+
+LaTeX Warning: Reference `thm:normalform' on page 6 undefined on input line 519
+.
+
+
+LaTeX Warning: Reference `cor:cfa' on page 6 undefined on input line 519.
+
+
+LaTeX Warning: Reference `cor:probecover' on page 6 undefined on input line 520
+.
+
+
+LaTeX Warning: Reference `cor:probecovers' on page 6 undefined on input line 52
+0.
+
+
+LaTeX Warning: Reference `constr:pushout' on page 6 undefined on input line 559
+.
+
+[6]
+
+LaTeX Warning: Reference `lem:Zpointed' on page 7 undefined on input line 609.
+
+
+LaTeX Warning: Reference `cor:function' on page 7 undefined on input line 610.
+
+
+LaTeX Warning: Reference `lem:Zpointed' on page 7 undefined on input line 627.
+
+
+LaTeX Warning: Reference `lem:pushout' on page 7 undefined on input line 628.
+
+
+LaTeX Warning: Reference `prop:equiface' on page 7 undefined on input line 649.
+
+
+
+LaTeX Warning: Reference `prop:equiface' on page 7 undefined on input line 661.
+
+
+
+LaTeX Warning: Reference `lem:atomic' on page 7 undefined on input line 669.
+
+
+LaTeX Warning: Reference `cor:cfa' on page 7 undefined on input line 672.
+
+
+LaTeX Warning: Reference `prop:fp' on page 7 undefined on input line 679.
+
+
+LaTeX Warning: Reference `cor:cfa' on page 7 undefined on input line 702.
+
+
+LaTeX Warning: Reference `lem:atomic' on page 7 undefined on input line 703.
+
+[7]
+
+LaTeX Warning: Reference `prop:bp' on page 8 undefined on input line 719.
+
+
+LaTeX Warning: Reference `thm:normalform' on page 8 undefined on input line 731
+.
+
+
+LaTeX Warning: Reference `cor:probecover' on page 8 undefined on input line 731
+.
+
+
+LaTeX Warning: Reference `prop:sep' on page 8 undefined on input line 746.
+
+
+LaTeX Warning: Reference `thm:normalform' on page 8 undefined on input line 747
+.
+
+
+LaTeX Warning: Reference `cor:probecover' on page 8 undefined on input line 748
+.
+
+
+LaTeX Warning: Reference `cor:probecovers' on page 8 undefined on input line 74
+9.
+
+
+LaTeX Warning: Reference `prop:equiface' on page 8 undefined on input line 755.
+
+
+
+LaTeX Warning: Reference `prop:equiface' on page 8 undefined on input line 762.
+
+
+
+LaTeX Warning: Reference `prop:equiface' on page 8 undefined on input line 771.
+
+
+
+LaTeX Warning: Reference `prop:equiface' on page 8 undefined on input line 773.
+
+
+
+LaTeX Warning: Reference `prop:equiface' on page 8 undefined on input line 778.
+
+
+
+LaTeX Warning: Reference `prop:equiface' on page 8 undefined on input line 785.
+
+
+
+LaTeX Warning: Reference `lem:pushout' on page 8 undefined on input line 790.
+
+
+LaTeX Warning: Reference `prop:bp' on page 8 undefined on input line 812.
+
+
+LaTeX Warning: Reference `prop:sep' on page 8 undefined on input line 826.
+
+[8]
+
+LaTeX Warning: Reference `prop:adj' on page 9 undefined on input line 836.
+
+
+LaTeX Warning: Reference `thm:descent' on page 9 undefined on input line 844.
+
+
+LaTeX Warning: Reference `constr:pushout' on page 9 undefined on input line 855
+.
+
+
+LaTeX Warning: Reference `prop:fp' on page 9 undefined on input line 856.
+
+
+LaTeX Warning: Reference `prop:bp' on page 9 undefined on input line 885.
+
+
+LaTeX Warning: Reference `constr:pushout' on page 9 undefined on input line 897
+.
+
+
+LaTeX Warning: Reference `def:nerve' on page 9 undefined on input line 902.
+
+
+LaTeX Warning: Reference `def:nerve' on page 9 undefined on input line 914.
+
+
+LaTeX Warning: Reference `def:nerve' on page 9 undefined on input line 918.
+
+[9]
+
+LaTeX Warning: Reference `prop:bp' on page 10 undefined on input line 1003.
+
+
+LaTeX Warning: Reference `lem:nervemaps' on page 10 undefined on input line 101
+2.
+
+
+LaTeX Warning: Reference `lem:nervemaps' on page 10 undefined on input line 101
+9.
+
+
+LaTeX Warning: Reference `rem:verdier' on page 10 undefined on input line 1033.
+
+
+[10]
+
+LaTeX Warning: Reference `lem:surj' on page 11 undefined on input line 1042.
+
+
+LaTeX Warning: Reference `thm:normalform' on page 11 undefined on input line 10
+43.
+
+
+LaTeX Warning: Reference `prop:vanish' on page 11 undefined on input line 1049.
+
+
+
+LaTeX Warning: Reference `thm:normalform' on page 11 undefined on input line 10
+54.
+
+
+LaTeX Warning: Reference `cor:probecovers' on page 11 undefined on input line 1
+056.
+
+
+LaTeX Warning: Reference `prop:bp' on page 11 undefined on input line 1081.
+
+
+LaTeX Warning: Reference `lem:pushout' on page 11 undefined on input line 1086.
+
+
+
+LaTeX Warning: Reference `lem:Zpointed' on page 11 undefined on input line 1124
+.
+
+[11]
+
+LaTeX Warning: Reference `ex:ff' on page 12 undefined on input line 1139.
+
+
+LaTeX Warning: Reference `lem:pushout' on page 12 undefined on input line 1140.
+
+
+
+LaTeX Warning: Reference `thm:descent' on page 12 undefined on input line 1166.
+
+
+
+LaTeX Warning: Reference `prop:bp' on page 12 undefined on input line 1180.
+
+
+LaTeX Warning: Reference `lem:constcx' on page 12 undefined on input line 1195.
+
+
+
+LaTeX Warning: Reference `lem:const' on page 12 undefined on input line 1208.
+
+
+LaTeX Warning: Reference `lem:const' on page 12 undefined on input line 1218.
+
+
+LaTeX Warning: Reference `lem:depth' on page 12 undefined on input line 1229.
+
+
+LaTeX Warning: Reference `lem:constcx' on page 12 undefined on input line 1233.
+
+
+
+LaTeX Warning: Reference `lem:subquot' on page 12 undefined on input line 1249.
+
+
+[12]
+
+LaTeX Warning: Reference `lem:constcx' on page 13 undefined on input line 1272.
+
+
+
+LaTeX Warning: Reference `lem:subquot' on page 13 undefined on input line 1275.
+
+
+
+LaTeX Warning: Reference `lem:nerve' on page 13 undefined on input line 1299.
+
+
+LaTeX Warning: Reference `lem:mixed' on page 13 undefined on input line 1300.
+
+
+LaTeX Warning: Reference `lem:subquot' on page 13 undefined on input line 1327.
+
+
+
+LaTeX Warning: Reference `rem:verdier' on page 13 undefined on input line 1338.
+
+
+
+LaTeX Warning: Reference `rem:cover-points' on page 13 undefined on input line 
+1344.
+
+
+LaTeX Warning: Reference `constr:pushout' on page 13 undefined on input line 13
+45.
+
+[13]
+
+LaTeX Warning: Reference `rem:verdier' on page 14 undefined on input line 1371.
+
+
+
+LaTeX Warning: Reference `def:nerve' on page 14 undefined on input line 1373.
+
+
+LaTeX Warning: Reference `def:square' on page 14 undefined on input line 1374.
+
+
+LaTeX Warning: Reference `lem:sandwich' on page 14 undefined on input line 1376
+.
+
+
+LaTeX Warning: Reference `thm:descent' on page 14 undefined on input line 1378.
+
+
+
+LaTeX Warning: Reference `prop:adj' on page 14 undefined on input line 1379.
+
+
+LaTeX Warning: Reference `lem:dead' on page 14 undefined on input line 1385.
+
+
+LaTeX Warning: Reference `lem:const' on page 14 undefined on input line 1387.
+
+
+LaTeX Warning: Reference `lem:sandwich' on page 14 undefined on input line 1394
+.
+
+
+LaTeX Warning: Reference `lem:sandwich' on page 14 undefined on input line 1395
+.
+
+
+LaTeX Warning: Reference `lem:dead' on page 14 undefined on input line 1398.
+
+
+LaTeX Warning: Reference `lem:constcx' on page 14 undefined on input line 1399.
+
+
+
+Overfull \hbox (41.20662pt too wide) detected at line 1407
+[]\OML/cmm/m/it/10.95 z[]D[]F\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 b[]\OT1/cm
+r/m/n/10.95 )\OML/cmm/m/it/10.95 :
+
+LaTeX Warning: Reference `lem:sieve' on page 14 undefined on input line 1411.
+
+
+LaTeX Warning: Reference `lem:dlemma' on page 14 undefined on input line 1418.
+
+
+LaTeX Warning: Reference `lem:sieve' on page 14 undefined on input line 1427.
+
+
+LaTeX Warning: Reference `thm:descent' on page 14 undefined on input line 1440.
+
+
+
+LaTeX Warning: Reference `prop:adj' on page 14 undefined on input line 1441.
+
+[14]
+
+LaTeX Warning: Reference `thm:descent' on page 15 undefined on input line 1452.
+
+
+
+LaTeX Warning: Reference `thm:descent' on page 15 undefined on input line 1458.
+
+
+
+LaTeX Warning: Reference `thm:descent' on page 15 undefined on input line 1461.
+
+
+
+LaTeX Warning: Reference `prop:adj' on page 15 undefined on input line 1461.
+
+
+LaTeX Warning: Reference `prop:vanish' on page 15 undefined on input line 1468.
+
+
+
+LaTeX Warning: Reference `lem:sieve' on page 15 undefined on input line 1469.
+
+
+LaTeX Warning: Reference `sec:intro' on page 15 undefined on input line 1481.
+
+
+LaTeX Warning: Reference `rem:nonfg' on page 15 undefined on input line 1481.
+
+[15] (/tmp/first-proof-latex-6uiex0ms/solution.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
+(see the transcript file for additional information) </root/.texlive2022/texmf-
+var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/e
+uler/eufm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symb
+ols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbo
+ls/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb
+>
+Output written on /tmp/first-proof-latex-6uiex0ms/solution.pdf (15 pages, 33929
+8 bytes).
+Transcript written on /tmp/first-proof-latex-6uiex0ms/solution.log.
+Latexmk: Getting log file '/tmp/first-proof-latex-6uiex0ms/solution.log'
+Latexmk: Examining '/tmp/first-proof-latex-6uiex0ms/solution.fls'
+Latexmk: Examining '/tmp/first-proof-latex-6uiex0ms/solution.log'
+Latexmk: References changed.
+Latexmk: Log file says output to '/tmp/first-proof-latex-6uiex0ms/solution.pdf'
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Changed files or newly in use/created:
+  /tmp/first-proof-latex-6uiex0ms/solution.aux
+  /tmp/first-proof-latex-6uiex0ms/solution.out
+
+------------
+Run number 2 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex -no-shell-escape  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/tmp/first-proof-latex-6uiex0ms"  "/work/first-proof-humanize-tdgou2bu/000-prob-001/solution.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex)
+entering extended mode
+(/work/first-proof-humanize-tdgou2bu/000-prob-001/solution.tex
+LaTeX2e <2022-11-01> patch level 1
+L3 programming layer <2023-01-16>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mathtools.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/jknapltx/mathrsfs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(/tmp/first-proof-latex-6uiex0ms/solution.aux)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+))))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/tmp/first-proof-latex-6uiex0ms/solution.out)
+(/tmp/first-proof-latex-6uiex0ms/solution.out)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/jknapltx/ursfs.fd) [1{/var/lib/texmf/f
+onts/map/pdftex/updmap/pdftex.map}]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 136.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 136.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 136.
+
+[2] (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueuf.fd) [3] [4] [5]
+[6] [7] [8] [9] [10] [11] [12] [13]
+Overfull \hbox (41.20662pt too wide) detected at line 1407
+[]\OML/cmm/m/it/10.95 z[]D[]F\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 b[]\OT1/cm
+r/m/n/10.95 )\OML/cmm/m/it/10.95 :
+[14] [15] (/tmp/first-proof-latex-6uiex0ms/solution.aux) )
+(see the transcript file for additional information) </root/.texlive2022/texmf-
+var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/e
+uler/eufm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symb
+ols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbo
+ls/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb
+>
+Output written on /tmp/first-proof-latex-6uiex0ms/solution.pdf (15 pages, 34440
+2 bytes).
+Transcript written on /tmp/first-proof-latex-6uiex0ms/solution.log.
+Latexmk: Getting log file '/tmp/first-proof-latex-6uiex0ms/solution.log'
+Latexmk: Examining '/tmp/first-proof-latex-6uiex0ms/solution.fls'
+Latexmk: Examining '/tmp/first-proof-latex-6uiex0ms/solution.log'
+Latexmk: Log file says output to '/tmp/first-proof-latex-6uiex0ms/solution.pdf'
+Latexmk: All targets () are up-to-date
+
+
+=== pdfinfo ===
+Title:           
+Subject:         
+Keywords:        
+Author:          
+Creator:         LaTeX with hyperref
+Producer:        pdfTeX-1.40.24
+CreationDate:    Sat Oct  3 21:30:07 2026 UTC
+ModDate:         Sat Oct  3 21:30:07 2026 UTC
+Custom Metadata: yes
+Metadata Stream: no
+Tagged:          no
+UserProperties:  no
+Suspects:        no
+Form:            none
+JavaScript:      no
+Pages:           15
+Encrypted:       no
+Page size:       612 x 792 pts (letter)
+Page rot:        0
+File size:       344402 bytes
+Optimized:       no
+PDF version:     1.5

@@ -1,0 +1,247 @@
+```latex
+\documentclass{article}
+\usepackage{amsmath,amsthm,amssymb}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+
+\title{On tame almost complex structures for symplectic simple normal crossings divisors}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{remark}
+In what follows, a \emph{symplectic simple normal crossings divisor} is understood in the weak sense: each irreducible component is a symplectic submanifold, and all intersections are transverse and symplectic. If one instead includes $\omega$-orthogonality of the branches in the definition, then the answer to the question is immediately yes via the standard Weinstein normal form and the standard complex structure.
+\end{remark}
+
+\noindent
+The answer is \textbf{no}. We give a counterexample on $\mathbb{T}^4$.
+
+\section{The counterexample}
+
+Let $M=\mathbb{T}^4=\mathbb{R}^4/\mathbb{Z}^4$ with coordinates
+$x_1,y_1,x_2,y_2$. Fix $c>1$ and define
+\[
+\omega_c=
+dx_1\wedge dy_1+dx_2\wedge dy_2
++c\,dx_1\wedge dx_2+c\,dy_1\wedge dy_2.
+\]
+Since
+\[
+\omega_c^2
+=
+2(c^2-1)\,dx_1\wedge dx_2\wedge dy_1\wedge dy_2
+\neq 0,
+\]
+$\omega_c$ is symplectic.
+
+Define the codimension-two symplectic tori
+\[
+D_1=\{x_2=y_2=0\},\qquad D_2=\{x_1=y_1=0\},
+\]
+and put $D=D_1\cup D_2$. The restrictions are
+\[
+\omega_c|_{D_1}=dx_1\wedge dy_1,\qquad
+\omega_c|_{D_2}=dx_2\wedge dy_2,
+\]
+so $D_1$ and $D_2$ are symplectic. They intersect transversely at the single point
+\[
+p=(0,0,0,0),
+\]
+and a point is symplectic. Thus $D$ is a symplectic simple normal crossings divisor.
+
+At $p$, let
+\[
+W_1=T_pD_1=\operatorname{span}(\partial_{x_1},\partial_{y_1}),
+\qquad
+W_2=T_pD_2=\operatorname{span}(\partial_{x_2},\partial_{y_2}).
+\]
+In the ordered basis
+$(e_1,f_1,e_2,f_2)=(\partial_{x_1},\partial_{y_1},\partial_{x_2},\partial_{y_2})$,
+the matrix of $\omega_c$ is
+\[
+\begin{pmatrix}
+0&1&c&0\\
+-1&0&0&c\\
+-c&0&0&1\\
+0&-c&-1&0
+\end{pmatrix}.
+\]
+Its Pfaffian is
+\[
+\operatorname{Pf}(\omega_c)=1-c^2<0.
+\]
+
+\section{A linear obstruction}
+
+\begin{lemma}
+Let $(V,\omega)$ be a $4$-dimensional symplectic vector space, and let
+$V=W_1\oplus W_2$ be a direct sum of symplectic $2$-planes.
+Suppose that for some bases $e_1,f_1\in W_1$ and $e_2,f_2\in W_2$ with
+$\omega(e_i,f_i)=1$, the Pfaffian of $\omega$ in the basis
+$(e_1,f_1,e_2,f_2)$ is negative.
+Then there is no $\omega$-tame almost complex structure $J$ on $V$
+such that $J(W_i)\subseteq W_i$ for $i=1,2$.
+\end{lemma}
+
+\begin{proof}
+Write the cross matrix $A$ by
+\[
+A=\begin{pmatrix}
+\omega(e_1,e_2)&\omega(e_1,f_2)\\
+\omega(f_1,e_2)&\omega(f_1,f_2)
+\end{pmatrix}.
+\]
+The Pfaffian of $\omega$ in the given basis is
+\[
+\operatorname{Pf}(\omega)=1-\det A.
+\]
+Thus $\det A>1$. Since $\det A>0$, we can write
+$A=cS$ with $c=\sqrt{\det A}>1$ and $S\in SL(2,\mathbb{R})$.
+Replacing the basis of $W_2$ by its image under $S^{-1}$, which is a symplectic change of basis of $W_2$, transforms $A$ into $cI$.
+Hence we may assume
+\[
+\omega(e_1,e_2)=c,\qquad \omega(f_1,f_2)=c,
+\]
+and all other cross pairings between $W_1$ and $W_2$ are zero.
+
+Assume that an $\omega$-tame $J$ with $J(W_i)\subseteq W_i$ exists.
+Because $J$ preserves $W_1$, we may write
+\[
+Je_1=\alpha e_1+a f_1
+\]
+with
+\[
+a=\omega(e_1,Je_1)>0.
+\]
+Similarly, since $J$ preserves $W_2$, write
+\[
+Jf_2=\gamma e_2+\delta f_2.
+\]
+Tameness gives
+\[
+b:=\omega(f_2,Jf_2)=-\gamma>0,
+\]
+so $\gamma=-b$.
+
+Let $q$ be the positive definite quadratic form
+\[
+q(v)=\omega(v,Jv),
+\]
+and let its symmetric bilinear part also be denoted by $q$.
+We compute
+\[
+\omega(e_1,Jf_2)
+=
+\omega(e_1,\gamma e_2+\delta f_2)
+=
+\gamma c
+=
+-bc,
+\]
+and
+\[
+\omega(f_2,Je_1)
+=
+\omega(f_2,\alpha e_1+a f_1)
+=
+a\,\omega(f_2,f_1)
+=
+-ac.
+\]
+Therefore
+\[
+q(e_1,f_2)
+=
+\frac12\bigl(\omega(e_1,Jf_2)+\omega(f_2,Je_1)\bigr)
+=
+-\frac c2(a+b).
+\]
+Also
+\[
+q(e_1,e_1)=a,\qquad q(f_2,f_2)=b.
+\]
+Thus the restriction of $q$ to the $2$-plane spanned by $e_1$ and $f_2$ has matrix
+\[
+\begin{pmatrix}
+a&-\frac c2(a+b)\\[2mm]
+-\frac c2(a+b)&b
+\end{pmatrix}.
+\]
+Its determinant is
+\[
+ab-\frac{c^2}{4}(a+b)^2.
+\]
+But $a,b>0$, so $(a+b)^2\ge 4ab$, and since $c>1$,
+\[
+ab-\frac{c^2}{4}(a+b)^2
+\le
+ab-c^2ab
+=
+(1-c^2)ab
+<0.
+\]
+This contradicts the positive definiteness of $q$. Hence no such $J$ exists.
+\end{proof}
+
+\section{The obstruction persists under the allowed deformations}
+
+The question allows replacing $\omega$ by a symplectic form connected to it
+through a path of symplectic forms, all cohomologous to $\omega$, along which
+$D$ remains a symplectic simple normal crossings divisor. For the example above,
+the linear obstruction at $p$ cannot be removed by such a deformation.
+
+Indeed, let $\omega_t$ be any path of symplectic forms on $M$ with
+$\omega_0=\omega_c$, such that $D_1$ and $D_2$ remain symplectic
+for all $t$. At the fixed point $p$, the $2$-planes
+$W_1=T_pD_1$ and $W_2=T_pD_2$ are fixed. Since each $D_i$ is symplectic,
+the restriction $\omega_t|_{W_i}$ is nondegenerate for every $t$; hence the
+orientation induced by $\omega_t$ on each $W_i$ is constant in $t$.
+Choose continuously varying bases $e_1(t),f_1(t)\in W_1$ and
+$e_2(t),f_2(t)\in W_2$ with
+\[
+\omega_t(e_i(t),f_i(t))=1.
+\]
+Then the orientation of the ordered basis
+$(e_1(t),f_1(t),e_2(t),f_2(t))$ of $T_pM$ is independent of $t$.
+Since $\omega_t^2$ is a continuous nonvanishing volume form on $T_pM$,
+the sign of the Pfaffian of $\omega_t$ in this basis is constant in $t$.
+At $t=0$, this Pfaffian is $1-c^2<0$. Thus it is negative for every $t$.
+
+By the lemma, for every $t$ there is no $\omega_t$-tame almost complex
+structure on $T_pM$ preserving both $W_1$ and $W_2$.
+
+Finally, suppose an $\omega_t$-tame $J$ with the required local coordinates
+existed near $p$. Since two components of $D$ meet at $p$, we would have $r=2$
+and local coordinates $(z_1,z_2)$ such that $z_1,z_2$ are $J$-holomorphic and
+\[
+D_1=\{z_1=0\},\qquad D_2=\{z_2=0\}.
+\]
+For $X\in W_i=T_pD_i$, we have $dz_i(X)=0$. The condition
+\[
+dz_i(JX)=i\,dz_i(X)
+\]
+then gives $dz_i(JX)=0$, so $JX\in W_i$. Thus $J$ would preserve $W_1$ and
+$W_2$, contradicting the linear obstruction.
+
+\section{Conclusion}
+
+The answer is \textbf{no}. The torus example above is a closed symplectic manifold
+with a symplectic simple normal crossings divisor such that, even after any allowed
+deformation of $\omega$ through cohomologous symplectic forms preserving the divisor,
+no $\omega$-tame almost complex structure can make the two branches simultaneously
+$J$-holomorphic near their intersection.
+
+\begin{remark}
+If one imposes the stronger condition that the branches of the divisor are
+$\omega$-orthogonal, then the answer is yes: the symplectic Weinstein normal form
+gives local Darboux coordinates in which the divisor is a union of coordinate
+hyperplanes, and the standard complex structure in those coordinates extends to a
+global tame almost complex structure.
+\end{remark}
+
+\end{document}
+```

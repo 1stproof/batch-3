@@ -1,0 +1,3 @@
+8. PROVED: Under GH, at every zero p of X one has div_nu X(p) != 0 (else delta_p/nu is a non-smooth solution of Xu = 0) — round2_q1
+9. PROVED: Under hypothesis H (smooth invariant volume, unique ergodicity, cohomology-free with tame estimates), ergodic integrals satisfy |integral_0^T f(g_t x)dt - T omega(f)| <= C||f||_{C^m} uniformly in x, T, and spectral measures of smooth mean-zero f satisfy sigma_f([-eps,eps]) <= C eps^2 ||f||_{C^m}^2 — round2_q3
+10. OPEN: (M) A smooth-volume flow with positive entropy has smooth mean-zero f_n, eps_n -> 0 with ||P_{eps_n} f_n|| / (eps_n ||f_n||_{C^m}) -> infinity (would close the core #7 with the spectral estimate) — round2_q2

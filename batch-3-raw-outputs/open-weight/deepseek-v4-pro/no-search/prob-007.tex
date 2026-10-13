@@ -1,0 +1,190 @@
+```latex
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+
+\DeclareMathOperator{\Teich}{Teich}
+\DeclareMathOperator{\Mod}{Mod}
+\newcommand{\Sph}{\mathbb{S}^2}
+\newcommand{\Dcal}{\mathcal{D}}
+
+\begin{document}
+
+\title{A Dehn twist with infinite orbit on the deformation space}
+\author{}
+\date{}
+\maketitle
+
+Let $f:\Sph^2\to \Sph^2$ be a quadratic rational map with critical points
+$c_1,c_2$. Suppose that $c_1$ belongs to a cycle of length $4$, and that
+the critical value $v=f(c_2)$ does not belong to that cycle. Put
+\[
+p_i=f^{\circ i}(c_1)\quad (i=1,2,3),
+\]
+so that
+\[
+A=\{c_1,p_1,p_2,p_3\},\qquad B=A\cup\{v\}.
+\]
+Thus the dynamics on the four-cycle is
+\[
+c_1\longmapsto p_1\longmapsto p_2\longmapsto p_3\longmapsto c_1.
+\]
+The two critical values of $f$ are
+\[
+V(f)=\{f(c_1),f(c_2)\}=\{p_1,v\}.
+\]
+
+We shall prove the following statement.
+
+\begin{theorem}
+Let $\gamma\subset (\Sph^2,B)$ be a simple closed curve whose two
+complementary disks contain respectively
+\[
+\{c_1,v\}
+\qquad\text{and}\qquad
+\{p_1,p_2,p_3\}.
+\]
+Then the square of the Dehn twist about $\gamma$ preserves
+$\Dcal_f$, and its action on the set of connected components of
+$\Dcal_f$ has an infinite orbit.
+\end{theorem}
+
+The proof uses the following standard facts from mapping class group theory.
+
+\begin{lemma}
+\label{lem:trivial-twist}
+Let $X$ be a sphere with a finite set of marked points. If $\alpha$ is a
+simple closed curve in $X$ that bounds a disk containing at most one
+marked point, then the Dehn twist $T_\alpha$ is isotopic to the identity
+relative to the marked points. In particular, $T_\alpha$ and all its
+powers act trivially on the corresponding Teichm\"uller space.
+\end{lemma}
+
+\begin{proof}
+This is the usual Alexander trick: a disk with at most one marked point
+has trivial mapping class group relative to its boundary and marked point.
+\end{proof}
+
+\begin{lemma}
+\label{lem:preimage}
+Let $\gamma$ be as in the theorem. Then $f^{-1}(\gamma)$ is a single
+simple closed curve $\delta$, and $\delta$ bounds a disk containing
+exactly one point of $A$, namely $p_3=f^{\circ 3}(c_1)$.
+\end{lemma}
+
+\begin{proof}
+The curve $\gamma$ separates the two critical values: one side contains
+$v$, and the other side contains $p_1=f(c_1)$. Since $f$ has degree $2$,
+a simple closed curve separating the two critical values has connected
+preimage; hence $f^{-1}(\gamma)=\delta$ is a single simple closed curve.
+
+Let $D$ be the complementary disk of $\gamma$ containing $\{c_1,v\}$.
+Then $D$ contains exactly one critical value, namely $v$. Therefore its
+preimage $f^{-1}(D)$ is a disk. This disk contains the critical point
+$c_2$, because $f(c_2)=v$, and it contains all preimages of $c_1$.
+Among the points of $A$, the only point mapping to $c_1$ is $p_3$, since
+the cycle has length $4$. Thus
+\[
+f^{-1}(D)\cap A=\{p_3\}.
+\]
+Hence the boundary $\delta=f^{-1}(\gamma)$ bounds a disk containing
+exactly one point of $A$.
+\end{proof}
+
+\begin{proposition}
+\label{prop:preserves}
+The mapping class $T_\gamma^2$ preserves $\Dcal_f$.
+\end{proposition}
+
+\begin{proof}
+Let $g=T_\gamma^2$.
+
+First consider the forgetful map $i_*:\Teich(B)\to \Teich(A)$.
+After forgetting the point $v$, the curve $\gamma$ bounds a disk
+containing exactly the point $c_1\in A$. By Lemma~\ref{lem:trivial-twist},
+the Dehn twist $T_\gamma$, and hence also $g=T_\gamma^2$, is isotopic
+to the identity in $\Mod(\Sph^2,A)$. Therefore
+\[
+i_*\circ g=i_*.
+\]
+
+Now consider the pullback map $f^*:\Teich(B)\to \Teich(A)$. By
+Lemma~\ref{lem:preimage}, the curve $\delta=f^{-1}(\gamma)$ bounds a disk
+containing exactly one point of $A$, namely $p_3$. In an annular
+neighborhood of $\gamma$, the covering $f$ is locally of the form
+$z\mapsto z^2$. Hence a full Dehn twist downstairs lifts to a half-twist
+upstairs, and therefore the square $g=T_\gamma^2$ lifts to a full Dehn
+twist about $\delta$. By Lemma~\ref{lem:trivial-twist}, this twist is
+trivial in $\Mod(\Sph^2,A)$. Thus
+\[
+f^*\circ g=f^*.
+\]
+
+Let $\tau\in\Dcal_f$. Then $f^*(\tau)=i_*(\tau)$, and
+\[
+f^*(g\tau)=f^*(\tau)=i_*(\tau)=i_*(g\tau).
+\]
+Hence $g\tau\in\Dcal_f$. Since $g$ is a homeomorphism of $\Teich(B)$,
+this proves that $g$ preserves $\Dcal_f$.
+\end{proof}
+
+It remains to prove the infinite orbit statement.
+
+\begin{proposition}
+\label{prop:infinite}
+The action of $g=T_\gamma^2$ on the set of connected components of
+$\Dcal_f$ has an infinite orbit.
+\end{proposition}
+
+\begin{proof}
+Let $\tau_0\in\Dcal_f$ be the point corresponding to the original complex
+structure and the original map $f$. Let $D_0$ be the connected component
+of $\Dcal_f$ containing $\tau_0$.
+
+By Proposition~\ref{prop:preserves}, $g$ preserves $\Dcal_f$, so
+$g^n(D_0)$ is a connected component of $\Dcal_f$ for every $n\in\mathbb Z$.
+
+The pure mapping class group of $(\Sph^2,B)$ acts freely on
+$\Teich(B)$. Since $\gamma$ separates the five marked points into two
+subsets of size $2$ and $3$, the Dehn twist $T_\gamma$ is nontrivial and
+has infinite order in $\Mod(\Sph^2,B)$. Hence $g=T_\gamma^2$ has infinite
+order, and the points
+\[
+g^n(\tau_0)\qquad (n\in\mathbb Z)
+\]
+are pairwise distinct.
+
+Because $i_*\circ g=i_*$, all these points lie in the same fiber
+\[
+F:=i_*^{-1}\bigl(i_*(\tau_0)\bigr)
+\]
+of the forgetful map $i_*:\Teich(B)\to \Teich(A)$.
+
+The image of $\Dcal_f$ in the moduli space is the one-dimensional moduli
+space of quadratic rational maps with a marked critical $4$-cycle and a
+free critical value. In particular, the restriction
+\[
+i_*|_{D_0}:D_0\longrightarrow \Teich(A)
+\]
+is not constant. Since $D_0$ is a one-dimensional complex-analytic
+subset of $\Teich(B)$ and $i_*$ is holomorphic, a nonconstant holomorphic
+map from a one-dimensional complex space to a one-dimensional complex
+manifold has discrete fibers. Thus $D_0\cap F$ is discrete. The same is
+true for every translate $g^n(D_0)$, because
+$i_*\circ g^n=i_*$.
+
+Now suppose, toward a contradiction, that the orbit
+$\{g^n(D_0):n\in\mathbb Z\}$ of components were finite. Then infinitely
+many of the distinct points $g^n(\tau_0)$ would lie in a single component
+$D_j=g^m(D_0)$. Since all these points lie in the same fiber $F$, the
+intersection $D_j\cap F$ would be infinite, contradicting the discreteness
+of the fibers of $i_*|_{D_j}$.
+
+Therefore the orbit of the component $D_0$ under $g$ is infinite.
+\end{proof}
+
+\end{document}
+```

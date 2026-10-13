@@ -1,0 +1,1006 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+
+\newcommand{\Pone}{\mathbb P^1}
+\newcommand{\Sph}{\mathbb S^2}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Teich}{\mathcal T}
+\newcommand{\Mod}{\mathcal M}
+\newcommand{\D}{\mathcal D}
+\newcommand{\W}{\mathcal W}
+\newcommand{\V}{\mathcal V}
+\newcommand{\wind}{\operatorname{wind}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\Push}{\operatorname{Push}}
+\newcommand{\PMod}{\operatorname{PMod}}
+\newcommand{\pr}{\operatorname{pr}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{construction}[theorem]{Construction}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{convention}[theorem]{Convention}
+\numberwithin{equation}{section}
+
+\title{An explicit Dehn twist with an infinite orbit on the components
+of a deformation space of quadratic rational maps}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $f$ be a quadratic rational map one of whose critical points lies in a
+cycle $A$ of length four and whose other critical value $v$ lies outside
+$A$, and let $B=A\cup\{v\}$. Epstein's deformation space $\D_f\subset\Teich(\Sph,B)$ is
+known to be disconnected (Hironaka--Koch). We write down an explicit simple
+closed curve $\gamma$ on $(\Sph,B)$, for a normalized model map the image
+of a round circle under two Dehn twists about a second round circle,
+transported to a general $f$ along a path in parameter space, and prove
+that the Dehn twist $T_\gamma$ itself preserves $\D_f$ and that the
+translates $T_\gamma^n(D_0)$, $n\in\Z$, of the base component $D_0$ are
+pairwise distinct components, using the covering-space framework of
+Hironaka--Koch and a winding-number obstruction.
+\end{abstract}
+
+\section{Introduction}
+
+\subsection{Deformation spaces}\label{sec:defspaces}
+
+Throughout, $\Pone$ is the Riemann sphere, which we also regard as the
+oriented topological sphere $\Sph$. For a finite set $B\subset\Pone$ with
+$|B|\ge3$, the \emph{Teichm\"uller space} $\Teich(B)=\Teich(\Sph,B)$ is the
+set of orientation-preserving homeomorphisms $\phi\colon\Pone\to\Pone$
+(\emph{markings}), where $\phi\sim\phi'$ when $\phi'=\mu\circ\phi\circ h$
+for a M\"obius transformation $\mu$ and a homeomorphism $h$ isotopic to the
+identity relative to $B$. Pulling back the standard complex structure by
+$\phi$ identifies $\Teich(B)$ with the complex structures on $(\Sph,B)$ up
+to isotopy relative to $B$; the class $\tau_0=[\id]$ is the \emph{base
+point}.
+
+Let $f\colon\Pone\to\Pone$ be an orientation-preserving branched cover of
+degree $d\ge2$ with set of critical values $V(f)$, and let $A,B\subset\Pone$
+be finite sets with $|A|,|B|\ge3$ and $f(A)\cup V(f)\subset B$.
+Pulling back the complex structure of a marking $\phi$ under $f$ gives a
+complex structure on $(\Sph,A)$; concretely, there are a homeomorphism
+$\psi$, unique up to post-composition with a M\"obius transformation, and a
+rational map $F$ with
+\begin{equation}\label{eq:pullbackdiagram}
+ F\circ\psi=\phi\circ f ,
+\end{equation}
+and $f^*[\phi]:=[\psi]\in\Teich(A)$. This is the Thurston pullback map
+$f^*\colon\Teich(B)\to\Teich(A)$; it is holomorphic
+\cite[\S1.3, Prop.\ 1.4]{BCT}. We call $\phi$ the \emph{target marking} and
+$\psi$ the \emph{source marking} of the diagram
+\eqref{eq:pullbackdiagram}. If $A\subset B$, forgetting the points of
+$B\setminus A$ gives the holomorphic \emph{forgetful map}
+$i_*\colon\Teich(B)\to\Teich(A)$, $[\phi]\mapsto[\phi]$. When
+$f(A)\cup V(f)\cup A\subset B$, both maps are defined, and the
+\emph{deformation space} of $f$ is their equalizer
+\[
+ \D_f=\{\tau\in\Teich(B):f^*(\tau)=i_*(\tau)\}.
+\]
+This notion is due to Epstein \cite{Ep}; see \cite[\S1.4]{BCT} for an
+exposition. When $f$ is rational, as in the problem considered here, we
+may take $\psi=\id$, $F=f$ in \eqref{eq:pullbackdiagram} for $\phi=\id$,
+so $\tau_0\in\D_f$. (By Epstein's theorem \cite[Thm.\ 1.5]{BCT}, under the
+standing hypotheses above, if $f$ is not a topological $(2,2,2,2)$-map in
+the sense of \cite[\S1.4]{BCT}, then $\D_f$, whenever nonempty, is a smooth
+complex submanifold of $\Teich(B)$ of dimension $|B\setminus A|$. For the
+rational family considered here $\tau_0\in\D_f$, and the periodic critical
+point excludes the exceptional type.)
+
+The \emph{pure mapping class group} $\PMod(B)$, the group of isotopy classes
+relative to $B$ of orientation-preserving homeomorphisms of $\Pone$ fixing
+$B$ pointwise, acts on $\Teich(B)$ on the right by
+\begin{equation}\label{eq:rightaction}
+ [\phi]\cdot h=[\phi\circ h];
+\end{equation}
+for a subset $D\subset\Teich(B)$ we write $h(D)=\{\tau\cdot h:\tau\in D\}$.
+A mapping class that preserves $\D_f$ permutes its connected components.
+For a simple closed curve $\gamma$ in $\Pone\setminus B$ we write
+$T_\gamma\in\PMod(B)$ for the Dehn twist about $\gamma$. The question
+addressed here asks for an explicit $\gamma$ such that some power of
+$T_\gamma$ preserves $\D_f$ and has an infinite orbit on the components.
+
+\subsection{The family and the result}\label{sec:family}
+
+Let $f$ be a quadratic rational map with critical points $c_1,c_2$ such that
+$c_1$ lies in a cycle of length $4$ and the critical value $v=f(c_2)$ is not
+in this cycle, and put
+\[
+ A=\{c_1,f(c_1),f^{\circ2}(c_1),f^{\circ3}(c_1)\},\qquad B=A\cup\{v\}.
+\]
+Then $f(A)=A$ and $V(f)=\{f(c_1),v\}\subset B$, so $\D_f\subset\Teich(B)$ is
+defined; $\Teich(B)$ has dimension $2$. Conjugating $f$ by the M\"obius
+transformation that sends $c_1,f(c_1),f^{\circ2}(c_1)$ to $0,\infty,1$
+normalizes the cycle to $0\mapsto\infty\mapsto1\mapsto s\mapsto0$, and
+Section~\ref{sec:curve} shows that this forces $f$ to become
+\begin{equation}\label{eq:family}
+ F_s(z)=1+\frac{-s^2-s+1}{(s-1)z}+\frac{s(2s-1)}{(s-1)z^2},
+ \qquad s\in U,
+\end{equation}
+for an explicit Zariski-open set $U\subset\C$ given in \eqref{eq:U}. Our
+model is $F_a$ with $a=3/5$, whose marked set is
+$B_a=\{0,\infty,1,a,v_a\}$, where $v_a=121/120$ is its second critical
+value (computed in \eqref{eq:vs}).
+
+The answer (Theorem~\ref{thm:main}) is as follows. Let $C$ be the round
+circle $|z|=241/240$, which separates $\{\infty,v_a\}$ from $\{0,1,a\}$,
+and let $\eta$ be the round circle $|z-4/5|=1/4$, which encloses exactly
+$a,1,v_a$. Put $\gamma_a=T_\eta^{2}(C)$, the image of $C$ under two Dehn
+twists about $\eta$ (with the sign of Convention~\ref{conv:sign}; either
+sign works, Remark~\ref{rem:othersign}). For a general $f$ of the family,
+let $\gamma$ be obtained from $\gamma_a$ by following any path in $U$ from
+$a$ to the parameter of $f$ and dragging the marked points along. Then
+$T_\gamma$ preserves $\D_f$, and the translates $T_\gamma^{n}(D_0)$,
+$n\in\Z$, of the component $D_0\ni\tau_0$ are pairwise distinct
+components; so the power of the twist can be taken to be $1$. (A path is
+needed: $\gamma_a$ and $C$ separate $B_a$ in the same way, so separation
+data do not determine the isotopy class of $\gamma$.)
+
+\subsection{Relation to earlier work}\label{sec:prior}
+
+Hironaka and Koch \cite{HK} proved that for this family $\D_f$ has
+infinitely many connected components (\cite[Thm.\ 1.4]{HK}), introducing
+the tools we use: the surface of marked quadratic maps with its
+degree-four covering of moduli space and its diagonal
+(\cite[\S\S4.1--4.2]{HKa}, \cite[\S3]{HK}), the description of $\D_f$
+through mapping classes that lift under $f$ and through equalizers
+(\cite[\S\S2.8--2.11]{HK}), and a symmetric quotient of the parameter
+surface used as an obstruction (\cite[\S2.12]{HK}); they also exhibit a
+mapping class preserving $\D_f$ with an infinite orbit on components
+(\cite[Prop.\ 3.2]{HK}). Here \cite{HKa} is the first arXiv version of
+their paper and \cite{HK} the revised author version, whose numbering we
+follow. Firsova, Kahn and Selinger \cite{FKS} treat the same family
+(\cite[\S6]{FKS}; numbering of arXiv v4), study twists along multicurves
+adapted to the pullback (``equalizing multicurves''), and prove that these
+deformation spaces are not contractible (\cite[Lemma 8.4]{FKS}). The
+present note adds the identification of a single, explicitly drawn Dehn
+twist with an infinite component orbit, which we have not found in
+\cite{HK} or \cite{FKS}, with an elementary verification; our obstruction
+map $\Phi$ (Section~\ref{sec:detector}) is a form of the symmetric
+quotient of \cite{HK}.
+
+\subsection{Strategy and outline}\label{sec:strategy}
+
+The proof has five steps. (1) Section~\ref{sec:covering} factors the
+universal cover $\Teich(B_a)\to M$ of the moduli space $M$ of five marked
+points through a finite cover $\W\to M$, the surface of quadratic maps with
+the prescribed portrait of marked orbits; the pullback and forgetful maps
+become the coordinate projections of $\W$, and $\D_{F_a}$ lies over the
+diagonal $\V\subset\W$. (2) Section~\ref{sec:criterion}: a loop $g$ in
+$\W$ acts on $\Teich(B_a)$ as a mapping class, which preserves $\D_{F_a}$
+if the two coordinate loops of $g$ are homotopic, and preserves the base
+component $D_0$ if and only if $g$ is homotopic in $\W$ to a loop in $\V$.
+(3) Section~\ref{sec:loops} exhibits a loop $g=\ell^{-1}m\ell$ in $\W$
+acting as $T_{\gamma_a}^{\pm1}$: $m$ is a meridian acting as the twist
+about $C$, and the point push along $\ell$ is identified exactly by a
+Joukowski substitution. (4) Section~\ref{sec:detector} shows that no power
+$g^n$, $n\ne0$, is homotopic to a loop in $\V$, using a map
+$\Phi=(t,L)\colon\W\to(\C\setminus\{0,1\})\times\C^*$ whose first
+coordinate becomes, on an enlarged diagonal, the two-sheeted covering
+$w\mapsto w^2$, while its second coordinate imposes a linear relation
+between two winding numbers that the loops $g^n$ violate. (5)
+Section~\ref{sec:transport} transports the conclusion to every map of the
+family by lifting an isotopy of marked points through the branched covers.
+
+\section{Conventions on loops, point pushing and twists}\label{sec:conventions}
+
+For $B$ as above, the \emph{moduli space} $\Mod(B)$ is the set of injective
+maps $B\to\Pone$ modulo post-composition with M\"obius transformations.
+Choosing three points of $B$ and normalizing their images to $0,\infty,1$
+identifies $\Mod(B)$ with an open subset of $\C^{|B|-3}$. The projection
+$\pi_B\colon\Teich(B)\to\Mod(B)$, $[\phi]\mapsto[\phi|_B]$, is a holomorphic
+universal covering whose deck group is $\PMod(B)$ acting by
+\eqref{eq:rightaction}; see \cite[\S2.1]{KPS}.
+
+Two moduli spaces occur. For four marked points labelled $0,\infty,1,x$,
+and for five points labelled $0,\infty,1,y,z$, we use respectively
+\begin{equation}\label{eq:YM}
+ Y=\C\setminus\{0,1\},
+ \qquad
+ M=\{(y,z)\in Y^2:y\ne z\}.
+\end{equation}
+Thus for $A\supset\{0,\infty,1\}$ with $|A|=4$, $\pi_A\colon\Teich(A)\to Y$
+records the fourth point under the marking normalized to fix $0,\infty,1$,
+and similarly $\pi_B\colon\Teich(B)\to M$ when $|B|=5$.
+
+Products of based loops are read from right to left: $\alpha\beta$
+traverses $\beta$ first and then $\alpha$, matching composition of
+homeomorphisms.\label{conv:products} For a closed loop $\omega$ in
+$\C\setminus\{c\}$ we write
+$\wind_c(\omega)\in\Z$ for its winding number about $c$; for a non-closed
+path, $\wind_c(\omega)$ denotes the total change of argument of $\omega-c$
+divided by $2\pi$, which is additive under concatenation and changes sign
+under reversal.
+
+Let $\delta$ be a loop in $\Mod(B)$ based at $\pi_B(\tau_0)$, that is, a
+motion of the marked points. By isotopy extension there is an ambient
+isotopy $h_t$ of $\Pone$ with $h_0=\id$ such that $h_t|_B$ follows
+$\delta(t)$. The mapping class $P(\delta)=[h_1]\in\PMod(B)$ depends only on
+the homotopy class of $\delta$, and $[h_t]$ is the lift of $\delta$ to
+$\Teich(B)$ starting at $\tau_0$, with endpoint $\tau_0\cdot P(\delta)$.
+Consequently the deck transformation associated with $\delta$, the one
+sending $\tau_0$ to the endpoint of this lift, is
+\begin{equation}\label{eq:deckaction}
+ [\phi]\longmapsto[\phi\circ P(\delta)].
+\end{equation}
+Point pushing respects products, $P(\alpha\beta)=P(\alpha)P(\beta)$, since
+the isotopy following $\alpha\beta$ may be taken to be $h^\beta_t$ followed
+by $h^\alpha_t\circ h^\beta_1$. Because \eqref{eq:deckaction} is a right
+action, deck transformations of products compose in the opposite order;
+we only use deck transformations of powers of a single loop. We write
+$g(\tau)$ for the deck transformation \eqref{eq:deckaction} of a loop $g$
+applied to $\tau$.
+
+When only one marked point $v$ moves, $\delta$ is a loop $\zeta$ in
+$\Pone\setminus(B\setminus\{v\})$ based at $v$, and $P(\zeta)$ is the
+\emph{point-pushing map} $\Push(\zeta)$ of the Birman exact sequence
+\cite[\S4.2, Thm.\ 4.6]{FM}. We use two standard facts.
+(P1) If $\zeta$ is a simple loop, then
+$\Push(\zeta)=T_{\zeta_1}T_{\zeta_2}^{-1}$, where $\zeta_1,\zeta_2$ are the
+two boundary curves of a regular neighbourhood of $\zeta$, the order being
+fixed by the orientation of $\zeta$ and the sign convention for twists
+\cite[Fact 4.7]{FM}.
+(P2) For every mapping class $h$ and simple closed curve $c$,
+$hT_ch^{-1}=T_{h(c)}$ \cite[Fact 3.7]{FM}.
+
+Two consequences of (P1) are used. First, if $\Delta\subset\Pone$ is a
+closed disk with $\partial\Delta\cap B=\emptyset$ and
+$\Delta\cap B=\{v,w\}$, and $\zeta$ is a simple loop of $v$ in
+$\Delta\setminus\{w\}$ going once around $w$, then one boundary curve of
+its regular neighbourhood bounds a disk containing only $w$ (trivial
+twist) and the other is isotopic to $\partial\Delta$, so
+\begin{equation}\label{eq:twopunctures}
+ \Push(\zeta)=T_{\partial\Delta}^{\pm1}.
+\end{equation}
+Second, if $\kappa,\eta$ are disjoint simple closed curves bounding an
+annulus meeting $B$ only in $v$, with $\kappa$ inside $\eta$ in a given
+disk picture, and $\zeta$ is a simple loop of $v$ once counterclockwise
+around the core of the annulus, then
+$\Push(\zeta)=T_\eta^{\epsilon}T_\kappa^{-\epsilon}$ with $\epsilon=\pm1$
+depending only on the sign convention for Dehn twists.
+
+\begin{convention}\label{conv:sign}
+We fix the sign convention for Dehn twists so that $\epsilon=+1$, that is,
+$\Push(\zeta)=T_\eta T_\kappa^{-1}$ for such a counterclockwise circuit.
+With the opposite convention the boxed formula \eqref{eq:answer} of
+Section~\ref{sec:curve} reads $T_\eta^{-2}(C)$; both curves have the
+stated property (Remark~\ref{rem:othersign}).
+\end{convention}
+
+\section{The model map and the curve}\label{sec:curve}
+
+Let $f$ be as in Section~\ref{sec:family} and conjugate it so that its
+critical cycle is $0\mapsto\infty\mapsto1\mapsto s\mapsto0$ with $0$ the
+critical point. A quadratic rational map with a critical point at $0$
+mapping to $\infty$ has a double pole at $0$ and no other pole, so it is
+$1+b_s/z+c_s/z^2$ after using $F(\infty)=1$. Solving the linear equations
+$F(1)=s$ and $F(s)=0$ for $b_s,c_s$ gives $b_s=(-s^2-s+1)/(s-1)$ and
+$c_s=s(2s-1)/(s-1)$, which is \eqref{eq:family}. The other critical point of $F_s$ is $-2c_s/b_s$, and
+its critical value is $1-b_s^2/(4c_s)$, which simplifies to
+\begin{equation}\label{eq:vs}
+ v(s)=-\frac{(s^2-3s+1)^2}{4s(s-1)(2s-1)} .
+\end{equation}
+The map has degree two and the four cycle points are distinct exactly when
+$s\ne0,1,1/2$ (for $s=1/2$ one has $c_s=0$). The identities
+\[
+ v(s)-1=-\frac{(s^2+s-1)^2}{4s(s-1)(2s-1)},\qquad
+ v(s)-s=-\frac{(3s^2-3s+1)^2}{4s(s-1)(2s-1)}
+\]
+show that $v(s)\notin\{0,\infty,1,s\}$, that is, $v(s)$ lies outside the
+cycle, exactly when the three quadratic factors below are nonzero. So the
+maps in the problem are, up to M\"obius conjugacy, precisely the $F_s$ with
+\begin{equation}\label{eq:U}
+ s\in U=\left\{s\in\C:
+ s(s-1)(2s-1)(s^2-3s+1)(s^2+s-1)(3s^2-3s+1)\ne0\right\}.
+\end{equation}
+The set $U$, a cofinite subset of $\C$, is connected. We write
+$A_s=\{0,\infty,1,s\}$ and $B_s=A_s\cup\{v(s)\}$ for the marked sets of
+$F_s$. Our model is the parameter $a=3/5$:
+\begin{equation}\label{eq:model}
+ F_a(z)=1-\frac1{10z}-\frac3{10z^2},\qquad
+ 0\longmapsto\infty\longmapsto1\longmapsto a\longmapsto0,
+\end{equation}
+with other critical point $-6$ and other critical value
+$v_a=v(3/5)=121/120$. On the sphere marked by
+$B_a=\{0,\infty,1,a,v_a\}$ draw the round circles
+\begin{equation}\label{eq:circles}
+ C=\left\{|z|=\tfrac{241}{240}\right\},\qquad
+ \eta=\left\{\left|z-\tfrac45\right|=\tfrac14\right\}.
+\end{equation}
+The exterior of $C$ contains exactly the marked points $\infty,v_a$
+(note $v_a=242/240$), and the interior of $\eta$ contains exactly $a,1,v_a$
+(the distances from $4/5$ to $a$, $1$, $v_a$ are $1/5$, $1/5$, $25/120$,
+all less than $1/4$, while $|0-4/5|>1/4$). The two circles intersect. Our
+model curve is
+\begin{equation}\label{eq:answer}
+ \boxed{\ \gamma_a=T_\eta^{\,2}(C),\ }
+\end{equation}
+with the sign of Convention~\ref{conv:sign}.
+
+\begin{construction}[Transport to a general map]\label{con:transport}
+Let $f$ be a map of the family with normalized form $F_s$, $s\in U$, the
+normalizing M\"obius transformation being $\mu$ (so $\mu f\mu^{-1}=F_s$).
+Choose a path $s_t$, $0\le t\le1$, in $U$ from $a$ to $s$. The five points
+$0,\infty,1,s_t,v(s_t)$ stay distinct, so by isotopy extension there is an
+ambient isotopy $H_t$ of $\Pone$ with $H_0=\id$ fixing $0,\infty,1$ and
+with $H_t(a)=s_t$, $H_t(v_a)=v(s_t)$. Put
+$\gamma=\mu^{-1}(H_1(\gamma_a))\subset\Pone\setminus B$; equivalently,
+$H_1(\gamma_a)$ is the image of $H_1(C)$ under two twists about $H_1(\eta)$.
+\end{construction}
+
+The isotopy class of $\gamma$ relative to $B$ depends on the path $s_t$
+only through its homotopy class in $U$; Theorem~\ref{thm:main} holds for
+every choice.
+
+\begin{theorem}\label{thm:main}
+Let $f$, $A$, $B$ be as in Section~\ref{sec:family}, and let
+$\gamma$ be the curve of Construction~\ref{con:transport}. Then the Dehn
+twist $T_\gamma$ preserves $\D_f$. If $D_0$ denotes the connected component
+of $\D_f$ containing the base point $\tau_0$, then the components
+$T_\gamma^{n}(D_0)$, $n\in\Z$, are pairwise distinct.
+\end{theorem}
+
+Sections \ref{sec:covering}--\ref{sec:detector} prove the theorem for the
+model $f=F_a$ and $\gamma=\gamma_a$; Section~\ref{sec:transport} deduces
+the general case.
+
+\section{A finite cover of the moduli space}\label{sec:covering}
+
+Recall $Y$ and $M$ from \eqref{eq:YM}; $M$ is the moduli space of
+$B_a$, with $0,\infty,1$ normalized and $(y,z)$ the positions of the points
+corresponding to $a$ and $v_a$. A point of $\Teich(B_a)$ determines,
+through \eqref{eq:pullbackdiagram}, a quadratic rational map with marked
+source and target points; the normalized positions of the fourth source and
+target points give a map from $\Teich(B_a)$ to a surface $\W$ of marked
+maps, a finite cover of $M$. This is the parameter surface of Hironaka and
+Koch \cite[\S\S4.1--4.2]{HKa}; in general such spaces are Hurwitz spaces,
+finite coverings of the moduli space of the target \cite[Thm.\ 2.6]{Ko},
+\cite[\S3.1]{KPS}.
+
+Consider a quadratic rational map with marked source points $0,\infty,1,x$
+and marked target points $0,\infty,1,y,z$ realizing the portrait
+\begin{equation}\label{eq:portrait}
+ 0\stackrel{2}{\longmapsto}\infty,\qquad
+ \infty\longmapsto1,\qquad 1\longmapsto y,\qquad
+ x\longmapsto0,
+\end{equation}
+where the $2$ indicates a critical point, and having $z$ as its other
+critical value. A degree-two map with a double pole at $0$ and value $1$ at
+$\infty$ is $(t-x)(t-r)/t^2$ with zeros $x$ and $r$, and the condition
+$1\mapsto y$ determines $r$. Hence the map is unique:
+\begin{equation}\label{eq:Fxy}
+ F_{x,y}(t)=\frac{(t-x)(t-r)}{t^2},
+ \qquad r=\frac{x+y-1}{x-1}.
+\end{equation}
+Its critical points are $0$ and $2xr/(x+r)$, and the critical value at the
+latter is $-(x-r)^2/(4xr)$, which in terms of $x,y$ reads
+\begin{equation}\label{eq:Z}
+ Z(x,y)=\frac{((x-1)^2-y)^2}{4x(x+y-1)(1-x)} .
+\end{equation}
+The marked points must be distinct and the map must have degree two
+($r\ne0$), so the parameter surface and its projection to $M$ are
+\begin{align}
+ \W&=\{(x,y)\in Y^2:x+y\ne1,\ Z(x,y)\notin\{0,1,y\}\},
+ \label{eq:W}\\
+ p\colon\W&\longrightarrow M,\qquad p(x,y)=(y,Z(x,y)).
+ \label{eq:p}
+\end{align}
+The maps $F_s$ of the family \eqref{eq:family} are the marked maps whose
+fourth source and target points agree: indeed $F_{s,s}=F_s$, the two
+expressions being quadratic maps with the same poles, zeros and value at
+$\infty$, and $Z(s,s)=v(s)$. The conditions $Z(s,s)\ne0,1,s$ are precisely
+the three quadratic factors in \eqref{eq:U}, so the \emph{diagonal} of
+$\W$ is
+\begin{equation}\label{eq:V}
+ \V=\W\cap\{x=y\}=\{(s,s):s\in U\},
+\end{equation}
+a connected Riemann surface, since $U$ is connected.
+
+\begin{lemma}\label{lem:cover}
+\begin{enumerate}
+\item The map $p$ is an unramified covering of degree four, and $\W$ is
+connected.
+\item For the model \eqref{eq:model}, with $\pi_A\colon\Teich(A_a)\to Y$
+and $\pi_B\colon\Teich(B_a)\to M$ the projections of
+Section~\ref{sec:conventions}, the map
+\[
+ q=(\pi_A\circ F_a^*,\ \pi_A\circ i_*)\colon\Teich(B_a)\longrightarrow\W
+\]
+is well defined and satisfies $p\circ q=\pi_B$ and $q(\tau_0)=(a,a)$, and
+it is the universal covering of $\W$. Thus $\pi_B$ factors through $\W$,
+and, with $\pr_x,\pr_y$ the two coordinate projections of $\W$, by
+construction
+\begin{equation}\label{eq:liftmaps}
+ \pi_A\circ F_a^*=\pr_x\circ q,\qquad
+ \pi_A\circ i_*=\pr_y\circ q .
+\end{equation}
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(1) Fix $(y,z)\in M$. The equation $Z(x,y)=z$ is
+\[
+ ((x-1)^2-y)^2+4zx(x-1)(x+y-1)=0,
+\]
+a monic polynomial equation of degree four in $x$. Its values at
+$x=0,1,1-y$ are $(1-y)^2$, $y^2$ and $y^2(y-1)^2$, all nonzero, so every
+root satisfies $x\in Y$ and $x+y\ne1$; since $z\notin\{0,1,y\}$, every root
+gives a point of $\W$. Thus $p^{-1}(y,z)$ consists of the roots of this
+equation. The roots are distinct because of the factorizations
+\begin{align*}
+ Z-1&=-\frac{(x^2+y-1)^2}{4x(x-1)(x+y-1)},\\
+ Z-y&=-\frac{(x^2+2xy-2x-y+1)^2}{4x(x-1)(x+y-1)},\\
+ \frac{\partial Z}{\partial x}
+ &=-\frac{(x^2+y-1)\,((x-1)^2-y)\,(x^2+2xy-2x-y+1)}
+ {4x^2(x-1)^2(x+y-1)^2},
+\end{align*}
+which show that $\partial Z/\partial x$ vanishes only where $Z=1$, $Z=0$
+or $Z=y$, and these values of $z$ are excluded in $M$. So $p$ has exactly
+four preimages over each point, $\partial Z/\partial x\ne0$ on $\W$, and
+the implicit function theorem shows that $p$ is a local homeomorphism. A
+local homeomorphism between Hausdorff spaces all of whose fibres have the
+same finite cardinality is a covering (intersect the images of disjoint
+neighbourhoods of the four preimages of a point, and count), so $p$ is a
+covering of degree four. Finally $\W$ is the complement in $\C^2$ of
+the finitely many algebraic curves listed in \eqref{eq:W}, and such a
+complement is path connected: join two points by
+two complex lines through a generic auxiliary point, each meeting the
+curves in finitely many points, which a path in the line can avoid.
+
+(2) Let $\tau=[\phi]\in\Teich(B_a)$, with $\phi$ normalized to fix
+$0,\infty,1$, and let $F\circ\psi=\phi\circ F_a$ be a pullback diagram
+\eqref{eq:pullbackdiagram} with $\psi$ also normalized to fix $0,\infty,1$
+(possible since $\psi$ is unique up to a M\"obius transformation). Put
+$x=\psi(a)$, $y=\phi(a)$, $z=\phi(v_a)$. Applying the diagram to the
+points of $A_a$ and to the critical points $0,-6$ of $F_a$ shows that $F$
+has the portrait \eqref{eq:portrait} with marked source points
+$\{0,\infty,1,x\}$, marked target points $\{0,\infty,1,y,z\}$, and other
+critical value $F(\psi(-6))=z$. Hence $F=F_{x,y}$ and $Z(x,y)=z$ by the
+uniqueness statement above; $x,y\in Y$ and $z\notin\{0,1,y\}$ because
+$\psi,\phi$ are injective, and $x+y\ne1$ because $F$ has degree two.
+Therefore $(x,y)=(\pi_A F_a^*\tau,\pi_A i_*\tau)\in\W$ and
+$p(x,y)=(y,z)=\pi_B(\tau)$. For $\tau_0$ we may take $\psi=\phi=\id$, so
+$q(\tau_0)=(a,a)$; and $q$ is continuous because $F_a^*$, $i_*$, $\pi_A$
+are.
+
+It remains to see that $q$ is a covering. Let $N\subset M$ be an open ball
+evenly covered by both $p$ and $\pi_B$, with $p^{-1}(N)=\bigsqcup_jN_j$ and
+$\pi_B^{-1}(N)=\bigsqcup_k\widetilde N_k$. The connected set
+$q(\widetilde N_k)$ lies in a single $N_j$, where
+$q|_{\widetilde N_k}=(p|_{N_j})^{-1}\circ\pi_B|_{\widetilde N_k}$ is a
+homeomorphism onto $N_j$. Hence each $N_j$ is evenly covered by $q$
+(possibly with empty preimage), so $q(\Teich(B_a))$ is open and closed in
+the connected space $\W$, and $q$ is a surjective covering; as
+$\Teich(B_a)$ is simply connected, it is the universal covering.
+\end{proof}
+
+\section{When a loop preserves a component}\label{sec:criterion}
+
+We now set up the covering-space criterion of Hironaka and Koch
+\cite[\S\S2.8--2.11]{HK} in the coordinates of Lemma~\ref{lem:cover}.
+Let $b=(a,a)=q(\tau_0)$. A loop $g$ in $\W$ based at $b$ determines, via
+the loop $p\circ g$ in $M$ and \eqref{eq:deckaction}, a deck
+transformation $\delta$ of $\pi_B$, which sends $\tau_0$ to the endpoint
+$\tau_1$ of the lift of $g$ to $\Teich(B_a)$ starting at $\tau_0$. It is
+also a deck transformation of $q$: $q\circ\delta$ and $q$ are both lifts
+of $\pi_B$ through $p$, and they agree at $\tau_0$ because $q(\tau_1)=b$.
+We denote $\delta$ by the same letter $g$ and write $g(\tau)$, as in
+Section~\ref{sec:conventions}. The two \emph{coordinate loops} of
+$g$ are the loops $\pr_x\circ g$ and $\pr_y\circ g$ in $Y$ based at $a$.
+
+\begin{lemma}\label{lem:criterion}
+Let $E=\operatorname{im}\bigl(\pi_1(\V,b)\to\pi_1(\W,b)\bigr)$ be the set
+of classes of loops in $\W$ that are homotopic in $\W$ to a loop in the
+diagonal $\V$. Let $g\in\pi_1(\W,b)$, acting on $\Teich(B_a)$ as above,
+and let $D_0$ be the connected component of $\D_{F_a}$ containing
+$\tau_0$.
+\begin{enumerate}
+\item If the two coordinate loops of $g$ have equal classes in
+$\pi_1(Y,a)$, then $g(\D_{F_a})=\D_{F_a}$.
+\item $g(D_0)=D_0$ if and only if $g\in E$.
+\end{enumerate}
+Consequently, if the coordinate loops of $g$ are homotopic and
+$g^n\notin E$ for every $n\ne0$, then $g$ preserves $\D_{F_a}$ and the
+components $g^n(D_0)$, $n\in\Z$, are pairwise distinct.
+\end{lemma}
+
+\begin{proof}
+(1) By \eqref{eq:liftmaps}, $F_a^*$ and $i_*$ are lifts through the
+universal covering $\pi_A\colon\Teich(A_a)\to Y$ of the maps
+$\pr_x\circ q$ and $\pr_y\circ q$, and they take the same value at
+$\tau_0$ because $\tau_0\in\D_{F_a}$. Since $g$ is a deck transformation of
+$q$, the map $F_a^*\circ g$ is another lift of $\pr_x\circ q$, so
+$F_a^*\circ g=\delta_x\circ F_a^*$ for a deck transformation $\delta_x$ of
+$\pi_A$. To identify $\delta_x$, lift $g$ to a path $\tilde g$ from $\tau_0$
+to $g(\tau_0)$; then $F_a^*\circ\tilde g$ is the lift, starting at
+$F_a^*(\tau_0)$, of the loop $\pr_x\circ g$, so $\delta_x$ is the deck
+transformation of $\pi_A$ determined by the class of $\pr_x\circ g$
+relative to the base point $F_a^*(\tau_0)$. Likewise
+$i_*\circ g=\delta_y\circ i_*$ with $\delta_y$ determined by the class of
+$\pr_y\circ g$ relative to the same base point $i_*(\tau_0)=F_a^*(\tau_0)$.
+Equal classes give $\delta_x=\delta_y=:\delta$, and then for
+$\tau\in\D_{F_a}$,
+\[
+ F_a^*(g\tau)=\delta F_a^*(\tau)=\delta\, i_*(\tau)=i_*(g\tau),
+\]
+so $g(\D_{F_a})\subset\D_{F_a}$. The coordinate loops of $g^{-1}$ are the
+inverses of those of $g$, hence also homotopic, so
+$g^{-1}(\D_{F_a})\subset\D_{F_a}$ as well.
+
+(2) First, $\D_{F_a}\subset q^{-1}(\V)$: if $F_a^*\tau=i_*\tau$, the two
+coordinates of $q(\tau)$ agree by \eqref{eq:liftmaps}. Next, on a connected
+component $N$ of $q^{-1}(\V)$, the maps $F_a^*|_N$ and $i_*|_N$ are lifts
+through $\pi_A$ of one and the same map $\tau\mapsto\pr_xq(\tau)=\pr_yq(\tau)$,
+so by uniqueness of lifts they agree on all of $N$ if they agree at one
+point. Hence $\D_{F_a}$ is a union of connected components of
+$q^{-1}(\V)$; these are path connected, $q\colon q^{-1}(\V)\to\V$ being a
+covering of the connected manifold $\V$, and $D_0$ is the component
+through $\tau_0$.
+
+The deck transformation $g$ permutes the components of $q^{-1}(\V)$, so
+$g(D_0)=D_0$ if and only if there is a path in $D_0$ from $\tau_0$ to
+$g(\tau_0)$. Given such a path, its image under $q$ is a loop in $\V$
+based at $b$, homotopic in $\W$ to $g$ because both lift to paths in the
+simply connected space $\Teich(B_a)$ with the same endpoints; so $g\in E$.
+Conversely, if $g$ is homotopic in $\W$ to a loop $g'$ in $\V$, the lift
+of $g'$ starting at $\tau_0$ stays in $q^{-1}(\V)$, hence in $D_0$, and
+ends at $g(\tau_0)$ by homotopy lifting; so $g(\tau_0)\in D_0$.
+
+Finally, if $g^j(D_0)=g^k(D_0)$ with $j\ne k$, then $g^{j-k}(D_0)=D_0$, so
+$g^{j-k}\in E$ by (2), contrary to hypothesis.
+\end{proof}
+
+\section{Loops in \texorpdfstring{$\W$}{W} representing the twist about
+\texorpdfstring{$\gamma_a$}{gamma\_a}}\label{sec:loops}
+
+The goal of this section is a loop $g$ in $\W$ with
+$P(p\circ g)=T_{\gamma_a}^{\pm1}$ and trivial coordinate loops
+(Proposition~\ref{prop:g}). We work in the fibre
+$\W_a=\{x\in\C:(x,a)\in\W\}$ over $y=a=3/5$, along which $p$ fixes the
+four points of $A_a$ and moves only $v_a$, so that mapping classes are
+point pushes of $v_a$. By \eqref{eq:W} and the
+factorizations in the proof of Lemma~\ref{lem:cover}, the points of $\C$
+excluded from $\W_a$ are
+\begin{equation}\label{eq:forbidden}
+ 0,\ 1,\ \tfrac25,\qquad
+ 1\pm\sqrt{\tfrac35}\ \ (Z=0),\qquad
+ \pm\sqrt{\tfrac25}\ \ (Z=1),\qquad
+ \tfrac25\pm\tfrac{i\sqrt6}{5}\ \ (Z=a);
+\end{equation}
+here $2/5=1-a$ is the pole of $Z(\cdot,a)$. Their moduli are
+$0$, $1$, $0.4$, $1.77\ldots$, $0.22\ldots$, and $\sqrt{2/5}=0.632\ldots$
+for the last four; none is $a=0.6$, so
+$\ell(\theta)=(ae^{2\pi i\theta},a)$, $0\le\theta\le1$, is a loop in $\W$
+based at $b$. Its image $p\circ\ell$ in $M$ moves $v_a$ along the loop
+$\zeta(\theta)=Z(ae^{2\pi i\theta},a)$ in $\Pone\setminus A_a$ based at
+$v_a=Z(a,a)$.
+
+Let $m$ be a positive meridian about the pole $x=2/5$ in $\W_a$: travel
+from $a$ along the real interval toward $2/5$, go once counterclockwise
+around a small circle centred at $2/5$, and return along the interval.
+
+\begin{lemma}\label{lem:m}
+The mapping class $P(p\circ m)$ is $T_C^{\pm1}$, a single Dehn twist about
+the round circle $C$ of \eqref{eq:circles}.
+\end{lemma}
+
+\begin{proof}
+On $(2/5,3/5]$ the factorizations give $\partial Z(x,a)/\partial x<0$,
+because in the numerator of $\partial Z/\partial x$ the factors $x^2-2/5$
+and $(x-1)^2-3/5$ are negative and $x^2-\frac45x+\frac25$ is positive.
+Moreover $Z(a,a)=v_a$, so $Z(x,a)\ge v_a>1$ on $(2/5,a]$ by
+monotonicity; the pole of $Z(\cdot,a)$
+at $2/5$ is simple, and $Z(x,a)\to+\infty$ as
+$x\downarrow2/5$. Thus $p\circ m$ moves $v_a$ out along the positive real
+ray, once around $\infty$ (a small circle about a simple pole maps to a
+loop winding once about $\infty$), and back. For a small enough circle this motion takes place in the closed disk
+$\Delta=\{|z|\ge241/240\}\cup\{\infty\}$ bounded by $C$, whose only marked
+points are $v_a$ and $\infty$; in $\Delta\setminus\{\infty\}$, whose
+fundamental group is $\Z$, the loop is homotopic to a simple loop once
+around $\infty$, so \eqref{eq:twopunctures} gives $P(p\circ m)=T_C^{\pm1}$.
+\end{proof}
+
+The homotopy class of $\zeta$, not merely its homology class, must be
+identified, since the isotopy class of $\gamma_a$ depends on it.
+
+\begin{lemma}\label{lem:push}
+The loop $\zeta$ is homotopic, as a loop based at $v_a$ in
+$\Pone\setminus A_a$, to two clockwise circuits around the segment $[a,1]$
+inside the disk bounded by $\eta$. Consequently
+$h:=P(\zeta^{-1})$ satisfies $h(C)=T_\eta^{2}(C)=\gamma_a$, with the sign
+of Convention~\ref{conv:sign}.
+\end{lemma}
+
+\begin{proof}
+\emph{Step 1: enlarging the circle.} Put $R=\sqrt{1-a}=\sqrt{2/5}>a$. No
+excluded point in \eqref{eq:forbidden} has modulus in $[a,R)$, so for
+$a\le r<R$ the loops $\zeta_r(\theta)=Z(re^{2\pi i\theta},a)$ avoid $0,a,1,\infty$
+and depend continuously on $r$. Their base points $Z(r,a)$ move along the
+real path $\sigma_r=Z([a,r],a)\subset(1,v_a]$, since $Z(\cdot,a)$ is
+decreasing on $(2/5,R)$ (the sign analysis in the proof of
+Lemma~\ref{lem:m} is valid there) with $Z(R,a)=1$. Hence $\zeta$ is
+based-homotopic in $\Pone\setminus A_a$ to $\sigma_r^{-1}\zeta_r\sigma_r$
+for every $r\in[a,R)$.
+
+\emph{Step 2: the circle $|x|=R$ maps onto $[a,1]$, and nothing inside it
+does.} The substitution $u=x+(1-a)/x$ (a Joukowski map) simplifies $Z$:
+writing $(x-1)^2-a=x(u-2)$ and $(x+a-1)(1-x)=x(2-a-u)$ gives
+\begin{equation}\label{eq:Joukowski}
+ Z(x,a)=G(u),\qquad G(u)=\frac{(u-2)^2}{4(2-a-u)}.
+\end{equation}
+For $x=Re^{i\vartheta}$ we have $u=2R\cos\vartheta$, so on $|x|=R$ the
+variable $u$ runs over $[-2R,2R]$, where
+$2-a-u\ge 2-a-2R>0$ and
+\[
+ G(u)-1=\frac{u^2-4(1-a)}{4(2-a-u)},\qquad
+ G(u)-a=\frac{(u-2(1-a))^2}{4(2-a-u)} .
+\]
+Thus on $[-2R,2R]$ the function $G$ takes values in $[a,1]$, equals $1$
+exactly at the endpoints, and equals $a$ exactly at $u=2(1-a)$; since
+$G'(u)=(u-2)(2-2a-u)/(4(2-a-u)^2)$, $G$ decreases from $1$ to $a$ and then
+increases back to $1$. Hence for $z\in(a,1)$ the equation $G(u)=z$ has two
+distinct solutions $u\in(-2R,2R)$, and for each of them the two roots of
+$x^2-ux+(1-a)=0$ are non-real conjugates with $|x|^2=1-a$, hence lie on
+$|x|=R$. This produces four distinct points of $|x|=R$ mapping to $z$,
+which exhaust the four preimages of $(a,z)$ under $p$. For the endpoints
+the factorizations of $Z-1$ and $Z-a$ show that all preimages of $1$ and
+of $a$ (namely $\pm R$ and $2/5\pm i\sqrt6/5$, with multiplicity) also lie
+on $|x|=R$. So $Z(\{|x|=R\},a)=[a,1]$, and no $x$ with $|x|<R$ maps into
+$[a,1]$.
+
+\emph{Step 3: the homotopy class.} The segment $[a,1]$ lies in the open
+disk bounded by $\eta$, so by Step 2 and continuity, for $r<R$ close to
+$R$ the loop $\zeta_r$ lies in that disk and avoids $[a,1]$; the base
+point path $\sigma_r\subset(1,v_a]$ also lies in the disk and avoids
+$[a,1]$. So $\sigma_r^{-1}\zeta_r\sigma_r$ is a loop in the $\eta$-disk
+minus the segment $[a,1]$. This space is an annulus, with fundamental
+group $\Z$ generated by a counterclockwise circuit around $[a,1]$, and the
+class of a loop is its winding number about any point of the segment, say
+about $1$. Since the
+homotopy of Step 1 avoids $1$, this winding number equals $\wind_1(\zeta)$,
+which we compute by the argument principle applied to
+\[
+ Z(x,a)-1=-\frac{(x^2+a-1)^2}{4x(x-1)(x+a-1)}
+\]
+on the disk $|x|<a$: the numerator vanishes only at $\pm R$, outside the
+disk, while the denominator has the two simple zeros $0$ and $1-a=2/5$
+inside it. Hence $\wind_1(\zeta)=0-2=-2$, and $\zeta$ is based-homotopic to
+two clockwise circuits around $[a,1]$ in the $\eta$-disk, as claimed.
+
+\emph{Step 4: the point push.} Choose a round circle $\kappa$ enclosing
+$a,1$ but not $v_a$ and lying inside both $C$ and $\eta$; for instance
+$\kappa=\{|z-\frac45|=\frac{97}{480}\}$, for which
+$|a-\frac45|=|1-\frac45|=\frac{96}{480}<\frac{97}{480}
+<\frac{100}{480}=|v_a-\frac45|$, and the largest modulus on $\kappa$ is
+$\frac{481}{480}<\frac{241}{240}$. The annulus between $\kappa$ and $\eta$
+contains the single marked point $v_a$, and by Step 3, $\zeta^{-1}$ is
+homotopic to two counterclockwise circuits of $v_a$ around this annulus.
+By Convention~\ref{conv:sign} one such circuit has point push
+$T_\eta T_\kappa^{-1}$, so, the twists about the disjoint curves $\kappa$
+and $\eta$ commuting,
+\[
+ h=P(\zeta^{-1})=T_\eta^{2}T_\kappa^{-2}.
+\]
+Since $\kappa$ is disjoint from $C$, the twist $T_\kappa$ fixes the isotopy
+class of $C$, and $h(C)=T_\eta^2(C)=\gamma_a$.
+\end{proof}
+
+\begin{proposition}\label{prop:g}
+Let
+\begin{equation}\label{eq:g}
+ g=\ell^{-1}m\ell\in\pi_1(\W,b),
+\end{equation}
+the loop that traverses $\ell$, then $m$, then $\ell$ backwards. Then
+$P(p\circ g)=T_{\gamma_a}^{\pm1}$: the deck transformation $g$ acts on
+$\Teich(B_a)$ as the Dehn twist about $\gamma_a$ or its inverse. Both
+coordinate loops of $g$ are null-homotopic in $Y$. In particular
+$T_{\gamma_a}$ preserves $\D_{F_a}$.
+\end{proposition}
+
+\begin{proof}
+Since $p\circ\ell$ moves only $v_a$, along $\zeta$, we have
+$P(p\circ\ell)=P(\zeta)=h^{-1}$ with $h$ as in Lemma~\ref{lem:push}.
+Multiplicativity of $P$ (Section~\ref{sec:conventions}) and
+Lemma~\ref{lem:m} give
+\[
+ P(p\circ g)=P(p\circ\ell^{-1})\,P(p\circ m)\,P(p\circ\ell)
+ =h\,T_C^{\pm1}\,h^{-1}=T_{h(C)}^{\pm1}=T_{\gamma_a}^{\pm1},
+\]
+using (P2) and Lemma~\ref{lem:push}. The $y$-coordinate of $g$ is constant.
+The $x$-coordinate of $m$ is a small loop around $2/5$ together with a
+real approach path in $(2/5,3/5]$; this loop lies in the disk
+$|x-\frac12|<\frac12$, which avoids $0$ and $1$, so it is null-homotopic
+in $Y$; hence the $x$-coordinate loop
+of $g$ is homotopic to $(\pr_x\circ\ell)^{-1}(\pr_x\circ\ell)$, which is
+trivial. Lemma~\ref{lem:criterion}(1) now shows that $g$, hence
+$T_{\gamma_a}$, preserves $\D_{F_a}$.
+\end{proof}
+
+\section{No nonzero power of the twist preserves the base component}\label{sec:detector}
+
+By Lemma~\ref{lem:criterion} and Proposition~\ref{prop:g}, it remains to
+show that $g^n\notin E$ for $n\ne0$. Consider
+\begin{equation}\label{eq:detector}
+ \Phi\colon\W\longrightarrow Y\times\C^*,\qquad
+ \Phi(x,y)=\bigl(t(x,y),L(x,y)\bigr)
+ =\left(\frac{xy}{(1-x)(1-y)},\ (1-x)(1-y)\right).
+\end{equation}
+It is well defined: $L\ne0$ and $t\ne0$ since $x,y\in Y$, and
+$t-1=(x+y-1)/((1-x)(1-y))\ne0$. In terms of the symmetric functions $e_1=x+y$, $e_2=xy$ one has
+$L=1-e_1+e_2$ and $t=e_2/L$, so $\Phi$ is the symmetric quotient
+$(x,y)\mapsto(x+y,xy)$ of Hironaka--Koch \cite[\S2.12]{HK}, restricted to
+$\W$, up to this change of coordinates.
+
+\emph{The constraint on diagonal loops.} Enlarge the diagonal by filling
+in its six quadratic punctures:
+$\widehat{\V}=\{(s,s):s\in\C\setminus\{0,1,1/2\}\}\supset\V$, on which
+\eqref{eq:detector} still makes sense, so that the covering
+\eqref{eq:square} below covers all of $Y$. In the coordinate $w=s/(1-s)$,
+which maps $\C\setminus\{0,1,1/2\}$ bijectively onto
+$\C\setminus\{0,1,-1\}$, the restriction of $\Phi$ is
+\begin{equation}\label{eq:diag}
+ t=w^2,\qquad L=(1+w)^{-2},\qquad w\in\C\setminus\{0,1,-1\},
+\end{equation}
+because $1+w=1/(1-s)$. The squaring map
+\begin{equation}\label{eq:square}
+ \C\setminus\{0,1,-1\}\longrightarrow Y,\qquad w\longmapsto w^2,
+\end{equation}
+is a two-sheeted covering; our base points are $w_0=a/(1-a)=3/2$ and
+$t_0=w_0^2=9/4$.
+
+\begin{lemma}\label{lem:constraint}
+Let $\lambda$ be a loop in $\V$ based at $b$. Then $w\circ\lambda$ is the
+lift of the loop $t\circ\lambda$ through \eqref{eq:square} starting at
+$w_0$; it is closed, and
+\begin{equation}\label{eq:constraint}
+ \wind_0(L\circ\lambda)=-2\,\wind_{-1}(w\circ\lambda).
+\end{equation}
+The based homotopy class of $w\circ\lambda$ in $\C\setminus\{0,1,-1\}$,
+hence the right-hand side of \eqref{eq:constraint}, depends only on the
+based homotopy class of $t\circ\lambda$ in $Y$.
+\end{lemma}
+
+\begin{proof}
+On $\V\subset\widehat\V$ formula \eqref{eq:diag} applies: $w\circ\lambda$
+is a closed path in $\C\setminus\{0,1,-1\}$ from $w_0$ with
+$(w\circ\lambda)^2=t\circ\lambda$, hence the lift of $t\circ\lambda$ from
+$w_0$, and $L\circ\lambda=(1+w\circ\lambda)^{-2}$ gives
+\eqref{eq:constraint}. The last assertion is homotopy lifting for the
+covering \eqref{eq:square}.
+\end{proof}
+
+\emph{The loops $g^n$ violate the constraint.}
+On the fibre $y=a$ the map \eqref{eq:detector} becomes
+\begin{equation}\label{eq:fiber}
+ t=\frac{3x}{2(1-x)},\qquad L=\frac25(1-x).
+\end{equation}
+Let $\alpha=t\circ\ell$ and $\beta=t\circ m$, loops in $Y$ based at $t_0$.
+
+\begin{lemma}\label{lem:gn}
+For every integer $n$, the loop $g^n$ satisfies
+\begin{equation}\label{eq:mismatch}
+ \wind_0(L\circ g^n)=0,\qquad
+ \wind_{-1}\bigl(\widetilde{t\circ g^n}\bigr)=n,
+\end{equation}
+where $\widetilde{t\circ g^n}$ is the lift of $t\circ g^n$ through
+\eqref{eq:square} starting at $w_0$, which is a closed loop.
+\end{lemma}
+
+\begin{proof}
+\emph{The loop $\ell$.} Along $\ell$ we have $x=ae^{2\pi i\theta}$ with
+$|x|=a<1$, so $1-x$ does not wind about $0$ and \eqref{eq:fiber} gives
+$\wind_0(\alpha)=1$ and $\wind_0(L\circ\ell)=0$. Since $\wind_0(\alpha)$
+is odd, continuation of the square root along
+$\alpha$, or along $\alpha^{-1}$, interchanges the two sheets of
+\eqref{eq:square}: the lift $\tilde\alpha$ of $\alpha$ starting at $w_0$
+ends at $-w_0$.
+
+\emph{The loop $m$.} The M\"obius map $x\mapsto t$ in \eqref{eq:fiber}
+sends $2/5$ to $1$ and $a$ to $9/4$, is increasing on the real interval
+$(2/5,a]$, which it maps onto $(1,9/4]$, and, being conformal, sends a
+small counterclockwise circle about $2/5$ to a small counterclockwise loop
+about $1$. Hence $\beta$ is a positive meridian about $1$ in $Y$,
+approached from $t_0$ along the real axis to the right of $1$. Its lift
+starting at $w_0=3/2$ runs along $(1,3/2]$ and around a small loop about
+$+1$, so it is a positive meridian about $+1$; the lift starting at $-w_0$
+is its negative, a positive meridian about $-1$ (the map $w\mapsto-w$
+preserves orientation). Also $\wind_0(L\circ m)=0$, since $1-x$ stays near
+the positive interval $[2/5,3/5]$ along $m$.
+
+\emph{The loop $g$.} By additivity,
+$\wind_0(L\circ g)=-\wind_0(L\circ\ell)+\wind_0(L\circ m)+\wind_0(L\circ\ell)=0$,
+and so $\wind_0(L\circ g^n)=0$. The $t$-projection of $g$ is
+$\alpha^{-1}\beta\alpha$: first $\alpha$, then $\beta$, then $\alpha$
+backwards. Its lift from $w_0$ consists of $\tilde\alpha$, ending on the
+other sheet at $-w_0$, then the lift of $\beta$ from $-w_0$, a positive
+meridian about $-1$, then $\tilde\alpha$ reversed, returning to $w_0$. The
+contributions of $\tilde\alpha$ and its reverse to the change of argument
+of $w+1$ cancel, so this closed lift has winding number $1$ about $-1$,
+and the lift of $t\circ g^n=(\alpha^{-1}\beta\alpha)^n$ from $w_0$, the
+$n$-fold concatenation, has winding number $n$.
+\end{proof}
+
+\begin{proposition}\label{prop:notinE}
+For every $n\ne0$, $g^n\notin E$. Consequently Theorem~\ref{thm:main}
+holds for the model map $F_a$ and the curve $\gamma_a=T_\eta^2(C)$.
+\end{proposition}
+
+\begin{proof}
+Suppose $g^n\in E$, so that $g^n$ is homotopic in $\W$ to a loop $\lambda$
+in $\V$ based at $b$. Applying $\Phi$, the loops $t\circ\lambda$ and
+$t\circ g^n$ are based-homotopic in $Y$, and $L\circ\lambda$ and
+$L\circ g^n$ are homotopic in $\C^*$. By Lemma~\ref{lem:constraint}, the
+lift $w\circ\lambda$ is based-homotopic to the lift of $t\circ g^n$ used in
+Lemma~\ref{lem:gn}, so $\wind_{-1}(w\circ\lambda)=n$, while
+$\wind_0(L\circ\lambda)=\wind_0(L\circ g^n)=0$. The constraint
+\eqref{eq:constraint} then reads $0=-2n$, so $n=0$.
+
+For the second assertion, $g$ acts as $T_{\gamma_a}^{\pm1}$ and has
+homotopic coordinate loops (Proposition~\ref{prop:g}), so by
+Lemma~\ref{lem:criterion} the twist $T_{\gamma_a}$ preserves $\D_{F_a}$
+and the components $T_{\gamma_a}^{n}(D_0)=g^{\pm n}(D_0)$, $n\in\Z$, are
+pairwise distinct.
+\end{proof}
+
+\begin{remark}\label{rem:othersign}
+The same computation applies to the other conjugate $g'=\ell m\ell^{-1}$
+(its $t$-projection $\alpha\beta\alpha^{-1}$ also changes sheet before the
+meridian, as $\alpha^{-1}$ has odd winding number about $0$, and again
+$\wind_0(L\circ g')=0$), whose mapping class is
+$h^{-1}T_C^{\pm1}h=T_{h^{-1}(C)}^{\pm1}$ with
+$h^{-1}(C)=T_\eta^{-2}T_\kappa^{2}(C)=T_\eta^{-2}(C)$. Hence
+Theorem~\ref{thm:main} holds for both curves $T_\eta^{\pm2}(C)$.
+\end{remark}
+
+\section{Transport to an arbitrary map of the family}\label{sec:transport}
+
+Let $f$, $\mu$, $F_s$, $s_t$, $H_t$ be as in Construction~\ref{con:transport}.
+We show that changing markings by $H=H_1$ carries $\D_{F_a}$ onto
+$\D_{F_s}$, $D_0$ to the base component of $\D_{F_s}$, and conjugates
+$T_{\gamma_a}$ to $T_{H(\gamma_a)}$.
+
+\begin{lemma}\label{lem:lift}
+There is a continuous family of homeomorphisms $K_t$ of $\Pone$,
+$0\le t\le1$, with $K_0=\id$ and
+\begin{equation}\label{eq:equiv}
+ F_{s_t}\circ K_t=H_t\circ F_a\qquad(0\le t\le1).
+\end{equation}
+It satisfies $K_t|_{A_a}=H_t|_{A_a}$ for all $t$; consequently
+$H_t^{-1}K_t$ is an isotopy from the identity through homeomorphisms
+fixing $A_a$ pointwise, and $K_1$ is isotopic to $H_1$ relative to $A_a$.
+\end{lemma}
+
+\begin{proof}
+Every $F_s$ is M\"obius-equivalent to $Q(z)=z^2$, with M\"obius maps
+depending continuously on $s$: completing the square in
+$F_s(z)=1+b_s/z+c_s/z^2$ and recalling $v(s)=1-b_s^2/(4c_s)$ gives
+$F_s=v(s)+c_s\,J_s^2$, that is,
+\[
+ \nu_s\circ F_s=Q\circ J_s,\qquad
+ J_s(z)=\frac1z+\frac{b_s}{2c_s},\qquad \nu_s(w)=\frac{w-v(s)}{c_s},
+\]
+with $c_s\ne0$ for $s\in U$. The isotopy
+$\widehat H_t=\nu_{s_t}\circ H_t\circ \nu_a^{-1}$ starts at the identity
+and fixes $0$ and $\infty$, because $H_t(v_a)=v(s_t)$ and
+$H_t(\infty)=\infty$. By the homotopy lifting property of the covering
+$Q\colon\C^*\to\C^*$, the homotopy $(z,t)\mapsto\widehat H_t(Q(z))$ lifts
+uniquely to a continuous $\rho\colon\C^*\times[0,1]\to\C^*$ with
+$\rho_0=\id$ and $Q\circ\rho_t=\widehat H_t\circ Q$; lifting
+$\widehat H_t^{-1}\circ Q$ in the same way gives $\rho'_t$ with
+$\rho'_t\rho_t=\id=\rho_t\rho'_t$ (both products lift the constant
+homotopy $Q$ and start at $\id$), so each $\rho_t$ is a homeomorphism of
+$\C^*$, and $\rho$ extends continuously to $\Pone\times[0,1]$ by
+$\rho_t(0)=0$, $\rho_t(\infty)=\infty$, since
+$|\rho_t(z)|^2=|\widehat H_t(z^2)|$ and $\widehat H$ is continuous on the
+compact space $\Pone\times[0,1]$. Then
+$K_t=J_{s_t}^{-1}\circ\rho_t\circ J_a$ is a continuous family of
+homeomorphisms with $K_0=\id$ and
+$F_{s_t}K_t=\nu_{s_t}^{-1}Q\rho_tJ_a=\nu_{s_t}^{-1}\widehat H_tQJ_a
+=H_t\nu_a^{-1}QJ_a=H_tF_a$, which is \eqref{eq:equiv}.
+
+For the marked points, \eqref{eq:equiv} gives
+$F_{s_t}(K_t(w))=H_t(F_a(w))$ for $w\in A_a$. Thus $K_t(0)$ is the critical
+point of $F_{s_t}$ over $\infty$, namely $0$; $K_t(\infty)$ lies in
+$F_{s_t}^{-1}(1)=\{\infty,-c_{s_t}/b_{s_t}\}$, $K_t(1)$ in
+$F_{s_t}^{-1}(s_t)$, and $K_t(a)$ in $F_{s_t}^{-1}(0)\ni s_t$. For $s_t\in U$ each of the latter three fibres
+(over the non-critical values $1$, $s_t$, $0$) consists of
+two distinct points depending continuously on $t$: $b_{s_t}\ne0$ since
+$s_t^2+s_t-1\ne0$, and $s_t$, $0$ are not critical values of $F_{s_t}$
+since $v(s_t)\ne s_t,0$. By continuity from $t=0$,
+$K_t(0)=0$, $K_t(\infty)=\infty$, $K_t(1)=1$ and $K_t(a)=s_t$, which are
+the values of $H_t$ on $A_a$. The remaining assertions follow.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Write $H=H_1$, $K=K_1$. Since $H$ maps $B_a$ onto $B_s$ (notation of
+Section~\ref{sec:curve}), changing markings by $H$ is a biholomorphic
+isomorphism
+\[
+ \Psi\colon\Teich(B_a)\longrightarrow\Teich(B_s),\qquad
+ [\phi]\longmapsto[\phi\circ H^{-1}],
+\]
+and likewise $[\psi]\mapsto[\psi\circ H^{-1}]$ identifies $\Teich(A_a)$
+with $\Teich(A_s)$, $A_s=\{0,\infty,1,s\}=H(A_a)=K(A_a)$.
+
+\emph{$\Psi$ carries $\D_{F_a}$ onto $\D_{F_s}$.} Let $\phi$ be a marking
+with pullback diagram $\widetilde F\circ\psi=\phi\circ F_a$ for $F_a$.
+Using $F_a\circ K^{-1}=H^{-1}\circ F_s$ from \eqref{eq:equiv},
+\[
+ \widetilde F\circ(\psi K^{-1})=\phi\circ F_a\circ K^{-1}
+ =(\phi H^{-1})\circ F_s ,
+\]
+so $\psi K^{-1}$ is a source marking for the target marking $\phi H^{-1}$
+in a pullback diagram for $F_s$: $F_s^*\Psi[\phi]=[\psi K^{-1}]$, while
+$i_*\Psi[\phi]=[\phi H^{-1}]$. Now $[\psi K^{-1}]=[\phi H^{-1}]$ in
+$\Teich(A_s)$ if and only if $[\psi K^{-1}H]=[\phi]$ in $\Teich(A_a)$, and
+$K^{-1}H$ is isotopic to the identity relative to $A_a$ by
+Lemma~\ref{lem:lift}, so this holds if and only if $[\psi]=[\phi]$ in
+$\Teich(A_a)$, that is, $[\phi]\in\D_{F_a}$. Hence
+$\Psi(\D_{F_a})=\D_{F_s}$.
+
+\emph{$\Psi$ conjugates twists.} For a mapping class $k\in\PMod(B_a)$,
+$\Psi([\phi]\cdot k)=[\phi kH^{-1}]=[\phi H^{-1}]\cdot(HkH^{-1})$, so $\Psi$
+intertwines the action of $T_{\gamma_a}$ with that of
+$HT_{\gamma_a}H^{-1}=T_{H(\gamma_a)}$, by the naturality of twists (P2),
+which holds verbatim for the homeomorphism $H\colon(\Pone,B_a)\to(\Pone,B_s)$.
+
+\emph{$\Psi$ carries $D_0$ to the base component.} The path of markings
+$[H_t]$ in $\Teich(B_a)$ lies in $\D_{F_a}$: by \eqref{eq:equiv}, $K_t$ is
+a source marking for the target marking $H_t$, and $[K_t]=[H_t]$ in
+$\Teich(A_a)$ because $H_t^{-1}K_t$ is isotopic to the identity relative to
+$A_a$ (Lemma~\ref{lem:lift}). The path starts at $\tau_0$, so its endpoint
+$[H]$ lies in $D_0$, and $\Psi[H]=[\id]$ is the base point of
+$\Teich(B_s)$. Hence $\Psi(D_0)$ is the base component of $\D_{F_s}$, and
+the components $T_{H(\gamma_a)}^n(\Psi(D_0))=\Psi(T_{\gamma_a}^n(D_0))$,
+$n\in\Z$, are pairwise distinct by Proposition~\ref{prop:notinE}. Finally,
+conjugating by $\mu^{-1}$ identifies $(\Pone,B_s,F_s)$ with $(\Pone,B,f)$
+and $H(\gamma_a)$ with $\gamma$, which proves the theorem for $f$.
+\end{proof}
+
+\begin{thebibliography}{KPS}
+\bibitem[BCT]{BCT}
+X. Buff, G. Cui and Tan Lei,
+\emph{Teichm\"uller spaces and holomorphic dynamics},
+in: Handbook of Teichm\"uller Theory, Vol.\ IV, IRMA Lect.\ Math.\ Theor.\
+Phys.\ 19, Eur.\ Math.\ Soc., 2014, 717--756.
+\bibitem[Ep]{Ep}
+A. L. Epstein,
+\emph{Transversality in holomorphic dynamics},
+manuscript.
+\bibitem[FM]{FM}
+B. Farb and D. Margalit,
+\emph{A Primer on Mapping Class Groups},
+Princeton Math.\ Ser.\ 49, Princeton Univ.\ Press, 2012.
+\bibitem[FKS]{FKS}
+T. Firsova, J. Kahn and N. Selinger,
+\emph{On deformation spaces of quadratic rational functions},
+Int.\ Math.\ Res.\ Not.\ IMRN 2023, no.\ 8, 6703--6738; arXiv:1606.00723v4
+(2020).
+\bibitem[HK]{HK}
+E. Hironaka and S. Koch,
+\emph{A disconnected deformation space of rational maps},
+J.\ Mod.\ Dyn.\ 11 (2017), 409--423.
+\bibitem[HKa]{HKa}
+E. Hironaka and S. Koch,
+\emph{A disconnected deformation space of rational maps},
+arXiv:1602.07378v1 (2016).
+\bibitem[Ko]{Ko}
+S. Koch,
+\emph{Teichm\"uller theory and critically finite endomorphisms},
+Adv.\ Math.\ 248 (2013), 573--617.
+\bibitem[KPS]{KPS}
+S. Koch, K. M. Pilgrim and N. Selinger,
+\emph{Pullback invariants of Thurston maps},
+Trans.\ Amer.\ Math.\ Soc.\ 368 (2016), 4621--4655.
+\end{thebibliography}
+
+\end{document}

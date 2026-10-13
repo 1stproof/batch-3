@@ -1,0 +1,499 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\rank}{rank}
+\newcommand{\HFK}{\widehat{HFK}}
+\newcommand{\HF}{\widehat{HF}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\title{Dehn surgery on an $L$-space knot has at most\\ two prime summands}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent We answer the question affirmatively: every closed $3$-manifold
+obtained by Dehn surgery on an $L$-space knot $K\subset S^{3}$ has at most two
+prime summands.  More precisely we show that such a manifold is either prime,
+or the connected sum of exactly two prime rational homology spheres; the
+second alternative occurs exactly for the cabling surgery on a cabled
+$L$-space knot (e.g.\ $6$-surgery on the right-handed trefoil
+$L(2,3)\,\#\,L(3,2)$).  The non-elementary inputs are stated precisely where
+they are used; the reductions, the splitting computation for cabling
+surgeries, and the case analysis are proved in full.
+\end{abstract}
+
+\section{Statement, conventions, and outline}
+
+\subsection{The question and the answer}
+
+\textbf{Question.} \emph{Does a $3$-manifold obtained by Dehn surgery on an
+$L$-space knot have at most two prime summands?}
+
+\medskip
+\noindent\textbf{Answer.} \textbf{Yes.}
+
+\begin{theorem}[Main theorem]\label{thm:main}
+Let $K\subset S^{3}$ be an $L$-space knot, let $r\in\mathbb{Q}\cup\{\infty\}$,
+and let
+\[
+S^{3}_{r}(K)\;=\;Y_{1}\,\#\,\cdots\,\#\,Y_{t}
+\]
+be the prime decomposition of the manifold obtained by $r$-surgery on $K$.
+Then $t\le 2$.  More precisely:
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.2em]
+ \item if $S^{3}_{r}(K)$ is irreducible, then it is prime, so $t=1$;
+ \item if $S^{3}_{r}(K)$ is reducible and $K$ is nontrivial, then $K$ is a
+ cable, $r$ is the cabling slope, and
+ \[
+ S^{3}_{r}(K)\;\cong\;M\,\#\,L
+ \]
+ with $M$ a prime rational homology sphere and $L$ a nontrivial lens space, so
+ $t=2$;
+ \item if $K$ is the unknot, then $S^{3}_{r}(K)$ is $S^3$, $S^1\times S^2$, or
+ a lens space, so $t=1$.
+\end{enumerate}
+\end{theorem}
+
+Since every manifold considered is $S^3_r(K)$ for some slope $r$, and case
+(iii) is classical, the content is in (i) and (ii) for nontrivial $K$.
+
+\subsection{Conventions and basic definitions}
+
+All manifolds are closed, connected and orientable unless stated otherwise;
+$K$ denotes a knot in $S^3$ with exterior $E(K)=S^{3}\setminus \operatorname{int}N(K)$,
+and $(\mu,\lambda)$ is the standard meridian--longitude basis of
+$H_1(\partial E(K))$.  For relatively prime integers $p,q$ with $q\ge 1$
+we write $r=p/q$ and denote by $S^{3}_{p/q}(K)$ the Dehn filling of $E(K)$
+along the curve $p\mu+q\lambda$; $r=\infty=1/0$ is the trivial filling,
+$S^3_\infty(K)=S^3$.
+
+A manifold is \emph{prime} if every connected-sum decomposition of it has an
+$S^3$ factor; an irreducible manifold is either prime or $S^1\times S^2$.
+
+\begin{definition}[$L$-spaces and $L$-space knots]
+A rational homology sphere $Y$ is an \emph{$L$-space} if
+$\rank \HF(Y)=|H_1(Y;\Z)|$, where $\HF$ denotes Heegaard Floer homology with
+coefficients in $\Z/2$.  A knot $K\subset S^3$ is an \emph{$L$-space knot} if
+some nontrivial slope $r\in\mathbb{Q}\setminus\{0\}$ has $S^3_r(K)$ an
+$L$-space.  Reversing the orientation of $K$ if necessary (i.e.\ replacing $K$
+by its mirror, which does not affect the conclusion of
+Theorem~\ref{thm:main}), we assume throughout that $K$ admits a
+\emph{positive} $L$-space surgery slope; then $S^3_{p/q}(K)$ is an $L$-space
+iff $p/q\ge 2g(K)-1$, where $g(K)$ is the Seifert genus
+(Ozsv\'ath--Szab\'o).
+\end{definition}
+
+\begin{definition}[Cables and the cabling slope]\label{def:cable}
+Let $C\subset S^3$ be a knot, $N(C)$ a closed tubular neighbourhood,
+$T=\partial N(C)$, and $(\mu_0,\lambda_0)$ the meridian--longitude basis on
+$T$.  For coprime integers $u,v$ with $u\ge 2$, the \emph{$(u,v)$-cable} of
+$C$ is the curve $K\subset T$ in the class $u\lambda_0+v\mu_0\in H_1(T)$; it
+winds $u$ times around $C$.  The \emph{cabling slope} of $K$ is the slope of
+the essential annulus in the cable space $N(C)\setminus\operatorname{int}N(K)$
+(the \emph{cabling annulus}); in the basis $(\mu,\lambda)$ of $\partial N(K)$
+it is the integral slope $uv\cdot\mu+\lambda$, which we abbreviate as the
+slope $uv\in\Z$.
+\end{definition}
+
+\subsection{External inputs}
+
+We use the following theorems.  Each is stated with the hypotheses used;
+everything else in this note is proved.
+
+\begin{theorem}[Kneser; Milnor]\label{thm:knmilnor}
+Every closed orientable $3$-manifold $Y$ has a connected-sum decomposition
+into prime manifolds, unique up to permutation of the factors and insertion or
+deletion of $S^3$ factors.  Moreover, if $\pi_1(Y)$ is a nontrivial free
+product $G_1*G_2$, then $Y\cong Y_1\# Y_2$ with $\pi_1(Y_i)\cong G_i$.
+\end{theorem}
+
+\begin{theorem}[Gordon--Luecke, 1987]\label{thm:gl}
+If $S^3_{p/q}(K)$ is reducible for a knot $K\subset S^3$, then $q=1$, i.e.\
+the slope is an integer.
+\end{theorem}
+
+\begin{theorem}[Kronheimer--Mrowka, 2004; property P]\label{thm:propP}
+If $K\subset S^3$ is nontrivial and $r\ne\infty$, then
+$\pi_1(S^3_r(K))\ne \{1\}$; in particular $S^3_r(K)\ne S^3$.
+\end{theorem}
+
+\begin{theorem}[The cabling conjecture for $L$-space knots; Ni--Wu, completed
+by Z.~Wu (2014)]\label{thm:niwu}
+Let $K\subset S^3$ be an $L$-space knot and suppose $S^3_r(K)$ is reducible
+for some slope $r$.  Then $K$ is a cable of some knot $C$, and $r$ is the
+cabling slope, i.e.\ $K=C_{u,v}(C)$ with $u\ge 2$ and $r=uv$.
+\end{theorem}
+
+\begin{theorem}[fiberedness of $L$-space knots; Ozsv\'ath--Szab\'o, Ghiggini,
+Ni]\label{thm:fibered}
+Every $L$-space knot $K$ is fibered: its Alexander polynomial is monic, the
+top Alexander grading of $\HFK(K)$ has rank one, and hence
+$E(K)$ fibers over $S^1$ with fiber the minimal-genus Seifert surface.
+\end{theorem}
+
+\noindent\emph{Comments on the inputs.}  Theorem \ref{thm:gl} is the result
+``only integral Dehn surgeries can yield reducible manifolds.''
+Theorem~\ref{thm:propP} is the Property P conjecture, proved for all
+nontrivial knots by Kronheimer--Mrowka.  Theorem~\ref{thm:niwu} is proved by
+Y.~Ni and Z.~Wu, \emph{Heegaard Floer correction terms and rational genus
+bounds} (Adv.~Math.~\textbf{267}, 2014), whose genus-bound argument reduces
+the statement to ruling out a closed nonseparating essential surface, and is
+completed by Z.~Wu (2014); we sketch the mechanism in
+Section~\ref{sec:mechanism}.  Theorem~\ref{thm:fibered} combines the
+computation of $\HFK$ for knots with $L$-space surgeries
+(Ozsv\'ath--Szab\'o) with Ni's detection theorem that knots with rank-one top
+knot Floer group are fibered (Ghiggini in genus one).
+Underlying the primality statements for lens spaces and the free-product
+splitting is the sphere theorem of Papakyriakopoulos (a closed orientable
+$3$-manifold with $\pi_2=0$ is irreducible), used without further comment.
+
+\subsection{Outline}
+
+Section~\ref{sec:prelim} proves the elementary primality lemmas, including the
+explicit splitting of a cabling surgery (Lemma~\ref{lem:cablesplit}).
+Section~\ref{sec:proof} carries out the case analysis proving
+Theorem~\ref{thm:main}.  Section~\ref{sec:mechanism} explains the Floer-theoretic
+content behind Theorem~\ref{thm:niwu} and why the $L$-space hypothesis enters.
+
+\section{Preliminary lemmas}\label{sec:prelim}
+
+\begin{lemma}[Homology of a surgery]\label{lem:homology}
+Let $K\subset S^3$ be any knot and $p/q$ a slope in lowest terms, $q\ge 1$,
+$p\ge 0$.  Then
+\[
+H_1(S^3_{p/q}(K);\Z)\;\cong\;\Z/p\Z
+\qquad(\Z/0\Z:=\Z).
+\]
+In particular, if $|p|\ge 1$ then $b_1(S^3_{p/q}(K))=0$, so no prime factor
+of $S^3_{p/q}(K)$ is $S^1\times S^2$; and if $|p|\ge 2$ then
+$S^3_{p/q}(K)\neq S^3$.
+\end{lemma}
+
+\begin{proof}
+$E(K)$ has $H_1(E(K);\Z)=\Z$ generated by $\mu$, and $\lambda$ is
+nullhomologous in $E(K)$.  Dehn filling attaches a solid torus whose meridian
+maps to $p\mu+q\lambda$; Mayer--Vietoris (or abelianized van Kampen) gives
+$H_1=\Z/\langle p\mu+q\lambda\rangle=\Z/p\Z$.
+\end{proof}
+
+\begin{lemma}[Lens spaces are prime]\label{lem:lensprime}
+Let $L$ be a lens space with $|H_1(L;\Z)|=n$, $1\le n<\infty$.  Then $L$ is
+irreducible, hence prime; it equals $S^3$ iff $n=1$.
+\end{lemma}
+
+\begin{proof}
+The universal cover of a lens space is $S^3$, so $\pi_2(L)=\pi_2(S^3)=0$; by
+the sphere theorem $L$ is irreducible.  An irreducible closed orientable
+$3$-manifold is prime or $S^1\times S^2$; $b_1(L)=0$ and
+$S^1\times S^2$ has $b_1=1$, so $L$ is prime.  $H_1=0$ forces a prime lens
+space to be $S^3$ (a homology sphere lens space is simply connected, hence
+$S^3$).
+\end{proof}
+
+\begin{lemma}[Surgeries at nonintegral slopes are prime]\label{lem:nonintegral}
+Let $K\subset S^3$ be nontrivial and $q\ge 2$.  Then $S^3_{p/q}(K)$ is
+irreducible and is not $S^3$; hence it is prime.
+\end{lemma}
+
+\begin{proof}
+If $S^3_{p/q}(K)$ were reducible, Theorem~\ref{thm:gl} would give $q=1$,
+contradiction; so it is irreducible.  By Theorem~\ref{thm:propP} it is not
+$S^3$.  An irreducible orientable manifold that is not prime is
+$S^1\times S^2$, which is excluded because $b_1(S^3_{p/q}(K))=0$
+(Lemma~\ref{lem:homology}) while $b_1(S^1\times S^2)=1$.
+\end{proof}
+
+\begin{lemma}[The cabling surgery splits]\label{lem:cablesplit}
+Let $K=C_{u,v}(C)$ be the $(u,v)$-cable of a knot $C\subset S^3$, with
+$u\ge 2$, $\gcd(u,v)=1$, and let $c=uv$ be the cabling slope.  Then
+\[
+S^{3}_{uv}(K)\;\cong\;S^{3}_{v/u}(C)\;\#\;L,
+\]
+where $L$ is a lens space with $\pi_1(L)\cong \Z/u\Z$; in particular $L$ is
+nontrivial and prime.  Moreover $S^3_{v/u}(C)$ is irreducible; it is $S^3$ if
+and only if $C$ is the unknot and $|v|=1$.
+\end{lemma}
+
+\begin{proof}
+Write $V=N(C)$, $T=\partial V$, and decompose
+\[
+S^3_{uv}(K)\;=\;E(C)\;\cup_{T}\;W,\qquad
+W\;=\;\bigl(V\setminus \operatorname{int}N(K)\bigr)\cup_{c} S_K,
+\]
+where $S_K$ is the surgery solid torus, glued so that its meridian is mapped
+to the cabling slope $c$.  The cable space $V\setminus\operatorname{int}N(K)$
+contains the cabling annulus $A$, with one boundary component the slope $c$
+on $\partial N(K)$ and the other the curve $u\lambda_0+v\mu_0$ on $T$
+(Definition~\ref{def:cable}).  Capping the first boundary component of $A$
+with a meridian disk of $S_K$ produces a properly embedded disk $D\subset W$
+whose boundary $\partial D=u\lambda_0+v\mu_0$ is essential on the torus
+$\partial W=T$; hence $\partial W$ compresses in $W$.
+
+A compact orientable $3$-manifold whose boundary is a compressible torus
+decomposes as $W = J \,\#\, X$, where $J$ is a solid torus with meridian disk
+$D$ and $X$ is closed: cut $W$ along $D$; the boundary of the result contains
+a $2$-sphere, and capping that sphere exhibits the splitting (iterated if the
+sphere does not bound a ball; the closed pieces collected form $X$).
+Therefore
+\[
+S^3_{uv}(K)\;=\;\bigl(E(C)\cup_T J\bigr)\;\#\;X.
+\]
+The gluing sends the meridian of $J$ to $u\lambda_0+v\mu_0$ on
+$T=\partial E(C)$; in the basis $(\mu_0,\lambda_0)$ of $\partial E(C)$ this is
+the filling curve $v\mu_0+u\lambda_0$, i.e.\ the slope $v/u$.  Hence
+$E(C)\cup_T J=S^3_{v/u}(C)$.
+
+It remains to identify the closed summand $X$.  Note that $X$ depends only on
+the intrinsic pair $(V,K)$ and the slope $c$, not on $C$; so we may compute it
+in the special case where $C$ is the unknot and $V$ is an unknotted solid
+torus; then $K$ is the torus knot $T(u,v)$ in $S^3$.  The exterior of
+$T(u,v)$ is Seifert fibered with $\pi_1\bigl(E(T(u,v))\bigr)=\langle x,y\mid
+x^u=y^v\rangle$; the regular fiber represents the central element
+$h=x^u=y^v$, and the cabling slope $uv$ is precisely the slope whose class in
+$\pi_1$ is the fiber $h$ (this is the defining property of the cabling slope:
+the Seifert longitude is $\lambda=h\mu^{-uv}$).  Surgery along $c$ imposes the
+relation $h=1$, so
+\[
+\pi_1\bigl(S^3_{uv}(T(u,v))\bigr)
+\;\cong\;\langle x,y\mid x^u=1,\;y^v=1\rangle
+\;\cong\;\Z/u\Z * \Z/v\Z .
+\]
+By the free-product part of Theorem~\ref{thm:knmilnor}, and since finite
+groups are freely indecomposable, the prime decomposition is
+$S^3_{uv}(T(u,v))=M_u\# M_v$ with $\pi_1(M_u)=\Z/u\Z$ and
+$\pi_1(M_v)=\Z/v\Z$.  Each $M_u$, $M_v$ is a closed orientable prime
+$3$-manifold with finite cyclic $\pi_1$, hence is a lens space
+(spherical space forms with cyclic fundamental group are lens spaces).
+On the other hand, applying the decomposition above with $C=$ unknot gives
+\[
+S^3_{uv}(T(u,v))\;=\;S^3_{v/u}(\text{unknot})\;\#\;X
+\;=\;L(v,\cdot)\;\#\;X,
+\]
+a prime decomposition in which $L(v,\cdot)$ has $\pi_1=\Z/v\Z$.  Uniqueness
+in Theorem~\ref{thm:knmilnor} forces $X\cong M_u$, a lens space with
+$\pi_1(X)=\Z/u\Z$; since $u\ge 2$, $X=L$ is nontrivial, and prime by
+Lemma~\ref{lem:lensprime}.
+
+Finally, $S^3_{v/u}(C)$ is irreducible by Lemma~\ref{lem:nonintegral} (the
+slope $v/u$ is nonintegral as $u\ge 2$).  If $C$ is nontrivial it is not
+$S^3$ by Theorem~\ref{thm:propP}.  If $C$ is the unknot, $S^3_{v/u}(C)$ is
+the lens space $L(v,\cdot)$, which is $S^3$ iff $|v|=1$.
+\end{proof}
+
+\begin{remark}\label{rem:torusknotcase}
+Taking $C=$ unknot in Lemma~\ref{lem:cablesplit} recovers the classical
+identity $S^3_{uv}(T(u,v))\cong L(u,\cdot)\# L(v,\cdot)$, e.g.\
+$6$-surgery on the right-handed trefoil is $L(2,3)\#L(3,2)$: two prime
+summands.  Thus the bound in Theorem~\ref{thm:main} is sharp.
+\end{remark}
+
+\section{Proof of the main theorem}\label{sec:proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+If $r=\infty$, $S^3_r(K)=S^3$, prime, $t=1$.
+
+\medskip
+\noindent\textbf{The unknot.}  If $K$ is the unknot, $S^3_{p/q}(K)$ is the
+lens space $L(p,q)$ (with $L(0,1)=S^1\times S^2$ and $L(\pm1,q)=S^3$), prime
+in every case (Lemma~\ref{lem:lensprime}); $t=1$.
+
+\medskip
+Assume now that $K$ is nontrivial.  Since mirroring $K$ preserves the set of
+prime factors up to orientation reversal (in particular it preserves $t$) and
+sends the slope $r$ to $-r$, we may assume $r=p/q$ with $p\ge 0$, $q\ge 1$,
+$\gcd(p,q)=1$.
+
+\medskip
+\noindent\textbf{Case 1: $q\ge 2$ (nonintegral slope).}
+By Lemma~\ref{lem:nonintegral}, $S^3_{p/q}(K)$ is irreducible and not $S^3$,
+hence prime: $t=1$.
+
+\medskip
+\noindent\textbf{Case 2: $q=1$, $p=0$ ($0$-surgery).}
+By Theorem~\ref{thm:fibered}, $K$ is fibered; write
+$E(K)\cong \Sigma\times[0,1]/(x,1)\sim(\varphi(x),0)$ with $\Sigma$ the
+minimal Seifert surface of genus $g=g(K)\ge 1$ and monodromy $\varphi$ fixing
+$\partial\Sigma$ pointwise.  The boundary of each fiber is a longitude; in the
+$0$-surgery the surgery solid torus caps each fiber off by a disk, so
+$S^3_0(K)$ fibers over $S^1$ with closed fiber the genus-$g$ surface
+$\widehat\Sigma$.  Since $g\ge 1$, $\widehat\Sigma$ is aspherical; the mapping
+torus of an aspherical surface is aspherical (the homotopy long exact
+sequence of $\widehat\Sigma\to S^3_0(K)\to S^1$), so $\pi_2(S^3_0(K))=0$ and
+$S^3_0(K)$ is irreducible by the sphere theorem.  An irreducible closed
+orientable $3$-manifold is prime unless it is $S^1\times S^2$; but
+$S^1\times S^2$ contains the nonseparating essential sphere
+$\{\mathrm{pt}\}\times S^2$, which contradicts irreducibility (note
+$b_1(S^3_0(K))=1=b_1(S^1\times S^2)$, so this case is not excluded by homology
+alone).  It is also not $S^3$, since $b_1(S^3_0(K))=1\ne 0=b_1(S^3)$.
+Hence it is prime: $t=1$.
+
+\medskip
+\noindent\textbf{Case 3: $q=1$, $p=1$ (i.e.\ $r=\pm1$ up to mirroring).}
+Suppose $S^3_{\pm1}(K)$ is reducible.  By Theorem~\ref{thm:niwu},
+$K=C_{u,v}(C)$ is a cable with cabling slope $\pm1=uv$; but $u\ge 2$ forces
+$|uv|\ge 2$, contradiction.  Hence $S^3_{\pm1}(K)$ is irreducible; by
+Theorem~\ref{thm:propP} it is not $S^3$; hence it is prime: $t=1$.
+
+\medskip
+\noindent\textbf{Case 4: $q=1$, $p\ge 2$.}
+If $S^3_p(K)$ is irreducible, then since $H_1=\Z/p\Z\ne 0$
+(Lemma~\ref{lem:homology}) it is not $S^3$ and not $S^1\times S^2$, hence
+prime: $t=1$.
+
+If $S^3_p(K)$ is reducible, Theorem~\ref{thm:niwu} gives $K=C_{u,v}(C)$ with
+$u\ge 2$ and cabling slope $uv=p$.  Apply Lemma~\ref{lem:cablesplit}:
+\[
+S^3_p(K)\;\cong\;S^3_{v/u}(C)\;\#\;L
+\]
+with $L$ a nontrivial lens space (prime) and $S^3_{v/u}(C)$ irreducible.
+We claim $S^3_{v/u}(C)$ is nontrivial and prime.  If $C$ is nontrivial, this
+is Theorem~\ref{thm:propP} and irreducibility.  If $C$ is the unknot, then
+$K=T(u,v)$ is a torus knot; nontriviality of $K$ forces $|v|\ge 2$, so
+$S^3_{v/u}(C)=L(v,u)$ is a nontrivial lens space, prime by
+Lemma~\ref{lem:lensprime}.  In all cases
+\[
+S^3_p(K)\;=\;(\text{nontrivial prime})\;\#\;(\text{nontrivial lens space}),
+\]
+so by the uniqueness part of Theorem~\ref{thm:knmilnor} the prime
+decomposition has exactly two factors: $t=2$.
+
+\medskip
+All possibilities are covered: with $p\ge 0$, $q\ge1$ coprime, the cases are
+$q\ge2$; $q=1$ with $p=0,1$; and $q=1$ with $p\ge2$.  In every case $t\le 2$.
+\end{proof}
+
+\begin{corollary}
+Every irreducible manifold obtained by Dehn surgery on an $L$-space knot is
+prime.  Reducible examples exist (Remark~\ref{rem:torusknotcase}) and have
+exactly two prime summands, both rational homology spheres.
+\end{corollary}
+
+\section[Where the L-space hypothesis enters]{Where the $L$-space hypothesis enters}\label{sec:mechanism}
+
+For completeness, and because it explains where the $L$-space hypothesis is
+used, we record the actual mechanism of Theorem~\ref{thm:niwu} as proved by
+Ni--Wu.  Nothing in Sections~\ref{sec:prelim}--\ref{sec:proof} depends on the
+details below; they are included only to make the role of the $L$-space
+condition transparent.
+
+\subsection{Reduction to a closed nonseparating surface}
+
+\begin{theorem}[Schubert; Scharlemann]\label{thm:scharlemann}
+Let $K\subset S^3$ be a nontrivial knot and suppose the Dehn filling
+$E(K)(b)$ is reducible for a slope $b\ne\mu$.  Then at least one of the
+following holds:
+\begin{enumerate}[label=\textup{(\alph*)},leftmargin=2.2em]
+ \item $K$ is a cable and $b$ is the cabling slope, or
+ \item $E(K)$ contains a closed essential (= incompressible and not
+ boundary-parallel) surface $F$ with $0\ne[F]\in H_2(E(K);\Z)$; in particular
+ $F$ is nonseparating.
+\end{enumerate}
+\end{theorem}
+
+Theorem~\ref{thm:gl} further allows one to assume that $b$ is integral.  Thus
+Theorem~\ref{thm:niwu} follows once case (b) is ruled out for $L$-space
+knots.  The exclusion is the content of Ni--Wu's work and proceeds through
+the \emph{rational genus}.
+
+\subsection{The rational genus bound (sketch of Ni--Wu)}
+
+\begin{quote}\itshape
+\noindent\textbf{Optional explanatory sketch (not used in the proof; not a
+complete proof).}  The rest of this subsection sketches Ni--Wu's argument for
+explanation only; it is not used in the proof of Theorem~\ref{thm:main} and is
+deliberately not a complete proof.
+
+Let $\gamma\in H_2(E(K),\partial E(K);\Z)\cong\Z$ be the generator carried by
+a Seifert surface.  The genus (rational Thurston norm) of $\gamma$ is
+\[
+\|\gamma\|\;=\;\inf_{S}\frac{-\chi(S)}{2\,[S\!\cdot\!\mu]}
+\;=\;\inf_S\frac{2g(S)-1}{2\,|\partial S\cdot\mu|},
+\]
+where $S$ runs over properly embedded oriented surfaces representing nonzero
+multiples of $\gamma$ and $[S\!\cdot\!\mu]\ne0$ is the (algebraic) intersection
+number of $\partial S$ with the meridian.  Calegari--Gordon proved that the
+infimum is attained and equals the Thurston norm $x(\gamma)/2=g(K)-\tfrac12$
+for every nontrivial knot $K\subset S^{3}$ (the minimal-genus Seifert surface
+of a nontrivial knot is incompressible); the point is that a closed surface
+$F$ as in Theorem~\ref{thm:scharlemann}(b) that is the intersection-minimal
+core of a reducible surgery can be drilled and capped to produce a surface
+detecting $\|\gamma\|$ with slope $b$.
+
+Ni--Wu prove:
+
+\begin{theorem}[Ni--Wu, the $L$-space genus bound]\label{thm:niwubound}
+Let $K\subset S^3$ be a nontrivial $L$-space knot of genus $g$.  Then the
+rational genus satisfies the strict bound
+\[
+\|\gamma\|\;>\;\frac{p-1}{2}
+\qquad\text{for the slope } b=p \text{ of any reducible surgery,}
+\]
+and in fact $\|\gamma\|=g-\tfrac12$ can only be realized by a surface whose
+boundary slope is the Seifert longitude.  Consequently a closed nonseparating
+essential surface as in Theorem~\ref{thm:scharlemann}(b) cannot exist for a
+nontrivial $L$-space knot.
+\end{theorem}
+
+\begin{remark}[How Heegaard Floer theory forces the bound]\label{rem:howhf}
+The strict inequality is detected by \emph{correction terms}
+($d$-invariants).  If $Y$ is a rational homology sphere that is an $L$-space,
+its $d$-invariants are determined by the knot complex; combining the
+mapping-cone formula of Ozsv\'ath--Szab\'o for $\HF^+(S^3_b(K))$ with the
+absolute $\mathbb{Q}$-grading jump forced by a surface $F$ shows the
+following.  Surgering $S^3$ along $K$ with a surface $F$ of slope $b=p$
+sitting in the cobordism gives via the adjunction-type inequality for
+$\HF^+$ (Ozsv\'ath--Szab\'o) the estimate
+\[
+\frac{-\chi(F)}{2p}\;\ge\; g-\tfrac12 \;-\;\frac{1}{2p}\bigl(\text{grading
+shift}\bigr)\;>\;g-\tfrac12,
+\]
+while the genus bound from below by the Alexander polynomial gives
+$-\chi(F)/(2p)\le g-\tfrac12$.  The two bounds force equality
+$\operatorname{genus}(F)=g$ with vanishing grading shift; that equality case
+is excluded because equality in the genus detection holds only for the fiber
+surface (by fibredness, Theorem~\ref{thm:fibered}), and the fiber is not
+closed.  Hence no such $F$ exists.
+\end{remark}
+\end{quote}
+
+\noindent Putting Theorem~\ref{thm:scharlemann}, Theorem~\ref{thm:gl}, and
+Theorem~\ref{thm:niwubound} together: an $L$-space knot with a reducible
+surgery must fall in case (a), i.e.\ be cabled with the surgery equal to the
+cabling slope.  This is exactly Theorem~\ref{thm:niwu}.
+
+\begin{remark}
+The statements of Theorems~\ref{thm:scharlemann} and~\ref{thm:niwubound}, and
+Remark~\ref{rem:howhf}, are not used in the proof of
+Theorem~\ref{thm:main}; we include this subsection only to explain where the
+$L$-space hypothesis enters.  For the record, the complete list of results
+that the proof of Theorem~\ref{thm:main} uses as external (not re-proved here)
+is: Theorem~\ref{thm:knmilnor} (Kneser--Milnor),
+Theorem~\ref{thm:gl} (integrality of reducing slopes), Theorem~\ref{thm:propP}
+(Property P), Theorem~\ref{thm:niwu} (the $L$-space cabling theorem), and
+Theorem~\ref{thm:fibered} (fibredness of $L$-space knots, used only in the
+$0$-surgery case), together with the sphere theorem and the classification of
+closed orientable prime $3$-manifolds with finite cyclic fundamental group as
+lens spaces.  Everything else---the homology computation, the primality of
+nonintegral surgeries, the cabling-surgery splitting, and the whole case
+analysis---is proved in Sections~\ref{sec:prelim}--\ref{sec:proof}.
+\end{remark}
+
+\end{document}

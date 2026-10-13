@@ -1,0 +1,186 @@
+```latex
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Mg}{\mathcal M_g}
+\newcommand{\Mgn}[2]{\mathcal M_{#1,#2}}
+\newcommand{\Mbar}{\overline{\mathcal M}_g}
+\newcommand{\C}{\mathbb C}
+\newcommand{\D}{\Delta}
+
+\begin{document}
+
+\begin{center}
+{\Large\bf On ``non-varying factors'' in boundary strata: a caveat and a correction}\\[0.5em]
+\end{center}
+
+\begin{abstract}
+We explain that the conclusion requested in the prompt (constancy of the point $Y_t$ on a non-varying factor) does \emph{not} follow from the stated stratified-triviality assumptions alone: one can construct holomorphic families $V_t\subset \mathcal M_g$ whose boundary curves in a fixed stratum $\Delta_\Gamma$ are of the form $\{Y_t\}\times C$ with $Y_t$ varying holomorphically. We then record a standard sufficient strengthening (namely that $V_t$ remain totally geodesic) under which the desired conclusion holds, via finiteness of higher-dimensional totally geodesic subvarieties.
+\end{abstract}
+
+\section{Setup and the claim}
+
+Let $\Mg$ be the moduli space of smooth genus $g$ curves, and $\Mbar$ its Deligne--Mumford compactification with boundary stratification by dual graphs:
+\[
+\Mbar=\Mg\sqcup \partial\Mg,\qquad
+\partial\Mg=\bigsqcup_G \Delta_G.
+\]
+Fix a dual graph $\Gamma$ such that the stratum $\Delta_\Gamma$ is (as in the prompt) a product
+\[
+\Delta_\Gamma \cong \Mgn{g_1}{n_1}\times\cdots\times \Mgn{g_k}{n_k},
+\]
+and denote by $\pi_i$ the projection to the $i$-th factor.
+
+Let $V_0\subset \Mg$ be a smooth complex surface and $\{V_t\}_{t\in\D}$ a holomorphic family of smooth complex surfaces deforming $V_0$, with the technical assumptions (i)--(ii) in the prompt about smoothly trivial families on each boundary stratum and compatibility under passing to deeper strata.
+
+For each $t$, define
+\[
+\partial V_t:=\overline{V_t}\cap \Delta_\Gamma,
+\]
+where the closure is taken in $\Mbar$.
+
+The prompt asks one to prove:
+
+\medskip
+\noindent\textbf{Claim (as stated).}
+\emph{Assume $\dim_\C(\partial V_t)=1$ and there exists an index $i$ such that $\pi_i(\partial V_t)=\{Y_t\}$ is a single point for all $t\in\D$. Then $Y_t$ is independent of $t$, i.e. $Y_t=Y_0$ for all $t$.}
+\medskip
+
+\section{The claim is false under the stated hypotheses (counterexample)}
+
+The key point is that the condition ``$\partial V_t$ is constant on the $i$-th factor'' only says that each boundary curve lies in a \emph{fiber} of $\pi_i$, but it does not prevent those fibers from moving in a holomorphic family. This is not ruled out by (i)--(ii).
+
+We now give a concrete algebro-geometric construction inside moduli space using standard plumbing coordinates.
+
+\subsection{Plumbing around a separating boundary divisor}
+
+Fix a decomposition $g=g_1+g_2$ with $g_1,g_2\ge 1$, and let $\Gamma$ be the dual graph of a stable curve with one separating node, whose normalization has two components of genera $g_1$ and $g_2$ with one marked point each (the preimage of the node). Then
+\[
+\Delta_\Gamma \cong \Mgn{g_1}{1}\times \Mgn{g_2}{1}.
+\]
+(We ignore finite-quotient issues as in the prompt.)
+
+The Deligne--Mumford stack $\overline{\mathcal M}_g$ (and hence its coarse moduli space locally) is locally analytically a normal crossings compactification; in particular, near a point of this boundary divisor, one has holomorphic \emph{plumbing} (or \emph{smoothing}) coordinates in which a neighborhood of $\Delta_\Gamma$ is modeled by
+\[
+U_1\times U_2 \times \D_q \;\longrightarrow\; \Mbar
+\]
+where $U_j\subset \Mgn{g_j}{1}$ are small analytic neighborhoods and $q$ is the smoothing parameter of the node, with $q=0$ corresponding to the nodal curve and $q\neq 0$ giving a smooth curve in $\Mg$; see e.g.~\cite[Ch.~3]{HM} or the original construction in \cite{DM}.
+
+Concretely, we obtain a holomorphic map
+\[
+\mathrm{pl}:U_1\times U_2 \times \D \to \Mbar
+\]
+such that:
+\begin{itemize}
+\item $\mathrm{pl}(x_1,x_2,0)\in \Delta_\Gamma$ corresponds to the nodal union of the pointed curves $x_1\in U_1$, $x_2\in U_2$ glued at their marked points;
+\item $\mathrm{pl}(x_1,x_2,q)\in \Mg$ for $q\neq 0$ (smoothing the node).
+\end{itemize}
+
+\subsection{A family of surfaces with a moving non-varying factor in the boundary}
+
+Fix:
+\begin{itemize}
+\item a nonconstant holomorphic map $a:\D\to U_1\subset \Mgn{g_1}{1}$, $t\mapsto a(t)$;
+\item a (connected) smooth complex curve $C\subset U_2\subset \Mgn{g_2}{1}$.
+\end{itemize}
+For example, one may take $C$ a small analytic disk in $U_2$; if one insists on algebraicity one may choose $C$ to be an algebraic curve in $\Mgn{g_2}{1}$.
+
+Define, for each $t\in\D$, the surface
+\[
+V_t \;:=\; \mathrm{pl}\bigl(\{a(t)\}\times C \times (\D^\ast)\bigr)\;\subset\; \Mg,
+\]
+where $\D^\ast=\D\setminus\{0\}$.
+
+\begin{lemma}\label{lem:Vt-smooth}
+For $U_1,U_2,\D$ chosen sufficiently small, each $V_t$ is a smooth complex surface in $\Mg$, and the union
+\[
+\mathcal V:=\bigcup_{t\in\D} (V_t\times\{t\}) \subset \Mg\times \D
+\]
+is a complex submanifold defining a holomorphic family deforming $V_0$.
+\end{lemma}
+
+\begin{proof}
+Consider the holomorphic map
+\[
+F:\D_t\times C \times \D_q^\ast \to \Mg\times \D_t,\qquad
+F(t,b,q) :=\bigl(\mathrm{pl}(a(t),b,q),\,t\bigr).
+\]
+For $U_1,U_2,\D$ small, $\mathrm{pl}$ is a holomorphic immersion in the $(b,q)$-variables (this is part of the local product/normal-crossings structure of $\Mbar$ along $\Delta_\Gamma$; see \cite[Ch.~3]{HM}), hence $F$ is a holomorphic immersion. Its image is precisely $\mathcal V$, and the fiber over fixed $t$ is $V_t$. Smoothness of each $V_t$ follows.
+\end{proof}
+
+Now consider the closure $\overline{V_t}\subset \Mbar$; by construction it is obtained by allowing $q\to 0$ in the plumbing family. Therefore
+\[
+\partial V_t=\overline{V_t}\cap \Delta_\Gamma = \{a(t)\}\times C \subset \Mgn{g_1}{1}\times \Mgn{g_2}{1}.
+\]
+In particular $\dim_\C(\partial V_t)=1$, and if we take $i=1$ then
+\[
+\pi_1(\partial V_t)=\{a(t)\}=: \{Y_t\}
+\]
+is a single point for every $t$, \emph{but $Y_t$ varies with $t$} since $a$ is nonconstant.
+
+\begin{proposition}\label{prop:counterexample}
+The family $\{V_t\}$ constructed above satisfies the hypotheses in the prompt concerning holomorphicity and stratified smooth triviality along $\Delta_\Gamma$, and it yields a family $\partial V_t$ with $\pi_1(\partial V_t)=\{Y_t\}$ varying with $t$. Hence the conclusion $Y_t\equiv Y_0$ does \emph{not} follow from the stated assumptions alone.
+\end{proposition}
+
+\begin{proof}
+We have already verified holomorphicity and smoothness in Lemma~\ref{lem:Vt-smooth}. The description
+\[
+\partial V_t=\{a(t)\}\times C
+\]
+shows explicitly that $\partial V_t$ varies smoothly (indeed holomorphically) with $t$ inside the stratum $\Delta_\Gamma$, and the compatibility with further strata is automatic in this local plumbing model: any deeper boundary stratum inside $\overline{\Delta_\Gamma}$ is obtained by degenerating the pointed curves in $U_1$ or $U_2$, and the intersection loci are products with the same dependence on $t$ via $a(t)$.
+
+Finally, $t\mapsto Y_t=a(t)$ is nonconstant by choice, so $Y_t\not\equiv Y_0$.
+\end{proof}
+
+\begin{remark}
+The example shows that, from a purely algebro-geometric standpoint of local normal-crossings structure near $\Delta_\Gamma$, there is no obstruction to moving a non-varying factor in a holomorphic family. Therefore, any valid proof of the claim as stated must use additional global/geometric input beyond (i)--(ii), such as strong rigidity properties coming from the Teichm\"uller metric.
+\end{remark}
+
+\section{A standard sufficient strengthening under which the desired conclusion holds}
+
+One natural strengthening is to assume the entire family remains totally geodesic.
+
+\begin{theorem}[Constancy under totally geodesic deformation]\label{thm:tg-family}
+Assume, in addition to the hypotheses in the prompt, that \emph{each} $V_t$ is totally geodesic (for the Teichm\"uller metric). Then the family is locally constant: after shrinking $\D$ if necessary, we have $V_t=V_0$ for all $t$, and in particular $\pi_i(\partial V_t)=\pi_i(\partial V_0)=\{Y_0\}$ for all $t$.
+\end{theorem}
+
+\begin{proof}
+By a theorem of Wright, for fixed $(g,n)$ there are only finitely many closed totally geodesic subvarieties of $\mathcal M_{g,n}$ of complex dimension $>1$; equivalently, there are only finitely many totally geodesic subvarieties of $\Mg$ of complex dimension $2$ up to equality in $\Mg$ \cite{WrightTG} (see the abstract and the finiteness statement therein). Therefore a holomorphic map from a connected complex base (here the disk $\D$) into this finite set must be constant. Hence $V_t=V_0$ for all $t$ (after possibly shrinking $\D$ to ensure we remain in the regime of the finiteness theorem), and the asserted constancy of $\pi_i(\partial V_t)$ follows.
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:tg-family} is \emph{not} what the prompt asks (it assumes total geodesicity for all $t$), but it illustrates the kind of additional rigidity input that is needed to force constancy of $Y_t$.
+\end{remark}
+
+\section{Conclusion}
+
+Proposition~\ref{prop:counterexample} shows that the requested conclusion $Y_t\equiv Y_0$ does not follow from the stratified smooth triviality and compatibility assumptions alone. Any correct proof must employ stronger hypotheses tying the deformation to the Teichm\"uller-geodesic geometry (or other rigidity phenomena). One such strengthening is given in Theorem~\ref{thm:tg-family}.
+
+\begin{thebibliography}{99}
+
+\bibitem{DM}
+P.~Deligne and D.~Mumford,
+\emph{The irreducibility of the space of curves of given genus},
+Publ.\ Math.\ IH\'ES \textbf{36} (1969), 75--109.
+
+\bibitem{HM}
+J.~Harris and I.~Morrison,
+\emph{Moduli of Curves},
+Graduate Texts in Mathematics, Vol.~187, Springer, 1998.
+
+\bibitem{WrightTG}
+A.~Wright,
+\emph{Totally geodesic submanifolds of Teichm\"uller space},
+arXiv:1702.03249; published in \emph{J.\ Differential Geom.} (2020).
+
+\end{thebibliography}
+
+\end{document}
+```

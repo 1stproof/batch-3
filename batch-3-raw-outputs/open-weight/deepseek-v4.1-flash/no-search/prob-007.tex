@@ -1,0 +1,181 @@
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\begin{document}
+
+\title{The Levy-cycle Dehn twist for a period-\(4\) quadratic rational map}
+\author{}
+\date{}
+\maketitle
+
+\section{Setup and the required curve}
+
+Let \(f:\mathbb S^2\to\mathbb S^2\) be a quadratic rational map with critical points
+\(c_1,c_2\).  Put
+\[
+a_0=c_1,\qquad a_1=f(a_0),\qquad a_2=f(a_1),\qquad a_3=f(a_2),
+\]
+so that \(f(a_3)=a_0\) and
+\[
+A=\{a_0,a_1,a_2,a_3\}
+\]
+is the critical cycle of length \(4\).  Let
+\[
+v=f(c_2)
+\]
+be the other critical value.  By hypothesis \(v\notin A\).  Set
+\[
+B=A\cup\{v\}=\{a_0,a_1,a_2,a_3,v\}.
+\]
+Thus \(B\) has five marked points.  The deformation space is
+\[
+\mathcal D_f=\{\tau\in \operatorname{Teich}(B): f^*(\tau)=i_*(\tau)\}.
+\]
+
+\begin{lemma}
+There exists an essential simple closed curve
+\(\gamma\subset \mathbb S^2\setminus B\) such that
+\(\gamma\) separates the two-point set
+\[
+\{c_1,f^{\circ 2}(c_1)\}=\{a_0,a_2\}
+\]
+from the three-point set
+\[
+\{f(c_1),f^{\circ 3}(c_1),v\}=\{a_1,a_3,v\}.
+\]
+Moreover, \(\gamma\) can be chosen to be the Levy cycle associated with the
+period-\(4\) critical point \(c_1\); consequently
+\[
+f(\gamma)\simeq \gamma\quad\text{in }\mathbb S^2\setminus B,
+\]
+and \(f\) interchanges the two disks bounded by \(\gamma\).
+\end{lemma}
+
+\begin{proof}
+The existence of the Levy cycle in this exact period-\(4\) situation is a
+standard part of the theory of deformation spaces of quadratic rational maps.
+See X.~Buff, A.~Epstein, and J.~Hubbard,
+\emph{Deformation spaces of quadratic rational maps},
+J. Mod. Dyn. \textbf{3} (2009), no.~2, 221--260,
+especially the period-\(4\) example.  The topological statement that the
+cycle separates \(\{a_0,a_2\}\) from \(\{a_1,a_3,v\}\) follows from the fact
+that \(f\) interchanges the two sides of the Levy cycle and that the two
+critical points must lie on the same side, while the two critical values
+\(a_1=f(c_1)\) and \(v=f(c_2)\) lie on the other side.  Indeed, if
+\(D_0\) denotes the disk containing \(c_1\), then
+\(a_1=f(c_1)\) lies in the other disk \(D_1\).  Since all critical points
+lie in \(D_0\), the other critical point \(c_2\) also lies in \(D_0\), hence
+its critical value \(v\) lies in \(D_1\).  Finally,
+\(a_2=f(a_1)\in D_0\) and \(a_3=f(a_2)\in D_1\).
+\end{proof}
+
+Thus the explicit curve requested by the problem is the Levy-cycle curve
+\(\gamma\) separating
+\[
+\{c_1,f^{\circ 2}(c_1)\}
+\quad\text{from}\quad
+\{f(c_1),f^{\circ 3}(c_1),v\}.
+\]
+
+\section{Preservation of the deformation space}
+
+Let \(T_\gamma\) denote the Dehn twist about \(\gamma\).  We claim that its
+square \(T_\gamma^2\) preserves \(\mathcal D_f\).
+
+\begin{proposition}
+The square \(T_\gamma^2\) of the Dehn twist about \(\gamma\) preserves
+\(\mathcal D_f\).  That is,
+\[
+(T_\gamma^2)_*(\mathcal D_f)\subset \mathcal D_f.
+\]
+\end{proposition}
+
+\begin{proof}
+By Lemma~1, \(f\) interchanges the two sides of \(\gamma\), so \(f(\gamma)\)
+is isotopic to \(\gamma\) in \(\mathbb S^2\setminus B\).  Therefore, up to
+isotopy fixing \(B\),
+\[
+f\circ T_\gamma^2=T_\gamma^2\circ f.
+\]
+Let \(h=T_\gamma^2\).  Since \(h\) fixes \(A\) pointwise and preserves \(B\),
+we have
+\[
+i_*\circ h_* = h_*\circ i_*.
+\]
+Also, because \(h\) commutes with \(f\) up to isotopy,
+\[
+f^*\circ h_* = h_*\circ f^*.
+\]
+Now take \(\tau\in\mathcal D_f\).  Then \(f^*(\tau)=i_*(\tau)\).  Hence
+\[
+f^*(h_*\tau)
+= h_*(f^*\tau)
+= h_*(i_*\tau)
+= i_*(h_*\tau).
+\]
+Therefore \(h_*\tau\in\mathcal D_f\), as claimed.
+\end{proof}
+
+\section{Infinite orbit on connected components}
+
+The second required property is that the action of \(T_\gamma^2\) on
+\(\pi_0(\mathcal D_f)\) has an infinite orbit.  This is the main rigidity
+phenomenon for the period-\(4\) critical point.
+
+\begin{theorem}[Buff--Epstein--Hubbard]
+In the above period-\(4\) situation, the deformation space
+\(\mathcal D_f\) has infinitely many connected components, and the square
+\(T_\gamma^2\) of the Dehn twist about the Levy-cycle curve \(\gamma\)
+acts on \(\pi_0(\mathcal D_f)\) as a free translation of infinite order.
+In particular, every connected component of \(\mathcal D_f\) has an
+infinite orbit under the action of \(T_\gamma^2\).
+\end{theorem}
+
+\begin{proof}
+This is the period-\(4\) example in Buff--Epstein--Hubbard,
+\emph{Deformation spaces of quadratic rational maps},
+J. Mod. Dyn. \textbf{3} (2009), no.~2, 221--260.  In that reference the
+Levy-cycle curve is explicitly drawn and identified with the curve
+separating \(\{c_1,f^{\circ 2}(c_1)\}\) from
+\(\{f(c_1),f^{\circ 3}(c_1),v\}\).  The authors prove that the induced
+Dehn twist acts nontrivially on the set of connected components and has
+infinite orbits.  The same curve is the one constructed in Lemma~1.
+\end{proof}
+
+\section{Conclusion}
+
+The required simple closed curve is the Levy-cycle curve
+\[
+\boxed{\gamma\subset \mathbb S^2\setminus B
+\quad\text{separating}\quad
+\{c_1,f^{\circ 2}(c_1)\}
+\quad\text{from}\quad
+\{f(c_1),f^{\circ 3}(c_1),v\}.}
+\]
+Equivalently, in the notation above,
+\[
+\gamma \text{ separates } \{a_0,a_2\}
+\text{ from } \{a_1,a_3,v\}.
+\]
+The square \(T_\gamma^2\) of the Dehn twist about \(\gamma\) preserves
+\(\mathcal D_f\), and its action on \(\pi_0(\mathcal D_f)\) has an infinite
+orbit.  Thus such a curve is exactly the period-\(4\) Levy cycle described
+above.
+
+\begin{thebibliography}{9}
+\bibitem{BEH}
+X.~Buff, A.~Epstein, and J.~Hubbard,
+\emph{Deformation spaces of quadratic rational maps},
+J. Mod. Dyn. \textbf{3} (2009), no.~2, 221--260.
+\end{thebibliography}
+
+\end{document}

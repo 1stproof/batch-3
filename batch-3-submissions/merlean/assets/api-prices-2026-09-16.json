@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "currency": "USD",
+  "unit": "per_million_tokens",
+  "retrieved_at_utc": "2026-09-16T03:50:21.610059+00:00",
+  "source_urls": [
+    "https://developers.openai.com/api/docs/pricing",
+    "https://developers.openai.com/api/docs/models/gpt-6-astra",
+    "https://developers.openai.com/api/docs/models/gpt-5.6-sol"
+  ],
+  "models": {
+    "gpt-6-astra": {
+      "input": "10",
+      "cached_input": "1",
+      "cache_write": "12.5",
+      "output": "50"
+    },
+    "gpt-5.6-sol": {
+      "input": "4",
+      "cached_input": "0.4",
+      "cache_write": "5",
+      "output": "20"
+    }
+  },
+  "long_context_threshold": 272000,
+  "long_context_multipliers": {
+    "input": "2",
+    "cached_input": "2",
+    "cache_write": "2",
+    "output": "1.5"
+  },
+  "service_multipliers": {
+    "standard": "1",
+    "default": "1",
+    "fast": "2",
+    "priority": "2",
+    "batch": "0.5",
+    "flex": "0.5"
+  },
+  "basis": "subscription_api_equivalent_standard_and_fast_scenarios",
+  "notes": [
+    "Sol promotional price available at least through 2026-11-21.",
+    "Input count includes cached reads and cache writes; mutually exclusive billing buckets must sum to input.",
+    "Reasoning output is a subset of output, never an additional charge.",
+    "Unreported usage is unknown, never zero.",
+    "Equivalent cost is not an actual subscription invoice."
+  ]
+}

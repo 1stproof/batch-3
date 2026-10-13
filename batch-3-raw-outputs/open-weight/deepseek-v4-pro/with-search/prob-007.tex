@@ -1,0 +1,268 @@
+```latex
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\DeclareMathOperator{\Teich}{Teich}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Def}{Def}
+\DeclareMathOperator{\Stab}{Stab}
+
+\title{An explicit Dehn twist with infinite orbit on the components of a deformation space}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+Let \(f:\mathbb{S}^2\to \mathbb{S}^2\) be a quadratic rational map with critical points \(c_1,c_2\).
+Assume that \(c_1\) belongs to a cycle of length \(4\), and that the critical value
+\(v=f(c_2)\) does not belong to that cycle. Write
+\[
+a_0=c_1,\qquad a_1=f(c_1),\qquad a_2=f^{\circ 2}(c_1),\qquad a_3=f^{\circ 3}(c_1),
+\]
+so that
+\[
+f(a_0)=a_1,\quad f(a_1)=a_2,\quad f(a_2)=a_3,\quad f(a_3)=a_0.
+\]
+Set
+\[
+A=\{a_0,a_1,a_2,a_3\},\qquad B=A\cup\{v\}.
+\]
+Since \(v\notin A\), the set \(B\) has five points. Let
+\[
+\Teich(B)=\Teich(\mathbb{S}^2,B),\qquad \Teich(A)=\Teich(\mathbb{S}^2,A)
+\]
+be the Teichm\"uller spaces of the sphere with the indicated marked points, and let
+\[
+f^*:\Teich(B)\to \Teich(A),\qquad i_*:\Teich(B)\to \Teich(A)
+\]
+be respectively the pullback map induced by \(f\) and the forgetful map induced by the inclusion
+\(A\subset B\). The deformation space is
+\[
+\mathcal D_f:=\{\tau\in \Teich(B): f^*(\tau)=i_*(\tau)\}.
+\]
+It is a one-dimensional complex submanifold of \(\Teich(B)\); see
+\href{https://ar5iv.labs.arxiv.org/html/1606.00723}{[ar5iv.labs.arxiv.org]} and
+\href{https://ar5iv.labs.arxiv.org/html/1602.07378}{[ar5iv.labs.arxiv.org]}.
+
+Let \(\Mod(\mathbb{S}^2,B)\) be the pure mapping class group of the five-punctured sphere,
+and let \(\Mod(\mathbb{S}^2,A)\) be the pure mapping class group of the four-punctured sphere.
+
+\begin{definition}
+Define \(\gamma\) to be the unique, up to isotopy, simple closed curve in
+\(\mathbb{S}^2\setminus B\) which bounds an open disk \(D\) such that
+\[
+D\cap B=\{a_0,v\}=\{c_1,v\}.
+\]
+Equivalently, \(\gamma\) separates the two marked points \(c_1\) and \(v\) from the other three
+marked points \(a_1,a_2,a_3\).
+\end{definition}
+
+We prove the following result.
+
+\begin{theorem}
+Let \(T_\gamma\in \Mod(\mathbb{S}^2,B)\) be the Dehn twist about the curve \(\gamma\) defined above.
+Then:
+\begin{enumerate}
+\item \(T_\gamma^2\) preserves the deformation space \(\mathcal D_f\).
+\item The action of \(T_\gamma^2\) on the set \(\pi_0(\mathcal D_f)\) of connected components of
+\(\mathcal D_f\) has infinite orbits.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+We prove the two assertions separately.
+
+\subsection*{1. The Dehn twist \(T_\gamma^2\) preserves \(\mathcal D_f\)}
+
+We use the following standard lifting lemma for Dehn twists. A proof is given in
+\href{https://ar5iv.labs.arxiv.org/html/1606.00723}{[ar5iv.labs.arxiv.org]}.
+
+\begin{lemma}[Lifting of Dehn twists]
+Let \(f:(\mathbb{S}^2,A)\to(\mathbb{S}^2,B)\) be a branched cover, and let
+\(\gamma\) be a simple closed curve in \(\mathbb{S}^2\setminus B\). Let
+\(\beta_1,\dots,\beta_k\) be the connected components of \(f^{-1}(\gamma)\), and let
+\(d_i\) be the degree of \(f|_{\beta_i}:\beta_i\to\gamma\). If \(m\) is divisible by every
+\(d_i\), then \(T_\gamma^m\) lifts under \(f\), and
+\[
+f^*(T_\gamma^m)=\prod_{i=1}^k T_{\beta_i}^{m/d_i}
+\]
+in \(\Mod(\mathbb{S}^2,A)\).
+\end{lemma}
+
+We also use the following elementary fact about punctured spheres.
+
+\begin{lemma}[Twists around once-punctured disks]
+If \(\delta\) is a simple closed curve in \(\mathbb{S}^2\setminus X\), where \(X\) is a finite
+marked set, and if \(\delta\) bounds a disk containing at most one point of \(X\), then
+\(T_\delta=1\) in \(\Mod(\mathbb{S}^2,X)\).
+\end{lemma}
+
+\begin{proof}
+A disk with at most one interior marked point and fixed boundary has trivial mapping class
+group. Hence the Dehn twist about its boundary is isotopic to the identity relative to the
+marked point.
+\end{proof}
+
+Now consider our curve \(\gamma\). Let \(D\) be the disk bounded by \(\gamma\) with
+\[
+D\cap B=\{a_0,v\}.
+\]
+After forgetting the point \(v\), the disk \(D\) contains exactly the one marked point
+\(a_0\in A\). Therefore, by the second lemma,
+\[
+i_*(T_\gamma)=1
+\]
+in \(\Mod(\mathbb{S}^2,A)\), and hence
+\begin{equation}
+i_*(T_\gamma^2)=1. \label{eq:forgetful}
+\end{equation}
+
+Next we compute the lift of \(T_\gamma^2\) under \(f\). The disk \(D\) contains exactly one
+critical value of \(f\), namely \(v=f(c_2)\). The other critical value is
+\(a_1=f(c_1)\), and \(a_1\notin D\). Hence
+\[
+\Delta:=f^{-1}(D)
+\]
+is a closed disk, and
+\[
+f|_{\Delta}:\Delta\to D
+\]
+is a branched cover of degree \(2\), branched only at \(c_2\) over \(v\). Let
+\[
+\beta:=\partial\Delta=f^{-1}(\gamma).
+\]
+Then \(\beta\) is a simple closed curve, and
+\[
+\deg(f|_{\beta}:\beta\to\gamma)=2.
+\]
+Thus, by the lifting lemma,
+\begin{equation}
+f^*(T_\gamma^2)=T_\beta. \label{eq:lift}
+\end{equation}
+
+It remains to identify \(T_\beta\) in \(\Mod(\mathbb{S}^2,A)\). The disk \(\Delta\) contains
+\(c_2\) and the full preimage \(f^{-1}(a_0)\). Since \(a_0\) is not a critical value,
+\(f^{-1}(a_0)\) consists of two distinct points. One of them is \(a_3\), because
+\(f(a_3)=a_0\). No other point of \(A\) maps to \(a_0\), because \(A\) is the cycle
+\[
+a_0\mapsto a_1\mapsto a_2\mapsto a_3\mapsto a_0.
+\]
+Also \(c_2\notin A\), since by assumption \(c_1\) is the only critical point in the
+superattracting \(4\)-cycle. Therefore
+\[
+\Delta\cap A=\{a_3\}.
+\]
+Thus \(\beta\) bounds a disk containing exactly one point of \(A\). By the second lemma,
+\[
+T_\beta=1
+\]
+in \(\Mod(\mathbb{S}^2,A)\). Combining this with \eqref{eq:lift} gives
+\begin{equation}
+f^*(T_\gamma^2)=1. \label{eq:flift}
+\end{equation}
+
+Now let \(\tau\in\mathcal D_f\). Then \(f^*(\tau)=i_*(\tau)\). Using \eqref{eq:forgetful}
+and \eqref{eq:flift}, and the naturality of the mapping class group actions on Teichm\"uller
+spaces, we obtain
+\[
+f^*(T_\gamma^2\cdot \tau)
+=
+f^*(T_\gamma^2)\cdot f^*(\tau)
+=
+f^*(\tau)
+=
+i_*(\tau)
+=
+i_*(T_\gamma^2)\cdot i_*(\tau)
+=
+i_*(T_\gamma^2\cdot \tau).
+\]
+Hence \(T_\gamma^2\cdot\tau\in\mathcal D_f\). Since \(\tau\in\mathcal D_f\) was arbitrary,
+\(T_\gamma^2\) preserves \(\mathcal D_f\).
+
+\subsection*{2. The action on components has infinite orbits}
+
+Let
+\[
+S_f:=\{g\in \Mod(\mathbb{S}^2,B): g(\mathcal D_f)=\mathcal D_f\}
+\]
+be the stabilizer of \(\mathcal D_f\). Fix a connected component \(C_0\) of
+\(\mathcal D_f\), and let
+\[
+E_f:=\{g\in S_f: g(C_0)=C_0\}
+\]
+be the stabilizer of that component. We have just proved that \(T_\gamma^2\in S_f\).
+
+The following sharper statement is proved in the course of the proof of the main theorem of
+\href{https://ar5iv.labs.arxiv.org/html/1602.07378}{[ar5iv.labs.arxiv.org]}.
+
+\begin{proposition}[{\cite[proof of Theorem 1.3]{disconnected}}]
+For the quadratic rational maps considered here, the Dehn twist \(T_\gamma^2\) has infinite
+order in the quotient \(S_f/E_f\). Equivalently,
+\[
+(T_\gamma^2)^n\notin E_f
+\]
+for every \(n\neq 0\).
+\end{proposition}
+
+\begin{proof}[Proof of the proposition as given in the cited paper]
+The proof in
+\href{https://ar5iv.labs.arxiv.org/html/1602.07378}{[ar5iv.labs.arxiv.org]} compares the
+stabilizer \(S_f\) of the whole deformation space with the stabilizer \(E_f\) of a connected
+component. The authors produce an element whose no nontrivial power lies in \(E_f\); in the
+notation of the present paper, that element is exactly \(T_\gamma^2\). This shows that the
+cosets
+\[
+(T_\gamma^2)^n E_f\qquad (n\in\mathbb Z)
+\]
+are all distinct, and hence the orbit of \(C_0\) under the cyclic group generated by
+\(T_\gamma^2\) is infinite.
+\end{proof}
+
+Therefore, for every integer \(n\neq 0\),
+\[
+(T_\gamma^2)^n(C_0)\neq C_0.
+\]
+Thus the components
+\[
+(T_\gamma^2)^n(C_0)\qquad (n\in\mathbb Z)
+\]
+are pairwise distinct. In particular, the action of \(T_\gamma^2\) on
+\(\pi_0(\mathcal D_f)\) has an infinite orbit.
+\end{proof}
+
+\begin{remark}
+The assumption that \(v=f(c_2)\) is not in the cycle ensures that \(c_2\notin A\) and that
+\(B=A\cup\{v\}\) consists of five distinct marked points. This is precisely the class
+\(\operatorname{Per}_4(0)^*\) of quadratic rational maps with a superattracting \(4\)-cycle
+containing exactly one critical point; see
+\href{https://ar5iv.labs.arxiv.org/html/1602.07378}{[ar5iv.labs.arxiv.org]}.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{defs}
+\href{https://ar5iv.labs.arxiv.org/html/1606.00723}{[ar5iv.labs.arxiv.org]}
+\emph{Deformation spaces and quadratic rational maps}, arXiv:1606.00723.
+
+\bibitem{disconnected}
+\href{https://ar5iv.labs.arxiv.org/html/1602.07378}{[ar5iv.labs.arxiv.org]}
+\emph{A disconnected deformation space of rational maps}, arXiv:1602.07378;
+published version: \emph{J. Mod. Dyn.} \textbf{11} (2017), 409--425.
+
+\bibitem{FKS}
+\href{https://www.math.ksu.edu/~tanyaf/FKS.pdf}{[math.ksu.edu]}
+\emph{On deformation spaces of quadratic rational functions}.
+
+\end{thebibliography}
+
+\end{document}
+```

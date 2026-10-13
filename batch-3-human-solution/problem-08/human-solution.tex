@@ -1,0 +1,1107 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%							Standard Paper Template
+%							Simion Filip
+%							Last updated 2026 Jan 24
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt]{amsart}
+
+\newif\ifdebug
+% \debugtrue
+\debugfalse
+
+\newif \iffig
+%\figtrue
+\figfalse
+
+\newif \iftable
+%\tabletrue
+\tablefalse
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		Packages
+
+%==============================================================================
+%							Standard AMS stuff
+\usepackage{
+	amsmath,
+	amsfonts,
+	amsthm,
+	amssymb,
+	bbm,
+	mathrsfs,
+	mathtools}
+%==============================================================================
+%	Link typesetting
+% The hyphens option for {url} will allow breaks in long urls
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+
+% The code below alows further breaks
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+%
+
+% 	change \href colors
+\usepackage{color}
+\definecolor{darkred}{rgb}{0.4,0,0}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+\definecolor{darkblue}{rgb}{0,0,0.4}
+
+
+%----------------------------------------------------
+%			Autoref Fixes
+%----------------------------------------------------
+%	Some fixes are in the Theorem styles part
+%
+%	Section references
+\renewcommand*{\sectionautorefname}{Section}
+
+%	subsection \S gives paragraph symbol
+%	the ~ binds them together
+\def\subsek~{\S{}}
+\renewcommand*\subsectionautorefname{\subsek}
+
+\renewcommand*\subsubsectionautorefname{\subsek}
+
+\renewcommand{\itemautorefname}{}
+
+
+%	Makes \autoref do "Eqn. (3.1)"
+%	instead of "Eqn. 3.1"
+\def\equationautorefname~#1\null{%
+  Eqn.~(#1)\null
+}
+%==============================================================================
+
+%==============================================================================
+%					Section styles and numbering
+%==============================================================================
+
+%
+%	Documentation for \@startsection:
+% The  \@startsection{<name>}{<level>}{<indent>}{<beforeskip>}{<afterskip>}{<style>}*[<altheading>]{<heading>}
+% The part after the *, including the * is optional.
+%
+%   name: e.g., subsection
+%   level: a number, denoting depth of section - e.g., chapter = 1, section = 2, etc.
+%   indent: Indentation of heading from left margin
+%   beforeskip: Absolute value = skip to leave above the heading.
+% 	      If negative, then paragraph indent of text following heading is suppressed.
+%   afterskip: If positive, then skip to leave below heading, else negative of skip to leave to right of run-in heading.
+%   style: Commands to set style. Since June 1996 release the last command in this argument may be a command such as \MakeUppercase or  \fbox that takes an argument. The section heading will be supplied as the argument to this command. So setting #6 to, say, \bfseries\MakeUppercase would produce bold, uppercase headings.
+%
+% If * is missing, then increment the counter. If it is present, then there should be no [<altheading>] argument. The command uses the counter secnumdepth. It contains a pointer to the highest section level that is to be numbered.
+
+%----------------------------------------------------
+%
+%	Hacking the (sub(sub))section commands
+%
+%
+%	Boldness issue: I would like section and subsection not bold.
+%	But I need the counter of subsubsections to be bold, and same for theorems.
+%	This is \@secnumfont and it's one for all of these! (in amsart). Ridiculous.
+%	So all counters have to be bold, so all titles have to be bold.
+%
+\makeatletter
+\renewcommand{\@secnumfont}{\bfseries}
+\makeatother
+%		Redefining section
+%	sections are centered, bold sans-serif
+%  Format:
+%{\@startsection{name}
+% 				{1}   	% Level
+% 				{\z@}	% ?
+% 				{-3.5ex \@plus -1ex \@minus -.2ex} % Above spacing
+%				{2.3ex \@plus.2ex} % After title spacing
+%				{\centering \normalfont \Large \bfseries \sffamily}}% Title format
+%	% the 5ex \@plus \@minus allow TeX to stretch more or less by those amounts
+
+\makeatletter
+\renewcommand{\section}
+{\@startsection{section}
+				   {1}
+				   {\z@}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {2.3ex \@plus.2ex}%
+                                   {\centering \normalfont \Large \bfseries \sffamily}}%
+\makeatother
+
+%		Redefining subsection
+%	subsections are left-aligned, bold sans-serif
+\makeatletter
+\renewcommand{\subsection}
+{\@startsection{subsection}
+				     {2}
+				     {\z@}%
+                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                     {1.5ex \@plus .2ex}%
+                     {\normalfont \large \bfseries \sffamily}}% from \large
+\makeatother
+
+%		Redefining subsubsection
+%	subsubsections are "2.3.1 Name" with Name in bold, no linebreak for subsequent text
+\makeatletter
+\renewcommand{\subsubsection}
+{\@startsection{subsubsection}
+				     {3}
+				     {\z@}%
+                     {1ex \@plus1ex \@minus.2ex}%
+				     {-\fontdimen 2\font }
+	                 {\normalfont\normalsize\bfseries}}
+\makeatother
+
+%----------------------------------------------------
+%		Redefining paragraph
+\makeatletter
+\renewcommand{\paragraph}{%
+\@startsection {paragraph}
+				    {4}
+				    {\z@}
+				    {\z@}
+				    {-\fontdimen 2\font }
+				    {\normalfont\normalsize\bfseries}
+}
+\makeatother
+
+
+%----------------------------------------------------
+%		Enumerate and Itemize indices will be (i), (ii), etc.
+%
+\renewcommand{\labelenumi}{\theenumi}%
+\renewcommand{\theenumi}{(\roman{enumi})}%
+%----------------------------------------------------
+
+
+%%----------------------------------------------------
+%%		Enumerate Lists will be numbered
+%%		automatically as (i), (ii) after
+%%		just using \item
+\renewcommand\labelenumi{(\roman{enumi})}
+\renewcommand\theenumi\labelenumi
+%==============================================================================
+
+
+
+
+
+
+%==============================================================================
+%								Typesetting
+%==============================================================================
+%
+%----------------------------------------------------
+%					Fonts
+%----------------------------------------------------
+%	{microtype} package will improve typesetting
+%	[final] option is so that it also does it in
+%	draft mode
+\usepackage[stretch=10, final]{microtype}
+%
+%	For Latin Modern update to Computer Modern see
+%	http://tex.stackexchange.com/questions/1390/latin-modern-vs-cm-super
+\usepackage{lmodern}
+%
+%	[T1]{fontenc} adds more glyphs
+%	Don't use with XeLaTeX; Just plain LaTeX
+%	http://tex.stackexchange.com/questions/664/why-should-i-use-usepackaget1fontenc
+%	Can lead to bad PDFs if not used with a modern font
+%	http://tex.stackexchange.com/questions/1291/why-are-bitmap-fonts-used-automatically
+\usepackage[T1]{fontenc}
+%
+%	Warning: fontenc + lmodern can sometimes create funny characters
+%	especially if non-ASCII stuff appears.
+%----------------------------------------------------
+%						Date Fixing
+%----------------------------------------------------
+%	amsart places the date in a footnote
+%	Patch below will place it below author name
+%
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\@maketitle}
+  {\ifx\@empty\@dedicatory}
+  {\ifx\@empty\@date \else {\vskip3ex \centering\footnotesize\@date\par\vskip1ex}\fi
+   \ifx\@empty\@dedicatory}
+  {}{}
+\patchcmd{\@adminfootnotes}
+  {\ifx\@empty\@date\else \@footnotetext{\@setdate}\fi}
+  {}{}{}
+\makeatother
+%----------------------------------------------------
+
+% Define a command to apply the no-indent behavior to a specific environment
+% requires etoolbox package
+\makeatletter
+\newcommand*\NoIndentAfterEnv[1]{%
+  \AfterEndEnvironment{#1}{\par\@afterindentfalse\@afterheading}%
+}
+\makeatother
+
+% Apply this to your desired environment, e.g., a custom 'myenv'
+% \NoIndentAfterEnv{myenv}
+
+% xspace is necessary for correct spacing after pre-defined names
+\usepackage{xspace}
+
+% recommended package for bold math
+% https://tex.stackexchange.com/questions/595/how-can-i-get-bold-math-symbols
+% works especially well for bold Greek or other symbols
+% LATER: replace \mathbf{-} below by \bm{-}
+\usepackage{bm}
+
+% Keep using amsfonts
+% for \mathbb
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\newcommand \cC {\mathcal{C}}
+\newcommand \cV {\mathcal{V}}
+\newcommand \cL {\mathcal{L}}
+\newcommand \cG {\mathcal{G}}
+\newcommand \bN {\mathbb{N}}
+\newcommand \bR {\mathbb{R}}
+
+% 	Inner product
+\newcommand{\ip}[1]{\left\langle#1\right\rangle}
+\newcommand{\Frechet}     {\xspace{{F}r\'echet}\xspace}
+% epsilon
+\newcommand{\ve}{\varepsilon}
+%	approximate inequalities
+\newcommand{\leqapprox}{\lesssim}
+\newcommand{\geqapprox}{\gtrsim}
+% Absolute value typeset nicely
+\newcommand{\abs}[1]{\left|#1\right|}
+% Norm of a vector
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\id}{\mathbf{1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                   Theorem styles and numbering
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+
+%--------------- New theorem style ------------------
+%   spaces above and below are a bit larger
+%   Keeps the . after theorem name
+\newtheoremstyle{mytheoremstyle}% name
+    {5pt}                       % Space above
+    {5pt}                       % Space below
+    {\itshape
+    \hangindent \parindent}     % Body font - makes it indented by \parindent amount
+    {}                          % Indent amount
+    {\bfseries}                 % Theorem head font
+    {.}                         % Punctuation after theorem head
+    {.5em}                      % Space after theorem head
+    {}              % Theorem head spec (can be left empty, meaning ‘normal’)
+
+%--------------- New definition/etc style ------------------
+%   spaces above and below are a bit larger (usually 3pt)
+%   Keeps the . after definition name
+%   Makes text normal.
+\newtheoremstyle{mydefinitionstyle}% name
+    {5pt}                       % Space above
+    {5pt}                       % Space below
+    {}                          % Body font
+    {}                          % Indent amount
+    {\bfseries}                 % Theorem head font
+    {.}                         % Punctuation after theorem head
+    {.5em}                      % Space after theorem head
+    {}              % Theorem head spec (can be left empty, meaning ‘normal’)
+
+
+% Switch to custom theorem style
+\theoremstyle{mytheoremstyle}
+
+%   package for fixing counters to work with autoref
+\usepackage{aliascnt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                   Theorems for Introduction
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%   Main Theorems are in the introduction.
+%   Will be labeled Theorem A, Theorem B, etc.
+\newtheorem{theoremmain}{Theorem}
+\renewcommand{\thetheoremmain}{\Alph{theoremmain}}
+
+\providecommand*{\theoremmainautorefname}{The\-o\-rem}
+
+
+% Theorem in the introduction are numbered independently (1,2,3 etc)
+% add [section] to have 1.1, 1.2 etc.
+\newtheorem{theoremintro}{Theorem}
+\providecommand*{\theoremintroautorefname}{The\-o\-rem}
+
+
+
+% INTRO CONJECTURES are numbered as intro theorems
+\newaliascnt{conjectureintro}{theoremintro}
+\newtheorem{conjectureintro}[conjectureintro]{Conjecture}
+\aliascntresetthe{conjectureintro} 
+\providecommand*{\conjectureintroautorefname}{Con\-jec\-ture}
+
+% INTRO COROLLARIES are numbered as intro theorems
+\newaliascnt{corollaryintro}{theoremintro}
+\newtheorem{corollaryintro}[corollaryintro]{Corollary}
+\aliascntresetthe{corollaryintro} 
+\providecommand*{\corollaryintroautorefname}{Co\-rollary}
+
+
+% making INTRO REMARKS and QUESTIONS plain text style
+\theoremstyle{mydefinitionstyle}
+
+% INTRO QUESTIONS are numbered as intro theorems
+\newaliascnt{questionintro}{theoremintro}
+\newtheorem{questionintro}[questionintro]{Question}
+\aliascntresetthe{questionintro} 
+\providecommand*{\questionintroautorefname}{Ques\-tion}
+
+% INTRO REMARKS are numbered as intro theorems
+\newaliascnt{remarkintro}{theoremintro}
+\newtheorem{remarkintro}[remarkintro]{Remark}
+\aliascntresetthe{remarkintro} 
+\providecommand*{\corollaryintroautorefname}{Re\-mark}
+
+
+\theoremstyle{mytheoremstyle}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                  Theorems and environments for main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% change numbering to "2.3.1 Theorem" rather than "Theorem 2.3.1"
+\swapnumbers
+
+% Theorem numbers are within SECTIONS
+\newtheorem{theorem}{Theorem}[section]
+
+%   Hyphenate Theorem references
+\renewcommand{\theoremautorefname}{The\-o\-rem}
+
+% Equations are numbered within SECTIONS
+\numberwithin{equation}{section}
+
+% Makes theorems numbered with the same counter as equations
+\makeatletter
+    \let\c@theorem \c@equation
+\makeatother
+
+% Makes subsections numbered with the same counter as equations
+\makeatletter
+    \let\c@subsection\c@equation
+\makeatother
+
+%       Redefining subsection
+%   subsections are left-aligned, bold sans-serif
+\makeatletter
+\renewcommand{\subsection}
+{\@startsection{subsection}
+                     {2}
+                     {\z@}%
+                     {1ex \@plus1ex \@minus.2ex}%
+                     {-\fontdimen 2\font }
+                     {\normalfont\normalsize\bfseries}}
+\makeatother
+
+
+%       NEXT INSTRUCTIONS ARE NOW IN package_settings.sty
+% Makes figures numbered with the same counter as equations
+% \makeatletter
+%   \let\c@figure\c@equation      % Note that need to include (above) \numberwithin{figure}{subsubsection}
+% \makeatother
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%       Creates Lemma, Proposition, etc. environments
+%
+%   Fixes \autoref numberings, creates alias counters
+%   Now \autoref will produce Lemma 2.3.1 etc.
+%
+%   based on aliascnt package
+
+
+\newaliascnt{conjecture}{theorem}  
+\newtheorem{conjecture}[conjecture]{Conjecture}
+\aliascntresetthe{conjecture} 
+\providecommand*{\conjectureautorefname}{Con\-jec\-ture}
+
+\newaliascnt{lemma}{theorem}  
+\newtheorem{lemma}[lemma]{Lemma}  
+\aliascntresetthe{lemma} 
+\providecommand*{\lemmaautorefname}{Lem\-ma}
+
+\newaliascnt{proposition}{theorem}
+\newtheorem{proposition}[proposition]{Proposition}
+\aliascntresetthe{proposition} 
+\providecommand*{\propositionautorefname}{Pro\-po\-si\-tion}
+
+\newaliascnt{corollary}{theorem}  
+\newtheorem{corollary}[corollary]{Corollary}  
+\aliascntresetthe{corollary} 
+\providecommand*{\corollaryautorefname}{Co\-ro\-lla\-ry}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%       Changes to custom definition style (normal body text)
+\theoremstyle{mydefinitionstyle}
+
+
+
+\newaliascnt{question}{theorem}  
+\newtheorem{question}[question]{Question}  
+\aliascntresetthe{question} 
+\providecommand*{\questionautorefname}{Ques\-tion}
+
+
+\newaliascnt{problem}{theorem}  
+\newtheorem{problem}[problem]{Problem}  
+\aliascntresetthe{problem} 
+\providecommand*{\problemautorefname}{Prob\-lem}
+
+
+\newaliascnt{exercise}{theorem}  
+\newtheorem{exercise}[exercise]{Exercise}  
+\aliascntresetthe{exercise} 
+\providecommand*{\exerciseautorefname}{Ex\-er\-cise}
+
+\newaliascnt{definition}{theorem}  
+\newtheorem{definition}[definition]{Definition}  
+\aliascntresetthe{definition} 
+\providecommand*{\definitionautorefname}{De\-fi\-ni\-ti\-on}
+
+\newaliascnt{remark}{theorem}  
+\newtheorem{remark}[remark]{Remark}  
+\aliascntresetthe{remark} 
+\providecommand*{\remarkautorefname}{Re\-mark}
+
+\newaliascnt{example}{theorem}  
+\newtheorem{example}[example]{Example}  
+\aliascntresetthe{example} 
+\providecommand*{\exampleautorefname}{Ex\-am\-ple}
+
+
+
+\NoIndentAfterEnv{theorem}
+\NoIndentAfterEnv{proposition}
+\NoIndentAfterEnv{corollary}
+\NoIndentAfterEnv{lemma}
+\NoIndentAfterEnv{problem}
+\NoIndentAfterEnv{question}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%				Title & Date
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	also: Add it in the hyperref setup
+%
+\title[Zero entropy for globally hypoelliptic vector fields]{Zero entropy for globally hypoelliptic vector fields}
+%	change to \title[short title]{Actual title}
+%	if what appears on headers is too long
+
+%	Hyperref options
+\hypersetup{
+	pdftitle={Zero entropy for globally hypoelliptic vector fields},	% title
+	pdfauthor={Simion Filip},	% author
+	pdfsubject={Zero entropy for globally hypoelliptic vector fields},		% subject of the document
+	pdfkeywords={MSC},	% list of keywords
+	pdfnewwindow=true,		% links in new window
+	colorlinks=true,		% false: boxed links; true: colored links
+	linkcolor=darkblue,		% color of internal links (change box color with linkbordercolor)
+	citecolor=darkred,		% color of links to bibliography
+	filecolor=darkblue,		% color of file links
+	urlcolor=darkblue,		% color of external links
+	pdfborder={0 0 0},
+	breaklinks=true
+}
+
+
+%---------------------------------------
+%						Date of revision
+\thanks{Revised \textsc{\today} }
+
+%						Date First posted
+\date{August 2026}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%						Author info
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\author{
+	Simion Filip
+}
+%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%							Start of Main Document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\begin{center}
+{\large Simion Filip}
+\end{center}
+\section{Introduction}
+	\label{sec:introduction}
+
+
+Let $M$ be a smooth compact connected manifold, orientable and without boundary, of dimension $m$.
+Denote by $\cC^\infty(M)$ the Fr\'echet space of smooth functions on $M$ and by $\cV^\infty(M)$ the Fr\'echet space of smooth top degree forms on $M$.
+Denote by $\cC^{-\infty}(M)$ the topological dual of $\cV^\infty(M)$, whose elements will be called generalized functions on $M$, and by $\cV^{-\infty}(M)$ the topological dual of $\cC^\infty(M)$, whose elements will be called generalized measures on $M$.
+Note that measures belong to $\cV^{-\infty}(M)$.
+
+Let now $X$ be a smooth vector field on $M$ and denote by $\cL_X$ the Lie derivative along $X$.
+
+\begin{definition}[Globally hypoelliptic/Cohomology-free vector field]
+	\label{def:Hypoelliptic-Cohomology-free-vector-field}
+	The vector field $X$ is called \emph{globally hypoelliptic} if, whenever $u$ is a generalized function on $M$ such that $\cL_Xu$ is smooth, we have that $u$ is smooth.
+
+	The vector field $X$ is called \emph{cohomology-free} if the map
+	\[
+	\cL_X:\cC^\infty(M)\to\cC^\infty(M)
+	\]
+	has closed range and its cokernel is one-dimensional.
+\end{definition}
+A vector field is globally hypoelliptic if and only if it is cohomology-free, by \cite[Thm.~3.10]{Forni2008_On-the-Greenfield-Wallach-and-Katok-conjectures-in-dimension-three} (extending the proof on the torus by Chen--Chi \cite[Thm.~2.2]{ChenChi2000_Hypoelliptic-vector-fields-and-almost-periodic-motions-on-the-torus}, see also \cite[\S4]{Rodriguez-HertzRodriguez-Hertz2006_Cohomology-free-systems-and-the-first-Betti-number}).
+We will refer to a vector field satisfying either of the equivalent assumptions in \autoref{def:Hypoelliptic-Cohomology-free-vector-field} as a $KGW$-vector field, for \cite[Conj.~3.6]{Katok2001_Cocycles-cohomology-and-combinatorial-constructions-in-ergodic-theory} (who called them cohomology-free) and Greenfield--Wallach \cite[Problem~2]{GreenfieldWallach1973_Globally-hypoelliptic-vector-fields} who called them globally hypoelliptic.
+In each of these works, it was conjectured that the only KGW vector fields are linear Diophantine ones on tori.
+
+KGW vector fields satisfy a number of known properties, including the following:
+\begin{enumerate}
+	\item The vector space of invariant generalized measures is one-dimensional, spanned by a smooth positive fully supported volume form on $M$ normalized to $\ip{\mu,1}=1$.
+	\item On functions with zero average for $\mu$, denoted $\cC^\infty_0(M)$, the operator $\cL_X$ is an isomorphism of \Frechet spaces.
+\end{enumerate}
+Our main result is:
+\begin{theorem}[KGW has zero entropy]
+	\label{thm:KGW-has-zero-entropy}
+	The flow generated by a $KGW$-vector field has zero topological entropy.
+\end{theorem}
+
+Our proof is based on several ingredients, of possibly independent interest, which we now describe.
+
+The first is a general property of dynamical systems with positive entropy on manifolds; as will be clear from the proof, the result can be generalized to other spaces with polynomial growth of the number of balls of a given radius needed to cover the space.
+
+
+\begin{lemma}[Exponential recurrence]
+	\label{lemma:Exponential-recurrence-flows}
+	Let $g_t\colon M\to M$ be a smooth flow on a compact manifold, with positive topological entropy and no fixed points.
+
+	There exist $c,\ve>0$, a sequence of points $x_i,y_i\in M$, and times $T_i\to +\infty$, satisfying:
+	\begin{enumerate}
+		\item $d(x_i,y_i)\leq e^{-\ve T_i}$
+		\item $d\left(g_{T_i}x_i,g_{T_i}y_i\right)\leq e^{-\ve T_i}$
+		\item 
+		\label{item:exp_rec_separation_flows}
+		For any continuous strictly increasing $\rho\colon [0,T_i]\to [0,T_i]$ with $\rho(0)=0,\rho(T_i)=T_i$, there exists $t_{i,\rho}\in [0,T_i]$ such that $d\left(g_{\rho(t_{i,\rho})}x_i,g_{t_{i,\rho}}y_i\right)\geq c$.
+	\end{enumerate}
+\end{lemma}
+
+The second result we will need applies to ergodic integrals of the flow $g_t$ generated by a KGW vector field $X$.
+Denote by $\delta_{[x,g_tx]}$ the measure on $M$ supported on the corresponding orbit, defined explicitly on functions by
+\[
+	\ip{\delta_{[x,g_tx]},f}:=\int_{0}^t f(g_s x)ds.
+\]
+We then have:
+\begin{lemma}[Endpoint distributions]
+	\label{lemma:Endpoint-distributions}
+	Suppose $X$ is a KGW vector field.
+	Then there exists a family of generalized measures $\xi_x\in \cV^{-\infty}(M)$, defined for every $x\in M$, with the following properties:
+	\begin{enumerate}
+		\item We have the identity of generalized measures:
+		\begin{align}
+			\label{eqn:distribution-orbit-identity}
+			\delta_{[x,g_tx]} = t \mu + (\xi_{g_tx}-\xi_x)
+		\end{align}
+		\item We have the Lipschitz bound:
+		\begin{align}
+			\label{eqn:Lipschitz-bound-xi}
+			\norm{\xi_x-\xi_y}_{\cV^{-k_0}} \leqapprox d(x,y)
+			\text{ and }
+			\quad \norm{\xi_x}_{\cV^{-k_0}} \leqapprox 1
+			\quad \forall x,y\in M
+		\end{align}
+		for some $k_0\in \bN$, where $\cV^{-k_0}$ denotes the norm on generalized measures obtained by testing against $\cC^{k_0}$-functions.
+	\end{enumerate}
+\end{lemma}
+
+The last result has an elementary but useful consequence:
+
+\begin{corollary}[Diophantine properties]
+	\label{cor:diophantine_properties}
+	Suppose $X$ is a KGW vector field, and $\dim M\geq 2$.
+	Then there exist $C,c,A,a>0$ such that, for any $x\in M$ and $T\geq 1$ we have:
+	\begin{align}
+		\label{eqn:Diophantine_repulsion}
+		d(x,g_Tx) \geq \frac{c}{T^{A}}
+	\end{align}
+	and for any $y\in M$ there exists $t\in [0,T]$ such that
+	\begin{align}
+		\label{eqn:Diophantine_equidistribution}
+		d(y,g_t x) \leq \frac{C}{T^{a}}.
+	\end{align}	
+\end{corollary}
+Note that the Diophantine properties in this corollary are the conjectured ones in the case of a linear flow on the torus.
+At the same time, the horocycle flow on a compact quotient of $\SL_2(\bR)$ satisfies the conclusions of this corollary.
+
+The proofs of the above results are in the next section.
+
+%%=============================================================================
+%%          start of subsec: Discrete-time case
+
+\subsection{Discrete-time case}
+  \label{ssec:discrete_time_case}
+
+We note that the main result \autoref{thm:KGW-has-zero-entropy} generalizes straightforwardly to the discrete-time case.
+Namely, a diffeomorphism $f\colon M\to M$ is \emph{cohomology-free} if the operator $f^*-\operatorname{id}$ acting on $\cC^\infty(M)$ has image a closed subspace of codimension $1$.
+Then such a diffeomorphism satisfies the analogues of all the above stated results.
+The proofs are essentially the same, with the operator $\cL_X$ replaced by $f^*-\operatorname{id}$.
+\autoref{lemma:Exponential-recurrence-flows} becomes in fact easier, as one can appeal to the Brin--Katok local entropy formula \cite{BrinKatok1983_On-local-entropy}, one does not need to consider reparametrized orbits, and the matching \autoref{lem:orbit_matching} below is straightforward for discrete time dynamics.
+
+%%          end of subsec: Discrete-time case
+%%=============================================================================
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 						End of Section: Introduction
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% Section Proofs %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+					\section{Proofs}
+					\label{sec:Proofs}
+
+We will use the notation $A\leqapprox B$ when there exists a constant $c>0$ such that $A\leq cB$, where $c$ is allowed to depend on the manifold and vector field and perhaps other a priori fixed choices (e.g. charts, Riemannian metric, etc.).
+We will also write $A\asymp B$ for $A\leqapprox B$ and $B\leqapprox A$.
+
+
+%%=============================================================================
+%%          start of subsec: Proof of exponential recurrence flows
+
+\subsection{Proof of \autoref{lemma:Exponential-recurrence-flows}}
+  \label{ssec:proof_of_exponential_recurrence_flows}
+We divide the proof into two natural parts.
+
+\noindent\textbf{Step 1: Entropy considerations.}
+Consider the set of reparametrizations:
+\[
+  Rp[0,T] =\{\rho\colon [0,T]\to [0,T]\text{ orientation-preserving homeomorphism}\}.
+\]
+Recall that ordinary Bowen balls are defined by
+\[
+  B^T(x,r):=\{y\in M\colon d(g_t x, g_t y)<r, \quad \forall t\in [0,T]\}
+\]
+and consider the Bowen balls with ``reparametrization'':
+\[
+  B^T_{rp}(x,r):= \{y\in M\colon \exists \rho\in Rp[0,T] \text{ s.t. }d(g_{\rho(t)} x, g_{t}y)< r
+  ,\forall t\in [0,T]\}
+\]
+We note for future reference that
+\begin{align}
+  \label{eqn:reparam_ball_symmetry}
+  y\in B^T_{rp}(x,r) \iff x\in B^T_{rp}(y,r)  
+\end{align}
+by considering the inverse parametrization, and similarly:
+\begin{align}
+  \label{eqn:reparam_ball_triangle}
+  y\in B^T_{rp}(x,r_1) \text{ and } z \in B^T_{rp}(y,r_2)
+  \implies 
+  z \in B^T_{rp}(x,r_1+r_2).
+\end{align}
+
+Denote by $N^T_{rp}(r)$ the minimal number of $x_i\in M$ such that $B^T_{rp}(x_i,r)$ cover $M$, and $N^T(r)$ for the minimal number using ordinary Bowen balls.
+Set
+\[
+  h_{rp}(g_\bullet):=\lim_{r\to 0}\limsup_{T\to +\infty} \frac{1}{T}\log N^T_{rp}(r)
+\]
+and analogously $h_{top}(g_\bullet)$, which is the topological entropy of the flow, which is also the topological entropy of the diffeomorphism $g_1$.
+
+A result of Thomas \cite[Thm.~10]{Thomas1990_Topological-entropy-of-fixed-point-free-flows} implies that $h_{rp}(g_\bullet)=h_{top}(g_\bullet)>0$.
+Indeed, it is clear that the reparametrized Bowen balls are at least as large as ordinary Bowen balls, and the balls used by Thomas in loc. cit. are larger than the $B_{rp}^T(x,r)$ defined above (Thomas uses a larger class of reparametrizations).
+
+Let $E^T(r)\subset M$ denote a set of minimal cardinality such that $B^T_{rp}(x_i,r)$ cover $M$.
+It follows that there exists $r>0$ and a sequence $T_i\to +\infty$ such that we have
+\[
+  \abs{E^{T_i}(r)}=N^{T_i}_{rp}(r)\geq e^{T_i\beta} \quad \text{ for }\beta:=\tfrac 12h_{top}(g_\bullet)>0.
+\]
+Note that $N^T_{rp}(r')\geq N^T_{rp}(r)$ if $r'<r$.
+We work with $T$ belonging to the sequence $T_i$ just obtained.
+
+Consider now a subset $\hat{E}^T(r/4)$ of $E^T(r/4)$, of maximal cardinality with the property that the balls $B^T_{rp}(\hat{e},r/4)$ over all $\hat{e}\in \hat{E}^T(r/4)$ are disjoint.
+Then we claim that the union of all the balls $B^T_{rp}(\hat{e},r)$ over all $\hat{e}\in \hat{E}^T(r/4)$ cover $M$ and hence
+\begin{align}
+  \label{eqn:exponential_growth_reparam_balls}
+  \abs{\hat{E}^T(r/4)} \geq \abs{E^T(r)}\geq e^{T\beta}.
+\end{align}
+Indeed, for any $z\in M$ there exists $y\in E^T(r/4)$ such that $z\in B^T_{rp}(y,r/4)$.
+If $y\in \hat{E}^T(r/4)$ we are done, if not $y$ cannot be added in so there exists $x\in \hat{E}^T(r/4)$ such that $B^T_{rp}(x,r/4)\cap B^T_{rp}(y,r/4)\neq \emptyset $.
+It follows from \autoref{eqn:reparam_ball_symmetry} and \autoref{eqn:reparam_ball_triangle} that $z\in B^T_{rp}(x,r)$.
+
+
+\noindent\textbf{Step 2: Polynomial pigeonhole.}
+Since $M$ is a compact manifold of dimension $m$, there exists a constant $C\geq 1$ such that for any $\delta>0$, there exists a set $P_\delta\subset M$ of cardinality at most $C\delta^{-m}$ such that every point in $M$ is at (ordinary) distance at most $\delta$ to some element of $P_\delta$.
+Set $\delta=\delta_T:=e^{-T\tfrac{\beta}{4m}}$, so $T$ remains the only free parameter.
+Set also $E^T:=\hat{E}^T(r/4)$ satisfying the exponential lower bound in \autoref{eqn:exponential_growth_reparam_balls}.
+
+Choose now maps $\alpha,\omega\colon E^T\to P_\delta$ such that
+\begin{align*}
+  d(s,\alpha(s)) & \leq \delta \quad \forall s\in E^T\\
+  d(g_T s,\omega(s)) & \leq \delta \quad \forall s\in E^T
+\end{align*}
+which is possible by the properties of $P_\delta$.
+Now the cardinality of $P_\delta\times P_\delta$ is at most $C^2 e^{T\beta/2}$, while the cardinality of $E^T$ is at least $e^{T\beta}$ by \autoref{eqn:exponential_growth_reparam_balls}.
+Assuming $T\geq T_0$ for $T_0$ sufficiently large, the map $\alpha\times \omega\colon E^T \to P_\delta\times P_\delta$ cannot be injective.
+Thus, there exist distinct $s_1,s_2\in E^T$ with the following properties:
+\begin{enumerate}
+  \item $d(s_1,s_2)\leq 2e^{-T \tfrac{\beta}{4m}}$ since $\alpha(s_1)=\alpha(s_2)$.
+  \item $d(g_Ts_1,g_Ts_2)\leq 2e^{-T \tfrac{\beta}{4m}}$ since $\omega(s_1)=\omega(s_2)$.
+  \item The balls $B^T_{rp}(s_1,r/4)$ and $B^T_{rp}(s_2,r/4)$ are disjoint, in particular $s_2\notin B^T_{rp}(s_1,r/4)$.
+\end{enumerate}
+Passing now to the sequence $T=T_i\to +\infty$ completes the proof of \autoref{lemma:Exponential-recurrence-flows}. \hfill \qed
+
+
+%%          end of subsec: Proof of exponential recurrence flows
+%%=============================================================================
+
+
+%%=============================================================================
+%%					start of subsec: Proof of endpoint distributions
+
+\subsection{Proof of \autoref{lemma:Endpoint-distributions}}
+	\label{ssec:proof_of_endpoint_distributions}
+We know that $\cL_X\colon \cC^\infty_0(M)\to \cC^\infty_0(M)$ is an isomorphism of \Frechet spaces.
+Denote by $\cG$ its inverse, extended to all smooth functions by the condition $\cG(1):=1$, which is a continuous isomorphism of $\cC^\infty(M)$.
+Therefore, its dual is a continuous isomorphism
+\[
+	\cG^t \colon \cV^{-\infty}(M) \to \cV^{-\infty}(M).
+\]
+Note that we can decompose any generalized measure $\xi$ as $\xi = \xi_0 + \ip{\xi,1}\mu$ where $\ip{\xi_0,1}=0$.
+Taking into account the normalization $\cG(1)=1$, we have that $\cG^t(\mu)=\mu$ and furthermore
+\[
+	\cG^t(\xi) = \cG^t(\xi_0) + \ip{\xi,1}\mu
+\]
+with the property that $\ip{\cG^t(\xi_0),1}=0$.
+
+The continuity of $\cG$ implies that there exists $k_0\in \bN$ such that
+\[
+	\cG\colon \cC^{k_0}(M) \to \cC^1(M) \text{ is bounded}.
+\]
+Therefore
+\begin{align}
+	\label{eqn:Gt_bounded_C1}
+	\cG^t\colon \cV^{-1}(M) \to \cV^{-k_0}(M) \text{ is bounded}.
+\end{align}
+For a point $x\in M$ denote by $\delta_x\in \cV^{-\infty}(M)$ the Dirac-delta measure supported at $x$.
+Then $\delta_x\in \cV^0(M)$, i.e. it defines a continuous linear functional on continuous functions, and in the weaker $\cV^{-1}$-norm we have:
+\[
+	\norm{\delta_x-\delta_y}_{\cV^{-1}} \leq d(x,y)
+\]
+which follows from
+\[
+	|\ip{\delta_x-\delta_y,\phi}|\leq d(x,y)\norm{\phi}_{\cC^1}
+\]
+for any once-differentiable $\phi$.
+Set
+\begin{align}
+	\label{eqn:xi_x_def_and_property}
+	\xi_x:=\cG^t(\delta_x) \text{ so that }
+	\cL_X(\xi_x) = \mu - \delta_x
+\end{align}
+More explicitly, for a smooth test function $\phi$ we have $\ip{\xi_x,\phi}=u(x)$ where $u$ is the unique solution to $\cL_X u = \phi - \int\! \phi d\mu$ with $\int\! ud\mu = 0$.
+To justify \autoref{eqn:xi_x_def_and_property} note that $\cG \cL_X \phi = \phi - \ip{\mu,\phi}$ for any smooth test function $\phi$ and therefore
+\begin{align*}
+	\ip{\cL_X \cG^t \delta_x, \phi} & = 
+	- \ip{\cG^t\delta_x, \cL_X \phi}
+	= -\ip{\delta_x,\cG \cL_X\phi}\\
+	& = 
+	-\ip{\delta_x, \phi - \ip{\mu,\phi}}
+	= \ip{\mu - \delta_x, \phi}.
+\end{align*}
+Note the estimate
+\[
+	\norm{\xi_x-\xi_y}_{\cV^{-k_0}}
+	=
+	\norm{\cG^t(\delta_x-\delta_y)}_{\cV^{-k_0}}
+	\leqapprox
+	\norm{\delta_x-\delta_y}_{\cV^{-1}}
+	\leq
+	d(x,y)
+\]
+where the middle inequality follows from \autoref{eqn:Gt_bounded_C1}, which implies the second bound in \autoref{eqn:Lipschitz-bound-xi} as well.
+
+The claimed identity \autoref{eqn:distribution-orbit-identity}
+\[
+	\delta_{[x,g_tx]} = t \mu + (\xi_{g_tx}-\xi_x)
+\]
+follows by observing that both sides agree after applying $\cL_X$, hence the difference is $\cL_X$-invariant so a multiple of $\mu$, and
+both sides yield $t$ when paired against the constant function $1$, so must agree.
+Indeed $\cL_X(\delta_{[x,g_tx]}) =  \delta_x - \delta_{g_t x}$, since
+\begin{align*}
+	\ip{\cL_{X}\delta_{[x,g_tx]},\phi} & = 
+	- \ip{\delta_{[x,g_t x]}, \cL_X \phi}
+	= - \int_{0}^t (\cL_X\phi)(g_s x)ds\\
+	& = 
+	- [\phi(g_tx) - \phi(x)]
+	=
+	\ip{\delta_x - \delta_{g_t x},\phi}
+\end{align*}
+and $\cL_X(\xi_{g_t x} -\xi_x) = \delta_x - \delta_{g_tx}$ by \autoref{eqn:xi_x_def_and_property}.
+This completes the proof of \autoref{lemma:Endpoint-distributions}.
+\hfill \qed
+
+
+%%					end of subsec: Proof of endpoint distributions
+%%=============================================================================
+
+%%=============================================================================
+%%					start of subsec: Preliminary constructions in charts
+
+\subsection{Preliminary constructions in charts}
+	\label{ssec:preliminary_constructions_in_charts}
+For the proofs of the remaining statements, we will exploit the estimates on the generalized measures $\xi_x$ obtained in \autoref{lemma:Endpoint-distributions} by testing them against bump functions concentrated at polynomially small scales and centered at appropriately selected points in the manifold.
+To do so, we need some preliminaries.
+
+Fix finitely many coordinate charts covering $M$, with images convex sets in $\bR^m$.
+For each point of $M$ choose one of the charts such that the distance (in $\bR^m$) from the point to the boundary of the chart is uniformly bounded below by some $r_{ch}>0$.
+
+We also assume that in these charts, the vector field is ``rectified'' to be equal to $\frac{\partial}{\partial x_1}$ where $x_1$ is the first coordinate.
+This rectification is possible since the vector field has no fixed points, since the only invariant measure is volume.
+Finally, we will measure distances in these charts using Euclidean distances, which yield estimates for the distance in the manifold up to uniform factors.
+
+Fix a smooth nonnegative bump function $\rho$ on $\bR^m$, with support in the ball of radius $1$, and equal to $1$ on the ball of radius $\tfrac 12$.
+Denote by $\rho_{r}(x):=\rho(x/r)$ and, for $p\in M$ denote by $\rho_{r,p}\in \cC^\infty(M)$ the placement of $\rho_r$ in $M$, using the chart associated to $p$, and centered at $p$.
+We will only take $r>0$ satisfying $r\in(0,r_{ch})$.
+We record the following properties of the functions:
+\begin{align}
+	\label{eqn:rho_rp_Ck_norm}
+	\norm{\rho_{r,p}}_{\cC^{k_0}} & \leqapprox r^{-k_0}\\
+	\ip{\mu,\rho_{r,p}}  & \asymp r^{m}
+	\label{eqn:rho_rp_integral}
+\end{align}
+
+
+%%					end of subsec: Preliminary constructions in charts
+%%=============================================================================
+
+%%=============================================================================
+%%					start of subsec: Proof of Diophantine corollary
+
+\subsection{Proof of \autoref{cor:diophantine_properties}}
+	\label{ssec:proof_of_diophantine_corollary}
+To establish \autoref{eqn:Diophantine_equidistribution}, we will consider the bump function $\rho_{r,y}$ for some $y\in M$, and pair it against the distributional identity from \autoref{eqn:distribution-orbit-identity}:
+\begin{align}
+  \label{eqn:xi_x_bump_paired}
+  \ip{\delta_{[x,g_Tx]}, \rho_{r,y} } = \ip{T \mu + (\xi_{g_Tx} - \xi_x), \rho_{r,y}}.
+\end{align}
+For any $y\in M$ we have
+\[
+  \ip{T\mu,\rho_{r,y}}\asymp Tr^{m} \text{ and }
+  |\ip{\xi_{g_Tx}-\xi_{x},\rho_{r,y}}|
+  \leqapprox r^{-k_0}.
+\]
+where we used that $\norm{\xi_{p}}_{\cV^{-k_0}}\leqapprox 1$ for all $p\in M$.
+Select now $r:=T^{-\beta}$, so the first term is of the order $T^{1-m\beta}$ while the second is bounded above by $T^{\beta k_0}$.
+Choosing $\beta>0$ sufficiently small (e.g. $\beta:=\tfrac{1}{2(m+k_0)}$) guarantees that the right-hand side of \autoref{eqn:xi_x_bump_paired} is nonzero.
+Therefore, the orbit segment $[x,g_Tx]$ must pass through the $CT^{-\beta}$-neighborhood of $y$, for some $C>0$ sufficiently large but fixed.
+
+To establish \autoref{eqn:Diophantine_repulsion}, we note that there exists a constant $b>0$ such that for any orbit segment of length $T$, there exists some $y\in M$ which is at distance at least $\tfrac{b}{T^{1/(m-1)}}$ from any point in the orbit.
+This is valid for any smooth flow: the $R$-neighborhood of the orbit segment has volume at most $B(R^m+R^{m-1}T)$ for some $B>0$, by considerations in local charts: cover an orbit of length $T$ by $O(1 + T/R)$ balls of radius $R$.
+By choosing $R=\tfrac{b}{T^{1/(m-1)}}$ for sufficiently small $b>0$, some point in $M$ will not be covered.
+
+Returning to \autoref{eqn:distribution-orbit-identity}, choose such a $y\in M$ and $r:={b}T^{-\gamma}$ with $\gamma:=\tfrac{1}{m-1}$.
+Then $\ip{\delta_{[x,g_Tx]},\rho_{r,y}}=0$.
+At the same time
+\[
+	|\ip{\xi_{g_T x} - \xi_x,\rho_{r,y}}|\leqapprox d(x,g_Tx) T^{k_0\gamma}
+\]
+while $\ip{T\mu,\rho_{r,y}}\asymp T^{1-\gamma m}$.
+It then follows that
+\[
+	d(x,g_Tx)\geqapprox T^{1-\gamma(m+k_0)} = T^{-\tfrac{k_0+1}{m-1}}
+\]
+and this concludes the proof. \hfill \qed
+
+%%					end of subsec: Proof of Diophantine corollary
+%%=============================================================================
+
+
+%%=============================================================================
+%%					start of subsec: Proof of zero entropy
+
+\subsection{Proof of \autoref{thm:KGW-has-zero-entropy}}
+	\label{ssec:proof_of_zero_entropy}
+Suppose, by contradiction, that $g_t\colon M\to M$ has positive topological entropy.
+Note that the case of $\dim M\leq 1$ is immediate.
+We will derive a contradiction to \autoref{lemma:Exponential-recurrence-flows}\autoref{item:exp_rec_separation_flows}, so assume its conclusion holds and let $x_i,y_i, T_i$ be the corresponding points and times.
+
+
+Set $r:=bT_i^{-\gamma}$ and select $b>0$ sufficiently small, $\gamma>0$ sufficiently large (e.g. $\gamma=A$ from \autoref{eqn:Diophantine_repulsion} works), such that the following holds: if for some $t',t''\in[0,T_i]$ we have $d(g_{t'}x_i,g_{t''}x_i)\leq 10r$ then $|t'-t''|\leq 10r$ (where the distance is the Euclidean one in any of the fixed rectifying coordinate charts).
+If a $t''$ outside this interval existed, it would contradict the Diophantine lower bound on recurrence from \autoref{eqn:Diophantine_repulsion} for $g_{t'}x_i$.
+The same property holds for $y_{i}$.
+
+We claim that there exists $x':=g_{t'}x_i$ with $t'\in [0, T_i]$ such that the ball of radius $r$ around $x'$ (in any of the fixed coordinate charts and Euclidean metric) is disjoint from the orbit segment $[y_i,g_{T_i}y_i]$.
+Assuming this first, we derive a contradiction as follows.
+
+We pair the distributions in \autoref{lemma:Endpoint-distributions} against the bump function $\rho_{ r, x'}$:
+\[
+	\ip{\delta_{[x_i, g_{T_i}x_i]},\rho_{ r,x'}} \geqapprox r
+	\text{ and }
+	\ip{\delta_{[y_i, g_{T_i}y_i]},\rho_{ r,x'}} =0.
+\]
+At the same time, using the estimate in \autoref{eqn:Lipschitz-bound-xi} together with the exponential closeness of $x_i, y_i$ and $g_{T_i}x_i,g_{T_i}y_i$, we find:
+\begin{align*}
+	\norm{\delta_{[x_i,g_{T_i}x_i]} - \delta_{[y_i,g_{T_i}y_i]}}_{\cV^{-k_0}}
+	= 
+	\norm{\left(\xi_{g_{T_i}x_i} - \xi_{g_{T_i}y_i}\right)
+	-
+	\left(\xi_{x_i} - \xi_{y_i}\right)}_{\cV^{-k_0}}
+	\leqapprox
+	e^{-\ve T_i}
+\end{align*}
+Since $\norm{\rho_{ r,x'}}_{\cC^{k_0}}\leqapprox r^{-k_0}\asymp T_i^{k_0\gamma}$ a contradiction follows for $T_i$ large enough:
+\begin{align*}
+	 bT_i^{-\gamma} & = r 
+	\leqapprox \ip{\delta_{[x_i, g_{T_i}x_i]},\rho_{ r,x'}}
+	\\
+	& \leq 
+	\abs{\ip{\delta_{[y_i, g_{T_i}y_i]},\rho_{ r,x'}}}
+	+
+	\norm{\delta_{[x_i,g_{T_i}x_i]} - \delta_{[y_i,g_{T_i}y_i]}}_{\cV^{-k_0}}
+	\cdot
+	\norm{\rho_{ r,x'}}_{\cC^{k_0}}\\
+	& \leqapprox
+	e^{-\ve T_i}T_i^{k_0 \gamma}.
+\end{align*}
+It remains to show such an $x':=g_{t'}x_i$ exists.
+Suppose it did not, in other words we have $B(g_{t'}x_i, r)$ intersects the orbit segment $[y_i, g_{T_i}y_i]$ for every $t'\in [0,T_i]$.
+Now the existence of a reparametrization $\rho\colon [0,T_i]\to [0,T_i]$ such that
+\[
+	d(g_{\rho(t)} x_i, g_ty_i) \leqapprox r \asymp T_i^{-\gamma}
+\]
+follows from the general purpose \autoref{lem:orbit_matching}, and this contradicts \autoref{lemma:Exponential-recurrence-flows}\autoref{item:exp_rec_separation_flows}.
+\hfill \qed
+
+
+\begin{lemma}[Orbit matching]
+	\label{lem:orbit_matching}
+	Suppose $X$ is a smooth vector field with no fixed points on a compact manifold $M$, with flow $g_t$.
+	Assume that for two points $x,y\in M$ and time $T>0$, their orbit segments have the following properties, for some $r>0$, $C\geq 1$:
+	\begin{enumerate}
+		\item If $d(g_{t'}x,g_{t''}x)<10r$ for some $t',t''\in [0,T]$, then $|t'-t''|<Cr$, and same for $y$.
+		\item The orbit segment $[x,g_Tx]$ is contained in the $r$-neighborhood of $[y,g_Ty]$.
+		\item We have $d(x,y)<r$ and $d(g_Tx,g_Ty)<r$.
+	\end{enumerate}
+
+	Then, provided $r$ is sufficiently small depending on $C$, there exists an orientation-preserving homeomorphism $\rho\colon [0,T]\to [0,T]$ such that
+	\[
+		d(g_{\rho(t)}x, g_t y)<C' r
+	\]
+	for some $C'>0$ depending only on $M,X,C$ but not on $r$.
+\end{lemma}
+\begin{proof}
+	Fix a smooth hyperplane field $H(x)\subset TM(x)$ inside the tangent bundle of $M$, transverse to the vector field $X$, for example $H=X^\perp$ for the background Riemannian metric.
+	Denote by $H(S,R)$ the restriction of the vectors of length strictly less than $R$ in the bundle $H$ to a subset $S\subset M$.
+	Since $M$ is compact, there exist uniform constants $t_H,r_H>0$ such that the exponential map is a smooth $C^2$-bounded diffeomorphism between $H((z,g_{t_H}z),r_H)$ and an open subset of $M$, uniformly in $z\in M$, and where $(z,g_{t_H} z)$ denotes the corresponding open orbit segment.
+
+	Fix rectifying coordinate charts as in \autoref{ssec:preliminary_constructions_in_charts}.
+	There exist $K_1,K_2>0$ such that using the exponential map on $H([x,g_T x],K_1 r)$, for every $t\in [0,T]$ there exists a unique $\tilde{\rho}(t)\in [-K_2r, T+K_2r]$ and $v_t\in H(g_t x)$ such that $\exp(v_t)=g_{\tilde{\rho}(t)}y$.
+	Indeed, existence follows from the containment of the orbit in the $r$-neighborhood (and assuming $r$ is sufficiently small) and uniqueness follows from the no close returns of the orbit plus the local diffeomorphism property of the exponential map.
+	Furthermore, the map $\tilde{\rho}$ is a local diffeomorphism by the implicit function theorem, provided $r$ is sufficiently small.
+	We thus obtain an orientation-preserving homeomorphism $\tilde{\rho}\colon [0,T] \to [a, T+b]$ where $|a|,|b|\leq K_2 r$ such that
+	\[
+		d(g_{t}x, g_{\tilde{\rho}(t)}y)\leq K_2 r \quad \forall t\in [0,T].
+	\]
+	After an affine rescaling and considering the inverse, the desired $\rho$ follows.
+\end{proof}
+
+
+
+%%					end of subsec: Proof of zero entropy
+%%=============================================================================
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% End of Section Proofs %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%						End of Main Article
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%						Appendix
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\appendix
+%\section{}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%						End of Appendix
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\providecommand{\bysame}{\leavevmode ---\ }
+\providecommand{\andchar}{\&}
+
+\begin{thebibliography}{RHRH06}
+
+\bibitem[BK83]{BrinKatok1983_On-local-entropy}
+\textsc{Brin~M.{ \andchar\hskip 0.5em}Katok~A.} --- {``On local entropy''}. in
+  {\em Geometric dynamics ({R}io de {J}aneiro, 1981)} --- vol.~1007 of {\em
+  Lecture Notes in Math.}, pp.~30--38. Springer, Berlin --- 1983.
+  \url{https://doi.org/10.1007/BFb0061408}.
+
+\bibitem[CC00]{ChenChi2000_Hypoelliptic-vector-fields-and-almost-periodic-motions-on-the-torus}
+\textsc{Chen~W.{ \andchar\hskip 0.5em}Chi~M.~Y.} --- {``Hypoelliptic vector
+  fields and almost periodic motions on the torus {$T^n$}''}. {\em Comm.
+  Partial Differential Equations} {\bfseries 25} no.~1-2, (2000) 337--354.
+  \url{https://doi.org/10.1080/03605300008821509}.
+
+
+\bibitem[For08]{Forni2008_On-the-Greenfield-Wallach-and-Katok-conjectures-in-dimension-three}
+\textsc{Forni~G.} --- {``On the {G}reenfield-{W}allach and {K}atok conjectures
+  in dimension three''}. in {\em Geometric and probabilistic structures in
+  dynamics} --- vol.~469 of {\em Contemp. Math.}, pp.~197--213. Amer. Math.
+  Soc., Providence, RI --- 2008. \url{https://doi.org/10.1090/conm/469/09167}.
+
+\bibitem[GW73]{GreenfieldWallach1973_Globally-hypoelliptic-vector-fields}
+\textsc{Greenfield~S.~J.{ \andchar\hskip 0.5em}Wallach~N.~R.} --- {``Globally
+  hypoelliptic vector fields''}. {\em Topology} {\bfseries 12} (1973) 247--254.
+  \url{https://doi.org/10.1016/0040-9383(73)90011-6}.
+
+\bibitem[Kat01]{Katok2001_Cocycles-cohomology-and-combinatorial-constructions-in-ergodic-theory}
+\textsc{Katok~A.} --- {``Cocycles, cohomology and combinatorial constructions
+  in ergodic theory''}. in {\em Smooth ergodic theory and its applications
+  ({S}eattle, {WA}, 1999)} --- vol.~69 of {\em Proc. Sympos. Pure Math.},
+  pp.~107--173. Amer. Math. Soc., Providence, RI --- 2001.
+  \url{https://doi.org/10.1090/pspum/069/1858535}.
+
+\bibitem[RHRH06]{Rodriguez-HertzRodriguez-Hertz2006_Cohomology-free-systems-and-the-first-Betti-number}
+\textsc{Rodriguez~Hertz~F.{ \andchar\hskip 0.5em}Rodriguez~Hertz~J.} ---
+  {``Cohomology free systems and the first {B}etti number''}. {\em Discrete
+  Contin. Dyn. Syst.} {\bfseries 15} no.~1, (2006) 193--196.
+  \url{https://doi.org/10.3934/dcds.2006.15.193}.
+
+\bibitem[Tho90]{Thomas1990_Topological-entropy-of-fixed-point-free-flows}
+\textsc{Thomas~R.~F.} --- {``Topological entropy of fixed-point free flows''}.
+  {\em Trans. Amer. Math. Soc.} {\bfseries 319} no.~2, (1990) 601--618.
+  \url{https://doi.org/10.2307/2001256}.
+
+\end{thebibliography}
+\end{document}

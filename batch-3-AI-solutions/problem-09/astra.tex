@@ -1,0 +1,589 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+
+\newcommand{\M}{\mathcal M}
+\newcommand{\T}{\mathcal T}
+\newcommand{\V}{\mathcal V}
+\newcommand{\D}{\Delta}
+\newcommand{\ol}[1]{\overline{#1}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Problem 9 -- GPT-6 Astra}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove the asserted constancy using rigidity of Teichm\"uller curves
+and the boundary structure theorem for totally geodesic subvarieties.
+An important preliminary observation is that the compatibility
+hypothesis forces every positive-dimensional boundary locus in a
+stratum with at least two nodes to remain fixed set-theoretically.
+This observation also handles the possibility that a cusp of one
+boundary curve lies on another positive-dimensional boundary locus.
+\end{abstract}
+
+\section{Conventions and geometric input}
+
+We use the usual moduli-theoretic conventions: subvarieties are
+algebraic, while their dependence on the disc parameter may be
+holomorphic rather than algebraic. Smooth families and local
+arguments on moduli spaces are understood orbifold-locally.
+Thus auxiliary level structures and local labels for components and
+branches of nodes may be introduced. The conclusion is a statement
+on the original moduli space and is unaffected by these auxiliary
+choices.
+
+Here is one consequence of the smooth-family assumption that will
+be used explicitly. Suppose that \(x\) is an isolated point of
+\[
+Z_0(G):=\ol{V_0}\cap\Delta_G.
+\]
+In a local marked chart at \(x\), the family
+\[
+\{(z,t):z\in Z_t(G)\},\qquad
+Z_t(G):=\ol{V_t}\cap\Delta_G,
+\]
+has relative dimension zero and is a submersion to the parameter
+disc. The holomorphic inverse function theorem therefore gives
+a unique local section through the chosen marked point \(x\).
+In particular, two sections through that marked point coincide
+after shrinking the parameter disc. Introducing such charts is
+legitimate for hypothesis~(i), which is a smooth-family hypothesis.
+We will \emph{not} assume that hypothesis~(ii) holds for individual
+branches in a refined or marked stratification; it will be used
+only in the original moduli space.
+
+We recall the following consequences of the boundary structure
+theorem. A component of the normalization of a nodal surface will
+be called \emph{active} for a boundary locus if the projection of
+that locus to the corresponding pointed moduli space is
+nonconstant.
+
+\begin{theorem}[Boundary structure facts]\label{thm:structure}
+Let \(N\subset\T_{g,n}\) be an algebraic totally geodesic submanifold.
+The following statements hold.
+\begin{enumerate}
+\item
+Its intersection with a stratum of augmented Teichm\"uller space
+is semisimple. In particular, for a one-dimensional boundary
+locus, every nonconstant factor projection is a Teichm\"uller
+disc upstairs and is a local isometry on the corresponding
+normalized orbifold curve downstairs.
+
+\item
+Pinchable curves have an \(N\)-equivalence relation. A pinched
+multicurve is a union of entire equivalence classes. If it
+contains \(r\) classes, the corresponding boundary locus has
+dimension at most \(\dim N-r\). Any one class can be unpinched
+while all the other classes remain pinched.
+
+\item
+For a positive-dimensional simple boundary factor, the union of
+the boundary curves of its active subsurfaces is a union of
+entire \(N\)-equivalence classes.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}[References]
+These are, respectively, Theorem~1.3; Theorem~1.6(4),
+Corollary~3.17 and the dimension estimate in the proof of
+Theorem~3.9; and Lemma~6.1(3) of
+Arana--Herrera--Wright~\cite{AHW}. Their numbering here refers
+to version~2 of that paper.
+For the local-isometry assertion in the first statement, see also
+Benirschke--Dozier--Rached~\cite[Theorem~1.7 and
+Proposition~9.2]{BDR}.
+\end{proof}
+
+% Sources for the boundary structure and factor-projection assertions:
+% Arana--Herrera--Wright and Benirschke--Dozier--Rached.
+% ([arxiv.org](https://arxiv.org/html/2412.16330v2))
+
+We need the following useful consequence of the third statement.
+
+\begin{lemma}[Every node is seen by an active component]\label{lem:active}
+Let \(W\subset\M_g\) be a totally geodesic surface, and let \(E\)
+be a one-dimensional irreducible component of its intersection
+with a boundary stratum. Then every node of the corresponding
+stable curves is incident to at least one component that is
+active for \(E\).
+\end{lemma}
+
+\begin{proof}
+Choose a lift \(N\subset\T_g\) of \(W\), and a boundary locus
+upstairs covering \(E\). If its pinched multicurve has \(r\)
+equivalence classes, Theorem~\ref{thm:structure}(2) gives
+\[
+1\leq 2-r.
+\]
+Since this is a boundary locus, \(r\geq1\), so \(r=1\).
+
+There is exactly one positive-dimensional simple factor, since
+the locus has dimension one. Its active subsurfaces have a
+nonempty union of boundary curves: the stable curve is connected,
+has a node, and the locus has at least one active component.
+By Theorem~\ref{thm:structure}(3), this union consists of entire
+equivalence classes. There is only one such class, so the union
+is the whole pinched multicurve. This is precisely the assertion.
+\end{proof}
+
+% The whole-equivalence-class assertion used in this lemma is
+% Arana--Herrera--Wright, Lemma 6.1(3).
+% ([public.websites.umich.edu](https://public.websites.umich.edu/~alexmw/tghhs.pdf))
+
+\section{Deformations of boundary curves}
+
+We will use rigidity of Teichm\"uller curves in its usual
+pointed and orbifold formulation.
+
+\begin{theorem}[Rigidity of Teichm\"uller curves]\label{thm:McM}
+Let
+\[
+f_t:C_t\longrightarrow \M_{h,m}
+\]
+be a holomorphic, smoothly trivial family of orbifold maps from
+finite-type curves. Suppose that \(f_0\) is a local isometry for
+the complete finite-area hyperbolic metric on \(C_0\) and the
+Teichm\"uller metric on the target. Then the family of pairs
+\((C_t,f_t)\) is locally trivial.
+\end{theorem}
+
+\begin{proof}
+For unpointed targets this is McMullen's rigidity theorem
+\cite[Theorem~1]{McM}. We explain why the same argument applies
+to pointed targets.
+
+Pass to finite covers to remove orbifold stabilizers, and
+identify monodromy using the smooth trivialization. For a
+nonperipheral conjugacy class \(\gamma\in\pi_1(C_0)\), its
+monodromy is pseudo-Anosov, with translation length equal to
+the hyperbolic length \(\ell_0(\gamma)\). Holomorphic maps
+contract the Teichm\"uller metric, by the
+Royden--Earle--Kra theorem \cite{Royden,EK}. Consequently,
+\[
+\ell_t(\gamma)\geq \ell_0(\gamma)
+\qquad\text{for every nonperipheral }\gamma.
+\]
+The marked length-spectrum domination principle used in
+\cite[proof of Theorem~1, fact~(1)]{McM} implies that \(C_t\)
+and \(C_0\) are conformally identical with their markings.
+
+For completeness, the maps are then identical as marked maps.
+Lift them to equivariant maps from the same hyperbolic disc to
+\(\T_{h,m}\). Equality in the preceding inequality along a
+hyperbolic element's axis forces that axis to map isometrically
+onto the unique Teichm\"uller axis of its monodromy
+\cite{Bers}. Holomorphic continuation identifies the lifted map
+with the original Teichm\"uller-disc parametrization, up to an
+automorphism of the source disc. Equivariance makes this
+automorphism commute with the source lattice. A non-elementary
+Fuchsian lattice has trivial centralizer in
+\(\operatorname{PSL}_2(\mathbb R)\): commuting with two
+hyperbolic elements with different axes fixes at least three
+boundary points. The automorphism is therefore the identity.
+
+Finally, the universal property of marked Teichm\"uller space
+makes these identifications holomorphic in the parameter.
+Thus the family of pairs is locally trivial.
+\end{proof}
+
+% Source for the rigidity theorem and the length-domination argument:
+% McMullen, Rigidity of Teichmüller curves.
+% ([people.math.harvard.edu](https://people.math.harvard.edu/~ctm/papers/home/text/papers/rigidity/rigidity.pdf))
+
+\begin{lemma}[Deforming a curve in a product]\label{lem:curve}
+Suppose that \(E_t\) is a holomorphic, smoothly trivial family
+of algebraic curves in a product of pointed moduli spaces.
+Suppose that every nonconstant factor projection of the
+normalized central curve is a Teichm\"uller local isometry.
+After passing to finite covers where necessary and shrinking
+the parameter disc, the following hold.
+\begin{enumerate}
+\item
+The normalized source curve can be identified with a fixed curve
+\(C\), and every initially nonconstant factor map is independent
+of \(t\).
+
+\item
+Every initially constant factor map remains constant on \(C\).
+Its value may depend holomorphically on \(t\).
+
+\item
+Each specified point of the compactification of \(C\) determines
+a holomorphic family of stable limits of \(E_t\). Its dual graph
+is independent of \(t\). Every pointed component belonging to
+the stable limit of an initially nonconstant factor map is fixed.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+At least one factor projection is nonconstant. Apply
+Theorem~\ref{thm:McM} to that projection to identify the source
+family with \(C\times\D\). Apply the same theorem to the other
+initially nonconstant projections. The marked identifications
+of the source agree, proving the first assertion.
+
+Consider an initially constant projection. Its orbifold
+monodromy has finite image. This image is unchanged under the
+deformation. After a finite cover of \(C\) killing that image,
+each deformed map lifts holomorphically to the target
+Teichm\"uller space. A Bers embedding realizes that space as
+a bounded domain \cite{BersEmbedding}. The coordinates of the
+lift are bounded holomorphic functions on a compact Riemann
+surface minus finitely many points. They extend across the
+punctures and are constant. Hence the original factor map is
+constant. Its value depends holomorphically on \(t\), as is seen
+by evaluating at a fixed point of \(C\).
+
+Let \(\ol C\) be the smooth compactification of \(C\).
+The algebraic factor maps extend to the corresponding
+Deligne--Mumford compactifications, with stable reduction or
+finite covers if needed. For a nonconstant factor the extended
+map is fixed; for a constant factor it is the moving smooth
+point just described. Composing their product with the
+clutching morphism gives the claimed family of stable limits.
+Clutching and the local stable-curve description are those of
+\cite{DM}. The nonconstant factors' stable limits are fixed,
+and the constant factors remain smooth pointed curves of the
+same topological type. Thus the dual graph does not change.
+\end{proof}
+
+\begin{lemma}[A boundary curve has a further degeneration]
+\label{lem:cusp}
+A positive-dimensional algebraic Teichm\"uller curve is
+noncompact. Consequently, a one-dimensional boundary locus as
+in Theorem~\ref{thm:structure}(1) has a stable limit in a strictly
+smaller boundary stratum.
+\end{lemma}
+
+\begin{proof}
+A nonzero finite-area quadratic differential generating a
+Teichm\"uller disc has a cylinder; see \cite{Masur}.
+Rotate the differential so that this cylinder is horizontal,
+and apply Teichm\"uller flow in the direction that makes its
+modulus tend to infinity. Its core curve has extremal length
+tending to zero. By compactness of the thick part of moduli
+space \cite{Mumford}, the resulting surfaces leave every compact
+subset of moduli space. An algebraic Teichm\"uller curve is
+therefore noncompact.
+
+For a boundary curve in a product, apply this to a nonconstant
+factor projection. Compactify the normalized source and the
+factor maps. Some stable limit acquires an additional node,
+and hence lies in a strictly smaller stratum.
+\end{proof}
+
+\section{A consequence of the compatibility hypothesis}
+
+The next observation uses the exact, set-theoretic formulation
+of hypothesis~(ii).
+
+\begin{lemma}[Deep boundary curves cannot move]\label{lem:deep}
+Let \(\Delta_G\) be a boundary stratum whose curves have at least
+two nodes. For every \(t\), every positive-dimensional
+irreducible component of \(Z_t(G)\) is contained in \(Z_0(G)\).
+\end{lemma}
+
+\begin{proof}
+Choose a strictly larger boundary stratum \(\Delta_H\) whose
+closure contains \(\Delta_G\). Such a stratum exists: smooth
+one node while leaving at least one node unsmoothed.
+
+Set
+\[
+U=\ol{\M}_g\setminus\ol{V_0}.
+\]
+For this open set, both sides of the equality in
+hypothesis~(ii) are empty at \(t=0\). That hypothesis therefore
+implies, for every \(t\),
+\begin{equation}\label{eq:compat-empty}
+Z_t(G)\cap U
+=
+\ol{Z_t(H)}\cap\Delta_G\cap U.
+\end{equation}
+
+Since \(\ol{V_t}\) is a surface, its boundary has dimension at
+most one. Thus \(Z_t(H)\) has dimension at most one. Every
+one-dimensional irreducible component of \(\ol{Z_t(H)}\) has
+a dense open subset in \(\Delta_H\); its intersection with the
+disjoint stratum \(\Delta_G\) is consequently finite.
+Zero-dimensional components contribute no boundary points.
+It follows that
+\[
+\ol{Z_t(H)}\cap\Delta_G
+\]
+is finite.
+
+Let \(E_t\) be a positive-dimensional irreducible component of
+\(Z_t(G)\). If \(E_t\) were not contained in \(\ol{V_0}\), then
+\(E_t\cap U\) would be a nonempty open subset of an algebraic
+curve, and hence infinite. This contradicts
+\eqref{eq:compat-empty}. Therefore
+\[
+E_t\subset\ol{V_0}\cap\Delta_G=Z_0(G).
+\]
+\end{proof}
+
+\begin{remark}\label{rem:compatibility}
+The preceding proof is the only use of hypothesis~(ii).
+In particular, no stronger assertion about preservation of
+individual incidences between branches is being substituted
+for the hypothesis in the question.
+\end{remark}
+
+\section{Proof of the assertion}
+
+\begin{theorem}\label{thm:main}
+Under the hypotheses of the question,
+\[
+\pi_i(\partial V_t)=\{Y_0\}
+\qquad\text{for every }t\in\D.
+\]
+\end{theorem}
+
+\begin{proof}
+The function \(t\mapsto Y_t\) is holomorphic. Indeed, locally
+choose a holomorphic section of the smooth family
+\(\partial V_t\); composing with \(\pi_i\) gives \(Y_t\),
+independently of the chosen section. It suffices to prove
+constancy near \(0\), since the identity principle then gives
+constancy on the connected disc.
+
+Choose a one-dimensional component \(B_0\) of
+\(\partial V_0\), and let \(B_t\) be its continuation in the
+smoothly trivial family from hypothesis~(i).
+
+\medskip
+\noindent\textbf{Step 1: Reduction to a one-node stratum.}
+
+If \(\Gamma\) has at least two edges,
+Lemma~\ref{lem:deep} gives
+\[
+B_t\subset Z_0(\Gamma)=\partial V_0.
+\]
+Since \(\pi_i\) is equal to \(Y_t\) on \(B_t\) and equal to
+\(Y_0\) on \(\partial V_0\), this already proves \(Y_t=Y_0\).
+
+We may therefore assume that \(\Gamma\) has one edge.
+It cannot be a nonseparating edge: that stratum has just one
+moduli-space factor, and constancy on that factor would
+contradict \(\dim B_0=1\). Thus the node is separating.
+Write its vanishing curve as \(a\). Its two pointed components
+will be denoted
+\[
+Y_t\in\M_{h,1},
+\qquad
+X\in\M_{g-h,1}.
+\]
+The \(Y\)-projection of \(B_t\) is constant, whereas the
+\(X\)-projection of \(B_0\) is nonconstant.
+
+Theorem~\ref{thm:structure}(1) and
+Lemma~\ref{lem:curve} identify the normalized source of \(B_t\)
+with a fixed curve and make its \(X\)-map independent of \(t\).
+
+\medskip
+\noindent\textbf{Step 2: A cusp section.}
+
+By Lemma~\ref{lem:cusp}, choose a cusp of this fixed
+\(X\)-map. Let \(X^\ast\) be its stable pointed limit.
+It has at least one node. Lemma~\ref{lem:curve}(3) gives a
+holomorphic section
+\[
+p(t)\in Z_t(G')
+\]
+obtained by attaching \(Y_t\) to the fixed pointed stable curve
+\(X^\ast\). Here \(\Delta_{G'}\) is a fixed stratum with at least
+two nodes. Put \(p_0=p(0)\).
+
+Use local labels for the components and nodes of \(p_0\).
+Along \(p(t)\), all pointed components coming from \(X^\ast\)
+are fixed. Only the component \(Y_t\) can move.
+
+The smooth locus \(Z_0(G')\) has local dimension either zero
+or one at \(p_0\). We treat these possibilities separately.
+
+\medskip
+\noindent\textbf{Step 3: A positive-dimensional boundary locus
+through \(p_0\).}
+
+Suppose first that \(Z_0(G')\) has local dimension one at
+\(p_0\). Hypothesis~(i) puts \(p(t)\), for small \(t\), on a
+positive-dimensional component of \(Z_t(G')\).
+Lemma~\ref{lem:deep} then implies
+\[
+p(t)\in Z_0(G').
+\]
+Let \(E_0\) be its local curve component through \(p_0\).
+
+Choose any node \(b\) of \(X^\ast\). Both components incident
+to \(b\), or the single component if \(b\) is a self-node,
+come from \(X^\ast\); their pointed moduli are fixed along
+\(p(t)\). On the other hand, Lemma~\ref{lem:active} says that
+at least one of these components is active for \(E_0\).
+Projection of \(E_0\) to that factor is locally injective in
+a marked chart, by Theorem~\ref{thm:structure}(1).
+Its value along \(p(t)\) is fixed, so \(p(t)\) itself is
+constant near \(0\). In particular, \(Y_t=Y_0\).
+
+\medskip
+\noindent\textbf{Step 4: An isolated boundary point.}
+
+It remains to suppose that \(p_0\) is isolated in \(Z_0(G')\).
+Choose a marked lift of the degeneration to the closure of
+a lift \(N\subset\T_g\) of \(V_0\).
+Let \(A=\{a\}\), and let \(B\) be the nonempty multicurve
+consisting of the additional nodes of \(X^\ast\).
+Thus the nodes at \(p_0\) correspond to
+\[
+A\sqcup B.
+\]
+
+Because \(A\) itself occurs as the complete pinched multicurve
+along \(B_0\), it is an entire \(N\)-equivalence class.
+There can be at most two equivalence classes in \(A\sqcup B\),
+by Theorem~\ref{thm:structure}(2) and \(\dim N=2\).
+Consequently \(B\) is the other class.
+
+Unpinch the class \(A\), leaving \(B\) pinched.
+The unpinching assertion gives points arbitrarily close to
+\(p_0\) in the stratum obtained by smoothing \(a\).
+There is therefore a one-dimensional boundary component
+\(F_0\) of \(V_0\) in that stratum with
+\[
+p_0\in\ol{F_0}.
+\]
+To justify the dimension assertion explicitly, the boundary of
+the surface has dimension at most one, and a zero-dimensional
+algebraic locus is finite and cannot supply points in that
+stratum arbitrarily approaching \(p_0\).
+
+% Source for the unpinching operation used in this step:
+% Arana--Herrera--Wright, Lemma 3.16 and Corollary 3.17.
+% ([arxiv.org](https://arxiv.org/html/2412.16330v2))
+
+Let \(Z\) denote the component obtained by smoothing \(a\).
+It contains the original \(Y_0\) and the component of
+\(X^\ast\) to which \(Y_0\) was attached.
+The projection of \(F_0\) to the moduli space of \(Z\) is
+nonconstant: its stable limit at the specified cusp has
+the node \(a\), whereas a constant smooth pointed curve
+cannot have a nodal limit.
+
+Let \(F_t\) be the continuation of \(F_0\) supplied by
+hypothesis~(i). If its ambient stratum is a finite quotient
+of a product, take its product cover and the corresponding
+finite cover of \(F_t\). Apply Lemma~\ref{lem:curve}.
+The \(Z\)-map is independent of \(t\), and its stable limit
+at our specified cusp is independent of \(t\).
+In particular, the pointed component inside that stable
+limit which is the original \(Y_0\) remains exactly \(Y_0\).
+
+The same lemma supplies a cusp section
+\[
+q(t)\in Z_t(G'),
+\qquad q(0)=p_0,
+\]
+with the same local component and node labels.
+Since \(p_0\) is isolated in the central stratum intersection,
+hypothesis~(i) and the local inverse-function observation in
+Section~1 imply
+\[
+q(t)=p(t)
+\]
+near \(0\), in the chosen marked chart.
+Their specified \(Y\)-components agree. The \(Y\)-component
+of \(q(t)\) is \(Y_0\), while that of \(p(t)\) is \(Y_t\).
+Thus \(Y_t=Y_0\) near \(0\).
+
+This completes both cases. Descending any auxiliary markings
+or finite covers and applying the identity principle yields
+\[
+\pi_i(\partial V_t)=\{Y_0\}
+\qquad(t\in\D).
+\]
+\end{proof}
+
+\begin{remark}
+Only the central surface and its central boundary curves were
+assumed to be totally geodesic. For \(t\ne0\), rigidity of the
+nonconstant projections of boundary curves follows from
+Theorem~\ref{thm:McM}; total geodesicity of \(V_t\) is never
+used.
+\end{remark}
+
+\begin{thebibliography}{99}
+
+\bibitem{AHW}
+F.~Arana--Herrera and A.~Wright,
+\emph{The geometry of totally geodesic subvarieties of moduli
+spaces of Riemann surfaces},
+arXiv:2412.16330v2, 2025.
+
+\bibitem{BDR}
+F.~Benirschke, B.~Dozier, and J.~Rached,
+\emph{The boundary of a totally geodesic subvariety of moduli
+space},
+arXiv:2412.06765.
+
+\bibitem{Bers}
+L.~Bers,
+\emph{An extremal problem for quasiconformal mappings and a
+theorem by Thurston},
+Acta Math. \textbf{141} (1978), 73--98.
+
+\bibitem{BersEmbedding}
+L.~Bers,
+\emph{Spaces of Riemann surfaces as bounded domains},
+Bull. Amer. Math. Soc. \textbf{66} (1960), 98--103.
+
+\bibitem{DM}
+P.~Deligne and D.~Mumford,
+\emph{The irreducibility of the space of curves of given genus},
+Publ. Math. Inst. Hautes \'Etudes Sci. \textbf{36} (1969),
+75--109.
+
+\bibitem{EK}
+C.~J.~Earle and I.~Kra,
+\emph{On isometries between Teichm\"uller spaces},
+Duke Math. J. \textbf{41} (1974), 583--591.
+
+\bibitem{Masur}
+H.~Masur,
+\emph{Closed trajectories for quadratic differentials with an
+application to billiards},
+Duke Math. J. \textbf{53} (1986), 307--314.
+
+\bibitem{McM}
+C.~T.~McMullen,
+\emph{Rigidity of Teichm\"uller curves},
+Math. Res. Lett. \textbf{16} (2009), no.~4, 647--650.
+
+\bibitem{Mumford}
+D.~Mumford,
+\emph{A remark on Mahler's compactness theorem},
+Proc. Amer. Math. Soc. \textbf{28} (1971), 289--294.
+
+\bibitem{Royden}
+H.~L.~Royden,
+\emph{Automorphisms and isometries of Teichm\"uller space},
+in \emph{Advances in the Theory of Riemann Surfaces},
+Annals of Mathematics Studies, vol.~66,
+Princeton University Press, 1971, 369--383.
+
+\end{thebibliography}
+
+\end{document}

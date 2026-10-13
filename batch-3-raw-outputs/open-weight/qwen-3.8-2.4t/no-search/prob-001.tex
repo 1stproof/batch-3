@@ -1,0 +1,334 @@
+
+
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm,enumitem}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\begin{document}
+
+\title{Cohomological descent for the inclusion of \(B_P^{\rm op}\) into \(A_P^{\rm op}\)}
+\author{}
+\maketitle
+
+\section{Answer}
+
+Yes.  For every monoid \(P\) and every presheaf of abelian groups
+\(F\) on \(B_P^{\rm op}\), the canonical morphism
+\[
+F \longrightarrow \mathrm R\pi_\ast\pi^{-1}F
+\]
+is a quasi-isomorphism.  In fact, under the hypotheses stated in the
+question, the direct image functor \(\pi_\ast\) is exact and the
+underived adjunction unit
+\[
+F \longrightarrow \pi_\ast\pi^{-1}F
+\]
+is an isomorphism.  Hence the derived unit is an isomorphism as well.
+
+The proof is essentially topos-theoretic.  The monoidal definitions
+enter only through the asserted property that the inclusion
+\(B_P^{\rm op}\subset A_P^{\rm op}\) is left exact as a functor of
+sites.  Since \(B_P^{\rm op}\) is given the trivial topology, this
+implies that every covering sieve of an object of \(B_P^{\rm op}\) in
+\(A_P^{\rm op}\) already contains the identity.  This makes the
+restriction functor exact and forces sheafification not to change the
+values of presheaves on objects of \(B_P^{\rm op}\).
+
+\section{Notation}
+
+Let
+\[
+A=A_P,\qquad B=B_P,
+\]
+and let
+\[
+j:B\hookrightarrow A
+\]
+be the fully faithful inclusion.  The sites in the problem are
+\[
+\mathcal C=A^{\rm op},\qquad \mathcal D=B^{\rm op},
+\]
+with \(\mathcal C\) equipped with the birhizomic topology and
+\(\mathcal D\) equipped with the trivial topology.  We write
+\[
+i:\mathcal D\hookrightarrow \mathcal C
+\]
+for the induced inclusion \(i=j^{\rm op}\).
+
+A presheaf on \(\mathcal D=B^{\rm op}\) is the same thing as a covariant
+functor
+\[
+F:B\longrightarrow \mathbf{Ab}.
+\]
+The left Kan extension used in the question is the left Kan extension
+along \(j\):
+\[
+\operatorname{Lan}_j F:A\longrightarrow \mathbf{Ab},
+\]
+regarded as a presheaf on \(A^{\rm op}\).  Sheafification on
+\(\mathcal C=A^{\rm op}\) is denoted by \(a\).  Thus
+\[
+\pi^{-1}F = a(\operatorname{Lan}_j F).
+\]
+
+The right adjoint \(\pi_\ast\) is restriction along \(j\):
+\[
+\pi_\ast G = G\circ j
+\]
+for a sheaf \(G\) on \(\mathcal C\).  Indeed, for \(F\in
+\operatorname{PSh}(\mathcal D)\) and \(G\in \operatorname{Sh}(\mathcal C)\),
+\[
+\operatorname{Hom}_{\operatorname{Sh}(\mathcal C)}(a\operatorname{Lan}_jF,G)
+\simeq
+\operatorname{Hom}_{\operatorname{PSh}(\mathcal C)}(\operatorname{Lan}_jF,G)
+\simeq
+\operatorname{Hom}_{\operatorname{PSh}(\mathcal D)}(F,G\circ j).
+\]
+
+\section{A general topos-theoretic lemma}
+
+We first prove a general statement which directly implies the desired
+conclusion.
+
+\begin{lemma}\label{lemma:discrete}
+Let \(i:\mathcal D\hookrightarrow \mathcal C\) be a fully faithful
+inclusion of sites.  Assume that \(\mathcal D\) has the trivial
+topology, and that \(i\) is continuous.  Then for every object
+\(U\in\mathcal D\) and every covering sieve \(R\) on \(i(U)\) in
+\(\mathcal C\), the identity morphism \(\mathrm{id}_{i(U)}\) belongs to
+\(R\).
+\end{lemma}
+
+\begin{proof}
+Continuity of \(i\) means that for every covering sieve \(R\) on
+\(i(U)\), the pulled-back sieve
+\[
+i^{-1}R=\{\,f:V\to U\text{ in }\mathcal D \mid i(f)\in R\,\}
+\]
+is a covering sieve in \(\mathcal D\).  Since the topology on
+\(\mathcal D\) is trivial, the only covering sieve on \(U\) is the
+maximal sieve.  Hence \(i^{-1}R\) is maximal.  In particular,
+\(\mathrm{id}_U\in i^{-1}R\), and therefore
+\[
+i(\mathrm{id}_U)=\mathrm{id}_{i(U)}\in R.
+\]
+\end{proof}
+
+\begin{remark}
+In the terminology used in the problem, the assertion that the
+inclusion \(B_P^{\rm op}\subset A_P^{\rm op}\) is left exact is made
+as a functor of sites; in particular it includes continuity.  Thus
+Lemma~\ref{lemma:discrete} applies to
+\(\mathcal D=B_P^{\rm op}\subset \mathcal C=A_P^{\rm op}\).
+\end{remark}
+
+\begin{lemma}\label{lemma:sheafification-value}
+Let \(\mathcal C\) be a site and let \(c\in\mathcal C\) be an object
+such that every covering sieve on \(c\) contains
+\(\mathrm{id}_c\).  Then for every presheaf of abelian groups
+\(G\) on \(\mathcal C\), the canonical map
+\[
+G(c)\longrightarrow (aG)(c)
+\]
+to the associated sheaf is an isomorphism.
+\end{lemma}
+
+\begin{proof}
+Use the usual plus construction for sheafification of abelian
+presheaves.  For a presheaf \(G\), define
+\[
+G^+(c)=\varinjlim_{R} \operatorname{Hom}(R,G),
+\]
+where \(R\) runs over covering sieves on \(c\), and
+\(\operatorname{Hom}(R,G)\) is the group of matching families for
+\(G\) over \(R\).
+
+If \(R\) is a covering sieve on \(c\), then by hypothesis
+\(\mathrm{id}_c\in R\).  The category of elements of \(R\) then has a
+terminal object, namely \(\mathrm{id}_c:c\to c\).  Therefore a matching
+family over \(R\) is uniquely determined by its component along
+\(\mathrm{id}_c\), and every element of \(G(c)\) defines a matching
+family.  Hence the restriction map
+\[
+G(c)\xrightarrow{\sim}\operatorname{Hom}(R,G)
+\]
+is an isomorphism.  These isomorphisms are compatible with the
+transition maps induced by inclusions of sieves, so
+\[
+G^+(c)\cong G(c).
+\]
+Sheafification is obtained by applying the plus construction twice, so
+\((aG)(c)\cong G(c)\).  Under this identification the canonical map is
+the identity.
+\end{proof}
+
+\begin{lemma}\label{lemma:pi-star-exact}
+Let \(i:\mathcal D\hookrightarrow \mathcal C\) be a fully faithful
+inclusion of sites satisfying the conclusion of
+Lemma~\ref{lemma:discrete}: every covering sieve on an object of
+\(\mathcal D\) contains the identity.  Let
+\[
+\pi^{-1}:\operatorname{Sh}(\mathcal D)\to \operatorname{Sh}(\mathcal C)
+\]
+be the functor given by left Kan extension followed by sheafification,
+and let \(\pi_\ast\) be its right adjoint.  Then \(\pi_\ast\) is exact.
+\end{lemma}
+
+\begin{proof}
+As observed above, \(\pi_\ast\) is restriction along the inclusion
+\(\mathcal D\subset\mathcal C\).  We must show that restriction from
+sheaves on \(\mathcal C\) to presheaves on \(\mathcal D\) preserves
+short exact sequences.
+
+Finite limits of sheaves of abelian groups are computed objectwise, so
+restriction preserves kernels.  It remains to prove that restriction
+preserves epimorphisms.
+
+Let \(\varphi:G\to H\) be an epimorphism of sheaves on \(\mathcal C\),
+and let \(U\in\mathcal D\).  Take a section \(s\in H(U)\).  By the
+standard characterization of epimorphisms of sheaves, the sieve
+\[
+R_s=\{\,f:V\to U \mid s|_V \text{ lifts to } G(V)\,\}
+\]
+is a covering sieve on \(U\); see for instance the Stacks Project,
+Lemma 00ZG.  By hypothesis, \(\mathrm{id}_U\in R_s\).  Hence \(s\)
+itself lifts to a section of \(G(U)\).  Thus
+\[
+G(U)\longrightarrow H(U)
+\]
+is surjective for every \(U\in\mathcal D\), and restriction preserves
+epis.  Therefore restriction is exact.
+\end{proof}
+
+\begin{lemma}\label{lemma:underived-unit}
+Let \(i:\mathcal D\hookrightarrow \mathcal C\) be as in
+Lemma~\ref{lemma:pi-star-exact}.  For every presheaf of abelian groups
+\(F\) on \(\mathcal D\), the underived adjunction unit
+\[
+F\longrightarrow \pi_\ast\pi^{-1}F
+\]
+is an isomorphism.
+\end{lemma}
+
+\begin{proof}
+Let \(j:\mathcal D^{\rm op}\hookrightarrow \mathcal C^{\rm op}\) be the
+opposite inclusion.  The presheaf \(F\) on \(\mathcal D\) is a functor
+\(\mathcal D^{\rm op}\to\mathbf{Ab}\), and the relevant left Kan
+extension is \(\operatorname{Lan}_j F\).
+
+Since \(j\) is fully faithful, left Kan extension along \(j\) restricts
+back to \(F\).  Concretely, for \(U\in\mathcal D\),
+\[
+(\operatorname{Lan}_jF)(U)
+=
+\varinjlim_{(V\in\mathcal D,\ V\to U)} F(V).
+\]
+The indexing category has a terminal object, namely
+\((U,\mathrm{id}_U)\), so the colimit is \(F(U)\).  Thus
+\[
+(\operatorname{Lan}_jF)|_{\mathcal D}\cong F.
+\]
+
+Now sheafify.  By Lemma~\ref{lemma:sheafification-value}, sheafification
+does not change the value at any object of \(\mathcal D\), because every
+covering sieve on such an object contains the identity.  Hence
+\[
+(\pi^{-1}F)|_{\mathcal D}
+=
+(a\operatorname{Lan}_jF)|_{\mathcal D}
+\cong
+(\operatorname{Lan}_jF)|_{\mathcal D}
+\cong
+F.
+\]
+Since \(\pi_\ast\) is restriction, this gives
+\[
+\pi_\ast\pi^{-1}F\cong F.
+\]
+The adjunction unit is precisely this composite isomorphism.
+\end{proof}
+
+\begin{proposition}\label{prop:general}
+Let \(i:\mathcal D\hookrightarrow \mathcal C\) be a fully faithful
+inclusion of sites satisfying the hypotheses of
+Lemma~\ref{lemma:pi-star-exact}.  Then for every presheaf of abelian
+groups \(F\) on \(\mathcal D\), the morphism
+\[
+F\longrightarrow \mathrm R\pi_\ast\pi^{-1}F
+\]
+is a quasi-isomorphism.
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{lemma:pi-star-exact}, \(\pi_\ast\) is exact.  Therefore
+its right derived functor is just \(\pi_\ast\) itself:
+\[
+\mathrm R\pi_\ast=\pi_\ast.
+\]
+Thus
+\[
+\mathrm R\pi_\ast\pi^{-1}F
+=
+\pi_\ast\pi^{-1}F.
+\]
+By Lemma~\ref{lemma:underived-unit}, the underived unit
+\(F\to\pi_\ast\pi^{-1}F\) is an isomorphism.  Hence the derived unit is
+a quasi-isomorphism.
+\end{proof}
+
+\section{Application to the birhizomic site}
+
+We now apply Proposition~\ref{prop:general} to the situation of the
+question.
+
+Recall that
+\[
+\mathcal C=A_P^{\rm op},\qquad \mathcal D=B_P^{\rm op}.
+\]
+The topology on \(\mathcal D\) is trivial, and the inclusion
+\[
+i:\mathcal D\hookrightarrow \mathcal C
+\]
+is fully faithful.  The problem states that this inclusion is left
+exact.  As a functor of sites, this means in particular that it is
+continuous.  Therefore Lemma~\ref{lemma:discrete} applies: every
+birhizomic covering sieve on an object of \(B_P^{\rm op}\) contains the
+identity.
+
+Consequently the hypotheses of Proposition~\ref{prop:general} are
+satisfied.  Hence for every presheaf of abelian groups \(F\) on
+\(B_P^{\rm op}\), the canonical morphism
+\[
+F\longrightarrow \mathrm R\pi_\ast\pi^{-1}F
+\]
+is a quasi-isomorphism.
+
+\begin{theorem}
+For every monoid \(P\) and every presheaf of abelian groups \(F\) on
+\(B_P^{\rm op}\), the morphism
+\[
+F \longrightarrow \mathrm R\pi_\ast\pi^{-1}F
+\]
+is a quasi-isomorphism.
+\end{theorem}
+
+\begin{proof}
+This is exactly Proposition~\ref{prop:general} applied to
+\(\mathcal C=A_P^{\rm op}\) and \(\mathcal D=B_P^{\rm op}\), using the
+continuity consequence of the stated left exactness of the inclusion.
+\end{proof}
+
+\begin{remark}
+The proof shows more: the functor \(\pi_\ast\) is exact and the
+underived unit \(F\to\pi_\ast\pi^{-1}F\) is an isomorphism.  Thus the
+derived statement is not merely a vanishing theorem; it follows from an
+actual equality at the abelian level.
+\end{remark}
+
+\end{document}

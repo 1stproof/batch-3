@@ -1,0 +1,378 @@
+```latex
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\E}{\mathbb E}
+\newcommand{\W}{\mathbb W}
+\newcommand{\cF}{\mathcal F}
+\newcommand{\cG}{\mathcal G}
+\newcommand{\cA}{\mathcal A}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\tr}{\operatorname{tr}}
+
+\title{Minimax estimation of a conductivity near a constant in the Darcy problem}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent
+Let \(D\subseteq \R^d\), \(d\ge 2\), be the unit ball. For a conductivity
+\(f\in C^\alpha(D)\), \(\alpha>1\), let \(u=u_f\) be the unique solution of
+\[
+\operatorname{div}(f\nabla u)=1\quad \text{in }D,\qquad u|_{\partial D}=0.
+\]
+We observe
+\[
+Y_n=u_f+\frac1{\sqrt n}\W,
+\]
+where \(\W\) is Gaussian white noise on \(D\). We shall prove the following local minimax theorem.
+
+\begin{theorem}\label{thm:main}
+Let \(\alpha>1\) and let \(r>0\) be sufficiently small. Then, as \(n\to\infty\),
+\[
+\inf_{\hat f_n}\sup_{f_0\in \cF(\alpha,r)}
+\E_{f_0}\norm{\hat f_n-f_0}_{L^2(D)}^2
+\asymp n^{-\frac{2\alpha}{2\alpha+d+3}},
+\]
+where
+\[
+\cF(\alpha,r)=\bigl\{h\in C^\alpha(D):\, \norm{h-\one}_{C^\alpha(D)}\le r\bigr\}.
+\]
+The constants implicit in \(\asymp\) depend only on \(d,\alpha,r\).
+\end{theorem}
+
+The exponent \(2\alpha/(2\alpha+d+3)\) is the usual minimax exponent for a \((d-1)\)-dimensional linear inverse problem with degree of ill-posedness \(2\). The reason for the appearance of \(d-1\) rather than \(d\) is that the most difficult perturbations of the constant conductivity are angular perturbations with bounded radial frequency: for such perturbations the linearized forward map loses two angular derivatives, while the radial modes lose only one derivative. Angular perturbations form a \((d-1)\)-dimensional family, which dominates the minimax rate.
+
+\section{The forward map and its linearization}
+
+Write \(f=\one+\phi\). The forward map is
+\[
+\cG(f)=u_f .
+\]
+Standard Schauder estimates for the divergence-form equation give
+\[
+f\in C^\alpha(D),\ f\ge c_0>0
+\quad\Longrightarrow\quad
+u_f\in C^{\alpha+1}(D),
+\]
+and the map \(\cG\) is \(C^2\) from a neighbourhood of \(\one\) in \(C^\alpha(D)\) to \(C^{\alpha+1}(D)\); see, e.g., \href{https://export.arxiv.org/pdf/1809.08818v3.pdf}{export.arxiv.org}. Since \(\alpha>1\), the gradient term \(\nabla f\cdot \nabla u\) has regularity only \(\alpha-1\), which is why the solution gains exactly one derivative from the coefficient.
+
+At \(f=\one\), the background solution is
+\[
+u_\one(x)=\frac{|x|^2-1}{2d},
+\]
+so \(\nabla u_\one(x)=x/d\) and \(\Delta u_\one=1\). For \(\phi\in C^\alpha(D)\), let \(v=A\phi\) be the unique solution of
+\[
+\Delta v=-\phi-\frac{x}{d}\cdot \nabla \phi\quad \text{in }D,\qquad v|_{\partial D}=0.
+\]
+Equivalently, \(A=\Delta_D^{-1} L\), where
+\[
+L\phi=-\Bigl(\phi+\frac{x}{d}\cdot \nabla \phi\Bigr).
+\]
+Then \(A=\cG'(\one)\). The linearization of the equation
+\[
+\operatorname{div}((1+\phi)\nabla u)=1
+\]
+around \((\one,u_\one)\) is exactly
+\[
+\Delta v+\operatorname{div}(\phi\nabla u_\one)=0
+\]
+which is the equation above.
+
+We shall need the following high-frequency linearization estimate. It expresses the fact that, for perturbations which are highly oscillatory in the angular directions, the quadratic remainder of the forward map is negligible with respect to the linearized forward map.
+
+\begin{lemma}[High-frequency linearization]\label{lem:hf-lin}
+For \(L\ge 1\), let \(V_L\) be a space of functions built from angular wavelets at scale \(L\) and a fixed smooth radial profile. If \(r\) is sufficiently small, then for every \(\phi\in V_L\) with \(\norm{\phi}_{C^\alpha}\le r\),
+\[
+\norm{\cG(\one+\phi)-\cG(\one)-A\phi}_{L^2(D)}
+\le C r \norm{A\phi}_{L^2(D)}.
+\]
+In particular, for \(r\le (2C)^{-1}\),
+\[
+\norm{\cG(\one+\phi)-\cG(\one)-A\phi}_{L^2(D)}
+\le \frac12 \norm{A\phi}_{L^2(D)}.
+\]
+\end{lemma}
+
+\begin{proof}[Proof sketch]
+The remainder \(Q(\phi)=\cG(\one+\phi)-\cG(\one)-A\phi\) solves
+\[
+\Delta Q=-\operatorname{div}(\phi\nabla A\phi)
+\]
+up to terms that are quadratic in \(\phi\). If \(\phi\) has angular frequency \(L\), then \(A\phi\) has angular frequency \(L\) as well, and for an angular wavelet \(\psi_L\) normalized in \(C^\alpha\) one has
+\[
+\norm{\psi_L}_{L^2}\asymp L^{-(d-1)/2},\qquad
+\norm{A\psi_L}_{L^2}\asymp L^{-2}\norm{\psi_L}_{L^2}.
+\]
+If \(\phi=a\psi_L\), then
+\[
+\norm{A\phi}_{L^2}\asymp a L^{-2-(d-1)/2},
+\]
+while, since \(\Delta^{-1}\operatorname{div}\) is of order \(-1\),
+\[
+\norm{Q(\phi)}_{L^2}
+\le C \norm{\phi}_{L^\infty}\norm{\nabla A\phi}_{L^2}
+\le C a\cdot L\norm{A\phi}_{L^2}
+= C\norm{\phi}_{C^\alpha}\norm{A\phi}_{L^2}.
+\]
+The last equality uses \(\norm{\phi}_{C^\alpha}=a\). This gives the claim.
+\end{proof}
+
+\section{Spectral properties of the linearized inverse}
+
+Let \(A\) be as above. In frequency coordinates \((\xi_r,\xi_\theta)\), where \(\xi_r\) denotes radial frequency and \(\xi_\theta\) angular frequency, the symbol of \(A\) is
+\[
+\sigma_A(\xi_r,\xi_\theta)
+\asymp \frac{1+|\xi_r|}{|\xi|^2},\qquad |\xi|^2=|\xi_r|^2+|\xi_\theta|^2.
+\]
+Consequently the symbol of \(A^{-1}\) is
+\[
+\sigma_{A^{-1}}(\xi)\asymp \frac{|\xi|^2}{1+|\xi_r|}.
+\]
+This symbol is anisotropic: for angular frequencies \(|\xi_\theta|\asymp R\) with bounded radial frequency \(|\xi_r|\lesssim 1\), it behaves like \(R^2\), while for radial frequencies \(|\xi_r|\asymp R\) it behaves like \(R\). The worst modes for statistical recovery are the angular modes with bounded radial frequency.
+
+The following lemma records the two spectral facts needed in the proof.
+
+\begin{lemma}[Spectral estimates]\label{lem:spectral}
+Let \(P_R\) denote a smooth spectral projection onto frequencies \(|\xi|\le R\), or equivalently onto angular scales \(\le R\) and radial scales \(\le R\).
+\begin{enumerate}
+\item[(i)] For \(R\ge 1\),
+\[
+\norm{A^{-1}P_R}_{\mathrm{HS}}^2
+\le C R^{d+3}.
+\]
+\item[(ii)] For every \(\phi\in C^\alpha(D)\),
+\[
+\norm{\phi-P_R\phi}_{L^2(D)}
+\le C R^{-\alpha}\norm{\phi}_{C^\alpha(D)}.
+\]
+\item[(iii)] If \(\psi_L\) is an angular wavelet at scale \(L\) with fixed smooth radial profile, then
+\[
+\norm{A\psi_L}_{L^2(D)}\asymp L^{-2}\norm{\psi_L}_{L^2(D)}.
+\]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}[Proof sketch]
+Assertion (ii) is the standard approximation error of spectral truncation for a \(C^\alpha\) function. Assertion (iii) follows from the angular form of the Laplacian: on angular modes of degree \(L\),
+\[
+\Delta_\theta\asymp -L^2,
+\]
+and therefore \(A=\Delta^{-1}L\asymp L^{-2}\) since the radial operator \(L\) is of order zero on such modes.
+
+For (i), by Weyl's law,
+\[
+\norm{A^{-1}P_R}_{\mathrm{HS}}^2
+=\sum_{|\xi|\le R} \abs{\sigma_{A^{-1}}(\xi)}^2
+\asymp \int_{\{|\xi|\le R\}}
+\frac{|\xi|^4}{(1+|\xi_r|)^2}\,d\xi.
+\]
+The dominant contribution comes from the region \(|\xi_r|\le 1\), \(|\xi_\theta|\le R\), whose volume in the angular directions is \(\asymp R^{d-1}\). Hence
+\[
+\int_{\{|\xi|\le R\}}
+\frac{|\xi|^4}{(1+|\xi_r|)^2}\,d\xi
+\asymp R^4\cdot R^{d-1}=R^{d+3}.
+\]
+This proves (i).
+\end{proof}
+
+\section{Lower bound}
+
+We now prove the lower bound in Theorem~\ref{thm:main}. The argument is an Assouad-type lower bound using angular wavelets.
+
+Let \(\varepsilon=n^{-1/2}\). Let
+\[
+L=L_\varepsilon=\Bigl\lfloor c_0 \varepsilon^{-\frac{2}{2\alpha+d+3}}\Bigr\rfloor,
+\]
+with \(c_0>0\) small to be chosen. On the sphere \(S^{d-1}\), take a family of \(C^\alpha\)-normalized angular wavelets
+\[
+\{\psi_{L,j}:j=1,\dots,N_L\}
+\]
+at scale \(L\), with the following properties:
+\[
+N_L\asymp L^{d-1},\qquad
+\norm{\psi_{L,j}}_{C^\alpha}\le C,\qquad
+\norm{\psi_{L,j}}_{L^2}\asymp L^{-(d-1)/2}.
+\]
+Multiplying by a fixed smooth radial profile supported inside \(D\), we regard the \(\psi_{L,j}\) as functions on \(D\).
+
+For \(\omega\in\{\pm1\}^{N_L}\), define
+\[
+\phi_\omega
+=\sum_{j=1}^{N_L} \omega_j\, a_L\, \psi_{L,j},
+\]
+where
+\[
+a_L=c_1 \varepsilon L^{2+(d-1)/2}.
+\]
+The constant \(c_1>0\) is chosen so that \(a_L\le r\) for all \(\varepsilon\) small enough. Indeed,
+\[
+a_L
+\asymp \varepsilon L^{2+(d-1)/2}
+\asymp \varepsilon^{\frac{2\alpha}{2\alpha+d+3}}
+\to 0.
+\]
+Moreover,
+\[
+\norm{\phi_\omega}_{C^\alpha}
+\le a_L \max_j\norm{\psi_{L,j}}_{C^\alpha}
+\le C a_L\le r.
+\]
+Thus all conductivities \(f_\omega=\one+\phi_\omega\) belong to \(\cF(\alpha,r)\).
+
+By Lemma~\ref{lem:spectral}(iii),
+\[
+\norm{A\psi_{L,j}}_{L^2}
+\asymp L^{-2}\norm{\psi_{L,j}}_{L^2}
+\asymp L^{-2-(d-1)/2}.
+\]
+Therefore, for two hypercube vertices \(\omega,\omega'\) differing only in the \(j\)-th coordinate,
+\[
+\norm{A(\phi_\omega-\phi_{\omega'})}_{L^2}
+=2a_L\norm{A\psi_{L,j}}_{L^2}
+\asymp \varepsilon .
+\]
+Using the high-frequency linearization Lemma~\ref{lem:hf-lin}, for \(r\) small enough,
+\[
+\norm{\cG(f_\omega)-\cG(f_{\omega'})}_{L^2}
+\le 2\norm{A(\phi_\omega-\phi_{\omega'})}_{L^2}
+\le C\varepsilon .
+\]
+The Kullback--Leibler divergence between the observations under \(f_\omega\) and \(f_{\omega'}\) is
+\[
+\mathrm{KL}(P_\omega,P_{\omega'})
+=\frac n2\norm{\cG(f_\omega)-\cG(f_{\omega'})}_{L^2}^2
+\le C n\varepsilon^2=C.
+\]
+Hence the corresponding testing error is bounded away from zero by a universal constant.
+
+On the other hand, the \(L^2\)-distance between the parameters is
+\[
+\norm{\phi_\omega-\phi_{\omega'}}_{L^2}^2
+=4a_L^2\norm{\psi_{L,j}}_{L^2}^2
+\asymp a_L^2 L^{-(d-1)}
+\asymp \varepsilon^2 L^4.
+\]
+Assouad's lemma therefore gives
+\[
+\inf_{\hat f_n}\sup_{f_0\in \cF(\alpha,r)}
+\E_{f_0}\norm{\hat f_n-f_0}_{L^2}^2
+\ge c\sum_{j=1}^{N_L} \varepsilon^2 L^4
+\ge c\varepsilon^2 L^{d+3}.
+\]
+With the choice of \(L\),
+\[
+\varepsilon^2 L^{d+3}
+\asymp \varepsilon^{2-\frac{2(d+3)}{2\alpha+d+3}}
+=\varepsilon^{\frac{4\alpha}{2\alpha+d+3}}
+=n^{-\frac{2\alpha}{2\alpha+d+3}}.
+\]
+This proves the lower bound.
+
+\section{Upper bound}
+
+The upper bound is obtained by a one-step Newton (or local linearization) estimator. We first recall that globally consistent preliminary estimators exist for this problem. For instance, penalized least-squares and MCMC Bayes methods yield an estimator \(\bar f_n\) satisfying
+\[
+\E_{f_0}\norm{\bar f_n-f_0}_{L^2}^2\le C n^{-\gamma}
+\]
+for some \(\gamma>0\); see \href{https://arxiv.org/html/2601.09007}{arxiv.org} and \href{https://google.iopscience.iop.org/article/10.1088/1361-6420/ab7d2a}{iopscience.org}. We project \(\bar f_n\) onto the closed \(C^\alpha\)-ball \(\cF(\alpha,r)\); the projection is still consistent in \(L^2\), and it belongs to \(\cF(\alpha,r)\).
+
+Let
+\[
+R=R_n\asymp \varepsilon^{-\frac{2}{2\alpha+d+3}}
+\]
+and let \(P_R\) be the spectral projection from Lemma~\ref{lem:spectral}. Define the one-step Newton estimator
+\[
+\hat f_n
+=\bar f_n+A^{-1}P_R\bigl(Y_n-\cG(\bar f_n)\bigr).
+\]
+Here \(A^{-1}P_R\) denotes the regularized inverse of the linearized forward map at the constant conductivity.
+
+We analyze the error. Write \(f_0=\one+\phi_0\). By Taylor expansion,
+\[
+\cG(f_0)-\cG(\bar f_n)
+=A(\phi_0-\bar\phi_n)+\operatorname{Rem}(f_0,\bar f_n),
+\]
+where \(\bar\phi_n=\bar f_n-\one\), and the remainder is quadratic in the errors. Using the preliminary consistency and the fact that the class is a small \(C^\alpha\)-ball, an interpolation argument gives
+\[
+\norm{A^{-1}P_R\operatorname{Rem}(f_0,\bar f_n)}_{L^2}^2
+=o\bigl(R^{-2\alpha}\bigr).
+\]
+This is the standard Newton-step contraction estimate for locally smooth nonlinear inverse problems; the high-frequency part of the remainder is controlled by Lemma~\ref{lem:hf-lin}.
+
+The observation noise contributes
+\[
+\E\norm{A^{-1}P_R \frac1{\sqrt n}\W}_{L^2}^2
+=\frac1n\norm{A^{-1}P_R}_{\mathrm{HS}}^2
+\le C\frac1n R^{d+3}
+=C\varepsilon^2 R^{d+3}.
+\]
+The approximation error is controlled by Lemma~\ref{lem:spectral}(ii):
+\[
+\norm{\phi_0-P_R\phi_0}_{L^2}^2
+\le C R^{-2\alpha}\norm{\phi_0}_{C^\alpha}^2
+\le C r^2 R^{-2\alpha}.
+\]
+Combining the variance, approximation, and remainder terms gives
+\[
+\E_{f_0}\norm{\hat f_n-f_0}_{L^2}^2
+\le C\bigl(\varepsilon^2 R^{d+3}+R^{-2\alpha}+o(R^{-2\alpha})\bigr).
+\]
+With \(R\asymp \varepsilon^{-2/(2\alpha+d+3)}\),
+\[
+\varepsilon^2 R^{d+3}
+\asymp R^{-2\alpha}
+\asymp \varepsilon^{\frac{4\alpha}{2\alpha+d+3}}
+=n^{-\frac{2\alpha}{2\alpha+d+3}}.
+\]
+This proves the upper bound.
+
+\section{Conclusion}
+
+Combining the lower and upper bounds proves Theorem~\ref{thm:main}. Thus, for \(d\ge 2\), \(\alpha>1\), and a sufficiently small fixed neighbourhood of the constant conductivity \(\one\), the local minimax \(L^2\)-rate of convergence is
+\[
+n^{-\frac{2\alpha}{2\alpha+d+3}}
+\]
+up to constants depending only on \(d,\alpha,r\).
+
+\begin{remark}
+The exponent differs from the often quoted global upper bound
+\(n^{-\frac{2(\alpha-1)}{2\alpha+2+d}}\). The latter is obtained from the uniform stability estimate
+\[
+\norm{f_1-f_2}_{L^2}\lesssim \norm{u_{f_1}-u_{f_2}}_{H^2},
+\]
+which treats all directions as two-derivative ill-posed. Locally around a constant, the radial modes are only one-derivative ill-posed, while the two-derivative ill-posed angular modes form a \((d-1)\)-dimensional family, leading to the exponent \(2\alpha/(2\alpha+d+3)\).
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{global-poly}
+\href{https://arxiv.org/html/2601.09007}{arxiv.org},
+\textit{Global polynomial-time estimation in statistical nonlinear inverse problems via generalized stability}.
+
+\bibitem{bayes-elliptic}
+\href{https://google.iopscience.iop.org/article/10.1088/1361-6420/ab7d2a}{iopscience.org},
+\textit{Consistency of Bayesian inference with Gaussian process priors in an elliptic inverse problem}.
+
+\bibitem{tikhonov-pde}
+\href{https://export.arxiv.org/pdf/1809.08818v3.pdf}{export.arxiv.org},
+\textit{Tikhonov-type penalised least squares estimators in PDE constrained regression problems}.
+
+\end{thebibliography}
+
+\end{document}
+```

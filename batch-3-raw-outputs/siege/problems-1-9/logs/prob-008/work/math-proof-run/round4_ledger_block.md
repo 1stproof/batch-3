@@ -1,0 +1,13 @@
+PROVED: Under GH, (N1) invariant Borel sets are Lebesgue-null or conull, (N2) the flow is conservative for dim M >= 2, (N3) any L^1 solution u of u o g_t - u = int_0^t f o g_s with f smooth is smooth, and (N4) (V) holds iff d - c lies in X(D') for some constant c — round3_q1
+PROVED: Under GH, if some absolutely continuous invariant probability rho nu has rho^{-eps} in L^1(nu) for some eps > 0 (e.g. rho bounded below), then X preserves a smooth positive volume — round3_q1
+PROVED: Under GH with dim M >= 2, X has no zero or periodic orbit that is a Lyapunov-stable attractor or repeller with open basin — round3_q1
+PROVED: Under GH, X preserves a smooth positive volume iff the space I of X-invariant distribution densities is one-dimensional, and then the flow is uniquely ergodic, has no zeros or periodic orbits (dim M >= 2) and every volume-mean-zero smooth function is Xu with u smooth — round3_q2
+PROVED: Under GH plus a smooth invariant volume omega, h_top = h_omega, and h_omega = 0 whenever omega has no zero transverse Lyapunov exponent (citing Pesin's formula and Katok's horseshoe theorem for flows), so the goal holds under these hypotheses when dim M <= 3 — round3_q4
+OPEN: Under GH plus a smooth invariant volume omega, omega cannot have a positive Lyapunov exponent together with a zero transverse exponent (the non-hyperbolic core, which with entry 15 and (V) gives the goal) — round3_q4
+REFUTED: Under H the ergodic integrals x -> int_0^T f(g_t x)dt are Lipschitz with a constant independent of T (only Lip <= Lip(u)(1 + Lip(g_T)) holds) — round3_q3
+PROVED: Under H there are m, C such that every orbit segment of length >= C eps^{-m-n} meets every eps-ball — round3_q3
+OPEN: (V) If X is GH on the compact connected manifold M, then X preserves a smooth everywhere-positive density omega (equivalently div_nu X = Xa with a smooth, for a smooth positive density nu) — round4_plan
+RETRACT 6: superseded by entry 19, the same claim restated as the chain's missing statement
+OPEN: (Planner Lemma C) Under GH with dim M >= 2, every x satisfies int_R exp(J_t(x)) dt = infinity, where J_t is the log nu-Jacobian of g_t — round4_plan
+OPEN: (Planner Lemma D) Under GH, if int_R exp(J_t(x) - s|t|) dt < infinity for all s > 0, the normalised Jacobian-weighted orbit measures converge weak* to nu/nu(M) as s -> 0, so every ergodic mu with mu(d) = 0 has full support — round4_plan
+OPEN: (Planner Lemmas E, F) Under GH, unique ergodicity forces mu(d) = 0, minimality, and (V) iff J_t(x0) is bounded for one x0; and (V) holds iff X + div_nu X acting on functions is GH — round4_plan

@@ -1,0 +1,490 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\NS}{\operatorname{NS}}
+\newcommand{\Pic}{\operatorname{Pic}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\rk}{\operatorname{rank}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\Ext}{\operatorname{Ext}}
+\newcommand{\OO}{\mathcal O}
+
+\newcommand{\fptitle}{Review of Problem 10 -- MerLean}
+\newcommand{\reviewtag}{Reviewer 3}
+\usepackage{fp-review}
+
+\begin{document}
+\maketitle
+
+\section{Review}
+{\color{gray}
+
+Kestrel does not disprove the theorem. Its central obstruction arises from a sign error in Lemma 4.2, which reverses the relationship between monodromy and the canonical degree of a mirror component. The resulting Proposition 4.3 is false.  This is not merely a disagreement with the supplied reference solution. Kestrel should have caught its mistake; the erroneous sign can be checked directly against the pseudolattice constructions in Giovenzana–Thompson, using an explicit integral matrix calculation. It is telling that Kestrel explicitly recognizes that its result contradicts Giovenzana–Thompson’s established degree formula, but attributes the discrepancy to conventions without checking the simplest examples of those conventions.
+
+Digging deeper, Kestrel has chosen to use a previous arXiv version 2 of the Giovenzana-Thompson paper, which was already corrected two years ago in arXiv version 3.  This seems like an important failure mode that should be highlighted: Kestrel hasn’t done anything mathematically incorrect, but it has based its work on an old version of an arXiv paper that is known to contain mistakes and that has been corrected in the public record. There are many incorrect things that could be ``proved'' using this method! \vspace{.125in}
+
+\noindent
+{\bf Exposition:}  Despite all of its flaws, the paper reads quite well. The frustrations stemmed from sorting out where the error occured and why, which took quite a lot of effort. \vspace{.125in}
+
+\noindent
+{\bf Attributions:}  The paper consistently fails to reference key papers, instead just citing three papers each of which was published or posted within the past five years.
+
+
+}
+
+
+\paragraph{Correctness.}
+\begin{itemize}
+	\item  1: essentially flawless mathematical argument
+	\item  0.5: minor errors that are easily corrected
+	\item  0: blank solution, or acknowledged partial result
+	\item  $-0.5$: major errors
+	\item  $-1$: proposed proof makes no progress towards the result.
+\end{itemize}
+Note that points should be docked for wrong statements/ solutions.
+
+\noindent Score: $-0.5$
+
+\paragraph{Exposition.}
+\begin{itemize}
+	\item  1: well-written and clear solution.
+	\item  0: argument that is possible to follow with serious effort
+	\item  $-1$: very poor exposition
+\end{itemize}
+
+\noindent Score: 0
+
+\paragraph{Attributions.}
+\begin{itemize}
+	\item  1: solutions contains fully appropriate attributions
+		to related work and theorems being used.
+	\item  0: moderate issues with missing attributions or hallucinated references
+	\item  $-1$: blatant plagiarism or hallucinations
+\end{itemize}
+
+\noindent Score: 0
+
+\newpage
+\section{Submission with inline comments}
+
+
+\begin{abstract}
+We examine the proposed correspondence between $H$-polarised Tyurin degenerations of K3 surfaces and elliptic fibrations on $H\oplus E_8\oplus E_8$-quasipolarised K3 surfaces, using the sign conventions in the cited definitions of Giovenzana--Thompson. For an elliptic fibration $W$ over a disc with boundary fibre $F$, we prove that their required component isometry forces $K_V^2=-\dim_{\Q}H_1(W,F;\Q)$. Thus a positive-degree rational component is impossible. We construct an $H$-polarised Tyurin degeneration with component degrees $1$ and $-1$, an effective flat nef Cartier divisor of positive square on both components, and boundary point outside all closures of proper interior Noether--Lefschetz loci. This gives a counterexample to the stated existence assertion. The obstruction depends on the simultaneous choices of fibre intersection, clockwise displacement in the Seifert pairing, and anticlockwise monodromy; it makes no assertion about a correspondence with modified conventions.
+\end{abstract}
+
+\section{The question and the component condition}
+
+Write $H$ for the integral lattice with Gram matrix $\left(\begin{smallmatrix}0&1\\1&0\end{smallmatrix}\right)$, and $E_8$ for the negative definite root lattice. All surfaces and families are complex. For a smooth projective surface $V$, $\NS(V)$ denotes its N\'eron--Severi group, endowed with the intersection form. A sublattice is \emph{primitive} if its quotient in the ambient lattice is torsion-free.
+
+A \emph{Tyurin degeneration} is a proper semistable degeneration $\mathcal X\to\Delta$ over a disc, with smooth total space, trivial relative canonical bundle, smooth K3 fibres over $\Delta^*=\Delta\setminus\{0\}$, and central fibre
+\[
+X_0=V_1\cup_C V_2,
+\]
+where the $V_i$ are smooth rational surfaces and $C$ is a smooth anticanonical elliptic curve on each. In particular, $N_{C/V_1}\otimes N_{C/V_2}\simeq\OO_C$ and $K_{V_1}^2+K_{V_2}^2=0$.
+A lattice quasipolarisation is a primitive embedding of a hyperbolic lattice in $\NS(X)$ whose real span contains a big and nef class in a fixed positive chamber. In the convention of \cite[\S2B]{AE}, one fixes such a class outside every proper rational linear subspace; it is called \emph{very irrational}. Our construction supplies a fixed very irrational \emph{ample} class on every smooth fibre, so also satisfies this convention.
+
+We use the following strengthened meaning of $H$-polarised degeneration, as in the question:
+\begin{enumerate}
+\item There is a trivial local subsystem $\mathcal L\subset R^2\pi_*\Z$ on $\Delta^*$ with fibre $H$, giving an $H$-quasipolarisation on every smooth fibre.
+\item A single effective flat nef Cartier divisor $A$ on $\mathcal X$ has $[A_t]\in\mathcal L_t$, with $A_t$ nef and big for every $t\ne0$, and $(A|_{V_i})^2>0$ for both $i$.
+\end{enumerate}
+These are the hypotheses used here, including the additional requirements in (2) beyond \cite[Definition~3.20]{GT}. Let $\overline{\mathcal F}_H$ be either stable-pair compactification of elliptic K3 moduli in \cite{ABE}. A \emph{compactified Noether--Lefschetz locus} means the closure of a proper interior locus where an additional integral class becomes algebraic. The boundary generality condition in the question is avoidance of all these closures. This interpretation is essential: it does not declare every boundary point to be a Noether--Lefschetz point merely because it represents a reducible surface.
+
+The question asks whether every such very general degeneration has a mirror on a given very general $M$-quasipolarised K3 surface, where $M=H\oplus E_8\oplus E_8$, in the sense of \cite[Definitions~4.11, 4.21, and~5.1]{GT}. The proposed mirror is an elliptic fibration together with a loop splitting its base into two discs. There are global compatibility and lifting requirements, but a necessary isometry for each disc already obstructs existence. We give its full definition, so the obstruction itself does not require the other parts of the mirror-pair formalism.
+
+\subsection{Conventions for a disc}
+Let $W\to D$ be a proper relatively minimal elliptic fibration from a connected smooth compact surface with boundary to a closed disc. Assume there are no multiple fibres and all singular fibres lie in the interior. Let $F$ be a boundary fibre and put
+\[
+G_{\Z}=H_2(W,F;\Z),\qquad E_{\Z}=H_1(F;\Z),\qquad
+\varphi:G_{\Z}\longrightarrow E_{\Z},
+\]
+where $\varphi$ is the boundary homomorphism. Orient the surface, fibre, and base by their complex structures. Denote the ordinary oriented intersection form on $E_{\Z}$ by $q_F$. The basis in \cite[Definition~2.2]{GT} satisfies
+\begin{equation}\label{eq:fibre}
+q_F(a,b)=-1,\qquad q_F(b,a)=1.
+\end{equation}
+Thus $(a,-b)$ is a positive symplectic basis.
+
+Choose a collar lift $\Psi_s$ of anticlockwise rotation through angle $s$, equal to the identity away from a boundary collar. The Seifert pairing of \cite[Definition~4.1]{GT} is
+\begin{equation}\label{eq:seifert}
+\chi(x,y)=-x\mathbin{\cdot}(\Psi_{-\pi})_*y.
+\end{equation}
+The dot is oriented intersection in the four-manifold, with the relative boundaries separated by the rotation. Our $\Psi_s$ is the source's $\psi_{-s}$; in both notations the second argument in \eqref{eq:seifert} is displaced clockwise. The right adjoint $r$ is specified by
+\begin{equation}\label{eq:adjoint}
+\chi(x,r(c))=q_F(\varphi x,c).
+\end{equation}
+Over $\Q$ it exists uniquely by Lemma~\ref{lem:duality} below. When the integral data required in the mirror definition exist, this is their rationalisation.
+
+A \emph{pseudolattice} is a free abelian group of finite rank with a nondegenerate integral bilinear form, not necessarily symmetric. It is \emph{surface-like} if it has a nonzero primitive element $p$ satisfying
+\[
+\chi(p,p)=0,\qquad \chi(p,x)=\chi(x,p)\ \text{for all }x,
+\qquad \chi|_{p^\perp}\ \text{is symmetric}.
+\]
+Here $p^\perp=\{x:\chi(x,p)=0\}$. Such a $p$ is a \emph{point-like element}. Its N\'eron--Severi lattice is
+\begin{equation}\label{eq:surface}
+\NS(G_{\Z})=p^\perp/\Z p,\qquad
+([x],[y])_{\NS}=-\chi(x,y).
+\end{equation}
+These are \cite[Definitions~2.5--2.6]{GT}.
+
+Write $M_W$ for actual anticlockwise monodromy on $E_{\Z}$, acting on column coordinates. The allowability requirement is
+\begin{equation}\label{eq:allow}
+M_Wa=a,\qquad M_Wb=b+(e(W)-12)a,\qquad r(a)\text{ primitive},
+\end{equation}
+where $e(W)$ is the topological Euler characteristic. A simple loop in the regular locus of an elliptic K3 fibration is \emph{allowable} when both disc pieces satisfy \eqref{eq:allow}; this is \cite[Assumption~4.9 and Definition~4.11]{GT}.
+
+For a rational component $V$ with double curve $C=-K_V$, the component requirement in \cite[Definition~5.1(2)]{GT} is an isometry
+\begin{equation}\label{eq:component}
+\NS(G_{\Z})\xrightarrow{\ \sim\ }\NS(V),\qquad [r(b)]\longmapsto -K_V,
+\end{equation}
+using $p=r(a)$. In particular, the specified relative group must be a surface-like pseudolattice and $r(b)$ must define a class in \eqref{eq:surface}. These are necessary requirements on an actual mirror pair, not conclusions we assume for every disc fibration.
+
+\begin{theorem}\label{thm:main}
+There exist Tyurin degenerations satisfying both strengthened $H$-polarisation conditions above and the boundary Noether--Lefschetz avoidance condition, with
+\[
+K_{V_1}^2=1,\qquad K_{V_2}^2=-1.
+\]
+For any such degeneration constructed below, no elliptic fibration on a K3 surface and allowable loop can supply the two component isometries \eqref{eq:component}. Consequently the existence assertion in the question is false for every choice of its very general $M$-quasipolarised surface $Y$, with the conventions \eqref{eq:fibre}--\eqref{eq:allow}.
+\end{theorem}
+
+The proof has two independent parts. Relative duality and a signed collar calculation give a numerical obstruction for every possible disc piece. An explicit anticanonical union then realises a positive-degree component while retaining all the positivity and moduli hypotheses. For the latter we use Friedman's smoothing theory as stated in Alexeev--Engel \cite[Theorem~3.5 and \S7A]{AE}, their mixed-period coordinates, and the compactifications of Alexeev--Brunyate--Engel \cite{ABE}. The comparison with \cite{GT} concerns its defining conventions; the degree identities asserted later in that paper are not inputs to our argument.
+
+\section{Relative duality and the degree obstruction}
+
+Throughout this section set $G=H_2(W,F;\Q)$ and $E=H_1(F;\Q)$, and use the same symbols for the rationalised forms and maps. We retain the possible nonvanishing of relative first homology.
+
+\begin{lemma}\label{lem:duality}
+The pairing $\chi$ on $G$ is nondegenerate. If $k=\dim_{\Q}H_1(W,F;\Q)$, then
+\begin{equation}\label{eq:rank}
+\dim_{\Q}G=e(W)+2k.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Decompose the boundary base circle into two closed semicircles. Their inverse images $A_b,B_b\subset\partial W$ cover $\partial W$ and meet in two regular fibres. Each is a trivial fibre bundle over an interval, hence retracts onto a fibre. Rotation identifies the corresponding relative groups. After rounding corners, Poincar\'e--Lefschetz duality for this boundary decomposition gives
+\[
+H_j(W,A_b;\Q)\simeq H^{4-j}(W,B_b;\Q).
+\]
+Both relative zeroth homology groups vanish, because $W$ is connected and both boundary pieces are nonempty. Thus relative fourth homology also vanishes. The first Betti number of each pair is $k$, and duality gives $b_3(W,A_b)=k$. Since $e(A_b)=e(F)=0$, the relative Euler characteristic gives
+\[
+e(W)=-k+\dim G-k,
+\]
+which is \eqref{eq:rank}.
+
+The middle-dimensional duality pairing, followed by the clockwise half-rotation on the second argument and multiplication by $-1$, is exactly \eqref{eq:seifert}. Indeed, relative boundaries can move inside the respective semicircle pieces without changing the resulting intersection number. Duality therefore proves nondegeneracy of $\chi$.
+
+Integrally the same duality and the universal coefficient theorem give
+\[
+0\longrightarrow\Ext(H_1(W,B_b;\Z),\Z)
+\longrightarrow H_2(W,A_b;\Z)
+\longrightarrow\Hom(H_2(W,B_b;\Z),\Z)\longrightarrow0.
+\]
+The kernel is the torsion subgroup, so the pairing on the free quotients is unimodular. This does not assert that the original relative groups are always torsion-free. Only the rational conclusion is needed below.
+\end{proof}
+
+\begin{lemma}\label{lem:sign}
+Let $h=(\Psi_{2\pi})_*$ on $G$. With \eqref{eq:fibre}--\eqref{eq:adjoint},
+\begin{align}
+\chi(x,y)-\chi(y,x)&=-q_F(\varphi x,\varphi y),\label{eq:skew}\\
+\chi(x,hy)&=\chi(y,x),\label{eq:transpose}\\
+r\varphi&=h-I.\label{eq:variation}
+\end{align}
+If $\varphi:G\to E$ is surjective, then
+\begin{equation}\label{eq:monodromy}
+\varphi r=M_W-I.
+\end{equation}
+\end{lemma}
+\begin{proof}
+We first determine the sign in \eqref{eq:skew}. At a transverse crossing of the two boundary cycles choose positive fibre coordinates $(u,v)$, outward radial coordinate $\rho\leq0$, and anticlockwise angular coordinate $\theta$. The ambient orientation is $(u,v,\rho,\theta)$. Orient a relative surface collar by its outward radial tangent followed by its boundary tangent. Arrange the collars at the crossing as $\theta=\alpha\rho$ and $\theta=\beta\rho$, with $\alpha>\beta$. After displacing the second collar by $s$, their intersection has
+\[
+\rho=\frac{s}{\alpha-\beta},
+\]
+so it lies in $W$ precisely when $s<0$. If the boundary tangents $v_x,v_y$ have intersection sign $\varepsilon$, the determinant of the ordered surface tangents
+\[
+(\partial_\rho+\alpha\partial_\theta,\ v_x,
+  \partial_\rho+\beta\partial_\theta,\ v_y)
+\]
+has sign $\varepsilon$: the negative factor $\beta-\alpha$ cancels the odd permutation from $(\rho,u,\theta,v)$ to the ambient order. Thus the local contribution to $I_+-I_-$ is $-\varepsilon$, where $I_\pm$ denote intersection with a small positive or negative displacement of the second boundary.
+
+Summing over the crossings gives $I_+-I_-=-q_F(\varphi x,\varphi y)$. Interior intersections created during a deformation cancel algebraically. Moving each small displacement to its half-rotation introduces no further boundary coincidence. By definition $\chi(x,y)=-I_-$; rotating both factors and using symmetry of intersection of two-dimensional cycles gives $\chi(y,x)=-I_+$. This proves \eqref{eq:skew} for integral cycles and hence over $\Q$.
+
+For \eqref{eq:transpose}, the group of collar rotations and invariance of intersection give
+\[
+\chi(x,hy)=-x\cdot(\Psi_{\pi})_*y
+=- (\Psi_{-\pi})_*x\cdot y=\chi(y,x).
+\]
+Using adjointness and \eqref{eq:skew}, we obtain
+\[
+\chi(x,r\varphi y)=q_F(\varphi x,\varphi y)
+=\chi(y,x)-\chi(x,y)=\chi(x,(h-I)y).
+\]
+Nondegeneracy gives \eqref{eq:variation}. Finally, naturality of the boundary map gives $\varphi h=M_W\varphi$, so
+\[
+\varphi r\varphi=(M_W-I)\varphi.
+\]
+Rational surjectivity of $\varphi$ implies \eqref{eq:monodromy}. Integral surjectivity is not needed.
+\end{proof}
+
+\begin{proposition}\label{prop:obstruction}
+Let $V$ be a smooth projective rational surface with a smooth anticanonical curve. If a disc fibration $W$ satisfies \eqref{eq:allow} and the component requirement \eqref{eq:component}, then
+\begin{equation}\label{eq:degree}
+K_V^2=-\dim_{\Q}H_1(W,F;\Q)\leq0.
+\end{equation}
+\end{proposition}
+\begin{proof}
+The anticanonical class $C$ is nonzero in $\NS(V)\otimes\Q$, since an ample divisor has positive intersection with the nonempty effective curve $C$. Nondegeneracy of both pairings in \eqref{eq:adjoint} implies $\rk r=\rk\varphi$. Rank zero would make $p=r(a)=0$, contrary to the required point-like element. In rank one, $r(b)$ would be a rational multiple of $p$, giving $[r(b)]=0$ in $p^\perp/\Q p$. This contradicts its prescribed image $C$. Thus $\varphi$ has rank two and is surjective over $\Q$.
+
+Put $t=e(W)-12$ and $d=K_V^2$. Equations \eqref{eq:allow} and \eqref{eq:monodromy} give
+\[
+\varphi r(a)=0,\qquad \varphi r(b)=ta.
+\]
+Consequently
+\[
+\chi(r(b),r(b))=q_F(ta,b)=-t,
+\qquad [r(b)]_{\NS}^2=t.
+\]
+The isometry \eqref{eq:component} forces
+\begin{equation}\label{eq:square-degree}
+d=e(W)-12.
+\end{equation}
+As $p\ne0$ and $\chi$ is nondegenerate, $p^\perp$ has codimension one. Since $p\in p^\perp$, Lemma~\ref{lem:duality} yields
+\[
+\rk\NS(G_{\Z})=e(W)+2k-2.
+\]
+For a rational surface, $h^1(\OO_V)=h^2(\OO_V)=0$, so $b_2(V)=\rk\NS(V)$. Noether's formula $K_V^2+e(V)=12$ and $e(V)=2+b_2(V)$ give $\rk\NS(V)=10-d$. Hence the same isometry also requires
+\begin{equation}\label{eq:rank-degree}
+10-d=e(W)+2k-2.
+\end{equation}
+Eliminating $e(W)$ between \eqref{eq:square-degree} and \eqref{eq:rank-degree} gives $d=-k$.
+\end{proof}
+
+For a Tyurin pair, applying the proposition to both components and using $d_1+d_2=0$ forces $d_1=d_2=k_1=k_2=0$. In particular, degree one is impossible: \eqref{eq:square-degree} would give $e(W)=13$, whereas \eqref{eq:rank-degree} would say $9=11+2k$.
+
+The sign is substantive. The degree relation \eqref{eq:square-degree} is opposite to the relation $K_V^2=12-e(W)$ used, for example, in \cite[\S5.2.2]{GT}. Lemma~\ref{lem:sign} derives the former directly from the defining clockwise displacement and ordinary intersection form. We do not substitute inverse monodromy, transpose the Seifert form, or reverse a fibre orientation. A change of those conventions changes the assertion under examination.
+
+\section{An anticanonical union of degrees one and minus one}
+
+The obstruction only disproves the proposed existence statement if positive degree can occur under all its input hypotheses. We now construct such a central fibre, keeping track of actual line bundles as well as lattice classes.
+
+\subsection{Degree-one pairs with prescribed restriction maps}
+Fix a smooth elliptic curve $E$ and an origin $o\in E$. In the odd unimodular lattice with orthogonal basis $L,e_1,\ldots,e_8$ of squares $1,-1,\ldots,-1$, set
+\[
+h=3L-\sum_{i=1}^8e_i.
+\]
+Then $h^2=1$ and $h^\perp\simeq E_8$, giving the integral splitting $\Z h\oplus E_8$. To realise a chosen homomorphism $\eta:E_8\to\Pic^0(E)$ geometrically, prescribe the restriction of every lattice class $D$ by
+\begin{equation}\label{eq:restriction}
+\mathcal R(D)=\OO_E((D\cdot h)o)\otimes
+\eta\bigl(D-(D\cdot h)h\bigr).
+\end{equation}
+The degree-three bundle $\mathcal R(L)$ embeds $E$ as a smooth plane cubic. Each degree-one bundle $\mathcal R(e_i)$ is $\OO_E(x_i)$ for a unique point $x_i$. Blow up these eight points.
+
+\begin{lemma}\label{lem:delpezzo}
+If $\eta$ is injective, this construction gives a degree-one del Pezzo surface $W$ containing $E$ anticanonically, with $\OO_E(-K_W)=\OO_E(o)$ and restriction character $\eta$. Blowing up $o$ gives a rational elliptic surface with a section and no reducible fibres.
+\end{lemma}
+\begin{proof}
+The points $x_i$ are distinct, since $x_i=x_j$ would kill the nonzero class $e_i-e_j$. The strict transform of $E$ represents $h=-K_W$ and has square one. Formula \eqref{eq:restriction} is the actual restriction map on the blowup: it holds on $L$ and every $e_i$, hence on the whole lattice.
+
+Since $E$ is effective and smooth, $h$ has nonnegative intersection with every other irreducible curve, and $h\cdot E=1$. Thus $h$ is nef. If an irreducible curve $D$ had $h\cdot D=0$, Hodge index would give $D^2<0$. Adjunction gives $D^2=2p_a(D)-2$, whence $D^2=-2$. This nonzero class belongs to $E_8$, but $D$ is disjoint from $E$, so its restriction to $E$ is trivial. That contradicts injectivity of $\eta$. Nakai--Moishezon now implies that $h$ is ample.
+
+The exact sequence
+\[
+0\longrightarrow\OO_W\longrightarrow\OO_W(h)
+\longrightarrow\OO_E(o)\longrightarrow0
+\]
+and $H^1(W,\OO_W)=0$ show that $|h|$ is a pencil. Its base scheme is the single simple point $o$: the second section restricts to a section of $\OO_E(o)$ with a simple zero. Blowing up resolves this base point and gives an elliptic pencil with the exceptional curve as section. If a fibre were reducible, a component not meeting the section would be orthogonal to both the fibre and section. In
+$\Pic(\operatorname{Bl}_oW)=\Z h\oplus E_8\oplus\Z\sigma$, the fibre is $h-\sigma$ and $\sigma^2=-1$, so such a component belongs to the $E_8$ summand. It is disjoint from the chosen smooth fibre $E$ and again contradicts injectivity of $\eta$.
+\end{proof}
+
+Choose two surfaces $W_1,W_2$ this way, with characters $\eta_1,\eta_2$. We may require the joint character
+\begin{equation}\label{eq:joint}
+E_8\oplus E_8\longrightarrow\Pic^0(E),\qquad
+(v_1,v_2)\longmapsto\eta_1(v_1)\otimes\eta_2(v_2)^{-1}
+\end{equation}
+to be injective. Indeed, for each nonzero vector its vanishing cuts out a proper closed subset of $\Hom(E_8\oplus E_8,\Pic^0(E))$. There are countably many such vectors. The boundary generality condition will be imposed simultaneously in Section~\ref{sec:generality}.
+
+\subsection{The two blowups and the ample bundle}
+Set $V_1=W_1$ and $h_1=-K_{W_1}$. Blow up $W_2$ at $o$ to obtain a rational elliptic surface $R$, with section $\sigma$ and fibre $f$. Thus
+\[
+\sigma^2=-1,\qquad f^2=0,\qquad \sigma\cdot f=1.
+\]
+Blow up $R$ once more at the transverse intersection $\sigma\cap E$. Write $g:V_2\to R$ for this blowup and $e$ for its exceptional curve. The double curves are
+\[
+C_1=h_1,\qquad C_2=g^*f-e=-K_{V_2}.
+\]
+Identify them by their fixed identifications with $E$. They have squares $1,-1$ and normal bundles $\OO_E(o),\OO_E(-o)$. In particular their tensor product is trivial.
+
+The union $X_0=V_1\cup_E V_2$ is \emph{$d$-semistable}: for this two-component normal crossing surface the sheaf of first-order local smoothing parameters is
+$N_{E/V_1}\otimes N_{E/V_2}\simeq\OO_E$. Its dual graph is a segment. The anticanonical forms on the two components can be scaled to have opposite residues along $E$, showing $\omega_{X_0}\simeq\OO_{X_0}$. Coherent Mayer--Vietoris gives
+\begin{equation}\label{eq:coherent}
+h^1(X_0,\OO_{X_0})=0,\qquad h^2(X_0,\OO_{X_0})=1.
+\end{equation}
+
+To obtain positivity on both components, take
+\begin{equation}\label{eq:ample-pair}
+A_1=h_1,\qquad A_2=2g^*\sigma+4g^*f-e.
+\end{equation}
+Both restrictions to $E$ are $\OO_E(o)$: $f|_E$ is trivial and $\sigma|_E$ and $e|_E$ each have degree-one divisor $o$. They therefore glue to a line bundle $A_0$ on $X_0$. Direct calculation gives
+\begin{equation}\label{eq:squares}
+A_1^2=1,\qquad A_2^2=11,\qquad A_i\cdot C_i=1.
+\end{equation}
+
+\begin{lemma}\label{lem:ample}
+The line bundle $A_0$ is ample.
+\end{lemma}
+\begin{proof}
+The bundle $A_1$ is ample by Lemma~\ref{lem:delpezzo}. On $V_2$, the intersections of $A_2$ with $e$, $C_2$, and the strict transform $\sigma'=g^*\sigma-e$ are all one. Consider any other irreducible curve, the strict transform $D'$ of a curve $D$ on $R$. If $D$ passes through the blowup centre with multiplicity $m>0$, then it is distinct from the two smooth transverse curves $\sigma,E$, and
+\[
+D\cdot\sigma\geq m,\qquad D\cdot f=D\cdot E\geq m.
+\]
+Hence $A_2\cdot D'=2D\cdot\sigma+4D\cdot f-m\geq5m>0$. If $D$ misses the centre and is horizontal, then $D\cdot f>0$ and $D\cdot\sigma\geq0$. If it is vertical, it is an irreducible fibre by Lemma~\ref{lem:delpezzo}, and meets $\sigma$ once. Thus $A_2$ intersects every curve positively. Together with $A_2^2=11$, Nakai--Moishezon proves ampleness. A line bundle on a proper reduced scheme is ample if its restrictions to all irreducible components are ample, so $A_0$ is ample.
+\end{proof}
+
+\subsection{The integral hyperbolic plane and the vertical correction}
+Let $h_2$ be the total pullback of $-K_{W_2}$, $f_1$ the total transform of the first exceptional curve, and $f_2=e$. These three classes are pairwise orthogonal with squares $1,-1,-1$. Then
+\[
+C_2=h_2-f_1-f_2,\quad A_2=4h_2-2f_1-f_2,\quad
+\xi=(h_1,-h_2+f_1+f_2).
+\]
+On $\NS(V_1)\oplus\NS(V_2)$ use the sum intersection form, and set
+\begin{equation}\label{eq:Q}
+Q=\xi^\perp/\Z\xi,\qquad
+P=(h_1,f_1),\qquad Q_0=(h_1,f_2),\qquad
+u=[P],\quad v=[Q_0].
+\end{equation}
+The subscript distinguishes the pair $Q_0$ from the quotient lattice $Q$. Both pairs have matching restrictions $\OO_E(o)$, so they are actual Cartier line bundles on $X_0$. Their classes satisfy
+\[
+u^2=v^2=0,\qquad u\cdot v=1.
+\]
+Thus they span a primitive $H$: for any integral class $x$, the expression $(x,v)u+(x,u)v$ is an integral projection onto their span.
+
+For completeness the whole quotient can be computed integrally. A vector in the part generated by $h_1,h_2,f_1,f_2$ has coordinates $(a,b,c,d)$, and belongs to $\xi^\perp$ exactly when $a=b+c+d$. In that case
+\begin{equation}\label{eq:integral-splitting}
+(a,b,c,d)=(b+c)P+(b+d)Q_0-b\xi.
+\end{equation}
+The two $E_8$ summands are orthogonal to this calculation, hence
+\begin{equation}\label{eq:boundary-lattice}
+Q=H\oplus E_8\oplus E_8.
+\end{equation}
+The restriction character is zero on $H$ and is \eqref{eq:joint} on its complement.
+
+At the level of actual Cartier bundles on $X_0$, the ample bundle satisfies
+\begin{equation}\label{eq:vertical}
+A_0=2P+3Q_0-4\xi.
+\end{equation}
+Here and below additive notation denotes tensor product of line bundles. Expanding the right side gives precisely $(h_1,4h_2-2f_1-f_2)$. Matching restrictions determine the bundle uniquely: scalar automorphisms on the two connected components absorb the gluing scalar. In a smoothing, $\xi$ is the restriction of $\OO_{\mathcal X}(-V_1)$ and vanishes on smooth fibres. Thus the smooth class of an extension of \eqref{eq:vertical} is $2u+3v$, of square $12$. Keeping this vertical term is necessary to extend the prescribed ample bundle, rather than merely its quotient class.
+
+\section{Smoothing with the prescribed polarisation}\label{sec:smoothing}
+
+We explain why the central union admits a transverse smoothing preserving this particular $H$ and this particular ample bundle. The local deformation result used here is \cite[\S7A, Theorem~7.1]{AE}: a $d$-semistable Type II Kulikov surface with connected singular locus has a smooth $20$-dimensional smoothing component, a smooth discriminant divisor, and a mixed-period map which is unramified when there is one double curve. In general the covering order is the Type II monodromy index, namely the number of double curves. Here it is one. The rational anticanonical components, inverse normal bundles, and segment dual graph verify \cite[Definition~3.4 and Theorem~3.5]{AE}; the latter is the smoothability theorem attributed there to Friedman.
+
+The boundary period records the elliptic curve and the restriction character on $Q$. Integral specialization identifies $Q$ with $I^\perp/I$, where $I$ is the primitive rank-two isotropic lattice of the Type II degeneration \cite[Proposition~3.20 and \S4]{AE}. In our case the actual Cartier bundles $P,Q_0$ determine integral lifts of the displayed $H$. Their periods vanish because their restrictions agree.
+
+\subsection{A free smoothing coordinate within the \texorpdfstring{$H$}{H}-period locus}
+Choose isotropic vectors $e_1,e_2$ spanning $I$, dual isotropic vectors $f_1',f_2'$, and an orthogonal splitting of the K3 lattice
+\[
+\Lambda_{\mathrm{K3}}=\bigoplus_{i=1}^2(\Z e_i\oplus\Z f_i')\ \oplus H\oplus K,
+\qquad K=E_8\oplus E_8,
+\]
+with $(e_i,f_j')=\delta_{ij}$. The $H$ factor may be chosen to be the Cartier lift just described. Indeed, two lifts of $H\subset I^\perp/I$ differ by
+$x\mapsto x+\sum_i(w_i,x)e_i$, with $w_i\in H$, because $H$ is unimodular. The triangular map fixing the $e_i$ and sending
+\[
+x\longmapsto x+\sum_i(w_i,x)e_i,\qquad
+f_j'\longmapsto f_j'-w_j+\sum_i a_{ij}e_i
+\]
+is an integral isometry provided
+$a_{jj}=-w_j^2/2$ and $a_{ij}+a_{ji}=-(w_i,w_j)$. Such integers exist because $H$ is even. Extend it by the identity on $K$. It fixes the quotient $I^\perp/I$, and aligns the chosen lifts.
+
+In these coordinates an $H$-orthogonal period vector is
+\begin{equation}\label{eq:period}
+\Omega=\left(-b\tau-\frac{(z,z)}2\right)e_1+b e_2
++f_1'+\tau f_2'+z,
+\qquad \operatorname{Im}\tau>0,\quad z\in K\otimes\C.
+\end{equation}
+It satisfies
+\[
+(\Omega,\Omega)=0,\qquad
+(\Omega,\overline\Omega)=4\operatorname{Im}b\operatorname{Im}\tau
++2(\operatorname{Im}z,\operatorname{Im}z)>0
+\]
+for sufficiently large $\operatorname{Im}b$. The boundary curve is $\C/(\Z+\tau\Z)$ and its character on $K$ is $w\mapsto(w,z)$ modulo this period lattice. Locally $q=\exp(2\pi i b)$ is a coordinate normal to the boundary; globally it can be a coordinate in a disc bundle. The expression \eqref{eq:period} is orthogonal to the fixed $H$ for every $b$. Hence the normal smoothing direction remains free after imposing the Cartier $H$-period conditions.
+
+Pull back a transverse analytic disc in this period locus through the unramified local period chart. The normal coordinate has a simple zero. The resulting total space is smooth, with local equation $xy=t$ along $E$, and has exactly the central fibre constructed above. This gives a Type II Kulikov smoothing without a ramified base change.
+
+\subsection{Extending line bundles and obtaining one flat divisor}
+The extension statement following \cite[Definition~7.26]{AE} allows component twists when extending polarisation bundles. Here the following direct argument also fixes their central restrictions. A small Kulikov neighbourhood retracts onto $X_0$, so a central integral cohomology class extends to the total space. Along our period disc the classes of $P,Q_0$ remain of type $(1,1)$. The obstruction to a holomorphic line bundle lies, by the exponential sequence, in $H^2(\mathcal X,\OO_{\mathcal X})$. Over the Stein disc, Grauert's theorem and \eqref{eq:coherent}, together with the same coherent dimensions on smooth K3 fibres, identify this group with the sections of the line bundle $R^2\pi_*\OO_{\mathcal X}$. The obstruction section is zero at every noncentral fibre, because the class is of type $(1,1)$; it is therefore identically zero. Thus both bundles extend. Since $H^1(X_0,\OO_{X_0})=0$, a central line bundle is determined by its integral Chern class, so these extensions have the prescribed restrictions.
+
+The class $\xi$ extends by $\OO_{\mathcal X}(-V_1)$. Consequently \eqref{eq:vertical} extends to a line bundle $\mathscr A$ with $\mathscr A|_{X_0}=A_0$ and smooth class $2u+3v$. Openness of relative ampleness and Lemma~\ref{lem:ample} make $\mathscr A$ relatively ample after shrinking the disc.
+
+Choose an integer $m$ large enough that $\mathscr A^m$ is relatively generated and has vanishing higher direct images. There is a section of $A_0^m$ nonzero on both components; each identically-vanishing condition is a proper linear subspace of the space of sections. Base change extends it to a section of $\mathscr A^m$. Shrinking the disc, ensure that it is not identically zero on any fibre. Let $A$ be its zero divisor. It is effective and Cartier on the smooth total space. On the central fibre the section is nonzero at the generic point of each component, hence is a nonzerodivisor. The fibre parameter followed by the section is therefore a regular sequence in the smooth total space; the quotient by the section is flat over the disc. Thus $A$ is flat as well.
+
+Every fibre restriction of $A$ is ample. Every compact curve in the total space maps constantly to the disc, so $A$ is nef there. The smooth class is $m(2u+3v)$ and the central component squares are
+\begin{equation}\label{eq:final-squares}
+(A|_{V_1})^2=m^2,\qquad (A|_{V_2})^2=11m^2.
+\end{equation}
+The extended classes of $P,Q_0$ give a trivial monodromy-invariant local subsystem on the whole punctured disc. Their unimodular pairing makes it a primitive copy of $H$ in every smooth K3 lattice.
+
+Finally, this subsystem gives quasipolarisations on \emph{every} smooth fibre, not only the general fibre. For sufficiently large $N$, the two central bundles $NA_0+P$ and $NA_0-P$ are ample. Their extensions stay relatively ample after a common shrinking. Their smooth classes
+\[
+a_+=N(2u+3v)+u,\qquad a_-=N(2u+3v)-u
+\]
+are independent in $H$. Choose a positive irrational real number $\lambda$. The fixed class $a_++\lambda a_-$ is ample on every smooth fibre and is in no proper rational subspace of $H\otimes\R$. It supplies the very irrational ample class required by the lattice-quasipolarisation convention.
+
+\section{Boundary generality and the contradiction}\label{sec:generality}
+
+It remains to choose the central fibre so that its moduli limit satisfies the boundary condition in the question. Injectivity of \eqref{eq:joint} alone is not used as a substitute for that condition.
+
+For fixed $E$, the construction \eqref{eq:restriction} realises arbitrary characters on the two $E_8$ factors outside the countable exceptional sets already specified. Letting the elliptic modulus vary adds one parameter. Thus the character family has dimension $16+1=17$. The mixed-period description \cite[Construction~4.3 and \S7A]{AE}, together with \eqref{eq:boundary-lattice}, identifies its period with the two chosen characters and this elliptic modulus. It therefore dominates the Type II boundary stratum associated to $E_8\oplus E_8$. This is an explicit realisation of the character parameters, rather than an inference from dimension alone. The two prescribed blowups do not change these characters.
+
+For the rational-curve stable-pair compactification, \cite[Theorem~7.58]{ABE} identifies this stratum with the corresponding stratum of its toroidal normalization. Its description is the finite quotient of $\Hom(E_8\oplus E_8,E)$ by the lattice isometry group, with $E$ varying over elliptic moduli. Theorems~1.1 and~1.2 of \cite{ABE} give toroidal normalizations for the ramification and rational-curve compactifications, respectively. Normalization is finite for these projective varieties. In either case the image $B$ of the chosen Type II boundary divisor has dimension $17$ in the $18$-dimensional compactification. We need only finiteness and this dimension; no identification of the two normalization maps is used. The canonical divisors used to define these stable-pair spaces are separate from the divisor $A$ above.
+
+Let $Z$ be a proper interior Noether--Lefschetz locus. Each irreducible component of its closure has dimension at most $17$ and meets the interior. It cannot contain $B$: if it had dimension $17$ and contained $B$, it would equal the boundary divisor $B$, contradicting the presence of interior points. A smaller-dimensional component cannot contain $B$ either. There are countably many integral higher-polarisation types, so the intersections of their closures with $B$ form a countable union of proper closed subsets. Their inverse images in a dominating character chart are proper as well.
+
+Remove those inverse images and the kernels of evaluation at every nonzero vector in $E_8\oplus E_8$. Proper complex analytic subsets of a parameter chart are nowhere dense; the Baire theorem gives a point outside their countable union. Choose the central union at such a point, and then perform Section~\ref{sec:smoothing}. The mixed-period chart and the compactification maps identify the limit of this smoothing with the selected point of $B$. Thus its limit avoids every compactified Noether--Lefschetz locus as required.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+The construction gives $K_{V_1}^2=1$, $K_{V_2}^2=-1$, the invariant primitive $H$ on every punctured fibre, and the single effective flat nef Cartier divisor $A$ with \eqref{eq:final-squares}. The preceding argument supplies the required boundary generality.
+
+Fix the very general $M$-quasipolarised K3 surface $Y$ in the question. If an elliptic fibration and allowable loop satisfied all its requested conclusions, Definition~5.1(2) of \cite{GT} would give a disc piece $W$ and an isometry \eqref{eq:component} for $V_1$. Proposition~\ref{prop:obstruction} forbids this because $K_{V_1}^2=1$. Exchanging the two discs cannot remove the positive-degree component. The contradiction does not depend on the chosen fibration, loop, or surface $Y$.
+\end{proof}
+
+The result concerns the stated conjunction of conventions and component requirements. It does not claim that all $H$-polarised Tyurin degenerations fail to have mirrors, or that degree-zero components suffice for a mirror pair. It also leaves open what existence statement holds after a consistent change to the sign conventions. No global component gluing or lattice lift is needed for the negative result: a necessary individual component isometry already fails.
+
+\begin{thebibliography}{ABE22}
+\bibitem[ABE22]{ABE}
+V.~Alexeev, A.~Brunyate, and P.~Engel,
+\emph{Compactifications of moduli of elliptic K3 surfaces: Stable pair and toroidal},
+Geom. Topol. \textbf{26} (2022), no.~8, 3525--3588.
+\href{https://doi.org/10.2140/gt.2022.26.3525}{doi:10.2140/gt.2022.26.3525}.
+Theorem numbering and text as in \href{https://arxiv.org/abs/2002.07127v5}{arXiv:2002.07127v5}.
+
+\bibitem[AE23]{AE}
+V.~Alexeev and P.~Engel,
+\emph{Compact moduli of K3 surfaces},
+Ann. of Math. (2) \textbf{198} (2023), no.~2, 727--789.
+\href{https://doi.org/10.4007/annals.2023.198.2.5}{doi:10.4007/annals.2023.198.2.5}.
+Theorem numbering and text as in \href{https://arxiv.org/abs/2101.12186v3}{arXiv:2101.12186v3}.
+
+\bibitem[GT24]{GT}
+L.~Giovenzana and A.~Thompson,
+\emph{Degenerations and fibrations of K3 surfaces: Lattice polarisations and mirror symmetry},
+\href{https://arxiv.org/abs/2405.12009v2}{arXiv:2405.12009v2} (2024).
+The disc-pairing and mirror-component conventions used here also occur in
+\href{https://arxiv.org/abs/2405.12009v1}{version~1}; references to Definition~3.20 use version~2.
+\end{thebibliography}
+
+\end{document}

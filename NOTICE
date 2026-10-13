@@ -1,0 +1,52 @@
+First Proof — Batch 3
+Copyright (c) 2026 First Proof Foundation, Inc.
+
+This repository holds the third batch of the First Proof benchmark: the problem
+statements, the human solutions, the AI systems' solutions, the raw run outputs
+and logs, the anonymized referee reports, the cost table, and the code the
+participating teams submitted.
+
+THE GRANTS BELOW COVER ONLY MATERIAL FIRST PROOF PRODUCED OR HOLDS THE RIGHTS TO.
+
+Licensing:
+
+  * Source code authored by First Proof, wherever it appears in this repository,
+    is licensed under the GNU Affero General Public License v3.0 (AGPL-3.0). See
+    the `LICENSE` file.
+
+  * Everything else produced or generated under First Proof's direction — the
+    problem statements under `batch-3-problems/`, the human solutions under
+    `batch-3-human-solution/`, the AI-generated solutions under
+    `batch-3-AI-solutions/`, the complete run outputs, thinking traces, token logs
+    and model-written scratch code under `batch-3-raw-outputs/`, the anonymized
+    referee reports under `batch-3-reviews/`, the cost table under
+    `batch-3-costs/`, and all documentation — is licensed under the Creative
+    Commons Attribution-ShareAlike 4.0 International License (CC-BY-SA-4.0). See
+    the `LICENSE-DOCS` file. This applies to everything under
+    `batch-3-raw-outputs/` whatever the file type: those files are run artifacts,
+    not First Proof source code, and none of them is offered under AGPL-3.0.
+
+  * NOT LICENSED HERE — the participating teams' own code under
+    `batch-3-submissions/`.
+
+    Each submission is the work of its own authors, remains their copyright, and
+    is governed by whatever terms those authors set. It is published here because
+    publication of the source code of every tested system was a condition of
+    submission. First Proof grants no rights in it and neither license file in
+    this repository reaches it. Anyone wanting to reuse that code should approach
+    its authors.
+
+    The *outputs* those systems produced when First Proof ran them ARE covered by
+    the CC-BY-SA-4.0 grant above, as described in `DATA-LICENSE.md`.
+
+The copyright holder for First Proof's own contributions is First Proof
+Foundation, Inc., which retains the sole right to relicense or dual-license them.
+
+Batch 3 was carried out under DARPA Agreement HR0011263E126. As Article VIII.B of
+the agreement requires, this data carries the legend: "Use, duplication, or
+disclosure is subject to the restrictions as stated in Agreement HR0011263E126
+between the Government and the Performer." The licenses above are First Proof's
+own grants to the public; see `DATA-LICENSE.md`.
+
+Provenance item by item — the run outputs, the referee reports, the submitted
+code, and the basis on which each is published — is in `DATA-LICENSE.md`.

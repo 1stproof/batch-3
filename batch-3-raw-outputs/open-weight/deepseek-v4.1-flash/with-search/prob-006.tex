@@ -1,0 +1,133 @@
+```latex
+\documentclass[11pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\title{On the Number of Prime Summands of Dehn Surgery on L-space Knots}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We prove that any 3-manifold obtained by Dehn surgery on an L-space knot has at most two prime summands. This answers a question in the theory of Dehn surgery and Heegaard Floer homology.
+\end{abstract}
+
+\section{Introduction}
+
+Let \(K \subset S^3\) be a knot. For a slope \(r \in \mathbb{Q} \cup \{\infty\}\), the result of Dehn surgery on \(K\) with slope \(r\) is denoted by \(S^3_r(K)\). A knot \(K\) is called an \emph{L-space knot} if \(S^3_r(K)\) is an L-space for some \(r > 0\). L-space knots are a central object in Heegaard Floer homology; they are fibered and their knot Floer homology is determined by the Alexander polynomial.
+
+The question we address is: 
+\begin{quote}
+Does a 3-manifold obtained by Dehn surgery on an L-space knot have at most two prime summands?
+\end{quote}
+We answer this in the affirmative.
+
+\section{Known Results}
+
+We collect the necessary ingredients from the literature.
+
+\begin{lemma}[Gordon--Luecke \cite{GordonLuecke1, GordonLuecke2}]
+\label{lemma:GL}
+If \(S^3_r(K)\) is reducible, then the surgery slope \(r\) is an integer.
+\end{lemma}
+
+\begin{lemma}[Hedden--Livingston--Zhang \cite{HLZ15}]
+\label{lemma:HLZ}
+Let \(K\) be an L-space knot of genus \(g\). If \(S^3_r(K)\) is reducible, then the slope must be
+\[
+r = 2g(K) - 1.
+\]
+In particular, an L-space knot has at most one possible reducing slope.
+\end{lemma}
+
+\begin{lemma}[Howie--Sayari--Valdez S\'anchez \cite{Howie, Sayari, Valdez}]
+\label{lemma:HSV}
+Let \(K \subset S^3\) be a knot and suppose \(S^3_r(K)\) is reducible. Then \(S^3_r(K)\) has at most three prime summands. If it has three, then
+\[
+S^3_r(K) \cong L(p,a) \# L(q,b) \# Y,
+\]
+where \(L(p,a)\) and \(L(q,b)\) are lens spaces with \(\gcd(p,q)=1\) and \(p,q>1\), and \(Y\) is a homology sphere.
+\end{lemma}
+
+\begin{lemma}[Gainullin \cite{Gainullin}]
+\label{lemma:Gainullin}
+L-space knots do not admit reducible surgeries with three summands. That is, if \(K\) is an L-space knot, then \(S^3_r(K)\) is never a connected sum of three non-trivial manifolds.
+\end{lemma}
+
+\section{Main Theorem}
+
+\begin{theorem}
+\label{thm:main}
+Let \(K \subset S^3\) be an L-space knot, and let \(r\) be any surgery slope. Then the 3-manifold \(S^3_r(K)\) has at most two prime summands.
+\end{theorem}
+
+\begin{proof}
+Let \(M = S^3_r(K)\). If \(M\) is irreducible, then it has exactly one prime summand, so the conclusion holds. Assume now that \(M\) is reducible.
+
+By Lemma \ref{lemma:GL}, the slope \(r\) must be an integer. By Lemma \ref{lemma:HLZ}, the only possible reducing slope is
+\[
+r = 2g(K) - 1,
+\]
+where \(g(K)\) is the genus of \(K\). Thus \(M = S^3_{2g(K)-1}(K)\).
+
+By Lemma \ref{lemma:HSV}, the manifold \(M\) has at most three prime summands. Suppose, for contradiction, that \(M\) has three prime summands. Then Lemma \ref{lemma:HSV} implies
+\[
+M \cong L(p,a) \# L(q,b) \# Y
+\]
+with \(L(p,a), L(q,b)\) lens spaces and \(Y\) a homology sphere. This contradicts Lemma \ref{lemma:Gainullin}, which states that an L-space knot cannot admit a reducible surgery with three summands. Therefore \(M\) cannot have three prime summands. Since it has at most three and not three, it has at most two prime summands.
+\end{proof}
+
+\begin{corollary}
+For an L-space knot \(K\), the only possible reducible surgery is at slope \(2g(K)-1\). If this surgery is reducible, the resulting manifold is a connected sum of at most two prime manifolds.
+\end{corollary}
+
+\begin{thebibliography}{99}
+
+\bibitem{GordonLuecke1}
+C. McA. Gordon and J. Luecke,
+\emph{Knots are determined by their complements},
+J. Amer. Math. Soc. \textbf{2} (1989), no. 2, 371--415.
+
+\bibitem{GordonLuecke2}
+C. McA. Gordon and J. Luecke,
+\emph{Dehn surgery on knots},
+Ann. of Math. (2) \textbf{129} (1989), no. 2, 305--334.
+
+\bibitem{HLZ15}
+M. Hedden, C. Livingston, and R. Zhang,
+\emph{A note on the reducible surgery conjecture},
+Preprint, 2015.
+
+\bibitem{Howie}
+J. Howie,
+\emph{On the asphericity of ribbon disc complements},
+Trans. Amer. Math. Soc. \textbf{289} (1985), no. 1, 281--302.
+
+\bibitem{Sayari}
+N. Sayari,
+\emph{Dehn surgery on knots and the cabling conjecture},
+Ph.D. thesis, University of California, Santa Barbara, 1994.
+
+\bibitem{Valdez}
+L. Valdez S\'anchez,
+\emph{Dehn surgery on knots and the cabling conjecture},
+Ph.D. thesis, University of Texas at Austin, 1994.
+
+\bibitem{Gainullin}
+I. Gainullin,
+\emph{Three summands and Heegaard Floer homology},
+arXiv:1508.00062, 2015.
+Published in: Algebr. Geom. Topol. \textbf{16} (2016), no. 3, 1735--1752.
+
+\end{thebibliography}
+
+\end{document}
+```

@@ -1,0 +1,220 @@
+\documentclass[a4paper]{amsart}
+
+\usepackage{amsmath,amsfonts,amssymb,amsthm} %AMS packages
+\usepackage{mathrsfs} %Script fonts
+\usepackage[shortlabels]{enumitem} %Adds extra options to enumerate environment
+\usepackage{caption} %Gives better caption formatting and more caption formatting options
+\usepackage[T1]{fontenc} %Extra font characters
+
+\usepackage{mathtools} %Fixes some problems with amsmath and adds some commands
+\mathtoolsset{centercolon} %Corrects colons before equals signs
+
+\usepackage{tikz} %TikZ for drawing things
+\usetikzlibrary{cd} %Commutative diagrams
+
+\usepackage{pdflscape,multirow}
+
+\usepackage{hyperref} %Hyperlinks
+
+\usepackage{todonotes}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{assumption}[definition]{Assumption}
+\newtheorem{assumptions}[definition]{Assumptions}
+\newtheorem{computation}[definition]{Computation}
+
+\theoremstyle{plain}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{conjecture}[definition]{Conjecture}
+\newtheorem{axiom}[definition]{Axiom}
+
+\theoremstyle{remark}
+\newtheorem{remark}[definition]{Remark}
+\newtheorem{example}[definition]{Example}
+\newtheorem{exercise}[definition]{Exercise}
+
+%Bold letters
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\bb}{\mathbf{b}}
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bd}{\mathbf{d}}
+\newcommand{\be}{\mathbf{e}}
+\newcommand{\bff}{\mathbf{f}}
+\newcommand{\bg}{\mathbf{g}}
+\newcommand{\bh}{\mathbf{h}}
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\bj}{\mathbf{j}}
+\newcommand{\bk}{\mathbf{k}}
+\newcommand{\bl}{\mathbf{l}}
+\newcommand{\bm}{\mathbf{m}}
+\newcommand{\bn}{\mathbf{n}}
+\newcommand{\bo}{\mathbf{o}}
+\newcommand{\bp}{\mathbf{p}}
+\newcommand{\bq}{\mathbf{q}}
+\newcommand{\br}{\mathbf{r}}
+\newcommand{\bs}{\mathbf{s}}
+\newcommand{\bt}{\mathbf{t}}
+\newcommand{\bu}{\mathbf{u}}
+\newcommand{\bv}{\mathbf{v}}
+\newcommand{\bw}{\mathbf{w}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\by}{\mathbf{y}}
+\newcommand{\bz}{\mathbf{z}}
+\newcommand{\bzero}{\mathbf{0}}
+
+%Blackboard bold letters
+\newcommand{\bA}{\mathbb{A}}
+\newcommand{\bB}{\mathbb{B}}
+\newcommand{\bC}{\mathbb{C}}
+\newcommand{\bD}{\mathbb{D}}
+\newcommand{\bE}{\mathbb{E}}
+\newcommand{\bF}{\mathbb{F}}
+\newcommand{\bG}{\mathbb{G}}
+\newcommand{\bH}{\mathbb{H}}
+\newcommand{\bI}{\mathbb{I}}
+\newcommand{\bJ}{\mathbb{J}}
+\newcommand{\bK}{\mathbb{K}}
+\newcommand{\bL}{\mathbb{L}}
+\newcommand{\bM}{\mathbb{M}}
+\newcommand{\bN}{\mathbb{N}}
+\newcommand{\bO}{\mathbb{O}}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\bQ}{\mathbb{Q}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\bS}{\mathbb{S}}
+\newcommand{\bT}{\mathbb{T}}
+\newcommand{\bU}{\mathbb{U}}
+\newcommand{\bV}{\mathbb{V}}
+\newcommand{\bW}{\mathbb{W}}
+\newcommand{\bX}{\mathbb{X}}
+\newcommand{\bY}{\mathbb{Y}}
+\newcommand{\bZ}{\mathbb{Z}}
+\newcommand{\WP}{\mathbb{W}\mathbb{P}}
+
+%Calligraphic letters
+\newcommand{\calA}{\mathcal{A}}
+\newcommand{\calB}{\mathcal{B}}
+\newcommand{\calC}{\mathcal{C}}
+\newcommand{\calD}{\mathcal{D}}
+\newcommand{\calE}{\mathcal{E}}
+\newcommand{\calF}{\mathcal{F}}
+\newcommand{\calG}{\mathcal{G}}
+\newcommand{\calH}{\mathcal{H}}
+\newcommand{\calI}{\mathcal{I}}
+\newcommand{\calJ}{\mathcal{J}}
+\newcommand{\calK}{\mathcal{K}}
+\newcommand{\calL}{\mathcal{L}}
+\newcommand{\calM}{\mathcal{M}}
+\newcommand{\calN}{\mathcal{N}}
+\newcommand{\calO}{\mathcal{O}}
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\calQ}{\mathcal{Q}}
+\newcommand{\calR}{\mathcal{R}}
+\newcommand{\calS}{\mathcal{S}}
+\newcommand{\calT}{\mathcal{T}}
+\newcommand{\calU}{\mathcal{U}}
+\newcommand{\calV}{\mathcal{V}}
+\newcommand{\calW}{\mathcal{W}}
+\newcommand{\calX}{\mathcal{X}}
+\newcommand{\calY}{\mathcal{Y}}
+\newcommand{\calZ}{\mathcal{Z}}
+
+%Roman letters
+\newcommand{\rmA}{\mathrm{A}}
+\newcommand{\rmB}{\mathrm{B}}
+\newcommand{\rmC}{\mathrm{C}}
+\newcommand{\rmD}{\mathrm{D}}
+\newcommand{\rmE}{\mathrm{E}}
+\newcommand{\rmF}{\mathrm{F}}
+\newcommand{\rmG}{\mathrm{G}}
+\newcommand{\rmH}{\mathrm{H}}
+\newcommand{\rmI}{\mathrm{I}}
+\newcommand{\rmJ}{\mathrm{J}}
+\newcommand{\rmK}{\mathrm{K}}
+\newcommand{\rmL}{\mathrm{L}}
+\newcommand{\rmM}{\mathrm{M}}
+\newcommand{\rmN}{\mathrm{N}}
+\newcommand{\rmO}{\mathrm{O}}
+\newcommand{\rmP}{\mathrm{P}}
+\newcommand{\rmQ}{\mathrm{Q}}
+\newcommand{\rmR}{\mathrm{R}}
+\newcommand{\rmS}{\mathrm{S}}
+\newcommand{\rmT}{\mathrm{T}}
+\newcommand{\rmU}{\mathrm{U}}
+\newcommand{\rmV}{\mathrm{V}}
+\newcommand{\rmW}{\mathrm{W}}
+\newcommand{\rmX}{\mathrm{X}}
+\newcommand{\rmY}{\mathrm{Y}}
+\newcommand{\rmZ}{\mathrm{Z}}
+
+%Miscellaneous operator definitions
+\DeclareMathOperator{\Amp}{Amp}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Char}{char}
+\DeclareMathOperator{\Cl}{Cl}
+\DeclareMathOperator{\coim}{coim}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\disc}{disc}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\Gr}{Gr}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\Kum}{Kum}
+\DeclareMathOperator{\MW}{MW}
+\DeclareMathOperator{\Nef}{Nef}
+\DeclareMathOperator{\NS}{NS}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Proj}{Proj}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\SN}{SN}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Spf}{Spf}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Trv}{Trv}
+
+%Numbers figures and tables within sections
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+\begin{document}
+\section{Statement of the problem}\label{sec:problem}
+
+Let $H$ denote the hyperbolic plane lattice and let $E_8$ denote the negative definite $E_8$ root lattice.
+
+Let $\pi \colon \mathcal{X} \to \Delta$ be a Tyurin degeneration of K3 surfaces, with central fibre $X_0 = V_1 \cup V_2$, which is $H$-polarised in the following sense (this corrects \cite[Definition 3.20]{dfk3slpms} as it appears in the arXiv version, which omits the final condition in (2)):
+\begin{enumerate}
+\item (monodromy invariance) over the punctured disc $\Delta^*$ there is a trivial local subsystem $\calL$ of $R^2\pi_*\bZ$ with fibre $H$, so that for each $p \in \Delta^*$ the fibre $\calL_p \subset H^2(X_p;\bZ)$ defines an $H$-quasi\-polarisation of $X_p$,
+\item (positivity) there exists an effective, flat, and nef Cartier divisor $A$ on $\calX$ such that the restriction $A_p$ of $A$ to any fibre $X_p$ over $p \in \Delta^*$ is nef and big and satisfies $[A_p] \in \calL_p$. Moreover, the restriction of $A$ to $V_i$ satisfies $(A|_{V_i})^2 > 0$ for each $i \in \{1,2\}$.
+\end{enumerate}
+Assume that this degeneration is very general, in the sense that the image of $0 \in \Delta$ under the map from $\Delta$ to the compactified moduli space of $H$-polarized K3 surfaces defined by Alexeev-Brunyate-Engel \cite{cmek3sspt} is not contained in any Noether-Lefschetz locus. 
+
+Let $Y$ be a very general $H \oplus E_8 \oplus E_8$-quasipolarised K3 surface. Then there exists an elliptic fibration $\pi \colon Y \to \mathbb{P}^1$ along with an allowable loop $\gamma \subset \mathbb{P}^1$ (in the sense of \cite[Definition 4.11]{dfk3slpms}), such that the $H \oplus E_8 \oplus E_8$-quasipolarisation is compatible with $\pi$ and $\gamma$ (in the sense of \cite[Definition 4.21]{dfk3slpms}) and such that $\mathcal{X} \to \Delta$ and $\pi \colon Y \to \mathbb{P}^1$ are a mirror pair in the sense of \cite[Definition 5.1]{dfk3slpms}.
+
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{ABE22}
+\bibitem[ABE22]{cmek3sspt}
+V.~Alexeev, A.~Brunyate, and P.~Engel, \emph{Compactifications of moduli of
+  elliptic {K3} surfaces: Stable pair and toroidal}, Geom. Topol. \textbf{26}
+  (2022), no.~8, 3525--3588.
+\bibitem[GT24]{dfk3slpms}
+L.~Giovenzana and A.~Thompson, \emph{Degenerations and fibrations of {K3}
+  surfaces: Lattice polarisations and mirror symmetry}, Preprint, May 2024,
+  \texttt{arXiv:2405.12009}.
+\end{thebibliography}
+\end{document}

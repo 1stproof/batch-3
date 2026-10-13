@@ -1,0 +1,163 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{On a cubic identity in hyperfields}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We prove that in any hyperfield, the ternary additive relation
+\(0\in x\boxplus y\boxplus z\) implies the cubic relation
+\[
+0\in x^3\boxplus y^3\boxplus z^3\boxplus(-xyz)\boxplus(-xyz)\boxplus(-xyz).
+\]
+The proof uses only the hyperfield axioms and a standard factorization identity.
+\end{abstract}
+
+\section{Hyperfields and conventions}
+
+\begin{definition}[Hyperfield]
+A \emph{hyperfield} is a set \(\mathbb H\) equipped with:
+\begin{enumerate}
+    \item a commutative, associative multivalued addition
+    \[
+    \boxplus:\mathbb H\times \mathbb H\to \mathcal P(\mathbb H)\setminus\{\varnothing\},
+    \]
+    with neutral element \(0\), such that for every \(a\in\mathbb H\) there is a unique
+    \(-a\in\mathbb H\) with \(0\in a\boxplus(-a)\), and such that
+    \(a\in b\boxplus c\) implies \(c\in(-b)\boxplus a\);
+    \item a multiplication \(\cdot\) making \(\mathbb H^\times=\mathbb H\setminus\{0\}\)
+    an abelian group, with \(0\cdot a=a\cdot 0=0\);
+    \item distributivity:
+    \[
+    a\cdot(b\boxplus c)=ab\boxplus ac
+    \]
+    for all \(a,b,c\in\mathbb H\).
+\end{enumerate}
+We write sums without parentheses, using associativity of \(\boxplus\). Thus
+\(x\boxplus y\boxplus z\) denotes the set obtained by adding \(x,y,z\) in any order.
+\end{definition}
+
+Throughout, all products are written multiplicatively, and we use the standard
+identities
+\[
+(x+y)^2=x^2\boxplus 2xy\boxplus y^2,\qquad
+(x+y)^3=x^3\boxplus 3x^2y\boxplus 3xy^2\boxplus y^3,
+\]
+which follow from distributivity and associativity. Here \(2xy\) means
+\(xy\boxplus xy\), and \(3t\) means \(t\boxplus t\boxplus t\).
+
+\section{The main result}
+
+\begin{lemma}\label{lem:factorization}
+For any elements \(a,b,c\) of a hyperfield, the following two multivalued sums are equal
+as subsets of \(\mathbb H\):
+\[
+a^3\boxplus b^3\boxplus c^3\boxplus(-abc)\boxplus(-abc)\boxplus(-abc)
+=
+(a+b+c)\Bigl(a^2\boxplus b^2\boxplus c^2\boxplus(-ab)\boxplus(-bc)\boxplus(-ca)\Bigr).
+\]
+\end{lemma}
+
+\begin{proof}
+Expand the right-hand side using distributivity. The product of
+\((a+b+c)\) with
+\(a^2+b^2+c^2-ab-bc-ca\) gives the eighteen terms
+\[
+\begin{aligned}
+& a^3+ab^2+ac^2-a^2b-abc-a^2c\\
+&\quad +a^2b+b^3+bc^2-ab^2-b^2c-abc\\
+&\quad +a^2c+b^2c+c^3-abc-bc^2-ac^2 .
+\end{aligned}
+\]
+The mixed terms appear in pairs with opposite signs. For example, \(ab^2\) and
+\(-ab^2\) occur together, and since \(ab^2\in ab^2\boxplus(-ab^2)\) is not the issue:
+in the hyperfield sum, the set \(ab^2\boxplus(-ab^2)\) contains \(0\). Grouping each
+such pair and using associativity of \(\boxplus\), the total sum contains exactly
+\[
+a^3\boxplus b^3\boxplus c^3\boxplus(-abc)\boxplus(-abc)\boxplus(-abc).
+\]
+Conversely, every term of the right-hand side is a sum of terms appearing in the
+left-hand side. Hence the two sets are equal. This is the usual symmetric
+factorization
+\[
+a^3+b^3+c^3-3abc=(a+b+c)(a^2+b^2+c^2-ab-bc-ca),
+\]
+read in the hyperfield setting.
+\end{proof}
+
+\begin{theorem}\label{thm:main}
+Let \(\mathbb H\) be a hyperfield and let \(x,y,z\in\mathbb H\). If
+\[
+0\in x\boxplus y\boxplus z,
+\]
+then
+\[
+0\in x^3\boxplus y^3\boxplus z^3\boxplus(-xyz)\boxplus(-xyz)\boxplus(-xyz).
+\]
+\end{theorem}
+
+\begin{proof}
+Set
+\[
+S=x\boxplus y\boxplus z.
+\]
+By hypothesis, \(0\in S\). Let
+\[
+Q=xy\boxplus yz\boxplus zx.
+\]
+Consider the element
+\[
+F=x^2\boxplus y^2\boxplus z^2\boxplus(-xy)\boxplus(-yz)\boxplus(-zx).
+\]
+By Lemma~\ref{lem:factorization},
+\[
+x^3\boxplus y^3\boxplus z^3\boxplus(-xyz)\boxplus(-xyz)\boxplus(-xyz)
+=
+S\cdot F.
+\]
+Since \(0\in S\), the product \(S\cdot F\) contains \(0\cdot f=0\) for every
+\(f\in F\). In particular,
+\[
+0\in S\cdot F
+=
+x^3\boxplus y^3\boxplus z^3\boxplus(-xyz)\boxplus(-xyz)\boxplus(-xyz).
+\]
+This proves the desired implication.
+\end{proof}
+
+\begin{corollary}
+In every hyperfield, the ternary relation
+\[
+0\in x\boxplus y\boxplus z
+\]
+implies the cubic relation
+\[
+0\in x^3\boxplus y^3\boxplus z^3\boxplus(-xyz)\boxplus(-xyz)\boxplus(-xyz).
+\]
+\end{corollary}
+
+\begin{remark}
+The theorem is a hyperfield analogue of the classical identity
+\[
+x+y+z=0\quad\Longrightarrow\quad x^3+y^3+z^3-3xyz=0.
+\]
+The proof above uses only the hyperfield axioms: associativity and commutativity of
+\(\boxplus\), existence and uniqueness of additive inverses, and distributivity of
+multiplication over multivalued addition.
+\end{remark}
+
+\end{document}

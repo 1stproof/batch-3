@@ -1,0 +1,6 @@
+PROVED: Under the reading that closure(𝒱) in M̄_g×Δ is analytic with fibre over t equal to closure(V_t), the map t -> Y_t is a holomorphic map Δ -> M_{g_i,n_i} (graph of a continuous map that is an analytic set / Remmert proper image) — round1_q4
+PROVED: The closure of ∂V_t = {Y_t}×C_t in deeper strata is {Y_t}×closure(C_t), so hypothesis (ii) applied to Δ_Γ and strata in its closure holds tautologically for every Y_t and constrains nothing — round1_q1
+PROVED: The local plumbing germ ȳ = Y_t + O(σ) near a generic point of ∂V_t satisfies every local constraint of (i),(ii), so no argument local to ∂V_t can prove the claim; global input is needed — round1_q3
+PROVED: If every V_t were totally geodesic, the claim would follow from countability of totally geodesic subvarieties (via Wright's correspondence with orbit closures and Eskin–Mirzakhani–Mohammadi countability, cited not reproved) — round1_q1
+OPEN: Missing lemma — some rigid datum preserved by (i),(ii) and the smooth trivialization (incidence, monodromy, or Hodge data) pins Y_t to a countable/discrete set, or forces dY_t/dt = 0 — round1_q1
+OPEN: Whether a totally geodesic 2-dimensional V_0 admits any nontrivial holomorphic deformation V_t in M_g at all (if none, the claim holds since then V_t = V_0) — round1_q2

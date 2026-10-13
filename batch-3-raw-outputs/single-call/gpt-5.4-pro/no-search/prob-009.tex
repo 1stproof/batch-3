@@ -1,0 +1,185 @@
+```latex
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amsthm,amssymb,enumitem,hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+
+\begin{document}
+
+\begin{center}
+{\Large\bf Rigidity of a constant factor in a boundary family}
+\end{center}
+
+\medskip
+
+We keep the notation of the problem.  Thus
+\[
+\partial V_t:=\overline{V_t}\cap \Delta_\Gamma\subset \Delta_\Gamma
+\cong \mathcal M_{g_1,n_1}\times\cdots\times \mathcal M_{g_k,n_k},
+\]
+and for some fixed index $i$ we assume
+\[
+\pi_i(\partial V_t)=\{Y_t\}\qquad (t\in \Delta).
+\]
+We prove that $Y_t=Y_0$ for all $t$.
+
+\medskip
+
+As usual, one may pass to a sufficiently high finite level cover in order to avoid orbifold issues; this does not change the argument, and the conclusion descends.  We will not repeat this reduction below.
+
+\begin{lemma}\label{lem:holomorphic-factor}
+The map $t\mapsto Y_t$ is holomorphic.
+\end{lemma}
+
+\begin{proof}
+By assumption \textup{(i)}, the sets $\partial V_t$ form a holomorphic family inside
+$\Delta_\Gamma$; equivalently, after shrinking nothing, there is a complex submanifold
+\[
+\mathcal B\subset \Delta_\Gamma\times \Delta
+\]
+with fibers $\mathcal B_t=\partial V_t$, and with holomorphic projection
+$\phi:\mathcal B\to \Delta$.
+
+Consider the holomorphic map
+\[
+\Pi:=\pi_i\circ \mathrm{pr}_{\Delta_\Gamma}:\mathcal B\longrightarrow \mathcal M_{g_i,n_i}.
+\]
+By hypothesis, for each $t$, the restriction of $\Pi$ to the fiber
+$\phi^{-1}(t)=\partial V_t$ is constant.  In local product coordinates for the smooth
+holomorphic submersion $\phi$, this means precisely that $\Pi$ is independent of the
+fiber variables.  Hence $\Pi$ factors through $\phi$, i.e. there exists a holomorphic
+map
+\[
+Y:\Delta\longrightarrow \mathcal M_{g_i,n_i}
+\]
+such that $\Pi=Y\circ \phi$.  By construction, $Y(t)=Y_t$.
+\end{proof}
+
+\begin{lemma}\label{lem:teich-curve}
+There exists an algebraic Teichm\"uller curve $T\subset V_0$ whose Deligne--Mumford
+compactification $\overline{T}\subset \overline{\mathcal M}_g$ meets
+$\partial V_0=\overline{V_0}\cap \Delta_\Gamma$ at a smooth point of $\partial V_0$.
+\end{lemma}
+
+\begin{proof}
+This is a standard consequence of the structure theory of totally geodesic loci.
+
+Indeed, by the theorem of Gekhtman--Markovi\'c / Eskin--Filip--Wright, the locus of
+quadratic differentials whose Teichm\"uller disks are contained in the totally geodesic
+surface $V_0$ is an affine invariant manifold $\mathcal N$.  The codimension-one
+boundary piece of the Mirzakhani--Wright partial compactification of $\mathcal N$
+lying over the curve $\partial V_0\subset \Delta_\Gamma$ is again an affine invariant
+manifold; moreover, by the local product/collapse description of the boundary due to
+Mirzakhani--Wright, a neighborhood of a smooth point of that boundary piece is obtained
+by opening the collapsed cylinders.
+
+Now closed $GL_2^+(\mathbb R)$-orbits are dense in affine invariant manifolds
+(Eskin--Mirzakhani--Mohammadi).  Therefore one can choose a point of a closed
+$GL_2^+(\mathbb R)$-orbit in $\mathcal N$ sufficiently near that boundary piece so that
+collapsing the corresponding cylinders lands at a smooth point of the boundary piece
+over $\partial V_0$.  The projection of that closed orbit to moduli space is an
+algebraic Teichm\"uller curve $T\subset V_0$, and its stable limit under the cylinder
+collapse is a point of $\partial V_0$.
+\end{proof}
+
+\begin{theorem}
+Under the hypotheses of the problem, one has
+\[
+\pi_i(\partial V_t)=\{Y_0\}\qquad\text{for all }t\in \Delta.
+\]
+Equivalently, $Y_t=Y_0$ for every $t\in\Delta$.
+\end{theorem}
+
+\begin{proof}
+By Lemma \ref{lem:holomorphic-factor}, it is enough to show that $Y_t$ is constant
+on some neighborhood of $0$; the identity theorem will then imply that $Y$ is constant
+on the connected disk $\Delta$.
+
+Choose a Teichm\"uller curve $T\subset V_0$ as in Lemma \ref{lem:teich-curve}, and fix
+a point
+\[
+p\in \overline{T}\cap \partial V_0\subset \Delta_\Gamma
+\]
+which is smooth on $\partial V_0$.
+
+Since $\overline{\mathcal M}_g$ is projective and $\overline{T}$ is algebraic, Bertini
+with prescribed base locus gives a hypersurface
+\[
+H\subset \overline{\mathcal M}_g
+\]
+such that:
+
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item $\overline{T}\subset H$;
+\item $H$ is transverse to $\overline{V_0}$ along $\overline{T}$;
+\item after choosing a sufficiently small relatively compact neighborhood
+$U\subset \overline{\mathcal M}_g$ of $\overline{T}$, one has
+\[
+H\cap U\cap \overline{V_0}=\overline{T}.
+\]
+\end{enumerate}
+
+We now use assumptions \textup{(i)} and \textup{(ii)}.  Since $\overline{T}$ meets only
+finitely many boundary strata, and on each stratum the intersections
+$\overline{V_t}\cap \Delta_G$ form smooth families compatible under passage to deeper
+strata, it follows (after shrinking the parameter disk to some smaller disk
+$\Delta_\varepsilon\ni 0$) that the sets
+\[
+\overline{T}_t:=H\cap U\cap \overline{V_t}
+\]
+glue to a holomorphic family of compact curves in $\overline{\mathcal M}_g$, with
+central fiber $\overline{T}_0=\overline{T}$.
+
+Now we invoke M\"oller's rigidity theorem for Teichm\"uller curves
+(\emph{Variations of Hodge structures of a Teichm\"uller curve}, JAMS 19 (2006)):
+the stable map defined by the compactified Teichm\"uller curve $\overline{T}\to
+\overline{\mathcal M}_g$ is rigid.  In particular, any holomorphic deformation of
+$\overline{T}$ inside $\overline{\mathcal M}_g$ is locally trivial.  Applied to the
+family $\{\overline{T}_t\}_{t\in \Delta_\varepsilon}$, this gives
+\[
+\overline{T}_t=\overline{T}\qquad\text{for all }t\in \Delta_\varepsilon.
+\]
+
+Hence the fixed point $p\in \overline{T}\cap \Delta_\Gamma$ belongs to
+\[
+\overline{T}_t\subset \overline{V_t}\cap \Delta_\Gamma=\partial V_t
+\]
+for every $t\in \Delta_\varepsilon$.  Since $\pi_i(\partial V_t)=\{Y_t\}$, we obtain
+\[
+Y_t=\pi_i(p)\qquad (t\in \Delta_\varepsilon).
+\]
+But $p\in \partial V_0$, and $\pi_i(\partial V_0)=\{Y_0\}$, so $\pi_i(p)=Y_0$.
+Therefore
+\[
+Y_t=Y_0\qquad (t\in \Delta_\varepsilon).
+\]
+
+By Lemma \ref{lem:holomorphic-factor}, $Y:\Delta\to \mathcal M_{g_i,n_i}$ is holomorphic
+and constant on the nonempty open set $\Delta_\varepsilon$.  Hence $Y$ is constant on
+all of $\Delta$.  This is exactly the desired conclusion:
+\[
+\pi_i(\partial V_t)=\{Y_0\}\qquad\text{for all }t\in \Delta.
+\]
+\end{proof}
+
+\bigskip
+
+\noindent\textbf{References used in the proof.}
+\begin{itemize}
+\item M. M\"oller, \emph{Variations of Hodge structures of a Teichm\"uller curve},
+J. Amer. Math. Soc. \textbf{19} (2006), 327--344.
+\item A. Eskin, M. Mirzakhani, A. Mohammadi,
+\emph{Isolation, equidistribution, and orbit closures for the $SL_2(\mathbb R)$ action
+on moduli space}, Ann. of Math. \textbf{182} (2015), 673--721.
+\item M. Mirzakhani, A. Wright,
+\emph{The boundary of an affine invariant submanifold},
+Invent. Math. \textbf{209} (2017), 927--984.
+\item The identification of the cotangent locus of a totally geodesic subvariety with an
+affine invariant manifold (work of Gekhtman--Markovi\'c and Eskin--Filip--Wright).
+\end{itemize}
+
+\end{document}
+```

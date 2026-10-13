@@ -1,0 +1,385 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\dd}{\mathrm{d}}
+
+\begin{document}
+
+\title{Problem 4 -- Humanize}
+\author{}
+\date{}
+\maketitle
+
+\begin{abstract}
+\noindent We prove that the answer to the question is \emph{no} in
+general. If $(M,\omega)$ is a symplectic manifold, $D\subset M$ a
+symplectic simple normal crossings divisor, and $J$ an $\omega$-tame
+almost complex structure admitting, locally on $M$, smooth complex
+coordinates $(z_1,\ldots,z_n)$ with $z_1,\ldots,z_r$
+$J$-holomorphic and $D=\{z_1\cdots z_r=0\}$, then the normal bundle
+of every compact connected component $D_\alpha$ of $D$ admits a flat
+structure with locally constant (locally) $J$-holomorphic trivialising
+frames; in particular
+\[
+\langle e(\nu_{D_\alpha}),[D_\alpha]\rangle\ =\
+D_\alpha\cdot D_\alpha\ =\ 0 .
+\]
+For a projective line $L\cong\CP^1$ in $(\CP^2,\omega_{\mathrm{FS}})$
+(a symplectic SNC divisor with one component) one has $L\cdot L=1$,
+so no such $J$ exists, and the cohomologous deformation of $\omega$
+allowed in the question cannot remove the obstruction, which is
+topological in the pair $(M,D)$.
+\end{abstract}
+
+\section{Statement and answer}\label{sec:statement}
+
+\begin{quote}
+\textbf{Question.} Let $(M,\omega)$ be a closed symplectic manifold
+and $D\subset M$ a symplectic simple normal crossings divisor. Does
+there exist an $\omega$-tame almost complex structure $J$ such that
+locally on $M$ there are smooth complex coordinates $(z_1,\ldots,z_n)$
+in which, for some $0\le r\le n$, the functions $z_1,\ldots,z_r$ are
+$J$-holomorphic and $D$ is given by $z_1\cdots z_r=0$? (One may first
+replace $\omega$ by a symplectic form connected to it through a path
+of symplectic forms, all cohomologous to $\omega$, along which $D$
+remains a symplectic simple normal crossings divisor.)
+\end{quote}
+
+\medskip
+\noindent\textbf{Answer: No in general.} The precise form is:
+
+\begin{theorem}[Obstruction]\label{thm:obstruction}
+Let $(M,\omega)$ be a symplectic manifold, $D\subset M$ a symplectic
+simple normal crossings divisor, and let $J$ be an almost complex
+structure on $M$ which is \emph{SNC-adapted to} $D$, meaning: every
+point $p\in M$ has a neighbourhood $U$ with smooth complex
+coordinates $(z_1,\ldots,z_n)\colon U\to U'\subset\CC^n$ such that,
+for some $0\le r\le n$,
+\begin{enumerate}
+\item[\normalfont(i)] $D\cap U=\{q\in U:z_1(q)\cdots z_r(q)=0\}$;
+\item[\normalfont(ii)] $z_1,\dots,z_r$ are $J$-holomorphic on $U$
+(the condition $\dd z_k\circ J=i\,\dd z_k$ holds at every point of
+$U$).
+\end{enumerate}
+Let $D_\alpha$ be a compact connected component of $D$. Then the
+normal bundle $\nu_\alpha$ of $D_\alpha$ in $M$ --- a complex line
+bundle via the quotient of $J$, see Lemma~\ref{lem:strata} ---
+possesses a flat connection; in particular its Euler class satisfies
+\[
+e(\nu_\alpha)\ =\ 0\ \in\ H^2(D_\alpha;\RR),
+\qquad\text{hence}\qquad
+\langle e(\nu_\alpha),[D_\alpha]\rangle
+\ =\ D_\alpha\cdot D_\alpha\ =\ 0 .
+\]
+(The conclusion of the question would therefore force
+$D_\alpha\cdot D_\alpha=0$ for every compact component, regardless
+of the tameness of $J$ --- the latter enters the question but the
+obstruction needs no taming at all.)
+\end{theorem}
+
+\begin{corollary}[The counterexample]\label{cor:cp2}
+Let $M=\CP^2$, $\omega=\omega_{\mathrm{FS}}$ the Fubini--Study
+symplectic form, and $D=L\cong\CP^1$ a projective line. Then $D$ is
+a symplectic simple normal crossings divisor in the closed symplectic
+manifold $(M,\omega)$: it is a smooth symplectic submanifold, and a
+single component trivially constitutes simple normal crossings. But
+\[
+L\cdot L\ =\ \int_L c_1\bigl(\mathcal O_{\CP^1}(1)\bigr)\ =\ 1
+\ \neq\ 0 ,
+\]
+since $\nu_L\cong\mathcal O_{\CP^1}(1)$. By
+Theorem~\ref{thm:obstruction}, no $\omega'$-tame SNC-adapted $J$
+exists for \emph{any} symplectic form $\omega'$ in a cohomologous
+deformation family: the quantity $\langle e(\nu_L),[L]\rangle=L\cdot
+L$ is a topological intersection number of the pair $(M,L)$, hence
+unchanged by any deformation of $\omega$ that keeps $L$ smoothly
+embedded (and a fortiori symplectic SNC). Moreover, the same
+conclusion holds for the nodal SNC divisor $D=L_1\cup L_2$ formed by
+two distinct lines: each component satisfies
+$L_i\cdot L_i=1$.
+\end{corollary}
+
+\begin{remark}[What happens for components with trivial normal Euler
+class]
+For components with $e(\nu_\alpha)=0$ in $H^2(D_\alpha;\RR)$ (e.g.\
+trivial normal bundle), Theorem~\ref{thm:obstruction} says nothing;
+and indeed in the product situation $M=X\times\CC$ with
+$D=X\times\{0\}$ an $\omega$-tame adapted $J$ does exist whenever
+$(X,\omega|_X)$ carries a tame almost complex structure $J_X$: take
+$J=J_X\oplus i$. This shows the obstruction found here is specific
+to components with nontrivial normal Euler class, and the
+counterexample relies on $L\cdot L\neq0$.
+\end{remark}
+
+\section{Strata are $J$-invariant}\label{sec:strata}
+
+\begin{lemma}\label{lem:strata}
+Let $J$ be SNC-adapted to $D$ (no taming assumption needed). Then
+for every $p\in D$, and $A:=\{\alpha:p\in D_\alpha\}$, the tangent
+space $T_pD_A$ of the stratum $D_A=\bigcap_{\alpha\in A}D_\alpha$
+is a $J_p$-complex subspace of $T_pM$. Consequently
+$J_A:=J|_{TD_A}$ is an almost complex structure on $D_A$, and, if
+$J$ is $\omega$-tame, so is $J_A$ (with respect to
+$\omega|_{D_A}$).
+\end{lemma}
+
+\begin{proof}
+Choose adapted coordinates $(z_1,\dots,z_n)$ at $p$ with
+$D\cap U=\{z_1\cdots z_r=0\}$, so that $D_A\cap U=\{z_{k}=
+0:\alpha_k\in A\}$ after numbering, and
+$T_pD_A=\bigcap_{k:\,\alpha_k\in A}\ker\dd z_k(p)$. For
+$v\in\ker\dd z_k(p)$, the $J$-holomorphicity of $z_k$ gives
+$\dd z_k(Jv)=i\,\dd z_k(v)=0$, so $Jv\in\ker\dd z_k(p)$. Thus each
+$\ker\dd z_k(p)$ is $J_p$-invariant, and so is their intersection.
+The statement about taming restricts from $M$ to the invariant
+subspace: for $v\in T_pD_A\setminus0$,
+$\omega(v,J_Av)=\omega(v,Jv)>0$.
+\end{proof}
+
+\begin{corollary}[Normal bundle is a complex line bundle]
+\label{cor:normal}
+For any component $D_\alpha$, the normal bundle
+$\nu_\alpha:=TM|_{D_\alpha}/TD_\alpha$ carries a fibrewise complex
+structure induced by $J$, making it a complex line bundle over
+$D_\alpha$; the conormal bundle $\nu_\alpha^*=\Hom_\CC(\nu_\alpha,
+\CC)$ is the dual complex line bundle.
+\end{corollary}
+
+\section{The ratio lemma}\label{sec:ratio}
+
+\begin{lemma}[Ratios are $J$-holomorphic across the divisor]
+\label{lem:ratio}
+Let $J$ be SNC-adapted, and let $\zeta,\zeta'$ be $J$-holomorphic
+functions on a connected open set $W\subset M$ with
+\[
+\{\zeta=0\}\ =\ \{\zeta'=0\}\ =\ W\cap D_\alpha,
+\qquad \dd\zeta\neq0,\ \dd\zeta'\neq0\ \text{on }W\cap D_\alpha .
+\]
+Then the ratio $h:=\zeta'/\zeta$, smooth and nonvanishing on
+$W\setminus D_\alpha$, extends to a smooth nonvanishing function on
+$W$, the extension satisfies
+\begin{equation}\label{eq:cross}
+\dd\zeta'\ =\ h\,\dd\zeta\quad\text{on }W\cap D_\alpha,
+\end{equation}
+and $h$ is $J$-holomorphic on $W$: $\dd h\circ J=i\,\dd h$.
+\end{lemma}
+
+\begin{proof}
+Off $D_\alpha$, both functions are nowhere zero, so $h$ is smooth
+nonvanishing there, and the computation
+$\dd\zeta'=\dd h\,\zeta+h\,\dd\zeta$ composed with $J$ gives, using
+$\dd\zeta\circ J=i\dd\zeta$ and $\dd\zeta'\circ J=i\dd\zeta'$,
+\[
+0\ =\ \zeta\cdot\bigl(\dd h\circ J-i\,\dd h\bigr),
+\]
+hence $\dd h\circ J=i\dd h$ on $W\setminus D_\alpha$: $h$ is
+$J$-holomorphic there.
+
+For the extension: $D_\alpha\cap W$ is a smooth codimension-two
+submanifold along which both $\zeta,\zeta'$ vanish with nonvanishing
+differential transversely. In any tubular neighbourhood with normal
+coordinate, both ${\zeta}$ and ${\zeta}'$ have a simple zero along
+the zero section; their quotient extends smoothly and nonvanishingly
+across the zero section (one-variable Taylor argument in the normal
+direction: if $f(t)=t\,F(t)$, $g(t)=t\,G(t)$ with $F(0),G(0)\neq0$,
+then $f/g=F/G$ extends). Differentiating
+$\zeta'=h\zeta$ at $q\in D_\alpha$ (where $\zeta=0$) yields
+\eqref{eq:cross}, and since $\dd\zeta'(q)\neq0$ and
+$\dd\zeta(q)\neq0$, the extended $h$ is nonvanishing also on
+$D_\alpha$.
+
+Finally, the identity $\dd h\circ J=i\dd h$ holds on
+$W\setminus D_\alpha$, both sides are continuous on $W$ (since $h$
+and $J$ are smooth on $W$), and $W\setminus D_\alpha$ is dense in
+$W$; hence the identity holds on all of $W$.
+\end{proof}
+
+\section{The maximum principle}\label{sec:max}
+
+\begin{lemma}\label{lem:max}
+Let $(X,J)$ be a connected almost complex manifold of dimension
+$2m\ge2$, and $h\colon X\to\CC$ $J$-holomorphic. If $|h|$ has a
+local maximum at some point of $X$, then $h$ is constant. In
+particular, on a compact connected almost complex manifold every
+$J$-holomorphic function is constant.
+\end{lemma}
+
+\begin{proof}
+We use the local existence of $J$-holomorphic discs in almost
+complex manifolds (Nijenhuis--Woolf): for every $p\in X$ and every
+complex line $\ell\subset(T_pX,J_p)$ there is a $J$-holomorphic disc
+$\varphi\colon\Delta\to X$ with $\varphi(0)=p$ and
+$\varphi_{*}T_0\Delta=\ell$; moreover one can choose such discs
+smoothly depending on parameters (e.g.\ on the line and on nearby
+points), so that their images through $\{p'\}\times\{$lines in
+$T_{p'}X\}$ cover a neighbourhood of $p$.
+
+Suppose $|h|$ attains a local maximum at $p$. For any small
+$J$-holomorphic disc $\varphi\colon\Delta\to X$ with
+$\varphi(0)=p$, the composition $h\circ\varphi$ is holomorphic
+$\Delta\to\CC$ (chain rule from $\dd h\circ J=i\dd h$), and
+$|h\circ\varphi|$ attains a maximum at $0$; by the classical
+maximum modulus principle $h\circ\varphi$ is constant, in
+particular $h|_{\varphi(\Delta)}\equiv h(p)$. Since such discs
+through $p$ sweep a neighbourhood of $p$ (choose the disc family as
+above), $h\equiv h(p)$ on an open set containing $p$. Thus
+$\{q:h(q)=h(p)\}$ is open; it is also closed, and $X$ is
+connected, so $h\equiv h(p)$. The compact case follows because
+$|h|$ attains its maximum.
+\end{proof}
+
+\section{Proof of the obstruction}\label{sec:proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:obstruction}]
+Let $D_\alpha$ be a compact connected component; all components are
+smooth codimension-$2$ symplectic submanifolds, and we use the
+conormal complex line bundle $\nu_\alpha^*$ of
+Corollary~\ref{cor:normal}.
+
+\emph{Step 1: $J$-holomorphic conormal frames.}
+By SNC-adaptedness, cover $D_\alpha$ by finitely many adapted
+coordinate neighbourhoods $W_i$ with the property that
+$z_1^{(i)}$ is $J$-holomorphic and
+$\{z_1^{(i)}=0\}=D_\alpha\cap W_i$: at any $p\in D_\alpha$ the
+component $D_\alpha$ is among the coordinate hyperplanes of every
+adapted coordinate system at $p$ (it appears among the
+$D=\{z_1\cdots z_r=0\}$ factors), so renumbering puts it first;
+this works also at points of $D_\alpha$ lying on other components.
+On $W_i\cap D_\alpha$, set
+\[
+e_i\ :=\ \dd z_1^{(i)}\big|_{D_\alpha\cap W_i}
+\ \in\ \Gamma\bigl(D_\alpha\cap W_i,\ T^*M\otimes\CC\bigr).
+\]
+Since $z_1^{(i)}|_{D_\alpha\cap W_i}=0$, $e_i$ annihilates
+$T(D_\alpha)$, so it descends to a homomorphism
+$\nu_\alpha\to\CC$; since $\dd z_1^{(i)}\neq0$ along $D_\alpha$
+(it is a coordinate differential), $e_i\neq0$ everywhere on
+$D_\alpha\cap W_i$; and by $J$-holomorphicity,
+$e_i(Jv)=\dd z_1^{(i)}(Jv)=i\,\dd z_1^{(i)}(v)=i\,e_i(v)$, so $e_i$
+is $\CC$-linear for the complex structure of
+Corollary~\ref{cor:normal}: $e_i$ is a nowhere vanishing local frame
+of the complex line bundle $\nu_\alpha^*$.
+
+\emph{Step 2: constant transition functions.}
+On $W_i\cap W_j$, both $z_1^{(i)}$ and $z_1^{(j)}$ are
+$J$-holomorphic defining functions of
+$D_\alpha\cap W_i\cap W_j$, with the hypotheses of
+Lemma~\ref{lem:ratio}. Hence the ratio
+$h_{ij}:=z_1^{(j)}/z_1^{(i)}$ extends smoothly and nonvanishingly
+across $D_\alpha$, is $J$-holomorphic on $W_i\cap W_j$, and
+$e_j=h_{ij}\,e_i$ on $D_\alpha\cap W_i\cap W_j$ (this is
+\eqref{eq:cross}). Restricting to $D_\alpha$: by
+Lemma~\ref{lem:strata}, $J_\alpha:=J|_{TD_\alpha}$ is an almost
+complex structure on the compact connected manifold $D_\alpha$, and
+$h_{ij}|_{D_\alpha}$ is $J_\alpha$-holomorphic: indeed
+$\dd(h_{ij}|_{D_\alpha})\circ J_\alpha=(\dd h_{ij}\circ J)|_{TD_\alpha}
+=i\,\dd h_{ij}|_{TD_\alpha}=i\,\dd(h_{ij}|_{D_\alpha})$. By
+Lemma~\ref{lem:max}, $h_{ij}|_{D_\alpha}$ is constant on every
+connected component of $D_\alpha\cap W_i\cap W_j$.
+
+\emph{Step 3: flatness and vanishing Euler class.}
+The complex line bundle $\nu_\alpha^*$ thus admits a trivialising
+cover (the $e_i$) whose transition functions
+$\{h_{ij}|_{D_\alpha}\}$ are constant on each connected overlap
+piece. Choose on each $W_i\cap D_\alpha$ the connection whose
+covariant derivative kills $e_i$; since on overlaps the frames
+differ by constants, these local connections agree on overlaps and
+assemble to a global connection $\nabla$ on $\nu_\alpha^*$ with
+$\nabla e_i=0$ on $W_i$; its curvature satisfies
+$\Omega(e_i)=0$ locally, hence $\Omega\equiv0$: $\nabla$ is flat.
+By Chern--Weil theory (the first Chern form of a flat
+connection is identically zero),
+\[
+c_1(\nu_\alpha^*)\ =\ 0\ \in\ H^2(D_\alpha;\RR).
+\]
+For a complex line bundle, the Euler class of the oriented real
+plane bundle equals $c_1$, and duals reverse the sign; hence
+\[
+e(\nu_\alpha)\ =\ c_1(\nu_\alpha)\ =\ -c_1(\nu_\alpha^*)\ =\ 0 ,
+\qquad
+\langle e(\nu_\alpha),[D_\alpha]\rangle=0 .
+\]
+The self-intersection $D_\alpha\cdot D_\alpha:=\langle
+e(\nu_\alpha),[D_\alpha]\rangle$ therefore vanishes.
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor:cp2}]
+$(\CP^2,\omega_{\mathrm{FS}})$ is a closed symplectic manifold and
+a projective line $L$ is a smooth symplectic hypersurface; SNC for a
+single component is automatic. Its normal bundle is
+$\mathcal O(1)$ with $c_1$ evaluating to $1$ on $[L]$; so the
+conclusion of Theorem~\ref{thm:obstruction} fails: no
+$\omega_{\mathrm{FS}}$-tame SNC-adapted $J$ exists.
+
+For the deformation clause: suppose $\{\omega_t\}_{t\in[0,1]}$ is a
+path of cohomologous symplectic forms with $\omega_0=
+\omega_{\mathrm{FS}}$, along which $L$ remains a symplectic SNC
+divisor. Apply Theorem~\ref{thm:obstruction} to
+$(\CP^2,\omega_1,L)$: the hypothesis "$J$ is $\omega_1$-tame and
+SNC-adapted" implies $L\cdot L=0$; but $L\cdot L$ is the
+topological intersection number of the homology class
+$[L]\in H_2(\CP^2;\mathbb Z)$ with itself, equal to $1$ regardless
+of the symplectic form used (it only depends on the underlying
+oriented smooth pair $(\CP^2,L)$): contradiction. Hence no such $J$
+exists after any allowed deformation either. For
+$D=L_1\cup L_2$ formed by two distinct lines: they meet transversely
+at one point, and the standard local Darboux model for two
+transversally intersecting symplectic hypersurfaces supplies the SNC
+charts at the intersection point, so $D$ is a symplectic SNC divisor
+in the sense of the question; each component satisfies
+$L_i\cdot L_i=1$, so the same conclusion holds.
+\end{proof}
+
+\section{Discussion of sharpness}\label{sec:remarks}
+
+\noindent(1) \emph{What the obstruction uses.} Only the existence of
+local $J$-holomorphic defining functions and the compactness of the
+component enter: the ratio lemma makes the conormal frames constant
+along the component via the maximum principle. Tameness of $J$,
+closedness of $M$, and the SNC condition beyond smoothness of the
+component are superfluous for the obstruction --- but $(\CP^2,L)$
+satisfies all the hypotheses of the question, so the answer to the
+question as stated is no.
+
+\noindent(2) \emph{The deformation does not help because the
+obstruction is not symplectic.} Theorem~\ref{thm:obstruction} is a
+statement about $J$ and $D$ alone (given adaptedness); its
+conclusion $D_\alpha\cdot D_\alpha=0$ is a topological fact of the
+pair. No change of $\omega$ within its cohomology class (or any
+class) affects it, as long as $D_\alpha$ stays compact.
+
+\noindent(3) \emph{Sharpness of the principle.} The obstruction
+vanishes when $D_\alpha\cdot D_\alpha=0$; in the product situation
+$D=X\times\{0\}\subset X\times\CC$ (or $X\times\Sigma^g$) with the
+product form, where $\nu_D$ is trivial, an adapted tame structure
+exists whenever $X$ carries a tame almost complex structure $J_X$:
+take $J_X\oplus i$ (already noted after Corollary~\ref{cor:cp2}).
+Hence the obstruction used here cannot by itself distinguish such
+cases; whether the answer is yes whenever all components have
+vanishing normal Euler class is a further question not decided here.
+
+\noindent(4) \emph{More counterexamples.} Any closed symplectic
+$(M,\omega)$ containing a symplectic SNC divisor with a compact
+connected component $D_\alpha$ of nonzero self-intersection is a
+counterexample, stably under the allowed deformation; for instance a
+line in $\CP^2$ (self-intersection $+1$) or an exceptional sphere in
+a symplectic blow-up (self-intersection $-1$). By contrast, a smooth
+fibre of a ruled surface has self-intersection $0$, so the present
+obstruction does not apply to it.
+
+\end{document}

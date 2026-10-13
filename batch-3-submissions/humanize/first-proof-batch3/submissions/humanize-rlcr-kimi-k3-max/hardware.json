@@ -1,0 +1,7 @@
+{
+  "instance_type": "r7i.2xlarge",
+  "env_vars": true,
+  "timeout_minutes": 1440,
+  "storage_gb": 100,
+  "rationale": "Ten Kimi K3 API-backed Humanize RLCR workers and their reviewers run concurrently, split five each across two serving endpoints. The 8 vCPUs and 64 GiB RAM provide process, LaTeX, and log headroom; no GPU is required."
+}

@@ -1,0 +1,1067 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{fullpage}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\Symp}{\operatorname{Symp}}
+\newcommand{\cT}{\mathcal T}
+
+\newcommand{\fptitle}{Review of Problem 4 -- ProofCouncil}
+\newcommand{\reviewtag}{Reviewer 2}
+\usepackage{fp-review}
+
+\begin{document}
+\maketitle
+
+\section{Review}
+The paper presents a plausibly correct solution to the problem. The approach tracks very well with the human solution to the problem with the exception of the recursive structure used for an induction argument (known as "the forest" in the paper). The approach to the induction seems very unnatural and certainly the first thought of a symplectic geometer would be to induct on the stratification of the expanded divisor and not to construct an obscure looking binary tree rooted in each divisor branch.
+
+This strange choice of inductive structure is the main detriment of the argument as it then requires a very intricate argument for making the defining functions holomorphic. This results in highly technical lemmas such as Lemma 8, Lemma 9, and ultimately Proposition 10. This makes the exposition extremely opaque and the arguments could not possibly be verified in the time allotted. The argument is so delicate that technical errors could easily exist that might invalidate the entire argument. Much care would be needed to fully verify.
+
+We are marking the argument as correct as the outline works in principal and the technicalities could plausibly be correct as well. There were no obvious errors in attribution.
+
+\paragraph{Correctness.}
+\begin{itemize}
+	\item  1: essentially flawless mathematical argument
+	\item  0.5: minor errors that are easily corrected
+	\item  0: blank solution, or acknowledged partial result
+	\item  $-0.5$: major errors
+	\item  $-1$: proposed proof makes no progress towards the result.
+\end{itemize}
+Note that points should be docked for wrong statements/ solutions.
+
+\noindent Score: 1
+
+\paragraph{Exposition.}
+\begin{itemize}
+	\item  1: well-written and clear solution.
+	\item  0: argument that is possible to follow with serious effort
+	\item  $-1$: very poor exposition
+\end{itemize}
+
+\noindent Score: 0
+
+\paragraph{Attributions.}
+\begin{itemize}
+	\item  1: solutions contains fully appropriate attributions
+		to related work and theorems being used.
+	\item  0: moderate issues with missing attributions or hallucinated references
+	\item  $-1$: blatant plagiarism or hallucinations
+\end{itemize}
+
+\noindent Score: 1
+
+\newpage
+\section{Submission with inline comments}
+
+
+\begin{abstract}
+Let $(M,\omega)$ be a closed symplectic manifold and $D\subset M$ a
+symplectic simple normal crossings divisor. After replacing $\omega$ by
+a cohomologous symplectic form joined to it by a path along which $D$
+stays simple normal crossings, we construct a tame almost complex
+structure $J$ such that every point of $M$ has smooth complex
+coordinates $(z_1,\dots,z_n)$ in which $z_1,\dots,z_r$ are
+$J$-holomorphic and $D=\{z_1\cdots z_r=0\}$. The proof combines the
+regularization theorem of Farajzadeh Tehrani, McLean and Zinger with
+auxiliary approximately holomorphic divisors arranged in a forest of
+binary trees, whose recursive frames give exact Laurent-monomial
+transitions between nested systems of local defining functions, and
+with a convexity property of tame structures that patches local
+solutions exactly.
+\end{abstract}
+
+\section{Introduction}
+
+Throughout, $(M,\omega)$ is a closed symplectic manifold of real
+dimension $2n$. A submanifold $V\subset M$ is \emph{symplectic} if
+$\omega|_V$ is nondegenerate; symplectic submanifolds, and $M$ itself,
+are oriented by their symplectic forms.
+
+\subsection*{Conventions}
+
+\begin{definition}[positive symplectic SNC collection]\label{def:snc}
+A finite collection $\{D_i\}_{i\in S}$ of closed embedded symplectic
+submanifolds of $M$ of real codimension two is a \emph{positive
+symplectic simple normal crossings (SNC) collection} if for every
+$\Lambda\subset S$ the \emph{closed intersection}
+$D_\Lambda=\bigcap_{i\in\Lambda}D_i$ ($D_\varnothing=M$) has the
+following properties: at each point the tangent spaces of the $D_i$,
+$i\in\Lambda$, meet transversally, so that $D_\Lambda$ is a (possibly
+empty) closed submanifold of codimension $2|\Lambda|$; $D_\Lambda$ is
+symplectic; and the orientation of $D_\Lambda$ as a transverse
+intersection of the oriented
+submanifolds $D_i$ inside the oriented manifold $M$ agrees with its
+symplectic orientation. The union $D=\bigcup_iD_i$ is then a
+\emph{symplectic SNC divisor} with \emph{branches} $D_i$.
+\end{definition}
+
+In the terminology of \cite{FMZ}, $\{D_i\}$ is an ``SC symplectic
+divisor'' and $\omega$ belongs to the space $\Symp^+(M,\{D_i\})$ of
+symplectic forms positive for it. We work with collections rather than
+with the union $D$ because the proof adjoins auxiliary branches. Since
+$D_\Lambda$ has codimension $2|\Lambda|$, at most $n$ branches pass
+through any point; this elementary fact is used repeatedly.
+
+An almost complex structure $J$ on $M$ is \emph{$\omega$-tame} if
+$\omega(v,Jv)>0$ for all $v\neq0$, and \emph{$\omega$-compatible} if in
+addition $\omega(Ju,Jv)=\omega(u,v)$. A smooth function $f\colon U\to\C$
+on an open set $U\subset M$ is \emph{$J$-holomorphic} if
+$df\circ J=i\,df$, equivalently if the complex-linear extension of $df$
+vanishes on the $(0,1)$-bundle $T^{0,1}_JM=\{v+iJv\}$. Products, and
+quotients by nonvanishing functions, of $J$-holomorphic functions are
+$J$-holomorphic. A \emph{smooth complex coordinate system} is a smooth
+real coordinate system with values in $\C^n$; it need not be a
+holomorphic chart for $J$.
+
+\begin{theorem}\label{thm:main}
+Let $(M,\omega)$ be a closed symplectic manifold and $D=\bigcup_{i\in S}D_i$
+a symplectic SNC divisor in the sense of Definition~\ref{def:snc}. There
+are a smooth path of symplectic forms $\omega_t$, $0\le t\le1$, and an
+$\omega_1$-tame almost complex structure $J$ such that $\omega_0=\omega$,
+$[\omega_t]=[\omega]\in H^2(M;\R)$ for all $t$, $\{D_i\}$ is a positive
+symplectic SNC collection for every $\omega_t$, and every point of $M$
+has a neighbourhood with smooth complex coordinates $(z_1,\dots,z_n)$
+in which, for some $0\le r\le n$, the functions $z_1,\dots,z_r$ are
+$J$-holomorphic and $D=\{z_1\cdots z_r=0\}$.
+\end{theorem}
+
+\subsection*{What is being asked}
+
+It is comparatively easy, after the permitted regularization, to find
+a tame $J$ for which every branch $D_i$ is a $J$-holomorphic
+submanifold, $J(TD_i)=TD_i$ (Lemma~\ref{lem:reg} below; for almost
+complex structures adapted to a divisor see also \cite[Section 3]{FZ}).
+Theorem~\ref{thm:main} asks for more: a scalar function $f$ with
+$df\circ J=i\,df$ on an open set and $D_i=\{f=0\}$ there.
+
+Here is the difficulty. If $D_i$ is the zero set of a transverse
+section $s_i$ of a line bundle $L_i$, a local defining function is
+$f=s_i/F$ for a local nonvanishing frame $F$. Two frames on
+overlapping sets differ by a nonvanishing function which must itself be
+$J$-holomorphic if both quotients are; unrelated local trivializations
+have arbitrary transition functions, so no single $J$ serves them all.
+The central device of the proof is a global system of frames whose
+transition functions are exact Laurent monomials in other defining
+functions of the same kind.
+
+\subsection*{Strategy}
+
+\review{This paragraph is key to understanding the entire paper and should be split into multiple descriptive paragraphs. In particular, the "forest" construction is so non-obvious and non-standard it probably deserves its own small summary section.}
+\emph{Regularization} (Section~\ref{sec:inputs}): by
+\cite[Theorem 2.13]{FMZ}, a cohomologous deformation of $\omega$ makes
+the normal bundles of the branches symplectically orthogonal along
+their intersections; a compatible almost complex structure preserving
+every branch follows.
+\emph{Auxiliary divisors} (Section~\ref{sec:inputs}): given a line
+bundle $L$ and a positive SNC collection $E$, approximately holomorphic
+sections \cite{Donaldson1996,Auroux1997,Mohsen2019} produce a line
+bundle $H$ and sections $u$ of $H$, $v$ of $L\otimes H$ whose zero sets,
+together with $E$, form a positive SNC collection (Lemma~\ref{lem:aux}).
+\emph{The forest} (Section~\ref{sec:forest}): over each branch $D_i$ we
+grow a full binary tree of depth $n$; a node $a$ carries $(L_a,s_a)$ and
+its children carry $L_{a-}=H_a$, $L_{a+}=L_a\otimes H_a$, so that
+$L_a\cong L_{a+}\otimes L_{a-}^{-1}$. Where $s_{a\pm}$ do not vanish,
+$s_a/(s_{a+}\otimes s_{a-}^{-1})$ is a defining function of
+$D_a=s_a^{-1}(0)$; where $s_{a+}$ or $s_{a-}$ is small, that section is
+in turn replaced by the frame built from its own children, and so on.
+Since at most $n$ divisors pass
+through a point, depth $n$ suffices.
+\emph{Multiscale cover and exact transitions} (Section~\ref{sec:frames}):
+open sets $U_A$, indexed by the patterns $A$ of ``small'' sections,
+cover $M$, and on $U_A$ the recursion gives functions $f^A_a$ with zero
+sets $D_a\cap U_A$; for $A\subset B$ the $f^A_a$ are Laurent monomials,
+with coefficient one, in the $f^B_c$ (Lemma~\ref{lem:monomial}).
+\emph{Estimates and local structures} (Section~\ref{sec:estimates}):
+with thresholds $\eps_0\ll\dots\ll\eps_n$ attached to the depths, the
+differentials $df^B_a$, multiplied by their nonvanishing frames, are
+uniformly small perturbations of the nearly complex-linear derivatives
+of the sections $s_a$, and a pointwise construction gives, near each
+point, a tame structure for which all functions of a maximal pattern
+are holomorphic.
+\emph{Patching} (Sections~\ref{sec:linear}, \ref{sec:patching}): tame
+structures are parametrized by strict contractions (``graph maps'')
+relative to a compatible reference structure, and holomorphicity of a fixed
+function is an \emph{affine} condition on the graph map, so averaging
+graph maps with a partition of unity preserves every common constraint
+exactly; Lemma~\ref{lem:monomial} makes the constraints common. The
+coordinates are read off in Section~\ref{sec:end}.
+
+\emph{Inputs and credit.}
+Besides \cite[Theorem 2.13]{FMZ} and the approximately holomorphic
+techniques of \cite{Donaldson1996,Auroux1997,Auroux2001,Mohsen2019},
+we use the symplectic polar decomposition \cite[Theorem 2.16]{Wendl}
+and S\'evennec's description of tame structures as graphs of strict
+contractions \cite[Theorem 2.37]{Wendl}; almost complex structures
+preserving auxiliary approximately holomorphic hypersurfaces appear in
+\cite[Section 8]{CM}. The remaining ingredients, namely the forest of
+auxiliary divisors, the recursive frames with monomial transitions, the
+multiscale estimates and the patching with affine constraints, are
+developed here.
+
+\section{The symplectic inputs}\label{sec:inputs}
+
+In this section $(X,\sigma)$ is a closed symplectic manifold of
+dimension $2n$ and $E=\{E_i\}_{i\in S}$ a positive symplectic SNC
+collection in $X$ (Definition~\ref{def:snc}), with closed intersections
+$E_\Lambda$, $\Lambda\subset S$. The two lemmas below are consequences
+of published results.
+
+\subsection{Regularization}
+
+Farajzadeh Tehrani, McLean and Zinger \cite{FMZ} associate with a
+symplectic SNC collection the notion of a \emph{regularization}: a
+compatible system of identifications of neighbourhoods of the strata
+$E_\Lambda$ with neighbourhoods of the zero sections of their normal
+bundles, modelled on split symplectic forms. We use only two
+consequences: a regularization makes, along each $E_\Lambda$, the
+symplectic normal bundles $N_i=(TE_i)^{\sigma}|_{E_\Lambda}$,
+$i\in\Lambda$ (where $V^\sigma$ denotes the $\sigma$-orthogonal
+complement of $V$), pairwise $\sigma$-orthogonal, so that
+\begin{equation}\label{eq:split}
+ TX|_{E_\Lambda}=TE_\Lambda\oplus\bigoplus_{i\in\Lambda}N_i
+\end{equation}
+is a $\sigma$-orthogonal splitting; and \cite[Theorem 2.13]{FMZ}
+(theorem numbers refer to the arXiv version v3), read with its
+parameter space a point and without relative conditions, provides a
+path of symplectic forms $\sigma_t=\sigma+d\tau_t$, $\tau_0=0$, for which
+$E$ remains a positive SNC collection and whose endpoint admits a
+regularization.
+
+\begin{lemma}[Regularization]\label{lem:reg}
+There is a smooth path $\sigma_t=\sigma+d\tau_t$, $0\le t\le1$, of
+symplectic forms with $\tau_0=0$, such that $E$ is a positive symplectic
+SNC collection for every $\sigma_t$ and such that for $\sigma_1$ the
+splittings \eqref{eq:split} (with $N_i=(TE_i)^{\sigma_1}$) are
+$\sigma_1$-orthogonal. Moreover $\sigma_1$ admits a compatible almost
+complex structure $K$ with $K(TE_i)=TE_i$ for every $i$.
+\end{lemma}
+
+\begin{proof}
+The path is \cite[Theorem 2.13]{FMZ}, as just explained. For the
+compatible structure, recall the symplectic polar decomposition
+\cite[proof of Theorem 2.16]{Wendl}: a Riemannian metric $g$ determines
+a $g$-skew endomorphism $A$ by $\sigma_1(u,v)=g(Au,v)$, and
+$J_g=A(A^*A)^{-1/2}$ is $\sigma_1$-compatible. If a subspace
+$W\subset T_xX$ satisfies $A(W)\subset W$, then also
+$A^*(W)=A(W)\subset W$, hence $(A^*A)^{-1/2}$, a limit of polynomials in
+$A^*A$, preserves $W$, and so does $J_g$. For $W=T_xE_i$ one has
+$A(W)\subset W$ exactly
+when $g(Au,v)=\sigma_1(u,v)=0$ for all $u\in W$ and $v\in W^{\perp_g}$,
+that is, when the $g$-orthogonal complement of $T_xE_i$ is its
+$\sigma_1$-orthogonal complement $N_i(x)$. So it suffices to find a
+metric $g$ such that
+\begin{equation}\label{eq:metric-cond}
+ T_xE_i\perp_g N_i(x)\qquad\text{for all }i\text{ and all }x\in E_i.
+\end{equation}
+For fixed $x$ and $i$ this is a linear condition on $g$ (orthogonality
+of two fixed complementary subspaces), so the metrics on $T_xX$
+satisfying \eqref{eq:metric-cond} for all $i$ with $x\in E_i$ form a
+convex set. At a point $x\in E_\Lambda$ lying on no deeper stratum this
+set consists exactly of the metrics making \eqref{eq:split} orthogonal
+at $x$, because
+$T_xE_i=T_xE_\Lambda\oplus\bigoplus_{j\in\Lambda\setminus\{i\}}N_j(x)$;
+and a metric orthogonalizing the finer splitting of a deeper stratum
+$E_{\Lambda''}\ni x$, $\Lambda''\supset\Lambda$, also orthogonalizes
+\eqref{eq:split}. Since \eqref{eq:metric-cond} concerns only points of
+$\bigcup_iE_i$, define $g$ on $TX|_{E_\Lambda}$ by descending induction
+on $|\Lambda|$: the metric already defined over the deeper strata
+contained in $E_\Lambda$ orthogonalizes \eqref{eq:split} there; extend
+it to a neighbourhood in $E_\Lambda$ summand by summand, and combine it
+with local metrics orthogonalizing \eqref{eq:split} by a partition of
+unity on $E_\Lambda$, using convexity. Finally extend $g$ to $X$; then
+$K=J_g$ is the required structure.
+\end{proof}
+
+\subsection{Auxiliary divisors}
+
+We recall the framework of approximately holomorphic sections. Suppose
+$[\sigma/(2\pi)]$ is integral, let $A\to X$ be a Hermitian line bundle
+with unitary connection of curvature $-i\sigma$, let $K$ be
+$\sigma$-compatible and $g=\sigma(\cdot,K\cdot)$. Sections of $A^k$, or
+of $F\otimes A^k$ for a fixed Hermitian vector bundle $F$, are measured
+in the rescaled metric $g_k=kg$, in which the curvature of $A^k$ has
+unit size. A family $s_k$ is \emph{approximately holomorphic} if $s_k$
+and its first few covariant derivatives are bounded in $g_k$-norm while
+the $K$-antilinear part $\bar\partial_Ks_k$ of $\nabla s_k$ and its
+derivatives are $O(k^{-1/2})$; it is
+\emph{$\eta$-transverse to zero} along a compact submanifold
+$Y\subset X$ if at every $y\in Y$ with $|s_k(y)|<\eta$ the derivative
+$\nabla s_k|_{T_yY}$ is surjective with a right inverse of $g_k$-norm
+at most $\eta^{-1}$. Donaldson \cite{Donaldson1996} constructed, for
+all large $k$, approximately holomorphic sections of $A^k$ that are
+$\eta$-transverse along $Y=X$ with $\eta>0$ independent of $k$; Auroux
+\cite[Theorem 2 and Corollary 1]{Auroux1997} extended this to
+$F\otimes A^k$; Mohsen's relative theorem \cite[p.~657]{Mohsen2019}
+achieves $\eta$-transversality of the restriction to an arbitrary
+compact submanifold $Y$, not necessarily $K$-invariant, and its
+twisted version \cite[p.~662]{Mohsen2019} allows a fixed $F$. The
+sections are obtained by perturbations of controlled size, so finitely
+many such conditions can be imposed successively, each later
+perturbation being smaller than the transversality bounds already
+secured (Donaldson's globalization principle, see
+\cite[Proposition 4.1]{Auroux2001}).
+
+Transversality produces symplectic submanifolds because of the
+following linear-algebra fact, due to Donaldson \cite{Donaldson1996}:
+if at a zero $y$ of $s$ the $K$-complex-linear part of $\nabla s$ is
+surjective with right inverse of norm at most $2\eta^{-1}$ and the
+antilinear part is small compared with $\eta$ (both hold when $\nabla s$
+is $\eta$-transverse and the antilinear part is at most $\eta/2$), then
+$\ker\nabla s(y)$ is the graph of a small map over a complex subspace,
+hence a symplectic subspace whose orientation agrees with the complex
+orientation of that subspace. The same holds for the restriction to a
+$K$-invariant submanifold $Y$, within $(T_yY,K)$. Since complex
+orientations are compatible with transverse intersection, all
+intersections obtained in this way are positively oriented in the
+sense of Definition~\ref{def:snc}.
+
+\begin{lemma}[Auxiliary divisors]\label{lem:aux}
+Let $(X,\sigma)$ be closed, $E$ a finite positive symplectic SNC
+collection in $X$, and $L\to X$ a smooth complex line bundle. After a
+deformation of $\sigma$ as in Lemma~\ref{lem:reg} there are a complex
+line bundle $H$ and smooth sections $u\in\Gamma(H)$,
+$v\in\Gamma(L\otimes H)$, transverse to the zero section, such that
+$E\cup\{u^{-1}(0),v^{-1}(0)\}$
+is a positive symplectic SNC collection. Moreover the orientations
+induced on $u^{-1}(0)$ and $v^{-1}(0)$ by the sections $u$, $v$ (through
+the complex orientations of their bundles) are the symplectic ones.
+\end{lemma}
+
+\begin{proof}
+Apply Lemma~\ref{lem:reg}; denote the resulting form again by $\sigma$
+and let $K$ be the compatible structure preserving every $E_i$, hence
+every closed intersection $E_\Lambda$; put $g=\sigma(\cdot,K\cdot)$.
+We work with the compact
+$E_\Lambda$ rather than with the open strata because the transversality
+theorems require compactness.
+
+\emph{Step 1: the integral case.} Suppose $[\sigma/(2\pi)]$ is
+integral, let $A$ have curvature $-i\sigma$ and put $H=A^k$. The pair
+$(u,v)$ is a section of $(\underline\C\oplus L)\otimes A^k$. For every
+nonempty $E_\Lambda$, including $E_\varnothing=X$, impose
+$\eta$-transversality to zero along $E_\Lambda$ for each of $u$, $v$ and
+$(u,v)$, using the relative twisted theorem of \cite{Mohsen2019}. These
+are finitely many conditions, achieved successively as explained above,
+with a common $\eta>0$ for all large $k$. Transversality of
+$u|_{E_\Lambda}$ gives $u^{-1}(0)\pitchfork E_\Lambda$; transversality
+of $(u,v)|_{E_\Lambda}$ gives $u^{-1}(0)\pitchfork v^{-1}(0)$ along
+$E_\Lambda$ and $u^{-1}(0)\cap v^{-1}(0)\pitchfork E_\Lambda$. Where the
+expected dimension of an intersection is negative, $\eta$-transversality
+means $|s|\ge\eta$ on $E_\Lambda$, so the intersection is empty. Since
+$E_\Lambda$ is $K$-invariant, $\nabla(s|_{E_\Lambda})$ splits into
+$K$-linear and $K$-antilinear parts, and the antilinear part is
+$O(k^{-1/2})$ by approximate holomorphicity;
+Donaldson's linear-algebra fact therefore shows that every new
+intersection is symplectic and positively oriented, so
+$E\cup\{u^{-1}(0),v^{-1}(0)\}$ is a positive SNC collection. The same
+fact gives the orientation statement: deforming $\nabla s$ linearly to
+its complex-linear part through surjective maps, the orientation
+induced by $s$ on its zero set is the complex orientation of the
+nearby complex kernel, which is the symplectic orientation.
+
+\emph{Step 2: removing the integrality assumption.} Call a symplectic
+form $\sigma'$ \emph{rational} if $[\sigma'/(2\pi)]\in H^2(X;\mathbb Q)$.
+In general $\sigma$ is not rational, and we follow the
+device of \cite[Section 1]{Auroux2001b}: a nearby rational form is used
+only to construct the polarizing bundle, while symplecticity is checked
+for $\sigma$ itself. Fix closed $2$-forms $\alpha_j$ representing a
+basis of $H^2(X;\R)$ and consider the forms
+$\sigma'=\sigma+\sum_jc_j\alpha_j$ with $c$ in a small closed ball; all
+are symplectic with uniformly bounded derivatives, and rational forms
+are dense among them. Polar decomposition with respect to the fixed
+metric $g=\sigma(\cdot,K\cdot)$ gives
+$\sigma'$-compatible structures $K'$ depending smoothly on $\sigma'$,
+with $K'=K$ at $\sigma'=\sigma$. For a rational $\sigma'$ choose a
+positive integer $q$ with $q[\sigma'/(2\pi)]$ integral, let $A$ have
+curvature $-iq\sigma'$ and again set $H=A^k$. Since the curvature of
+$A^k$ is $-iN\sigma'$ with $N=qk$, the effective large parameter is
+$N$ and the effective metric is $g_N=Ng'$, $g'=\sigma'(\,\cdot,K'\cdot\,)$.
+
+Step 1, carried out for $(\sigma',K')$ and the parameter $N$, provides
+a transversality constant $\eta$ for the finitely many restriction
+conditions. The point requiring attention is that $\eta$ must not
+depend on the denominator $q$, because the rational approximation will
+be chosen in terms of $\eta$. Uniformity in $q$ is obtained from the
+quantitative construction, not merely from qualitative openness; it is
+a deduction from the structure of the cited estimates, which we
+indicate. Mohsen's linear restriction estimate has constants depending
+only on dimensions and radii
+\cite[Theorem 6.5 and Corollary 6.6]{Mohsen2019}. In local unitary
+gauges at length scale $N^{-1/2}$ the curvature $-iN\sigma'$ is
+normalized by $N$, so the geometric bounds required by the construction
+are uniform over the compact family of $\sigma'$, and the fixed twist
+$L$ contributes only lower-order terms. The local perturbation and
+globalization estimates
+\cite[Proposition 8.2 and Sections 8.3--8.6]{Mohsen2019} use these
+bounds together with counts of separated sets in the fixed compact
+$E_\Lambda$. They therefore give a common bound $\eta>0$, independent
+of $q$, for all the finitely many conditions when $N$ is large.
+
+The relative theorem does not require $K'$ to preserve $E_\Lambda$, but
+$K$ does preserve $E_\Lambda$. For $s=u,v,(u,v)$ the derivative along
+$E_\Lambda$ therefore satisfies, in the rescaled metrics,
+\[
+ \bigl\|(\nabla s|_{TE_\Lambda})^{0,1}_K\bigr\|_{g_N}
+ \le C\lVert K'-K\rVert_{C^0}+CN^{-1/2},
+\]
+the first term coming from the difference between the $K'$- and
+$K$-antilinear parts and the second from approximate
+$K'$-holomorphicity. Choose the rational approximation $\sigma'$ so
+close to $\sigma$ that the first term is small compared with $\eta$,
+then take $k$ large to control the second. Donaldson's linear-algebra
+fact now applies with respect to $K$, which is $\sigma$-compatible: all
+new intersections are $\sigma$-symplectic and positively oriented, not
+merely $\sigma'$-symplectic.
+
+The rational form is construction data only and is not inserted into
+the deformation path. The sole change of $\sigma$ in this lemma is the
+initial regularization deformation of Lemma~\ref{lem:reg}.
+\end{proof}
+
+\section{Two linear-algebra facts about tame structures}\label{sec:linear}
+
+For an almost complex structure $J$ on a symplectic manifold $(X,\sigma)$
+write $T^{1,0}_JX$ and $T^{0,1}_JX$ for
+the $\pm i$ eigenbundles of $J$ on $TX\otimes\C$. The first fact is
+S\'evennec's parametrization of tame structures by strict contractions
+\cite[Theorem 2.37]{Wendl}, together with the observation that
+holomorphicity constraints are affine in this parametrization.
+
+\begin{lemma}[Convex patching with holomorphic-function constraints]
+\label{lem:convex}
+Let $K$ be a $\sigma$-compatible almost complex structure on $X$ and
+$E^+=T^{1,0}_KX$, $E^-=T^{0,1}_KX$. Every $\sigma$-tame almost complex
+structure $J$ has $T^{0,1}_JX=\{\xi+\Phi_J\xi:\xi\in E^-\}$ for a unique
+complex-linear bundle map $\Phi_J\colon E^-\to E^+$ (the \emph{graph
+map} of $J$) with $\lVert\Phi_J\rVert<1$ pointwise, and conversely every
+such $\Phi$ arises from a unique tame $J$. For a smooth function $f$,
+the condition that $f$ be $J$-holomorphic is the affine linear condition
+\begin{equation}\label{eq:affine}
+ df(\xi+\Phi_J\xi)=0\qquad(\xi\in E^-)
+\end{equation}
+on $\Phi_J$. Consequently, if $J_\alpha$ are $\sigma$-tame structures on
+open sets $W_\alpha$, $(\rho_\alpha)$ is a partition of unity
+subordinate to $(W_\alpha)$, and $J$ is the tame structure with
+$\Phi_J=\sum_\alpha\rho_\alpha\Phi_{J_\alpha}$, then every function that
+is $J_\alpha$-holomorphic at $y$ for all $\alpha$ with $\rho_\alpha(y)\ne0$
+is $J$-holomorphic at $y$.
+\end{lemma}
+
+\begin{proof}
+On $TX\otimes\C$ consider the Hermitian form
+$\mathcal H(\xi,\eta)=-i\,\sigma(\xi,\overline\eta)$. The summands $E^+$
+and $E^-$ are $\mathcal H$-orthogonal, $\mathcal H$ is positive
+definite on $E^+$ and negative definite on $E^-$, and we use these
+restrictions (with the sign reversed on $E^-$) as Hermitian metrics to
+define $\lVert\Phi\rVert$. For $\xi=v+iJv\in T^{0,1}_JX$ one computes
+$\mathcal H(\xi,\xi)=-2\sigma(v,Jv)$, so for tame $J$ the bundle
+$T^{0,1}_JX$ is $\mathcal H$-negative definite of complex rank $n$.
+Such a subspace meets the positive definite $E^+$ trivially, hence is
+the graph of a complex-linear map $\Phi_J\colon E^-\to E^+$, and
+negativity of $\mathcal H(\xi+\Phi\xi,\xi+\Phi\xi)=-|\xi|^2+|\Phi\xi|^2$
+says exactly $\lVert\Phi_J\rVert<1$. Conversely, the graph of a strict
+contraction $\Phi$ is negative definite, its complex conjugate is
+positive definite, the two are complementary, and they are the
+$(0,1)$- and $(1,0)$-bundles of a real almost complex structure $J$;
+the computation above, read backwards, shows that $J$ is tame.
+
+Condition \eqref{eq:affine} is the vanishing of $df$ on $T^{0,1}_JX$
+and is affine in $\Phi_J$. A convex combination of strict contractions
+is a strict contraction, and a convex combination of solutions of the
+affine equations \eqref{eq:affine} for a fixed $f$ is again a solution.
+\end{proof}
+
+Averaging the endomorphisms $J_\alpha$ themselves would not produce an
+almost complex structure; averaging graph maps does, and no derivative
+of the partition of unity enters, so the holomorphicity statements are
+exact.
+
+\review{This is the key technical lemma that needs a number of different estimates to verify. These all culminate in Proposition 10.}
+\begin{lemma}[Graph construction]\label{lem:graph}
+Let $I$ be a $\sigma$-tame almost complex structure, $V\to X$ a complex
+vector bundle with a Hermitian metric, and $\lambda$ a $V$-valued
+one-form on an open set $W\subset X$, with complex-linear extension to
+$TX\otimes\C$ restricting to
+\[
+ P=\lambda|_{T^{1,0}_IX}\colon T^{1,0}_IX\to V,\qquad
+ Q=\lambda|_{T^{0,1}_IX}\colon T^{0,1}_IX\to V .
+\]
+Suppose $P$ is surjective on $W$ and let $R$ be a smooth right inverse
+of $P$, for instance $R=P^*(PP^*)^{-1}$, which has the least norm among
+all right inverses of $P$. Put
+\begin{equation}\label{eq:graph}
+ \mu=-RQ\colon T^{0,1}_IX\to T^{1,0}_IX,\qquad
+ E_\mu=\{\xi+\mu\xi:\xi\in T^{0,1}_IX\}.
+\end{equation}
+Then $\lambda$ vanishes on $E_\mu$. If $X$ is compact and a fixed
+metric is used, there is $\mu_0>0$ such that whenever
+$\lVert\mu\rVert<\mu_0$ on $W$, the bundle $E_\mu$ is the $(0,1)$-bundle
+of a $\sigma$-tame almost complex structure $J_\mu$ on $W$, depending
+smoothly on the data. In particular, if $V=\bigoplus_aL_a$ and the
+components of $\lambda$ have the form $\lambda_a=F_a\,df_a$ with $F_a$
+a nonvanishing section of $L_a$ over $W$ and $f_a$ a smooth function,
+then every $f_a$ is $J_\mu$-holomorphic on $W$.
+\end{lemma}
+
+\begin{proof}
+For $\xi\in T^{0,1}_IX$, $\lambda(\xi+\mu\xi)=Q\xi+P\mu\xi=Q\xi-PRQ\xi=0$.
+With $\mathcal H$ as in the previous proof, $T^{0,1}_IX$ is
+$\mathcal H$-negative definite because $I$ is tame, and negativity is
+an open condition; on a compact manifold there is a uniform $\mu_0$
+such that $E_\mu$ is negative definite whenever $\lVert\mu\rVert<\mu_0$.
+Then $E_\mu$ and $\overline{E_\mu}$ are complementary and define a
+tame almost complex structure $J_\mu$ with $T^{0,1}_{J_\mu}X=E_\mu$,
+exactly as in the proof of Lemma~\ref{lem:convex}. Finally,
+$\lambda_a=F_a\,df_a$ vanishes on $E_\mu$ and $F_a$ is nonvanishing,
+so $df_a$ vanishes on $E_\mu=T^{0,1}_{J_\mu}X$.
+\end{proof}
+
+\section{Building the finite forest}\label{sec:forest}
+
+From now on $X=M$ with the given divisor $D=\bigcup_{i\in S}D_i$, where
+$S=\{1,\dots,m\}$. If $D=\varnothing$, Theorem~\ref{thm:main} holds
+with $\omega_t=\omega$, any tame $J$ and $r=0$, so assume $D\ne\varnothing$.
+
+\subsection*{Divisor bundles of the branches}
+For every branch $D_i$ choose a smooth complex line bundle $L_i\to X$
+with a section $s_i$ transverse to the zero section whose zero set is
+$D_i$, the orientation induced on $D_i$ by $s_i$ (through the complex
+orientation of $L_i$) being the symplectic one: pull the oriented
+normal bundle of $D_i$ back to a tubular neighbourhood, take the
+tautological section there, and glue to the trivial bundle with the
+constant section $1$ over $X\setminus D_i$, using that the tautological
+section does not vanish on the overlap (compare \cite[Section 2.2]{FMZS}).
+
+\subsection*{The trees}
+\review{Stating "a node is a word $s = iw$ with $w \in \{+, -\}$" is needlessly clever and just serves to confuse/obfuscate this structure. It's simply a binary tree rooted on each branch of the divisor with the positive and negative child nodes easily described. There is no need for this notation.}
+Make each $i\in S$ the root of a full binary tree of depth $n$. A node
+is a word $a=iw$ with $w\in\{+,-\}^{d}$, $0\le d\le n$; its depth is
+$d(a)=d$, roots have depth $0$, \emph{leaves} have depth $n$, and a
+non-leaf node $a$ has the two children $a+$ and $a-$. Let $\cT$ be the
+finite set of all nodes of all $m$ trees. We attach to every node $a$ a
+line bundle $L_a$ with a transverse section $s_a$, and to every non-leaf
+node a bundle isomorphism $\theta_a$, by induction on depth.
+Suppose $L_a$, $s_a$ have been constructed for all nodes of depth
+$\le d<n$, with the zero sets $D_a=s_a^{-1}(0)$ of all nodes constructed
+so far forming a positive SNC collection for the current symplectic
+form. Process the nodes $a$ of depth $d$ one at a time: apply
+Lemma~\ref{lem:aux} with $L=L_a$ and $E$ the collection of all
+divisors constructed so far (including those produced for earlier nodes
+of depth $d$), and set
+\[
+ L_{a-}=H_a,\quad s_{a-}=u,\qquad
+ L_{a+}=L_a\otimes H_a,\quad s_{a+}=v .
+\]
+Retain the canonical complex bundle isomorphism
+\begin{equation}\label{eq:theta}
+ \theta_a\colon L_{a+}\otimes L_{a-}^{-1}
+ =L_a\otimes H_a\otimes H_a^{-1}\xrightarrow{\ \cong\ }L_a .
+\end{equation}
+Here and below inverse line bundles and inverses of nonvanishing
+sections are taken in the tensor sense: $F^{-1}$ is the section of
+$L^{-1}=L^*$ dual to the nonvanishing section $F$ of $L$. Each
+application of Lemma~\ref{lem:aux} includes a regularization
+deformation of the symplectic form, which preserves all divisors
+constructed so far as a positive SNC collection. There are
+$m(2^n-1)$ applications. At the end, the finite collection
+$\{D_a\}_{a\in\cT}$ is a positive symplectic SNC collection for a
+symplectic form cohomologous to $\omega$, obtained from $\omega$ by
+concatenating finitely many paths as in Lemma~\ref{lem:reg}.
+
+Apply Lemma~\ref{lem:reg} once more to the full collection
+$\{D_a\}_{a\in\cT}$. Denote the resulting symplectic form by $\sigma$
+and let $I$ be the $\sigma$-compatible (in particular $\sigma$-tame)
+almost complex structure provided by the lemma, which preserves every
+$D_a$. Thus $I$ preserves $TD_a$ and induces a complex structure on
+each normal line $N_xD_a=T_xX/T_xD_a$.
+
+\subsection*{Normalizing the sections along their zero sets}
+Along $D_a$ the section $s_a$ vanishes, so its derivative there is an
+intrinsic $L_a$-valued one-form $ds_a\colon TX|_{D_a}\to L_a|_{D_a}$,
+independent of any connection, with kernel $TD_a$. We arrange, by
+changing the sections but not their bundles or zero sets, that
+\begin{equation}\label{eq:normal-linear}
+ (ds_a)\circ I=i\,ds_a\quad\text{on }D_a\qquad(a\in\cT),
+\end{equation}
+that is, $ds_a$ is complex linear along $D_a$. Indeed, at $x\in D_a$
+the derivative descends to a real-linear isomorphism
+$N_xD_a\to(L_a)_x$ between complex lines, which may be written
+$z\mapsto Az+B\bar z$ with $A,B\in\C$. It is orientation preserving:
+the orientation of $D_a$ induced by $s_a$ is the symplectic one (by
+construction for roots, by Lemma~\ref{lem:aux} for the other nodes;
+both orientations are unchanged along the subsequent deformations),
+and since $I$ is tame and preserves $TD_a$, the symplectic orientations
+of $X$ and $D_a$ are the complex orientations of $(TX,I)$ and
+$(TD_a,I)$, so that $N_xD_a$ carries the quotient complex orientation.
+Hence $|A|>|B|$, and by compactness $|A|-|B|$ is bounded below on $D_a$. Identify a tubular neighbourhood of $D_a$ with a
+neighbourhood of the zero section of $ND_a$ and identify $L_a$ there
+with the pull-back of $L_a|_{D_a}$. In these terms $s_a=Az+B\bar z+O(|z|^2)$,
+and we replace $s_a$ by $s_a-\chi B\bar z$, where $\chi$ is a cutoff
+equal to $1$ near $D_a$ and supported in a small tubular neighbourhood.
+During this change the section has the form
+$Az+(1-\chi)B\bar z+O(|z|^2)$, whose first-order part has modulus at
+least $(|A|-|B|)|z|$; so for a sufficiently small neighbourhood no new
+zeros appear and transversality is preserved. The new normal derivative is $z\mapsto Az$, complex
+linear. Perform this independently for all nodes; the isomorphisms
+\eqref{eq:theta} are unaffected.
+
+From this point on $\sigma$, $I$ and all the data
+$(L_a,s_a,\theta_a,D_a)_{a\in\cT}$ are fixed.
+
+\section{Recursive frames and their transition functions}\label{sec:frames}
+
+Where $s_{a\pm}$ do not vanish, $F=\theta_a(s_{a+}\otimes s_{a-}^{-1})$
+is a frame of $L_a$ and $f=s_a/F$ is a defining function of $D_a$;
+nearer to $D_{a+}$ or $D_{a-}$ this frame degenerates and the small
+child section must itself be replaced by the frame built from its own
+children. The bookkeeping device is an \emph{active set}: the set of nodes
+whose sections are ``small'' at the points under consideration, at
+depth-dependent thresholds chosen so that a section is always much
+smaller than the sections framing it.
+
+\subsection*{Active sets and the multiscale cover}
+\review{This paragraph simultaneously introduces "active set" and "ancestor closed." One could split these definitions into two sentences or omit the term "ancestor closed" entirely.}
+Call a set $A$ of non-leaf nodes \emph{active} if it is
+ancestor-closed: whenever a node belongs to $A$, all its ancestors do.
+Its \emph{boundary} $\partial A$ consists of the roots not in $A$
+together with the children of nodes of $A$ that do not belong to $A$
+(these children may be leaves). The empty set is active, with
+$\partial\varnothing=S$. There are finitely many active sets.
+
+Choose Hermitian metrics on all $L_a$. We shall fix constants
+$0<\eps_0<\eps_1<\dots<\eps_n$ in Section~\ref{sec:estimates}; they
+will be small, with each ratio $\eps_d/\eps_{d+1}$ small. For an active
+set $A$ define the open set
+\begin{equation}\label{eq:UA}
+ U_A=\Bigl\{x\in X:\
+ |s_a(x)|<2\eps_{d(a)}\ \text{for }a\in A,\quad
+ |s_b(x)|>\eps_{d(b)}\ \text{for }b\in\partial A\Bigr\}.
+\end{equation}
+Since $\{D_a\}_{a\in\cT}$ is a
+positive SNC collection in dimension $2n$, no $n+1$ of the divisors
+$D_a$ have a common point, and by compactness there is $\delta_0>0$
+such that no $n+1$ distinct sections $s_a$ have norm $\le\delta_0$ at
+the same point.
+
+\begin{lemma}[The cover]\label{lem:cover}
+If $2\eps_n<\delta_0$, then every nonempty $U_A$ has $|A|\le n$, and
+the sets $U_A$, $A$ active, cover $X$.
+\end{lemma}
+
+\begin{proof}
+If $x\in U_A$ then $|s_a(x)|<2\eps_{d(a)}\le2\eps_n<\delta_0$ for all
+$a\in A$, so $|A|\le n$. For the covering, fix $x$ and determine $A$ by
+the following process. Start at each root; call a node
+\emph{accessible} if it is a root or the child of an activated node;
+activate an accessible node $a$ precisely when $|s_a(x)|\le\eps_{d(a)}$,
+and continue to its children only if it is activated. An accessible
+leaf $\ell$ is never activated: otherwise $\ell$ and its $n$ ancestors
+would be $n+1$ distinct nodes with sections of norm
+$\le\eps_n<\delta_0$ at $x$. Hence the set $A$ of activated nodes is an
+ancestor-closed set of non-leaf nodes, and its boundary consists
+exactly of the accessible nodes that were not activated, at which
+$|s_b(x)|>\eps_{d(b)}$. So $x\in U_A$.
+\end{proof}
+
+\subsection*{Frames and functions}
+For an active set $A$ let
+$O_A=\{x\in X: s_b(x)\ne0\ \text{for all }b\in\partial A\}$, an open
+set containing $\overline{U_A}$, since $|s_b|\ge\eps_{d(b)}>0$ on
+$\overline{U_A}$ for $b\in\partial A$. On $O_A$ define nonvanishing
+sections $F^A_c$ of $L_c$, for $c\in A\cup\partial A$, recursively from
+the boundary upwards, together with functions $f^A_a$ for $a\in A$:
+\begin{align}
+ F^A_b&=s_b &&(b\in\partial A),\label{eq:frames}\\
+ F^A_a&=\theta_a\bigl(F^A_{a+}\otimes(F^A_{a-})^{-1}\bigr) &&(a\in A),\notag\\
+ f^A_a&=s_a/F^A_a &&(a\in A).\label{eq:functions}
+\end{align}
+The recursion is well defined because for $a\in A$ each child of $a$
+lies in $A\cup\partial A$, and the frames are nonvanishing by
+induction. Each $f^A_a$ is an ordinary smooth complex-valued function
+on $O_A$, and its zero set is $D_a\cap O_A$.
+
+\begin{lemma}[Exact monomial transitions]\label{lem:monomial}
+Let $A\subset B$ be active sets. Then for every $a\in A$ there are
+integers $k_b$, $b\in\partial A\cap B$, such that
+\begin{equation}\label{eq:monomial}
+ f^A_a=f^B_a\prod_{b\in\partial A\cap B}(f^B_b)^{k_b}
+ \qquad\text{on }O_A\cap O_B,
+\end{equation}
+where the functions $f^B_b$, $b\in\partial A\cap B$, are nonvanishing
+on $O_A\cap O_B$, in particular on $U_A\cap O_B$.
+\end{lemma}
+
+\begin{proof}
+First, every $b\in\partial A$ lies in $B\cup\partial B$: if $b\notin B$,
+then $b$ is either a root not in $B$ or a child of a node of
+$A\subset B$ not in $B$, hence $b\in\partial B$. Therefore $F^B_c$ is
+defined for all $c\in A\cup\partial A$, and we may consider the ratios
+\[
+ r_c=F^A_c/F^B_c\in C^\infty(O_A\cap O_B,\C^*)
+\qquad(c\in A\cup\partial A),
+\]
+quotients of two nonvanishing sections of the same line bundle $L_c$.
+We show by induction from the boundary upwards that each $r_c$ is a
+Laurent monomial with coefficient one in the $f^B_b$, $b\in\partial A\cap B$.
+For $b\in\partial A$: if $b\notin B$ then $b\in\partial B$ and both
+constructions use $s_b$ as the frame, so $r_b=1$; if $b\in B$ then
+$r_b=s_b/F^B_b=f^B_b$, which is therefore nonvanishing on
+$O_A\cap O_B$. For $a\in A$, complex linearity of $\theta_a$ gives
+\[
+ F^A_a=\theta_a\bigl(r_{a+}F^B_{a+}\otimes r_{a-}^{-1}(F^B_{a-})^{-1}\bigr)
+ =\frac{r_{a+}}{r_{a-}}\,F^B_a,
+ \qquad\text{i.e.}\qquad r_a=\frac{r_{a+}}{r_{a-}} ;
+\]
+the isomorphism $\theta_a$ cancels exactly. Finally
+\[
+ f^A_a=\frac{s_a}{F^A_a}=\frac{s_a}{F^B_a}\cdot\frac{F^B_a}{F^A_a}
+ =f^B_a\,r_a^{-1},
+\]
+which is \eqref{eq:monomial}.
+\end{proof}
+
+By \eqref{eq:monomial}, for every almost complex structure $J$, if all
+the functions $f^B_c$ occurring on the right-hand side are
+$J$-holomorphic, then so is $f^A_a$; a transition $g\,f^B_a$ with an
+arbitrary nonvanishing smooth $g$ would not have this property, which
+is why actual bundle isomorphisms are used rather than unrelated local
+trivializations.
+
+\section{Uniform estimates and local tame structures}\label{sec:estimates}
+
+The goal of this section is Proposition~\ref{prop:local}: near any
+point where an active set $B$ is ``small and its boundary is not'',
+there is a tame structure making all $f^B_a$, $a\in B$, holomorphic.
+By Lemma~\ref{lem:graph} it suffices that the one-forms $F^B_a\,df^B_a$
+have jointly surjective $(1,0)$-parts with uniformly bounded right
+inverses and small $(0,1)$-parts. All constants are fixed \emph{before}
+the thresholds $\eps_d$.
+
+Fix Hermitian connections $\nabla_a$ on the bundles $L_a$ and an
+$I$-Hermitian metric on $TX$. All norms below refer to these fixed
+metrics. For an $L_a$-valued one-form $\alpha$ we write
+$\alpha^{1,0}_I$ and $\alpha^{0,1}_I$ for its restrictions to
+$T^{1,0}_IX$ and $T^{0,1}_IX$, so that $\alpha^{0,1}_I=0$ means that
+$\alpha$ is $I$-complex linear.
+
+\begin{lemma}[Uniform facts]\label{lem:uniform}
+There are $\delta>0$ and $C_0,C_1>0$ such that:
+\begin{enumerate}
+\item No $n+1$ distinct sections $s_a$ have norm $\le\delta$ at a
+common point.
+\item Whenever $\Lambda\subset\cT$ and $x\in X$ satisfy $|s_a(x)|\le\delta$
+for all $a\in\Lambda$, the complex-linear map
+\begin{equation}\label{eq:PK}
+ P_\Lambda=\bigl((\nabla_as_a)^{1,0}_I\bigr)_{a\in\Lambda}
+ \colon T^{1,0}_{I,x}X\longrightarrow\bigoplus_{a\in\Lambda}(L_a)_x
+\end{equation}
+is surjective with a right inverse of norm at most $C_0$.
+\item For every node $a$,
+\begin{equation}\label{eq:anti}
+ |(\nabla_as_a)^{0,1}_I|\le C_1|s_a|,\qquad|\nabla_as_a|\le C_1
+ \quad\text{on }X.
+\end{equation}
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(1) holds for every $\delta\le\delta_0$, by the choice of $\delta_0$
+preceding Lemma~\ref{lem:cover}. For (2), fix
+$\Lambda$ with $|\Lambda|\le n$ (by (1), larger $\Lambda$ do not occur).
+On the compact common zero set $D_\Lambda=\bigcap_{a\in\Lambda}D_a$ the
+connection derivatives $\nabla_as_a$ coincide with the intrinsic
+derivatives $ds_a$, which are $I$-complex linear by
+\eqref{eq:normal-linear} and jointly surjective onto
+$\bigoplus_{a\in\Lambda}L_a$ by the transversality of the $D_a$; so
+$P_\Lambda$ is a surjective complex-linear map there, with a right
+inverse bounded by compactness. Surjectivity with a bound is an open
+condition, so it persists on a neighbourhood of $D_\Lambda$, and by
+compactness this neighbourhood contains
+$\{|s_a|\le\delta\ \forall a\in\Lambda\}$ for small $\delta$; if
+$D_\Lambda=\varnothing$, this set is empty for small $\delta$. There are
+finitely many $\Lambda$. For (3), the second bound is compactness.
+For the first, $(\nabla_as_a)^{0,1}_I$ vanishes on $D_a$ by
+\eqref{eq:normal-linear}, so it is bounded by a constant times the
+distance to $D_a$, and transversality of $s_a$ makes this distance
+comparable to $|s_a|$ near $D_a$; away from $D_a$, $|s_a|$ is bounded
+below.
+\end{proof}
+
+\subsection*{Differentials of the recursive frames}
+Let $B$ be an active set and consider a point where
+\begin{equation}\label{eq:closed-bounds}
+ |s_a|\le2\eps_{d(a)}\quad(a\in B),\qquad
+ |s_b|\ge\eps_{d(b)}\quad(b\in\partial B);
+\end{equation}
+these are the closed versions of the inequalities defining $U_B$, and
+every point of $\overline{U_B}$ satisfies them. Such a point lies in
+$O_B$, so the frames $F^B_c$ are defined near it. Their logarithmic
+derivatives $\beta^B_c=(F^B_c)^{-1}\nabla_cF^B_c$, $c\in B\cup\partial B$,
+are ordinary complex-valued one-forms. For each non-leaf node $a$, the
+connection on $L_a$ transported by $\theta_a$ from the tensor-product
+connection on $L_{a+}\otimes L_{a-}^{-1}$ differs from $\nabla_a$ by a
+fixed smooth complex one-form $\gamma_a$, bounded on $X$. Hence the
+recursion \eqref{eq:frames} gives
+\begin{align*}
+ \beta^B_a&=\beta^B_{a+}-\beta^B_{a-}+\gamma_a &&(a\in B),\\
+ \beta^B_b&=s_b^{-1}\nabla_bs_b &&(b\in\partial B).
+\end{align*}
+Expanding the recursion, $\beta^B_a$ is a signed sum of boundedly many
+forms $\gamma_c$ and of terminal terms $s_b^{-1}\nabla_bs_b$ with $b$ a
+boundary descendant of $a$. If $a$ has depth $d$, all these boundary
+descendants have depth at least $d+1$, so at a point satisfying
+\eqref{eq:closed-bounds} the terminal terms are bounded by
+$C_1/\eps_{d(b)}\le C_1/\eps_{d+1}$ by \eqref{eq:anti}. Assuming
+$\eps_n\le1$, we obtain a constant $C_2$, depending only on $C_1$, the
+forest and the $\gamma_c$, with
+\begin{equation}\label{eq:beta}
+ |\beta^B_a|\le C_2/\eps_{d(a)+1}\qquad(a\in B).
+\end{equation}
+
+Now multiply the differential of $f^B_a$ by its frame. Since
+$s_a=f^B_aF^B_a$, the Leibniz rule gives
+$\nabla_as_a=F^B_a\,df^B_a+f^B_aF^B_a\beta^B_a$, that is, the
+$L_a$-valued one-form
+\begin{equation}\label{eq:lambda}
+ \lambda^B_a:=F^B_a\,df^B_a=\nabla_as_a-s_a\beta^B_a
+\end{equation}
+satisfies, by \eqref{eq:closed-bounds} and \eqref{eq:beta}, at points
+satisfying \eqref{eq:closed-bounds},
+\begin{equation}\label{eq:lambda-error}
+ |\lambda^B_a-\nabla_as_a|\le2C_2\,\frac{\eps_{d(a)}}{\eps_{d(a)+1}}
+ \qquad(a\in B),
+\end{equation}
+the size of $s_a$ divided by the size of the sections framing it.
+
+\subsection*{Choice of the thresholds}
+Choose
+\begin{equation}\label{eq:thresholds}
+ \eps_d=t^{\,n-d}\eps_n\qquad(0\le d\le n),\qquad 0<t<1,
+\end{equation}
+so that every ratio $\eps_d/\eps_{d+1}$ equals $t$, and take
+$2\eps_n<\delta$ (hence also $2\eps_n<\delta_0$, as required in
+Lemma~\ref{lem:cover}). By Lemma~\ref{lem:uniform}(1), every active set
+$B$ for which \eqref{eq:closed-bounds} holds at some point has
+$|B|\le n$. For such $B$ let $\lambda^B=(\lambda^B_a)_{a\in B}$, with
+values in $\bigoplus_{a\in B}L_a$, and let
+$P^\lambda_B=\lambda^B|_{T^{1,0}_IX}$,
+$Q^\lambda_B=\lambda^B|_{T^{0,1}_IX}$. By \eqref{eq:lambda-error},
+$P^\lambda_B$ differs from $P_B$ in \eqref{eq:PK} by at most
+$2C_2\sqrt n\,t$, so for $t$ smaller than a constant depending on
+$C_0,C_2,n$ it is surjective with a right inverse of norm at most
+$2C_0$ (if $P'=P+\Delta$ with $\lVert\Delta\rVert\le1/(2C_0)$, then
+$R(\id+\Delta R)^{-1}$ is a right inverse of $P'$ of norm $\le2C_0$).
+By \eqref{eq:anti} and \eqref{eq:lambda-error},
+\begin{equation}\label{eq:Qsmall}
+ \lVert Q^\lambda_B\rVert\le\sqrt n\,(2C_1\eps_n+2C_2t)\le C_3(\eps_n+t).
+\end{equation}
+These bounds hold simultaneously for all such $B$ at all points
+satisfying \eqref{eq:closed-bounds}. Now first choose $\eps_n$ small
+and then $t$ small so that $2C_0C_3(\eps_n+t)<\mu_0$, where $\mu_0$ is
+the constant of Lemma~\ref{lem:graph} for the fixed metrics. The
+thresholds are fixed from now on.
+
+\review{This proposition is very compact but contains the crucial estimates and application of Lemma 6 for closing the argument. Better exposition is needed here.}
+\begin{proposition}[Local tame structures]\label{prop:local}
+Let $B$ be an active set and $x$ a point satisfying
+\eqref{eq:closed-bounds}. Then there are a neighbourhood $W\subset O_B$
+of $x$ and a smooth $\sigma$-tame almost complex structure on $W$ for
+which all the functions $f^B_a$, $a\in B$, are holomorphic.
+\end{proposition}
+
+\begin{proof}
+Apply Lemma~\ref{lem:graph} with $V=\bigoplus_{a\in B}L_a$,
+$\lambda=\lambda^B$, $P=P^\lambda_B$, $Q=Q^\lambda_B$ and
+$R=P^*(PP^*)^{-1}$. At $x$ we have $\lVert R\rVert\le2C_0$ (some
+right inverse has norm $\le2C_0$, and $R$ has the least norm) and
+$\lVert Q\rVert\le C_3(\eps_n+t)$, so $\lVert\mu\rVert<\mu_0$.
+Surjectivity of $P$ and the bound on $\mu$ are open conditions, so
+they hold on a neighbourhood $W$ of $x$, and the lemma provides
+$J_\mu$ on $W$; since $\lambda^B_a=F^B_a\,df^B_a$ with nonvanishing
+$F^B_a$, each $f^B_a$ is $J_\mu$-holomorphic.
+\end{proof}
+
+\section{Simultaneous local choices and global patching}\label{sec:patching}
+
+To patch the local structures of Proposition~\ref{prop:local} we must
+make sure that near a point $x$ \emph{all} the functions $f^A_a$ of
+\emph{all} the sets $U_A$ that come close to $x$ are holomorphic for
+the local structure chosen at $x$. Lemma~\ref{lem:monomial} reduces
+this to the functions of one maximal active set. For $x\in X$ let
+\begin{equation}\label{eq:Bx}
+ B_x=\bigcup\{A:\ A\text{ active},\ x\in\overline{U_A}\}.
+\end{equation}
+A union of ancestor-closed sets of non-leaf nodes is again one, so
+$B_x$ is an active set ($B_x=\varnothing$ is allowed).
+
+\begin{lemma}\label{lem:Bx}
+The point $x$ satisfies the inequalities \eqref{eq:closed-bounds} for
+$B=B_x$. In particular $|B_x|\le n$ and the frames $F^{B_x}_c$ are
+defined near $x$.
+\end{lemma}
+
+\begin{proof}
+If $a\in B_x$, then $a\in A$ for some $A$ with $x\in\overline{U_A}$,
+so $|s_a(x)|\le2\eps_{d(a)}$. For the boundary inequalities, let
+$b\in\partial B_x$. If $b$ is a child of some $a\in B_x$ with
+$b\notin B_x$, choose $A$ with $a\in A$ and $x\in\overline{U_A}$; then
+$b\notin A$ because $A\subset B_x$, so $b\in\partial A$ and
+$|s_b(x)|\ge\eps_{d(b)}$. If $b$ is a root not in $B_x$, then $b$ is a
+root not in $A$ for every $A$ occurring in \eqref{eq:Bx}, so
+$b\in\partial A$ and again $|s_b(x)|\ge\eps_{d(b)}$. The remaining
+assertions follow from Lemma~\ref{lem:uniform}(1) and from
+$2\eps_n<\delta$, as in Section~\ref{sec:estimates}.
+\end{proof}
+
+By Lemma~\ref{lem:Bx} and Proposition~\ref{prop:local} there are a
+neighbourhood $W_x\subset O_{B_x}$ of $x$ and a $\sigma$-tame structure
+$J_x$ on $W_x$ for which every $f^{B_x}_a$, $a\in B_x$, is holomorphic
+(for $B_x=\varnothing$ take $J_x=I$). Shrink $W_x$ so that
+\begin{equation}\label{eq:shrink}
+ U_A\cap W_x\ne\varnothing\quad\Longrightarrow\quad A\subset B_x .
+\end{equation}
+This is possible: there are finitely many active sets, and if
+$x\notin\overline{U_A}$ then some neighbourhood of $x$ misses $U_A$,
+while $x\in\overline{U_A}$ gives $A\subset B_x$ by definition.
+
+For every active $A$ with $U_A\cap W_x\ne\varnothing$ we thus have
+$A\subset B_x$, and Lemma~\ref{lem:monomial} expresses each $f^A_a$ on
+$U_A\cap W_x\subset U_A\cap O_{B_x}$ as a Laurent monomial, with
+nonvanishing denominators, in the $J_x$-holomorphic functions
+$f^{B_x}_c$. Hence
+\begin{equation}\label{eq:all-local}
+ f^A_a\ \text{is $J_x$-holomorphic on }U_A\cap W_x
+ \qquad(A\text{ active},\ a\in A).
+\end{equation}
+
+\begin{proposition}[The global structure]\label{prop:global}
+There is a $\sigma$-tame almost complex structure $J$ on $X$ such that
+\begin{equation}\label{eq:finalhol}
+ df^A_a\circ J=i\,df^A_a\quad\text{on }U_A
+ \qquad\text{for every active set $A$ and every }a\in A.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Choose finitely many points $x_1,\dots,x_N$ with
+$X=\bigcup_kW_{x_k}$, a partition of unity $(\rho_k)$ subordinate to
+this cover, and a $\sigma$-compatible reference structure $K$ (for
+instance $K=I$, which is compatible). Let $J$ be the tame structure of
+Lemma~\ref{lem:convex} with graph map
+$\Phi_J=\sum_k\rho_k\Phi_{J_{x_k}}$. Let $y\in U_A$ and $a\in A$. Every $k$
+with $\rho_k(y)\ne0$ has $y\in U_A\cap W_{x_k}$, so $f^A_a$ is
+$J_{x_k}$-holomorphic near $y$ by \eqref{eq:all-local}. By
+Lemma~\ref{lem:convex}, $f^A_a$ is $J$-holomorphic at $y$.
+\end{proof}
+
+\section{The coordinates and the deformation}\label{sec:end}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+\emph{The coordinates.} Let $p\in D$ and let $D_{i_1},\dots,D_{i_r}$
+be the original branches through $p$; $1\le r\le n$. By
+Lemma~\ref{lem:cover} choose an active set $A$ with $p\in U_A$. Each
+root $i_j$ belongs to $A$: a root not in $A$ lies in $\partial A$ and
+its section is nonzero on $U_A$, whereas $s_{i_j}(p)=0$. Define
+$z_j=f^A_{i_j}$ for $1\le j\le r$: smooth functions on $U_A$,
+$J$-holomorphic by \eqref{eq:finalhol}, with $z_j^{-1}(0)=D_{i_j}\cap U_A$
+because the frame $F^A_{i_j}$ does not vanish. At $p$, since
+$s_{i_j}(p)=0$, $dz_j(p)=(F^A_{i_j}(p))^{-1}ds_{i_j}(p)$, and the real
+derivatives $ds_{i_1}(p),\dots,ds_{i_r}(p)$ are jointly surjective onto
+$\bigoplus_j(L_{i_j})_p$ by the transversality of the branches through
+$p$ (Definition~\ref{def:snc}). So $(z_1,\dots,z_r)\colon U_A\to\C^r$
+is a submersion at $p$, and the implicit function theorem completes it
+by smooth functions $z_{r+1},\dots,z_n$ to a smooth complex coordinate
+system on a neighbourhood of $p$. Shrink this
+neighbourhood so that it misses the branches not containing $p$. On it,
+$D=D_{i_1}\cup\dots\cup D_{i_r}=\{z_1\cdots z_r=0\}$. For $p\notin D$
+take a neighbourhood disjoint from $D$, arbitrary smooth complex
+coordinates and $r=0$.
+
+\emph{The deformation.} The only changes of the symplectic form in the
+whole construction were the regularization deformations of
+Lemma~\ref{lem:reg}, applied in Section~\ref{sec:forest}: one inside
+each of the $m(2^n-1)$ applications of Lemma~\ref{lem:aux} and one at
+the end. Each is a path $\sigma+d\tau_t$ of forms cohomologous to its
+starting point along which every divisor constructed up to that stage,
+in particular every original branch $D_i$, remains part of a positive
+symplectic SNC collection. Concatenating these finitely many paths,
+reparametrized smoothly at the joins, gives the path $\omega_t$ of
+Theorem~\ref{thm:main}: $\omega_0=\omega$, $[\omega_t]=[\omega]$,
+$\{D_i\}$ is positive SNC for every $\omega_t$, and $\omega_1=\sigma$.
+The structure $J$ of Proposition~\ref{prop:global} is $\sigma$-tame,
+that is, $\omega_1$-tame. This completes the proof.
+\end{proof}
+
+\begin{thebibliography}{99}
+
+\bibitem{Auroux1997}
+D.~Auroux,
+\emph{Asymptotically holomorphic families of symplectic submanifolds},
+Geom.\ Funct.\ Anal.\ \textbf{7} (1997), 971--995.
+
+\bibitem{Auroux2001b}
+D.~Auroux,
+\emph{Symplectic maps to projective spaces and symplectic invariants},
+Turkish J.\ Math.\ \textbf{25} (2001), 1--42; arXiv:math/0007130.
+
+\bibitem{Auroux2001}
+D.~Auroux,
+\emph{Estimated transversality in symplectic geometry and projective maps},
+in: Symplectic Geometry and Mirror Symmetry (Seoul, 2000), World
+Scientific, 2001, 1--30; arXiv:math/0010052.
+
+\bibitem{CM}
+K.~Cieliebak and K.~Mohnke,
+\emph{Symplectic hypersurfaces and transversality in Gromov--Witten theory},
+J.\ Symplectic Geom.\ \textbf{5} (2007), 281--356.
+
+\bibitem{Donaldson1996}
+S.~K.~Donaldson,
+\emph{Symplectic submanifolds and almost-complex geometry},
+J.\ Differential Geom.\ \textbf{44} (1996), 666--705.
+
+\bibitem{FMZ}
+M.~Farajzadeh Tehrani, M.~McLean, and A.~Zinger,
+\emph{Normal crossings singularities for symplectic topology},
+Adv.\ Math.\ \textbf{339} (2018), 672--748; arXiv:1410.0609v3.
+
+\bibitem{FMZS}
+M.~Farajzadeh Tehrani, M.~McLean, and A.~Zinger,
+\emph{Normal crossings singularities for symplectic topology: structures},
+Acta Math.\ Sin.\ (Engl.\ Ser.) \textbf{40} (2024), 107--160;
+arXiv:2112.13125.
+
+\bibitem{FZ}
+M.~Farajzadeh Tehrani and A.~Zinger,
+\emph{On symplectic sum formulas in Gromov--Witten theory},
+arXiv:1404.1898 (2014).
+
+\bibitem{Mohsen2019}
+J.-P.~Mohsen,
+\emph{Transversalit\'e quantitative en g\'eom\'etrie symplectique:
+sous-vari\'et\'es et hypersurfaces},
+Ann.\ Fac.\ Sci.\ Toulouse Math.\ (6) \textbf{28} (2019), no.~4, 655--706.
+
+\bibitem{Wendl}
+C.~Wendl,
+\emph{Lectures on holomorphic curves in symplectic and contact geometry},
+arXiv:1011.1690v2 (2014).
+
+\end{thebibliography}
+
+\end{document}

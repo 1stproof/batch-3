@@ -1,0 +1,175 @@
+```latex
+\documentclass[11pt]{amsart}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue,urlcolor=blue]{hyperref}
+
+\newcommand{\Sph}{\mathbb S}
+\newcommand{\Chat}{\widehat{\mathbb C}}
+\newcommand{\Teich}{\operatorname{Teich}}
+\newcommand{\Mod}{\operatorname{Mod}}
+\newcommand{\MCG}{\operatorname{MCG}}
+\newcommand{\Def}{\operatorname{Def}}
+\newcommand{\Per}{\operatorname{Per}}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\begin{document}
+
+\title{A Dehn twist with an infinite orbit on components of the period-four deformation space}
+\author{}
+\date{}
+\maketitle
+
+\begin{abstract}
+We identify an explicit curve for the deformation space associated to a quadratic
+rational map with one critical point of period four.  In the notation
+\(p_j=f^{\circ j}(c_1)\), \(j=0,1,2,3\), and \(v=f(c_2)\), the curve is any
+essential simple closed curve separating \(\{p_1,v\}\) from
+\(\{p_0,p_2,p_3\}\).  A suitable positive power of the Dehn twist about this
+curve preserves the deformation space and has an infinite orbit on its connected
+components.
+\end{abstract}
+
+\section*{Statement and proof}
+
+Let
+\[
+p_0=c_1,\qquad p_1=f(c_1),\qquad p_2=f^{\circ 2}(c_1),\qquad
+p_3=f^{\circ 3}(c_1),
+\]
+so that \(p_0\mapsto p_1\mapsto p_2\mapsto p_3\mapsto p_0\), and let
+\(v=f(c_2)\notin \{p_0,p_1,p_2,p_3\}\).  Thus
+\[
+A=\{p_0,p_1,p_2,p_3\},\qquad B=A\cup\{v\}.
+\]
+
+\begin{theorem}
+Let \(\gamma\subset \Sph^2\setminus B\) be a simple closed curve separating
+\[
+\{p_1,v\}\quad\text{from}\quad \{p_0,p_2,p_3\}.
+\]
+Let \(T_\gamma\) be the positive Dehn twist about \(\gamma\).  Then a positive
+power of \(T_\gamma\), in fact \(T_\gamma^2\), preserves the deformation space
+\(\Def(f,A,B)\).  Moreover the action of \(T_\gamma^2\) on the set of connected
+components of \(\Def(f,A,B)\) has an infinite orbit.
+\end{theorem}
+
+\begin{proof}
+The assertion is invariant under Möbius conjugacy, so we use the standard
+normal form
+\[
+p_0=0,\qquad p_1=\infty,\qquad p_2=1,\qquad p_3=\rho.
+\]
+Then
+\[
+f=f_\rho(z)=1+\frac{b}{z}+\frac{c}{z^2},
+\]
+with
+\[
+b=\frac{-\rho^2-\rho+1}{\rho-1},\qquad
+c=\frac{2\rho^2-\rho}{\rho-1},
+\]
+and
+\[
+v=v_\rho
+=1-\frac{(\rho^2+\rho-1)^2}{4(\rho-1)(2\rho^2-\rho)}.
+\]
+The curve \(\gamma\) is the curve enclosing precisely the two marked points
+\(\{\infty,v\}\).
+
+First, \(\gamma\) is an equalizing curve in the sense of Firsova--Kahn--Selinger:
+after forgetting \(v\), the curve becomes peripheral, and every non-peripheral
+component of \(f^{-1}(\gamma)\) disappears after forgetting
+\(f^{-1}(B)\setminus A\).  Equivalently,
+\[
+i_*(\gamma)=\varnothing,\qquad f^*(\gamma)=\varnothing
+\]
+as multicurves on \((\Sph^2,A)\).  This is exactly case (4) in the classification
+of equalizing curves for \(\Per'_4\) in Firsova--Kahn--Selinger
+\cite[Appendix, case (4)]{FKS}.  Since \(\deg f=2\), the square \(T_\gamma^2\)
+is liftable; its lift and its forgetful image are both trivial in
+\(\MCG(A)\).  Hence \(T_\gamma^2\) is a special liftable mapping class, and so
+it preserves \(\Def(f,A,B)\).
+
+It remains to prove that its action on components has an infinite orbit.  Let
+\[
+\eta
+\]
+be the simple closed curve separating \(\{0,1\}\) from
+\(\{\infty,\rho,v\}\).  The curves \(\gamma\) and \(\eta\) are disjoint.  Thus
+their Dehn twists commute.
+
+Let \(D_0\) denote the connected component of \(\Def(f,A,B)\) containing the
+base complex structure, and let \(E_f\) be the stabilizer of \(D_0\) inside the
+group of special liftables.  Hironaka--Koch prove that the multitwist
+\[
+M:=T_\gamma T_\eta
+\]
+has no non-zero power in \(E_f\):
+\[
+M^n\notin E_f\qquad\text{for every }n\neq 0.
+\]
+In their notation this is the element constructed in Section 5.3; it is shown
+to be special liftable in \cite[Proposition 5.6]{HK} and to have no non-zero
+power in \(E_f\) in \cite[Proposition 5.8]{HK}.  The identification of their
+loop with \(T_\gamma T_\eta\) is the standard Picard--Lefschetz monodromy
+identification: a positive meridian about the boundary divisor of
+\(\overline{M}_{0,5}\) determined by a separating curve is the corresponding
+positive Dehn twist.
+
+Also, \(T_\eta\) stabilizes \(D_0\).  Indeed, the moduli image of the deformation
+space is \(\Per'_4\), parametrized by \(\rho\), and the puncture \(\rho=\infty\)
+corresponds precisely to pinching \(\eta\).  A small positive loop about this
+puncture gives the Dehn twist \(T_\eta\), so \(T_\eta\in E_f\).
+
+Now suppose, for contradiction, that the orbit of \(D_0\) under \(T_\gamma^2\)
+were finite.  Then for some \(n>0\),
+\[
+T_\gamma^{2n}\in E_f.
+\]
+Since \(T_\eta\in E_f\) and \(T_\gamma\) commutes with \(T_\eta\), we would have
+\[
+M^{2n}=(T_\gamma T_\eta)^{2n}
+      =T_\gamma^{2n}T_\eta^{2n}\in E_f,
+\]
+contradicting the Hironaka--Koch theorem above.  Therefore no non-zero power of
+\(T_\gamma^2\) stabilizes \(D_0\), and the orbit
+\[
+\{T_\gamma^{2n}D_0:n\in\mathbb Z\}
+\]
+is infinite.
+\end{proof}
+
+\begin{remark}
+In the original, unnormalized notation, the curve is simply:
+\[
+\boxed{\text{a simple closed curve separating } \{f(c_1),\,f(c_2)\}
+\text{ from } \{c_1,\,f^{\circ 2}(c_1),\,f^{\circ 3}(c_1)\}.}
+\]
+Equivalently, it is the boundary of a small regular neighbourhood of an arc
+joining the two critical values \(f(c_1)\) and \(f(c_2)\), chosen disjoint from
+the other three marked points.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{FKS}
+T.~Firsova, J.~Kahn, and N.~Selinger,
+\emph{On deformation spaces of quadratic rational maps},
+arXiv:1606.00723.
+
+\bibitem{HK}
+E.~Hironaka and S.~Koch,
+\emph{A disconnected deformation space of rational maps},
+J. Mod. Dyn. \textbf{11} (2017), 409--423.
+
+\end{thebibliography}
+
+\end{document}
+```

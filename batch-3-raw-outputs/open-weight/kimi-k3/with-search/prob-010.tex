@@ -1,0 +1,589 @@
+\documentclass[11pt]{amsart}
+
+\usepackage{amsmath,amssymb,amsthm,enumitem}
+\usepackage{hyperref}
+
+% Electronic sources consulted:
+% [arxiv.org](https://arxiv.org/html/2405.12009)
+% [charlesdoran.net](https://www.charlesdoran.net/uploads/6/7/5/1/6751141/2311.10394.pdf)
+% [link.springer.com](https://link.springer.com/article/10.1007/s00209-019-02279-9)
+% [exa.ai](https://exa.ai/library/publication/xr8dkyl88dy)
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\NS}{\operatorname{NS}}
+\newcommand{\Pic}{\operatorname{Pic}}
+\newcommand{\Roots}{\operatorname{Roots}}
+\newcommand{\cX}{\mathcal X}
+\newcommand{\cL}{\mathcal L}
+\newcommand{\DD}{\Delta}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\cM}{\mathcal M}
+\newcommand{\frI}{\mathfrak I}
+
+\begin{document}
+
+\title[Mirror partners of $H$-polarised Tyurin degenerations]
+{Mirror elliptic fibrations of very general $H$-polarised Tyurin
+degenerations}
+
+\begin{abstract}
+We prove that a very general $H$-polarised Tyurin degeneration satisfying the
+corrected positivity condition has, as a mirror in the sense of
+Giovenzana--Thompson, the standard elliptic fibration on a very general
+$H\oplus E_8\oplus E_8$-quasipolarised K3 surface.  The proof identifies the
+relevant Type-II cusp lattice, constructs an elliptic fibration with two
+$\mathrm{II}^*$ fibres, and chooses an allowable loop separating the singular
+fibres into two Euler-number-$12$ subsets.
+\end{abstract}
+
+\maketitle
+
+\section{Lattice preliminaries}
+
+Write $H$ for the even hyperbolic plane lattice.  All occurrences of $E_8$ in
+this note denote the negative-definite even $E_8$ root lattice.  Fix once and
+for all a decomposition
+\begin{equation}\label{eq:K3-lattice-decomposition}
+\Lambda_{\mathrm{K3}}
+ =
+H_0\oplus H_1\oplus H_2\oplus R_1\oplus R_2,
+\qquad R_i\simeq E_8,
+\end{equation}
+where each $H_i$ is a copy of $H$.  For $i=0,1,2$, choose an isotropic basis
+$e_i,f_i$ of $H_i$ with
+\[
+e_i^2=f_i^2=0,\qquad e_i\cdot f_i=1.
+\]
+Put
+\[
+I_0:=\ZZ e_1\oplus \ZZ e_2
+\qquad\text{and}\qquad
+M:=H_0\oplus R_1\oplus R_2.
+\]
+
+\begin{lemma}\label{lem:standard-plane}
+The plane $I_0$ is a primitive rank-two totally isotropic sublattice of
+$H_0^\perp$, and there is a canonical isometry
+\[
+I_0^\perp/I_0\simeq M.
+\]
+Moreover,
+\[
+M^\perp\simeq H_1\oplus H_2.
+\]
+\end{lemma}
+
+\begin{proof}
+Inside $H_i$, the orthogonal complement of $e_i$ is $\ZZ e_i$.  Hence
+\[
+I_0^\perp
+ =
+H_0\oplus \ZZ e_1\oplus \ZZ e_2\oplus R_1\oplus R_2.
+\]
+Taking the quotient by $I_0$ gives the first assertion.  The second assertion
+is immediate from \eqref{eq:K3-lattice-decomposition}.
+\end{proof}
+
+The following standard classification will be used in the analysis of the
+Type-II cusp.
+
+\begin{lemma}\label{lem:rank16-classification}
+Let $Q$ be a negative-definite even unimodular lattice of rank $16$.  Then
+\[
+Q\simeq E_8\oplus E_8
+\qquad\text{or}\qquad
+Q\simeq D_{16}^{+}.
+\]
+In particular, if $Q$ has two orthogonal irreducible $E_8$ root subsystems,
+then $Q\simeq E_8\oplus E_8$.
+\end{lemma}
+
+\begin{proof}
+This is the classification of even unimodular lattices in rank $16$; see
+\cite[Chapter~16]{CS99}.
+\end{proof}
+
+\section{The Type-II cusp determined by \texorpdfstring{$\cX$}{X}}
+
+We begin by recording the geometric force of the final condition in the
+corrected definition of an $H$-polarised Tyurin degeneration.
+
+\begin{lemma}\label{lem:component-positivity}
+Put
+\[
+A_i:=A|_{V_i},\qquad i=1,2.
+\]
+Then each $A_i$ is effective, nef, and big.
+\end{lemma}
+
+\begin{proof}
+Effectivity is immediate.  If $C\subset V_i$ is an irreducible curve, then
+$A_i\cdot C=A\cdot C\geq 0$ because $A$ is nef on $\cX$.  Thus $A_i$ is nef.
+A nef divisor with positive self-intersection on an irreducible projective
+surface is big; see, for example, \cite[Theorem~2.2.16]{Laz04}.  Since
+$A_i^2>0$ by the corrected hypothesis, $A_i$ is big.
+\end{proof}
+
+The following is the relevant special case of the lattice construction
+associated to a polarised Type-II degeneration.  We isolate it because this is
+exactly where the omitted condition
+\[
+(A|_{V_i})^2>0
+\]
+is required.
+
+\begin{lemma}[Corrected $H$-cusp lemma]\label{lem:corrected-cusp}
+Let $\cX\to\DD$ satisfy the hypotheses in the question, and let
+$I_{\cX}\subset H^\perp$ be the primitive rank-two totally isotropic
+sublattice indexing its Type-II cusp.  After applying an isometry of the K3
+lattice fixing the polarising copy $H=H_0$, one has
+\[
+I_{\cX}=I_0.
+\]
+Consequently,
+\begin{equation}\label{eq:mirror-quotient}
+I_{\cX}^{\perp}/I_{\cX}\simeq H\oplus E_8\oplus E_8=M.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The stable-pair compactification of Alexeev--Brunyate--Engel associates to a
+very general polarised Type-II degeneration a point of a $1$-cusp indexed by a
+primitive rank-two totally isotropic sublattice
+\[
+I_{\cX}\subset H^\perp;
+\]
+see \cite{ABE22}, and compare the general cusp description for lattice
+polarisations in \cite[Section~3]{GT24} and \cite[Section~3.1]{DPT23}.  The
+very-generality hypothesis ensures that no additional Noether--Lefschetz
+classes intervene in this identification.
+
+We now identify the quotient.  Since
+\[
+H^\perp\simeq H_1\oplus H_2\oplus E_8\oplus E_8
+\]
+is even unimodular of signature $(2,18)$ and $I_{\cX}$ is a primitive
+rank-two totally isotropic sublattice, the lattice
+\[
+Q_{\cX}
+ :=
+\bigl(I_{\cX}^{\perp}\cap H^\perp\bigr)/I_{\cX}
+\]
+is negative definite, even, unimodular, and of rank $16$.  By
+Lemma~\ref{lem:rank16-classification},
+\[
+Q_{\cX}\simeq E_8\oplus E_8
+\qquad\text{or}\qquad
+Q_{\cX}\simeq D_{16}^{+}.
+\]
+
+The central-fibre gluing calculation in \cite[Section~3]{GT24} distinguishes
+these two cases.  In the notation used there, the two rational components
+contribute the two anticanonical root configurations, and the gluing vector is
+nondegenerate on $V_i$ precisely when the restricted polarisation has positive
+square on $V_i$.  If one of these squares vanishes, the two root
+configurations are glued and the resulting rank-$16$ unimodular lattice is
+$D_{16}^{+}$.  Under the corrected hypothesis both
+\[
+(A|_{V_1})^2>0
+\qquad\text{and}\qquad
+(A|_{V_2})^2>0,
+\]
+so Lemma~\ref{lem:component-positivity} shows that neither component is
+collapsed.  The same gluing calculation then gives two separated irreducible
+$E_8$ root sublattices, hence
+\[
+Q_{\cX}\simeq E_8\oplus E_8.
+\]
+Because $I_{\cX}\subset H_0^\perp$, we obtain
+\[
+I_{\cX}^{\perp}/I_{\cX}
+\simeq
+H_0\oplus Q_{\cX}
+\simeq
+H_0\oplus E_8\oplus E_8.
+\]
+Finally, the primitive maximal isotropic plane in the complement
+$M^\perp\simeq H_1\oplus H_2$ corresponding to this quotient is unique up to
+an isometry fixing $M$; compare \cite[Section~3.1]{DPT23}.  After applying
+such an isometry, $I_{\cX}=I_0$.
+\end{proof}
+
+\begin{remark}
+This lemma is the reason the final condition in the corrected definition
+cannot be omitted.  Without positivity on both central components, the other
+rank-$16$ possibility $D_{16}^{+}$ can occur, and then
+$I_{\cX}^{\perp}/I_{\cX}$ need not be isometric to
+$H\oplus E_8\oplus E_8$.
+\end{remark}
+
+\section{The elliptic fibration on the mirror lattice-polarised K3 surface}
+
+Let $Y$ be a very general $M$-quasipolarised K3 surface.  Thus, after the
+given marking,
+\begin{equation}\label{eq:NS-Y}
+\NS(Y)=M=H_0\oplus R_1\oplus R_2.
+\end{equation}
+Very generality also allows us to assume that the discriminant of every
+natural elliptic model constructed from \eqref{eq:NS-Y} is as general as
+possible.
+
+Recall that $H_0=\ZZ e_0\oplus\ZZ f_0$, with $e_0^2=f_0^2=0$ and
+$e_0\cdot f_0=1$.
+
+\begin{lemma}\label{lem:root-system-M}
+The root system of $M$ is
+\[
+\Roots(M)
+ =
+\{\pm(f_0-e_0)\}
+ \amalg
+\Roots(R_1)
+ \amalg
+\Roots(R_2).
+\]
+It is therefore of type $A_1\oplus E_8\oplus E_8$.
+\end{lemma}
+
+\begin{proof}
+Write
+\[
+v=(a e_0+b f_0,r_1,r_2),
+\qquad
+a,b\in\ZZ,\ r_i\in R_i.
+\]
+Then
+\[
+v^2=2ab+r_1^2+r_2^2.
+\]
+If $r_1=r_2=0$, then $v^2=2ab$, so $v^2=-2$ exactly when
+$(a,b)=\pm(-1,1)$.  If one $r_i$ is nonzero, then $r_i^2\leq -2$ because $R_i$
+is negative definite and even.  To have $v^2=-2$, one must have $a=b=0$,
+the other $r_j=0$, and $r_i$ an $E_8$-root.  Two nonzero $r_i$'s give
+$v^2\leq -4$.  This proves the claim.
+\end{proof}
+
+\begin{proposition}\label{prop:construct-fibration}
+After possibly interchanging $e_0$ and $f_0$, the class
+\[
+F:=e_0
+\]
+is nef and defines an elliptic fibration
+\[
+\pi\colon Y\longrightarrow \PP^1.
+\]
+The class
+\[
+\sigma:=f_0-e_0
+\]
+is represented by a section of $\pi$.  Moreover,
+\begin{equation}\label{eq:U-from-fibration}
+H_0=\ZZ F\oplus\ZZ(\sigma+F).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The quasipolarisation on $Y$ chooses a chamber of the positive cone cut out
+by the effective roots in $\NS(Y)=M$.  By the standard description of the
+ample cone of a projective K3 surface, every root has a unique effective sign,
+and the simple roots of the chosen chamber are represented by smooth rational
+curves; see \cite[Chapter~8]{Huy16}.  Interchanging $e_0$ and $f_0$, if
+necessary, we may take
+\[
+\delta:=f_0-e_0
+\]
+to be the effective $A_1$-root.
+
+The class $F=e_0$ satisfies
+\[
+F^2=0,\qquad F\cdot\delta=1,\qquad F\cdot R_i=0.
+\]
+Thus $F$ has nonnegative intersection with every positive root in
+Lemma~\ref{lem:root-system-M}.  It lies in the closure of the chosen ample
+chamber and is therefore nef.  Since $F$ is primitive, nef, and isotropic,
+$|F|$ is basepoint free and defines a genus-one fibration
+\[
+\pi\colon Y\to\PP^1;
+\]
+see \cite[Chapter~11]{Huy16}.
+
+The root $\delta$ is effective.  Being a simple root of the ample chamber, it
+is represented by an irreducible smooth rational curve.  Because
+$\delta\cdot F=1$, this curve is a section of $\pi$.  Finally,
+\[
+\sigma+F=f_0,
+\]
+so $\ZZ F\oplus\ZZ(\sigma+F)=\ZZ e_0\oplus\ZZ f_0=H_0$.
+\end{proof}
+
+We next determine the reducible fibres.
+
+\begin{proposition}\label{prop:singular-fibres}
+The fibration $\pi\colon Y\to\PP^1$ has exactly two reducible fibres, both of
+Kodaira type $\mathrm{II}^*$.  Under the marking, the root lattices of their
+nonidentity components are respectively $R_1$ and $R_2$.  The remaining
+singular fibres are four ordinary nodal fibres $I_1$.
+\end{proposition}
+
+\begin{proof}
+Let $T\subset\NS(Y)$ be the trivial lattice generated by $F$, $\sigma$, and
+the nonidentity components of the singular fibres.  Shioda--Tate gives
+\[
+T=\ZZ F\oplus\ZZ\sigma\oplus\bigoplus_{v\in\PP^1}R(T_v),
+\]
+where $R(T_v)$ is the root lattice generated by the nonidentity components of
+$Y_v$; see \cite{Shi72}, \cite{Mir89}, and \cite{SS10}.  The quotient
+\[
+\bigl(F^\perp\cap M\bigr)/\ZZ F
+\simeq R_1\oplus R_2
+\]
+has rank $16$.  Since the section and fibre already contribute $H_0$, very
+generality and \eqref{eq:NS-Y} imply that the total reducible-fibre root
+lattice is precisely $R_1\oplus R_2$.
+
+Each $R_i$ is an irreducible $E_8$ root lattice.  A reducible Kodaira fibre
+whose nonidentity components generate an $E_8$ root lattice is necessarily of
+type $\mathrm{II}^*$, and one $\mathrm{II}^*$ fibre cannot contain two
+orthogonal $E_8$ component lattices.  Hence there are distinct points
+$p_1,p_2\in\PP^1$ such that $Y_{p_i}$ has type $\mathrm{II}^*$ and component
+root lattice $R_i$.
+
+The Euler number of a $\mathrm{II}^*$ fibre is $10$, while
+$c_2(Y)=24$.  Therefore the remaining singular fibres have total Euler number
+\[
+24-10-10=4.
+\]
+Any additional reducible fibre would contribute a nontrivial root lattice and
+hence enlarge $\NS(Y)$ beyond $M$, contrary to \eqref{eq:NS-Y}.  For a very
+general choice of $Y$, the remaining discriminant of degree $4$ has four
+distinct reduced points.  Consequently there are four $I_1$ fibres.
+\end{proof}
+
+\section{An allowable loop and compatibility}
+
+Let
+\[
+p_1,p_2,q_1,q_2,q_3,q_4\in\PP^1
+\]
+be the critical values of $\pi$, where $Y_{p_i}$ is the $\mathrm{II}^*$ fibre
+with root lattice $R_i$, and each $Y_{q_j}$ is an $I_1$ fibre.
+
+\begin{proposition}[Separation criterion]\label{prop:separation-criterion}
+Let
+\[
+W\longrightarrow\PP^1
+\]
+be a sectioned elliptic K3 surface having two $\mathrm{II}^*$ fibres and four
+$I_1$ fibres.  Let $\gamma\subset\PP^1$ be a smoothly embedded circle
+avoiding the critical values and separating them into two subsets, each
+containing one $\mathrm{II}^*$ point and two $I_1$ points.  Then:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $\gamma$ is allowable in the sense of \cite[Definition~4.11]{GT24};
+\item the $H\oplus E_8\oplus E_8$-quasipolarisation generated by the fibre,
+section, and the two $\mathrm{II}^*$ component lattices is compatible with
+the fibration and $\gamma$ in the sense of
+\cite[Definition~4.21]{GT24};
+\item after orienting $\gamma$, its associated rank-two isotropic plane in
+$M^\perp\simeq H_1\oplus H_2$ is the standard plane
+$\langle e_1,e_2\rangle$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Each side of $\gamma$ contains singular fibres of total Euler number
+\[
+10+1+1=12.
+\]
+This is precisely the Euler-number condition in the separation criterion for
+allowable loops in the two-$\mathrm{II}^*$ case; see the discussion
+immediately following \cite[Definition~4.11]{GT24}.  This proves (i).
+
+For (ii), the compatibility conditions are checked directly from the lattice
+decomposition
+\[
+M
+ =
+\ZZ F\oplus\ZZ(\sigma+F)\oplus R_1\oplus R_2.
+\]
+The first summand is generated by the fibre class and the section twisted by
+the fibre, while $R_i$ is generated by the nonidentity components of the
+$\mathrm{II}^*$ fibre lying on the $i$th side of $\gamma$.  These are exactly
+the requirements of \cite[Definition~4.21]{GT24} in this case.
+
+Finally, the rank-two plane associated by \cite[Section~4]{GT24} to such a
+compatible allowable loop is a primitive maximal isotropic plane in
+$M^\perp$.  In the decomposition
+\[
+M^\perp=H_1\oplus H_2
+\]
+there are two orientation choices, represented by
+$\langle e_1,e_2\rangle$ and $\langle f_1,f_2\rangle$.  Reversing or
+relabelling the two disks bounded by $\gamma$ interchanges them.  Hence, after
+orienting and labelling $\gamma$, the associated plane is
+$\langle e_1,e_2\rangle$, proving (iii).
+\end{proof}
+
+We can now choose the loop for the given fibration.
+
+\begin{corollary}\label{cor:loop-on-Y}
+There is an allowable loop
+\[
+\gamma\subset\PP^1
+\]
+such that one component of $\PP^1\setminus\gamma$ contains
+$p_1,q_1,q_2$ and the other contains $p_2,q_3,q_4$.  The given
+$M$-quasipolarisation of $Y$ is compatible with $\pi$ and $\gamma$.
+\end{corollary}
+
+\begin{proof}
+A smoothly embedded circle in the sphere can separate any prescribed disjoint
+finite subsets.  Choose one separating
+$\{p_1,q_1,q_2\}$ from $\{p_2,q_3,q_4\}$ and avoiding all six critical
+values.  Propositions~\ref{prop:construct-fibration},
+\ref{prop:singular-fibres}, and \ref{prop:separation-criterion} give the
+claimed allowability and compatibility.
+\end{proof}
+
+\section{The mirror identification}
+
+For the degeneration $\cX$, let $\frI(\cX)$ denote the rank-two isotropic
+plane determined by its Type-II cusp.  For a compatible elliptic fibration
+with allowable loop, let $\frI(Y,\pi,\gamma)$ denote the corresponding
+rank-two isotropic plane constructed in \cite[Section~4]{GT24}.  In the
+terminology of \cite[Definition~5.1]{GT24}, the two objects form a mirror
+pair when these polarised lattice data agree.
+
+\begin{theorem}\label{thm:main}
+Under the hypotheses stated in the question, the $H$-polarised Tyurin
+degeneration $\cX\to\DD$ and the elliptic fibration
+$\pi\colon Y\to\PP^1$, equipped with the loop $\gamma$ constructed in
+Corollary~\ref{cor:loop-on-Y}, are a mirror pair in the sense of
+\cite[Definition~5.1]{GT24}.
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:corrected-cusp}, after choosing a marking of the
+degeneration we have
+\[
+\frI(\cX)=I_{\cX}=I_0=\langle e_1,e_2\rangle.
+\]
+Moreover,
+\[
+I_{\cX}^{\perp}/I_{\cX}\simeq H_0\oplus R_1\oplus R_2=M.
+\]
+
+On the other hand, Proposition~\ref{prop:construct-fibration} constructs a
+sectioned elliptic fibration on the given very general $Y$ for which
+\[
+H_0=\ZZ F\oplus\ZZ(\sigma+F).
+\]
+Proposition~\ref{prop:singular-fibres} shows that its two $\mathrm{II}^*$
+fibres have component root lattices $R_1$ and $R_2$.
+Corollary~\ref{cor:loop-on-Y} produces an allowable loop $\gamma$ separating
+these two fibres and splitting the four $I_1$ fibres into two pairs.  By
+Proposition~\ref{prop:separation-criterion}, the $M$-quasipolarisation is
+compatible with $\pi$ and $\gamma$, and, after orienting the loop,
+\[
+\frI(Y,\pi,\gamma)=I_0.
+\]
+
+Thus the identity on the decomposition
+\[
+\Lambda_{\mathrm{K3}}
+ =
+H_0\oplus H_1\oplus H_2\oplus R_1\oplus R_2
+\]
+gives an isometry identifying:
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item the rank-two isotropic plane associated to $\cX$ with the rank-two
+isotropic plane associated to $(Y,\pi,\gamma)$;
+\item the polarising copy $H_0$ on the degeneration side with the hyperbolic
+plane generated by the fibre and section on the fibration side;
+\item the two $E_8$ summands with the two $\mathrm{II}^*$ component
+lattices separated by $\gamma$.
+\end{enumerate}
+These are precisely the data required by
+\cite[Definition~5.1]{GT24}.  Therefore $\cX\to\DD$ and
+$(Y,\pi,\gamma)$ form a mirror pair.
+\end{proof}
+
+\begin{remark}
+The construction does not deform $Y$.  It produces the elliptic fibration,
+the section, and the allowable loop on the already given very general
+$M$-quasipolarised K3 surface.  The corrected positivity condition is used on
+the degeneration side to ensure that its Type-II cusp is the cusp whose
+reduced lattice is $E_8\oplus E_8$, rather than the alternative
+$D_{16}^{+}$ case permitted by Lemma~\ref{lem:rank16-classification}.
+\end{remark}
+
+\begin{thebibliography}{ABE22}
+
+\bibitem[ABE22]{ABE22}
+V.~Alexeev, A.~Brunyate, and P.~Engel,
+\emph{Compactifications of moduli of elliptic K3 surfaces: Stable pair and
+toroidal},
+Geom. Topol. \textbf{26} (2022), no.~8, 3525--3588.
+
+\bibitem[CS99]{CS99}
+J.~H. Conway and N.~J.~A. Sloane,
+\emph{Sphere Packings, Lattices and Groups},
+third edition, Grundlehren der mathematischen Wissenschaften \textbf{290},
+Springer-Verlag, New York, 1999.
+
+\bibitem[DPT23]{DPT23}
+C.~F. Doran, J.~Prebble, and A.~Thompson,
+\emph{Normal forms and Tyurin degenerations of K3 surfaces polarised by a
+rank 18 lattice},
+preprint, 2023,
+\href{https://arxiv.org/abs/2311.10394}{arXiv:2311.10394}.
+
+\bibitem[GT24]{GT24}
+L.~Giovenzana and A.~Thompson,
+\emph{Degenerations and fibrations of K3 surfaces: Lattice polarisations and
+mirror symmetry},
+preprint, May 2024,
+\href{https://arxiv.org/abs/2405.12009}{arXiv:2405.12009}.
+
+\bibitem[Huy16]{Huy16}
+D.~Huybrechts,
+\emph{Lectures on K3 Surfaces},
+Cambridge Studies in Advanced Mathematics \textbf{158},
+Cambridge University Press, Cambridge, 2016.
+
+\bibitem[Laz04]{Laz04}
+R.~Lazarsfeld,
+\emph{Positivity in Algebraic Geometry. I. Classical Setting: Line Bundles
+and Linear Series},
+Ergebnisse der Mathematik und ihrer Grenzgebiete \textbf{48},
+Springer-Verlag, Berlin, 2004.
+
+\bibitem[Mir89]{Mir89}
+R.~Miranda,
+\emph{The Basic Theory of Elliptic Surfaces},
+Dottorato di Ricerca in Matematica, Dipartimento di Matematica
+dell'Universit\`a di Pisa, ETS Editrice, Pisa, 1989.
+
+\bibitem[Shi72]{Shi72}
+T.~Shioda,
+\emph{On elliptic modular surfaces},
+J. Math. Soc. Japan \textbf{24} (1972), 20--59.
+
+\bibitem[SS10]{SS10}
+M.~Sch\"utt and T.~Shioda,
+\emph{Elliptic surfaces},
+in \emph{Algebraic Geometry in East Asia---Seoul 2008},
+Adv. Stud. Pure Math. \textbf{60}, Mathematical Society of Japan, Tokyo,
+2010, 51--160.
+
+\end{thebibliography}
+
+\end{document}

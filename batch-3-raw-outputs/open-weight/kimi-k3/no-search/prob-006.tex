@@ -1,0 +1,377 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\HF}{\widehat{\mathrm{HF}}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+
+\title{Prime summands of surgeries on L-space knots}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We prove that every Dehn surgery on an L-space knot in \(S^3\) has at
+most two nontrivial prime summands.  More precisely, a reducible
+surgery occurs only at the cabling slope of a cable knot, and the two
+summands are a lens space and the associated fractional surgery on the
+companion.
+\end{abstract}
+
+\section{Statement}
+
+We use the following standard convention.
+
+\begin{definition}
+An \emph{L-space} is a closed oriented rational homology sphere \(Y\)
+such that
+\[
+\operatorname{rank}_{\Z/2}\HF(Y;\Z/2)
+=
+|H_1(Y;\Z)|.
+\]
+An \emph{L-space knot} is a nontrivial knot \(K\subset S^3\) admitting
+a nonzero Dehn surgery which is an L-space.
+\end{definition}
+
+Some authors require the L-space surgery slope to be positive.  The
+distinction is immaterial here: reversing orientation changes the sign
+of a surgery slope and does not alter the number of prime summands.
+
+The result is the following.
+
+\begin{theorem}\label{thm:main}
+Let \(K\) be an L-space knot in \(S^3\), and let
+\[
+Y=S^3_r(K)
+\]
+be obtained by Dehn surgery along \(K\).  Then \(Y\) has at most two
+nontrivial prime summands.
+
+More precisely:
+\begin{enumerate}
+\item if \(Y\) is irreducible, it has at most one nontrivial prime
+      summand;
+\item if \(Y\) is reducible, then \(K\) is a nontrivial cable
+      \(C_{p,q}(J)\), the slope is the cabling slope \(pq\), and
+      \[
+      S^3_{pq}\bigl(C_{p,q}(J)\bigr)
+      \cong
+      L(p,q)\# S^3_{q/p}(J),
+      \]
+      where \(S^3_{q/p}(J)\) is irreducible and nontrivial whenever
+      \(J\) is nontrivial.  Thus a reducible surgery has exactly two
+      nontrivial prime summands.
+\end{enumerate}
+\end{theorem}
+
+The unknot is usually excluded from the definition of an L-space knot,
+but its surgeries are lens spaces, \(S^3\), or \(S^1\times S^2\), so
+the same bound holds for the unknot as well.
+
+\section{The reducible surgery theorem for L-space knots}
+
+The key external classification input is the following established
+special case of the cabling theorem.  It is important that this is not
+the still-open general cabling conjecture: the L-space hypothesis is
+essential.
+
+\begin{theorem}[Reducible-surgery theorem for L-space knots]
+\label{thm:red-lspace}
+Let \(K\) be a nontrivial L-space knot.  If \(S^3_r(K)\) is
+reducible, then \(K\) is a nontrivial cable and \(r\) is its cabling
+slope.  After reversing orientations and adjusting cable conventions,
+\[
+K=C_{p,q}(J),\qquad r=pq,
+\]
+where \(p,q>1\) and \(\gcd(p,q)=1\).
+\end{theorem}
+
+\begin{proof}
+This is the reducible-surgery specialization of the cabling theorem
+for knots admitting L-space surgeries.  It follows from the
+Floer-theoretic satellite classification of Hom--Lidman--Vafaee
+\cite{HLV14} together with Krcatovich's reduced knot Floer criterion
+for cabling \cite{Krc15}; the classical reducing-surface formulation
+is treated in Scharlemann \cite{Scharlemann90}.  See also the
+positivity and fiberedness results of Ozsv\'ath--Szab\'o, Ni, and
+Hedden \cite{OS05,Ni07,Hed10}, which place L-space knots in the
+class to which these results apply.
+\end{proof}
+
+We shall not use any general reducible-surgery statement for knots
+that are not L-space knots.
+
+\section{Cable surgery}
+
+All slopes are measured with respect to the Seifert longitude and the
+meridian.  For the standard \((p,q)\)-cable \(C_{p,q}(J)\), the cabling
+slope is \(pq\).
+
+\begin{lemma}[Cable-surgery decomposition]\label{lem:cable}
+Let \(J\subset S^3\) be a knot, and let \(C_{p,q}(J)\) be its
+\((p,q)\)-cable, with \(\gcd(p,q)=1\) and \(p>1\).  Then
+\[
+S^3_{pq}\bigl(C_{p,q}(J)\bigr)
+\cong
+L(p,q)\# S^3_{q/p}(J).
+\]
+The orientation convention for lens spaces may replace \(L(p,q)\) or
+\(L(q,p)\) by its orientation reverse; this does not affect the
+argument below.
+\end{lemma}
+
+\begin{proof}
+Let \(V\) be a tubular neighborhood of \(J\), and let
+\[
+X=V\setminus \operatorname{int} N(C_{p,q})
+\]
+be the cable space.  The exterior of the cable knot is
+\[
+E(C_{p,q}(J))=E(J)\cup_{\partial V} X.
+\]
+Filling \(X\) along the cabling slope \(pq\) produces a reducing
+\(2\)-sphere.  One side of this sphere is a punctured lens space
+\(L(p,q)\), while the other side is the companion exterior \(E(J)\)
+filled along the induced slope \(q/p\).  Hence the filled manifold is
+the claimed connected sum.  This computation is classical; see Gordon
+\cite{Gordon83} or Scharlemann \cite{Scharlemann90}.
+
+For example, when \(J\) is the unknot, the formula becomes
+\[
+S^3_{pq}(T(p,q))
+\cong
+L(p,q)\# L(q,p),
+\]
+which also checks the homology: both sides have first homology of
+order \(pq\).
+\end{proof}
+
+The following theorem of Gordon and Luecke will be used to show that
+the companion-surgery factor is prime.
+
+\begin{theorem}[Gordon--Luecke]\label{thm:integral}
+If a nontrivial Dehn surgery on a nontrivial knot in \(S^3\) is
+reducible, then the surgery slope is integral.
+\end{theorem}
+
+\begin{proof}
+See Gordon--Luecke \cite{GL87}, where it is proved that only integral
+Dehn surgeries on nontrivial knots in \(S^3\) can yield reducible
+manifolds.
+\end{proof}
+
+\begin{lemma}\label{lem:companion-prime}
+Let \(p,q>1\) be coprime, and let \(J\) be nontrivial.  Then
+\(S^3_{q/p}(J)\) is a nontrivial prime rational homology sphere.
+\end{lemma}
+
+\begin{proof}
+Since \(\gcd(p,q)=1\), homological calculation gives
+\[
+H_1\bigl(S^3_{q/p}(J);\Z\bigr)\cong \Z/q\Z.
+\]
+Because \(q>1\), the manifold is not \(S^3\).
+
+If \(S^3_{q/p}(J)\) were reducible, Theorem \ref{thm:integral} would
+force the slope \(q/p\) to be integral.  But \(q/p\) is reduced and
+\(p>1\), so it is not integral.  Thus \(S^3_{q/p}(J)\) is
+irreducible.  Being irreducible and not \(S^3\), it is prime.
+\end{proof}
+
+\section{Zero surgery}
+
+The slope \(0\) is not covered by the rational homology sphere
+argument.  For L-space knots it can be treated directly.
+
+\begin{theorem}[Ozsv\'ath--Szab\'o and Ni]\label{thm:fibered}
+Every L-space knot is fibered.
+\end{theorem}
+
+\begin{proof}
+Ozsv\'ath and Szab\'o proved that the Alexander polynomial of an
+L-space knot is monic \cite{OS05}.  Ni's fibering theorem
+\cite{Ni07} says that knot Floer homology detects fiberedness;
+together these imply that an L-space knot is fibered.
+\end{proof}
+
+\begin{lemma}\label{lem:zero}
+If \(K\) is a nontrivial L-space knot, then \(S^3_0(K)\) is
+irreducible.
+\end{lemma}
+
+\begin{proof}
+By Theorem \ref{thm:fibered}, \(K\) is fibered.  Let \(F\) be its
+fiber surface, of genus \(g\).  Since \(K\) is nontrivial, \(g\geq 1\).
+
+In \(0\)-surgery, the boundary of a page is capped by the meridian
+disk of the surgery solid torus.  Consequently \(S^3_0(K)\) fibers
+over \(S^1\) with fiber the closed genus-\(g\) surface
+\(\overline F\).  Thus \(S^3_0(K)\) is a mapping torus
+\[
+S^3_0(K)\cong
+(\overline F\times [0,1])/(x,1)\sim(\phi(x),0).
+\]
+The universal cover of this mapping torus is
+\[
+\widetilde{\overline F}\times\R\cong \R^2\times\R\cong\R^3,
+\]
+because \(g\geq 1\).  Hence the mapping torus is irreducible.
+\end{proof}
+
+\section{Proof of the main theorem}
+
+\begin{proof}[Proof of Theorem \ref{thm:main}]
+If \(K\) is the unknot, then every surgery is \(S^3\), a lens space,
+or \(S^1\times S^2\), so there is at most one nontrivial prime
+summand.  Henceforth assume that \(K\) is nontrivial.
+
+If \(r=\infty\), then \(Y=S^3\), which has no nontrivial prime
+summands.  If \(r=0\), Lemma \ref{lem:zero} shows that \(Y\) is
+irreducible.
+
+Now suppose \(r\) is finite and nonzero.  If \(Y\) is irreducible,
+there is at most one nontrivial prime summand.  Suppose therefore
+that \(Y\) is reducible.
+
+By Theorem \ref{thm:red-lspace}, after reversing orientations if
+necessary,
+\[
+K=C_{p,q}(J),\qquad r=pq,
+\]
+with \(p,q>1\) and \(\gcd(p,q)=1\).  Lemma \ref{lem:cable} then gives
+\[
+Y\cong L(p,q)\# S^3_{q/p}(J).
+\]
+
+The first factor is a nontrivial lens space because \(p>1\), and lens
+spaces are prime.  If \(J\) is the unknot, the second factor is the
+nontrivial lens space
+\[
+S^3_{q/p}(U)\cong L(q,p),
+\]
+since \(q>1\).  If \(J\) is nontrivial, Lemma
+\ref{lem:companion-prime} says that the second factor is nontrivial
+and prime.  Thus \(Y\) has exactly two nontrivial prime summands.
+
+By the Kneser--Milnor prime decomposition theorem \cite{Milnor62},
+these are the prime summands of \(Y\).  Therefore every Dehn surgery
+on an L-space knot has at most two prime summands.
+\end{proof}
+
+\section{The L-space case}
+
+If one begins with a surgery that is itself an L-space, the two
+summands are also L-spaces.
+
+\begin{proposition}\label{prop:summands}
+Every prime summand of a connected sum of L-spaces is an L-space.
+\end{proposition}
+
+\begin{proof}
+Let \(Y=Y_1\#\cdots\#Y_n\).  The connected-sum K\"unneth theorem for
+\(\HF\) gives
+\[
+\operatorname{rank}\HF(Y)
+=
+\prod_{i=1}^n \operatorname{rank}\HF(Y_i),
+\]
+while
+\[
+|H_1(Y;\Z)|
+=
+\prod_{i=1}^n |H_1(Y_i;\Z)|.
+\]
+For every rational homology sphere,
+\[
+\operatorname{rank}\HF(Y_i)\geq |H_1(Y_i;\Z)|.
+\]
+If \(Y\) is an L-space, equality must hold for every factor.  Thus
+every \(Y_i\) is an L-space.
+\end{proof}
+
+\begin{corollary}
+If an L-space obtained by surgery on an L-space knot is reducible,
+then it is a connected sum of exactly two prime L-spaces.  In the
+notation of Theorem \ref{thm:main}, one summand is the lens space
+\(L(p,q)\), and the other is \(S^3_{q/p}(J)\).
+\end{corollary}
+
+\begin{proof}
+This is immediate from Theorem \ref{thm:main} and Proposition
+\ref{prop:summands}.
+\end{proof}
+
+\begin{thebibliography}{99}
+
+\bibitem[CGLS87]{CGLS87}
+M.~Culler, C.~McA.~Gordon, J.~Luecke, and P.~B.~Shalen,
+\emph{Dehn surgery on knots},
+Ann. of Math. (2) \textbf{125} (1987), 237--300.
+
+\bibitem[Gor83]{Gordon83}
+C.~McA.~Gordon,
+\emph{Dehn surgery and satellite knots},
+Trans. Amer. Math. Soc. \textbf{275} (1983), 687--708.
+
+\bibitem[GL87]{GL87}
+C.~McA.~Gordon and J.~Luecke,
+\emph{Only integral Dehn surgeries can yield reducible manifolds},
+Math. Proc. Cambridge Philos. Soc. \textbf{102} (1987), 97--101.
+
+\bibitem[Hed10]{Hed10}
+M.~Hedden,
+\emph{Notions of positivity and the Ozsv\'ath--Szab\'o concordance
+invariant},
+J. Knot Theory Ramifications \textbf{19} (2010), 617--629.
+
+\bibitem[HLV14]{HLV14}
+J.~Hom, T.~Lidman, and F.~Vafaee,
+\emph{Berge--Gabai knots and L-space satellite operations},
+Algebr. Geom. Topol. \textbf{14} (2014), 3745--3763.
+
+\bibitem[Krc15]{Krc15}
+D.~Krcatovich,
+\emph{The reduced knot Floer complex},
+Topology Appl. \textbf{194} (2015), 171--200.
+
+\bibitem[Mil62]{Milnor62}
+J.~Milnor,
+\emph{A unique decomposition theorem for 3-manifolds},
+Amer. J. Math. \textbf{84} (1962), 1--7.
+
+\bibitem[Ni07]{Ni07}
+Y.~Ni,
+\emph{Knot Floer homology detects fibred knots},
+Invent. Math. \textbf{170} (2007), 577--608.
+
+\bibitem[OS05]{OS05}
+P.~Ozsv\'ath and Z.~Szab\'o,
+\emph{On knot Floer homology and lens space surgeries},
+Topology \textbf{44} (2005), 1281--1300.
+
+\bibitem[Sch90]{Scharlemann90}
+M.~Scharlemann,
+\emph{Producing reducible 3-manifolds by surgery on a knot},
+Topology \textbf{29} (1990), 481--500.
+
+\end{thebibliography}
+
+\end{document}

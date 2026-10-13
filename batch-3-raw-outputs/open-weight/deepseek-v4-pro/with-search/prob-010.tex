@@ -1,0 +1,287 @@
+```latex
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[hidelinks]{hyperref}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\NS}{\operatorname{NS}}
+\newcommand{\Kthree}{\mathrm{K3}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\bbP}{\mathbb{P}}
+\newcommand{\bbC}{\mathbb{C}}
+\newcommand{\bbZ}{\mathbb{Z}}
+\newcommand{\bbQ}{\mathbb{Q}}
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\Lk}{\Lambda_{\Kthree}}
+
+\title{Proof of the mirror theorem for very general $H$-polarised Tyurin degenerations}
+\author{}
+
+\begin{document}
+\maketitle
+
+\begin{theorem}[Giovenzana--Thompson, \cite{dfk3slpms}]
+Let \(H\) denote the hyperbolic plane lattice \(U\), and let \(E_8\) denote the negative definite \(E_8\) root lattice. Let
+\[
+\pi\colon \cX \longrightarrow \Delta
+\]
+be a Tyurin degeneration of \(K3\) surfaces with central fibre
+\[
+X_0=V_1\cup_D V_2,
+\]
+which is \(H\)-polarised in the sense that
+\begin{enumerate}
+\item[(1)] over the punctured disc \(\Delta^*\) there is a trivial local subsystem
+\(\cL\subset R^2\pi_*\bbZ\) with fibre \(H\), so that for each \(p\in\Delta^*\)
+the fibre \(\cL_p\subset H^2(X_p;\bbZ)\) defines an \(H\)-quasipolarisation
+of \(X_p\);
+\item[(2)] there exists an effective, flat, and nef Cartier divisor \(A\) on \(\cX\)
+such that the restriction \(A_p\) of \(A\) to any fibre \(X_p\), \(p\in\Delta^*\),
+is nef and big and satisfies \([A_p]\in\cL_p\), and moreover
+\((A|_{V_i})^2>0\) for \(i\in\{1,2\}\).
+\end{enumerate}
+Assume that the image of \(0\in\Delta\) under the map
+\[
+\Delta \longrightarrow \overline{\cM}_H^{\mathrm{ABE}}
+\]
+to the Alexeev--Brunyate--Engel compactification of the moduli space of
+\(H\)-polarised \(K3\) surfaces is not contained in any Noether--Lefschetz
+locus. Then there exist a very general
+\(H\oplus E_8\oplus E_8\)-quasipolarised \(K3\) surface \(Y\), an elliptic
+fibration
+\[
+\psi\colon Y\longrightarrow \bbP^1,
+\]
+and an allowable loop \(\gamma\subset\bbP^1\), in the sense of
+\cite[Definition~4.11]{dfk3slpms}, such that the
+\(H\oplus E_8\oplus E_8\)-quasipolarisation is compatible with
+\((\psi,\gamma)\) in the sense of \cite[Definition~4.21]{dfk3slpms}, and such
+that \(\cX\to\Delta\) and \(\psi\colon Y\to\bbP^1\) form a mirror pair in the
+sense of \cite[Definition~5.1]{dfk3slpms}.
+\end{theorem}
+
+\begin{proof}
+We shall prove the theorem in several steps. Throughout, write
+\[
+\Lk=H^{\oplus 3}\oplus E_8^{\oplus 2}
+\]
+for the \(K3\) lattice and set
+\[
+M:=H\oplus E_8\oplus E_8.
+\]
+We shall freely use the notation and results of \cite{dfk3slpms}; the relevant
+external background is also described in
+\href{https://arxiv.org/html/2405.12009}{arxiv.org},
+\href{https://www.charlesdoran.net/uploads/6/7/5/1/6751141/2311.10394.pdf}{charlesdoran.net},
+and
+\href{https://link.springer.com/article/10.1007/s00209-019-02279-9}{link.springer.com}.
+
+\medskip
+\noindent
+\textbf{Step 1: The boundary point and its stable pair.}
+Because \(\cL\) is a trivial local subsystem with fibre \(H\), every smooth fibre
+\(X_p\) is an \(H\)-quasipolarised \(K3\) surface. Thus the period map on
+\(\Delta^*\) takes values in the moduli space \(\cM_H\) of \(H\)-quasipolarised
+\(K3\) surfaces. By \cite[Theorem~1.1]{cmek3sspt}, this period map extends to the
+Alexeev--Brunyate--Engel compactification \(\overline{\cM}_H^{\mathrm{ABE}}\).
+Let
+\[
+b\in \overline{\cM}_H^{\mathrm{ABE}}
+\]
+be the image of \(0\in\Delta\). Since \(\cX\to\Delta\) is a Tyurin degeneration,
+\(b\) lies in a Type~II boundary stratum of the compactification.
+
+The very general hypothesis means that \(b\) lies in the complement of every
+Noether--Lefschetz divisor in the relevant boundary stratum. In particular, the
+stable pair associated to \(b\) is the central fibre
+\[
+X_0=V_1\cup_D V_2
+\]
+itself, and no additional \((-2)\)-curves or reducible fibres appear on the
+components \(V_i\). This uses the explicit description of the Type~II boundary of
+the ABE compactification; see \cite[Section~3]{dfk3slpms} and
+\cite[Section~5]{cmek3sspt}.
+
+\medskip
+\noindent
+\textbf{Step 2: The components are rational elliptic surfaces.}
+By definition of a Tyurin degeneration, \(V_1\) and \(V_2\) are rational
+surfaces glued along a smooth anticanonical elliptic curve \(D\). The positivity
+condition \((A|_{V_i})^2>0\), together with the nefness and flatness of \(A\),
+implies that \(A|_{V_i}\) is a nef and big divisor on the rational surface
+\(V_i\). Since \(D\) is an anticanonical divisor, the class \(A|_{V_i}\) has
+positive intersection with \(D\). Therefore the divisor \(A|_{V_i}\) defines an
+elliptic fibration
+\[
+\varphi_i\colon V_i\longrightarrow \bbP^1,
+\]
+with \(D\) as a fibre. The \(H\)-summand of the polarisation supplies the fibre
+class \(F_i\) and a section class \(S_i\). The very general hypothesis excludes
+reducible singular fibres, so each \(V_i\) has exactly twelve singular fibres,
+all of type \(I_1\). Hence
+\[
+\NS(V_i)\cong H\oplus E_8.
+\]
+This is the standard lattice of a rational elliptic surface; see
+\cite[Section~3]{dfk3slpms} and
+\href{https://www.charlesdoran.net/uploads/6/7/5/1/6751141/2311.10394.pdf}{charlesdoran.net}
+for the relevant normal forms and Tyurin degeneration background.
+
+\medskip
+\noindent
+\textbf{Step 3: The canonical lattice of the degeneration.}
+Let \(L_{\cX}\) be the lattice obtained from
+\[
+\NS(V_1)\oplus\NS(V_2)\cong (H\oplus E_8)\oplus(H\oplus E_8)
+\]
+by identifying the two \(H\)-summands. The two \(H\)-summands are exactly the
+monodromy-invariant polarisation subsystem \(\cL\), so this gluing is canonical.
+The two \(E_8\)-summands remain independent, and therefore
+\[
+L_{\cX}\cong H\oplus E_8\oplus E_8=M.
+\]
+This lattice is primitive in \(\Lk\) precisely because the boundary point \(b\)
+is very general. The canonical lattice construction is described in
+\cite[Section~5]{dfk3slpms} and is visible in the limiting mixed Hodge structure
+computation in
+\href{https://arxiv.org/html/2405.12009}{arxiv.org}.
+
+\medskip
+\noindent
+\textbf{Step 4: The mirror period point and Torelli.}
+The Type~II boundary stratum of \(\overline{\cM}_H^{\mathrm{ABE}}\) is described
+by periods in the period domain
+\[
+\cD_M:=\cD_{H\oplus E_8\oplus E_8}.
+\]
+More precisely, the normalisation of the relevant boundary stratum is isomorphic
+to an open subset of the moduli space \(\cM_M\) of \(M\)-quasipolarised \(K3\)
+surfaces; this is proved in \cite[Section~5]{dfk3slpms}. Since \(b\) is very
+general, its image in \(\cD_M\) lies outside every Heegner divisor. By the
+Torelli theorem for lattice-polarised \(K3\) surfaces, there exists a \(K3\)
+surface \(Y\) whose period point is this image. Because the period point is
+outside all Heegner divisors,
+\[
+\NS(Y)\cong M=H\oplus E_8\oplus E_8,
+\]
+and \(Y\) is a very general \(M\)-quasipolarised \(K3\) surface. The moduli
+functor and period map for quasipolarised \(K3\) surfaces are summarised in
+\href{https://exa.ai/library/publication/xr8dkyl88dy}{exa.ai}; the
+lattice-polarised Torelli theorem used here is standard, and the formulation
+needed is given in \cite[Section~2]{dfk3slpms}.
+
+\medskip
+\noindent
+\textbf{Step 5: The elliptic fibration on \(Y\).}
+Let \(e\in H\subset \NS(Y)\) be a primitive isotropic vector. Since the
+quasipolarisation vector \(h\in H\) is big and nef, the vector \(e\) is nef.
+Indeed, \(\NS(Y)=H\oplus E_8\oplus E_8\) contains no \((-2)\)-curves, so the
+nef cone and the closure of the positive cone coincide. Therefore the complete
+linear system \(|e|\) defines a genus-one fibration
+\[
+\psi\colon Y\longrightarrow \bbP^1.
+\]
+The other isotropic generator of \(H\) provides a section, so \(\psi\) is an
+elliptic fibration with a section.
+
+Because \(\NS(Y)\cong H\oplus E_8\oplus E_8\), the trivial lattice of \(\psi\)
+is exactly \(H\), and there are no reducible singular fibres. The Euler number of
+a \(K3\) elliptic fibration forces twenty-four singular fibres, so all are of
+type \(I_1\). The Mordell--Weil lattice is the orthogonal complement of \(H\)
+inside \(\NS(Y)\), namely
+\[
+H^\perp\cong E_8\oplus E_8.
+\]
+Thus the \(H\oplus E_8\oplus E_8\)-structure on \(\NS(Y)\) is exactly the
+fibre-section lattice together with the two \(E_8\)-factors of the
+Mordell--Weil lattice. See \cite[Section~4]{dfk3slpms} for the general
+dictionary between isotropic vectors and elliptic fibrations on lattice-polarised
+\(K3\) surfaces.
+
+\medskip
+\noindent
+\textbf{Step 6: The allowable loop and compatibility.}
+The isomorphism \(L_{\cX}\cong M\) from Step~3 identifies the two \(E_8\)-factors
+of \(M\) with the two \(E_8\)-factors coming from the two rational elliptic
+surfaces \(V_1\) and \(V_2\). On the base \(\bbP^1\) of \(\psi\), this
+decomposition partitions the twenty-four \(I_1\) points into two subsets
+\(S_1,S_2\), each of cardinality twelve, corresponding respectively to \(V_1\)
+and \(V_2\). Choose a simple closed loop
+\[
+\gamma\subset \bbP^1\setminus S,
+\]
+where \(S\) is the set of twenty-four critical values of \(\psi\), separating
+\(S_1\) from \(S_2\). This loop is allowable in the sense of
+\cite[Definition~4.11]{dfk3slpms}, and the compatibility condition of
+\cite[Definition~4.21]{dfk3slpms} holds by construction, because the two
+\(E_8\)-summands of the polarisation are precisely the two factors arising from
+the two sides of \(\gamma\).
+
+\medskip
+\noindent
+\textbf{Step 7: Verification of the mirror pair condition.}
+According to \cite[Definition~5.1]{dfk3slpms}, a Tyurin degeneration and an
+elliptic fibration with an allowable loop form a mirror pair exactly when the
+canonical lattice of the degeneration is isometric to the polarisation lattice of
+the fibration, and when the boundary period point of the degeneration agrees with
+the period point of the fibration under the boundary period correspondence. In
+Step~3 we proved that the canonical lattice is
+\[
+L_{\cX}\cong H\oplus E_8\oplus E_8=M.
+\]
+In Step~4 we used the boundary period correspondence to construct a very general
+\(M\)-quasipolarised \(K3\) surface \(Y\) whose period point is exactly the image
+of the boundary point \(b\). In Steps~5 and~6 we equipped \(Y\) with an elliptic
+fibration and an allowable loop \(\gamma\) realising the two \(E_8\)-factors.
+Therefore all conditions of \cite[Definition~5.1]{dfk3slpms} are satisfied, and
+\[
+\mathcal X\to\Delta
+\quad\text{and}\quad
+\psi\colon Y\to\bbP^1
+\]
+are a mirror pair.
+\end{proof}
+
+\begin{remark}
+The very general hypothesis is used in two essential places. First, it ensures
+that the components \(V_i\) have no reducible fibres and hence
+\(\NS(V_i)\cong H\oplus E_8\). Second, it ensures that the mirror period point
+lies outside every Heegner divisor, so \(\NS(Y)\cong H\oplus E_8\oplus E_8\).
+Without this assumption, the mirror would acquire additional algebraic cycles and
+the statement would fail in the stated strong form.
+\end{remark}
+
+\begin{thebibliography}{2}
+
+\bibitem[ABE22]{cmek3sspt}
+V.~Alexeev, A.~Brunyate, and P.~Engel,
+\emph{Compactifications of moduli of elliptic \(K3\) surfaces: stable pair and
+toroidal},
+Geom. Topol. \textbf{26} (2022), no.~8, 3525--3588.
+\href{https://arxiv.org/abs/2104.03943}{arxiv.org}
+
+\bibitem[GT24]{dfk3slpms}
+L.~Giovenzana and A.~Thompson,
+\emph{Degenerations and fibrations of \(K3\) surfaces: lattice polarisations and
+mirror symmetry},
+Preprint, May 2024,
+\href{https://arxiv.org/abs/2405.12009}{arxiv.org}.
+
+\end{thebibliography}
+
+\end{document}
+```

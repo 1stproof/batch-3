@@ -1,0 +1,1194 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\colim}{colim}
+\DeclareMathOperator{\Tot}{Tot}
+\DeclareMathOperator{\Sh}{Sh}
+\DeclareMathOperator{\Ab}{Ab}
+\DeclareMathOperator{\cone}{cone}
+\newcommand{\gp}{\mathrm{gp}}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\LL}{\mathcal L}
+\newcommand{\cG}{\mathcal G}
+
+\newcommand{\fptitle}{Review of Problem 1 -- Astra}
+\newcommand{\reviewtag}{Reviewer 2}
+\usepackage{fp-review}
+
+\begin{document}
+\maketitle
+
+\section{Review}
+
+This submission included a complete proof that was well-written and thorough. Below we highlight some of the features characteristic to the solution and style of the submission, but the proof and writing were essentially perfect. 
+
+[Identifying passage redacted.]
+
+The proof reduces to a finite-dimensional approximation of a general cover, as well as noting that the ``weakly valuative'' topology suffices here for cohomological vanishing. Its Cech computation reduced to a more topological argument for contractibility of the nerve in Lemma 7.1, citing Hatcher. After showing Cech cohomology vanishes, it results that sheaf cohomology does. 
+
+Compared to other submissions, it included some interesting material on the rhizomic topology. For example, in Lemma 5.1, it describes a universal (formally) birhizomic/infinitesimal factorization. On the other hand, it included Lemma 9.1 which is a standard argument which could have been a citation. In a couple of instances, it refrained from identifying a certain construction with its typical name or property in the literature: the extension by zero is not identified by name or universal property, but the latter is used in Proposition 7.3, and it spells out a stricter notion of exactness of every section rather than using the phrase ``exactness as presheaves.'' It was ever so slightly cavalier with finiteness hypotheses in Proposition 8.2, saying that a filtered union was ``as in Lemma 4.6'' instead of identifying the fs properties of the $T_\lambda$ explicitly which it needed. These small turns of phrase amount to stylistic points, as the proof is excellent, thorough, and clear. 
+
+We struggled to agree on a comparison between this submission and the Heron submission; they are approximately equal in quality. 
+
+
+\paragraph{Correctness.}
+\begin{itemize}
+	\item  1: essentially flawless mathematical argument
+	\item  0.5: minor errors that are easily corrected
+	\item  0: blank solution, or acknowledged partial result
+	\item  $-0.5$: major errors
+	\item  $-1$: proposed proof makes no progress towards the result.
+\end{itemize}
+Note that points should be docked for wrong statements/ solutions.
+
+\noindent Score: 1
+
+\paragraph{Exposition.}
+\begin{itemize}
+	\item  1: well-written and clear solution.
+	\item  0: argument that is possible to follow with serious effort
+	\item  $-1$: very poor exposition
+\end{itemize}
+
+\noindent Score: 1
+
+\paragraph{Attributions.}
+\begin{itemize}
+	\item  1: solutions contains fully appropriate attributions
+		to related work and theorems being used.
+	\item  0: moderate issues with missing attributions or hallucinated references
+	\item  $-1$: blatant plagiarism or hallucinations
+\end{itemize}
+
+\noindent Score: 1
+
+\newpage
+\section{Submission with inline comments}
+
+
+\begin{abstract}
+The answer to the question is affirmative, without a finite-generation
+hypothesis on the monoid. We prove a stronger statement: the presheaf
+left Kan extension of the given presheaf is already a birhizomic sheaf
+and is acyclic on every object of the birhizomic site. The proof uses
+finite refinements of birhizomic covers, a finite convex-cover
+calculation, and passage to filtered unions of finitely generated
+saturated monoids.
+\end{abstract}
+
+\section{Statement and conventions}
+
+We use the definition of monoid in the question. In intermediate
+constructions, submonoids of groups are allowed to have units; we
+explicitly sharpen them before regarding them as objects of the
+category in the question. All group-valued expressions involving a
+monoid homomorphism refer to its extension to groupifications.
+
+Put
+\[
+P_x=P[-x]^\sharp\qquad(x\in P).
+\]
+A presheaf on \(B_P^{\mathrm{op}}\) will be regarded as a covariant
+functor \(B_P\to\Ab\). Likewise, presheaves on \(A_P^{\mathrm{op}}\)
+are covariant functors on \(A_P\).
+
+For a sheaf \(\mathcal E\) on \(A_P^{\mathrm{op}}\), write
+\(H^q(Q,\mathcal E)\) for the right derived functors of evaluation at
+the object \(P\to Q\). We make the usual universe choices for sites
+and sheaf categories.
+
+\begin{theorem}\label{thm:main}
+Let \(P\) be any monoid, and let \(F:B_P\to\Ab\) be any functor.
+For \(f:P\to Q\), define
+\begin{equation}\label{eq:main-formula}
+\cG_F(Q)=
+\colim_{\substack{x\in P\\f(x)=0}} F(P_x),
+\end{equation}
+where the indexing category consists of the corresponding objects
+\(P_x\) and their morphisms over \(P\). Then:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \(\cG_F\) is the presheaf left Kan extension of \(F\), and it is
+already a sheaf for the birhizomic topology;
+\item for every \(P\to Q\),
+\[
+H^q(Q,\cG_F)=0\qquad(q>0);
+\]
+\item the canonical unit is a quasi-isomorphism:
+\[
+F \xrightarrow{\ \sim\ } \mathrm R\pi_*\pi^{-1}F.
+\]
+\end{enumerate}
+\end{theorem}
+
+The indexing category in \eqref{eq:main-formula} is filtered, as will
+be proved below. In particular, the formula does not require its
+indexing face to be finitely generated.
+
+\section{Elementary constructions with monoids}
+
+\subsection{Filtered colimits and finite rational extensions}
+
+\begin{lemma}\label{lem:filtered}
+The groupification of a monoid is torsion-free. Filtered colimits of
+monoids are computed on the underlying commutative monoids, and hence
+on the underlying sets.
+\end{lemma}
+
+\begin{proof}
+If \(ng=0\) in \(P^{\gp}\), with \(n>0\), saturation gives
+\(g,-g\in P\), and sharpness gives \(g=0\).
+
+Let \(P=\colim_\lambda P_\lambda\) be a filtered colimit of the
+underlying commutative monoids. Integrality and sharpness hold in
+\(P\): any equality witnessing a failure of either property holds at
+some stage, where that property is valid.
+
+To check saturation, write an element of \(P^{\gp}\) as \(a-b\), with
+\(a,b\in P\), and suppose \(n(a-b)=c\in P\). By integrality, this is
+the equality \(na=nb+c\) in \(P\). Representatives for \(a,b,c\),
+together with this equality, exist at a common stage. Saturation at
+that stage shows that \(a-b\) belongs to its positive monoid, and
+therefore belongs to \(P\).
+\end{proof}
+
+\begin{definition}\label{def:rational}
+For a finite subset \(S\subset P^{\gp}\), define
+\[
+C_P(S)=
+\left\{g\in P^{\gp}:
+ng\in P+\sum_{s\in S}\NN s
+\text{ for some }n>0\right\},
+\]
+and put
+\[
+P\langle S\rangle=
+C_P(S)/\bigl(C_P(S)\cap(-C_P(S))\bigr).
+\]
+We call \(P\to P\langle S\rangle\) a \emph{finite rational extension}.
+This terminology is used only for the construction just specified.
+\end{definition}
+
+\begin{lemma}\label{lem:rational}
+The construction in Definition~\ref{def:rational} has the following
+properties.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item For any \(h:P\to M\), there is a morphism
+\(P\langle S\rangle\to M\) extending \(h\) if and only if
+\(h(s)\in M\) for all \(s\in S\). Such a morphism is unique.
+\item The morphism \(P\to P\langle S\rangle\) is of finite
+presentation, and its groupification is surjective.
+\item Finite rational extensions are preserved by arbitrary
+pushout and by composition. Moreover,
+\[
+P\langle S\rangle\amalg_P P\langle T\rangle
+\simeq P\langle S\cup T\rangle.
+\]
+\item \(P\langle\{-x\}\rangle\simeq P_x\) for \(x\in P\).
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The submonoid \(C=C_P(S)\) is saturated in \(P^{\gp}\), and its units
+form the subgroup \(U=C\cap(-C)\). The quotient \(C/U\) is saturated:
+if \(n(g+U)\) belongs to \(C/U\), then \(ng\in C\), since adding or
+subtracting an element of \(U\) does not change membership in \(C\).
+Thus \(g\in C\). The quotient is integral and sharp by construction.
+
+If \(h(s)\in M\) for all \(s\in S\), saturation of \(M\) implies that
+\(h(C)\subset M\), and sharpness implies that \(h(U)=0\). This gives
+the asserted extension. Its uniqueness follows because
+\(P^{\gp}\to(P\langle S\rangle)^{\gp}\) is surjective.
+
+Write \(s=a_s-b_s\), with \(a_s,b_s\in P\). The condition
+\(h(s)\in M\) is equivalent to the existence of an element \(z_s\in M\)
+such that
+\[
+h(b_s)+z_s=h(a_s).
+\]
+There are finitely many such conditions, and each \(z_s\), when it
+exists, is unique by integrality. Lemma~\ref{lem:filtered} therefore
+shows that
+\(\Hom_P(P\langle S\rangle,-)\) commutes with filtered colimits.
+This proves finite presentation.
+
+The pushout assertion follows immediately from (i). More generally,
+under \(h:P\to Q\), the pushout is
+\(Q\langle h(S)\rangle\). For composition, lift the finitely many
+group elements used in a rational extension of \(P\langle S\rangle\)
+to \(P^{\gp}\); adjoining these lifts together with \(S\) gives the
+composite.
+
+Finally, \(h(-x)\in M\), with \(h(x)\in M\), is equivalent to
+\(h(x)=0\), since \(M\) is sharp. This is precisely the universal
+property of \(P_x\).
+\end{proof}
+
+\begin{remark}\label{rem:monomorphisms}
+Every finite rational extension is an epimorphism in the category
+of monoids, by the uniqueness assertion in
+Lemma~\ref{lem:rational}(i). Consequently, its opposite is a
+monomorphism of the site. This observation will allow us to use
+finite alternating \v{C}ech complexes.
+\end{remark}
+
+\subsection{Faces and the category \(B_P\)}
+
+A \emph{face} of \(P\) is a submonoid \(E\subset P\) such that
+\(a+b\in E\) implies \(a,b\in E\). The inverse image of \(0\) under a
+homomorphism of sharp monoids is a face.
+
+\begin{lemma}\label{lem:faces}
+For \(x\in P\), set
+\[
+E_x=\{a\in P:a\le nx\text{ for some }n\in\NN\}.
+\]
+Then \(E_x=\ker(P\to P_x)\), and
+\[
+\Hom_P(P_x,P_y)\ne\varnothing
+\quad\Longleftrightarrow\quad E_x\subset E_y.
+\]
+When this set of morphisms is nonempty, it is a singleton.
+
+If \(P\) is finitely generated, every face is of the form \(E_x\),
+there are only finitely many faces, and \(B_P\), up to equivalence,
+is their inclusion poset.
+\end{lemma}
+
+\begin{proof}
+The localization \(P+\NN(-x)\subset P^{\gp}\) is already saturated.
+Indeed, if \(ng=a-kx\), with \(a\in P\) and \(k\ge0\), then
+\[
+n(g+kx)=a+(n-1)kx\in P,
+\]
+so \(g+kx\in P\). An element \(a\in P\) becomes a unit in this
+localization precisely when \(a\le nx\) for some \(n\).
+This proves the kernel formula. The assertion about morphisms
+follows from the universal property of \(P_x\).
+
+If \(p_1,\ldots,p_r\) generate \(P\), a face \(E\) is generated by
+those \(p_j\) which belong to \(E\): every summand in an expression
+for an element of a face belongs to that face. Put
+\[
+x_E=\sum_{p_j\in E}p_j.
+\]
+Every element of \(E\) is bounded above by a multiple of \(x_E\),
+and the face property gives \(E_{x_E}\subset E\). Hence
+\(E=E_{x_E}\). The same description proves finiteness of the set of
+faces.
+\end{proof}
+
+\subsection{Finite-dimensional approximation}
+
+We call a monoid \emph{fs} if it is finitely generated, in addition
+to the standing assumptions.
+
+\begin{lemma}\label{lem:fs}
+The following assertions hold.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item Every monoid is a filtered union of fs submonoids.
+\item If \(P\) is fs and \(S\subset P^{\gp}\) is finite, then
+\(P\langle S\rangle\) is fs.
+\item If \(P\) is fs, there is a homomorphism
+\(\ell:P\to\RR_{\ge0}\) which is strictly positive on
+\(P\setminus\{0\}\).
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+We first recall the relevant elementary lattice calculation.
+Let \(L\) be a finitely generated free abelian group, and let
+\(v_1,\ldots,v_r\in L\). If
+\[
+C=\sum_j\RR_{\ge0}v_j,
+\]
+then the saturation in \(L\) of \(\sum_j\NN v_j\) is \(C\cap L\).
+Indeed, a nonnegative real solution to a linear system with rational
+coefficients and rational right-hand side can be replaced by a
+nonnegative rational solution. One way to see this is to choose a
+solution with minimal support: dependence among its supporting
+columns permits movement until a coordinate becomes zero; with
+independent supporting columns, the solution is rational by linear
+algebra. Clearing denominators proves the assertion.
+
+Furthermore, \(C\cap L\) is finitely generated. For
+\(g=\sum_j t_jv_j\in C\cap L\), subtract
+\(\sum_j\lfloor t_j\rfloor v_j\). The remainder is a lattice point in
+the bounded set
+\[
+\left\{\sum_j u_jv_j:0\le u_j\le1\right\}.
+\]
+There are only finitely many such remainders, and they, together
+with the \(v_j\), generate \(C\cap L\).
+
+For a finite subset of an arbitrary monoid \(P\), take the
+saturation of the submonoid it generates in the subgroup it
+generates in \(P^{\gp}\). That subgroup is a finitely generated
+torsion-free abelian group, hence is free. The saturation lies in
+\(P\), is finitely generated by the preceding calculation, and is
+sharp. These submonoids are directed under inclusion and exhaust
+\(P\). This proves (i). Applying the same calculation to generators
+of \(P\) together with \(S\), and then taking the quotient by units,
+proves (ii).
+
+For (iii), assume \(P\ne\{0\}\), and choose nonzero generators
+\(p_1,\ldots,p_r\). The origin does not belong to their convex hull.
+Otherwise the rational-solution argument above would give a
+nontrivial relation
+\[
+\sum_j n_jp_j=0,\qquad n_j\in\NN,
+\]
+contrary to sharpness. Choose an inner product on
+\(P^{\gp}\otimes\RR\), and let \(z\) be the point in this compact
+convex hull nearest the origin. Then \(z\ne0\), and minimality gives
+\[
+\langle z,p_j\rangle\ge \lVert z\rVert^2>0
+\]
+for every \(j\). The functional \(u\mapsto\langle z,u\rangle\)
+has the required property. For \(P=\{0\}\), the assertion is
+immediate.
+\end{proof}
+
+\section{Infinitesimal envelopes and finite covering refinements}
+
+\subsection{An explicit infinitesimal envelope}
+
+\begin{lemma}\label{lem:envelope}
+Let \(v:P\to V\) be a homomorphism to a valuative monoid. There is a
+factorization
+\[
+P\longrightarrow M_v\xrightarrow{p_v}V
+\]
+such that \(p_v\) is infinitesimal and which is initial among
+factorizations of \(v\) whose second morphism is infinitesimal.
+
+More explicitly, with \(G=P^{\gp}\), put
+\begin{equation}\label{eq:envelope-cone}
+C_v=
+\left\{
+a\in G:
+\begin{array}{l}
+\text{there exist }y\in P,\ c\in\NN\text{ such that}\\
+a\prec y,\quad v(a)\ge0,\quad v(y)\le c\,v(a)
+\end{array}
+\right\}.
+\end{equation}
+Then
+\[
+M_v=C_v/(C_v\cap(-C_v)).
+\]
+Moreover,
+\begin{equation}\label{eq:envelope-colimit}
+M_v=\colim_{\substack{S\subset C_v\\S\text{ finite}}}
+P\langle S\rangle
+\end{equation}
+as monoids under \(P\).
+\end{lemma}
+
+\begin{proof}
+For a nonnegative element \(y\), the condition \(a\prec y\) can
+equivalently be written
+\[
+-ky\le a\le ky
+\]
+for some \(k\in\NN\). Also, for nonnegative \(b,d\), the condition
+\(b\prec d\) is equivalent to \(b\le cd\) for some \(c\in\NN\).
+
+The set \(C_v\) contains \(P\). It is closed under addition: if
+\(a,a'\) have witnesses \(y,y'\), then \(a+a'\prec y+y'\), and,
+after increasing the two integer bounds to a common bound,
+\(v(y+y')\) is bounded by a multiple of \(v(a+a')\).
+
+It is saturated. Suppose \(na\in C_v\), with witness \(y\).
+Choose \(k\) such that \(ky\pm na\in P\). Since
+\[
+n(ky\pm a)=(ky\pm na)+(n-1)ky\in P,
+\]
+saturation of \(P\) gives \(ky\pm a\in P\).
+Saturation of \(V\) gives \(v(a)\ge0\), and the inequality bounding
+\(v(y)\) by a multiple of \(nv(a)\) is also a bound by a multiple of
+\(v(a)\).
+
+Let \(E=v^{-1}(0)\). We claim that
+\begin{equation}\label{eq:envelope-units}
+C_v\cap(-C_v)=E^{\gp}.
+\end{equation}
+If \(a,-a\in C_v\), then \(v(a)=0\). A witness \(y\) for \(a\)
+therefore satisfies \(v(y)=0\). For sufficiently large \(k\),
+\(a+ky\in P\), and it too has image zero. Thus
+\(a=(a+ky)-ky\in E^{\gp}\).
+Conversely, a difference of two elements of \(E\) is bounded in
+absolute value by their sum and satisfies
+\eqref{eq:envelope-cone} in both signs. This proves
+\eqref{eq:envelope-units}. Sharpening \(C_v\) gives a monoid \(M_v\)
+and a well-defined map \(p_v:M_v\to V\).
+
+We next verify that \(p_v\) is infinitesimal. Let
+\(a\in M_v^{\gp}\) and \(b\in M_v\) satisfy
+\[
+p_v(a)\ge0,\qquad a\prec b,\qquad p_v(b)\prec p_v(a).
+\]
+Choose representatives \(x\in G\) and \(z\in C_v\) of \(a,b\).
+A lower bound in \(a\prec b\) gives an integer \(m\) such that
+\[
+d=x-mz\in C_v.
+\]
+Here an equality modulo the unit subgroup can be lifted in this
+way because adding or subtracting a unit preserves \(C_v\).
+
+Choose witnesses \(y_d,y_z\in P\) for \(d,z\). The inequality
+\(p_v(b)\prec p_v(a)\) gives \(v(z)\le e\,v(x)\) for some \(e\).
+Since \(v(d)=v(x)-m v(z)\ge0\), both \(v(d)\) and \(v(z)\) are
+bounded by multiples of \(v(x)\). Hence
+\(v(y_d+y_z)\) is bounded by a multiple of \(v(x)\).
+On the other hand,
+\[
+x=d+mz\prec y_d+y_z
+\]
+in the original ordered group \(P^{\gp}\).
+Thus \(x\in C_v\), so \(a\in M_v\).
+
+Now consider a factorization
+\[
+P\xrightarrow{h}H\xrightarrow{p}V
+\]
+with \(p\) infinitesimal. For \(a\in C_v\), a witness \(y\) in
+\eqref{eq:envelope-cone} gives
+\[
+h(a)\prec h(y),\qquad p(h(a))=v(a)\ge0,\qquad
+p(h(y))\prec p(h(a)).
+\]
+Infinitesimality implies \(h(a)\in H\).
+Thus \(h^{\gp}\) maps \(C_v\) into \(H\), kills its units, and
+induces \(M_v\to H\). This map is unique because
+\(P^{\gp}\to M_v^{\gp}\) is surjective. This proves initiality.
+
+Finally, a homomorphism from the right side of
+\eqref{eq:envelope-colimit} to a monoid \(H\) is exactly a
+homomorphism \(P\to H\) carrying every element of \(C_v\) into \(H\).
+By the universal property of sharpening, this is exactly a
+homomorphism \(M_v\to H\). This proves the colimit assertion.
+\end{proof}
+
+\begin{corollary}\label{cor:admissible}
+If \(S\subset C_v\) is finite, then
+\[
+P\longrightarrow P\langle S\rangle
+\]
+is birhizomic at its induced map to \(V\).
+\end{corollary}
+
+\begin{proof}
+Finite presentation follows from Lemma~\ref{lem:rational}.
+For any infinitesimal factorization of \(v\), the proof of
+Lemma~\ref{lem:envelope} shows that every element of \(S\) has
+nonnegative image in the intermediate monoid. Thus the required
+lift exists by Lemma~\ref{lem:rational}(i). It is unique by that
+lemma, and its composite to \(V\) is the specified map, again by
+uniqueness.
+\end{proof}
+
+\subsection{Compactness of valuative tests}
+
+\begin{lemma}\label{lem:valuation-compactness}
+Let \(G=P^{\gp}\). The set
+\[
+K_P=
+\{W\subset G:
+P\subset W,\ W+W\subset W,\ W\cup(-W)=G\}
+\]
+is a compact Hausdorff space with the topology induced from
+\(\{0,1\}^{G}\).
+
+Every \(W\in K_P\) defines a valuative monoid
+\[
+V_W=W/(W\cap(-W))
+\]
+and a homomorphism \(v_W:P\to V_W\). Conversely, every homomorphism
+from \(P\) to a valuative monoid defines a point of \(K_P\).
+A finite collection of inequalities between group elements defines
+a clopen subset of \(K_P\).
+\end{lemma}
+
+\begin{proof}
+All defining conditions on \(W\) are closed conditions involving
+finitely many coordinates at a time. Thus \(K_P\) is closed in the
+compact Hausdorff product \(\{0,1\}^G\).
+
+For completeness, compactness of this product follows directly
+from the ultrafilter argument. Extend a family of closed subsets
+with the finite intersection property to an ultrafilter, using
+Zorn's lemma. At each coordinate the ultrafilter chooses exactly
+one of the two values. Every basic neighborhood of the resulting
+point belongs to the ultrafilter, so that point belongs to every
+closed set in the original family.
+
+The submonoid \(W\) is saturated. Indeed, if \(ng\in W\) and
+\(g\notin W\), then \(-g\in W\), whence
+\[
+g=ng+(n-1)(-g)\in W,
+\]
+a contradiction. Quotienting by its units therefore produces a
+valuative monoid. Conversely, for \(v:P\to V\), take
+\[
+W=\{g\in G:v(g)\ge0\}.
+\]
+An inequality \(v(a)\ge v(b)\) is the coordinate condition
+\(a-b\in W\), proving the last assertion.
+\end{proof}
+
+\begin{proposition}[Finite rational refinements]\label{prop:refinement}
+Every birhizomic cover of a monoid admits a refinement which is a
+finite birhizomic cover by finite rational extensions.
+
+These finite covers form a basis of covering families, stable
+under base change and composition.
+\end{proposition}
+
+\begin{proof}
+Let \(\{P\to Q_i\}_{i\in I}\) be a birhizomic cover.
+Fix \(W\in K_P\). Apply the covering condition to
+\(v_W:P\to V_W\), and choose
+\[
+P\xrightarrow{f_i}Q_i\xrightarrow{g_i}V_W
+\]
+with \(f_i\) birhizomic at \(g_i\).
+The infinitesimal map \(M_{v_W}\to V_W\) gives a lift
+\[
+Q_i\longrightarrow M_{v_W}.
+\]
+Since \(f_i\) is of finite presentation,
+\eqref{eq:envelope-colimit} implies that this lift factors through
+\(P\langle S_W\rangle\) for some finite \(S_W\subset C_{v_W}\).
+We obtain a refinement morphism
+\[
+Q_i\longrightarrow P\langle S_W\rangle.
+\]
+
+For each \(s\in S_W\), choose a witness \(y_s\in P\), an integer
+\(c_s\ge0\), and bounds \(s\prec y_s\), as in
+\eqref{eq:envelope-cone}. Let
+\[
+O_W=
+\left\{
+W'\in K_P:
+s\in W',\ c_s s-y_s\in W'
+\text{ for all }s\in S_W
+\right\}.
+\]
+This is a clopen neighborhood of \(W\).
+For any valuative homomorphism \(v:P\to V\) whose positive cone
+belongs to \(O_W\), the same witnesses show \(S_W\subset C_v\).
+Corollary~\ref{cor:admissible} then shows that
+\(P\to P\langle S_W\rangle\) is birhizomic at its induced map to
+\(V\).
+
+Compactness gives finitely many such neighborhoods covering
+\(K_P\). The corresponding rational extensions form a birhizomic
+cover, by the preceding observation for arbitrary valuative
+targets, and refine the original cover.
+
+Stability under base change and composition follows from
+Lemma~\ref{lem:rational} and the topology axioms assumed in the
+question.
+\end{proof}
+
+\section{The left Kan extension and its transitivity}
+
+\begin{lemma}\label{lem:kan}
+For \(F:B_P\to\Ab\), its presheaf left Kan extension to \(A_P\) is
+given by \eqref{eq:main-formula}. Its indexing categories are
+filtered, and its restriction to \(B_P\) is canonically \(F\).
+\end{lemma}
+
+\begin{proof}
+By the universal property of \(P_x\), a morphism \(P_x\to Q\) over
+\(P\) exists exactly when \(f(x)=0\), and then it is unique.
+This gives the usual comma-category formula for left Kan
+extension.
+
+If \(x,y\) are killed by \(f\), then \(x+y\) is killed by \(f\), and
+there are morphisms
+\[
+P_x\longrightarrow P_{x+y},
+\qquad
+P_y\longrightarrow P_{x+y}.
+\]
+There is also the object \(P_0=P\), and all morphisms in the
+indexing category are unique when they exist. Thus the category
+is filtered.
+
+For \(Q=P_x\), the comma category has the terminal object
+\(P_x\xrightarrow{\mathrm{id}}P_x\), proving the restriction
+assertion.
+\end{proof}
+
+We use the notation \(\LL_PF\) for this presheaf left Kan extension.
+
+\begin{lemma}[Transitivity]\label{lem:transitivity}
+Fix \(f:P\to Q\), and define a presheaf \(H\) on \(B_Q\) by
+\[
+H(Q_y)=(\LL_PF)(P\to Q\to Q_y).
+\]
+For every \(Q\to R\), there is a canonical isomorphism
+\[
+(\LL_QH)(R)\simeq(\LL_PF)(R).
+\]
+\end{lemma}
+
+\begin{proof}
+Expanding the left side gives a filtered colimit over pairs
+\((y,x)\) such that
+\[
+y\in Q,\quad y\mapsto0\text{ in }R,
+\qquad
+x\in P,\quad x\mapsto0\text{ in }Q_y.
+\]
+Every such \(x\) is killed in \(R\), so there is a canonical map to
+the right side.
+
+Conversely, if \(x\in P\) is killed in \(R\), take \(y=f(x)\).
+Then \(y\) is killed in \(R\), and \(x\) is killed in \(Q_y\).
+Thus every index on the right occurs on the left.
+All finite collections of these indices and their comparisons can
+be accommodated at a common larger pair: replace the \(x\)'s and
+\(y\)'s by sums, and add the image of the chosen larger \(x\) to
+the larger \(y\). Hence any equality in the colimit on the right
+already holds at a common index on the left. This proves that the
+canonical map is an isomorphism.
+\end{proof}
+
+\section{A finite convex-cover calculation}
+
+
+\subsection{A nerve lemma in the required form}
+
+\begin{lemma}\label{lem:convex-nerve}
+Let \(U\) be a nonempty convex subset of a finite-dimensional real
+vector space. Let \(D_1,\ldots,D_m\) be closed convex polyhedra such
+that
+\[
+U=\bigcup_{i=1}^m(U\cap D_i).
+\]
+Let \(N\) be the nerve whose nonempty simplices are the subsets
+\(I\subset\{1,\ldots,m\}\) for which
+\[
+U\cap\bigcap_{i\in I}D_i\ne\varnothing.
+\]
+For every abelian group \(A\), the augmented simplicial cochain
+complex of \(N\) with coefficients \(A\) is exact.
+\end{lemma}
+
+\begin{proof}
+For each simplex \(I\) of \(N\), choose a point
+\(u_I\in U\cap\bigcap_{i\in I}D_i\), and let \(K\) be the convex hull
+of these finitely many points. Then \(K\subset U\) is a nonempty
+compact convex polytope. The polytopes \(K_i=K\cap D_i\) cover \(K\)
+and have exactly the nerve \(N\).
+
+There is a finite triangulation of \(K\) in which every \(K_i\) is
+a subcomplex. To construct one, cut \(K\) by the finitely many
+hyperplanes defining the \(D_i\), take all resulting polyhedral
+cells and their faces, and barycentrically subdivide this finite
+polyhedral complex.
+
+For nonempty \(I\), put \(K_I=\bigcap_{i\in I}K_i\). Consider the
+double complex
+\[
+D_{p,q}=
+\bigoplus_{i_0<\cdots<i_p}
+C_q(K_{\{i_0,\ldots,i_p\}};\ZZ),
+\]
+with simplicial boundary vertically and the alternating
+intersection maps horizontally. The horizontal complex augmented
+to \(C_q(K;\ZZ)\) is exact: for each simplex of the triangulation,
+its copies are indexed by the nonempty subsets of the nonempty
+set of \(i\)'s whose \(K_i\) contain that simplex. This is the
+augmented chain complex of a simplex.
+
+Every nonempty \(K_I\) is convex and hence contractible.
+Consequently its simplicial homology is \(\ZZ\) in degree zero
+and zero in higher degrees. Here one may use homotopy invariance
+and the simplicial--singular comparison
+\cite[Theorems~2.10 and~2.27]{Hatcher}.
+Computing the homology of the finite double complex in its two
+directions shows that the nerve has the homology of \(K\).
+The double-complex argument is the standard one recalled in
+\cite[Tag~012X]{Stacks}.
+Thus the augmented integral chain complex of \(N\) is exact.
+
+This is a finite exact complex of finitely generated free abelian
+groups, including its augmentation to \(\ZZ\). Its cycle groups
+are free, so its short exact sequences split. Applying
+\(\Hom_{\ZZ}(-,A)\) therefore preserves exactness and gives the
+claimed augmented cochain complex.
+\end{proof}
+
+\subsection{Weak valuative covers}
+
+
+\begin{definition}\label{def:weak}
+A finite family
+\[
+T\longrightarrow T\langle S_i\rangle,\qquad 1\le i\le m,
+\]
+is \emph{weakly valuative} if every homomorphism from \(T\) to a
+valuative monoid factors through at least one member of the
+family. No infinitesimal lifting condition is imposed in this
+definition.
+\end{definition}
+
+Every birhizomic cover is weakly valuative. For a nonempty subset
+\(I\subset\{1,\ldots,m\}\), write
+\[
+T_I=T\left\langle\bigcup_{i\in I}S_i\right\rangle.
+\]
+These are the intersections in the opposite site.
+
+\begin{proposition}[The fs \v{C}ech calculation]\label{prop:fs-cech}
+Suppose \(T\) is fs, \(H:B_T\to\Ab\) is arbitrary, and
+\(\{T\to T\langle S_i\rangle\}_{i=1}^m\) is weakly valuative.
+Then the augmented alternating complex
+\begin{equation}\label{eq:cech}
+0\longrightarrow H(T)
+\longrightarrow \prod_i(\LL_TH)(T_i)
+\longrightarrow \prod_{i<j}(\LL_TH)(T_{\{i,j\}})
+\longrightarrow\cdots
+\longrightarrow(\LL_TH)(T_{\{1,\ldots,m\}})
+\longrightarrow0
+\end{equation}
+is exact.
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{lem:faces}, we may identify \(B_T\) with the finite
+poset of faces of \(T\). For a face \(E\), let \(T_E\) denote
+\(T_x\) for any \(x\) with \(E_x=E\). If \(R\) is a monoid under
+\(T\), its kernel \(E_R=\ker(T\to R)\) is a face, so
+\begin{equation}\label{eq:fs-value}
+(\LL_TH)(R)=H(T_{E_R}).
+\end{equation}
+
+Set \(L=T^{\gp}\), and consider the polyhedral cones
+\[
+\sigma=\{\ell\in\Hom(L,\RR):\ell(T)\ge0\},
+\qquad
+\sigma_i=\{\ell\in\sigma:\ell(s)\ge0\text{ for all }s\in S_i\}.
+\]
+Weak valuative covering, applied to \(\RR_{\ge0}\), implies
+\[
+\sigma=\bigcup_i\sigma_i.
+\]
+For nonempty \(I\), put \(\sigma_I=\bigcap_{i\in I}\sigma_i\) and
+\(E_I=\ker(T\to T_I)\). The universal property of rational
+extensions identifies \(\sigma_I\) with the homomorphisms
+\(T_I\to\RR_{\ge0}\). Lemma~\ref{lem:fs} gives
+\begin{equation}\label{eq:kernel-detection}
+E_I=\{a\in T:\ell(a)=0\text{ for every }\ell\in\sigma_I\}.
+\end{equation}
+Indeed, a nonzero element of the fs monoid \(T_I\) is detected by a
+strictly positive real homomorphism.
+
+Fix a face \(E\) of \(T\) and an abelian group \(A\). Define a
+functor \(J_E(A)\) on the face poset by
+\[
+J_E(A)(T_D)=
+\begin{cases}
+A,&D\subset E,\\
+0,&D\not\subset E,
+\end{cases}
+\]
+with identity transition maps whenever both values are \(A\).
+\review{worth mentioning/defining as right adjoint to restriction to opens, as that's how it's used}
+
+Choose generators \(p_1,\ldots,p_r\) of \(T\), and put
+\[
+U_E=\{\ell\in\sigma:\ell(p_j)>0
+\text{ for every }p_j\notin E\}.
+\]
+This is nonempty and convex: nonemptiness follows from the
+strictly positive functional in Lemma~\ref{lem:fs}, with the case
+\(T=\{0\}\) interpreted in the evident way.
+
+We claim that
+\begin{equation}\label{eq:nerve-kernel}
+E_I\subset E
+\quad\Longleftrightarrow\quad
+\sigma_I\cap U_E\ne\varnothing.
+\end{equation}
+For the forward implication, each generator \(p_j\notin E\) is
+outside \(E_I\). By \eqref{eq:kernel-detection}, there is an element
+of \(\sigma_I\) positive on that generator. Summing these finitely
+many functionals gives an element of \(\sigma_I\cap U_E\).
+If there are no such generators, the zero functional suffices.
+
+Conversely, if \(E_I\not\subset E\), express an element of
+\(E_I\setminus E\) in the chosen generators. Since \(E_I\) is a
+face, every generator occurring belongs to \(E_I\); since \(E\)
+is a face, at least one occurring generator lies outside \(E\).
+Every functional in \(\sigma_I\) vanishes on that generator, so
+\(\sigma_I\cap U_E=\varnothing\).
+
+For \(H=J_E(A)\), equations \eqref{eq:fs-value} and
+\eqref{eq:nerve-kernel} identify \eqref{eq:cech} with the augmented
+cochain complex of the nerve of
+\[
+U_E=\bigcup_i(U_E\cap\sigma_i).
+\]
+It is exact by Lemma~\ref{lem:convex-nerve}.
+
+It remains to pass from these functors to arbitrary \(H\).
+The functor \(J_E\) is right adjoint to evaluation at \(T_E\):
+\[
+\Hom(H,J_E(A))=\Hom(H(T_E),A).
+\]
+Thus \(J_E(A)\) is injective when \(A\) is an injective abelian
+group. There are enough such injectives: choose embeddings
+\(H(T_E)\hookrightarrow A_E\) into injective abelian groups and
+use the adjunctions to obtain
+\[
+H\hookrightarrow\prod_E J_E(A_E).
+\]
+The component indexed by \(E=D\) proves injectivity at \(T_D\).
+The existence of injective embeddings of abelian groups is
+standard; see \cite[Tag~01D6]{Stacks}.
+Because the face poset is finite, every injective functor is a
+direct summand of a finite product of functors of this form.
+Consequently \eqref{eq:cech} is exact for injective \(H\).
+
+Finally, all terms of \eqref{eq:cech}, including its augmentation,
+are exact functors of \(H\), by \eqref{eq:fs-value}. Apply them to
+an injective resolution of \(H\). The resulting double complex
+has exact augmented rows, while its vertical cohomology is the
+augmented complex for \(H\). Its horizontal direction is bounded,
+and, after shifting the augmented degree by one, it is a
+first-quadrant double complex. Computing total cohomology in the
+two directions proves exactness for arbitrary \(H\); see again
+\cite[Tag~012X]{Stacks}.
+\end{proof}
+
+\section{Passage to arbitrary monoids}
+
+\begin{lemma}\label{lem:weak-descent}
+Let \(T=\bigcup_\lambda T_\lambda\) be a filtered union of fs
+submonoids. Suppose finite sets \(S_1,\ldots,S_m\subset T^{\gp}\)
+define a weakly valuative family over \(T\). After restricting to
+a cofinal set of indices, all \(S_i\) lie in \(T_\lambda^{\gp}\),
+and
+\[
+T_\lambda\longrightarrow T_\lambda\langle S_i\rangle,
+\qquad 1\le i\le m,
+\]
+is weakly valuative for every remaining \(\lambda\).
+\end{lemma}
+
+\begin{proof}
+The finite sets \(S_i\) belong to a common \(T_\lambda^{\gp}\), so
+we first restrict to such indices.
+
+The compact spaces of Lemma~\ref{lem:valuation-compactness}
+satisfy
+\[
+K_T\simeq\varprojlim_\lambda K_{T_\lambda}.
+\]
+Indeed, the groups \(T_\lambda^{\gp}\) have union \(T^{\gp}\),
+and compatible positive cones on them give exactly a positive
+cone containing \(T\).
+
+In \(K_{T_\lambda}\), put
+\[
+D_{i,\lambda}=\{W:S_i\subset W\},
+\qquad
+Z_\lambda=K_{T_\lambda}\setminus\bigcup_iD_{i,\lambda}.
+\]
+These are clopen sets, and the \(Z_\lambda\) form an inverse
+system of compact spaces. If every \(Z_\lambda\) were nonempty,
+their inverse limit would be nonempty: every finite collection
+of compatibility requirements can be satisfied by choosing a
+point at a common upper index, and compactness then supplies a
+compatible family. Such a family would define a point of
+\(K_T\) lying in none of the \(D_i\), contrary to weak valuative
+covering over \(T\).
+
+Thus \(Z_\lambda=\varnothing\) at some stage and at every later
+stage. By Lemma~\ref{lem:rational}(i), this is precisely the
+desired weak valuative covering condition.
+\end{proof}
+
+\begin{proposition}[The general \v{C}ech calculation]\label{prop:general-cech}
+Proposition~\ref{prop:fs-cech} holds for an arbitrary monoid \(T\).
+\end{proposition}
+
+\begin{proof}
+Choose a filtered union \(T=\bigcup_\lambda T_\lambda\) as in
+Lemma~\ref{lem:fs}. By Lemma~\ref{lem:weak-descent}, we may suppose
+that the given finite rational family is defined and weakly
+valuative at every stage.
+
+For \(x\in T_\lambda\), base change gives
+\[
+(T_\lambda)_x\amalg_{T_\lambda}T\simeq T_x.
+\]
+Define \(H_\lambda:B_{T_\lambda}\to\Ab\) by
+\[
+H_\lambda((T_\lambda)_x)=H(T_x).
+\]
+For nonempty \(I\subset\{1,\ldots,m\}\), write
+\[
+T_{I,\lambda}
+=T_\lambda\left\langle\bigcup_{i\in I}S_i\right\rangle,
+\qquad
+T_I=T\left\langle\bigcup_{i\in I}S_i\right\rangle.
+\]
+The universal property of rational extensions gives
+\review{only defined ``finite rational extensions earlier''}
+\[
+T_I=\colim_\lambda T_{I,\lambda}.
+\]
+
+Let \(E_{I,\lambda}=\ker(T_\lambda\to T_{I,\lambda})\), and choose
+\(x_{I,\lambda}\in T_\lambda\) generating this face 
+\review{didn't expressly state that $T_\lambda$ are fs, needed for this assumption, but certainly what was meant}
+in the sense
+of Lemma~\ref{lem:faces}. Then
+\[
+(\LL_{T_\lambda}H_\lambda)(T_{I,\lambda})
+=H(T_{x_{I,\lambda}}).
+\]
+There is a natural isomorphism
+\begin{equation}\label{eq:coefficient-colimit}
+(\LL_TH)(T_I)
+\simeq
+\colim_\lambda
+(\LL_{T_\lambda}H_\lambda)(T_{I,\lambda}).
+\end{equation}
+To verify it, an element \(a\in T\) killed in \(T_I\) belongs to
+some \(T_\lambda\) and becomes zero in a later
+\(T_{I,\mu}\), by Lemma~\ref{lem:filtered}. It therefore belongs
+to \(E_{I,\mu}\), so \(a\le n x_{I,\mu}\) in \(T_\mu\) for some
+\(n\). Hence the objects \(T_{x_{I,\lambda}}\) are cofinal in
+the indexing category defining \((\LL_TH)(T_I)\).
+The same reasoning gives the compatibility maps and proves
+\eqref{eq:coefficient-colimit}.
+
+At the augmentation,
+\(H_\lambda(T_\lambda)=H(T)\).
+There are only finitely many terms in each degree of the
+alternating \v{C}ech complex. Therefore
+\eqref{eq:coefficient-colimit} identifies the augmented complex
+over \(T\) with the filtered colimit of the augmented complexes
+over \(T_\lambda\).
+The latter are exact by Proposition~\ref{prop:fs-cech}.
+Filtered colimits of abelian groups are exact, and they commute
+with finite products, so the complex over \(T\) is exact as well;
+for exactness of filtered colimits, see
+\cite[Tag~00DB]{Stacks}.
+\end{proof}
+
+\begin{remark}
+Only weak valuative covering was descended in this argument.
+There is no need to descend the infinitesimal lifting condition,
+and there is no finite-presentation assumption on the coefficient
+presheaf.
+\end{remark}
+
+\section{From \v{C}ech exactness to acyclicity}
+
+We include the sheaf-theoretic argument to make explicit why the
+preceding calculations imply vanishing of derived, rather than
+merely \v{C}ech, cohomology.
+
+\begin{lemma}\label{lem:cech-criterion}
+Let \(\mathcal C\) be a site admitting a basis of finite covering
+families by monomorphisms, stable under base change and
+composition, with the corresponding finite intersections.
+Suppose an abelian presheaf \(\mathcal E\) has exact augmented
+alternating \v{C}ech complex for every covering family in this
+basis. Then \(\mathcal E\) is a sheaf and
+\[
+H^q(U,\mathcal E)=0
+\qquad\text{for every }U\in\mathcal C,\ q>0.
+\]
+\end{lemma}
+
+\review{standard. Nice of the AI to include a proof, but a citation would've sufficed}
+
+\begin{proof}
+Exactness in augmented degrees \(-1,0\) is the sheaf condition
+for the basis. It implies the sheaf condition for all covers:
+refine a cover by a basis cover to glue, and use base changes of
+that basis cover to verify that the glued section restricts to
+the originally specified sections.
+
+We first recall why an injective abelian sheaf \(\mathcal I\)
+has exact augmented alternating \v{C}ech complex for a finite
+cover by monomorphisms. Let \(\mathbb Z[U]\) denote the free
+abelian sheaf on the associated representable sheaf of \(U\).
+The augmented chain complex
+\[
+\cdots\longrightarrow
+\bigoplus_{i<j}\mathbb Z[U_i\times_U U_j]
+\longrightarrow
+\bigoplus_i\mathbb Z[U_i]
+\longrightarrow \mathbb Z[U]\longrightarrow0
+\]
+is exact. Locally over a section of \(U\), one of the covering
+subobjects is available, and inserting its index contracts the
+augmented complex. This local exactness is exactness after
+sheafification. Applying the exact contravariant functor
+\(\Hom(-,\mathcal I)\), and using
+\(\Hom(\mathbb Z[U],\mathcal I)=\mathcal I(U)\), proves the
+assertion. This is also the usual injective \v{C}ech-acyclicity
+statement; see \cite[Tag~03AW]{Stacks}.
+
+Embed \(\mathcal E\) in an injective abelian sheaf \(\mathcal I\),
+and let \(\mathcal Q=\mathcal I/\mathcal E\).
+Such embeddings exist on any site
+\cite[Tag~01DP]{Stacks}.
+We claim that
+\begin{equation}\label{eq:sectionwise-short}
+0\longrightarrow\mathcal E(U)\longrightarrow\mathcal I(U)
+\longrightarrow\mathcal Q(U)\longrightarrow0
+\end{equation}
+is exact for every object \(U\).
+\review{meaning exactness as presheaves}
+
+Indeed, a section of \(\mathcal Q(U)\) lifts locally to
+\(\mathcal I\), and we may choose a finite basis cover for these
+lifts. Local lifting for epimorphisms of abelian sheaves is part
+of the usual description of sheaf cokernels
+\cite[Tag~03CM]{Stacks}.
+The differences of the local lifts form a \v{C}ech \(1\)-cocycle
+with values in \(\mathcal E\). By the assumed exactness, this is a
+coboundary. Adjusting the lifts by a \(0\)-cochain in
+\(\mathcal E\) makes them agree, and the sheaf condition for
+\(\mathcal I\) glues them to a global lift. This proves
+\eqref{eq:sectionwise-short}.
+
+For every basis cover, \eqref{eq:sectionwise-short} yields a
+short exact sequence of augmented \v{C}ech complexes. The
+complexes for \(\mathcal E\) and \(\mathcal I\) are exact, so the
+complex for \(\mathcal Q\) is exact. Thus \(\mathcal Q\) has the
+same property as \(\mathcal E\).
+
+The long exact sequence of the right derived functors of
+evaluation, applied to
+\(0\to\mathcal E\to\mathcal I\to\mathcal Q\to0\), gives
+\[
+H^1(U,\mathcal E)=0,\qquad
+H^q(U,\mathcal E)\simeq H^{q-1}(U,\mathcal Q)\quad(q\ge2).
+\]
+Repeating the argument with \(\mathcal Q\) proves vanishing in
+every positive degree.
+\end{proof}
+
+\section{Proof of the theorem}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Let
+\[
+\cG_F=\LL_PF.
+\]
+Lemma~\ref{lem:kan} proves formula \eqref{eq:main-formula} and
+identifies its restriction to \(B_P\) with \(F\).
+
+Consider any object \(P\to Q\). By
+Proposition~\ref{prop:refinement}, every birhizomic cover of this
+object has a refinement of the form
+\[
+Q\longrightarrow Q\langle S_i\rangle,\qquad 1\le i\le m,
+\]
+which is a finite birhizomic cover. These finite rational covers
+form a basis, and their opposites are monomorphisms by
+Remark~\ref{rem:monomorphisms}.
+
+Define \(H:B_Q\to\Ab\) by
+\[
+H(Q_y)=\cG_F(P\to Q\to Q_y).
+\]
+Lemma~\ref{lem:transitivity} identifies \(\cG_F\), on monoids under
+\(Q\), with \(\LL_QH\).
+The displayed covering family is weakly valuative. Consequently,
+Proposition~\ref{prop:general-cech} proves exactness of its
+augmented alternating \v{C}ech complex with coefficients in
+\(\cG_F\).
+
+This applies to every object \(Q\) and every basis cover.
+Lemma~\ref{lem:cech-criterion} therefore gives both
+\[
+\cG_F\in\Sh(A_P^{\mathrm{op}},\Ab)
+\quad\text{and}\quad
+H^q(Q,\cG_F)=0\quad(q>0).
+\]
+Since \(\cG_F\) is the presheaf left Kan extension and is already
+a sheaf, it is canonically \(\pi^{-1}F\). This proves (i) and (ii).
+
+Finally, the right adjoint \(\pi_*\) is restriction to \(B_P\).
+Indeed, restriction is right adjoint to presheaf left Kan
+extension, and sheafification is left adjoint to inclusion of
+sheaves into presheaves. The topology on \(B_P^{\mathrm{op}}\)
+is trivial, so no additional sheafification is involved on that
+side.
+
+Take an injective resolution \(\cG_F\to\mathcal I^\bullet\) in
+abelian sheaves on \(A_P^{\mathrm{op}}\).
+Because cohomology in the presheaf category on \(B_P\) is
+computed objectwise, for every \(x\in P\) we have
+\[
+\bigl(\mathrm R^q\pi_*\cG_F\bigr)(P_x)
+=
+H^q\bigl(\mathcal I^\bullet(P_x)\bigr)
+=
+H^q(P_x,\cG_F).
+\]
+These groups vanish for \(q>0\). In degree zero, the canonical
+left Kan extension unit gives
+\[
+(\pi_*\cG_F)(P_x)=\cG_F(P_x)=F(P_x).
+\]
+Thus the derived unit induces the identity isomorphism in degree
+zero and has zero higher cohomology on its target. It is
+therefore a quasi-isomorphism:
+\[
+\boxed{\,F\xrightarrow{\ \sim\ }\mathrm R\pi_*\pi^{-1}F\,}.
+\]
+\end{proof}
+
+\begin{thebibliography}{9}
+
+\bibitem{Hatcher}
+A.~Hatcher,
+\emph{Algebraic Topology},
+Cambridge University Press, 2002.
+Theorems~2.10 and~2.27.
+
+\bibitem{Stacks}
+The Stacks Project Authors,
+\emph{The Stacks Project}.
+Tags \texttt{00DB} (exactness of filtered colimits),
+\texttt{012X} (spectral sequences of double complexes),
+\texttt{01D6} (injective abelian groups),
+\texttt{01DP} (enough injectives for abelian sheaves on a site),
+\texttt{03CM} (abelian sheaves and local exactness), and
+\texttt{03AW} (injective \v{C}ech acyclicity).
+
+\end{thebibliography}
+
+\end{document}

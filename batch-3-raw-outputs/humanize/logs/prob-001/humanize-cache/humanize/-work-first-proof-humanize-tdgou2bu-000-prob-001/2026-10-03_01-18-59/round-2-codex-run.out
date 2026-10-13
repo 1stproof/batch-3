@@ -1,0 +1,17 @@
+The review is complete. Summary of what I did and found:
+
+## Review outcome (Round 2, prob-001)
+
+**Verification performed:** re-read plan.md, problem.tex, goal-tracker.md, all four prior round files, and the full 1495-line solution.tex; recompiled twice independently (0 errors, 0 undefined refs, 15/16 pages); checked all 42 cross-references resolve; confirmed the commit is clean.
+
+**Key findings:**
+
+1. **Steps 0–1 mostly landed and are verified** — the nerve-complex subsection (0a)–(0e), `lem:filter`, `lem:subquot`, `lem:depth`, `lem:constcx`/`lem:const`, `lem:dlemma`, the corrected `lem:sandwich`, deletion of the vacuous `lem:anchor`, the D-initial fix, the μ renames, and the J′-typography fix are all present and individually correct. Genuine progress on B-7/B-9.
+
+2. **The main event — the worker's "likely FALSE / splitting obstruction" is of the WRONG map.** What actually splits is the *site-extension* unit on PSh(A_P) for non-sheaves. But `π⁻¹ : Sh(B_P) → Sh(A_P)` lands in sheaves by definition (Lan + sheafification), so `π⁻¹F = G_F` is a single sheaf, there is no complement term R π* M, and the unit F → R π* π⁻¹F does not split. Combined with the proved thm:descent (G_F is a sheaf), the question reduces cleanly to prop:vanish (H^{q>0}(i(b), G_F) = 0), which the worker's own verified Step-2 two-fold comparison already dispenses at the D-level without any impossible "section out of D." The "wrong-directed anchoring" objection was to a straw-man route. The correct action is to **restore the proof**, not to construct a counterexample.
+
+3. **New fractures M-1/M-2** in the current state: `lem:sieve(i)`'s single-dead-pin conclusion is false when rk(P̄) ≥ 2 (exclusive-OR dead pieces hold independent values), and its proof mis-instantiates `lem:filter`'s hypotheses / overclaims "transport to all dead pieces."
+
+**Verdict: STALLED** (infrastructure advanced, but the round's mainline objective — prop:vanish Steps 1–3 — remains unclosed, and the deliverable currently asserts as proved a theorem its own author calls unproved).
+
+**Actions taken:** wrote `round-2-review-result.md` with a singular Round-3 directive (Steps 3.1–3.4: dispense the D-constant via the Step-2 comparison, re-prove sieve(i) as a level-strands filter, fix the K-induction with named references, closeout); reconciled goal-tracker.md (B-7/B-9 resolved; B-8 partially resolved and reopened at the sieve(i) level; 7 queue items closed; q-restriction/q-accounting open; q-dead-sector/q-skippedcases queued; Plan Evolution Log entry recording the wrong-map re-anchor). The verdict is **INCOMPLETE**.

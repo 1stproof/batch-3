@@ -1,0 +1,23 @@
+kind: attempt
+Open question attempted: the headline question — is there a hyperfield H and x, y, z ∈ H with 0 ∈ x⊞y⊞z but 0 ∉ x^3⊞y^3⊞z^3⊞-xyz⊞-xyz⊞-xyz? This query aims at a COUNTEREXAMPLE built by an explicit construction.
+
+Background established so far (you may use these; re-check anything you rely on):
+
+(B1) Conventions. A hyperfield is H = G ∪ {0}, G an abelian multiplicative group, with a commutative, associative multivalued addition ⊞ (sums of several terms are the unions over all bracketings/choices, well defined by associativity), 0 neutral, each a has a unique -a with 0 ∈ a ⊞ -a, reversibility (c ∈ a ⊞ b ⇒ a ∈ c ⊞ -b), and distributivity w(a ⊞ b) = wa ⊞ wb for single elements w. Note -a = (-1)a with (-1)^2 = 1, possibly -1 = 1.
+
+(B2) Normalization. If z = 0 then 0 ∈ x ⊞ y forces y = -x and the target set x^3 ⊞ -x^3 contains 0. If z ≠ 0, multiplying everything by λ = -z^{-1} (the statement is homogeneous of degree 1 in the hypothesis and 3 in the conclusion, and w·(sum) = sum of w·terms) reduces the question to: for x, y ∈ H with 1 ∈ x ⊞ y, is 1 ∈ x^3 ⊞ y^3 ⊞ xy ⊞ xy ⊞ xy ? (here -xyz becomes xy since z = -1). Also x, y may be taken nonzero (x = 0 forces y = 1, trivial).
+
+(B3) Quotient hyperfields satisfy it. If H = F/U for a field F and a subgroup U ≤ F^×, then 0 ∈ [x] ⊞ [y] ⊞ [z] gives representatives x', y', z' of the classes with x'+y'+z' = 0, hence x'^3+y'^3+z'^3-3x'y'z' = (x'+y'+z')(…) = 0, and x'^3 ∈ [x]^3, x'y'z' ∈ [xyz], so 0 lies in the target sum. Hence the Krasner, sign, tropical, phase, triangle hyperfields and every quotient hyperfield satisfy the implication; a counterexample must be a hyperfield that is NOT a quotient of a field.
+
+(B4) Expansion facts. From 1 ∈ x ⊞ y and distributivity: w ∈ wx ⊞ wy for every w, hence 1 ∈ x^2 ⊞ xy ⊞ xy ⊞ y^2 and 1 ∈ x^3 ⊞ x^2y ⊞ x^2y ⊞ x^2y ⊞ xy^2 ⊞ xy^2 ⊞ xy^2 ⊞ y^3 (with multiplicities, and in fact 1 ∈ x^3 ⊞ y^3 ⊞ xy ⊞ xy ⊞ (x^2y ⊞ xy^2) etc.). Such "expansion" steps only ever enlarge the sum; the field proof needs the cancellations of x+y-1 times x^2+y^2+1-xy+x+y (12 of the 18 product terms cancel in pairs a, -a), and in a hyperfield a ⊞ -a is a set containing 0 but generally more, so the naive proof does not go through.
+
+(B5) Computer evidence (exhaustive search by the run's coordinator, unrefereed): no counterexample exists among all hyperfields H = G ∪ {0} with |G| ≤ 8 (every abelian group of order ≤ 8), nor with G = Z3×Z3. So a counterexample, if one exists, has at least 10 elements (and is probably infinite or built by a structured construction).
+
+Your task. Try hard to construct a counterexample. By (B3) it must be a non-quotient hyperfield, and by (B5) it has at least 10 elements. In normalized form (B2) you need nonzero x, y with 1 ∈ x ⊞ y but 1 ∉ x^3 ⊞ y^3 ⊞ xy ⊞ xy ⊞ xy. Candidate sources to examine (do not limit yourself to them):
+ (a) hyperfields H = G ∪ {0} with G a suitable abelian group (finite of order ≥ 9, or infinite, e.g. Z, Z^2, or Z × Z/2) where the hyperaddition is defined by an explicit rule 1 ⊞ g = S_g for g ∈ G (then a ⊞ b = a(1 ⊞ b/a)); arrange 1 ∈ x ⊞ y while keeping the sets small around x^3, y^3, xy. Note that if a ⊞ a = {a} for all a (and -1 ≠ 1) the target reduces to 1 ∉ x^3 ⊞ y^3 ⊞ xy, and if -1 = 1 then xy ⊞ xy ∋ 0.
+ (b) Massouros-type and Nakassis-type non-quotient hyperfields; hyperfields built from a group and an "addition" relation such as a ⊞ b = {a, b} ∪ (extra) for a ≠ -b.
+ (c) Hyperfield extensions of the Krasner hyperfield (Connes–Consani: these correspond to projective-geometry-like incidence structures with a simply transitive abelian group action, x ⊞ y = line through x, y minus {x, y} for x ≠ y, x ⊞ x = {0, x}); for these the condition reads: 1, x, y collinear but 1 not in the span-type sum of x^3, y^3, xy. Non-Desarguesian or "degenerate" geometries (e.g. where lines are large or the structure is not a projective space) might help.
+ (d) extensions/semidirect constructions of a hyperfield by an ordered group (as in the classification of stringent hyperfields), and variants of the phase/triangle/tropical hyperfields with modified arc/interval rules — but beware: these are often quotients.
+For any candidate, verify ALL axioms (commutativity, associativity in full — this is where most candidates fail —, unique negatives, reversibility, distributivity) and compute the target sum completely.
+
+Deliverable: either a complete counterexample with full verification, or, if none found, a precise account of why the candidate families you studied cannot give one (ideally a proof that the implication holds for a whole family, e.g. all Krasner extensions, or all hyperfields with a ⊞ a = {a}), with full proofs of whatever you claim.

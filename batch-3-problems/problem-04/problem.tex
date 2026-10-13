@@ -1,0 +1,70 @@
+\documentclass[11pt]{amsart}
+
+\usepackage{amsmath,amssymb,mathrsfs}
+\usepackage[centering,text={15.5cm,24cm}]{geometry}
+%\usepackage[centering,paperwidth=18cm,paperheight=18.5cm,
+%text={16.5cm,16.5cm},top=1.25cm]{geometry} % laptop
+%\usepackage[centering,paperwidth=23cm,paperheight=30cm,
+%text={20cm,28cm},top=1.25cm]{geometry} % desktop
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=violet,
+  urlcolor=violet
+}
+
+\renewcommand{\baselinestretch}{1.2}
+\allowdisplaybreaks[1]
+
+\numberwithin{equation}{section}
+
+% Compact section headings
+\makeatletter
+\renewcommand{\section}{%
+  \@startsection{section}{1}%
+    \z@
+    {.5\linespacing\@plus.7\linespacing}%
+    {.35\linespacing}%
+    {\normalfont\bfseries}}
+\makeatother
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{maintheorem}{Main Theorem}
+
+\theoremstyle{definition}
+\newtheorem*{question}{Question}
+
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\scrL}{\mathscr{L}}
+\newcommand{\scrN}{\mathscr{N}}
+\newcommand{\delbar}{\bar\partial}
+
+
+
+
+\begin{document}
+\begin{question}
+Let $(M,\omega)$ be a closed symplectic manifold and $D\subset M$ a symplectic
+simple normal crossings divisor. Does there exist an $\omega$-tame almost
+complex structure $J$ such that locally on $M$ there are smooth complex
+coordinates $(z_1,\ldots,z_n)$ in which, for some $0\le r\le n$, the functions
+$z_1,\ldots,z_r$ are $J$-holomorphic and $D$ is given by
+\[
+z_1\cdots z_r=0?
+\]
+Here one may first replace $\omega$ by a symplectic form connected to it
+through a path of symplectic forms, all cohomologous to $\omega$, along
+which $D$ remains a symplectic simple normal crossings divisor.
+\end{question}
+\end{document}

@@ -1,0 +1,187 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm,enumitem}
+
+\newcommand{\Mg}{\mathcal M_g}
+\newcommand{\Mgn}[2]{\mathcal M_{#1,#2}}
+\newcommand{\bMg}{\overline{\mathcal M}_g}
+\newcommand{\bMgn}[2]{\overline{\mathcal M}_{#1,#2}}
+\newcommand{\DeltaG}{\Delta_{\Gamma}}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+
+\begin{document}
+
+\title{A counterexample to the proposed boundary-rigidity statement}
+\author{}
+\date{}
+\maketitle
+
+\begin{proposition}
+The statement in the question is false under the hypotheses as stated.
+\end{proposition}
+
+\begin{proof}
+We construct a counterexample in genus \(3\).  The construction uses only standard
+facts about cyclic covers and plumbing coordinates near the Deligne--Mumford
+boundary.
+
+Consider the two-dimensional Hurwitz locus \(H \subset \mathcal M_3\) consisting
+of cyclic triple covers of \(\mathbb P^1\) with five branch points and local
+monodromy data
+\[
+(1,1,1,1,2) \in (\mathbb Z/3\mathbb Z)^5.
+\]
+Equivalently, after choosing affine coordinates, a dense open part of \(H\) is
+given by curves
+\[
+w^3=\prod_{j=1}^4 (x-a_j)(x-a_5)^2,
+\]
+with the \(a_j\)'s distinct, modulo \(\mathrm{PGL}_2\).  The Riemann--Hurwitz
+formula gives genus \(3\), since each branch point has ramification index \(3\):
+\[
+2g-2 = 3(-2)+5\cdot 2 =4.
+\]
+Thus \(g=3\).  The quotient orbifold is a sphere with five order-three orbifold
+points, so the corresponding fixed locus in Teichmuller space is naturally
+identified with \(\mathcal T_{0,5}\), hence has complex dimension \(2\).
+
+This locus is totally geodesic for the Teichmuller metric.  Indeed, it is the
+fixed-point locus of a finite-order mapping class.  If two points in Teichmuller
+space are fixed by that mapping class, then the unique Teichmuller geodesic
+segment joining them is also fixed, because the mapping class acts by isometries
+and preserves the endpoints.  Hence the fixed locus is totally geodesic.  Passing
+to the quotient gives a totally geodesic orbifold submanifold of \(\mathcal M_3\).
+If desired, one may impose full level structure to remove orbifold issues; the
+argument is unchanged.
+
+Now look at the boundary degeneration in which the first two branch points lie
+on one component of a nodal rational curve and the remaining three branch points
+lie on the other component.  The admissibility condition forces the monodromy at
+the node to be \(1\) on the first component and \(2\) on the second component.
+Thus the cover over the first component has monodromy type
+\[
+(1,1,1),
+\]
+so it is the unique cyclic triple cover of \(\mathbb P^1\) branched at three
+points with that monodromy.  This is the equianharmonic elliptic curve
+\(Y_0\), with \(j(Y_0)=0\), together with the marked point lying above the node.
+The cover over the second component has monodromy type
+\[
+(1,1,2,2),
+\]
+and varies in a one-dimensional Hurwitz locus \(C \subset \mathcal M_{2,1}\).
+Therefore the corresponding boundary component of \(\overline H\) lies in the
+separating boundary stratum
+\[
+\DeltaG \cong \mathcal M_{1,1}\times \mathcal M_{2,1}
+\]
+and is
+\[
+B_0=\{Y_0\}\times C .
+\]
+In particular, the projection of \(B_0\) to the \(\mathcal M_{1,1}\)-factor is
+constant.
+
+Choose a nonconstant holomorphic arc
+\[
+t \longmapsto Y_t \in \mathcal M_{1,1}
+\]
+with \(Y_{0}=Y_0\).  For each \(t\), form the family obtained by plumbing the
+marked elliptic curve \(Y_t\) to the varying pointed genus-two curve \(Z\in C\).
+Concretely, near the stratum
+\[
+\mathcal M_{1,1}\times \mathcal M_{2,1}\subset \overline{\mathcal M}_3,
+\]
+the standard plumbing theorem identifies a neighborhood of the boundary with a
+neighborhood of the zero section in the normal line bundle whose fiber at
+\((Y,Z)\) is
+\[
+T_{p_Y}Y\otimes T_{p_Z}Z,
+\]
+where \(p_Y,p_Z\) are the marked points to be glued.  The zero section is the
+boundary stratum, and the complement of the zero section parametrizes smooth
+genus-three curves.
+
+Let \(D\) be a sufficiently small punctured disk subbundle over \(C\).  For each
+\(t\), define \(V_t\subset \mathcal M_3\) to be the image of \(D\) under the
+plumbing construction applied to
+\[
+\{Y_t\}\times C \subset \mathcal M_{1,1}\times \mathcal M_{2,1}.
+\]
+The construction is holomorphic in \(t\), so the union of the \(V_t\)'s is a
+complex submanifold of \(\mathcal M_3\times \Delta\), after possibly shrinking
+\(\Delta\).
+
+For \(t=0\), the family just described is precisely a cusp neighborhood in the
+Hurwitz surface \(H\).  Hence \(V_0\) is an open complex submanifold of the
+totally geodesic surface \(H\).  Under the usual local meaning of ``totally
+geodesic,'' this is already enough.  If one insists on a geodesic-convex
+interpretation, one may choose \(D\) inside a sufficiently small Teichmuller
+horoball for the separating curve being pinched; by the standard log-convexity
+of extremal length along Teichmuller geodesics, such a horoball is geodesically
+convex inside \(H\).
+
+Now compute the boundary of \(V_t\) in the chosen stratum.  By construction,
+\[
+\overline{V_t}\cap \DeltaG
+=
+\{Y_t\}\times C.
+\]
+Thus
+\[
+\dim\bigl(\overline{V_t}\cap\DeltaG\bigr)=1
+\]
+and the projection to the first factor satisfies
+\[
+\pi_1(\overline{V_t}\cap \DeltaG)=\{Y_t\}.
+\]
+The family of boundary curves is smoothly trivial, because it is just the fixed
+curve \(C\) in the second factor while the point in the first factor moves
+holomorphically.
+
+The compatibility condition with smaller strata is also satisfied.  Any further
+boundary arises only by allowing the genus-two component \(Z\in C\) to degenerate
+inside \(\overline{\mathcal M}_{2,1}\).  For all \(t\), the same degeneration
+occurs, with the elliptic factor replaced by \(Y_t\).  Hence the boundary in
+smaller strata is obtained from the boundary in the larger stratum in exactly
+the same way for every \(t\).
+
+However, by choosing the arc \(t\mapsto Y_t\) nonconstant, we have
+\[
+\pi_1(\overline{V_t}\cap \DeltaG)=\{Y_t\}\neq \{Y_0\}
+\]
+for \(t\neq 0\).  Thus the conclusion claimed in the question fails.
+\end{proof}
+
+\begin{remark}
+The counterexample uses the freedom allowed in the question: the \(V_t\) are
+complex submanifolds, not assumed to be closed algebraic subvarieties of
+\(\mathcal M_g\).  If one intended an additional global algebraicity or rigidity
+hypothesis, it must be stated explicitly; it is not a consequence of the
+assumptions given.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{HM}
+J.~Harris and D.~Mumford,
+\emph{On the Kodaira dimension of the moduli space of curves},
+Invent. Math. \textbf{67} (1982), 23--88.
+
+\bibitem{ACG}
+E.~Arbarello, M.~Cornalba, and P.~Griffiths,
+\emph{Geometry of Algebraic Curves. Volume II},
+Grundlehren der mathematischen Wissenschaften, vol. 268,
+Springer, 2011.
+
+\bibitem{Kerckhoff}
+S.~Kerckhoff,
+\emph{The asymptotic geometry of Teichmuller space},
+Topology \textbf{19} (1980), 23--41.
+
+\end{thebibliography}
+
+\end{document}
+```

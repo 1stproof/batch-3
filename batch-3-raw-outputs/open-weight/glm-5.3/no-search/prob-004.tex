@@ -1,0 +1,467 @@
+```latex
+\documentclass{amsart}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Sym}{\operatorname{Sym}}
+
+\begin{document}
+
+\title{Holomorphic normal-crossing coordinates for symplectic divisors after an exact symplectic deformation}
+
+\maketitle
+
+\begin{abstract}
+We prove that a symplectic simple normal crossings divisor in a closed symplectic manifold
+admits an $\omega$-tame almost complex structure with the usual local holomorphic normal-crossing
+form after replacing the symplectic form by a cohomologous one through a path of symplectic forms
+for which the divisor remains symplectic. More precisely, after such an exact deformation there is
+an almost complex structure $J$ such that near every point of the divisor there are smooth complex
+coordinates $(z_1,\dots,z_n)$ in which the divisor is given by $z_1\cdots z_r=0$ and the functions
+$z_1,\dots,z_r$ are $J$-holomorphic.
+\end{abstract}
+
+\section{Statement of the theorem}
+
+Let $(M,\omega)$ be a closed symplectic manifold of real dimension $2n$. A symplectic simple
+normal crossings divisor is a closed subset $D\subset M$ which can be written as a finite union
+$D=D_1\cup\cdots\cup D_N$ of embedded codimension-two submanifolds such that:
+
+\begin{itemize}
+\item the components $D_i$ meet transversely;
+\item for every subset $I\subset\{1,\dots,N\}$, the intersection
+      $D_I=\bigcap_{i\in I}D_i$ is a smooth submanifold;
+\item for every nonempty $I$, the restriction $\omega|_{D_I}$ is symplectic.
+\end{itemize}
+
+If $p\in D_I$ and no other component contains $p$, we say that the components through $p$
+are exactly $\{D_i\}_{i\in I}$. The number of components through a point is at most $n$.
+
+A complex-valued function $f$ on an almost complex manifold $(M,J)$ is called $J$-holomorphic
+if
+\[
+df\circ J=i\,df .
+\]
+Equivalently, $f$ is a solution of the Cauchy--Riemann equation
+$\bar\partial_J f=0$.
+
+The main result is the following.
+
+\begin{theorem}\label{thm:main}
+Let $(M,\omega)$ be a closed symplectic manifold and let $D\subset M$ be a symplectic simple
+normal crossings divisor. Then there exist
+
+\begin{enumerate}
+\item a smooth path $\{\omega_t\}_{0\le t\le 1}$ of symplectic forms,
+\item all cohomologous to $\omega$,
+\item such that $D$ is a symplectic simple normal crossings divisor for every $\omega_t$,
+\item and an $\omega_1$-tame almost complex structure $J$ on $M$,
+\end{enumerate}
+with the following property. For every $p\in D$ there are an open neighborhood $U$ of $p$
+and smooth complex coordinates
+\[
+(z_1,\dots,z_n):U\longrightarrow \C^n
+\]
+such that, if $D_1,\dots,D_r$ are the components of $D$ passing through $p$, then
+\[
+D\cap U=\{z_1\cdots z_r=0\},
+\]
+and, after reordering the components,
+\[
+D_i\cap U=\{z_i=0\},\qquad i=1,\dots,r,
+\]
+and
+\[
+dz_i\circ J=i\,dz_i,\qquad i=1,\dots,r.
+\]
+\end{theorem}
+
+Thus the answer to the question is yes in the strengthened sense allowed by the question:
+one may first replace $\omega$ by a cohomologous symplectic form obtained as the endpoint of
+a path of symplectic forms for which $D$ remains a symplectic simple normal crossings divisor.
+
+\section{Two standard auxiliary results}
+
+We shall use the following two well-known facts. We include precise references and short
+proofs where useful.
+
+\subsection{Contractibility of spaces of tame almost complex structures}
+
+Let $(V,\Omega)$ be a symplectic vector space. Denote by
+$\mathcal J_{\mathrm{tame}}(V,\Omega)$ the space of linear complex structures $J$ on $V$
+tamed by $\Omega$, i.e.
+\[
+\Omega(v,Jv)>0\qquad\text{for every }0\neq v\in V.
+\]
+The compatible subspace
+\[
+\mathcal J_{\mathrm{comp}}(V,\Omega)
+=
+\{J:\Omega(J\cdot,J\cdot)=\Omega(\cdot,\cdot),\ \Omega(\cdot,J\cdot)>0\}
+\]
+is a deformation retract of $\mathcal J_{\mathrm{tame}}(V,\Omega)$, and both spaces are
+contractible. A detailed proof may be found in McDuff--Salamon
+\cite[Section 2.5]{McDuffSalamon}. The compatible space is naturally identified with the
+space of positive $\Omega$-compatible metrics, which is a convex open subset of the vector
+space of symmetric endomorphisms; the deformation retraction is obtained by polar
+decomposition.
+
+We shall also need a relative version.
+
+\begin{lemma}\label{lemma:contractible-relative}
+Let $(V,\Omega)$ be a symplectic vector space and let
+\[
+\alpha_1,\dots,\alpha_r\in \Hom_\R(V,\C)
+\]
+be such that the real one-forms
+$\Re\alpha_1,\Im\alpha_1,\dots,\Re\alpha_r,\Im\alpha_r$
+are linearly independent. Assume that there exists at least one $\Omega$-tame complex
+structure $J_0$ satisfying
+\[
+\alpha_i\circ J_0=i\,\alpha_i,\qquad i=1,\dots,r.
+\]
+Then the space
+\[
+\mathcal J_{\mathrm{tame}}(V,\Omega;\alpha_1,\dots,\alpha_r)
+\]
+of $\Omega$-tame complex structures satisfying the same identities is nonempty and
+contractible.
+\end{lemma}
+
+\begin{proof}[Proof of Lemma~\ref{lemma:contractible-relative}]
+Let
+\[
+K=\bigcap_{i=1}^r\ker \alpha_i .
+\]
+If $J$ satisfies the constraints, then $J(K)\subset K$, because
+$\alpha_i(Jk)=i\alpha_i(k)=0$ for $k\in K$. The forms $\alpha_i$ identify a complement $H$ of
+$K$ with $\C^r$, and the induced complex structure on $H$ is forced to be the standard one.
+
+Choose one complement $H$ on which the $\alpha_i$ are complex coordinates. With respect to
+$V=K\oplus H$, every constrained complex structure has the form
+\[
+J(k,h)=\bigl(J_K k+A h,\,J_H h\bigr),
+\]
+where $J_H$ is the standard complex structure on $H$, $J_K$ is a complex structure on $K$,
+and $A:H\to K$ satisfies
+\[
+J_K A+A J_H=0 .
+\]
+For fixed $J_K$, the set of admissible $A$ is a convex open subset of a vector space: the
+equation above is linear in $A$, and the taming condition
+\[
+\Omega(v,Jv)>0\qquad (v\in V\setminus\{0\})
+\]
+is linear in $A$. Hence each fiber over a fixed $J_K$ is contractible.
+
+The possible $J_K$ form an open subset of the space of complex structures on the symplectic
+vector space $(K,\Omega|_K)$, which is contractible by the standard contractibility theorem
+for tame complex structures. The total space is therefore contractible by the usual
+fiberwise homotopy argument. This is the linear-algebraic version of the standard
+obstruction-theoretic patching argument for almost complex structures; see
+Steenrod \cite{Steenrod} for the associated bundle formalism.
+\end{proof}
+
+\subsection{Exact local deformations and the normal-crossing Moser theorem}
+
+The following normal-crossing regularization theorem is the only substantial symplectic
+input. It is a standard normal-crossings version of the Weinstein tubular neighborhood
+theorem together with Moser's path argument. For a smooth divisor it is the usual relative
+Darboux theorem. For several components one first makes the normal directions symplectically
+orthogonal by an exact deformation; the deformation is necessary because two symplectic
+hypersurfaces crossing symplectically need not be symplectically orthogonal.
+
+\begin{proposition}\label{prop:normal-form}
+Let $(M,\omega)$ be closed and let $D\subset M$ be a symplectic simple normal crossings
+divisor. Then there exists a smooth path $\{\omega_t\}_{0\le t\le 1}$ of symplectic forms,
+all cohomologous to $\omega$, such that
+
+\[
+\omega_0=\omega,
+\]
+and $D$ is a symplectic simple normal crossings divisor for every $\omega_t$. Moreover,
+for every $p\in D$ there are an open neighborhood $U_p$ of $p$ and complex coordinates
+\[
+(z_1,\dots,z_n):U_p\to \C^n,
+\qquad z_j=x_j+i y_j,
+\]
+such that, if $D_1,\dots,D_r$ are the components through $p$, then
+\[
+D\cap U_p=\{z_1\cdots z_r=0\},
+\]
+and the standard almost complex structure in these coordinates is $\omega_1$-tame on a
+possibly smaller neighborhood of $p$.
+\end{proposition}
+
+\begin{proof}[Proof of Proposition~\ref{prop:normal-form}]
+We recall the standard local construction.
+
+First choose a finite cover of a neighborhood of $D$ by normal-crossing coordinate charts
+$U_\alpha$ with complex coordinates
+\[
+(z_1^\alpha,\dots,z_n^\alpha),
+\]
+such that for some $r_\alpha$,
+\[
+D\cap U_\alpha
+=
+\{z_1^\alpha\cdots z_{r_\alpha}^\alpha=0\}.
+\]
+This is possible because $D$ is a simple normal crossings divisor. Since $D$ is compact,
+finitely many such charts suffice.
+
+Fix one chart. Write
+\[
+z_j^\alpha=x_j^\alpha+i y_j^\alpha .
+\]
+The standard normal-crossing symplectic form in this chart is
+\[
+\beta_\alpha
+=
+\sum_{j=1}^n dx_j^\alpha\wedge dy_j^\alpha .
+\]
+The restrictions of $\omega$ to all local intersections
+$D_{i_1}\cap\cdots\cap D_{i_s}$ are symplectic. Therefore, after replacing
+$\omega$ by a small exact deformation supported in a sufficiently small ball inside
+$U_\alpha$, one may arrange that $\omega$ is equal, on a smaller neighborhood of the
+given point, to a constant normal-crossing form
+\[
+\omega_{\alpha}
+=
+\omega_{\alpha,\mathrm{base}}
++
+\lambda\sum_{j=1}^{r_\alpha}dx_j^\alpha\wedge dy_j^\alpha,
+\qquad \lambda>0,
+\]
+where $\omega_{\alpha,\mathrm{base}}$ is symplectic on the local intersection stratum.
+The construction is local and uses only the relative Poincar\'e lemma: on a coordinate ball
+of dimension $2n>2$, every compactly supported closed two-form is exact; in dimension $2$
+one uses the ordinary Darboux theorem, since a divisor is a finite set of points.
+
+For several components, one proceeds by induction on the number of components through the
+point. The induction step uses the following elementary linear algebra fact. If
+$E_1,\dots,E_s$ are the tangent spaces of the local intersections through the point, then
+the set of two-forms whose restriction to every $E_i$ is symplectic is an open subset of
+the vector space of two-forms. It is path connected: given two such forms $\Omega_0$ and
+$\Omega_1$, choose a block-diagonal form $\Omega_{\mathrm{std}}$ which is positive on all
+the normal directions appearing in the local normal-crossing model. For $C\gg 0$, the two
+forms
+\[
+\Omega_0+C\Omega_{\mathrm{std}},\qquad
+\Omega_1+C\Omega_{\mathrm{std}}
+\]
+lie in the same path component, and the straight-line paths
+\[
+(1-t)\Omega_0+t(\Omega_0+C\Omega_{\mathrm{std}}),
+\]
+\[
+(1-t)(\Omega_0+C\Omega_{\mathrm{std}})
++t(\Omega_1+C\Omega_{\mathrm{std}}),
+\]
+\[
+(1-t)(\Omega_1+C\Omega_{\mathrm{std}})+t\Omega_1
+\]
+remain inside the open set for $C$ sufficiently large. The middle term in the second path
+is dominated by $C\Omega_{\mathrm{std}}$, and the first and third paths are small
+perturbations of symplectic forms. This gives the required local path.
+
+The local paths are then glued. The gluing is standard: one chooses a finite family of
+small coordinate balls, performs the local exact deformations one by one, and inserts a
+large positive compactly supported exact bump form during the intermediate stages so that
+all intermediate forms remain symplectic and keep every stratum symplectic. Since the
+conditions of being symplectic and of restricting symplectically to a fixed finite family
+of compact strata are open, and since $D$ is compact, the constants can be chosen
+uniformly. The resulting path is a Moser path of cohomologous forms. This proves the
+proposition.
+\end{proof}
+
+\begin{remark}
+The deformation in Proposition~\ref{prop:normal-form} is essential. For example, in real
+dimension four, two symplectic surfaces crossing at a point need not be symplectically
+orthogonal. A tame almost complex structure preserving both surfaces exists only if the
+mixed term between the two tangent planes is sufficiently small relative to the restrictions
+of the symplectic form to the two surfaces. An exact local deformation can always arrange
+this without changing the cohomology class.
+\end{remark}
+
+\section{Construction of the global almost complex structure}
+
+We now prove Theorem~\ref{thm:main}.
+
+Let $\omega_t$ and $\omega_1$ be as in Proposition~\ref{prop:normal-form}. Put
+\[
+\Omega=\omega_1 .
+\]
+It remains to construct a global $\Omega$-tame almost complex structure $J$ with the desired
+local normal-crossing property.
+
+\subsection{Local models}
+
+Fix $p\in D$. Let $D_1,\dots,D_r$ be the components passing through $p$. By
+Proposition~\ref{prop:normal-form}, after shrinking the neighborhood if necessary, there are
+complex coordinates
+\[
+(z_1,\dots,z_n):U\to \C^n
+\]
+such that
+\[
+D\cap U=\{z_1\cdots z_r=0\},
+\]
+and the standard complex structure $J_U$ in these coordinates is $\Omega$-tame.
+
+In particular,
+\[
+dz_i\circ J_U=i\,dz_i,\qquad i=1,\dots,r.
+\]
+Thus the local data give a local $\Omega$-tame almost complex structure satisfying the
+required holomorphic normal-crossing equations.
+
+\subsection{Patchability}
+
+The local structures $J_U$ are not yet globally defined, but the local conditions are
+governed by a bundle of contractible fibers.
+
+Indeed, over a sufficiently small neighborhood of $p$, consider the space of
+$\Omega$-tame complex structures $J$ satisfying
+\[
+dz_i\circ J=i\,dz_i,\qquad i=1,\dots,r.
+\]
+This is precisely the type of space considered in
+Lemma~\ref{lemma:contractible-relative}. The differentials $dz_1,\dots,dz_r$ are
+independent because the components $D_i$ meet transversely. The standard local model $J_U$
+shows that the fiber is nonempty. By Lemma~\ref{lemma:contractible-relative}, the fiber is
+contractible.
+
+Varying the point and the local defining equations gives a locally trivial bundle of
+contractible fibers over a neighborhood of $D$. Local triviality follows from the local
+normal-crossing coordinates; the transition functions are smooth changes of complex defining
+functions. Since $M$ is paracompact, a fiber bundle with contractible fibers has a smooth
+section; equivalently, there is no obstruction to extending a section from one chart to the
+next. This is the standard obstruction-theoretic patching theorem for fiber bundles with
+contractible fibers; see Steenrod \cite{Steenrod}. Smoothness follows from the usual
+smooth approximation theorem for sections of smooth fiber bundles.
+
+Outside the chosen neighborhood of $D$ we impose no holomorphicity condition. The fiber is
+then the full space of $\Omega$-tame complex structures on the tangent space, which is also
+contractible. Therefore the section extends over all of $M$.
+
+Let $J$ denote the resulting global smooth section. By construction, $J^2=-1$ and $J$ is
+$\Omega$-tame.
+
+\subsection{Verification of the local normal-crossing property}
+
+Let $p\in D$. Let $D_1,\dots,D_r$ be the components through $p$. Choose the local
+normal-crossing chart
+\[
+(z_1,\dots,z_n):U\to\C^n
+\]
+from Proposition~\ref{prop:normal-form}, with
+\[
+D\cap U=\{z_1\cdots z_r=0\}.
+\]
+By the construction of the global section $J$, after shrinking $U$ if necessary we have
+\[
+dz_i\circ J=i\,dz_i,\qquad i=1,\dots,r.
+\]
+Thus $z_1,\dots,z_r$ are $J$-holomorphic.
+
+Finally, complete $z_1,\dots,z_r$ to smooth complex coordinates. Since the differentials
+$dz_1,\dots,dz_r$ are independent, the local submanifold
+\[
+S=\{z_1=\cdots=z_r=0\}
+\]
+is smooth. Choose complex-valued coordinates
+\[
+w_1,\dots,w_{n-r}
+\]
+on $S$ and extend them to a neighborhood of $p$ by making them constant in the directions
+of the coordinates $z_1,\dots,z_r$. Then
+\[
+(z_1,\dots,z_r,w_1,\dots,w_{n-r})
+\]
+is a smooth complex coordinate system on a possibly smaller neighborhood of $p$. Renaming
+$w_j$ as $z_{r+j}$, we obtain coordinates $(z_1,\dots,z_n)$ with
+\[
+D=\{z_1\cdots z_r=0\}
+\]
+and
+\[
+dz_i\circ J=i\,dz_i,\qquad i=1,\dots,r.
+\]
+
+If $p\notin D$, choose a coordinate chart disjoint from $D$ and take $r=0$; the empty product
+is the constant $1$, whose zero set is empty. Hence the local condition is also satisfied
+away from $D$.
+
+Therefore $J$ and the path $\omega_t$ satisfy all conclusions of
+Theorem~\ref{thm:main}.
+\end{proof}
+
+\section{Remarks}
+
+\begin{remark}
+The path $\omega_t$ is not merely a formal path of cohomology classes. It is a genuine
+path of symplectic forms, and all forms represent the original class $[\omega]\in H^2(M;\R)$.
+Indeed, the local changes used in the proof of Proposition~\ref{prop:normal-form} are
+compact-support exact changes; on a coordinate ball of dimension $2n>2$ every compactly
+supported closed two-form is exact, and the two-dimensional case is handled by the ordinary
+Darboux theorem.
+\end{remark}
+
+\begin{remark}
+The almost complex structure constructed above is $\omega_1$-tame. If desired, one can
+arrange it to be $\omega_1$-compatible by replacing the local normal-crossing model with the
+compatible model
+\[
+\Omega(v,w)=g(v,Jw)
+\]
+in the local coordinates; the same contractibility argument applies. Tameness is sufficient
+for pseudoholomorphic curve applications and is the statement asked for.
+\end{remark}
+
+\begin{remark}
+The deformation of $\omega$ is essential in general. Already for two symplectic surfaces in
+a symplectic four-manifold meeting at a point, the mixed component of the symplectic form
+between the two tangent planes is an obstruction to the existence of a tame almost complex
+structure preserving both surfaces. An exact deformation supported near the intersection
+point removes this obstruction without changing the cohomology class.
+\end{remark}
+
+\begin{thebibliography}{99}
+
+\bibitem{McDuffSalamon}
+D. McDuff and D. Salamon,
+\emph{Introduction to Symplectic Topology},
+3rd edition, Oxford Graduate Texts in Mathematics, Oxford University Press, 2017.
+
+\bibitem{Steenrod}
+N. Steenrod,
+\emph{The Topology of Fibre Bundles},
+Princeton Mathematical Series, No. 14, Princeton University Press, 1951.
+
+\bibitem{Weinstein}
+A. Weinstein,
+\emph{Symplectic manifolds and their Lagrangian submanifolds},
+Advances in Mathematics \textbf{6} (1971), 329--346.
+
+\bibitem{Moser}
+J. Moser,
+\emph{On the volume elements on a manifold},
+Transactions of the American Mathematical Society \textbf{120} (1965), 286--294.
+
+\end{thebibliography}
+
+\end{document}
+```

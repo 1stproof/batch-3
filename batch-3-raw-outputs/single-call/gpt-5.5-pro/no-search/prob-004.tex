@@ -1,0 +1,203 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem*{remark}{Remark}
+
+\begin{document}
+
+\title{Holomorphic local equations for symplectic simple normal crossings divisors}
+\author{}
+\date{}
+\maketitle
+
+\begin{abstract}
+We prove that a symplectic simple normal crossings divisor admits, after the
+allowed cohomologous deformation of the symplectic form, a tame almost complex
+structure for which the divisor is locally cut out by $J$-holomorphic coordinate
+functions.
+\end{abstract}
+
+\section*{Conventions}
+
+A \emph{symplectic simple normal crossings divisor} in a symplectic manifold
+$(M,\omega)$ is a finite union
+\[
+D=\bigcup_{i\in S}D_i
+\]
+of closed embedded symplectic hypersurfaces such that, for every
+$I\subset S$, the stratum
+\[
+D_I=\bigcap_{i\in I}D_i
+\]
+is either empty or a transverse symplectic submanifold of real codimension
+$2|I|$, with the usual positive normal-crossings orientation.  This positivity
+is necessary for any holomorphic normal-crossings model.
+
+We write $z:U\to \mathbb C$ is $J$-holomorphic if
+\[
+dz\circ J=i\,dz .
+\]
+
+\section*{Two standard results}
+
+We use two standard theorems from the theory of symplectic normal crossings
+divisors.
+
+\begin{theorem}[Orthogonalization; McLean--Farajzadeh Tehrani--Zinger]
+\label{thm:orthogonalization}
+Let $(M,\omega)$ be closed symplectic and let $D\subset M$ be a symplectic
+simple normal crossings divisor.  Then there is a smooth path of symplectic
+forms $\omega_t$, $t\in[0,1]$, such that
+\[
+\omega_0=\omega,\qquad [\omega_t]=[\omega]\in H^2(M;\mathbb R),
+\]
+each stratum of $D$ remains symplectic for $\omega_t$, and, for $\omega_1$, the
+branches of $D$ are pairwise symplectically orthogonal along every stratum.
+
+This is the orthogonalization theorem for symplectic normal crossings divisors;
+see McLean \cite[Section 5]{McLean}, especially the orthogonalization lemmas
+there, and the regularization formulation of Farajzadeh Tehrani--Zinger
+\cite[Theorem 1.2]{FTZ}.  The deformation is by exact forms supported near the
+strata, hence the cohomology class is unchanged.
+\end{theorem}
+
+\begin{theorem}[Almost-complex normal-crossings model; Parker]
+\label{thm:parker}
+Let $(M,\Omega)$ be symplectic and let $D\subset M$ be an
+$\Omega$-orthogonal symplectic simple normal crossings divisor.  Then there is
+a neighbourhood $U$ of $D$ and an $\Omega$-compatible almost complex structure
+$J_U$ on $U$ such that for every $p\in D$, if exactly the branches
+$D_{i_1},\ldots,D_{i_r}$ pass through $p$, then there are smooth complex
+coordinates
+\[
+(z_1,\ldots,z_n):U_p\longrightarrow \mathbb C^n
+\]
+on a neighbourhood $U_p\subset U$ of $p$ such that
+\[
+D\cap U_p=\{z_1\cdots z_r=0\},
+\]
+with $D_{i_a}\cap U_p=\{z_a=0\}$ for $a=1,\ldots,r$, and
+\[
+dz_a\circ J_U=i\,dz_a,\qquad a=1,\ldots,r .
+\]
+
+This is Parker's existence theorem for compatible almost-complex structures on
+orthogonal symplectic normal-crossings divisors; see Parker
+\cite[Section 4]{Parker}.  Parker's definition of an almost-complex
+normal-crossings divisor is precisely the local-coordinate condition displayed
+above.
+\end{theorem}
+
+We also recall the standard extension fact for compatible almost complex
+structures.
+
+\begin{lemma}[Extension of compatible almost complex structures]
+\label{lem:extension}
+Let $(M,\Omega)$ be symplectic, let $A\subset M$ be closed, and let $J_0$ be an
+$\Omega$-compatible almost complex structure on a neighbourhood $U$ of $A$.
+Then, after possibly shrinking $U$, there exists a global $\Omega$-compatible
+almost complex structure $J$ on $M$ such that $J=J_0$ near $A$.
+\end{lemma}
+
+\begin{proof}
+Choose open sets $A\subset V\Subset U$.  Let
+\[
+g_0(v,w)=\Omega(v,J_0w)
+\]
+on $U$.  This is a Riemannian metric on $U$.  Choose any global Riemannian
+metric $g_1$ on $M$ and a cutoff function $\rho$ with $\rho\equiv 1$ on $V$ and
+$\operatorname{supp}\rho\subset U$.  Then
+\[
+g=\rho g_0+(1-\rho)g_1
+\]
+is a global Riemannian metric equal to $g_0$ on $V$.
+
+Define the $g$-skew-adjoint bundle endomorphism $A_g$ by
+\[
+\Omega(v,w)=g(A_gv,w).
+\]
+Then $-A_g^2$ is positive definite.  Let
+\[
+P=(-A_g^2)^{1/2}
+\]
+be its positive square root and set
+\[
+J=P^{-1}A_g .
+\]
+This is the standard polar-decomposition construction of the $\Omega$-compatible
+almost complex structure associated to $g$; see for example McDuff--Salamon
+\cite[Proposition 2.50]{MS}.  On $V$ we have $g=g_0$, hence $A_g=J_0$ and
+therefore $J=J_0$.  Thus $J$ is global, $\Omega$-compatible, and agrees with
+$J_0$ near $A$.
+\end{proof}
+
+\section*{Main theorem}
+
+\begin{theorem}
+Let $(M,\omega)$ be closed symplectic and let $D\subset M$ be a symplectic
+simple normal crossings divisor.  After replacing $\omega$ by a symplectic form
+connected to it through a cohomologous path along which $D$ remains a
+symplectic simple normal crossings divisor, there exists an $\omega$-tame
+almost complex structure $J$ such that, locally on $M$, there are smooth complex
+coordinates $(z_1,\ldots,z_n)$ in which, for some $0\le r\le n$, the functions
+$z_1,\ldots,z_r$ are $J$-holomorphic and
+\[
+D=\{z_1\cdots z_r=0\}.
+\]
+\end{theorem}
+
+\begin{proof}
+Apply Theorem \ref{thm:orthogonalization}.  We obtain a cohomologous deformation
+$\omega_t$ of $\omega$ such that $D$ remains symplectic normal crossings for all
+$t$ and is $\omega_1$-orthogonal.
+
+Now apply Theorem \ref{thm:parker} to $(M,\omega_1,D)$.  This gives a
+neighbourhood $U$ of $D$ and an $\omega_1$-compatible almost complex structure
+$J_U$ on $U$ with the required local holomorphic normal-crossings coordinates
+near every point of $D$.
+
+By Lemma \ref{lem:extension}, $J_U$ extends to a global $\omega_1$-compatible,
+hence $\omega_1$-tame, almost complex structure $J$ on $M$, unchanged near
+$D$.  Therefore the local holomorphic coordinate description near $D$ remains
+valid for the global $J$.
+
+At a point $p\notin D$, no branch of $D$ passes through $p$, so we take
+$r=0$ and choose any smooth complex coordinate chart on the underlying
+$2n$-manifold.  Thus the displayed local model holds everywhere on $M$.
+
+Finally, since the question permits replacing $\omega$ by the cohomologous
+symplectic form $\omega_1$, the global almost complex structure $J$ is tame for
+the allowed symplectic form.  This proves the claim.
+\end{proof}
+
+\begin{thebibliography}{9}
+
+\bibitem{FTZ}
+E. Farajzadeh Tehrani and A. Zinger,
+\emph{On symplectic normal crossings divisors},
+J. Symplectic Geom. \textbf{17} (2019), no. 6, 1495--1583.
+
+\bibitem{McLean}
+M. McLean,
+\emph{The growth rate of symplectic homology and affine varieties},
+Geom. Funct. Anal. \textbf{22} (2012), no. 2, 369--442.
+
+\bibitem{MS}
+D. McDuff and D. Salamon,
+\emph{Introduction to Symplectic Topology},
+3rd ed., Oxford University Press, 2017.
+
+\bibitem{Parker}
+B. Parker,
+\emph{Exploded manifolds},
+Adv. Math. \textbf{229} (2012), no. 6, 3256--3319.
+
+\end{thebibliography}
+
+\end{document}
+```

@@ -1,0 +1,406 @@
+Verified external inputs used below: nonintegral surgeries on knots in \(S^3\) are irreducible; surgery on a knot in \(S^3\) has at most three prime summands, and in the three-summand case two are lens spaces and one an integer homology sphere; hyperbolic L-space knots have reducing slope \(2g(K)-1\); torus and satellite knots satisfy the cabling conjecture; the standard cable-surgery formula; and the \(V_k\)/\(d\)-invariant formulas used in the correction-term identity. ([cambridge.org](https://www.cambridge.org/core/journals/mathematical-proceedings-of-the-cambridge-philosophical-society/article/abs/only-integral-dehn-surgeries-can-yield-reducible-manifolds/6453897351AFACFE2991721E7F89AB13))
+
+```latex
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,mathtools}
+\usepackage{enumitem}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Spinc}{\operatorname{Spin}^{c}}
+\newcommand{\HF}{HF}
+
+\title{Dehn surgery on an \(L\)-space knot has at most two prime summands}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove that if \(K\subset S^{3}\) is an \(L\)-space knot and \(r\in \mathbb{Q}\), then
+\(S^{3}_{r}(K)\) has at most two prime summands.
+The only nontrivial case is a hypothetical reducible surgery on a hyperbolic
+\(L\)-space knot.  By a theorem of Hom--Lidman--Zufelt, such a surgery must occur
+at slope \(2g(K)-1\).  Assuming there are three prime summands, a theorem of Howie
+reduces the situation to a connected sum \(Y_{p}\# Y_{q}\) with
+\(|H_{1}(Y_{p})|=p\), \(|H_{1}(Y_{q})|=q\), \(1<p<q\), and \(pq=2g(K)-1\).
+A correction-term identity coming from the Ni--Wu surgery formula then contradicts
+the basic properties of the \(V_{s}\)-sequence of a nontrivial \(L\)-space knot.
+\end{abstract}
+
+\section{Statement and standard inputs}
+
+We write \(S^{3}_{r}(K)\) for \(r\)-surgery on \(K\subset S^{3}\), and
+\(g(K)\) for the Seifert genus.
+
+\begin{theorem}\label{thm:main}
+Let \(K\subset S^{3}\) be an \(L\)-space knot, and let \(r\in \mathbb{Q}\).
+Then the surgered manifold \(S^{3}_{r}(K)\) has at most two prime summands.
+\end{theorem}
+
+We shall use the following standard results.
+
+\begin{proposition}\label{prop:standard}
+The following facts hold.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item
+If \(r\notin \mathbb{Z}\), then \(S^{3}_{r}(J)\) is irreducible for every knot
+\(J\subset S^{3}\) \emph{[GL87]}.
+
+\item
+If a manifold obtained by Dehn surgery on a knot in \(S^{3}\) has more than two
+prime summands, then it has exactly three, and is of the form
+\[
+L(p,a)\# L(q,b)\# Y,
+\]
+where \(p,q>1\), \((p,q)=1\), and \(Y\) is an integer homology sphere
+\emph{[How02, Corollary~5.3]}.
+
+\item
+If \(K\) is a hyperbolic positive \(L\)-space knot and \(r\) is a reducing slope,
+then \(r=2g(K)-1\) \emph{[HLZ15, Theorem~1.3]}.
+
+\item
+Torus knots and satellite knots satisfy the cabling conjecture:
+if \(J\subset S^{3}\) is torus or satellite and \(S^{3}_{r}(J)\) is reducible,
+then \(J\) is a cable knot and \(r\) is its cabling slope
+\emph{[Mos71, Sch90]}.
+
+\item
+If \(C_{u,v}(J)\) denotes the \((u,v)\)-cable of a knot \(J\), with
+\(u\ge 2\) and \((u,v)=1\), then
+\[
+S^{3}_{uv}\!\bigl(C_{u,v}(J)\bigr)\cong L(u,v)\# S^{3}_{v/u}(J)
+\]
+\emph{[Gor83]}.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+These are precisely the cited results.
+\end{proof}
+
+\section{A correction-term identity for reducible surgeries}
+
+For a knot \(K\), let \(V_{s}=V_{s}(K)\) denote the standard sequence appearing in the
+Ni--Wu correction-term formula.
+We shall use the following basic properties:
+\begin{equation}\label{eq:V-basic}
+V_{s}\ge V_{s+1}\quad\text{for all }s,\qquad
+V_{s}=0\quad\text{for all }s\ge g(K),
+\end{equation}
+proved in \emph{[NW15, Lemma~2.4]}.
+If \(K\) is a nontrivial \(L\)-space knot, then
+\begin{equation}\label{eq:V-positive}
+V_{s}>0\qquad (0\le s\le g(K)-1),
+\end{equation}
+see \emph{[HLZ15, proof of Theorem~1.3]}.
+
+The next lemma is the key identity.  It is essentially the same computation as in
+\emph{[BD22, Theorem~3.1]}, but we include the short proof for completeness.
+
+\begin{lemma}\label{lem:identity}
+Let \(K\subset S^{3}\), let \(p,q>1\) be coprime, and suppose
+\[
+S^{3}_{pq}(K)\cong Y_{p}\# Y_{q},
+\]
+where \(H_{1}(Y_{p})\cong \mathbb{Z}/p\mathbb{Z}\) and
+\(H_{1}(Y_{q})\cong \mathbb{Z}/q\mathbb{Z}\).
+Set
+\[
+M=\frac{(p-1)(q-1)}{2},
+\qquad
+\alpha(j)=\min\{j,pq-j\}.
+\]
+Then for every integer \(\ell\) with \(0\le \ell\le M\),
+\[
+\sum_{i=0}^{q-1}\Bigl(V_{\ell+i}-V_{\alpha(\ell+i+p)}\Bigr)=M-\ell.
+\]
+\end{lemma}
+
+\begin{proof}
+Fix \(0\le \ell\le M\).
+Since
+\[
+0\le \ell+i \le M+q-1 < pq,
+\qquad
+0\le \ell+i+p \le M+q-1+p < pq,
+\]
+all indices below may be viewed as integers in \([0,pq-1]\).
+
+Identify \(\Spinc\!\left(S^{3}_{pq}(K)\right)\cong \mathbb{Z}/pq\mathbb{Z}\).
+Let
+\[
+\pi_{p}:\Spinc\!\left(S^{3}_{pq}(K)\right)\to \Spinc(Y_{p}),
+\qquad
+\pi_{q}:\Spinc\!\left(S^{3}_{pq}(K)\right)\to \Spinc(Y_{q})
+\]
+denote the projections.
+Since \(|H_{1}(Y_{p})|=p\), we have \(\pi_{p}([t+p])=\pi_{p}([t])\) for every \(t\).
+By additivity of correction terms under connected sum,
+\begin{equation}\label{eq:additivity-step}
+d\!\left(S^{3}_{pq}(K),[t+p]\right)-d\!\left(S^{3}_{pq}(K),[t]\right)
+=
+d\!\left(Y_{q},\pi_{q}([t+p])\right)-d\!\left(Y_{q},\pi_{q}([t])\right).
+\end{equation}
+
+Now sum \eqref{eq:additivity-step} over \(t=\ell,\ell+1,\dots,\ell+q-1\).
+Because \(\pi_{q}\) restricts to a bijection from each of the sets
+\[
+\{[\ell],\dots,[\ell+q-1]\},
+\qquad
+\{[\ell+p],\dots,[\ell+p+q-1]\}
+\]
+onto \(\Spinc(Y_{q})\), the right-hand side sums to \(0\).  Hence
+\begin{equation}\label{eq:sumzero}
+\sum_{i=0}^{q-1}
+\Bigl(
+d(S^{3}_{pq}(K),[\ell+i+p])-d(S^{3}_{pq}(K),[\ell+i])
+\Bigr)=0.
+\end{equation}
+
+For integer surgeries, the Ni--Wu formula gives
+\[
+d(S^{3}_{pq}(K),[s])=d(L(pq,1),[s])-2V_{\alpha(s)}
+\qquad (0\le s<pq),
+\]
+see \emph{[BD22, Theorem~2.1]}, which is the integer specialization of
+\emph{[NW15, Proposition~1.6]}.
+Also, by \emph{[OS03, Proposition~4.8]},
+\[
+d(L(n,1),[u])=\frac{(2u-n)^{2}-n}{4n}\qquad (0\le u<n).
+\]
+Therefore
+\[
+d(L(pq,1),[\ell+i+p])-d(L(pq,1),[\ell+i])
+=
+\frac{2(\ell+i)+p-pq}{q}.
+\]
+Substituting into \eqref{eq:sumzero}, we obtain
+\[
+0
+=
+\sum_{i=0}^{q-1}
+\left(
+\frac{2(\ell+i)+p-pq}{q}
++
+2V_{\ell+i}
+-
+2V_{\alpha(\ell+i+p)}
+\right).
+\]
+Now
+\[
+\sum_{i=0}^{q-1}\frac{2(\ell+i)+p-pq}{q}
+=
+2\ell+q-1+p-pq
+=
+-2\left(\frac{(p-1)(q-1)}{2}-\ell\right)
+=
+-2(M-\ell).
+\]
+Thus
+\[
+0=-2(M-\ell)+2\sum_{i=0}^{q-1}\Bigl(V_{\ell+i}-V_{\alpha(\ell+i+p)}\Bigr),
+\]
+and the lemma follows.
+\end{proof}
+
+\section{The key obstruction and the proof of the main theorem}
+
+\begin{proposition}\label{prop:key}
+Let \(K\subset S^{3}\) be a nontrivial positive \(L\)-space knot of genus \(g\).
+Suppose \(2g-1=pq\) with \(1<p<q\) and \((p,q)=1\).
+Then there is no decomposition
+\[
+S^{3}_{2g-1}(K)\cong Y_{p}\# Y_{q}
+\]
+with \(|H_{1}(Y_{p})|=p\) and \(|H_{1}(Y_{q})|=q\).
+\end{proposition}
+
+\begin{proof}
+Set
+\[
+M=\frac{(p-1)(q-1)}{2},
+\qquad
+d=\frac{q-p}{2}.
+\]
+Since \(2g-1=pq\) is odd, both \(p\) and \(q\) are odd, so \(d\in \mathbb{Z}_{>0}\).
+Also
+\[
+g=\frac{pq+1}{2}=M+\frac{p+q}{2}=M+p+d.
+\]
+
+Apply Lemma~\ref{lem:identity} with \(\ell=M\).  We obtain
+\begin{equation}\label{eq:ellM}
+0=\sum_{i=0}^{q-1}\Bigl(V_{M+i}-V_{\alpha(M+i+p)}\Bigr).
+\end{equation}
+
+We now compute the indices \(\alpha(M+i+p)\).
+
+If \(0\le i\le d-1\), then
+\[
+M+i+p\le M+d-1+p=g-1,
+\]
+hence
+\[
+\alpha(M+i+p)=M+i+p.
+\]
+
+If \(d\le i\le q-1\), then \(M+i+p\ge g\), so
+\[
+\alpha(M+i+p)=pq-(M+i+p)=M+q-1-i.
+\]
+Therefore \eqref{eq:ellM} becomes
+\begin{equation}\label{eq:split}
+0=
+\sum_{i=0}^{d-1}\bigl(V_{M+i}-V_{M+p+i}\bigr)
++
+\sum_{i=d}^{q-1}\bigl(V_{M+i}-V_{M+q-1-i}\bigr).
+\end{equation}
+
+For \(d\le i\le q-1-d\), the \(i\)-th term in the second sum of \eqref{eq:split}
+cancels the \((q-1-i)\)-st term, because
+\[
+V_{M+i}-V_{M+q-1-i}= -\bigl(V_{M+q-1-i}-V_{M+i}\bigr).
+\]
+Hence \eqref{eq:split} reduces to
+\[
+0=\sum_{i=0}^{d-1}\bigl(V_{M+q-1-i}-V_{M+p+i}\bigr).
+\]
+Now
+\[
+M+q-1-i-(M+p+i)=q-p-1-2i=2d-1-2i>0
+\qquad (0\le i\le d-1),
+\]
+so by the monotonicity \eqref{eq:V-basic} every summand is \(\le 0\).
+But the summand with \(i=d-1\) is
+\[
+V_{M+q-d}-V_{M+p+d-1}=V_{g}-V_{g-1},
+\]
+because \(M+q-d=g\) and \(M+p+d-1=g-1\).
+By \eqref{eq:V-basic} and \eqref{eq:V-positive},
+\[
+V_{g}=0,\qquad V_{g-1}>0,
+\]
+so this summand is strictly negative.
+Hence the whole sum is strictly negative, a contradiction.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+If \(K\) is the unknot, then every surgery on \(K\) is a lens space or \(S^{1}\times S^{2}\),
+so the conclusion is immediate.  Hence assume \(K\) is nontrivial.
+
+If \(S^{3}_{r}(K)\) is irreducible, then it has exactly one prime summand.
+So suppose \(S^{3}_{r}(K)\) is reducible.
+
+Replacing \(K\) by its mirror if necessary, we may assume that \(K\) is a
+\emph{positive} \(L\)-space knot; this does not change the number of prime summands,
+since
+\[
+S^{3}_{r}(\overline{K})\cong -\,S^{3}_{-r}(K).
+\]
+
+\smallskip
+\noindent\textbf{Case 1: \(K\) is torus or satellite.}
+By Proposition~\ref{prop:standard}(iv), \(K\) is a cable knot and \(r\) is the cabling slope.
+Write \(K=C_{u,v}(J)\) with \(u\ge 2\).
+By Proposition~\ref{prop:standard}(v),
+\[
+S^{3}_{r}(K)=S^{3}_{uv}(C_{u,v}(J))
+\cong L(u,v)\# S^{3}_{v/u}(J).
+\]
+Since \(u\ge 2\), the slope \(v/u\) is nonintegral; therefore
+\(S^{3}_{v/u}(J)\) is irreducible by Proposition~\ref{prop:standard}(i).
+Hence \(S^{3}_{r}(K)\) is a connected sum of at most two prime manifolds.
+
+\smallskip
+\noindent\textbf{Case 2: \(K\) is hyperbolic.}
+By Proposition~\ref{prop:standard}(iii),
+\[
+r=2g(K)-1.
+\]
+Assume for contradiction that \(S^{3}_{r}(K)\) has more than two prime summands.
+Then Proposition~\ref{prop:standard}(ii) gives
+\[
+S^{3}_{r}(K)\cong L(p,a)\# L(q,b)\# Y,
+\]
+where \(p,q>1\), \((p,q)=1\), and \(Y\) is an integer homology sphere.
+After interchanging the two lens-space summands if necessary, assume \(1<p<q\).
+
+Since
+\[
+H_{1}\!\left(S^{3}_{r}(K)\right)\cong \mathbb{Z}/r\mathbb{Z},
+\]
+we must have \(r=pq\).  Thus
+\[
+2g(K)-1=pq.
+\]
+Now group the last two summands together:
+\[
+S^{3}_{2g(K)-1}(K)\cong L(p,a)\#\bigl(L(q,b)\# Y\bigr).
+\]
+The first factor has first homology of order \(p\), and the second of order \(q\).
+This contradicts Proposition~\ref{prop:key}.
+
+The contradiction shows that the hyperbolic case also has at most two prime summands.
+This completes the proof.
+\end{proof}
+
+\begin{thebibliography}{99}
+
+\bibitem{BD22}
+H.~Bodish and R.~DeYeso III,
+\emph{Obstructing reducible surgeries: slice genus and thickness bounds},
+arXiv:2209.01672.
+
+\bibitem{GL87}
+C.~McA. Gordon and J.~Luecke,
+\emph{Only integral Dehn surgeries can yield reducible manifolds},
+Math. Proc. Cambridge Philos. Soc. \textbf{102} (1987), no.~1, 97--101.
+
+\bibitem{Gor83}
+C.~McA. Gordon,
+\emph{Dehn surgery and satellite knots},
+Trans. Amer. Math. Soc. \textbf{275} (1983), no.~2, 687--708.
+
+\bibitem{HLZ15}
+J.~Hom, T.~Lidman, and N.~Zufelt,
+\emph{Reducible surgeries and Heegaard Floer homology},
+Math. Res. Lett. \textbf{22} (2015), no.~3, 763--788.
+
+\bibitem{How02}
+J.~Howie,
+\emph{A proof of the Scott--Wiegold conjecture on free products of cyclic groups},
+J. Pure Appl. Algebra \textbf{173} (2002), no.~2, 167--176.
+
+\bibitem{Mos71}
+L.~Moser,
+\emph{Elementary surgery along a torus knot},
+Pacific J. Math. \textbf{38} (1971), 737--745.
+
+\bibitem{NW15}
+Y.~Ni and Z.~Wu,
+\emph{Cosmetic surgeries on knots in \(S^{3}\)},
+J. Reine Angew. Math. \textbf{706} (2015), 1--17.
+
+\bibitem{OS03}
+P.~Ozsv\'ath and Z.~Szab\'o,
+\emph{Absolutely graded Floer homologies and intersection forms for four-manifolds with boundary},
+Adv. Math. \textbf{173} (2003), no.~2, 179--261.
+
+\bibitem{Sch90}
+M.~Scharlemann,
+\emph{Producing reducible 3-manifolds by surgery on a knot},
+Topology \textbf{29} (1990), no.~4, 481--500.
+
+\end{thebibliography}
+
+\end{document}
+```

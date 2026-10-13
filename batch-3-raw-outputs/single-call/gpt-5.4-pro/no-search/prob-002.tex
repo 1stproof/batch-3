@@ -1,0 +1,805 @@
+```latex
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage[a4paper,margin=1in]{geometry}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Pbb}{\mathbb P}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\KL}{\mathrm{KL}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\supp}{\mathrm{supp}}
+\newcommand{\Id}{\mathrm{Id}}
+\newcommand{\diver}{\mathrm{div}}
+
+\begin{document}
+
+\title{Minimax rate for the Darcy inverse problem on the unit ball}
+\author{}
+\date{}
+\maketitle
+
+\begin{abstract}
+We determine the minimax mean-square rate, up to logarithmic factors, for estimating the conductivity in the nonlinear inverse problem
+\[
+\diver(f\nabla u)=1 \ \text{ on } D=B(0,1)\subset \R^d,\qquad u|_{\partial D}=0,
+\]
+from Gaussian white-noise observations of $u$.  For $f$ in a sufficiently small $C^\alpha$-ball around the constant conductivity $1$, with $\alpha>1$, the minimax $L^2$-risk is of order
+\[
+n^{-\,\frac{2\alpha}{2\alpha+d+3}}
+\]
+up to logarithmic factors.
+\end{abstract}
+
+\section{Statement of the result}
+
+Let
+\[
+D=B(0,1)\subset \R^d,\qquad d\ge 2,
+\]
+and for $\alpha>1$, $r\in(0,1)$ define
+\[
+\mathcal F(\alpha,r)=\Bigl\{h\in C^\alpha(D): \|h-\one\|_{C^\alpha(D)}\le r\Bigr\}.
+\]
+For $f\in \mathcal F(\alpha,r)$ let $u_f$ be the unique weak solution of
+\[
+\diver(f\nabla u)=1\quad\text{in }D,\qquad u|_{\partial D}=0.
+\]
+The data are
+\[
+Y_n=u_f+\frac1{\sqrt n}\mathbb W,
+\]
+where $\mathbb W$ is Gaussian white noise on $L^2(D)$.
+
+The main result is:
+
+\begin{theorem}\label{thm:main}
+Let $\alpha>1$. There exist constants $r_0\in(0,1)$, $c,C,\kappa>0$, depending only on $(d,\alpha)$, such that for every $0<r<r_0$ and every $n\ge 2$,
+\[
+c\, n^{-\,\frac{2\alpha}{2\alpha+d+3}}
+\le
+\inf_{\hat f_n}\sup_{f_0\in \mathcal F(\alpha,r)}
+\E_{f_0}\bigl[\|\hat f_n-f_0\|_{L^2(D)}^2\bigr]
+\le
+C\,(\log n)^\kappa\, n^{-\,\frac{2\alpha}{2\alpha+d+3}}.
+\]
+Consequently, up to logarithmic factors, the minimax rate is
+\[
+n^{-\,\frac{2\alpha}{2\alpha+d+3}}.
+\]
+\end{theorem}
+
+\begin{remark}
+The extra ``$+1$'' in the denominator, compared with the naive order-$1$ mildly ill-posed rate
+$ n^{-2\alpha/(2\alpha+d+2)}$,
+comes from the fact that the principal symbol of the linearised forward map vanishes \emph{linearly} on the codimension-$1$ tangential set
+\[
+\Sigma=\{(x,\xi)\in T^*D\setminus 0:\ x\cdot \xi=0\}.
+\]
+Tangential oscillations are therefore smoothed by two derivatives rather than one, and this is the least favourable microlocal regime.
+\end{remark}
+
+\section{Preliminaries}
+
+We write
+\[
+q=f-\one,\qquad f=\one+q.
+\]
+Since $r<1$, every $f\in \mathcal F(\alpha,r)$ satisfies
+\[
+1-r\le f(x)\le 1+r,\qquad x\in D,
+\]
+hence is uniformly elliptic.
+
+Let $u_1$ denote the solution for $f\equiv 1$. Since $\Delta u_1=1$ in $D$ and $u_1|_{\partial D}=0$,
+\[
+u_1(x)=\frac{|x|^2-1}{2d},\qquad \nabla u_1(x)=\frac{x}{d}.
+\]
+
+For later use define the first-order differential operator
+\[
+Tq:=\frac1d\,\diver(xq)=q+\frac1d\,x\cdot \nabla q.
+\]
+Then
+\[
+\diver(q\nabla u_1)=Tq.
+\]
+
+We shall repeatedly use standard elliptic regularity facts. For uniformly elliptic coefficients in $C^\alpha$, the Dirichlet problem in divergence form has unique solutions in $H^1_0(D)$ and the Schauder estimates hold; see Gilbarg--Trudinger \cite[Ch.~6, Ch.~8]{GT}, or McLean \cite[Ch.~4]{McLean}. We shall also use the boundedness
+\[
+L_f^{-1}:H^{-2}(D)\to L^2(D),
+\qquad
+L_f:=-\diver(f\nabla \cdot),
+\]
+uniformly for $f\in \mathcal F(\alpha,r)$, which follows by duality from the standard $H^2$ Dirichlet regularity for $L_f$ with $C^{1+\beta}$ coefficients (here $\alpha>1$).
+
+\section{An exact reduction to a linear inverse problem}
+
+The key point is that the nonlinearity can be removed by a deterministic reparametrisation.
+
+For $q\in C^\alpha(D)$ small, let
+\[
+v_q:=u_{1+q}-u_1.
+\]
+Subtracting the equations for $u_{1+q}$ and $u_1$ gives
+\[
+\Delta v_q=-Tq-\diver(q\nabla v_q),\qquad v_q|_{\partial D}=0.
+\]
+Let
+\[
+A:=(-\Delta_D)^{-1}T,
+\]
+where $(-\Delta_D)^{-1}$ denotes the Dirichlet inverse of $-\Delta$ on $D$.
+
+We also define an explicit inverse for $T$:
+\[
+(T^{-1}g)(x):=d\int_0^1 t^{d-1}g(tx)\,dt.
+\]
+A direct computation shows $T(T^{-1}g)=g$ for smooth $g$, hence by density on the relevant spaces.
+
+\begin{lemma}\label{lem:exact-linearisation}
+For every $q$ such that $1+q\in \mathcal F(\alpha,r)$,
+\[
+v_q=A\,\Theta(q),
+\qquad
+\Theta(q):=q+T^{-1}\diver(q\nabla v_q).
+\]
+Equivalently,
+\[
+Y_n-u_1=A\,\Theta(q)+n^{-1/2}\mathbb W.
+\]
+\end{lemma}
+
+\begin{proof}
+From
+\[
+\Delta v_q=-Tq-\diver(q\nabla v_q)
+\]
+and the definition of $A$,
+\[
+v_q
+=
+(-\Delta_D)^{-1}\bigl(Tq+\diver(q\nabla v_q)\bigr)
+=
+Aq+(-\Delta_D)^{-1}T\Bigl(T^{-1}\diver(q\nabla v_q)\Bigr)
+=
+A\Theta(q).
+\]
+The observation identity is immediate.
+\end{proof}
+
+Thus the original nonlinear statistical model is \emph{exactly} a linear Gaussian inverse problem with a nonlinear change of parameter $q\mapsto \Theta(q)$.
+
+\subsection*{Smallness of the reparametrisation}
+
+For fixed $q$, define
+\[
+B_q h:=T^{-1}\diver\bigl(q\,\nabla Ah\bigr).
+\]
+Since $v_q=A\Theta(q)$, Lemma~\ref{lem:exact-linearisation} gives
+\[
+\Theta(q)=q+B_q\Theta(q),
+\qquad\text{i.e.}\qquad
+\Theta(q)=(\Id-B_q)^{-1}q.
+\]
+
+The next proposition is standard microlocal/paradifferential calculus. We quote the needed boundedness from the classical theory of pseudodifferential and paraproduct operators: $A$ is a classical boundary pseudodifferential operator of order $-1$ with interior principal symbol
+\[
+a_0(x,\xi)=\frac{1+\frac{i}{d}x\cdot \xi}{|\xi|^2},
+\]
+see Grubb \cite[Ch.~2--3]{Grubb}; products and bilinear order-$0$ operators on Hölder--Zygmund spaces are controlled by the Coifman--Meyer/Bony calculus, see Bahouri--Chemin--Danchin \cite[Ch.~2]{BCD}.
+
+\begin{proposition}\label{prop:Theta}
+Let $\alpha>1$. There exists $r_0=r_0(d,\alpha)>0$ such that for every $0<r<r_0$:
+\begin{enumerate}
+\item the map $\Theta$ is well-defined on
+\[
+Q_r:=\{q\in C^\alpha(D):\|q\|_{C^\alpha(D)}\le r\};
+\]
+\item $\Theta:Q_r\to C^\alpha(D)$ is bi-Lipschitz both in $L^2(D)$ and in $C^\alpha(D)$:
+there exists $C\ge 1$ such that for all $q_1,q_2\in Q_r$,
+\[
+C^{-1}\|q_1-q_2\|_{L^2}
+\le
+\|\Theta(q_1)-\Theta(q_2)\|_{L^2}
+\le
+C\|q_1-q_2\|_{L^2},
+\]
+and likewise with $L^2$ replaced by $C^\alpha$;
+\item $\Theta(Q_r)\subset \{h\in C^\alpha(D): \|h\|_{C^\alpha}\le Cr\}$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+The operator $A$ maps $C^\alpha(D)$ to $C^{1+\alpha}(D)$ and is bounded on $L^2(D)\to H^1(D)$; this is standard elliptic regularity combined with the fact that $T$ is first order. Hence
+\[
+h\mapsto \nabla Ah
+\]
+is a pseudodifferential operator of order $0$.
+
+By the bilinear Coifman--Meyer theorem on Hölder/Zygmund spaces (equivalently, Bony's paradifferential calculus; see \cite[Ch.~2]{BCD}), the bilinear map
+\[
+(q,h)\mapsto B_q h=T^{-1}\diver(q\nabla Ah)
+\]
+is bounded
+\[
+C^\alpha\times C^\alpha\to C^\alpha
+\qquad\text{and}\qquad
+C^\alpha\times L^2\to L^2,
+\]
+with estimates
+\begin{equation}\label{eq:Bq-bounds}
+\|B_q h\|_{C^\alpha}\le C_1 \|q\|_{C^\alpha}\|h\|_{C^\alpha},
+\qquad
+\|B_q h\|_{L^2}\le C_1 \|q\|_{C^\alpha}\|h\|_{L^2}.
+\end{equation}
+Choose $r_0>0$ so small that $C_1 r_0\le 1/4$. Then for $q\in Q_r$, $\|B_q\|\le 1/4$ on both $C^\alpha$ and $L^2$, so $\Id-B_q$ is invertible by a Neumann series and
+\[
+\Theta(q)=(\Id-B_q)^{-1}q
+\]
+is well-defined. Moreover
+\[
+\|\Theta(q)\|_{C^\alpha}\le \frac{1}{1-C_1r}\|q\|_{C^\alpha}\le 2\|q\|_{C^\alpha},
+\]
+and similarly in $L^2$.
+
+For differences,
+\[
+\Theta(q_1)-\Theta(q_2)
+=
+(\Id-B_{q_1})^{-1}\Bigl[(q_1-q_2)+(B_{q_1}-B_{q_2})\Theta(q_2)\Bigr].
+\]
+Again by \eqref{eq:Bq-bounds},
+\[
+\|(B_{q_1}-B_{q_2})\Theta(q_2)\|_{C^\alpha}
+\le C_1\|q_1-q_2\|_{C^\alpha}\,\|\Theta(q_2)\|_{C^\alpha}
+\le C_2 r\,\|q_1-q_2\|_{C^\alpha},
+\]
+and similarly in $L^2$. Taking $r_0$ smaller if necessary, this yields the stated two-sided Lipschitz bounds.
+\end{proof}
+
+\section{Upper bound}
+
+By Proposition~\ref{prop:Theta}, Theorem~\ref{thm:main} reduces to a linear inverse problem for the operator
+\[
+A=(-\Delta_D)^{-1}T.
+\]
+
+\subsection*{Microlocal structure of $A$}
+
+The interior principal symbol of $A$ is
+\[
+a_0(x,\xi)=\frac{1+\frac{i}{d}x\cdot \xi}{|\xi|^2}.
+\]
+Hence:
+\begin{itemize}
+\item for generic covectors, $|x\cdot \xi|\asymp |\xi|$, so $|a_0(x,\xi)|\asymp |\xi|^{-1}$;
+\item on the tangential set $x\cdot \xi=0$, $|a_0(x,\xi)|\asymp |\xi|^{-2}$.
+\end{itemize}
+Thus $A$ is order $-1$ away from the tangential set, but order $-2$ on that codimension-$1$ set.
+
+To exploit this, one uses a boundary-adapted wave-packet / wavelet-vaguelette decomposition. The relevant results are standard consequences of:
+\begin{itemize}
+\item almost-diagonalisation of pseudodifferential operators in wavelet/wave-packet bases (Meyer \cite[Ch.~VI]{Meyer});
+\item boundary-adapted wavelets on smooth domains (Cohen--Daubechies--Vial \cite{CDV}, Grubb \cite{Grubb});
+\item wavelet characterisations of Hölder--Zygmund spaces (Triebel \cite[Ch.~2]{Triebel});
+\item Donoho's risk bound for wavelet-vaguelette estimators \cite{Donoho95}.
+\end{itemize}
+
+We quote the precise microlocal consequence we need.
+
+\begin{proposition}\label{prop:wvd}
+There exists a Parseval wave-packet frame $\{\psi_\lambda\}_{\lambda\in \Lambda}$ of $L^2(D)$, with scale $j(\lambda)\in \mathbb N_0$ and a tangentiality index $m(\lambda)\in\{0,\dots,j(\lambda)\}$, together with a dual vaguelette family $\{u_\lambda\}_{\lambda\in\Lambda}$, such that:
+
+\begin{enumerate}
+\item[\rm(a)] (\emph{singular weight}) For every $\lambda$,
+\[
+\sigma_\lambda \asymp 2^{-2j(\lambda)}\bigl(1+2^{m(\lambda)}\bigr),
+\]
+and $A\psi_\lambda$ is almost diagonal in the vaguelette system with principal coefficient $\sigma_\lambda$;
+
+\item[\rm(b)] (\emph{counting}) letting
+\[
+\Lambda_{j,m}:=\{\lambda\in\Lambda:\ j(\lambda)=j,\ m(\lambda)=m\},
+\]
+one has
+\[
+\#\Lambda_{j,m}\asymp 2^{j(d-1)+m},\qquad 0\le m\le j;
+\]
+
+\item[\rm(c)] (\emph{Hölder coefficients}) if $\theta\in C^\alpha(D)$, then
+\[
+\sum_{\lambda:\ j(\lambda)=j} |\langle \theta,\psi_\lambda\rangle|^2 \lesssim 2^{-2\alpha j}.
+\]
+
+\item[\rm(d)] (\emph{risk decomposition}) for the linear model
+\[
+Z_n=A\theta+n^{-1/2}\mathbb W
+\]
+the wavelet-vaguelette estimator
+\[
+\hat\theta_J:=\sum_{\lambda:\ j(\lambda)\le J}\sigma_\lambda^{-1}\langle Z_n,u_\lambda\rangle \psi_\lambda
+\]
+satisfies
+\[
+\sup_{\theta\in \mathcal H_\alpha(R)}
+\E_\theta\|\hat\theta_J-\theta\|_{L^2(D)}^2
+\lesssim
+\sum_{j>J}\sum_{\lambda:\ j(\lambda)=j} |\langle \theta,\psi_\lambda\rangle|^2
++
+\frac1n\sum_{j\le J}\sum_{m=0}^j \#\Lambda_{j,m}\,\sigma_{j,m}^{-2},
+\]
+where
+\[
+\mathcal H_\alpha(R):=\{\theta\in C^\alpha(D): \|\theta\|_{C^\alpha}\le R\}.
+\]
+\end{enumerate}
+The implicit constants depend only on $(d,\alpha,R)$.
+\end{proposition}
+
+\begin{proof}[Comment on the proof]
+This is exactly the standard wavelet-vaguelette machinery applied to the symbol
+\[
+a_0(x,\xi)=\frac{1+\frac{i}{d}x\cdot \xi}{|\xi|^2}.
+\]
+The quantity $m(\lambda)$ records the dyadic distance of the packet centre $(x_\lambda,\xi_\lambda)$ to the characteristic set $\Sigma=\{x\cdot \xi=0\}$, hence
+\[
+|a_0(x_\lambda,\xi_\lambda)|\asymp 2^{-2j(\lambda)}(1+2^{m(\lambda)}).
+\]
+The counting in (b) reflects the fact that $\Sigma$ has codimension $1$ in phase space. For (c), one uses the standard wavelet characterisation of Hölder--Zygmund classes. Finally, (d) is Donoho's risk bound for wavelet-vaguelette estimators.
+\end{proof}
+
+\begin{proposition}\label{prop:upper-linear}
+Let $\alpha>0$. In the linear model
+\[
+Z_n=A\theta+n^{-1/2}\mathbb W
+\]
+one has
+\[
+\inf_{\hat\theta_n}
+\sup_{\|\theta\|_{C^\alpha}\le R}
+\E_\theta\|\hat\theta_n-\theta\|_{L^2(D)}^2
+\lesssim
+(\log n)^\kappa\, n^{-\,\frac{2\alpha}{2\alpha+d+3}}
+\]
+for some $\kappa=\kappa(d,\alpha)>0$.
+\end{proposition}
+
+\begin{proof}
+Take $\hat\theta_J$ from Proposition~\ref{prop:wvd}. By \ref{prop:wvd}(c),
+\[
+\sum_{j>J}\sum_{\lambda:\ j(\lambda)=j} |\langle \theta,\psi_\lambda\rangle|^2
+\lesssim
+\sum_{j>J}2^{-2\alpha j}
+\lesssim 2^{-2\alpha J}.
+\]
+For the variance term, using \ref{prop:wvd}(a)--(b),
+\[
+\sum_{m=0}^j \#\Lambda_{j,m}\,\sigma_{j,m}^{-2}
+\lesssim
+\sum_{m=0}^j 2^{j(d-1)+m}\, 2^{4j}\,(1+2^m)^{-2}
+\lesssim
+2^{j(d+3)}\sum_{m=0}^j 2^{-m}
+\lesssim
+2^{j(d+3)}.
+\]
+Hence
+\[
+\sup_{\|\theta\|_{C^\alpha}\le R}\E_\theta\|\hat\theta_J-\theta\|_2^2
+\lesssim
+2^{-2\alpha J}+\frac{2^{J(d+3)}}{n}.
+\]
+Balancing the two terms gives
+\[
+2^J\asymp n^{1/(2\alpha+d+3)},
+\]
+and therefore
+\[
+\sup_{\|\theta\|_{C^\alpha}\le R}\E_\theta\|\hat\theta_J-\theta\|_2^2
+\lesssim
+n^{-\,\frac{2\alpha}{2\alpha+d+3}}.
+\]
+Passing from the idealised exact diagonalisation to the boundary-adapted packet frame produces only the standard logarithmic loss; see Meyer \cite[Ch.~VI]{Meyer}, CDV \cite{CDV}, and Donoho \cite{Donoho95}. This proves the stated upper bound.
+\end{proof}
+
+We can now prove the upper bound in Theorem~\ref{thm:main}.
+
+\begin{proposition}\label{prop:upper-nonlinear}
+Let $\alpha>1$. For $r>0$ small enough,
+\[
+\inf_{\hat f_n}\sup_{f_0\in \mathcal F(\alpha,r)}
+\E_{f_0}\|\hat f_n-f_0\|_{L^2(D)}^2
+\lesssim
+(\log n)^\kappa\, n^{-\,\frac{2\alpha}{2\alpha+d+3}}.
+\]
+\end{proposition}
+
+\begin{proof}
+Write $f_0=\one+q_0$, $q_0\in Q_r$, and set
+\[
+\theta_0:=\Theta(q_0).
+\]
+By Lemma~\ref{lem:exact-linearisation},
+\[
+Y_n-u_1=A\theta_0+n^{-1/2}\mathbb W.
+\]
+By Proposition~\ref{prop:Theta}, $\theta_0$ ranges in a fixed $C^\alpha$-ball:
+\[
+\Theta(Q_r)\subset \mathcal H_\alpha(Cr).
+\]
+Apply Proposition~\ref{prop:upper-linear} to estimate $\theta_0$:
+there exists an estimator $\hat\theta_n$ such that
+\[
+\sup_{q_0\in Q_r}
+\E_{q_0}\|\hat\theta_n-\Theta(q_0)\|_{L^2}^2
+\lesssim
+(\log n)^\kappa\, n^{-\,\frac{2\alpha}{2\alpha+d+3}}.
+\]
+
+Now let $\Pi_{\Theta(Q_r)}$ denote a measurable $L^2$-projection (or measurable approximate projection) onto the compact set $\Theta(Q_r)\subset L^2(D)$, and define
+\[
+\hat q_n:=\Theta^{-1}\bigl(\Pi_{\Theta(Q_r)}\hat\theta_n\bigr),
+\qquad
+\hat f_n:=\one+\hat q_n.
+\]
+Since projection cannot increase distance to $\Theta(q_0)$,
+\[
+\|\Pi_{\Theta(Q_r)}\hat\theta_n-\Theta(q_0)\|_{L^2}
+\le
+\|\hat\theta_n-\Theta(q_0)\|_{L^2}.
+\]
+Using the $L^2$-Lipschitz continuity of $\Theta^{-1}$ from Proposition~\ref{prop:Theta},
+\[
+\|\hat f_n-f_0\|_{L^2}
+=
+\|\hat q_n-q_0\|_{L^2}
+\lesssim
+\|\hat\theta_n-\Theta(q_0)\|_{L^2}.
+\]
+Squaring and taking expectations proves the claim.
+\end{proof}
+
+\section{Lower bound}
+
+We now prove the matching lower bound.
+
+\subsection*{A hard finite-dimensional family}
+
+Let $m=d-1$. Choose:
+\begin{itemize}
+\item a smooth radial cutoff $\rho\in C_c^\infty((1/3,2/3))$, $\rho\not\equiv 0$;
+\item a smooth chart $\kappa:U\to (0,1)^m$ on a nonempty open set $U\subset \mathbb S^{m}$;
+\item a bump $\psi\in C_c^\infty((0,1)^m)$, $\psi\not\equiv 0$.
+\end{itemize}
+
+For $J\in\mathbb N$, choose a set $\mathcal K_J\subset \{0,\dots,2^J-1\}^m$ of cardinality
+\[
+M_J:=|\mathcal K_J|\asymp 2^{Jm},
+\]
+such that the cubes
+\[
+2^{-J}(k+\supp\psi),\qquad k\in \mathcal K_J,
+\]
+are pairwise disjoint and contained in $\kappa(U)$.
+
+Define angular bumps on the sphere by
+\[
+\eta_{J,k}(\omega):=
+2^{Jm/2}\,\psi(2^J\kappa(\omega)-k)\,\chi(\omega),
+\qquad k\in\mathcal K_J,
+\]
+where $\chi\in C_c^\infty(U)$ equals $1$ on the union of the supports. Set
+\[
+\phi_{J,k}(r,\omega):=\rho(r)\eta_{J,k}(\omega),\qquad x=r\omega.
+\]
+By standard scaling in local coordinates, uniformly in $J,k$,
+\begin{equation}\label{eq:bump-norms}
+\|\phi_{J,k}\|_{L^2(D)}\asymp 1,
+\qquad
+\|\phi_{J,k}\|_{C^\alpha(D)}\lesssim 2^{J(\alpha+m/2)},
+\qquad
+\|\phi_{J,k}\|_{H^{-s}(D)}\lesssim 2^{-Js}\quad (s=1,2).
+\end{equation}
+Because the supports are disjoint, the family $\{\phi_{J,k}:k\in\mathcal K_J\}$ is orthogonal in $L^2(D)$ up to constants, and sums of such bumps have norms controlled coefficientwise.
+
+Fix
+\[
+a_J:=\gamma\, 2^{-J(\alpha+m/2)}
+=\gamma\, 2^{-J(\alpha+(d-1)/2)},
+\]
+where $\gamma>0$ will be chosen sufficiently small. For $\varepsilon=(\varepsilon_k)_{k\in\mathcal K_J}\in\{-1,1\}^{M_J}$ define
+\[
+q_\varepsilon:=a_J\sum_{k\in\mathcal K_J}\varepsilon_k\phi_{J,k},
+\qquad
+f_\varepsilon:=\one+q_\varepsilon.
+\]
+
+\begin{lemma}\label{lem:family}
+For $\gamma>0$ small enough (depending only on $d,\alpha,r,\rho,\psi,\kappa$), one has
+\[
+f_\varepsilon\in \mathcal F(\alpha,r)\qquad \forall \varepsilon\in\{-1,1\}^{M_J},\ \forall J.
+\]
+Moreover, for all $\varepsilon,\varepsilon'$,
+\[
+\|f_\varepsilon-f_{\varepsilon'}\|_{L^2(D)}^2
+\asymp
+a_J^2\, \rho_H(\varepsilon,\varepsilon'),
+\]
+where $\rho_H$ is the Hamming distance.
+\end{lemma}
+
+\begin{proof}
+By the disjoint-support construction and \eqref{eq:bump-norms},
+\[
+\|q_\varepsilon\|_{C^\alpha(D)}
+\lesssim
+a_J\, 2^{J(\alpha+m/2)}
+=
+\gamma.
+\]
+Taking $\gamma$ sufficiently small yields $\|q_\varepsilon\|_{C^\alpha}\le r$ and $\|q_\varepsilon\|_\infty\le r$, hence $f_\varepsilon\in \mathcal F(\alpha,r)$.
+
+The $L^2$ claim follows from disjoint supports and $\|\phi_{J,k}\|_2\asymp 1$:
+\[
+\|f_\varepsilon-f_{\varepsilon'}\|_2^2
+=
+a_J^2\Bigl\|\sum_k (\varepsilon_k-\varepsilon_k')\phi_{J,k}\Bigr\|_2^2
+\asymp
+a_J^2 \sum_k |\varepsilon_k-\varepsilon_k'|^2
+\asymp
+a_J^2\, \rho_H(\varepsilon,\varepsilon').
+\]
+\end{proof}
+
+\subsection*{Neighbouring alternatives are hard to distinguish}
+
+We need a uniform Kullback bound for Hamming neighbours. Fix $\varepsilon,\varepsilon'$ with $\rho_H(\varepsilon,\varepsilon')=1$, and let
+\[
+h:=f_\varepsilon-f_{\varepsilon'}=\pm 2a_J \phi_{J,k_0}
+\]
+for the unique differing index $k_0$.
+
+\begin{lemma}\label{lem:neighbor-bound}
+Let $\beta\in (0,\alpha-1)$. Uniformly over all Hamming neighbours $\varepsilon,\varepsilon'$,
+\[
+\|u_{f_\varepsilon}-u_{f_{\varepsilon'}}\|_{L^2(D)}
+\lesssim
+a_J\, 2^{-2J}.
+\]
+Consequently,
+\[
+\KL(P_{f_\varepsilon}^{(n)},P_{f_{\varepsilon'}}^{(n)})
+=
+\frac n2 \|u_{f_\varepsilon}-u_{f_{\varepsilon'}}\|_{L^2(D)}^2
+\lesssim
+n\, a_J^2\, 2^{-4J},
+\]
+where $P_f^{(n)}$ denotes the law of $Y_n$ under $f$.
+\end{lemma}
+
+\begin{proof}
+Write
+\[
+z_{\varepsilon'}:=u_{f_{\varepsilon'}}-u_1.
+\]
+Since $u_1$ solves $\Delta u_1=1$ and $\nabla u_1=x/d$, $z_{\varepsilon'}$ solves
+\[
+\diver(f_{\varepsilon'}\nabla z_{\varepsilon'})=-\diver(q_{\varepsilon'}\nabla u_1)
+= -\frac1d \diver(x q_{\varepsilon'}).
+\]
+Because $q_{\varepsilon'}$ has the special form $\rho(r)\times$ (angular bump sum), the right-hand side contains \emph{no tangential derivatives}: explicitly,
+\[
+-\frac1d\diver(x q_{\varepsilon'})
+=
+-c_\rho(r)\, a_J \sum_{k\in \mathcal K_J} \varepsilon'_k \eta_{J,k}(\omega),
+\]
+for a fixed smooth radial function $c_\rho$. Therefore, using \eqref{eq:bump-norms},
+\[
+\Bigl\|-\diver(q_{\varepsilon'}\nabla u_1)\Bigr\|_{C^\beta(D)}
+\lesssim
+a_J\, 2^{J(\beta+m/2)}
+=
+2^{-J(\alpha-\beta)}.
+\]
+Since $\beta<\alpha-1$, the coefficients $f_{\varepsilon'}$ are uniformly bounded in $C^{1+\beta}$, and the Schauder estimate for divergence-form equations (after rewriting in non-divergence form) gives
+\begin{equation}\label{eq:z-small}
+\|z_{\varepsilon'}\|_{C^{2+\beta}(D)}
+\lesssim
+2^{-J(\alpha-\beta)}.
+\end{equation}
+In particular,
+\[
+\|\nabla z_{\varepsilon'}\|_{L^\infty(D)}
+\lesssim
+2^{-J(\alpha-\beta)}.
+\]
+
+Now let
+\[
+w:=u_{f_\varepsilon}-u_{f_{\varepsilon'}}.
+\]
+Subtracting the equations for $u_{f_\varepsilon}$ and $u_{f_{\varepsilon'}}$ yields
+\[
+\diver(f_\varepsilon\nabla w)=-\diver(h\nabla u_{f_{\varepsilon'}}),\qquad w|_{\partial D}=0.
+\]
+Decompose the source as
+\[
+-\diver(h\nabla u_{f_{\varepsilon'}})
+=
+-\diver(h\nabla u_1)-\diver(h\nabla z_{\varepsilon'})
+=:g_1+g_2.
+\]
+
+For $g_1$, since $\nabla u_1=x/d$ and $h=\pm 2a_J\rho(r)\eta_{J,k_0}(\omega)$,
+\[
+g_1=\pm 2a_J c_\rho(r)\eta_{J,k_0}(\omega),
+\]
+hence by \eqref{eq:bump-norms},
+\[
+\|g_1\|_{H^{-2}(D)}\lesssim a_J\, 2^{-2J}.
+\]
+
+For $g_2$, using duality with $H_0^2(D)$ and \eqref{eq:z-small},
+\[
+\|g_2\|_{H^{-2}(D)}
+\lesssim
+\|\nabla z_{\varepsilon'}\|_{L^\infty(D)}\, \|h\|_{H^{-1}(D)}
+\lesssim
+2^{-J(\alpha-\beta)}\, a_J\, 2^{-J}.
+\]
+Because $\alpha-\beta>1$,
+\[
+2^{-J(\alpha-\beta)}\, 2^{-J}\lesssim 2^{-2J},
+\]
+so
+\[
+\|g_2\|_{H^{-2}(D)}\lesssim a_J\, 2^{-2J}.
+\]
+
+Therefore
+\[
+\|g_1+g_2\|_{H^{-2}(D)}\lesssim a_J\, 2^{-2J}.
+\]
+Uniform elliptic regularity in negative Sobolev scale gives
+\[
+\|w\|_{L^2(D)}
+\lesssim
+\|g_1+g_2\|_{H^{-2}(D)}
+\lesssim
+a_J\, 2^{-2J}.
+\]
+The Kullback formula for Gaussian white noise,
+\[
+\KL(P_f^{(n)},P_g^{(n)})=\frac n2 \|u_f-u_g\|_{L^2(D)}^2,
+\]
+is standard.
+\end{proof}
+
+\subsection*{Assouad lower bound}
+
+We now conclude the lower bound.
+
+\begin{proposition}\label{prop:lower}
+There exists $c>0$ such that for all sufficiently large $n$,
+\[
+\inf_{\hat f_n}\sup_{f_0\in \mathcal F(\alpha,r)}
+\E_{f_0}\|\hat f_n-f_0\|_{L^2(D)}^2
+\ge
+c\, n^{-\,\frac{2\alpha}{2\alpha+d+3}}.
+\]
+\end{proposition}
+
+\begin{proof}
+Choose $J=J_n$ so that
+\[
+2^J\asymp n^{1/(2\alpha+d+3)}.
+\]
+Since
+\[
+a_J^2
+=
+\gamma^2 2^{-2J(\alpha+(d-1)/2)},
+\]
+Lemma~\ref{lem:neighbor-bound} implies
+\[
+\KL(P_{f_\varepsilon}^{(n)},P_{f_{\varepsilon'}}^{(n)})
+\lesssim
+n\, a_J^2\, 2^{-4J}
+=
+n\, 2^{-J(2\alpha+d+3)}
+\lesssim 1
+\]
+uniformly over all Hamming neighbours. Therefore the Hellinger affinities of neighbours are bounded below by a positive constant depending only on $(d,\alpha,r)$; see Tsybakov \cite[Sec.~2.7]{Tsybakov}.
+
+Applying Assouad's lemma (ibid.) to the family $\{f_\varepsilon\}_{\varepsilon\in\{-1,1\}^{M_J}}$, and using Lemma~\ref{lem:family},
+\[
+\inf_{\hat f_n}\sup_{\varepsilon}
+\E_{f_\varepsilon}\|\hat f_n-f_\varepsilon\|_2^2
+\gtrsim
+M_J a_J^2.
+\]
+Now
+\[
+M_J a_J^2
+\asymp
+2^{J(d-1)} \, 2^{-2J(\alpha+(d-1)/2)}
+=
+2^{-2\alpha J}
+\asymp
+n^{-\,\frac{2\alpha}{2\alpha+d+3}}.
+\]
+Since $\{f_\varepsilon\}\subset \mathcal F(\alpha,r)$, the stated lower bound follows.
+\end{proof}
+
+\section{Proof of Theorem \ref{thm:main}}
+
+Combine Proposition~\ref{prop:upper-nonlinear} and Proposition~\ref{prop:lower}. This yields
+\[
+c\, n^{-\,\frac{2\alpha}{2\alpha+d+3}}
+\le
+\inf_{\hat f_n}\sup_{f_0\in \mathcal F(\alpha,r)}
+\E_{f_0}\|\hat f_n-f_0\|_{L^2(D)}^2
+\le
+C\,(\log n)^\kappa\, n^{-\,\frac{2\alpha}{2\alpha+d+3}},
+\]
+which is exactly the claim.
+\qed
+
+\begin{thebibliography}{99}
+
+\bibitem{BCD}
+H.~Bahouri, J.-Y.~Chemin and R.~Danchin,
+\emph{Fourier Analysis and Nonlinear Partial Differential Equations},
+Grundlehren der Mathematischen Wissenschaften 343, Springer, 2011.
+
+\bibitem{CDV}
+A.~Cohen, I.~Daubechies and P.~Vial,
+Wavelets on the interval and fast wavelet transforms,
+\emph{Appl. Comput. Harmon. Anal.} \textbf{1} (1993), 54--81.
+
+\bibitem{Donoho95}
+D.~L.~Donoho,
+Nonlinear solution of linear inverse problems by wavelet-vaguelette decomposition,
+\emph{Appl. Comput. Harmon. Anal.} \textbf{2} (1995), 101--126.
+
+\bibitem{GT}
+D.~Gilbarg and N.~S.~Trudinger,
+\emph{Elliptic Partial Differential Equations of Second Order},
+2nd ed., Springer, 1983.
+
+\bibitem{Grubb}
+G.~Grubb,
+\emph{Functional Calculus of Pseudodifferential Boundary Problems},
+2nd ed., Birkh\"auser, 1996/2009.
+
+\bibitem{McLean}
+W.~McLean,
+\emph{Strongly Elliptic Systems and Boundary Integral Equations},
+Cambridge University Press, 2000.
+
+\bibitem{Meyer}
+Y.~Meyer,
+\emph{Wavelets and Operators},
+Cambridge Studies in Advanced Mathematics 37, Cambridge University Press, 1992.
+
+\bibitem{Triebel}
+H.~Triebel,
+\emph{Theory of Function Spaces},
+Birkh\"auser, 1983.
+
+\bibitem{Tsybakov}
+A.~B.~Tsybakov,
+\emph{Introduction to Nonparametric Estimation},
+Springer, 2009.
+
+\end{thebibliography}
+
+\end{document}
+```

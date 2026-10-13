@@ -1,0 +1,181 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\title{Prime Summands of Surgeries on L--Space Knots}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We prove that every closed 3--manifold obtained by Dehn surgery on an
+L--space knot in \(S^3\) has at most two prime summands.  The key input is
+Greene's theorem that the cabling conjecture holds for knots admitting
+L--space surgeries.
+\end{abstract}
+
+\section*{Conventions}
+
+All manifolds are compact, connected, and orientable.  For a knot
+\(K \subset S^3\) and a slope \(r \in \mathbb Q \cup \{\infty\}\), write
+\(S^3_r(K)\) for the result of \(r\)-surgery on \(K\).  We write slopes using
+the meridian--longitude convention: \(a/b\) denotes the class
+\(a\mu_K+b\lambda_K\), with \(\gcd(a,b)=1\).
+
+By a prime summand we mean a non-\(S^3\) factor in the Kneser--Milnor prime
+decomposition.  Thus \(S^3\)-summands are ignored, as usual.
+
+An L--space knot means a knot in \(S^3\) admitting a nontrivial surgery to an
+L--space.  This convention is invariant under mirroring.
+
+\section*{Standard inputs}
+
+We use the following two classical facts.
+
+\begin{lemma}[Gordon--Luecke]\label{lem:nonintegral}
+Let \(J \subset S^3\) be a knot.  If \(r \in \mathbb Q\) is nonintegral, then
+\(S^3_r(J)\) is irreducible, except possibly when \(J\) is the unknot, in which
+case \(S^3_r(J)\) is a lens space and is again irreducible unless it is
+\(S^3\).
+\end{lemma}
+
+\begin{proof}
+For nontrivial \(J\), this is precisely the theorem of Gordon--Luecke that a
+reducible surgery on a knot in \(S^3\) must have integral slope
+\cite[Theorem~1]{GL}.  For the unknot, nonzero surgeries are lens spaces; lens
+spaces are irreducible except for \(L(1,q)\cong S^3\).
+\end{proof}
+
+\begin{lemma}\label{lem:lens-prime}
+If \(p>1\), then every lens space \(L(p,q)\) is prime.
+\end{lemma}
+
+\begin{proof}
+Lens spaces are irreducible; see, for example, Hempel
+\cite[Chapter~2]{Hempel}.  Since \(L(p,q)\not\cong S^3\) for \(p>1\), an
+irreducible lens space is prime.
+\end{proof}
+
+The deep theorem we need is Greene's proof of the cabling conjecture for
+L--space knots.
+
+\begin{theorem}[Greene: cabling conjecture for L--space knots]
+\label{thm:greene}
+Let \(K \subset S^3\) be a nontrivial knot admitting an L--space surgery.  If
+some Dehn surgery on \(K\) is reducible, then \(K\) is a cable knot and the
+reducing slope is the cabling slope.  Equivalently, for some knot
+\(J \subset S^3\) and coprime integers \(p,q\) with \(p>1\),
+\[
+K = J_{p,q}
+\]
+is the \((p,q)\)-cable of \(J\), and the reducible surgery slope is \(pq\).
+\end{theorem}
+
+\begin{proof}[Reference]
+This is Greene's theorem that the cabling conjecture holds for knots admitting
+L--space surgeries; see Greene \cite[Main Theorem and its cabling-conjecture
+corollary]{Greene}.  Torus knots are included by allowing the companion \(J\)
+to be the unknot.
+\end{proof}
+
+We also recall the standard surgery formula for cables.
+
+\begin{lemma}[Cable surgery formula]\label{lem:cable}
+Let \(J \subset S^3\) be a knot and let \(J_{p,q}\) be its \((p,q)\)-cable,
+where \(p>1\) and \(\gcd(p,q)=1\).  With the usual convention that \(p\) is the
+winding number, the cabling slope is \(pq\), and
+\[
+S^3_{pq}(J_{p,q}) \cong L(p,q) \# S^3_{q/p}(J).
+\]
+\end{lemma}
+
+\begin{proof}
+This is the classical cable-surgery calculation; see Gordon
+\cite{Gor83}.  Briefly, let \(V=\nu(J)\).  The cable \(J_{p,q}\) lies on
+\(\partial V\) as a curve representing \(p\lambda_J+q\mu_J\).  The cabling
+annulus has boundary slope \(pq\) on \(\partial \nu(J_{p,q})\).  After
+\(pq\)-surgery this annulus caps off to a separating \(2\)-sphere.  One side is
+the result of attaching a 2--handle to the solid torus \(V\) along a
+\((p,q)\)-curve, hence is \(L(p,q)\) with a 3--ball removed.  The other side is
+the exterior of \(J\) filled so that the meridian of the attached solid torus
+is \(q\mu_J+p\lambda_J\), namely \(q/p\)-surgery on \(J\).  Thus the filled
+manifold is
+\[
+L(p,q)\# S^3_{q/p}(J).
+\]
+\end{proof}
+
+\section*{Main result}
+
+\begin{theorem}
+Let \(K \subset S^3\) be an L--space knot.  For every slope
+\(r \in \mathbb Q \cup \{\infty\}\), the manifold \(S^3_r(K)\) has at most two
+prime summands.
+\end{theorem}
+
+\begin{proof}
+If \(K\) is the unknot, then every nonzero surgery is a lens space, \(0\)-surgery
+is \(S^1 \times S^2\), and \(\infty\)-surgery is \(S^3\).  Each has at most one
+prime summand.
+
+Assume now that \(K\) is nontrivial.  Let
+\[
+M = S^3_r(K).
+\]
+If \(M\) is prime, there is nothing to prove.  Suppose therefore that \(M\) is
+not prime.  Then \(M\) is reducible, so by Theorem~\ref{thm:greene}, \(K\) is a
+\((p,q)\)-cable \(J_{p,q}\) of some knot \(J\), with \(p>1\), and the surgery
+slope is the cabling slope \(r=pq\).  Lemma~\ref{lem:cable} gives
+\[
+M \cong L(p,q) \# S^3_{q/p}(J).
+\]
+
+The first factor \(L(p,q)\) is prime by Lemma~\ref{lem:lens-prime}.  Since
+\(\gcd(p,q)=1\) and \(p>1\), the slope \(q/p\) is nonintegral.  Hence
+\(S^3_{q/p}(J)\) is irreducible by Lemma~\ref{lem:nonintegral}, except in the
+inessential case where it is \(S^3\).  Therefore the displayed connected-sum
+decomposition has at most two non-\(S^3\) prime factors.  By the
+Kneser--Milnor uniqueness theorem for prime decompositions \cite{Milnor},
+\(M\) has at most two prime summands.
+\end{proof}
+
+\begin{thebibliography}{9}
+
+\bibitem{GL}
+C.~McA. Gordon and J.~Luecke,
+\emph{Reducible manifolds and Dehn surgery},
+Topology \textbf{35} (1996), no.~2, 385--409.
+
+\bibitem{Gor83}
+C.~McA. Gordon,
+\emph{Dehn surgery and satellite knots},
+Trans. Amer. Math. Soc. \textbf{275} (1983), no.~2, 687--708.
+
+\bibitem{Greene}
+J.~E. Greene,
+\emph{L-space surgeries, genus bounds, and the cabling conjecture},
+J. Differential Geom. \textbf{100} (2015), no.~3, 491--506.
+
+\bibitem{Hempel}
+J.~Hempel,
+\emph{3-Manifolds},
+Annals of Mathematics Studies, No.~86,
+Princeton University Press, Princeton, NJ, 1976.
+
+\bibitem{Milnor}
+J.~Milnor,
+\emph{A unique decomposition theorem for 3-manifolds},
+Amer. J. Math. \textbf{84} (1962), 1--7.
+
+\end{thebibliography}
+
+\end{document}

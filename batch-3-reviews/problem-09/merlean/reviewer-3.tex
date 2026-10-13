@@ -1,0 +1,493 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\M}{\mathcal M}
+\newcommand{\Mb}{\overline{\mathcal M}}
+\newcommand{\C}{\mathbb C}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\cl}[1]{\overline{#1}}
+\DeclareMathOperator{\pr}{pr}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{question}[theorem]{Question}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\fptitle}{Review of Problem 9 -- MerLean}
+\newcommand{\reviewtag}{Reviewer 3}
+\usepackage{fp-review}
+
+\begin{document}
+\maketitle
+
+\section{Review}
+The solution is an acknowledged partial result, giving a solution under four sets of additional hypotheses (Theorem 3.2). This includes the case when boundary strata have at least two nodes, assuming a technical algebraicity condition (A).
+We cannot find any blatant mathematical errors.
+However, the additional hypotheses are not shown to follow from the original assumptions, and the proofs do not use the total geodesicity of the central fiber to bridge this gap.
+However, the solution does seem to use hypotheses (i) and (ii) from the original problem as intended, as in Lemma 6.1 and Proposition 4.2, respectively.
+
+The exposition is generally clear on what is a partial result and what is unresolved.
+However, it would take considerable effort to determine whether its approach can be extended to a full solution.
+As for references, we find the clutching construction of Edidin–Fulghesu to be nonstandard for this field.
+More serious is the missing reference to Benirschke–Dozier–Rached, contemporaneous work to Arana-Herrera–Wright.
+
+\paragraph{Correctness.}
+\begin{itemize}
+	\item  1: essentially flawless mathematical argument
+	\item  0.5: minor errors that are easily corrected
+	\item  0: blank solution, or acknowledged partial result
+	\item  $-0.5$: major errors
+	\item  $-1$: proposed proof makes no progress towards the result.
+\end{itemize}
+Note that points should be docked for wrong statements/ solutions.
+
+\noindent Score: 0
+
+\paragraph{Exposition.}
+\begin{itemize}
+	\item  1: well-written and clear solution.
+	\item  0: argument that is possible to follow with serious effort
+	\item  $-1$: very poor exposition
+\end{itemize}
+
+\noindent Score: 0
+
+\paragraph{Attributions.}
+\begin{itemize}
+	\item  1: solutions contains fully appropriate attributions
+		to related work and theorems being used.
+	\item  0: moderate issues with missing attributions or hallucinated references
+	\item  $-1$: blatant plagiarism or hallucinations
+\end{itemize}
+
+\noindent Score: $0$
+
+\newpage
+\section{Submission with inline comments}
+
+
+\begin{abstract}
+We consider deformations of a smooth totally geodesic surface in the moduli space of curves, with smoothly trivial intersections with every boundary stratum and a compatibility condition on incidences in fixed open sets. The question is whether a pointed component that is constant along a boundary curve must also be constant in the deformation parameter. We prove that, if this selected factor changes, compatibility forces the whole boundary curve into the closures of all larger incident boundary strata. If the compactified fibers are algebraic surfaces with no component contained in the boundary, this proves the desired constancy for strata with at least two nodes. A second criterion proves constancy whenever the boundary curves have a common stable limit; isolated-point conditions imply this criterion in several cases. We also analyze the ambiguity at a two-node separating chain and give examples delimiting compactification and lifting arguments. The original assertion, without the additional conditions in these criteria, remains unresolved here.
+\end{abstract}
+
+\section{The question and the scope of the results}
+
+Let $g\geq2$. We work over $\C$, with the coarse moduli space $\M_g$ of smooth genus-$g$ curves and its Deligne--Mumford compactification
+\[
+ X=\Mb_g,\qquad D=X\setminus\M_g.
+\]
+A stable curve is a connected projective nodal curve with finite automorphism group. Its dual graph has one vertex for each irreducible component, weighted by the genus of its normalization, and one edge for each node. A loop contributes twice to the valence of its vertex. Stability means $2g_v-2+n_v>0$ at every vertex, where $n_v$ is its valence. The stratum $\Delta_G$ parametrizes curves with dual graph $G$. Write $e(G)$ for the number of edges. If $G$ is obtained from $K$ by contracting edges, then $\Delta_K$ lies in the closure of $\Delta_G$. All closures below are in the usual complex topology of $X$, unless another ambient space is specified.
+
+We retain the following deformation problem. Let $\Delta\subset\C$ be the unit disk, and let $V_t\subset\M_g$ be a holomorphic, smoothly trivial family of embedded smooth complex surfaces. More precisely, the family is represented by a complex submanifold $\mathcal V\subset\M_g\times\Delta$ whose projection to $\Delta$ has fibers $V_t$, with a smooth trivialization as a family of submanifolds. The central surface $V_0$ is totally geodesic for the Teichm\"uller metric. On marked curves, this metric is one half of the logarithm of the least quasiconformal dilatation in the marking class; the metric on moduli space is its quotient metric. No total geodesicity is assumed for $t\ne0$.
+
+Set
+\[
+ A_t=\cl{V_t},\qquad X_t(G)=A_t\cap\Delta_G.
+\]
+\review{I would not have introduced the notation $A_t$.}
+The boundary assumptions are as follows.
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item\label{hyp:trivial} For every boundary stratum $\Delta_G$, the intersections $X_t(G)$ form a smoothly trivial family. In particular, points can be followed continuously in the ambient stratum under a trivialization.
+\item\label{hyp:compat} For every pair of distinct boundary strata with $\Delta_K\subset\cl{\Delta_G}$ and every fixed open set $U\subset X$, the equality
+\begin{equation}\label{eq:central-incidence}
+ \cl{X_0(G)}\cap\Delta_K\cap U=X_0(K)\cap U
+\end{equation}
+implies, for every $t\in\Delta$,
+\begin{equation}\label{eq:deformed-incidence}
+ \cl{X_t(G)}\cap\Delta_K\cap U=X_t(K)\cap U.
+\end{equation}
+\end{enumerate}
+The open set in these two equations is the same; it does not move with $t$. Smooth triviality does not mean holomorphic triviality. We do not assume that the union of the $A_t$ is a proper holomorphic family.
+
+For $2a-2+b>0$, let $\M_{a,b}$ denote the moduli space of smooth genus-$a$ curves with $b$ distinct ordered marked points. Fix a boundary stratum which, as in the question, is an actual product without a further finite quotient:
+\begin{equation}\label{eq:product}
+ \Delta_\Gamma=\prod_{j=1}^k\M_{g_j,n_j}.
+\end{equation}
+Every attaching point is retained among the $n_j$ markings. Put $B_t=X_t(\Gamma)$ and suppose
+\begin{equation}\label{eq:singleton}
+ \dim_{\C}B_t=1,\qquad \pi_i(B_t)=\{Y_t\}
+ \quad(t\in\Delta)
+\end{equation}
+for one fixed index $i$, where $\pi_i$ is the $i$th projection in \eqref{eq:product}.
+
+\begin{question}\label{q:original}
+Under precisely these hypotheses, must $Y_t=Y_0$ for every $t\in\Delta$?
+\end{question}
+
+The main difficulty is to relate the central geodesic geometry to the deformed boundary. Compatibility alone gives strong incidence restrictions, but it does not directly identify pointed components. Our results separate this restriction from two additional geometric properties that make it decisive.
+
+For clarity, the algebraicity condition used below is always stated explicitly:
+\begin{equation}\tag{A}\label{hyp:algebraic}
+ \begin{gathered}
+ \text{For every }t,\ A_t\text{ is a reduced pure two-dimensional algebraic subset of }X,\\
+ \text{and no irreducible component of }A_t\text{ is contained in }D.
+ \end{gathered}
+\end{equation}
+\review{This condition (A) is unnecessarily algebro-geometric for the problem at hand.}
+Here pure means that every irreducible component has dimension two. If every $V_t$ is understood to be a relatively closed algebraic surface in $\M_g$, condition \eqref{hyp:algebraic} follows by taking its algebraic closure. We do not infer it merely from the embedded holomorphic-family description.
+
+\begin{theorem}\label{thm:main}
+Assume the setup of Question~\ref{q:original}. Each of the following additional conditions suffices to give $Y_t=Y_0$ for all $t$.
+\begin{enumerate}[label=(\alph*),leftmargin=*]
+\item\label{main:edges} Condition \eqref{hyp:algebraic} holds and $e(\Gamma)\geq2$.
+\item\label{main:common} There is a point $p\in X$ belonging to $\cl{B_t}$ for every $t$.
+\item\label{main:finite} There are boundary strata $\Delta_H,\Delta_K$ with $\Delta_K$ on the boundary of both $\Delta_H$ and $\Delta_\Gamma$, such that $X_0(H)$ is finite and some $p\in\cl{B_0}\cap\Delta_K$ is isolated in the whole set $X_0(K)$.
+\item\label{main:deep} Condition \eqref{hyp:algebraic} holds, and there are a stratum $\Delta_K$ on the boundary of $\Delta_\Gamma$, with $e(K)\geq3$, and a point $p\in\cl{B_0}\cap\Delta_K$ isolated in the whole set $X_0(K)$.
+\end{enumerate}
+These implications do not require the total geodesicity of $V_0$.
+\end{theorem}
+\review{None of the implications use that $V_0$ is totally geodesic, which is the key assumption.}
+
+The algebraic argument is proved in Section~\ref{sec:algebraic}; the common-point and isolated-point criteria are proved in Section~\ref{sec:common}. In particular, the theorem does not assert that the listed additional conditions always hold. A one-factor product cannot satisfy \eqref{eq:singleton}, since its only projection is the identity. If the selected factor is $\M_{0,3}$, it is a point and the question is immediate. Under \eqref{hyp:algebraic}, the remaining nontrivial graph has one separating edge, joining two positive-genus vertices.
+
+\paragraph{Relation to earlier work.}
+Wright's algebraicity theorem concerns full totally geodesic submanifolds of Teichm\"uller space, the space of marked Riemann surfaces, of complex dimension greater than one \cite[Theorem~1.1]{Wright}. In that convention, the submanifold contains the entire Teichm\"uller disk through any two of its points; a disk is a holomorphic isometric image of the hyperbolic disk. The theorem gives central algebraicity once that global marked object has been identified. It does not give algebraicity of the deformed fibers.
+
+For an algebraic totally geodesic submanifold, Arana-Herrera and Wright describe its marked boundary intersections as semisimple \cite[Theorem~1.3]{AW}: they are products of factors whose coordinate projections are isometric embeddings. This is a theorem about the central boundary. Applying it to the present deformation would still require compatible marked descriptions of the relevant fibers.
+
+McMullen's rigidity theorem for Teichm\"uller curves uses source curves of finite hyperbolic volume and the contraction of holomorphic maps \cite[Theorem~1 and its proof]{McMullen}. 
+\review{This proof crucially does not leverage McMullen's result.}
+Its proof also records the local lifting condition when invoking finiteness of maps to moduli space. A smooth trivialization of coarse boundary subsets supplies neither such holomorphic source maps nor their lifts. Our argument using finite clutching, with the gluing morphisms of \cite[Definition~4.1 and Proposition~4.4]{EF}, avoids these requirements once a common stable limit is known.
+
+\section{Consequences of compatibility}\label{sec:compat}
+
+The useful open set is the complement of the entire central closure. It makes every central incidence equality vacuous while preserving the full force of assumption~\ref{hyp:compat} on the deformed fibers.
+
+\begin{lemma}\label{lem:outside}
+Let $U_0=X\setminus A_0$. For every incident pair of distinct boundary strata $\Delta_G,\Delta_K$,
+\begin{equation}\label{eq:outside}
+ X_t(K)\cap U_0=\cl{X_t(G)}\cap\Delta_K\cap U_0.
+\end{equation}
+Consequently, if $Y_t\ne Y_0$, then for every boundary stratum $\Delta_G$ having $\Delta_\Gamma$ on its boundary,
+\begin{equation}\label{eq:moving}
+ B_t\subset\cl{X_t(G)}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Since $A_0$ is closed and contains $X_0(G)$, it contains $\cl{X_0(G)}$. Both sides of \eqref{eq:central-incidence} are therefore empty on $U_0$. Compatibility proves \eqref{eq:outside}.
+
+If $b\in B_t\cap A_0$, then $b\in A_0\cap\Delta_\Gamma=B_0$. Its $i$th coordinate is simultaneously $Y_t$ and $Y_0$. Thus $Y_t\ne Y_0$ implies $B_t\subset U_0$. Apply \eqref{eq:outside} with $K=\Gamma$.
+\end{proof}
+
+One can also express the exact content of the open-set quantifier without referring to a choice of neighborhood. This will clarify why compatibility is not automatically a statement about individual normalized branches.
+
+\begin{proposition}\label{prop:defect}
+For an incident pair $(G,K)$ define
+\[
+ F_t=\cl{X_t(G)}\cap\Delta_K,\qquad
+ E_t=X_t(K)\setminus F_t.
+\]
+For this pair, assumption~\ref{hyp:compat} is equivalent to
+\begin{equation}\label{eq:defect}
+ E_t\subset\cl{E_0}\qquad(t\in\Delta).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The inclusion $F_t\subset X_t(K)$ follows from closedness of $A_t$. Thus the incidence equality on $U$ says exactly that $U\cap E_t=\varnothing$. If compatibility holds, use $U=X\setminus\cl{E_0}$ to obtain \eqref{eq:defect}. Conversely, an open set disjoint from $E_0$ is disjoint from its closure: any point of that closure has every open neighborhood meeting $E_0$. Equation~\eqref{eq:defect} now gives the required implication for every $U$.
+\end{proof}
+
+\begin{remark}\label{rem:branches}
+If $q:X'\to X$ is continuous and open, then for every subset $S\subset X$,
+\[
+ \cl{q^{-1}(S)}=q^{-1}(\cl S).
+\]
+Continuity gives one inclusion. For the other, the image of any neighborhood of a point over $\cl S$ is an open neighborhood meeting $S$. Finite-group quotient maps are open, so the compatibility condition passes to full preimages in such charts. This observation does not select one branch of a normalization.
+
+Finiteness alone is insufficient. The finite normalization
+\[
+ \nu:\C\longrightarrow\{y^2=x^2(x+1)\},\qquad
+ \nu(s)=(s^2-1,s(s^2-1))
+\]
+identifies $1$ and $-1$. For $0<\varepsilon<1$, let $S$ be the image of $0<|s-1|<\varepsilon$. The point $-1$ lies in $\nu^{-1}(\cl S)$ but not in $\cl{\nu^{-1}(S)}$. Indeed $\nu$ is injective off its two preimages of the node, and the punctured disk in question avoids both. Thus a compatibility assertion for a coarse stratum cannot be assigned to a chosen gluing branch merely because the gluing map is finite.
+\end{remark}
+
+\section{Algebraic fibers and strata with several nodes}\label{sec:algebraic}
+
+The dimension of the surfaces enters through a simple finiteness fact. A boundary intersection is at most a curve, and the points missing from its closure are finite.
+
+\begin{lemma}\label{lem:frontier}
+Suppose $A\subset X$ is a pure two-dimensional algebraic subset with no irreducible component contained in $D$. For every boundary stratum $\Delta_G$, put $Z=A\cap\Delta_G$. Then $\dim Z\leq1$, and
+\[
+ \cl Z\setminus Z
+\]
+is finite. In particular, $\cl Z\cap\Delta_K$ is finite for every stratum $\Delta_K$ disjoint from $\Delta_G$.
+\end{lemma}
+
+\begin{proof}
+On each irreducible surface component of $A$, intersection with the closed algebraic set $D$ is proper, hence has dimension at most one. The set $Z$ is locally closed algebraic, so it is open and dense in its algebraic closure. For a locally closed complex algebraic set, this closure agrees with its closure in the complex topology: a nonempty Zariski open subset of each irreducible component is complex-topologically dense.
+
+The closure has finitely many components. On each curve component its complement has dimension zero and is finite. A zero-dimensional component of the closure cannot be omitted from $Z$, by density. This proves the first finiteness assertion. Since $\Delta_K$ misses $Z$, the last intersection is contained in $\cl Z\setminus Z$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}(\ref{main:edges})]
+Contract one edge of $\Gamma$. Since $e(\Gamma)\geq2$, the resulting graph $G$ still has an edge and defines a boundary stratum. Suppose $Y_t\ne Y_0$. Lemma~\ref{lem:outside} gives
+\[
+ B_t\subset\cl{X_t(G)}\cap\Delta_\Gamma.
+\]
+By Lemma~\ref{lem:frontier} and \eqref{hyp:algebraic}, the right side is finite. This contradicts $\dim B_t=1$. The argument applies to every parameter $t$.
+\end{proof}
+
+For one edge, the nonseparating graph has one vertex and hence one pointed factor before any graph quotient. It is incompatible with \eqref{eq:singleton} in the product setting. A separating edge has two vertices, and stability in the unmarked ambient moduli space forces both genera to be positive. Thus the remaining product stratum is
+\begin{equation}\label{eq:separating}
+ \Delta_\Gamma=\M_{h,1}\times\M_{k,1},\qquad h,k\geq1.
+\end{equation}
+In the original unlabelled moduli space, the stipulated absence of a factor-swapping quotient excludes $h=k$.
+
+The same finiteness argument controls deeper strata even without the singleton hypothesis.
+
+\begin{proposition}\label{prop:depth}
+Assume compatibility and \eqref{hyp:algebraic}. If $e(K)\geq2$, every one-dimensional irreducible component of $X_t(K)$ is contained in $A_0$. If $e(K)\geq3$, then
+\begin{equation}\label{eq:depth}
+ X_t(K)\subset X_0(K)\qquad(t\in\Delta).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Contract one edge of $K$ to obtain a boundary graph $H$. By \eqref{eq:outside} and Lemma~\ref{lem:frontier}, the set $X_t(K)\setminus A_0$ is finite. If a curve component were not contained in $A_0$, its complement of $A_0$ would be a nonempty open subset of an algebraic curve, hence infinite. This proves the first assertion.
+
+Now suppose $e(K)\geq3$, so $e(H)\geq2$. Every curve component of $X_t(H)$ is contained in $A_0$ by the first assertion, and so is its closure. The remaining irreducible components are finitely many points of $\Delta_H$. Their closures are themselves and miss $\Delta_K$. It follows that
+\[
+ \cl{X_t(H)}\cap\Delta_K\subset A_0.
+\]
+Equation~\eqref{eq:outside} then makes $X_t(K)\setminus A_0$ empty. Intersecting with $\Delta_K$ gives \eqref{eq:depth}.
+\end{proof}
+
+The distinction between two and three edges is substantive: the first assertion allows isolated points of a two-node stratum to move outside $A_0$. Section~\ref{sec:two} describes one constraint on that motion.
+
+\section{Common stable limits and isolated points}\label{sec:common}
+
+A common point in the compactification need not have a unique gluing presentation. The finite number of possible presentations is enough to fix a continuously varying factor.
+
+\begin{lemma}\label{lem:continuous}
+The function $t\mapsto Y_t$ is continuous on $\Delta$.
+\end{lemma}
+
+\begin{proof}
+Every $B_t$ is nonempty. A local continuous section $b(t)\in B_t$, obtained from assumption~\ref{hyp:trivial}, satisfies $Y_t=\pi_i(b(t))$. These local formulas establish continuity at every parameter.
+\end{proof}
+
+Label the vertices and half-edges of $\Gamma$ consistently with \eqref{eq:product}. Write $\Mb_{a,b}$ for the compactification by stable curves with $b$ distinct ordered smooth marked points. Gluing the paired marked points defines the compactified clutching map
+\begin{equation}\label{eq:clutch}
+ \nu_\Gamma:P_\Gamma=\prod_{j=1}^k\Mb_{g_j,n_j}\longrightarrow X.
+\end{equation}
+It is continuous, its source is compact, and its fibers on coarse points are finite. To see the last assertion directly, fix a stable curve $C$. A preimage chooses a subset of its finitely many nodes to be the gluing nodes, labels their branches by half-edges of $\Gamma$, and assigns the connected pieces of the partial normalization to the vertices. There are finitely many choices; each determines the pointed stable curves up to isomorphism. This also handles automorphisms and additional nodes on the factors. The algebraic gluing statement, in stack notation, is given in \cite[Definition~4.1, p.~175, and Proposition~4.4, p.~176]{EF}. We use only the stated coarse finiteness and compactness, not a claim of unique presentation at deeper strata.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}(\ref{main:common})]
+For each $t$, the subset
+\[
+ Q_t=\{(Z_1,\ldots,Z_k)\in P_\Gamma:Z_i=Y_t\}
+\]
+is compact. Its image under $\nu_\Gamma$ is closed in the Hausdorff space $X$ and contains $B_t$. It therefore contains the common point $p\in\cl{B_t}$. Consequently
+\begin{equation}\label{eq:finite-values}
+ Y_t\in\pr_i\bigl(\nu_\Gamma^{-1}(p)\bigr)\qquad(t\in\Delta).
+\end{equation}
+The right side is a fixed finite set. A continuous map from the connected disk to a finite subset of a Hausdorff space is constant. Apply Lemma~\ref{lem:continuous} and evaluate at $t=0$.
+\end{proof}
+
+We next give two ways to obtain the common point required above. Isolation must be in the whole stratum intersection, since a point isolated on one branch need not be isolated after the branches are identified.
+
+\begin{lemma}\label{lem:finite-ancestor}
+Suppose $\Delta_K$ lies on the boundary of $\Delta_H$ and $X_0(H)$ is finite, possibly empty. Then $X_t(K)\subset X_0(K)$ for every $t$.
+\end{lemma}
+
+\begin{proof}
+Smooth triviality makes every $X_t(H)$ finite. A finite subset of $X$ is closed, so its closure misses the disjoint stratum $\Delta_K$. Equation~\eqref{eq:outside} gives $X_t(K)\setminus A_0=\varnothing$.
+\end{proof}
+
+\begin{lemma}\label{lem:isolated}
+Suppose $X_t(K)\subset X_0(K)$ for all $t$, and $p$ is isolated in $X_0(K)$. Then $p\in X_t(K)$ for all $t$. If also $p\in\cl{B_0}$ and $\Delta_K$ lies on the boundary of $\Delta_\Gamma$, then $p\in\cl{B_t}$ for all $t$.
+\end{lemma}
+
+\begin{proof}
+Follow $p$ under a continuous trivialization of the family $X_t(K)$, starting at $t=0$. Its trajectory lies in the fixed set $X_0(K)$. The singleton $\{p\}$ is open there by isolation and closed by Hausdorffness, so the trajectory from a connected parameter disk cannot leave it.
+
+Choose an ambient open set $U$ such that $X_0(K)\cap U=\{p\}$. Because $\cl{B_0}\subset A_0$ and $p\in\cl{B_0}$, the central equality \eqref{eq:central-incidence} holds for $(\Gamma,K)$ on this $U$. Compatibility gives
+\[
+ \cl{B_t}\cap\Delta_K\cap U=X_t(K)\cap U.
+\]
+The right side contains $p$, proving the claim.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}(\ref{main:finite}) and (\ref{main:deep})]
+For (\ref{main:finite}), apply Lemma~\ref{lem:finite-ancestor}, then Lemma~\ref{lem:isolated}, and finally part~(\ref{main:common}). For (\ref{main:deep}), Proposition~\ref{prop:depth} supplies the containment needed in Lemma~\ref{lem:isolated}; the same common-point argument concludes the proof.
+\end{proof}
+
+These criteria allow other components of $X_0(K)$ to have positive dimension. They require only that the particular point used be isolated in the whole intersection. Conversely, a fixed positive-dimensional part of $X_0(K)$ does not by itself provide a common endpoint of the curves $B_t$.
+
+\section{Two-node separating chains}\label{sec:two}
+
+There is a graph ambiguity specific to two nodes. A chain with vertex genera $(h,r,h)$, where $h,r\geq1$, has two contractions with the same genus pair $(h,h+r)$. Thus an incidence stated only in terms of the coarse graph does not distinguish which node was smoothed. A local analytic argument nevertheless forces both contractions to occur when the two-node intersection is isolated.
+
+\begin{lemma}\label{lem:two-node}
+Let $q$ be a stable curve with exactly two nodes, of graph $K$. Let $A$ be a pure two-dimensional analytic subset near $q$, equal locally to the closure of its intersection with $\M_g$. Suppose $q$ is isolated in $A\cap\Delta_K$. For either chosen node of $q$, there is an analytic arc through $q$ in $A$ along which that node remains and the other node is smoothed, away from the endpoint. The choice is made in a local chart with the nodes labelled.
+\end{lemma}
+
+\begin{proof}
+Take a finite local deformation chart of $q$. Upstairs, smoothing the two nodes is described by coordinates $x_1,x_2$, with local curve equations $u_jv_j=x_j$; see the deformation description in \cite[proof of Proposition~3.7, p.~174]{EF}. Shrink the chart so that there are no other possible nodes.
+
+In the inverse image of $A$, choose a two-dimensional irreducible germ $W$ through the point over $q$ which is approached by interior points. Such a germ exists: lift a convergent sequence of interior points, use finiteness of the chart, and then the finite local irreducible decomposition. Neither $x_1$ nor $x_2$ vanishes identically on $W$.
+
+On the irreducible surface germ $W$, each $x_j$ is a nonzero holomorphic function vanishing at the distinguished point. The analytic principal ideal theorem gives a curve germ in $W\cap\{x_j=0\}$ through that point. The simultaneous zero set $W\cap\{x_1=x_2=0\}$ is zero-dimensional, since the finite chart maps it into the isolated intersection $A\cap\Delta_K$. The curve germ is therefore not contained in the other node hypersurface. Its normalization gives a disk parametrization on which the other coordinate is nonzero off the origin, after shrinking. The finite chart map cannot contract a curve. Its image is the required arc.
+\end{proof}
+
+\begin{proposition}\label{prop:outer}
+Assume \eqref{hyp:algebraic} and the hypotheses of Question~\ref{q:original}, with
+\[
+ \Delta_\Gamma=\M_{h,1}\times\M_{h+r,1},\qquad h,r\geq1,
+\]
+and with the first factor equal to $Y_t$ on all of $B_t$. Let $K$ be the chain of genera $(h,r,h)$. If $q\in X_t(K)\setminus A_0$, then both outer one-pointed components of $q$ are isomorphic to $Y_t$.
+\end{proposition}
+
+\begin{proof}
+The stratum $\Delta_K$ lies on the boundary of $\Delta_\Gamma$. By \eqref{eq:outside}, its intersection with $X_t(K)\setminus A_0$ is contained in $\cl{B_t}\setminus B_t$, which is finite by Lemma~\ref{lem:frontier}. Because $q\notin A_0$ and $A_0$ is closed, $q$ is isolated in the whole $X_t(K)$.
+
+Apply Lemma~\ref{lem:two-node} to $A_t$ at $q$. Each of the two arcs belongs off its endpoint to $B_t$: smoothing either node gives graph $\Gamma$. Along the first arc the remaining genus-$h$ component tends to one outer component of $q$; along the other arc it tends to the other. In the labelled chart these are continuous families of pointed curves. Each genus-$h$ factor is constantly $Y_t$ by hypothesis. Both limits are therefore $Y_t$. The argument remains valid if an automorphism of $q$ exchanges the two nodes, since the choices were made upstairs.
+\end{proof}
+
+The equality of the outer components does not fix their common value as $t$ varies. A fixed complementary endpoint would add exactly the missing information in this configuration.
+
+\begin{corollary}\label{cor:fixed-complement}
+In the setting of Proposition~\ref{prop:outer}, fix a two-pointed smooth genus-$r$ curve $(R,a,b)$ and a one-pointed smooth genus-$h$ curve $S$. For $Y\in\M_{h,1}$ let $q(Y)$ be the stable chain obtained by attaching $Y$ at $a$ and $S$ at $b$. Suppose
+\[
+ q(Y_t)\in\cl{B_t}\quad\text{for every }t,
+ \qquad
+ \{Y\in\M_{h,1}:q(Y)\in A_0\}\text{ is finite}.
+\]
+Then $Y_t=Y_0$ for all $t$.
+\end{corollary}
+
+\begin{proof}
+If $q(Y_t)\in A_0$, then $Y_t$ belongs to the displayed finite set. Otherwise Proposition~\ref{prop:outer} implies $Y_t=S$ as a pointed moduli class. Thus $Y_t$ lies in one fixed finite set for every $t$. Lemma~\ref{lem:continuous} proves constancy.
+\end{proof}
+
+Neither the existence of this fixed complementary endpoint nor the finiteness in the corollary is asserted for every original family.
+
+\section{Limits of compactification and lifting arguments}\label{sec:limits}
+
+The following two examples concern implications that could otherwise be used to supply missing hypotheses. They do not satisfy all the conditions of Question~\ref{q:original} and are not counterexamples to it.
+
+\subsection{Smoothly trivial strata need not form a proper compactified family}
+
+Let
+\[
+ \mathcal X=\PP^2\times\PP^1,\qquad
+ \mathcal D=(\{X=0\}\times\PP^1)\cup(\PP^2\times\{0,\infty\}),
+\]
+where $[X:Y:Z]$ are homogeneous coordinates on $\PP^2$. The interior has coordinates $(y,z,v)\in\C^2\times\C^*$, with $y=Y/X$ and $z=Z/X$. Consider the surfaces
+\begin{equation}\label{eq:line-conic}
+ W_t=\{y+t y^2+t z=0\}\times\C^*.
+\end{equation}
+They form a holomorphically trivial embedded family: a trivialization and its inverse in the curve coordinate are
+\[
+ (u,v,t)\longmapsto(tu,-u-t^2u^2,v,t),
+ \qquad u=-z-y^2.
+\]
+The equations verify the two compositions directly, including $t=0$.
+
+Let $L_t\subset\PP^2$ be the actual projective closure of the first factor in \eqref{eq:line-conic}. Then
+\[
+ L_0=\{Y=0\},\qquad
+ L_t=\{XY+tY^2+tXZ=0\}\quad(t\ne0).
+\]
+For $t\ne0$ the conic is smooth: its three partial derivatives are
+\[
+ Y+tZ,\qquad X+2tY,\qquad tX,
+\]
+and cannot vanish at a projective point. Every $L_t$ meets $\{X=0\}$ only at $p=[0:0:1]$.
+
+Stratify $\mathcal D$ by its three open divisor parts and the two intersections. The intersections of $\cl{W_t}=L_t\times\PP^1$ with these strata are respectively
+\[
+ \{p\}\times\C^*,\qquad
+ (L_t\setminus\{p\})\times\{0\},\qquad
+ (L_t\setminus\{p\})\times\{\infty\},
+\]
+and the two fixed points $(p,0),(p,\infty)$. The displayed trivialization trivializes the affine-curve intersections. All incident closures meet a smaller stratum in its entire listed intersection, for every $t$. Thus the analogues of both boundary hypotheses hold, including the condition on every fixed open set.
+
+Nevertheless, the union of the actual fiber closures is not proper over the parameter disk. Fix $[0:Y:Z]$ with $Y\ne0$ and put
+\[
+ X_t=-\frac{tY^2}{Y+tZ}.
+\]
+For sufficiently small $t\ne0$, $[X_t:Y:Z]\in L_t$, while its limit $[0:Y:Z]$ does not belong to $L_0$. Taking a fixed $v\in\C^*$ gives a sequence in the total union of actual closures with no limit there over $t=0$. A proper map would make the inverse image of a compact parameter disk compact, a contradiction. The limiting homogeneous equation $XY=0$ contains an extra line; it is not the actual central closure. Fiberwise algebraicity therefore does not remedy this inference.
+
+\subsection{A local obstruction to lifts with an unramified central source}
+
+Let $m\geq2$, and let the group $\mu_m$ of $m$th roots of unity act on a polydisk with coordinates $(z_1,z_2,w)$ by
+\[
+ (z_1,z_2,w)\longmapsto(z_1,z_2,\zeta w),\qquad\zeta\in\mu_m.
+\]
+Its coarse quotient has coordinates $(z_1,z_2,v)$ with $v=w^m$. In that quotient, the surfaces
+\begin{equation}\label{eq:quotient-family}
+ W_t=\{v=t(z_1-t)\}
+\end{equation}
+form a holomorphically trivial family on sufficiently small fixed polydisks; the inverse coordinates are $(z_1,z_2,t)$.
+
+\begin{proposition}\label{prop:no-lift}
+After any finite parameter base change $t=s^e$, the family \eqref{eq:quotient-family} has no local holomorphic lift to the covering polydisk from a smooth family of surfaces whose central map to $W_0$ is locally biholomorphic at a point over $z_1=z_2=0$.
+\end{proposition}
+
+\begin{proof}
+Suppose $\mathcal S\to\Delta_s$ is a holomorphic submersion of relative dimension two and maps to the base-changed family. Let $a\in\mathcal S$ lie over the specified central point. The central local biholomorphism implies that the pulled-back functions $(z_1,z_2,s)$ are local coordinates at $a$, by the holomorphic inverse function theorem. A lift would give a holomorphic function $w$ satisfying
+\[
+ w^m=s^e(z_1-s^e).
+\]
+In the convergent power-series ring in these local coordinates, $z_1-s^e$ defines a prime divisor distinct from $s=0$. The right side has order one along that divisor. The order of an $m$th power along any prime divisor is divisible by $m$, which is impossible. Any nonconstant finite base-change germ can be written as $t=s^e$ after a local coordinate change, so the assertion covers every such base change.
+\end{proof}
+
+There is a ramified lift, which explains why merely producing some finite source cover is insufficient. After $t=s^m$, set
+\[
+ z_1=u^m+s^m,\qquad w=su.
+\]
+This satisfies \eqref{eq:quotient-family}. On the central fiber its map is $(u,z_2)\mapsto(u^m,z_2)$, ramified along $u=0$. Its differential has a nontrivial kernel there, so it cannot be a central isometric immersion for a nondegenerate infinitesimal metric. This example is an elementary quotient calculation. It asserts neither a global deformation in $\M_g$ nor any boundary configuration of the original problem.
+
+\section{What remains to prove}
+
+The preceding results reduce the original question to concrete geometric obligations without resolving them. First, the finite-intersection arguments need algebraic compactified fibers, or another hypothesis giving the finiteness in Lemma~\ref{lem:frontier}. Under an algebraic interpretation of every $V_t$ this requirement is automatic. Under only the holomorphic submanifold description, no such extension has been established here. The example in Section~\ref{sec:limits} shows why smooth triviality of each stratum cannot simply be replaced by a proper family of the actual closures.
+
+Even when \eqref{hyp:algebraic} holds, the single separating-node case remains. A common stable limit would settle it by finite clutching. The isolated-point criteria give sufficient conditions for producing one, but their existence has not been proved for an arbitrary central totally geodesic surface. Isolation in one marked boundary branch is not the same as isolation in the whole coarse intersection; Remark~\ref{rem:branches} explains the elementary obstruction to that inference.
+
+Another possible route is to identify a fixed complementary projected curve and a fixed nodal endpoint, as in Corollary~\ref{cor:fixed-complement}. Using curve rigidity for this purpose requires actual pointed maps with controlled sources and lifts, rather than only smooth identifications of their coarse images. Proposition~\ref{prop:no-lift} rules out one automatic local lifting inference; it does not rule out additional restrictions coming from the global geodesic surface and its boundary. Establishing such a restriction, or proving a common-point criterion universally applicable, is the missing step in Question~\ref{q:original}.
+
+\begin{thebibliography}{9}
+
+\bibitem{AW}
+F.~Arana-Herrera and A.~Wright,
+\emph{The geometry of totally geodesic subvarieties of moduli spaces of Riemann surfaces},
+arXiv:2412.16330v2 (2025).
+\href{https://arxiv.org/abs/2412.16330v2}{arXiv version};
+\href{https://public.websites.umich.edu/~alexmw/tghhs.pdf}{author PDF}.
+
+\bibitem{EF}
+D.~Edidin and D.~Fulghesu,
+\emph{Normalization of the $1$-stratum of the moduli space of stable curves},
+Portugaliae Mathematica \textbf{69} (2012), 167--192.
+\href{https://doi.org/10.4171/PM/1912}{doi:10.4171/PM/1912}.
+
+\bibitem{McMullen}
+C.~T.~McMullen,
+\emph{Rigidity of Teichm\"uller curves},
+Mathematical Research Letters \textbf{16} (2009), 647--650.
+\href{https://doi.org/10.4310/MRL.2009.v16.n4.a7}{doi:10.4310/MRL.2009.v16.n4.a7}.
+Author version dated 11 September 2008,
+\href{https://people.math.harvard.edu/~ctm/papers/home/text/papers/rigidity/rigidity.pdf}{pp.~1--2}.
+
+\bibitem{Wright}
+A.~Wright,
+\emph{Totally geodesic submanifolds of Teichm\"uller space},
+Journal of Differential Geometry \textbf{115} (2020), 565--575.
+\href{https://doi.org/10.4310/jdg/1594260019}{doi:10.4310/jdg/1594260019}.
+We use the corrected post-publication version,
+\href{https://arxiv.org/abs/1702.03249v3}{arXiv:1702.03249v3} (2024).
+
+\end{thebibliography}
+
+\end{document}

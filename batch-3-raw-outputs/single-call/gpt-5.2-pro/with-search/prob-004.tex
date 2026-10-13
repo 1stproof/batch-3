@@ -1,0 +1,327 @@
+```latex
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amsthm,amssymb,mathrsfs}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Almost-complex normal-crossings coordinates for symplectic SNC divisors}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove that every symplectic simple normal crossings divisor becomes locally given by a product of
+$J$--holomorphic coordinate functions for a suitably chosen $\omega$--tame almost complex structure $J$,
+after deforming $\omega$ through a cohomologous path keeping the divisor symplectic simple normal
+crossings. The key input is the existence of \emph{regularizations} for symplectic simple crossings divisors
+due to Farajzadeh Tehrani--McLean--Zinger.
+\end{abstract}
+
+\section{Statement}
+
+Let $(M^{2n},\omega)$ be a symplectic manifold. An almost complex structure $J$ on $M$ is
+\emph{$\omega$--tame} if $\omega(v,Jv)>0$ for all $v\neq 0$. A smooth function $f\colon U\to\mathbb C$
+defined on an open set $U\subset M$ is \emph{$J$--holomorphic} if $df\circ J = i\,df$.
+
+\begin{definition}[Symplectic simple crossings divisor {\cite[Def.~2.1]{FTMZ}}]
+Let $(X,\omega)$ be a symplectic manifold. A \emph{simple crossings} (SC) symplectic divisor in $(X,\omega)$
+is a finite transverse collection $\{V_i\}_{i\in S}$ of closed codimension-$2$ submanifolds such that
+for every $I\subset S$ the intersection
+\[
+V_I \equiv \bigcap_{i\in I}V_i
+\]
+is a symplectic submanifold and its intersection orientation agrees with its $\omega$--orientation.
+\end{definition}
+
+This notion is the standard symplectic analogue of a \emph{simple normal crossings divisor}:
+$D=\bigcup_{i\in S}V_i$ is a union of smooth symplectic hypersurfaces meeting transversely and
+positively in all strata.
+
+\begin{theorem}[Main theorem: affirmative answer to the question]\label{thm:main}
+Let $(M^{2n},\omega)$ be a closed symplectic manifold and $D=\bigcup_{i\in S}D_i\subset M$ a symplectic
+simple normal crossings divisor (equivalently, an SC symplectic divisor in the sense of
+Definition~\ref{thm:main}).
+Then there exist:
+\begin{enumerate}
+\item a smooth path of symplectic forms $(\omega_t)_{t\in[0,1]}$ on $M$ such that $[\omega_t]=[\omega]\in H^2(M;\mathbb R)$ for all $t$, $\omega_0=\omega$, and $D$ is an SC symplectic divisor in $(M,\omega_t)$ for all $t$;
+\item an $\omega_1$--tame almost complex structure $J$ on $M$
+\end{enumerate}
+with the following local normal-crossings property:
+
+For every $p\in M$ there exist an open neighborhood $U\ni p$ and smooth complex coordinates
+$(z_1,\dots,z_n)\colon U\to\mathbb C^n$ such that, if $r=\#\{i\in S\mid p\in D_i\}$, then
+$z_1,\dots,z_r$ are $J$--holomorphic on $U$ and
+\[
+D\cap U = \{z_1\cdots z_r=0\}\subset U.
+\]
+Moreover, $J$ may be chosen $\omega_1$--compatible (hence in particular $\omega_1$--tame).
+\end{theorem}
+
+\section{Input: existence of regularizations}
+
+The theorem of Farajzadeh Tehrani--McLean--Zinger provides a cohomologous deformation of $\omega$
+after which the divisor admits a system of compatible symplectic tubular neighborhoods with a standard
+model form. We quote the precise consequence we need.
+
+\begin{theorem}[Existence of regularizations up to cohomologous deformation {\cite[Thm.~2.13]{FTMZ}}]\label{thm:ftmz-regularization}
+Let $X$ be a manifold and $\{V_i\}_{i\in S}$ a finite transverse collection of closed codimension-$2$
+submanifolds. Suppose $\omega$ is a symplectic form on $X$ such that $\{V_i\}_{i\in S}$ is an SC symplectic
+divisor in $(X,\omega)$.
+Then there exists a smooth path $(\omega_t)_{t\in[0,1]}$ of symplectic forms on $X$ such that:
+\begin{enumerate}
+\item $\omega_0=\omega$ and $[\omega_t]=[\omega]$ for all $t$;
+\item $\{V_i\}_{i\in S}$ is an SC symplectic divisor in $(X,\omega_t)$ for all $t$;
+\item the divisor admits an $\omega_1$--regularization in the sense of {\cite[Def.~2.12]{FTMZ}}
+(i.e.\ a compatible system of tubular neighborhood charts $\Psi_I$ for all strata $V_I$ together with
+Hermitian structures on the normal line bundles, in which $\omega_1$ takes the standard form).
+\end{enumerate}
+\end{theorem}
+
+We will not reproduce the technical definition of an $\omega$--regularization here; we only need two
+properties that are part of the definition:
+\begin{itemize}
+\item (\emph{Normal bundle splitting.}) For $I\subset S$ and $i\in I$, the normal bundle of $V_I$ in $X$
+canonically splits as a direct sum of oriented rank-$2$ subbundles
+\[
+N_XV_I \;\cong\; \bigoplus_{i\in I} N_{V_{I\setminus\{i\}}}V_I
+\]
+coming from transversality; see {\cite[\S2.2]{FTMZ}}.
+\item (\emph{Standard form of $\omega_1$.}) In the regularization charts, $\omega_1$ pulls back to a
+standard model built from the restriction $\omega_1|_{V_I}$ and the Hermitian structures on the normal
+line bundles; see {\cite[Def.~2.9 and Def.~2.12]{FTMZ}} and formula {\cite[(2.9)--(2.11)]{FTMZ}}.
+Concretely, on the total space of each stratum normal bundle $N_XV_I$ one has local fiberwise complex
+coordinates $w_i$ (after trivializing the complex line bundles) in which the divisor branches are
+$\{w_i=0\}$.
+\end{itemize}
+
+\section{Linear algebra: producing compatible almost complex structures from a metric}
+
+We use a standard fiberwise construction of an $\omega$--compatible almost complex structure from
+a symplectic form and a Riemannian metric. We include a proof for completeness.
+
+\begin{lemma}\label{lem:polar}
+Let $(W,\omega)$ be a finite-dimensional real symplectic vector space and let $g$ be an inner product on $W$.
+Define $A\in \mathrm{End}(W)$ by
+\begin{equation}\label{eq:defA}
+\omega(v,w)= g(Av,w)\qquad\forall v,w\in W.
+\end{equation}
+Then:
+\begin{enumerate}
+\item $A$ is $g$--skew-adjoint (i.e.\ $A^\ast=-A$) and invertible.
+\item $-A^2$ is $g$--self-adjoint and positive definite. Let $B=(-A^2)^{1/2}$ denote its positive square
+root; then $B$ commutes with $A$.
+\item The endomorphism $J=B^{-1}A$ satisfies $J^2=-\mathrm{id}_W$. Moreover $J$ is $\omega$--compatible:
+$\omega(\cdot,J\cdot)$ is a symmetric positive definite bilinear form, equivalently $\omega(Jv,Jw)=\omega(v,w)$
+and $\omega(v,Jv)>0$ for $v\neq 0$.
+\end{enumerate}
+The construction depends smoothly on $(\omega,g)$.
+\end{lemma}
+
+\begin{proof}
+(1) Skew-adjointness follows from $\omega(w,v)=-\omega(v,w)$:
+\[
+g(Av,w)=\omega(v,w)=-\omega(w,v)=-g(Aw,v)=-g(v,Aw)=g(v,-A^\ast w).
+\]
+Thus $A=-A^\ast$. Since $\omega$ is nondegenerate, the map $v\mapsto \omega(v,\cdot)$ is an isomorphism
+$W\to W^\ast$, hence~\eqref{eq:defA} implies $A$ is an isomorphism.
+
+(2) Since $A^\ast=-A$, we have $(A^2)^\ast=(A^\ast)^2=(-A)^2=A^2$, so $A^2$ is self-adjoint.
+Moreover, for $v\neq 0$,
+\[
+g(-A^2v,v)=g(Av,Av)>0,
+\]
+so $-A^2$ is positive definite. The positive square root $B$ exists and is self-adjoint.
+Because $B$ is a polynomial (indeed, a real-analytic functional calculus) in $-A^2$ and $A$ commutes with $A^2$,
+we have $[A,B]=0$.
+
+(3) Since $AB=BA$ and $B^2=-A^2$, we obtain
+\[
+J^2 = B^{-1}AB^{-1}A = B^{-2}A^2 = (B^2)^{-1}A^2 = (-A^2)^{-1}A^2=-\mathrm{id}.
+\]
+To see compatibility, define $g_J(v,w)=\omega(v,Jw)=g(Av,Jw)=g(Av,B^{-1}Aw)=g(B^{-1}Av,Aw)$.
+Using that $B^{-1}$ is self-adjoint and commutes with $A$,
+\[
+g_J(v,w)=g(B^{-1}Av,Aw)=g(A B^{-1}Av,w)=g(B^{-1}A^2v,w),
+\]
+which is symmetric because $B^{-1}A^2$ is self-adjoint. Positivity follows from
+\[
+g_J(v,v)=\omega(v,Jv)=g(Av,B^{-1}Av)=g(B^{-1/2}Av,B^{-1/2}Av)>0\quad(v\neq 0).
+\]
+Thus $J$ is $\omega$--tame; in fact $J$ is $\omega$--compatible.
+
+Smooth dependence on $(\omega,g)$ is standard: in a local basis, $A$ depends smoothly on the matrices of
+$\omega$ and $g$, the map $P\mapsto P^{1/2}$ is smooth on the open cone of symmetric positive definite matrices,
+and matrix multiplication/inversion are smooth. See e.g.\ \cite[Ch.~6]{BhatiaMatrixAnalysis} for smoothness of
+the matrix square root on the positive definite cone.
+\end{proof}
+
+\section{Local model near a regularized SC divisor}
+
+We now explain why an $\omega$--regularization produces the desired local holomorphic defining functions for
+the divisor.
+
+\begin{lemma}[Block splitting of the standard model form]\label{lem:block}
+Let $V$ be a manifold, $\pi\colon E=\bigoplus_{k=1}^r L_k\to V$ a direct sum of complex line bundles equipped with
+Hermitian metrics $\rho_k$ and unitary connections $\nabla^{(k)}$.
+Let $\alpha_k$ denote the associated connection $1$--form on $L_k\setminus\{0\}$ (extended radially in the standard way),
+and let $\rho_k\colon L_k\to\mathbb R_{\ge 0}$ denote the squared norm function.
+
+Fix a closed $2$--form $\omega_V$ on $V$ and consider the closed $2$--form on $E$
+\begin{equation}\label{eq:modelomega}
+\omega_E \;=\; \pi^\ast\omega_V + \frac12\sum_{k=1}^r d(\rho_k\,\alpha_k).
+\end{equation}
+Let $H\subset TE$ be the horizontal distribution determined by the direct sum connection, and let
+$V_k\subset TE$ be the vertical tangent distribution along the $k$th summand $L_k$.
+Then, with respect to the splitting $TE = H \oplus \bigoplus_{k=1}^r V_k$:
+\begin{enumerate}
+\item $\omega_E(H,V_k)=0$ for all $k$, and $\omega_E(V_k,V_\ell)=0$ for $k\neq \ell$.
+\item $\omega_E|_{V_k}$ is the standard symplectic form along fibers of $L_k$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The term $\pi^\ast\omega_V$ vanishes on vertical vectors, so it contributes only on $H\wedge H$.
+In local unitary trivializations of $L_k$ over an open set $U\subset V$, we can write fiber coordinates
+as $w_k = re^{i\theta}$ and the connection $1$--form as $\alpha_k = d\theta + \pi^\ast\beta_k$
+with $\beta_k$ a real $1$--form on $U$ (the local connection form), so $d\alpha_k = \pi^\ast(d\beta_k)$
+is horizontal-horizontal. Also $\rho_k=r^2$ depends only on the vertical radial direction, hence $d\rho_k$
+is vertical. Therefore,
+\[
+d(\rho_k\alpha_k)= d\rho_k\wedge \alpha_k + \rho_k\, d\alpha_k
+\]
+has only vertical-vertical part ($d\rho_k\wedge \alpha_k$) and horizontal-horizontal part ($\rho_k d\alpha_k$),
+and no horizontal-vertical terms. Summing over $k$ gives (1). The vertical-vertical part on $V_k$ is
+$\frac12 d\rho_k\wedge d\theta$, the standard area form in polar coordinates; this is (2).
+\end{proof}
+
+\begin{lemma}[Compatible $J$ preserving the splitting and making fiber coordinates holomorphic]\label{lem:Jholo}
+In the setting of Lemma~\ref{lem:block}, choose an arbitrary Riemannian metric $g_V$ on $V$ and define a metric $g_E$ on $E$
+by declaring the splitting $TE = H \oplus \bigoplus_{k=1}^r V_k$ orthogonal, setting $g_E|_H=\pi^\ast g_V$ and
+$g_E|_{V_k}=\mathrm{Re}(\rho_k)$ on each fiber (the Euclidean metric determined by the Hermitian metric).
+Let $J_E$ be the $\omega_E$--compatible almost complex structure obtained from $(\omega_E,g_E)$ by Lemma~\ref{lem:polar}.
+
+Then:
+\begin{enumerate}
+\item $J_E$ preserves the splitting $TE = H \oplus \bigoplus_{k=1}^r V_k$.
+\item On each $V_k$, the restriction of $J_E$ is the standard fiberwise complex structure $i$ on $L_k$.
+\item In a local unitary trivialization of $L_k$, the fiber coordinate function $w_k$ is $J_E$--holomorphic.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:block}(1) and the definition of $g_E$, both $\omega_E$ and $g_E$ are block-diagonal with respect to the
+splitting. Therefore the $g_E$--adjoint operator $A$ defined by $\omega_E(\cdot,\cdot)=g_E(A\cdot,\cdot)$ is block-diagonal,
+so $-A^2$ and $B=(-A^2)^{1/2}$ are block-diagonal as well, hence $J_E=B^{-1}A$ preserves the splitting. This proves (1).
+
+On $V_k$, we have by construction that $g_E(\cdot,\cdot)=\omega_E(\cdot,i\cdot)$ (the Euclidean metric induced by the Hermitian
+structure), hence the defining equation $\omega_E(\cdot,\cdot)=g_E(A\cdot,\cdot)$ forces $A|_{V_k}=i$, and thus
+$J_E|_{V_k}=i$. This is (2).
+
+For (3), let $w_k$ be the complex fiber coordinate in a unitary trivialization. Then $dw_k$ vanishes on $H$ and on $V_\ell$ for
+$\ell\neq k$, and is complex-linear on $V_k$. Since $J_E$ preserves $H$ and $V_k$ and acts as $i$ on $V_k$,
+for every vector $Y$ we have $dw_k(J_EY)=i\,dw_k(Y)$, i.e.\ $w_k$ is $J_E$--holomorphic.
+\end{proof}
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Write the divisor as $D=\bigcup_{i\in S}D_i$ and note that by hypothesis it is an SC symplectic divisor
+(Definition~2.1 of \cite{FTMZ}, recalled above).
+
+\smallskip\noindent
+\textbf{Step 1: Deform $\omega$ cohomologously to admit a regularization.}
+Apply Theorem~\ref{thm:ftmz-regularization} with $X=M$ and $V_i=D_i$.
+We obtain a path $(\omega_t)_{t\in[0,1]}$ of cohomologous symplectic forms with $\omega_0=\omega$, such that $D$ remains an SC symplectic
+divisor for all $t$ and $D$ admits an $\omega_1$--regularization.
+Set $\omega'=\omega_1$.
+
+\smallskip\noindent
+\textbf{Step 2: Use the regularization to build local $J$--holomorphic defining functions.}
+Fix $p\in M$ and let $I_p=\{i\in S\mid p\in D_i\}$; set $r=|I_p|$.
+If $r=0$, then $p\notin D$ and the conclusion is trivial (take any smooth complex coordinates and $r=0$).
+
+Assume $r\ge 1$ and set $I=I_p$. The regularization provides a neighborhood of the stratum
+$D_I=\bigcap_{i\in I}D_i$ modeled on a neighborhood of the zero section in the normal bundle $N_MD_I$, together with:
+\begin{itemize}
+\item a splitting $N_MD_I\cong\bigoplus_{i\in I} L_{I;i}$ into real rank-$2$ subbundles (normal directions to the branches),
+each carrying a Hermitian metric and unitary connection (part of the regularization data);
+\item a smooth embedding (tubular neighborhood map) $\Psi_I$ from a neighborhood of the zero section in $N_MD_I$ onto a neighborhood
+$U\subset M$ of $D_I$, such that in local unitary trivializations the branch $D_i$ corresponds to $\{w_i=0\}$ for $i\in I$
+and, in these coordinates, $\omega'$ has the standard model form of \cite[(2.9)--(2.11)]{FTMZ}.
+\end{itemize}
+Choose a local unitary trivialization of each $L_{I;i}$ over a small open set $W\subset D_I$ containing $p$.
+This identifies a neighborhood of the zero section in $N_MD_I|_W$ with an open subset of $W\times\mathbb C^r$,
+with fiber coordinates $(w_1,\dots,w_r)$.
+Choose any smooth real coordinates on $W$ and group them into complex coordinates $(z_{r+1},\dots,z_n)$; these are not required to be
+$J$--holomorphic.
+
+\smallskip\noindent
+\textbf{Step 3: Define an $\omega'$--tame (indeed $\omega'$--compatible) almost complex structure with the desired normal form.}
+On the model neighborhood in $N_MD_I|_W$, consider the metric $g_E$ and the $\omega_E$--compatible almost complex structure $J_E$ from
+Lemma~\ref{lem:Jholo}, where $\omega_E$ is the standard form coming from the regularization chart.
+Push $J_E$ forward by $\Psi_I$ to obtain an almost complex structure on a neighborhood of $p$ in $M$.
+By Lemma~\ref{lem:Jholo}(3), the functions $w_1,\dots,w_r$ are $J_E$--holomorphic, hence the functions
+\[
+z_i \equiv w_i\circ \Psi_I^{-1}\qquad (1\le i\le r)
+\]
+are $J$--holomorphic on a (possibly smaller) neighborhood of $p$ in $M$.
+
+Because the regularization identifies the divisor branches with the coordinate hyperplanes $\{w_i=0\}$ for $i\in I$,
+we have on this neighborhood
+\[
+D\cap U = \bigcup_{i\in I}\{z_i=0\} = \{z_1\cdots z_r=0\}.
+\]
+Finally, the map
+\[
+(z_1,\dots,z_r,z_{r+1},\dots,z_n)\colon U \longrightarrow \mathbb C^n
+\]
+is a smooth coordinate chart (a diffeomorphism onto an open set) after shrinking $U$, because it is the composition of a vector bundle
+trivialization on $N_MD_I|_W$ with the diffeomorphism $\Psi_I$.
+
+\smallskip\noindent
+\textbf{Step 4: Globalization.}
+The above construction yields an $\omega'$--compatible almost complex structure in a neighborhood of $D$ with the desired local form.
+Since $M$ is closed, we may extend it to an $\omega'$--compatible (hence $\omega'$--tame) almost complex structure on all of $M$ by
+a standard partition-of-unity argument at the level of Riemannian metrics together with Lemma~\ref{lem:polar}
+(one may start with any global metric and replace it by one agreeing with the locally constructed $\omega'$--compatible metric near $D$;
+then apply Lemma~\ref{lem:polar} fiberwise to obtain a global $\omega'$--compatible almost complex structure).
+The construction does not change the already-defined $J$ in a smaller neighborhood of $D$, so the local holomorphic defining functions
+$z_1,\dots,z_r$ persist.
+
+Thus $(\omega_1,J)$ satisfies the requirement of the question (with $\omega_1=\omega'$), completing the proof.
+\end{proof}
+
+\begin{remark}
+The theorem produces $J$ that is $\omega_1$--compatible, hence in particular $\omega_1$--tame. The question only asks for tameness.
+The cohomologous deformation of $\omega$ is essential in general: an $\omega$--regularization exists only under an additional
+orthogonality constraint on the divisor, and Theorem~\ref{thm:ftmz-regularization} is precisely the statement that within the fixed
+cohomology class one can deform to such a ``regularizable'' representative.
+\end{remark}
+
+\begin{thebibliography}{99}
+
+\bibitem{BhatiaMatrixAnalysis}
+R.~Bhatia,
+\emph{Matrix Analysis},
+Graduate Texts in Mathematics, vol.~169, Springer, 1997.
+
+\bibitem{FTMZ}
+M.~Farajzadeh Tehrani, M.~McLean, and A.~Zinger,
+\emph{Normal crossings singularities for symplectic topology},
+arXiv:1410.0609v3 (2017); published in \emph{Advances in Mathematics} \textbf{339} (2018), 672--748.
+
+\end{thebibliography}
+
+\end{document}
+```

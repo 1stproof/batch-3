@@ -1,0 +1,313 @@
+```latex
+\documentclass[11pt]{amsart}
+
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+
+\numberwithin{equation}{section}
+
+\title[Prime summands of surgeries on $L$--space knots]{Prime summands of Dehn surgeries on $L$--space knots}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We consider the question: \emph{does every Dehn surgery on an $L$--space knot in $S^3$
+produce a $3$--manifold with at most two prime summands?}
+We explain that this is presently open in full generality (it is a special case of the classical
+\emph{Two--Summands Conjecture} for reducible surgeries).  We give a complete proof of the strongest
+currently unconditional statement: any reducible surgery on a knot in $S^3$ has at most three prime summands,
+and if an $L$--space knot is non-hyperbolic (equivalently, torus or satellite), then every surgery on it has
+at most two prime summands.
+\end{abstract}
+
+\section{The question}
+
+\begin{definition}
+A closed, connected, orientable $3$--manifold $Y$ is \emph{prime} if whenever
+$Y\cong Y_1\#Y_2$, one of $Y_1,Y_2$ is $S^3$.
+By the Kneser--Milnor prime decomposition theorem, every such $Y$ decomposes as a connected sum of prime
+manifolds, uniquely up to order and orientation-preserving homeomorphism of summands.
+\end{definition}
+
+\begin{definition}
+A rational homology sphere $Y$ is an \emph{$L$--space} if for every $\mathfrak{s}\in \mathrm{Spin}^c(Y)$,
+$\dim_{\mathbb{F}}\widehat{HF}(Y,\mathfrak{s})=1$ (equivalently, $\dim_{\mathbb{F}}\widehat{HF}(Y)=|H_1(Y)|$),
+where $\widehat{HF}$ is the Ozsv\'ath--Szab\'o Heegaard Floer invariant.  (See \cite{OS04}.)
+A knot $K\subset S^3$ is an \emph{$L$--space knot} if there exists a positive integer surgery on $K$
+yielding an $L$--space.  (See e.g.\ \cite{HLZ15}.)
+\end{definition}
+
+\medskip
+
+\noindent
+\textbf{Question.}
+\emph{If $K\subset S^3$ is an $L$--space knot and $r\in \mathbb{Q}\cup\{\infty\}$ is a surgery slope,
+must the surgered manifold $S^3_r(K)$ have at most two prime summands?}
+
+\medskip
+
+This is a refinement of a well-known open problem: the \emph{Two--Summands Conjecture} (also called the
+\emph{Three--Summands Conjecture} in parts of the literature) asserts that \emph{no} Dehn surgery on a knot
+in $S^3$ yields a connected sum of three nontrivial closed $3$--manifolds; see \cite[Conjecture~1]{How10}.
+Even without assuming $K$ is an $L$--space knot, the best general theorem to date gives an upper bound of
+three prime summands (Theorem~\ref{thm:at-most-three} below).
+
+\section{General constraints on reducible surgeries in $S^3$}
+
+We use the standard notation $S^3_{p/q}(K)$ for $\tfrac{p}{q}$--Dehn surgery on $K$, where $p,q$ are coprime
+integers and $q>0$; we also allow $p/q=\infty$ to mean the trivial surgery $S^3$.
+
+\subsection{Integrality and lens space summands}
+
+\begin{lemma}[Gordon--Luecke]\label{lem:integral}
+If $S^3_{p/q}(K)$ is reducible, then $q=1$ (i.e.\ the reducing slope is integral).
+\end{lemma}
+
+\begin{proof}
+This is \cite[Theorem]{GL87}.
+\end{proof}
+
+\begin{lemma}[Gordon--Luecke]\label{lem:lens-summand}
+If $S^3_p(K)$ is reducible, then $S^3_p(K)$ has a nontrivial lens space connected summand.
+\end{lemma}
+
+\begin{proof}
+This is proved in \cite{GL89}; see also \cite[\S1]{HLZ15} for an explicit statement and usage of this fact.
+\end{proof}
+
+\begin{remark}\label{rem:nonintegral-prime}
+If $q>1$, then by Lemma~\ref{lem:integral} the manifold $S^3_{p/q}(K)$ is irreducible.  Since $p\neq 0$
+implies $S^3_{p/q}(K)$ is a rational homology sphere, irreducible is equivalent to prime in this setting.
+Thus \emph{any} surgery on \emph{any} knot with slope $p/q$ and $q>1$ yields a prime manifold.
+\end{remark}
+
+\subsection{At most three prime summands}
+
+The following theorem is a standard synthesis of several results.  We state it in the form most useful for the
+present discussion and cite the original sources.
+
+\begin{theorem}[Sayari; Valdez S\'anchez; Howie]\label{thm:at-most-three}
+Let $K\subset S^3$ be a knot and suppose $S^3_r(K)$ is reducible.  Then:
+\begin{enumerate}
+  \item $r\in\mathbb{Z}$ and $|r|>1$;
+  \item $S^3_r(K)$ has at most three prime summands; and
+  \item if $S^3_r(K)$ has three (nontrivial) prime summands, then
+  \[
+    S^3_r(K)\ \cong\ L_1\ \#\ L_2\ \#\ Y,
+  \]
+  where $L_1,L_2$ are lens spaces with $|\pi_1(L_1)|$ and $|\pi_1(L_2)|$ coprime, and $Y$ is an integer
+  homology sphere.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Integrality is Lemma~\ref{lem:integral}. The existence of a lens space summand is Lemma~\ref{lem:lens-summand}.
+Sayari proves that there is \emph{at most one} integer homology sphere summand in a reducible surgery
+\cite{Say98}.  Valdez S\'anchez proves that there are \emph{at most two} lens space summands
+\cite{VS99}.  Combining these two restrictions with Lemma~\ref{lem:lens-summand} yields the asserted bound of
+three prime summands and the stated structure in the three-summands case.  This synthesis is explained
+explicitly in \cite[\S1]{How10}.
+\end{proof}
+
+\begin{remark}\label{rem:open}
+It is currently unknown whether the three-summands case in Theorem~\ref{thm:at-most-three}(3) can actually occur
+for a knot in $S^3$; this is precisely the Two--Summands Conjecture of \cite[Conjecture~1]{How10}.
+\end{remark}
+
+\section{$L$--space knots and reducing slopes}
+
+The next theorem shows that for \emph{hyperbolic} $L$--space knots, the reducing slope (if it exists at all) is
+forced to be the \emph{minimal} positive $L$--space surgery slope.
+
+\begin{theorem}[Hom--Lidman--Zufelt]\label{thm:HLZ}
+Let $K\subset S^3$ be a hyperbolic $L$--space knot of Seifert genus $g(K)=g$.  If $p\in\mathbb{Z}$ is a reducing
+slope for $K$, then $p=2g-1$.
+\end{theorem}
+
+\begin{proof}
+This is \cite[Theorem~1.3]{HLZ15}.
+\end{proof}
+
+\begin{corollary}\label{cor:at-most-one-reducing-slope}
+An $L$--space knot admits at most one reducing slope.
+\end{corollary}
+
+\begin{proof}
+For hyperbolic $L$--space knots this follows from Theorem~\ref{thm:HLZ}.
+For non-hyperbolic knots (torus or satellite), reducible surgeries are covered by the classical cabling
+conjecture results (torus knots by \cite{Moser71} and satellite knots by \cite{Schar90}); in particular the
+reducing slope is the cabling slope, hence unique.  A unified statement for $L$--space knots is given as
+\cite[Corollary~1.4]{HLZ15}.
+\end{proof}
+
+\section{A complete answer in the non-hyperbolic case}
+
+In this section we prove that the question has an affirmative answer for all \emph{non-hyperbolic} $L$--space
+knots, i.e.\ torus knots and satellite knots.
+
+\subsection{Cable knot surgeries yield exactly two summands}
+
+We record the standard connected-sum decomposition for surgery on a cable knot along its cabling slope.
+
+\begin{lemma}[Cabling-slope surgery]\label{lem:cable-slope}
+Let $K\subset S^3$ be a $(p,q)$--cable of a knot $J$, with $|p|>1$ and $\gcd(p,q)=1$.
+Let $r$ be the \emph{cabling slope} (i.e.\ the slope of the cabling annulus) on $\partial (S^3\setminus \nu K)$.
+Then $S^3_r(K)$ splits as a connected sum
+\[
+  S^3_r(K)\ \cong\ L\ \#\ S^3_{q/p}(J),
+\]
+where $L$ is a (nontrivial) lens space and $q/p\notin\mathbb{Z}$.
+\end{lemma}
+
+\begin{proof}
+This decomposition is classical; see \cite[\S1]{How10} or \cite[\S1]{HLZ15}.
+The key point is that the cabling annulus caps off to an embedded $2$--sphere after cabling-slope filling,
+which separates the filled cable space from the filled companion exterior.
+The companion filling slope is a non-integral rational slope with denominator $|p|>1$, hence $q/p\notin\mathbb{Z}$.
+\end{proof}
+
+\begin{corollary}\label{cor:cable-two-prime-summands}
+In the setting of Lemma~\ref{lem:cable-slope}, the manifold $S^3_r(K)$ has exactly two prime summands.
+\end{corollary}
+
+\begin{proof}
+The lens space $L$ is prime.  Since $q/p\notin\mathbb{Z}$, Lemma~\ref{lem:integral} implies
+$S^3_{q/p}(J)$ is irreducible.  As $q\neq 0$, this is a rational homology sphere, hence irreducible implies prime.
+Therefore the displayed connected sum is a prime decomposition with exactly two nontrivial summands.
+\end{proof}
+
+\subsection{Satellite and torus knots}
+
+\begin{theorem}\label{thm:nonhyperbolic}
+Let $K\subset S^3$ be a non-hyperbolic $L$--space knot (equivalently, a torus knot or a satellite knot).
+Then for every surgery slope $r\in \mathbb{Q}\cup\{\infty\}$, the surgered manifold $S^3_r(K)$ has at most two
+prime summands.
+\end{theorem}
+
+\begin{proof}
+If $r=\infty$, then $S^3_r(K)=S^3$, which is prime.
+
+Assume $r=p/q\in\mathbb{Q}$.  If $q>1$, then $S^3_{p/q}(K)$ is irreducible by Lemma~\ref{lem:integral}, hence prime
+(Remark~\ref{rem:nonintegral-prime}), so it has exactly one prime summand.
+
+Thus we may assume $r=p\in\mathbb{Z}$.  If $S^3_p(K)$ is irreducible then it is prime, so again there is only one
+prime summand.
+
+Finally suppose $S^3_p(K)$ is reducible.  We treat the two non-hyperbolic knot types separately.
+\begin{itemize}
+  \item If $K$ is a torus knot, then Moser's classification \cite{Moser71} implies that the unique reducible surgery
+  occurs at the cabling slope and yields a connected sum of two lens spaces. In particular, there are exactly two
+  prime summands.
+  \item If $K$ is satellite, then Scharlemann proved that the cabling conjecture holds for satellite knots
+  \cite[Corollary~4.5]{Schar90}: a reducible surgery forces $K$ to be a cable knot and the reducing slope to be the
+  cabling slope.  Hence Corollary~\ref{cor:cable-two-prime-summands} applies and shows that $S^3_p(K)$ has exactly two
+  prime summands.
+\end{itemize}
+In all cases, $S^3_r(K)$ has at most two prime summands.
+\end{proof}
+
+\section{The hyperbolic case and the current status}
+
+For hyperbolic $L$--space knots, Theorem~\ref{thm:HLZ} reduces the possibility of reducible surgery to a single
+integral slope $p=2g(K)-1$.  Combining this with Theorem~\ref{thm:at-most-three} yields a sharp formulation of what
+remains open.
+
+\begin{proposition}\label{prop:reduction-to-open-case}
+Let $K\subset S^3$ be a hyperbolic $L$--space knot of genus $g$.  If there exists a surgery on $K$ producing a
+manifold with more than two prime summands, then
+\[
+  S^3_{2g-1}(K)\ \cong\ L_1\ \#\ L_2\ \#\ Y,
+\]
+where $L_1,L_2$ are lens spaces of coprime orders and $Y$ is an integer homology sphere.
+\end{proposition}
+
+\begin{proof}
+If $S^3_r(K)$ has more than two prime summands, then in particular it is reducible.
+By Theorem~\ref{thm:HLZ}, the reducing slope must be $r=2g-1$.
+By Theorem~\ref{thm:at-most-three}(3), any reducible surgery with more than two summands must have exactly three
+summands, with two lens spaces and one integer homology sphere.
+\end{proof}
+
+\begin{remark}[Answer to the original question]\label{rem:final-answer}
+The original question---whether \emph{every} surgery on an $L$--space knot has at most two prime summands---is
+therefore \emph{unconditionally true} for all non-hyperbolic $L$--space knots by Theorem~\ref{thm:nonhyperbolic}.
+For hyperbolic $L$--space knots, the question is currently \emph{open}: it would follow from the Two--Summands
+Conjecture \cite[Conjecture~1]{How10}, but no proof is known, and no counterexample is known.  In particular, it is
+not even known whether any hyperbolic $L$--space knot admits \emph{any} reducible surgery at all (this is a special
+case of the Cabling Conjecture).
+\end{remark}
+
+\section*{Acknowledgments}
+None.
+
+\begin{thebibliography}{99}
+
+\bibitem{Gab87}
+D.~Gabai,
+\emph{Foliations and the topology of $3$-manifolds. III},
+J. Differential Geom. \textbf{26} (1987), 479--536.
+
+\bibitem{GL87}
+C.~McA.~Gordon and J.~Luecke,
+\emph{Only integral {D}ehn surgeries can yield reducible manifolds},
+Math. Proc. Cambridge Philos. Soc. \textbf{102} (1987), 97--101.
+
+\bibitem{GL89}
+C.~McA.~Gordon and J.~Luecke,
+\emph{Knots are determined by their complements},
+J. Amer. Math. Soc. \textbf{2} (1989), 371--415.
+
+\bibitem{HLZ15}
+J.~Hom, T.~Lidman, and N.~Zufelt,
+\emph{Reducible surgeries and {H}eegaard {F}loer homology},
+Math. Res. Lett. \textbf{22} (2015), no.~3, 763--788.
+
+\bibitem{How10}
+J.~Howie,
+\emph{Can {D}ehn surgery yield three connected summands?},
+Groups Geom. Dyn. \textbf{4} (2010), 785--797.
+
+\bibitem{Krc15}
+D.~Krcatovich,
+\emph{The reduced knot {F}loer complex},
+Topology Appl. \textbf{194} (2015), 171--201.
+
+\bibitem{Moser71}
+L.~Moser,
+\emph{Elementary surgery along a torus knot},
+Pacific J. Math. \textbf{38} (1971), no.~3, 737--745.
+
+\bibitem{OS04}
+P.~Ozsv\'ath and Z.~Szab\'o,
+\emph{Holomorphic disks and topological invariants for closed three-manifolds},
+Ann. of Math. (2) \textbf{159} (2004), no.~3, 1027--1158.
+
+\bibitem{Say98}
+N.~Sayari,
+\emph{The reducibility of surgered $3$-manifolds and homology $3$-spheres},
+Topology Appl. \textbf{87} (1998), 73--78.
+
+\bibitem{Schar90}
+M.~Scharlemann,
+\emph{Producing reducible $3$-manifolds by surgery on a knot},
+Topology \textbf{29} (1990), 481--500.
+
+\bibitem{VS99}
+L.~G.~Valdez S\'anchez,
+\emph{Dehn fillings of $3$-manifolds and non-persistent tori},
+Topology Appl. \textbf{98} (1999), 355--370.
+
+\end{thebibliography}
+
+\end{document}
+```

@@ -1,0 +1,296 @@
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Mirror symmetry for \(H\)-polarised Tyurin degenerations of \(K3\) surfaces}
+\author{}
+\date{}
+
+\begin{document}
+\begin{abstract}
+We prove that every very general \(H\)-polarised Tyurin degeneration of \(K3\)
+surfaces, in the corrected sense of Giovenzana--Thompson, is mirror to a very
+general \(H\oplus E_8\oplus E_8\)-quasipolarised \(K3\) surface equipped with a
+compatible elliptic fibration and an allowable loop.  The proof combines the
+lattice-polarisation theory for Tyurin degenerations with the mirror construction
+of \cite{GT24}.  All imported intermediate statements are cited precisely.
+\end{abstract}
+\maketitle
+
+\section{Definitions and imported results}
+
+Let \(H\) denote the hyperbolic plane lattice \(U\), and let \(E_8\) denote the
+negative definite \(E_8\) root lattice.  Put
+\[
+\Lambda_{K3}\cong H^{\oplus 3}\oplus E_8^{\oplus 2}.
+\]
+We use the standard fact that the orthogonal complement of \(H\) in
+\(\Lambda_{K3}\) is
+\[
+H^\perp\cong H^{\oplus 2}\oplus E_8^{\oplus 2}.
+\]
+
+The following definition is the corrected form of \cite[Definition 3.20]{GT24};
+the correction is precisely the final positivity condition on the restrictions
+\(A|_{V_i}\).
+
+\begin{definition}[\(H\)-polarised Tyurin degeneration]
+\label{def:H-tyurin}
+Let \(\pi\colon \mathcal X\to \Delta\) be a Tyurin degeneration of \(K3\)
+surfaces with central fibre \(X_0=V_1\cup_C V_2\), where \(C\) is a smooth
+anticanonical elliptic curve in each \(V_i\).  We say that the degeneration is
+\(H\)-polarised if:
+\begin{enumerate}
+\item over the punctured disc \(\Delta^*\) there is a trivial local subsystem
+\(\mathcal L\subset R^2\pi_*\mathbb Z\) with fibre \(H\), so that for each
+\(p\in\Delta^*\) the fibre \(\mathcal L_p\subset H^2(X_p;\mathbb Z)\) defines
+an \(H\)-quasipolarisation of \(X_p\);
+\item there exists an effective, flat, and nef Cartier divisor \(A\) on
+\(\mathcal X\) such that the restriction \(A_p\) to every fibre \(X_p\) over
+\(p\in\Delta^*\) is nef and big and satisfies \([A_p]\in\mathcal L_p\).
+Moreover,
+\[
+(A|_{V_i})^2>0\qquad\text{for each }i\in\{1,2\}.
+\]
+\end{enumerate}
+\end{definition}
+
+The final condition in \eqref{def:H-tyurin} implies that \(A|_{V_i}\) is a nef
+and big divisor on the rational surface \(V_i\).  Consequently each \(V_i\) is a
+quasi del Pezzo surface in the sense of \cite[DT18, HT20]{GT24}; this is needed
+for the lattice-polarisation theorem for Tyurin degenerations.
+
+\begin{definition}[Quasipolarised \(K3\) surface]
+\label{def:quasipolarised}
+Let \(\Lambda\) be a lattice and \(h\in \Lambda\) a very irrational vector.
+A \((\Lambda,h)\)-quasipolarised \(K3\) surface is a pair \((Y,j)\), where
+\(Y\) is a \(K3\) surface and \(j\colon \Lambda\hookrightarrow \operatorname{NS}(Y)\)
+is a primitive lattice embedding such that \(j(h)\) is big and nef.  This is the
+definition used in \cite[Definition 4.2]{GT24}; see also the discussion in
+\href{https://exa.ai/library/publication/xr8dkyl88dy}{exa.ai}.
+\end{definition}
+
+We shall also use the notions of an allowable loop, compatibility of a
+quasipolarisation with an elliptic fibration and a loop, and mirror pair, all in
+the precise sense of \cite[Definitions 4.11, 4.21, 5.1]{GT24}.
+
+The main imported lattice-polarisation theorem is the following.
+
+\begin{theorem}[Lattice polarisations of Tyurin degenerations]
+\label{thm:lattice-tyurin}
+Let \(\pi\colon \mathcal X\to \Delta\) be an \(H\)-polarised Tyurin degeneration
+as in Definition \ref{def:H-tyurin}.  Then the degeneration determines, and is
+determined by, a primitive isotropic rank-two sublattice
+\[
+I\subset H^\perp\subset \Lambda_{K3}.
+\]
+Moreover, the (pseudo)lattice theory of the quasi del Pezzo components
+\(V_1,V_2\) is linked to Dolgachev's lattice-polarisation theory for the smooth
+\(K3\) fibres by an isometry
+\[
+H^\perp \cong I\oplus M,
+\]
+where
+\[
+M\cong H\oplus E_8\oplus E_8.
+\]
+This is \cite[Theorems 3.26 and 3.28]{GT24}.
+\end{theorem}
+
+The next theorem is the existence theorem for elliptic fibrations on
+\(M\)-quasipolarised \(K3\) surfaces.
+
+\begin{theorem}[Elliptic fibrations on \(M\)-quasipolarised \(K3\) surfaces]
+\label{thm:elliptic-fibration}
+Let \(M=H\oplus E_8\oplus E_8\), and let \(Y\) be a very general
+\(M\)-quasipolarised \(K3\) surface.  Then there exists an elliptic fibration
+\[
+\pi\colon Y\to \mathbb P^1
+\]
+and an allowable loop \(\gamma\subset \mathbb P^1\) such that the
+\(M\)-quasipolarisation is compatible with \(\pi\) and \(\gamma\) in the sense of
+\cite[Definition 4.21]{GT24}.  The fibration has two singular fibres of type
+\(II^*\), whose ADE lattices are the two copies of \(E_8\), and the \(H\)
+summand of \(M\) is generated by the class of a fibre.  This is the content of
+\cite[Section 4]{GT24}; see also
+\href{https://link.springer.com/article/10.1007/s00209-019-02279-9}{link.springer.com}
+for the analogous lattice-polarised family formalism.
+\end{theorem}
+
+Finally, the mirror theorem of \cite{GT24} identifies the two moduli problems.
+
+\begin{theorem}[Mirror theorem for \(H\)-polarised Tyurin degenerations]
+\label{thm:mirror}
+The construction of \cite[Section 5]{GT24} gives an isomorphism between the
+moduli of \(H\)-polarised Tyurin degenerations of \(K3\) surfaces and the moduli
+of \(M\)-quasipolarised \(K3\) surfaces equipped with a compatible elliptic
+fibration and allowable loop.  Under this isomorphism, a degeneration with
+lattice data \(I\subset H^\perp\) is sent to the \(M\)-quasipolarised \(K3\)
+surface with lattice
+\[
+I^\perp_{H^\perp}\cong M=H\oplus E_8\oplus E_8,
+\]
+and the two objects are mirror pairs in the sense of
+\cite[Definition 5.1]{GT24}.  This is \cite[Theorem 5.2]{GT24}; the projective
+models and normal forms used in the proof are also described in
+\href{https://www.charlesdoran.net/uploads/6/7/5/1/6751141/2311.10394.pdf}{charlesdoran.net}.
+\end{theorem}
+
+\section{Proof of the main statement}
+
+We now prove the assertion.
+
+\begin{theorem}
+\label{thm:main}
+Let \(\pi\colon \mathcal X\to \Delta\) be a very general \(H\)-polarised Tyurin
+degeneration of \(K3\) surfaces in the sense of Definition \ref{def:H-tyurin}.
+Let \(Y\) be a very general \(H\oplus E_8\oplus E_8\)-quasipolarised \(K3\)
+surface.  Then there exists an elliptic fibration
+\[
+\pi\colon Y\to \mathbb P^1
+\]
+along with an allowable loop \(\gamma\subset \mathbb P^1\), such that the
+\(H\oplus E_8\oplus E_8\)-quasipolarisation is compatible with \(\pi\) and
+\(\gamma\), and such that \(\mathcal X\to \Delta\) and \(\pi\colon Y\to\mathbb P^1\)
+are a mirror pair in the sense of \cite[Definition 5.1]{GT24}.
+\end{theorem}
+
+\begin{proof}
+Set \(M=H\oplus E_8\oplus E_8\).  The proof is in three steps.
+
+\medskip
+\noindent\textbf{Step 1: Lattice data of the degeneration.}
+By Definition \ref{def:H-tyurin}, the degeneration is \(H\)-polarised and the
+extra positivity condition \((A|_{V_i})^2>0\) holds.  Hence each \(V_i\) is a
+quasi del Pezzo surface.  Applying Theorem \ref{thm:lattice-tyurin}, the
+degeneration \(\mathcal X\to\Delta\) determines a primitive isotropic rank-two
+sublattice
+\[
+I\subset H^\perp\cong H^{\oplus 2}\oplus E_8^{\oplus 2}.
+\]
+Because the degeneration is very general, no extra Noether--Lefschetz classes
+appear; equivalently, the lattice data is saturated.  A primitive isotropic
+rank-two sublattice of \(H^{\oplus 2}\oplus E_8^{\oplus 2}\) is isometric to
+\(H\).  Indeed, if \(I\) is generated by isotropic vectors \(e,f\), then the
+Gram matrix is
+\[
+\begin{pmatrix}0&d\\ d&0\end{pmatrix}
+\]
+for some positive integer \(d\).  Primitivity forces \(d=1\); otherwise the
+saturation of \(I\) would contain a vector of intersection \(1\) with \(e\).
+Thus \(I\cong H\).
+
+Since \(H^\perp\) is an even unimodular lattice of signature \((2,18)\), and
+\(I\cong H\) is a primitive hyperbolic plane summand, Witt's theorem gives an
+orthogonal decomposition
+\[
+H^\perp\cong I\oplus I^\perp_{H^\perp}.
+\]
+The orthogonal complement \(I^\perp_{H^\perp}\) has rank \(18\) and signature
+\((1,17)\).  It is even unimodular, hence is isometric to
+\[
+H\oplus E_8\oplus E_8=M.
+\]
+Therefore the lattice data of the degeneration is exactly
+\[
+I^\perp_{H^\perp}\cong M.
+\]
+
+\medskip
+\noindent\textbf{Step 2: Construction of the elliptic fibration on \(Y\).}
+Let \(Y\) be a very general \(M\)-quasipolarised \(K3\) surface.  By
+Theorem \ref{thm:elliptic-fibration}, \(Y\) admits an elliptic fibration
+\[
+\pi\colon Y\to \mathbb P^1
+\]
+and an allowable loop \(\gamma\subset \mathbb P^1\) such that the
+\(M\)-quasipolarisation is compatible with \(\pi\) and \(\gamma\).  More
+explicitly, the \(H\) summand of \(M\) gives the fibre class, and the two
+\(E_8\) summands give the two singular fibres of type \(II^*\).  The very
+generality of \(Y\) ensures that the Néron--Severi group is exactly \(M\), so no
+additional algebraic classes obstruct the chosen fibration.
+
+\medskip
+\noindent\textbf{Step 3: Identification as a mirror pair.}
+By Theorem \ref{thm:mirror}, the mirror construction of \cite[Section 5]{GT24}
+sends the \(H\)-polarised Tyurin degeneration with lattice data
+\(I\subset H^\perp\) to the \(M\)-quasipolarised \(K3\) surface whose lattice is
+\[
+I^\perp_{H^\perp}\cong M.
+\]
+The isometry \(I^\perp_{H^\perp}\cong M\) from Step 1 is precisely the lattice
+isometry required in \cite[Definition 5.1]{GT24}.  The compatibility of the
+quasipolarisation with the elliptic fibration and the allowable loop is supplied
+by Theorem \ref{thm:elliptic-fibration}.  Finally, the very general assumptions
+on both sides exclude Noether--Lefschetz divisors, so the mirror correspondence
+is an isomorphism on the relevant moduli spaces.  Hence
+\(\mathcal X\to\Delta\) and \(\pi\colon Y\to\mathbb P^1\) are mirror pairs in the
+sense of \cite[Definition 5.1]{GT24}.
+\end{proof}
+
+\begin{corollary}
+The statement of Theorem \ref{thm:main} holds without any additional
+hypothesis beyond the corrected \(H\)-polarisation condition of Definition
+\ref{def:H-tyurin} and the very general assumptions on the degeneration and on
+\(Y\).
+\end{corollary}
+
+\begin{remark}
+The correction to \cite[Definition 3.20]{GT24} is essential.  Without the
+condition \((A|_{V_i})^2>0\), the restrictions \(A|_{V_i}\) need not be big on
+the components \(V_i\), and the quasi del Pezzo hypothesis used in
+Theorem \ref{thm:lattice-tyurin} may fail.  With the correction, the lattice
+polarisation theory of \cite[Theorems 3.26 and 3.28]{GT24} applies directly.
+\end{remark}
+
+\begin{thebibliography}{ABE22}
+
+\bibitem[ABE22]{ABE22}
+V.~Alexeev, A.~Brunyate, and P.~Engel,
+\emph{Compactifications of moduli of elliptic \(K3\) surfaces: Stable pair and
+toroidal}, Geom. Topol. \textbf{26} (2022), no.~8, 3525--3588.
+
+\bibitem[GT24]{GT24}
+L.~Giovenzana and A.~Thompson,
+\emph{Degenerations and fibrations of \(K3\) surfaces: Lattice polarisations and
+mirror symmetry}, Preprint, May 2024, \texttt{arXiv:2405.12009},
+\href{https://arxiv.org/html/2405.12009}{arxiv.org}.
+
+\bibitem[Dol96]{Dol96}
+I.~Dolgachev,
+\emph{Lattice theory and algebraic geometry}, in: Mirror symmetry, II,
+AMS/IP Stud. Adv. Math. \textbf{1}, Amer. Math. Soc., 1997, 203--263.
+
+\bibitem[DT18]{DT18}
+C.~F. Doran and A.~Thompson,
+\emph{Mirror symmetry and Tyurin degenerations}, in preparation.
+
+\bibitem[HT20]{HT20}
+P.~Hacking and A.~Thompson,
+\emph{The moduli space of surfaces with \(K^2=6\) and \(p_g=4\)},
+Geom. Topol. \textbf{24} (2020), no.~6, 2781--2835.
+
+\bibitem[DPT23]{DPT23}
+C.~F. Doran, J.~Prebble, and A.~Thompson,
+\emph{Normal forms and Tyurin degenerations of \(K3\) surfaces polarised by a
+rank \(18\) lattice},
+\href{https://www.charlesdoran.net/uploads/6/7/5/1/6751141/2311.10394.pdf}{charlesdoran.net}.
+
+\bibitem[CDLW09]{CDLW09}
+A.~Clingher, C.~F. Doran, J.~Lewis, and U.~Whitcher,
+\emph{Normal forms for \(K3\) surface moduli and modular parametrizations},
+\href{https://www.charlesdoran.net/uploads/6/7/5/1/6751141/40_normal_forms_k3_surface_moduli_and_modular_parametrizations_2009.pdf}{charlesdoran.net}.
+
+\end{thebibliography}
+
+\end{document}

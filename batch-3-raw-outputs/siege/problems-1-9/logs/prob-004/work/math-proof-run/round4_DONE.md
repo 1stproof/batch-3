@@ -1,0 +1,1 @@
+Goal (entry 16) proved by the chain round2_q3 (configuration lemma) + round2_q4 (assembly theorem), certified by verify queries round3_q1 and round3_q2 (both V2, no genuine gap; fixable omissions repaired there); cited inputs supported by round3_q3 (AH) and round3_q4 (R).

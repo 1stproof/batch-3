@@ -1,0 +1,446 @@
+{
+  "started_at": "2026-10-02T18:17:02Z",
+  "finished_at": "2026-10-03T17:26:14Z",
+  "duration_seconds": 83352.4,
+  "in_progress": false,
+  "updated_at": "2026-10-03T17:26:14Z",
+  "operator_stopped": false,
+  "deadline_reached": false,
+  "deadline_seconds": 86100.0,
+  "workflow": "firstproof_batch3",
+  "max_parallel": 10,
+  "page_limit": 16,
+  "n_rounds": 50,
+  "round_batch_size": 5,
+  "adaptive_continuation": false,
+  "adaptive_max_rounds": 200,
+  "round_schedule": [
+    50
+  ],
+  "compute_codex_sandbox": "docker-bypass",
+  "compute_max_parallel_workers": 4,
+  "compute_disabled_reason": null,
+  "cleanup_disabled_reason": null,
+  "author_parallelism": 1,
+  "budget_usd_per_question": 1050.0,
+  "total_budget_usd_requested": 9450.0,
+  "problem_count": 9,
+  "completed_count": 9,
+  "totals": {
+    "input_tokens": 123577666,
+    "output_tokens": 16617909,
+    "reasoning_tokens": 9457953,
+    "total_tokens": 140195575,
+    "cost_usd": 1742.8930053
+  },
+  "token_counting_convention": {
+    "input_tokens": "Provider input tokens; Google includes promptTokenCount plus toolUsePromptTokenCount.",
+    "output_tokens": "Billable output tokens including reasoning/thinking. Google candidatesTokenCount and thoughtsTokenCount are combined by the adapter. Do not add reasoning again.",
+    "reasoning_tokens": "internal-reasoning tokens. Surfaced via output_tokens_details.reasoning_tokens (OpenAI), completion_tokens_details.reasoning_tokens (OpenAI Chat-Completions o-family), output_tokens_details.thinking_tokens (Anthropic), thoughtsTokenCount (Google), or codex JSONL reasoning_out_tokens (Compute Worker). Zero when not separately reported.",
+    "total_tokens": "When the provider reports a total_tokens field, that is used verbatim. Otherwise we synthesize input_tokens + output_tokens. Reasoning is already included in output.",
+    "cost_usd": "USD cost per call, computed from each provider's rates declared in configs/models/."
+  },
+  "per_problem": [
+    {
+      "id": "prob-001",
+      "safe_id": "prob-001",
+      "status": "ok",
+      "returncode": 0,
+      "solved": true,
+      "in_progress": false,
+      "run_id": "firstproof-prob-001-20261002T181659Z-3f122e01",
+      "log_path": "logs/prob-001.log",
+      "output_tex_path": "prob-001.tex",
+      "started_at": "2026-10-02T18:17:04Z",
+      "finished_at": "2026-10-02T21:40:46Z",
+      "duration_seconds": 12222.562,
+      "stages": [
+        {
+          "stage_index": 1,
+          "n_rounds": 50,
+          "status": "solved",
+          "returncode": 0,
+          "solved": true,
+          "started_at": "2026-10-02T18:17:04Z",
+          "finished_at": "2026-10-02T21:40:46Z",
+          "duration_seconds": 12221.994,
+          "staged_solution_path": "staged_solutions/rounds-050/prob-001.tex"
+        }
+      ],
+      "health": {
+        "helpers_finished": 0,
+        "helpers_completed": 0,
+        "helpers_timed_out": 0,
+        "helpers_artifact_degraded": 0,
+        "last_activity": {
+          "kind": "run.end",
+          "timestamp": "2026-10-02T21:40:44.625Z"
+        }
+      },
+      "totals": {
+        "input_tokens": 7765091,
+        "output_tokens": 854277,
+        "reasoning_tokens": 208579,
+        "total_tokens": 8619368,
+        "cost_usd": 105.34899225
+      }
+    },
+    {
+      "id": "prob-002",
+      "safe_id": "prob-002",
+      "status": "ok",
+      "returncode": 0,
+      "solved": true,
+      "in_progress": false,
+      "run_id": "firstproof-prob-002-20261002T181659Z-3f122e01",
+      "log_path": "logs/prob-002.log",
+      "output_tex_path": "prob-002.tex",
+      "started_at": "2026-10-02T18:17:04Z",
+      "finished_at": "2026-10-02T23:52:55Z",
+      "duration_seconds": 20151.581,
+      "stages": [
+        {
+          "stage_index": 1,
+          "n_rounds": 50,
+          "status": "solved",
+          "returncode": 0,
+          "solved": true,
+          "started_at": "2026-10-02T18:17:04Z",
+          "finished_at": "2026-10-02T23:52:55Z",
+          "duration_seconds": 20150.934,
+          "staged_solution_path": "staged_solutions/rounds-050/prob-002.tex"
+        }
+      ],
+      "health": {
+        "helpers_finished": 0,
+        "helpers_completed": 0,
+        "helpers_timed_out": 0,
+        "helpers_artifact_degraded": 0,
+        "last_activity": {
+          "kind": "run.end",
+          "timestamp": "2026-10-02T23:52:53.941Z"
+        }
+      },
+      "totals": {
+        "input_tokens": 8809372,
+        "output_tokens": 1262451,
+        "reasoning_tokens": 352353,
+        "total_tokens": 10071823,
+        "cost_usd": 118.6304729
+      }
+    },
+    {
+      "id": "prob-003",
+      "safe_id": "prob-003",
+      "status": "ok",
+      "returncode": 0,
+      "solved": true,
+      "in_progress": false,
+      "run_id": "firstproof-prob-003-20261002T181659Z-3f122e01",
+      "log_path": "logs/prob-003.log",
+      "output_tex_path": "prob-003.tex",
+      "started_at": "2026-10-02T18:17:04Z",
+      "finished_at": "2026-10-03T00:12:58Z",
+      "duration_seconds": 21354.281,
+      "stages": [
+        {
+          "stage_index": 1,
+          "n_rounds": 50,
+          "status": "solved",
+          "returncode": 0,
+          "solved": true,
+          "started_at": "2026-10-02T18:17:04Z",
+          "finished_at": "2026-10-03T00:12:57Z",
+          "duration_seconds": 21353.477,
+          "staged_solution_path": "staged_solutions/rounds-050/prob-003.tex"
+        }
+      ],
+      "health": {
+        "helpers_finished": 0,
+        "helpers_completed": 0,
+        "helpers_timed_out": 0,
+        "helpers_artifact_degraded": 0,
+        "last_activity": {
+          "kind": "run.end",
+          "timestamp": "2026-10-03T00:12:56.505Z"
+        }
+      },
+      "totals": {
+        "input_tokens": 11845283,
+        "output_tokens": 1504373,
+        "reasoning_tokens": 352268,
+        "total_tokens": 13349656,
+        "cost_usd": 170.8306182
+      }
+    },
+    {
+      "id": "prob-004",
+      "safe_id": "prob-004",
+      "status": "ok",
+      "returncode": 0,
+      "solved": true,
+      "in_progress": false,
+      "run_id": "firstproof-prob-004-20261002T181659Z-3f122e01",
+      "log_path": "logs/prob-004.log",
+      "output_tex_path": "prob-004.tex",
+      "started_at": "2026-10-02T18:17:04Z",
+      "finished_at": "2026-10-02T22:55:10Z",
+      "duration_seconds": 16686.122,
+      "stages": [
+        {
+          "stage_index": 1,
+          "n_rounds": 50,
+          "status": "solved",
+          "returncode": 0,
+          "solved": true,
+          "started_at": "2026-10-02T18:17:04Z",
+          "finished_at": "2026-10-02T22:55:09Z",
+          "duration_seconds": 16685.544,
+          "staged_solution_path": "staged_solutions/rounds-050/prob-004.tex"
+        }
+      ],
+      "health": {
+        "helpers_finished": 0,
+        "helpers_completed": 0,
+        "helpers_timed_out": 0,
+        "helpers_artifact_degraded": 0,
+        "last_activity": {
+          "kind": "run.end",
+          "timestamp": "2026-10-02T22:55:08.638Z"
+        }
+      },
+      "totals": {
+        "input_tokens": 6299064,
+        "output_tokens": 979547,
+        "reasoning_tokens": 253051,
+        "total_tokens": 7278611,
+        "cost_usd": 104.85582075
+      }
+    },
+    {
+      "id": "prob-005",
+      "safe_id": "prob-005",
+      "status": "ok",
+      "returncode": 0,
+      "solved": true,
+      "in_progress": false,
+      "run_id": "firstproof-prob-005-20261002T181659Z-3f122e01",
+      "log_path": "logs/prob-005.log",
+      "output_tex_path": "prob-005.tex",
+      "started_at": "2026-10-02T18:17:04Z",
+      "finished_at": "2026-10-02T21:34:53Z",
+      "duration_seconds": 11869.287,
+      "stages": [
+        {
+          "stage_index": 1,
+          "n_rounds": 50,
+          "status": "solved",
+          "returncode": 0,
+          "solved": true,
+          "started_at": "2026-10-02T18:17:04Z",
+          "finished_at": "2026-10-02T21:34:53Z",
+          "duration_seconds": 11868.874,
+          "staged_solution_path": "staged_solutions/rounds-050/prob-005.tex"
+        }
+      ],
+      "health": {
+        "helpers_finished": 0,
+        "helpers_completed": 0,
+        "helpers_timed_out": 0,
+        "helpers_artifact_degraded": 0,
+        "last_activity": {
+          "kind": "run.end",
+          "timestamp": "2026-10-02T21:34:51.854Z"
+        }
+      },
+      "totals": {
+        "input_tokens": 4785721,
+        "output_tokens": 518010,
+        "reasoning_tokens": 227311,
+        "total_tokens": 5303731,
+        "cost_usd": 66.65552835
+      }
+    },
+    {
+      "id": "prob-006",
+      "safe_id": "prob-006",
+      "status": "ok",
+      "returncode": 0,
+      "solved": true,
+      "in_progress": false,
+      "run_id": "firstproof-prob-006-20261002T181659Z-3f122e01",
+      "log_path": "logs/prob-006.log",
+      "output_tex_path": "prob-006.tex",
+      "started_at": "2026-10-02T18:17:04Z",
+      "finished_at": "2026-10-02T21:36:19Z",
+      "duration_seconds": 11954.944,
+      "stages": [
+        {
+          "stage_index": 1,
+          "n_rounds": 50,
+          "status": "solved",
+          "returncode": 0,
+          "solved": true,
+          "started_at": "2026-10-02T18:17:04Z",
+          "finished_at": "2026-10-02T21:36:18Z",
+          "duration_seconds": 11954.371,
+          "staged_solution_path": "staged_solutions/rounds-050/prob-006.tex"
+        }
+      ],
+      "health": {
+        "helpers_finished": 0,
+        "helpers_completed": 0,
+        "helpers_timed_out": 0,
+        "helpers_artifact_degraded": 0,
+        "last_activity": {
+          "kind": "run.end",
+          "timestamp": "2026-10-02T21:36:17.039Z"
+        }
+      },
+      "totals": {
+        "input_tokens": 10842514,
+        "output_tokens": 730030,
+        "reasoning_tokens": 184789,
+        "total_tokens": 11572544,
+        "cost_usd": 106.566746
+      }
+    },
+    {
+      "id": "prob-007",
+      "safe_id": "prob-007",
+      "status": "ok",
+      "returncode": 0,
+      "solved": true,
+      "in_progress": false,
+      "run_id": "firstproof-prob-007-20261002T181659Z-3f122e01",
+      "log_path": "logs/prob-007.log",
+      "output_tex_path": "prob-007.tex",
+      "started_at": "2026-10-02T18:17:04Z",
+      "finished_at": "2026-10-03T00:24:06Z",
+      "duration_seconds": 22022.416,
+      "stages": [
+        {
+          "stage_index": 1,
+          "n_rounds": 50,
+          "status": "solved",
+          "returncode": 0,
+          "solved": true,
+          "started_at": "2026-10-02T18:17:04Z",
+          "finished_at": "2026-10-03T00:24:06Z",
+          "duration_seconds": 22021.779,
+          "staged_solution_path": "staged_solutions/rounds-050/prob-007.tex"
+        }
+      ],
+      "health": {
+        "helpers_finished": 0,
+        "helpers_completed": 0,
+        "helpers_timed_out": 0,
+        "helpers_artifact_degraded": 0,
+        "last_activity": {
+          "kind": "run.end",
+          "timestamp": "2026-10-03T00:24:04.963Z"
+        }
+      },
+      "totals": {
+        "input_tokens": 7772295,
+        "output_tokens": 1517348,
+        "reasoning_tokens": 341178,
+        "total_tokens": 9289643,
+        "cost_usd": 144.69421175
+      }
+    },
+    {
+      "id": "prob-008",
+      "safe_id": "prob-008",
+      "status": "ok",
+      "returncode": 0,
+      "solved": true,
+      "in_progress": false,
+      "run_id": "firstproof-prob-008-20261002T181659Z-3f122e01",
+      "log_path": "logs/prob-008.log",
+      "output_tex_path": "prob-008.tex",
+      "started_at": "2026-10-02T18:17:04Z",
+      "finished_at": "2026-10-03T04:11:41Z",
+      "duration_seconds": 35677.106,
+      "stages": [
+        {
+          "stage_index": 1,
+          "n_rounds": 50,
+          "status": "solved",
+          "returncode": 0,
+          "solved": true,
+          "started_at": "2026-10-02T18:17:04Z",
+          "finished_at": "2026-10-03T04:11:40Z",
+          "duration_seconds": 35676.467,
+          "staged_solution_path": "staged_solutions/rounds-050/prob-008.tex"
+        }
+      ],
+      "health": {
+        "helpers_finished": 0,
+        "helpers_completed": 0,
+        "helpers_timed_out": 0,
+        "helpers_artifact_degraded": 0,
+        "last_activity": {
+          "kind": "run.end",
+          "timestamp": "2026-10-03T04:11:39.628Z"
+        }
+      },
+      "totals": {
+        "input_tokens": 36526253,
+        "output_tokens": 2745120,
+        "reasoning_tokens": 1694798,
+        "total_tokens": 39271373,
+        "cost_usd": 331.6645342
+      }
+    },
+    {
+      "id": "prob-009",
+      "safe_id": "prob-009",
+      "status": "partial_unreviewed",
+      "returncode": 0,
+      "solved": false,
+      "in_progress": false,
+      "run_id": "firstproof-prob-009-20261002T181659Z-3f122e01",
+      "log_path": "logs/prob-009.log",
+      "output_tex_path": "prob-009.tex",
+      "started_at": "2026-10-02T18:17:04Z",
+      "finished_at": "2026-10-03T17:26:14Z",
+      "duration_seconds": 83350.427,
+      "stages": [
+        {
+          "stage_index": 1,
+          "n_rounds": 50,
+          "status": "partial_unreviewed",
+          "returncode": 0,
+          "solved": false,
+          "started_at": "2026-10-02T18:17:04Z",
+          "finished_at": "2026-10-03T17:26:14Z",
+          "duration_seconds": 83349.793,
+          "staged_solution_path": "staged_solutions/rounds-050/prob-009.tex"
+        }
+      ],
+      "health": {
+        "helpers_finished": 0,
+        "helpers_completed": 0,
+        "helpers_timed_out": 0,
+        "helpers_artifact_degraded": 0,
+        "last_activity": {
+          "kind": "run.end",
+          "timestamp": "2026-10-03T17:26:13.122Z"
+        }
+      },
+      "totals": {
+        "input_tokens": 28932073,
+        "output_tokens": 6506753,
+        "reasoning_tokens": 5843626,
+        "total_tokens": 35438826,
+        "cost_usd": 593.6460809
+      }
+    }
+  ],
+  "warnings": [
+    "prob-009: provider usage remains unresolved for call c02a4781c423495d63d67efc23a02361",
+    "prob-009: provider usage remains unresolved for call 13cef472dad14f024d9143a67d51e2d1",
+    "prob-009: provider usage remains unresolved for call 480be2beb84892e3de6d7b1a53740b7e"
+  ]
+}

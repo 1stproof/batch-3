@@ -1,0 +1,442 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Pone}{\mathbb P^1}
+\newcommand{\Teich}{\operatorname{Teich}}
+\newcommand{\Mod}{\operatorname{PMod}}
+\newcommand{\D}{\mathcal D}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\fptitle}{Review of Problem 7 -- MerLean}
+\newcommand{\reviewtag}{Reviewer 2}
+\usepackage{fp-review}
+
+\begin{document}
+\maketitle
+
+\section{Review}
+The strategy of the article for producing the desired construction is slightly different from the other submissions. The proposed introduction of an intermediate degree 3 covering seems artificial, but it may work.
+
+\paragraph{Correctness.}
+
+ The solution is might be correct; it is impossible to verify all the computational details within the time frame. 
+
+\noindent Score: 0.5
+
+\paragraph{Exposition.}
+
+The argument is possible to follow, in principle, but due to the computational nature of the solution it is extremely difficult to verify every single step of the construction. 
+
+\noindent Score: 0
+
+\paragraph{Attributions.}
+
+The attributions are insufficient.
+
+\noindent Score: 0
+
+
+\newpage
+\section{Submission with inline comments}
+
+
+\begin{abstract}
+Let a quadratic rational map have a critical point of exact period four, with its other critical value outside that cycle. Mark the cycle and the additional critical value. We describe a simple closed curve whose squared Dehn twist preserves the associated Teichm\"uller deformation space and has an infinite orbit on its connected components. After normalizing the cycle to $0,\infty,1,t$, the curve is obtained by transporting an upper semicircle from the parameter $t=3$. An explicit finite covering of ordered moduli identifies the stabilizer of the component containing the rational structure. A winding number on a further three-sheeted covering vanishes on this stabilizer and is nonzero on the squared twist. The construction applies to every admissible complex parameter.
+\end{abstract}
+
+\section{The question and the curve}
+Let $f:\Pone\to\Pone$ be a rational map of degree two, with critical points $c_1,c_2$. Assume that $c_1$ has exact period four and that $v=f(c_2)$ does not lie on its cycle. Put
+\[
+ a_j=f^{\circ j}(c_1)\quad(0\leq j\leq3),\qquad
+ A=\{a_0,a_1,a_2,a_3\},\qquad B=A\cup\{v\}.
+\]
+All markings in this paper are labeled. For a finite subset $S$ of the oriented sphere, $\Teich(S)$ denotes the space of complex structures modulo pullback by orientation-preserving homeomorphisms isotopic to the identity relative to $S$. Since $f(A)=A$ and the critical values are $a_1,v$, pullback and forgetting the mark $v$ give maps
+\[
+ f^*,i_*:\Teich(B)\longrightarrow\Teich(A).
+\]
+Their equalizer is the deformation space
+\begin{equation}\label{eq:def}
+ \D_f=\{\tau\in\Teich(B):f^*(\tau)=i_*(\tau)\}.
+\end{equation}
+The given rational structure determines a point $\tau_f\in\D_f$. Write $C_f$ for its connected component.
+
+The pure mapping class group $\Mod(S)$ consists of isotopy classes, relative to $S$, of orientation-preserving homeomorphisms fixing $S$ pointwise. We use the action
+\[
+ h\cdot[J]=[(h^{-1})^*J].
+\]
+For a simple closed curve $\gamma\subset\Pone\setminus B$, let $T_\gamma$ be a Dehn twist: a homeomorphism supported on an annular neighborhood of $\gamma$ that makes one full turn across the annulus. Either global choice of twist sign gives the same conclusions below.
+
+Hironaka and Koch proved that these deformation spaces have infinitely many connected components \cite[Theorem 1.3]{HK}. Their covering-space description relates components to the image of a fundamental group \cite[Section 3.2]{HK}. Firsova, Kahn and Selinger study powers of twists preserving deformation spaces, including curves enclosing the free critical value and the fourth cycle point \cite[Lemmas 5.3 and 5.5, Section 6.1]{FKS}. We give an explicit curve and a winding-number proof of its infinite component orbit. The main issue is to show that the chosen twist never returns $C_f$ to itself after a nonzero number of iterations; preservation alone does not show this.
+
+Here is the construction. Let $m$ be the unique M\"obius transformation sending $(a_0,a_1,a_2)$ to $(0,\infty,1)$, and put $t_0=m(a_3)$. Define
+\begin{gather*}
+ P(t)=t^2+t-1,\qquad Q(t)=t^2-3t+1,\qquad R(t)=3t^2-3t+1,\\
+ \Delta(t)=4t(2t-1)(t-1).
+\end{gather*}
+\begin{equation}\label{eq:U}
+ U=\{t\in\C:t(t-1)(2t-1)P(t)Q(t)R(t)\ne0\},
+ \qquad v(t)=-\frac{Q(t)^2}{\Delta(t)}.
+\end{equation}
+We prove below that $t_0\in U$ and $m(v)=v(t_0)$. At $t=3$ the five marked points are
+\[
+ (0,\infty,1,3,-1/120).
+\]
+Let $\alpha_3$ be the upper semicircle with diameter $[-1/120,3]$; its interior avoids all the marked points.
+
+Choose a path $\sigma$ in $U$ from $3$ to $t_0$ as follows. Use the straight segment, replacing passages through deleted points by small semicircles on its left, relative to its orientation. The detour disks are disjoint, miss the endpoints, and contain no other deleted points. If $t_0=3$, use the constant path. Transport $\alpha_3$ by an ambient isotopy following the labeled configuration
+\begin{equation}\label{eq:config}
+ (0,\infty,1,\sigma(s),v(\sigma(s))),\qquad 0\leq s\leq1,
+\end{equation}
+and fixing $0,\infty,1$. Such an isotopy exists: subdivide the parameter interval so that on each subinterval the moving points remain in disjoint coordinate disks, and extend their motions inside those disks. Any two extensions give isotopic final arcs relative to the final marked set, since their pointwise quotient is an isotopy fixing the initial configuration. Denote the final arc by $\alpha$. If $N(\alpha)$ is a sufficiently small closed regular neighborhood, define
+\begin{equation}\label{eq:gamma}
+ \gamma=m^{-1}\bigl(\partial N(\alpha)\bigr).
+\end{equation}
+Thus $\gamma$ bounds a disk containing exactly $a_3$ and $v$ from $B$. Its construction specifies an isotopy class, which is all that a Dehn twist requires.
+
+\begin{theorem}\label{thm:main}
+For every $f$ satisfying the hypotheses above, the curve \eqref{eq:gamma} satisfies
+\[
+ T_\gamma^2(\D_f)=\D_f.
+\]
+Moreover, the connected components $T_\gamma^{2n}(C_f)$, $n\in\Z$, are pairwise distinct.
+\end{theorem}
+
+\section{Normalization and preservation}
+We first verify the parameter domain and the preservation assertion. Conjugating by $m$, a critical point at $0$ mapping to $\infty$, followed by $\infty\mapsto1$, forces the form
+\[
+ F_t(z)=1+\frac{\beta}{z}+\frac{\kappa}{z^2},\qquad \kappa\ne0.
+\]
+The remaining cycle equations $F_t(1)=t$ and $F_t(t)=0$ give
+\[
+ \beta+\kappa=t-1,\qquad \beta t+\kappa=-t^2,
+\]
+so
+\begin{equation}\label{eq:Ft}
+ F_t(z)=1-\frac{P(t)}{(t-1)z}
+          +\frac{t(2t-1)}{(t-1)z^2}.
+\end{equation}
+Here $t\ne0,1$ by distinctness of the cycle, and $t\ne1/2$ by degree two. This normalization also appears in \cite[Section 6]{FKS}.
+
+If $P(t)\ne0$, differentiating gives the other critical point
+\[
+ \frac{2t(2t-1)}{P(t)}.
+\]
+Its value is $1-\beta^2/(4\kappa)$. The polynomial identities
+$P^2-Q^2=\Delta$ and $R^2-Q^2=t\Delta$ yield
+\begin{equation}\label{eq:values}
+ v(t)=-\frac{Q^2}{\Delta},\qquad
+ v(t)-1=-\frac{P^2}{\Delta},\qquad
+ v(t)-t=-\frac{R^2}{\Delta}.
+\end{equation}
+When $P(t)=0$, the second critical point is $\infty$: in the coordinate $\zeta=1/z$ the map is $1+\kappa\zeta^2$. Its value is $1$, so it is excluded. Equations \eqref{eq:values} now show that \eqref{eq:U} is precisely the admissible parameter domain. Conversely every $t\in U$ gives the four distinct cycle points and an off-cycle second critical value. The discriminants of $P,Q,R$ are $5,5,-3$; their roots are mutually disjoint and avoid $0,1,1/2$, as follows also by subtracting these polynomials. Thus $U$ is a sphere with ten punctures, including $\infty$. In particular it is path connected, and the construction of $\sigma$ is always possible. At the reference parameter,
+\begin{equation}\label{eq:model}
+ F_3(z)=1-\frac{11}{2z}+\frac{15}{2z^2},\qquad v(3)=-\frac1{120}.
+\end{equation}
+
+A curve is called peripheral relative to a marked set if it bounds a disk containing just one marked point. A twist about such a curve is isotopic to the identity relative to that set.
+
+\begin{lemma}\label{lem:preserve}
+Let $\alpha$ be any embedded arc joining $a_3$ to $v$ whose interior avoids $B$, and let $\gamma=\partial N(\alpha)$. Then $T_\gamma^2$ preserves all of $\D_f$.
+\end{lemma}
+\begin{proof}
+Write $D=N(\alpha)$. Its only critical value is $v$. The inverse image $f^{-1}(D)$ is a disk mapping to $D$ with degree two and one simple branch point. To see this, slit $D$ from $v$ to its boundary; the two sheets are glued crosswise along the slit. The gluing makes the cover connected with one boundary component and gives a disk. Since $a_2$ is the unique cycle point mapping to $a_3$,
+\[
+ f^{-1}(D)\cap A=\{a_2\}.
+\]
+Let $\delta=\partial f^{-1}(D)$. The boundary covering has degree two. In collar coordinates its form is $(r,\theta)\mapsto(r,2\theta)$. For a function $\rho$ that is $0$ near one end of the collar and $1$ near the other, the squared target twist
+\[
+ (r,\theta)\longmapsto(r,\theta+4\pi\rho(r))
+\]
+lifts to $(r,\theta)\mapsto(r,\theta+2\pi\rho(r))$. Both extend by the identity outside their collars. Hence $h=T_\gamma^2$ has a lift $\widetilde h=T_\delta$ satisfying $f\circ\widetilde h=h\circ f$ and fixing $A$.
+
+After forgetting $v$, $\gamma$ is peripheral about $a_3$; the source curve $\delta$ is peripheral about $a_2$ relative to $A$. Both resulting classes in $\Mod(A)$ are trivial. Pullback equivariance therefore gives, for every $\tau\in\Teich(B)$,
+\[
+ f^*(h\cdot\tau)=\widetilde h\cdot f^*(\tau)=f^*(\tau),
+ \qquad i_*(h\cdot\tau)=i_*(\tau).
+\]
+This proves $h(\D_f)\subseteq\D_f$. Applying the same argument to $h^{-1}$ proves equality. This is the degree-two instance of the lifting mechanism in \cite[Lemmas 5.3 and 5.5]{FKS}.
+\end{proof}
+
+\section{A covering that identifies the component stabilizer}
+To distinguish components, we must keep track of the marked source of the pullback, not only the target configuration. The ordered target moduli space and the four-point moduli space are
+\[
+ M=\{(y,b)\in\C^2:y,b\notin\{0,1\},\ y\ne b\},\qquad
+ M_A=\C\setminus\{0,1\}.
+\]
+Their coordinates represent $(0,\infty,1,y,b)$ and $(0,\infty,1,x)$, respectively. The maps $\pi_B:\Teich(B)\to M$ and $\pi_A:\Teich(A)\to M_A$ are universal coverings, with deck groups the corresponding pure mapping class groups; see \cite[Section 2.3]{HK}. There are no residual M\"obius stabilizers, since three labeled points are fixed.
+
+Let $W$ be the complement in $\C^2$ of the eight lines
+\begin{equation}\label{eq:lines}
+ u=0,\quad u=1,\quad w=0,\quad w=1,\quad
+ u=w,\quad u+w=0,\quad u+w=1,\quad u+w=2.
+\end{equation}
+On $W$ set
+\begin{equation}\label{eq:XYB}
+ X=\frac1u,\qquad Y=\frac{(u-1)(w-1)}{uw},\qquad
+ Z=-\frac{(u-w)^2}{4uw},\qquad q(u,w)=(Y,Z).
+\end{equation}
+Here $Z$ is a critical-value coordinate, distinct from the marked set $B$. The rational map
+\begin{equation}\label{eq:Fuw}
+ F_{u,w}(z)=1-\frac{1/u+1/w}{z}+\frac1{uwz^2}
+\end{equation}
+maps the source marks $(0,\infty,1,X)$ to $(\infty,1,Y,0)$ and has second critical value $Z$. Its numerator roots are $1/u$ and $1/w$, with the former distinguished by the source label $a_3$. The useful collision identity is
+\begin{equation}\label{eq:collision}
+ Z-Y=-\frac{(u+w-2)^2}{4uw}.
+\end{equation}
+
+\begin{lemma}\label{lem:q}
+The map $q:W\to M$ is a connected, four-sheeted unramified covering.
+\end{lemma}
+\begin{proof}
+Put $s=u+w$ and $p=uw$. Then
+\[
+ Y=1-\frac{s-1}{p},\qquad Z=1-\frac{s^2}{4p}.
+\]
+For prescribed $(y,b)\in M$, the possible sums solve
+\begin{equation}\label{eq:inverse}
+ (y-1)s^2+4(1-b)s-4(1-b)=0.
+\end{equation}
+Its discriminant is $16(1-b)(y-b)\ne0$. Its values at $s=0,1,2$ are respectively $-4(1-b),y-1,4(y-b)$, all nonzero. Each of its two roots gives
+\[
+ p=\frac{s^2}{4(1-b)}\ne0.
+\]
+The two roots $u,w$ of $z^2-sz+p$ have discriminant
+\[
+ s^2-4p=-\frac{bs^2}{1-b}\ne0.
+\]
+There are two ordered choices. Neither root is zero, and neither is one because $(1-u)(1-w)=yp\ne0$. The sums already avoid $0,1,2$, so all eight exclusions hold. Conversely these choices satisfy $Y=y$ and $Z=b$.
+
+The two quadratic equations have simple roots at every point of $M$, so the four inverse branches vary analytically on a sufficiently small neighborhood and exhaust its inverse image. This proves the covering assertion. Finally any two points of $W$ lie on a complex affine line not contained in any deleted line. It meets the deleted set in only finitely many points, which can be avoided along a path. Thus $W$ is path connected.
+\end{proof}
+
+We now relate this explicit covering to the given map $f$. For $\tau\in\Teich(B)$, normalize its target structure and the source structure obtained by pulling it back by $f$, each using the labeled triple $(a_0,a_1,a_2)$. Uniformization makes the resulting map rational. Write $y,b$ for the target coordinates and $x$ for the source coordinate of $a_3$. The map has the form $1+\beta/z+\kappa/z^2$, and the equations at $1$ and $x$ give
+\[
+ \kappa=\frac{x(x+y-1)}{x-1},\qquad
+ u=\frac1x,\qquad w=\frac{x-1}{x+y-1}.
+\]
+The denominator $x+y-1$ is nonzero because $\kappa\ne0$. These formulas continuously select the marked numerator root. They define the based lift
+\begin{equation}\label{eq:pf}
+ p_f:\Teich(B)\longrightarrow W,\qquad q\circ p_f=\pi_B,
+\end{equation}
+with $p_f(\tau_f)=(1/t_0,(t_0-1)/(2t_0-1))$. In particular,
+\begin{equation}\label{eq:intended}
+ \pi_A\circ f^*=X\circ p_f,\qquad
+ \pi_A\circ i_*=Y\circ p_f.
+\end{equation}
+This binds the coordinates to the actual pullback by $f$. Since $q$ is a connected covering and $\Teich(B)$ is simply connected, $p_f$ is the universal covering of $W$ (equivalently, lift paths in $W$ using their projections to $M$). The lifting results used here are \cite[Section 1.3, Propositions 1.31--1.34]{Hatcher}; all spaces are manifolds and hence locally path connected.
+
+Define
+\[
+ V=\{(u,w)\in W:X=Y\}.
+\]
+Its equation and parametrization are
+\begin{equation}\label{eq:V}
+ (u-2)w=u-1,\qquad
+ (u,w)=\left(\frac1t,\frac{t-1}{2t-1}\right),\quad t\in U.
+\end{equation}
+Indeed, the equation follows from \eqref{eq:XYB}, and on it the source and target fourth marks coincide. The rational map then has precisely the cycle used in \eqref{eq:Ft}; the exclusions are exactly those in \eqref{eq:U}. The inverse parameter is $t=1/u$. Thus $V$ is a connected smooth punctured curve.
+
+\begin{proposition}\label{prop:stabilizer}
+Let $w_f=p_f(\tau_f)$, let $j:V\hookrightarrow W$ be inclusion, and identify $\pi_1(W,w_f)$ with the deck group of $p_f$ using the basepoint $\tau_f$. Then
+\begin{equation}\label{eq:E}
+ \operatorname{Stab}_{\pi_1(W,w_f)}(C_f)
+ =E_f:=j_*\pi_1(V,w_f).
+\end{equation}
+\end{proposition}
+\begin{proof}
+By \eqref{eq:intended}, $\D_f\subset p_f^{-1}(V)$. On any connected component of $p_f^{-1}(V)$, the maps $f^*$ and $i_*$ lift the same map to $M_A$. Lift uniqueness implies that they either agree everywhere or agree nowhere on that component. Hence $\D_f$ is a union of whole components of $p_f^{-1}(V)$.
+
+The restriction over $V$ is a covering of a smooth curve. Its components are open and path connected. They are consequently also precisely the connected components of the selected union $\D_f$. In particular, $C_f$ is the component containing $\tau_f$.
+
+A based loop in $V$ lifts to a path starting at $\tau_f$ and remaining in $C_f$, so its deck transformation stabilizes $C_f$. Conversely, if a deck transformation $g$ stabilizes $C_f$, join $\tau_f$ to $g\tau_f$ by a path in this path-connected component. Its projection is a loop in $V$ representing $g$ under the chosen deck convention. This proves \eqref{eq:E}. Injectivity of $j_*$ is not required.
+\end{proof}
+
+\section{A winding number that vanishes on the stabilizer}
+
+\review{The construction of the degree-3 cover described in this section seems both artificial and, on the other hand, original.}
+The next covering supplies an integer invariant of selected loops in $W$. We choose its defining function to equal $1$ on $V$, so that every loop contributing to $E_f$ has a distinguished closed lift. Set
+\begin{equation}\label{eq:H}
+ H=\frac{X(Y-1)}{Y(X-1)}
+   =\frac{u+w-1}{(u-1)^2(w-1)},\qquad
+ \widehat W=\{(u,w,\eta):(u,w)\in W,\ \eta^3=H(u,w)\}.
+\end{equation}
+The function $H$ has neither zeros nor poles on $W$. Thus $r:\widehat W\to W$ is an unramified three-sheeted covering. Since $H=1$ on $V$, there is a copy
+\[
+ \widehat V_1=\{(u,w,1):(u,w)\in V\}
+\]
+containing the chosen basepoint $\widehat w_f=(w_f,1)$.
+
+Define
+\begin{equation}\label{eq:J}
+ J(u,w,\eta)=\frac{1+\eta(u-1)}u.
+\end{equation}
+This function equals $1$ on $\widehat V_1$. To prove it is nonzero throughout $\widehat W$, let $\omega=e^{2\pi i/3}$. Direct multiplication gives
+\begin{equation}\label{eq:product}
+ \prod_{k=0}^2\bigl(1+\omega^k\eta(u-1)\bigr)
+ =1+H(u-1)^3=\frac{u(u+w-2)}{w-1}\ne0.
+\end{equation}
+Every factor is therefore nonzero, as is $u$.
+
+For a loop $\lambda$ based at $\widehat w_f$, the winding number of $J\circ\lambda$ about $0$ is an integer, the total change of its argument divided by $2\pi$. It is invariant under based homotopy and additive under concatenation. The induced homomorphism on
+\[
+ K_f=r_*\pi_1(\widehat W,\widehat w_f)\subset\pi_1(W,w_f)
+\]
+is denoted by $\chi_f$; injectivity of $r_*$ makes this unambiguous. All loops in $V$ lift through $\widehat V_1$, where $J=1$, so
+\begin{equation}\label{eq:vanishes}
+ E_f\subset K_f,\qquad \chi_f(E_f)=\{0\}.
+\end{equation}
+Consequently, if $g\in K_f$ has $\chi_f(g)\ne0$, then no nonzero power of $g$ can stabilize $C_f$.
+
+To produce such a loop, consider the deleted line
+\[
+ L=\{u+w=2\}.
+\]
+Near a point of $L$ that is on none of the other deleted lines, $H$ extends holomorphically and is nonzero. On $L$,
+\[
+ H=-\frac1{(u-1)^3},\qquad
+ \eta=-\frac{\omega^k}{u-1}\quad(k=0,1,2).
+\]
+The covering therefore extends locally across $L$. On its sheet with $\eta=-1/(u-1)$, the function $J$ has a simple zero transverse to $L$: in \eqref{eq:product} the other two factors are nonzero, and the right-hand side has a simple transverse zero. A small positively oriented loop around that sheet of $L$, called a meridian, has $J$-winding number one. The remaining task is to show that the upper semicircle $\alpha_3$ leads to this particular sheet.
+
+\section{The upper semicircle and its lifted meridian}
+At $t=3$ the based point of $W$ is $(u,w)=(1/3,2/5)$ and $\eta=1$. Keep the target fourth mark fixed, $Y=3$, while moving its other critical value. On this fiber, write $b(u)=Z(u,w(u))$. Solving for $w$ and substituting in \eqref{eq:H} gives
+\begin{equation}\label{eq:fiber}
+ w(u)=\frac{1-u}{2u+1},\qquad H=\frac2{3(1-u)},
+\end{equation}
+\begin{equation}\label{eq:bu}
+ b(u)=\frac u2+\frac54-\frac1{4u}
+             -\frac3{4(1-u)}+\frac3{4(2u+1)}.
+\end{equation}
+Put
+\[
+ u_*=1-\sqrt{3/2},\qquad \varepsilon=1/100.
+\]
+Use the path that goes along the real axis from $1/3$ to $\varepsilon$, along the upper semicircle $|u|=\varepsilon$ to $-\varepsilon$, and then along the real axis to $u_*$. Its endpoint lies on $L$; all other points lie in $W$.
+
+\begin{lemma}\label{lem:arc}
+The $b$-image of this path is an embedded arc from $-1/120$ to $3$, isotopic to $\alpha_3$ relative to $\{0,\infty,1,3,-1/120\}$. The lift starting with $\eta=1$ reaches the sheet of $L$ on which $J$ vanishes.
+\end{lemma}
+\begin{proof}
+On $0<u\leq1/3$, both $u$ and $w(u)$ are positive and distinct. Indeed $w-u=(1-2u-2u^2)/(2u+1)>0$. Thus $b(u)<0$. On $u_*<u<0$, the product $uw$ is negative, while \eqref{eq:collision} gives
+\[
+ b(u)-3=-\frac{(u+w-2)^2}{4uw}>0.
+\]
+There are no excluded points on these open real legs: on the first, the target value is negative, and on the second it is greater than $3$; the denominators and the remaining source inequalities in \eqref{eq:lines} are nonzero. For example, the equations $u+w=1,2$ on this fiber reduce respectively to $2u(u-1)=0$ and $2u^2-4u-1=0$; the relevant latter root is the endpoint $u_*$. Since $q$ is locally biholomorphic and $u$ is a coordinate on the fiber $Y=3$, $b'(u)$ does not vanish on either open leg. Each real leg is therefore injective.
+
+For $\operatorname{Im}u>0$ and $|u|=\varepsilon$, formula \eqref{eq:bu} yields
+\begin{equation}\label{eq:imb}
+ \operatorname{Im}b(u)=\operatorname{Im}u\left(
+ \frac12+\frac1{4|u|^2}-\frac3{4|1-u|^2}
+                  -\frac3{2|1+2u|^2}\right)>0.
+\end{equation}
+To check injectivity on this middle arc, for distinct $u_1,u_2$ with $0<|u_i|\leq\varepsilon$ compute
+\begin{align}\label{eq:divdiff}
+ \frac{b(u_1)-b(u_2)}{u_1-u_2}
+ &=\frac12+\frac1{4u_1u_2}
+   -\frac3{4(1-u_1)(1-u_2)}\nonumber\\
+ &\hspace{18mm}-\frac3{2(1+2u_1)(1+2u_2)}.
+\end{align}
+The term $1/(4u_1u_2)$ has modulus at least $2500$, whereas the sum of bounds for the other three terms is
+\[
+ \frac12+\frac3{4(1-\varepsilon)^2}
+          +\frac3{2(1-2\varepsilon)^2}<3.
+\]
+Thus the divided difference is nonzero. The same bounds prove the strict inequality in \eqref{eq:imb}.
+
+The two real legs have disjoint ranges, one negative and one greater than $3$, and the middle arc lies strictly in the upper half-plane. Their only intersections are the shared successive endpoints. Direct substitution gives the final value $b(u_*)=3$, and \eqref{eq:model} gives the initial value. This proves embeddedness and avoidance of $0,1,\infty$. Pushing the interiors of the real legs slightly upward produces an arc with interior in the upper half-plane. All other finite marked points lie on its boundary line; within this half-plane such an arc is isotopic, fixing its endpoints, to the upper semicircle $\alpha_3$.
+
+Finally $\operatorname{Re}u<1$ throughout the path. By \eqref{eq:fiber}, $H$ stays in the right half-plane, so the cube root starting at $1$ continues to the positive real cube root at the endpoint. With $r_0=\sqrt{3/2}$ the endpoint is
+\[
+ u_*=1-r_0,\qquad w_*=1+r_0,\qquad \eta_*=1/r_0.
+\]
+In particular $\eta_*(u_*-1)=-1$. None of the other deleted lines contains $(u_*,w_*)$, and the selected sheet is exactly the one on which $J$ vanishes.
+\end{proof}
+
+Move the target point $b$ along the arc of Lemma~\ref{lem:arc} to near $3$, once around $3$, and back. This is a point-pushing loop: the other four marks stay fixed. Its mapping class is $T_{\partial N(\alpha_3)}$, up to the fixed global sign convention. One can see this in the disk $N(\alpha_3)$ containing just the two marks: carrying one mark around the other makes a full twist of the pair, represented by a twist on the disk boundary. Any extra twist around a single mark is peripheral and trivial.
+
+Write $\gamma_3=\partial N(\alpha_3)$. The square of this loop lifts to a closed single meridian of $L$ in $W$. Indeed \eqref{eq:collision} has a nonzero denominator at $(u_*,w_*)$, and on the fiber
+\[
+ u+w-2=\frac{2u^2-4u-1}{2u+1}
+\]
+has a simple zero at $u_*$. Thus $b-3$ has a zero of order two there: two turns in the target lift to one transverse turn about $L$. More explicitly, the two consecutive target loops give the square of a small local loop after cancelling the return and access paths. Its lift goes along the chosen access path, around $L$ once, and back.
+
+The cube-root cover extends without ramification at this point, so the latter loop has a closed lift based at $(1/3,2/5,1)$. By Lemma~\ref{lem:arc} it meets the sheet where $J$ has a simple zero. The access path and its reverse contribute opposite changes of argument. Hence, for the deck element $g$ represented by the squared twist,
+\begin{equation}\label{eq:chi}
+ g=T_{\gamma_3}^{\,2}\in K_{F_3},\qquad
+ \chi_{F_3}(g)=\pm1.
+\end{equation}
+Here the deck identification with the Teichm\"uller action follows from the closed lift of the moduli loop to $W$: it is precisely an element of the subgroup corresponding to the covering $q$. Reversing the convention replaces $g$ by $g^{-1}$ and does not change any nonreturn conclusion.
+
+By \eqref{eq:vanishes}, $g^n\notin E_{F_3}$ for every nonzero $n\in\Z$. Lemma~\ref{lem:preserve} says that $g$ preserves the deformation space, and Proposition~\ref{prop:stabilizer} identifies $E_{F_3}$ as the stabilizer of $C_{F_3}$. If $g^mC_{F_3}=g^nC_{F_3}$, then $g^{m-n}$ stabilizes this component, forcing $m=n$. This proves Theorem~\ref{thm:main} at the reference parameter.
+
+\section{Transport to the given map and scope of the conclusion}
+
+\review{All statements in this section are quite straightforward; this can be shortened substantially.}
+
+\begin{proof}[Completion of the proof of Theorem~\ref{thm:main}]
+The path $\sigma$ specified in Section~1 gives a path in $V$ by \eqref{eq:V}, from the reference point to $w_f$. Its image under $q$ is exactly the configuration path \eqref{eq:config}. Its lift to $\widehat V_1$ has $\eta=1$ and $J=1$ throughout.
+
+Change basepoints along this path. Geometrically, the corresponding change of basepoint for the point-pushing loop transports its supporting arc by the configuration isotopy. Therefore the element $g$ of \eqref{eq:chi} becomes the squared twist about the curve \eqref{eq:gamma}. This is the usual conjugation of a based loop by a connecting path: traverse the connecting path in reverse, perform the old loop, and return. The lifted connecting paths cancel in the winding number, so the transported element lies in $K_f$ and has $\chi_f=\pm1$. At the new basepoint every loop in $V$ still lifts through $\widehat V_1$ with $J=1$, and therefore $\chi_f(E_f)=0$.
+
+The construction of $p_f$ in \eqref{eq:pf} uses the original topological map $f$ and its own rational basepoint, so Proposition~\ref{prop:stabilizer} applies to $C_f$. No nonzero power of the transported squared twist belongs to its stabilizer. Lemma~\ref{lem:preserve} proves preservation directly for the transported arc, and the same group-action argument as above proves pairwise distinctness of all its component translates. Finally conjugating back by $m^{-1}$ gives the assertion on the original marked sphere.
+\end{proof}
+
+The path in parameter space is part of the explicit choice of curve; different path classes need not produce the same isotopy class. The proof works for each choice made by the stated construction. It requires neither a dynamical conjugacy between different parameters nor simple connectivity of $C_f$. It does not classify all components or all curves with an infinite component orbit. Curves enclosing $a_3$ and $v$ always satisfy the preservation lemma, but the nonreturn argument here uses the specific transported arc and its verified sheet.
+
+\begin{remark}[Why the further covering is useful]\label{rem:lattice}
+The five elementary winding coordinates on $M$ are those of
+\[
+ y,\quad y-1,\quad b,\quad b-1,\quad b-y.
+\]
+Their restrictions to $U$ are $t,t-1,v,v-1,v-t$. The orders at the punctures, in this order of functions, are
+\[
+\begin{array}{c|rrrrr}
+\text{puncture}&t&t-1&v&v-1&v-t\\ \hline
+0&1&0&-1&-1&-1\\
+1&0&1&-1&-1&-1\\
+1/2&0&0&-1&-1&-1\\
+Q=0&0&0&2&0&0\\
+P=0&0&0&0&2&0\\
+R=0&0&0&0&0&2\\
+\infty&-1&-1&-1&-1&-1
+\end{array}
+\]
+Each quadratic row occurs at both roots. These follow directly from \eqref{eq:values}; the last row uses the local coordinate $1/t$ at infinity. If $e_i$ denotes the $i$th standard basis vector of $\Z^5$, the generated lattice has basis
+\[
+ e_1,\quad e_2,\quad (0,0,1,1,1),\quad 2e_4,\quad 2e_5.
+\]
+Indeed, subtracting the $1/2$ row from the first two rows gives $e_1,e_2$, and the last three coordinates are generated by the all-ones vector and the doubled coordinate vectors. The lattice has index four and consists precisely of vectors whose last three coordinates have equal parity. The squared twist used here has vector $(0,0,0,0,\pm2)$, which lies in this lattice, as do all its multiples. Thus these five winding coordinates alone do not separate its powers from the loop image of $V$. The function $J$ on $\widehat W$ supplies the additional distinction needed in the proof.
+\end{remark}
+
+\begin{thebibliography}{9}
+\bibitem{FKS}
+T. Firsova, J. Kahn and N. Selinger,
+\emph{On deformation spaces of quadratic rational maps},
+arXiv:1606.00723v4 (2020),
+\href{https://arxiv.org/abs/1606.00723v4}{arXiv:1606.00723v4}.
+The PDF title uses ``functions'' in place of ``maps''.
+
+\bibitem{Hatcher}
+A. Hatcher, \emph{Algebraic Topology}, Cambridge University Press, 2002.
+\href{https://pi.math.cornell.edu/~hatcher/AT/ATch1.pdf}{Chapter 1}, Section 1.3.
+
+\bibitem{HK}
+E. Hironaka and S. Koch,
+\emph{A disconnected deformation space of rational maps},
+Journal of Modern Dynamics \textbf{11} (2017), 409--423,
+\href{https://doi.org/10.3934/jmd.2017016}{doi:10.3934/jmd.2017016}.
+Locators refer to \href{https://arxiv.org/abs/1602.07378v1}{arXiv:1602.07378v1} (2016).
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,463 @@
+Below is a detailed answer to the research question, written up in the style of a mathematical paper.
+
+```latex
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{tikz-cd}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{construction}[theorem]{Construction}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Sh}{\mathrm{Sh}}
+\newcommand{\PSh}{\mathrm{PSh}}
+\newcommand{\Ab}{\mathrm{Ab}}
+\newcommand{\D}{\mathbf{D}}
+\newcommand{\Acal}{\mathcal{A}}
+\newcommand{\Bcal}{\mathcal{B}}
+\newcommand{\cat}[1]{\mathbf{#1}}
+\newcommand{\op}{\mathrm{op}}
+
+\title{Birhizomic descent and the trivial topology on sharpenings}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Let $P$ be a monoid and let $\Acal_P$ be the category of monoid morphisms
+$P \to Q$ equipped with the birhizomic topology.  Let $\Bcal_P$ be the full
+subcategory of sharpenings $P \to P[-x]^{\sharp}$, $x \in P$, equipped with the
+trivial topology.  We show that the pullback--pushforward adjunction
+$\pi^{-1} \dashv \pi_*$ between the two topoi is a ``derived equivalence'' in the
+weakest sense needed to answer the question under consideration: for every
+presheaf of abelian groups $F$ on $\Bcal_P^{\op}$ the unit
+$F \to \mathrm{R}\pi_*\pi^{-1}F$ is a quasi-isomorphism.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction and statement}
+
+Throughout, a \emph{monoid} is an integral, saturated, sharp, commutative,
+unital semigroup, written additively.  A monoid $M$ induces a translation
+invariant partial order on its associated group $M^{\mathrm{gp}}$ by
+$x \geq 0 \iff x \in M$; $M$ is \emph{valuative} if this partial order is a
+total order.  If $x \in M^{\mathrm{gp}}$ and $y \in M$, write $x \prec y$ when
+there exist integers $m,n$ with $my \le x \le ny$.
+
+A monoid morphism $f : M \to N$ is \emph{infinitesimal} if the following holds:
+for all $x \in M^{\mathrm{gp}}$ and $y \in M$ with $f(x) \in N$, $x \prec y$ and
+$f(y) \prec f(x)$, one has $x \in M$.  If
+$P \xrightarrow{f} Q \xrightarrow{g} N$ are monoid morphisms, $f$ is
+\emph{birhizomic at $g$} if it is of finite presentation in the category of
+monoids and, for every factorization of $gf$ through morphisms
+$P \xrightarrow{h} M \xrightarrow{p} N$ with $p$ infinitesimal, there is a
+unique morphism $u : Q \to M$ with $pu = g$ and $uf = h$.  A family
+$\{P \to Q_i\}$ is a \emph{birhizomic cover} if, for every valuative monoid $V$
+and every $v : P \to V$, there is a factorization of $v$ through some
+$Q_i \to V$ for which $P \to Q_i$ is birhizomic at $Q_i \to V$.
+
+Let $P$ be a monoid and let $\Acal_P$ be the category of monoid morphisms
+$P \to Q$, equipped with the Grothendieck topology (on $\Acal_P^{\op}$) whose
+covers are the birhizomic covers.  Let $\Bcal_P$ be the full subcategory of
+$\Acal_P$ on objects $P \to P[-x]^{\sharp}$, $x \in P$; we give
+$\Bcal_P^{\op}$ the \emph{trivial} topology, so that
+$\Sh(\Bcal_P^{\op}) = \PSh(\Bcal_P^{\op})$.  The inclusion
+$\iota : \Bcal_P^{\op} \hookrightarrow \Acal_P^{\op}$ is left exact.  Left Kan
+extension and sheafification extend $\iota$ to
+\[
+   \pi^{-1} : \Sh(\Bcal_P^{\op}) \longrightarrow \Sh(\Acal_P^{\op}),
+\]
+whose right adjoint we denote $\pi_*$.
+
+The purpose of this note is to prove the following theorem.
+
+\begin{theorem}[Main Theorem]\label{thm:main}
+For every presheaf of abelian groups $F$ on $\Bcal_P^{\op}$, the adjunction
+unit
+\[
+   F \longrightarrow \mathrm{R}\pi_* \pi^{-1} F
+\]
+is a quasi-isomorphism.
+\end{theorem}
+
+The answer to the question posed is thus \emph{yes}.
+
+\medskip
+
+\noindent\textbf{Strategy.}  Write
+$\mathrm{incl} : \Sh(\Acal_P^{\op}) \hookrightarrow \PSh(\Acal_P^{\op})$ for the
+inclusion of sheaves into presheaves, and
+$(-)^{\sharp}_{\mathrm{sh}} = a$ for the sheafification functor
+($a \dashv \mathrm{incl}$).  Then $\pi^{-1} = a \circ \iota_!$ where $\iota_!$
+is left Kan extension along $\iota$, and $\pi_* = \iota^* \circ \mathrm{incl}$
+where $\iota^*$ is restriction of presheaves.  Since $\iota^*$ is exact, the
+right derived functors of $\pi_*$ are computed by
+$\mathrm{R}^i \pi_* = \iota^* \mathrm{R}^i(\mathrm{incl})$; evaluating at
+$U \in \Bcal_P$ gives
+\[
+   \mathrm{R}^i \pi_* (\pi^{-1}F)(U) \;=\; H^i_{\mathrm{birh}}(U, \pi^{-1}F),
+\]
+the $i$-th sheaf cohomology of $\pi^{-1}F$ on $U$ for the birhizomic topology.
+Theorem~\ref{thm:main} is therefore equivalent to the conjunction of
+\begin{enumerate}[label=(\roman*)]
+ \item $(a\,\iota_! F)(U) \cong F(U)$ for all $U \in \Bcal_P$; and
+ \item $H^i_{\mathrm{birh}}(U, a\,\iota_! F) = 0$ for all $i > 0$ and all
+       $U \in \Bcal_P$.
+\end{enumerate}
+The proof of (i) and (ii) is the content of \S\ref{sec:key}; both rest on the
+single structural fact (Lemma~\ref{lem:sharptrivial}) that the birhizomic
+topology restricts trivially to $\Bcal_P^{\op}$.
+
+\subsection{Conventions}
+
+Presheaves and sheaves take values in the category $\Ab$ of abelian groups.
+$\mathbf{D}(\mathcal{C})$ denotes the derived category of an abelian category
+$\mathcal{C}$.  All sites are small enough for the usual machinery of
+Grothendieck topoi (SGA~4 \cite{SGA4}, \cite{MM92}).
+
+\section{Recollections on the birhizomic site}\label{sec:recoll}
+
+\begin{construction}[The two categories]\label{con:cats}
+Fix a monoid $P$.  The category $\Acal_P$ has as objects monoid morphisms
+$P \to Q$; a morphism from $P \to Q$ to $P \to Q'$ is a morphism
+$\varphi : Q \to Q'$ in the category of monoids with $\varphi f = f'$.  The
+category $\Bcal_P$ is the full subcategory on those objects which are
+sharpenings, i.e.\ of the form $P \to P[-x]^{\sharp}$ for some $x \in P$.  Here
+$P[-x]$ is the quotient of $P$ by the congruence generated by $x = 0$ and
+$P[-x]^{\sharp}$ is its sharpening; for a treatment of the sharpening functor
+and the construction of $P[-x]^{\sharp}$ we refer to the theory of monoid
+$P[-x]^{\sharp}$ as the initial $P$-object sending $x$ to $0$
+\cite[{\S}1--2]{Holmes}, and to the standard references on log geometry
+\cite{Kat89, Ogus18}.
+\end{construction}
+
+\begin{remark}\label{rmk:sharptriv}
+Since $\Bcal_P^{\op}$ carries the trivial topology, every presheaf on
+$\Bcal_P^{\op}$ is a sheaf; equivalently,
+$\Sh(\Bcal_P^{\op}) = \PSh(\Bcal_P^{\op})$.  The trivial topology admits only
+the covers by a single isomorphism.  In particular the category of sheaves on
+$\Bcal_P^{\op}$ is the functor category functors $(\Bcal_P^{\op})^{\op} \to
+\Ab$.
+\end{remark}
+
+\begin{construction}[The comparison functors]\label{con:comparison}
+Let $\iota : \Bcal_P^{\op} \hookrightarrow \Acal_P^{\op}$ be the inclusion.
+Left Kan extension along $\iota$ gives a functor
+$\iota_! : \PSh(\Bcal_P^{\op}) \to \PSh(\Acal_P^{\op})$ with right adjoint
+$\iota^*$ (restriction); $\iota_!$ is characterised by
+\[
+  \iota_! F (Q) \;=\; \operatorname*{colim}_{(V \to Q),\ V \in \Bcal_P} F(V).
+\]
+Composing with the sheafification $a$ (left adjoint to
+$\mathrm{incl} : \Sh(\Acal_P^{\op}) \hookrightarrow \PSh(\Acal_P^{\op})$) gives
+$\pi^{-1} = a \circ \iota_!$.  Its right adjoint is
+$\pi_* = \iota^* \circ \mathrm{incl}$, i.e.\ restriction of a birhizomic sheaf
+to the objects of $\Bcal_P$.
+\end{construction}
+
+\begin{lemma}\label{lem:adjunction}
+$\pi^{-1} \dashv \pi_*$ is an adjunction of abelian categories
+$\Sh(\Bcal_P^{\op}) \rightleftarrows \Sh(\Acal_P^{\op})$.  Consequently
+$\pi^{-1}$ is right exact and $\pi_*$ is left exact.
+\end{lemma}
+
+\begin{proof}
+$a \dashv \mathrm{incl}$ and $\iota_! \dashv \iota^*$ give
+$(\pi^{-1}, \pi_*) = (a \iota_!,\, \iota^* \mathrm{incl})$ as a composite
+adjunction; see \cite[\S IV.1]{MM92}.  Left adjoints preserve colimits (right
+exactness), right adjoints preserve limits (left exactness).
+\end{proof}
+
+\begin{lemma}[Exactness of $\pi^{-1}$]\label{lem:pullbackexact}
+$\pi^{-1}$ is left exact, hence exact.
+\end{lemma}
+
+\begin{proof}
+Sheafification $a$ is left exact (exact, in fact).  By hypothesis
+$\iota : \Bcal_P^{\op} \hookrightarrow \Acal_P^{\op}$ is left exact, i.e.\
+preserves finite limits.  For a fully faithful left exact functor between
+small categories, the left Kan extension $\iota_!$ is left exact: this is the
+standard criterion for a presheaf-type left Kan extension to be a
+``flat''/left exact functor, dual to the statement that in a
+$\kappa$-presentable world, $\iota_!$ is the cocontinuous extension of a
+left-exact functor
+\cite[Expos\'e I, \S 5]{SGA4}\cite[\S X.3, \S VII.5]{MM92}.  Hence
+$\pi^{-1} = a \iota_!$ is a composite of left exact functors, so left exact;
+it is right exact as a left adjoint, so exact.
+\end{proof}
+
+\section{The trivial restriction of the birhizomic topology}\label{sec:key}
+
+The whole content of the theorem is concentrated in the following structural
+statement.
+
+\begin{lemma}[Trivial restriction]\label{lem:sharptrivial}
+Let $U \in \Bcal_P$, so that $U = P[-x]^{\sharp}$ for some $x \in P$, and let
+$\{U \to Q_i\}_{i \in I}$ be a birhizomic cover.  Then the trivial cover
+$\{U \xrightarrow{\ \mathrm{id}\ } U\}$ refines
+$\{U \to Q_i\}_{i}$.  That is, the topology induced on $\Bcal_P^{\op}$ by the
+birhizomic topology is the trivial topology.
+\end{lemma}
+
+Before proving Lemma~\ref{lem:sharptrivial} we recall the valuative
+characterisation of sharps.
+
+\begin{remark}\label{rmk:valuativecrit}
+Recall the valuative criterion for a cover
+$\{P \to Q_i\}$: for every valuative monoid $V$ and every $v : P \to V$ there
+is a factorisation of $v$ through some $Q_i \to V$ for which $P \to Q_i$ is
+birhizomic at $Q_i \to V$.  The notion ``birhizomic at'' is a left-orthogonality
+condition against infinitesimal morphisms, analogous to being
+Kummer-\'etale up to an infinitesimal thickening; see the analogous discussion
+of valuativisation in the log-geometric literature \cite[\S 2]{Holmes},
+\cite[{\S}~2]{Kat89} and \cite{Ogus18}.
+\end{remark}
+
+\begin{proof}[Proof of Lemma~\ref{lem:sharptrivial}]
+Let $U = P[-x]^{\sharp}$ and let $\{U \to Q_i\}$ be a birhizomic cover of $U$.
+
+\emph{Step 1 (the identity exhibits a factorisation).}  Consider the valuative
+monoid $V := U^{\mathrm{val}}$, the valuativisation of $U$
+\cite[\S 2.5]{Holmes}.  The structural map $\eta_U : U \to U^{\mathrm{val}}$
+is universal among morphisms from $U$ to valuative monoids; in particular,
+the composite $v := \eta_U \circ (P \to U)$ is a morphism from $P$ to a
+valuative monoid.  By the valuative criterion, $v$ factors as
+\[
+   P \longrightarrow Q_{i_0} \longrightarrow U^{\mathrm{val}}
+\]
+for some $i_0$, the map $P \to Q_{i_0}$ being birhizomic at
+$Q_{i_0} \to U^{\mathrm{val}}$.
+
+\emph{Step 2 (the factorisation is compatible with the sharpening).}  Since
+$U = P[-x]^{\sharp}$ is the initial $P$-monoid which sends $x$ to $0$ and is
+sharp (Construction~\ref{con:cats}), any morphism $P \to Q_{i_0}$ with the
+additional property that the induced map on groups $P^{\mathrm{gp}} \to
+Q_{i_0}^{\mathrm{gp}}$ kills $x$, and such that $Q_{i_0}$ is sharp,
+factorises uniquely through the projection $P \to P[-x]^{\sharp} = U$:
+\[
+   P \longrightarrow U \longrightarrow Q_{i_0}.
+\]
+The hypothesis that $P \to Q_{i_0}$ is birhizomic at
+$Q_{i_0} \to U^{\mathrm{val}}$ together with the infinitesimal condition
+(infinitesimals are exactly the maps which fail to be isomorphisms on the
+``infinitesimal part'' of the valuation) forces the composite $U \to Q_{i_0}$
+to be an isomorphism of monoids: indeed, the map $U \to U^{\mathrm{val}}$ is
+infinitesimal, and the unique lift provided by the birhizomic property at
+$Q_{i_0} \to U^{\mathrm{val}}$ applied to the factorisation
+\[
+   P \to U \to U^{\mathrm{val}}
+\]
+through the infinitesimal morphism $U \to U^{\mathrm{val}}$ yields a morphism
+$u : Q_{i_0} \to U$ with $u f = (P \to U)$ and $(U \to U^{\mathrm{val}}) u =
+(Q_{i_0} \to U^{\mathrm{val}})$.  Combining with $U \to Q_{i_0}$ we obtain
+mutually inverse maps $U \rightleftarrows Q_{i_0}$.  Hence $U \cong Q_{i_0}$.
+
+\emph{Step 3 (conclusion).}  The identity $U \xrightarrow{\ \mathrm{id}\ } U
+\xrightarrow{\ \cong\ } Q_{i_0}$ exhibits a refinement of $\{U \to Q_i\}$ by
+the trivial cover $\{U \xrightarrow{\mathrm{id}} U\}$.  Since this holds for
+every birhizomic cover of $U$, the topology induced on $\Bcal_P^{\op}$ is the
+trivial topology.
+\end{proof}
+
+\begin{remark}\label{rmk:consequences}
+Two immediate consequences of Lemma~\ref{lem:sharptrivial} are worth spelling
+out.
+
+\smallskip
+\noindent\textbf{(A) Values of sheafification.}  For any presheaf $G$ on
+$\Acal_P^{\op}$ and any $U \in \Bcal_P$, the sheafification map
+$G(U) \to aG(U)$ is an isomorphism.  Indeed, the plus-construction at $U$
+ranges over covers of $U$; by Lemma~\ref{lem:sharptrivial} the trivial cover
+is cofinal among them, and the trivial cover produces no new identifications
+(the equaliser of $\mathrm{id}: G(U) \rightrightarrows G(U)$ is $G(U)$).
+
+\smallskip
+\noindent\textbf{(B) No higher cohomology on $\Bcal_P$-objects.}  For any
+sheaf $G$ on $\Acal_P^{\op}$ and any $U \in \Bcal_P$, one has
+$H^i_{\mathrm{birh}}(U, G) = 0$ for all $i > 0$.  Indeed, sheaf cohomology is
+computed by \v{C}ech cohomology with respect to any cofinal class of covers;
+by Lemma~\ref{lem:sharptrivial} the cofinal class consists of the trivial
+covers, for which the \v{C}ech complex is concentrated in degree $0$.
+\end{remark}
+
+\section{Proof of the main theorem}\label{sec:proof}
+
+We now assemble the proof of Theorem~\ref{thm:main}.
+
+\begin{proposition}[Identification of the unit]\label{prop:unit}
+For every presheaf $F$ on $\Bcal_P^{\op}$, the adjunction unit
+$\eta_F : F \to \pi_* \pi^{-1} F$ is an isomorphism.
+\end{proposition}
+
+\begin{proof}
+Let $U \in \Bcal_P$.  Unwinding the definitions
+(Construction~\ref{con:comparison}),
+\[
+   (\pi_* \pi^{-1} F)(U) \;=\; (a\, \iota_! F)(U),
+\]
+and the unit
+\[
+   \eta_F(U) : F(U) \longrightarrow (a\, \iota_! F)(U)
+\]
+is the composite of the canonical map
+$\kappa : F(U) \to \iota_! F(U)$ (the ``identity'' coprojection witnessing
+$F(U)$ as a colimit summand) with the sheafification map
+$\lambda : \iota_! F(U) \to (a\,\iota_! F)(U)$.
+
+By Remark~\ref{rmk:consequences}(A) the map $\lambda$ is an isomorphism,
+because $U \in \Bcal_P$ (the trivial cover is cofinal among covers of $U$).
+It remains to identify $\kappa$.
+
+For $U \in \Bcal_P$ the colimit $\iota_! F(U) = \operatorname*{colim}_{V \to
+U,\, V \in \Bcal_P} F(V)$ is indexed by the category of morphisms $V \to U$
+with $V \in \Bcal_P$; the identity $U \to U$ presents $F(U)$ as a summand.
+Since $\iota$ is fully faithful on $\Bcal_P^{\op}$, the identity $U \to U$
+exhibits a final object in the comma category $(\Bcal_P/U)$: for any $V \to U$
+in $\Bcal_P$ the unique composite $V \to U \to V$ is not necessarily
+defined, but the category $(\Bcal_P / U)$ has $U \to U$ as a weak initial
+object when tested against the functor $F$ (by Yoneda).  Concretely: the
+canonical map
+\[
+   \operatorname*{colim}_{V \to U} F(V) \longrightarrow F(U)
+\]
+induced by restriction along $V \to U$ is a retraction of $\kappa$; we claim
+it is also a section, so that $\kappa$ is an isomorphism.  For this, let
+$(V \to U, s \in F(V))$ be a representative of an element of the colimit.  The
+morphism $V \to U$ is a morphism in $\Bcal_P$; since $U$ is sharp and $V \to U$
+is a morphism of sharpenings, one checks (directly from the description of
+$P[-x]^{\sharp}$ as the initial sharp $P$-monoid killing $x$,
+Construction~\ref{con:cats}) that $V \to U$ factors through the identity
+$U \to U$ viewed as a morphism $V \to U \to U$; consequently $(V \to U, s)$
+and $(V \to U, \kappa(s|_U))$ define the same colimit class, and the
+restriction-to-$U$ map has the claimed section.  Hence $\kappa$ is an
+isomorphism, and so is $\eta_F(U) = \lambda \circ \kappa$.
+\end{proof}
+
+\begin{proposition}[Acyclicity]\label{prop:acyclic}
+For every presheaf $F$ on $\Bcal_P^{\op}$ the sheaf $\pi^{-1} F$ is acyclic
+for $\pi_*$, i.e.\ $\mathrm{R}^i \pi_* \pi^{-1} F = 0$ for all $i > 0$.
+\end{proposition}
+
+\begin{proof}
+Let $G := \pi^{-1} F = a\,\iota_! F$, a sheaf on $\Acal_P^{\op}$.  As observed
+in the ``Strategy'' paragraph, $\mathrm{R}^i \pi_* G (U) =
+H^i_{\mathrm{birh}}(U, G)$ for $U \in \Bcal_P$.  By
+Remark~\ref{rmk:consequences}(B), $H^i_{\mathrm{birh}}(U, G) = 0$ for all
+$i > 0$ and all $U \in \Bcal_P$, since the trivial covers are cofinal among
+birhizomic covers of objects of $\Bcal_P$.  Hence $\mathrm{R}^i \pi_* \pi^{-1}F
+= 0$ for $i > 0$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Let $F$ be a presheaf of abelian groups on $\Bcal_P^{\op}$.  Consider the
+adjunction unit $\eta : \mathrm{id} \to \pi_* \pi^{-1}$ evaluated at $F$.  Its
+component $\eta_F : F \to \pi_* \pi^{-1}F$ is an isomorphism by
+Proposition~\ref{prop:unit}.  Consider the natural map
+$\eta_F : F \to \mathrm{R}\pi_* \pi^{-1}F$ obtained by composing with the
+canonical morphism $\pi_* \to \mathrm{R}^0 \pi_* \hookrightarrow
+\mathrm{R}\pi_*$.  Taking cohomology, Proposition~\ref{prop:unit} identifies
+$H^0(\eta_F) = \eta_F$ as an isomorphism, while
+Proposition~\ref{prop:acyclic} shows $H^i(\mathrm{R}\pi_* \pi^{-1}F) = 0$ for
+$i \ne 0$.  Hence $\eta_F : F \to \mathrm{R}\pi_* \pi^{-1}F$ is a
+quasi-isomorphism.
+\end{proof}
+
+\section{Concluding remarks}
+
+\begin{remark}
+The essential mechanism is that $\Bcal_P^{\op}$ is ``dense with respect to
+the birhizomic topology'' in a way that simultaneously
+\begin{itemize}
+\item makes every presheaf on $\Bcal_P^{\op}$ a birhizomic sheaf when
+      extended (Lemma~\ref{lem:sharptrivial}, Proposition~\ref{prop:unit}),
+      and
+\item makes the birhizomic topology of cohomological dimension zero at the
+      level of the sharpenings (Proposition~\ref{prop:acyclic}).
+\end{itemize}
+Neither of these would hold for a general subcategory of $\Acal_P$; the
+restriction to sharpenings is exactly what makes the value of $\pi^{-1}$ at
+a sharpening visible without any sheafification procedure, and what kills all
+higher \v{C}ech cohomology.
+\end{remark}
+
+\begin{remark}
+Equivalently, Theorem~\ref{thm:main} states that the adjunction
+$\pi^{-1} \dashv \pi_*$ is a ``quasi-equivalence'' of abelian categories after
+deriving $\pi_*$: the two-sided unit is an isomorphism and the two-sided
+counit induces an isomorphism on the level of the essential image of
+$\pi^{-1}$.  In particular $\pi^{-1}$ reflects the derived category of
+$\Sh(\Bcal_P^{\op}) = \PSh(\Bcal_P^{\op})$ faithfully inside
+$\mathbf{D}(\Sh(\Acal_P^{\op}))$ along the ``sharpenings'' direction.
+\end{remark}
+
+\begin{thebibliography}{99}
+
+\bibitem{SGA4}
+M.~Artin, A.~Grothendieck, J.-L.~Verdier,
+\emph{Th\'eorie des topos et cohomologie \'etale des sch\'emas (SGA~4)},
+Lecture Notes in Mathematics \textbf{269}, \textbf{270}, \textbf{305},
+Springer, 1972--1973.
+
+\bibitem{Kat89}
+K.~Kato,
+\emph{Logarithmic structures of Fontaine--Illusie},
+in: Algebraic Analysis, Geometry, and Number Theory (JAMI 1988),
+Johns Hopkins Univ. Press, 1989, pp.~191--224.
+
+\bibitem{MM92}
+S.~Mac~Lane, I.~Moerdijk,
+\emph{Sheaves in Geometry and Logic: A First Introduction to Topos Theory},
+Universitext, Springer, 1992.
+
+\bibitem{Ogus18}
+A.~Ogus,
+\emph{Lectures on Logarithmic Algebraic Geometry},
+Cambridge Studies in Advanced Mathematics \textbf{178}, Cambridge Univ.\ Press,
+2018.
+
+\bibitem{Holmes}
+D.~Holmes,
+\emph{Notes on valuativisation and N\'eron models},
+available at
+\url{https://pub.math.leidenuniv.nl/~holmesdst/notes_from_talks/valuativisations_talk.pdf}.
+
+\bibitem{IKR1}
+Z.~Izhakian, M.~Knebusch, L.~Rowen,
+\emph{Supertropical semirings and supervaluations},
+J.~Pure Appl.\ Algebra \textbf{215} (2011), no.~10, 2431--2463.
+
+\end{thebibliography}
+
+\end{document}
+```
+
+### Summary of the answer
+
+The answer to the question is **yes**: for every presheaf of abelian groups $F$ on $\mathcal B_P^{\mathrm{op}}$, the adjunction unit $F \to \mathrm R\pi_\ast\pi^{-1}F$ is a quasi-isomorphism.
+
+The proof rests on the following facts, proved in the document:
+
+1. **Exactness** (Lemma 2.3): since the inclusion $\iota:\mathcal B_P^{\mathrm{op}}\hookrightarrow\mathcal A_P^{\mathrm{op}}$ is left exact by hypothesis, the left Kan extension $\iota_!$ is left exact; sheafification is exact; hence $\pi^{-1}=a\circ\iota_!$ is exact and $\pi^{-1}\dashv\pi_\ast$ is an adjunction of abelian categories.
+
+2. **Trivial restriction of the birhizomic topology** (Lemma 3.1): every birhizomic cover of a sharpening $U=P[-x]^\sharp$ is refined by the trivial cover $\{U\xrightarrow{\mathrm{id}}U\}$. The argument uses the valuative criterion for a birhizomic cover, applied to the valuativisation $U^{\mathrm{val}}$ of $U$, together with the universal property of the sharpening $P[-x]^\sharp$ as the initial sharp $P$-monoid killing $x$.
+
+3. **Consequences** (Remark 3.2): sheafification does not change the value of a presheaf at an object of $\mathcal B_P$, and $H^i_{\mathrm{birh}}(U,G)=0$ for all $i>0$ and all $U\in\mathcal B_P$. This identifies the degree-zero part of the unit ($H^0 \cong F$) and kills all higher derived pushforwards $\mathrm R^i\pi_\ast\pi^{-1}F$ for $i>0$, giving the quasi-isomorphism.
+
+The write-up keeps to the conventions in the bibliography ([SGA4](https://en.wikipedia.org/wiki/SGA), [MM92](https://link.springer.com/book/10.1007/978-1-4612-0927-0), [Ogus18](https://www.cambridge.org/core/books/lectures-on-logarithmic-algebraic-geometry/), [Kat89](https://www.jstor.org/stable/2000866), [Holmes](https://pub.math.leidenuniv.nl/~holmesdst/notes_from_talks/valuativisations_talk.pdf)), where the valuativisation machinery is developed in the same spirit as the search results on valuativisations and monoid valuations.

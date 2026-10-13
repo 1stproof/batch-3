@@ -1,0 +1,491 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}_2}
+\newcommand{\surg}[2]{S^3_{#1}(#2)}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\intt}{int}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\fptitle}{Review of Problem 6 -- Astra}
+\newcommand{\reviewtag}{Reviewer 3}
+\usepackage{fp-review}
+
+\begin{document}
+\maketitle
+
+\section{Review}
+
+\paragraph{Correctness.}
+
+
+\begin{itemize}
+	\item  1: essentially flawless mathematical argument
+	\item  0.5: minor errors that are easily corrected
+	\item  0: blank solution, or acknowledged partial result
+	\item  $-0.5$: major errors
+	\item  $-1$: proposed proof makes no progress towards the result.
+\end{itemize}
+Note that points should be docked for wrong statements/ solutions.
+
+\noindent Score: 1.
+
+\paragraph{Exposition.}
+
+
+\begin{itemize}
+	\item  1: well-written and clear solution.
+	\item  0: argument that is possible to follow with serious effort
+	\item  $-1$: very poor exposition
+\end{itemize}
+
+\noindent Score 1.
+
+\paragraph{Attributions.}
+\begin{itemize}
+	\item  1: solutions contains fully appropriate attributions
+		to related work and theorems being used.
+	\item  0: moderate issues with missing attributions or hallucinated references
+	\item  $-1$: blatant plagiarism or hallucinations
+\end{itemize}
+
+\noindent Score: 0. 
+
+ I didn't find any errors in the math, though it's convoluted at times.
+
+The argument can be followed without "serious effort", hence a score of 1. That said, the exposition is quite poor. Sometimes it contains weird and unnecessary phrases. Other times it provides wordy or confusing explanations (e.g. ``by the surgery homology calculation and the
+connected-sum homology formula'') for somewhat straightforward facts. 
+
+The attributions are mostly fine, but there are repeated instances of citing secondary sources. 
+
+\newpage
+\section{Submission with inline comments}
+
+
+\begin{abstract}
+Every Dehn surgery on an \(L\)-space knot in \(S^3\) has at most two
+nontrivial prime summands. We prove this using established results about
+reducing slopes and prime decompositions, together with a
+group-theoretic genus bound for integer homology sphere summands of
+surgeries on fibered knots.
+\end{abstract}
+\review{Abstract is poorly phrased. For instance, it sounds like it's referring to "genus bounds for homology spheres" when presumably it means genus bounds for the knots}
+
+\section{Statement and conventions}
+
+We use the standard ambient-manifold convention: the knots under
+consideration lie in \(S^3\). 
+\review{Awful opening sentence, knots living in $S^3$ is hardly a convention.}
+
+A rational homology sphere \(Y\) is an
+\(L\)-space if
+\[
+    \dim_{\F}\widehat{HF}(Y;\F)=|H_1(Y;\Z)|.
+\]
+An \(L\)-space knot is a knot admitting a nonmeridional \(L\)-space
+surgery. We allow either sign for this surgery coefficient; when the
+coefficient can be chosen positive, we explicitly say that the knot
+admits a positive \(L\)-space surgery.
+
+For a knot \(K\), write \(\surg{p/q}{K}\) for Dehn filling along
+\(p\mu+q\lambda\), where \(\mu\) is a meridian and \(\lambda\) is the
+Seifert longitude. For finite slopes we take \(\gcd(p,q)=1\) and \(q>0\);
+the meridional slope is denoted by \(\infty\).
+
+All homology groups without specified coefficients have coefficients
+in \(\Z\). Prime summands mean the non-\(S^3\) factors in the
+Kneser--Milnor prime decomposition
+\cite[Theorem~1]{Milnor}. In particular, \(S^3\) contributes no
+nontrivial prime summands.
+
+\begin{theorem}\label{thm:main}
+Let \(K\subset S^3\) be an \(L\)-space knot. For every
+\(r\in\mathbb{Q}\cup\{\infty\}\), the manifold \(\surg{r}{K}\) has at most
+two nontrivial prime summands.
+\end{theorem}
+
+We first state precisely the published surgery results that will be
+used, and then prove the required group-theoretic estimate.
+
+\section{Inputs from surgery theory}
+
+\begin{theorem}[Fiberedness]\label{thm:fibered}
+If \(K\subset S^3\) admits a positive \(L\)-space surgery, then its
+exterior fibers over \(S^1\), with fiber a Seifert surface of genus
+\(g(K)\).
+\end{theorem}
+
+This is the fiberedness assertion of
+\cite[Theorem~1]{BaldwinSivek}, which supplies a proof of the result.
+
+\review{This is weirdly phrased, it mixes the content of the BS theorem with the definition of a fibered knot}
+
+\begin{theorem}[Hom--Lidman--Zufelt]\label{thm:slope}
+Suppose that a nontrivial knot \(K\subset S^3\) admits a positive
+\(L\)-space surgery and is not a cable knot, where nontrivial torus
+knots are counted as cables of the unknot. If \(\surg{r}{K}\) is
+reducible, then
+\[
+    r=2g(K)-1.
+\]
+\end{theorem}
+
+\review{Again, this is correct but weirdly incompetent: ``nontrivial torus
+knots are counted as cables of the unknot''... What is ``are counted as'' doing here? Torus knots simply {\it are} cables of the unknot.}
+
+We use the non-cabled formulation stated in the abstract of
+\cite{HLZ}. Their Theorem~1.3 establishes the hyperbolic case, and
+their Section~1 explains the reduction from the non-cabled case using
+the established torus- and satellite-knot results.
+
+\begin{theorem}[Howie]\label{thm:three}
+If a manifold obtained by Dehn surgery on a knot in \(S^3\) has more
+than two nontrivial prime summands, then it has exactly three.
+Its prime decomposition has the form
+\[
+    L_1\#L_2\# Z,
+\]
+where \(L_1,L_2\) are nontrivial lens spaces and \(Z\not\cong S^3\) is
+an integer homology sphere.
+\end{theorem}
+
+This is \cite[Corollary~5.3]{Howie}, including the consequences of the
+results of Valdez-S\'anchez and Sayari incorporated in that corollary.
+
+\review{missing citations to the original sources}
+
+We will also use the Poincar\'e theorem: a closed simply connected
+\(3\)-manifold is homeomorphic to \(S^3\); see \cite{MorganTian}.
+
+\review{again, maybe Perlman should get a shoutout here? LOL}
+
+Consequently, a closed orientable \(3\)-manifold with cyclic
+fundamental group has at most one nontrivial prime summand.
+Indeed, a decomposition into two non-\(S^3\) factors would, by
+Seifert--van Kampen and the Poincar\'e theorem, express its fundamental
+group as a free product of two nontrivial groups. Such a free product
+is not cyclic: nonidentity elements from its two factors do not
+commute, by the reduced-word normal form.
+
+\begin{lemma}[The cable case]\label{lem:cable}
+Every Dehn surgery on a nontrivial cable knot in \(S^3\), including a
+nontrivial torus knot, has at most two nontrivial prime summands.
+\end{lemma}
+
+\review{A poor stylistic choice to single out torus knots.}
+
+\begin{proof}
+It suffices to consider a nonprime surgery.
+\review{Again, weird opener. Should just start by setting up the notation, as is done in the next paragraph.} 
+The classical results for
+cable knots imply that such a surgery is along a cabling slope.
+For a nontrivial companion, this follows from
+\cite[Corollary~4.4 and the proof of Corollary~4.5]{Scharlemann};
+the torus-knot case is contained in Moser's classification
+\cite{Moser}.
+
+Thus, for some knot \(J\), we may write
+\[
+    K=C_{a,b}(J),\qquad r=ab,
+\]
+where \(a\geq 2\), \(\gcd(a,b)=1\), and \(a\) is the winding number
+of the cable. The cable-surgery formula
+\cite[Corollary~7.3]{Gordon} gives
+\[
+    \surg{ab}{C_{a,b}(J)}
+       \cong L\#\surg{b/a}{J},
+\]
+where \(L\) is a lens space with fundamental group of order \(a\).
+In particular, \(L\) is prime by the preceding observation.
+
+\review{This is a well-known fact about lens spaces.}
+
+Since \(a\geq 2\) and \(\gcd(a,b)=1\), the slope \(b/a\) is
+nonintegral. If \(J\) is nontrivial, the nonintegral-surgery theorem of
+Gordon--Luecke \cite{GordonLuecke} says that
+\(\surg{b/a}{J}\) is irreducible, hence prime.
+If \(J\) is the unknot, its exterior has cyclic fundamental group,
+and the fundamental group of every filling is a quotient of that
+group. Thus \(\surg{b/a}{J}\) again has at most one nontrivial prime
+summand. The displayed connected sum therefore has at most two.
+\end{proof}
+
+\section{A genus bound for homology sphere summands}
+
+For a finitely generated group \(G\), let \(\rk(G)\) denote the
+minimum size of a generating set. This is group-theoretic generating
+rank, not the rank of the abelianization.
+
+\review{The above sentence is pure slop.}
+
+\begin{lemma}\label{lem:genus}
+Let \(K\subset S^3\) be a fibered knot of genus \(g\), and let
+\(p/q\) be a reduced finite slope with \(p\neq 0\).
+Suppose
+\[
+    \surg{p/q}{K}\cong X\# Z,
+\]
+where \(Z\not\cong S^3\) is an integer homology sphere.
+Then
+\[
+    |p|\leq g.
+\]
+\end{lemma}
+
+\begin{proof}
+Set
+\[
+    E=S^3\setminus\intt\nu(K),\qquad
+    Y=\surg{p/q}{K},\qquad
+    G=\pi_1(E),\qquad
+    \Gamma=\pi_1(Y),\qquad
+    n=|p|.
+\]
+\review{Or, you could just use $|p|$...}
+
+For a group \(A\), write \(A'=[A,A]\).
+
+\medskip
+\noindent\emph{First, the commutator subgroup of \(\Gamma\) has at most
+\(2g\) generators.}
+The fibration of \(E\) has fiber a once-punctured genus-\(g\) surface
+\(F\). Its homotopy exact sequence gives
+\[
+    1\longrightarrow\pi_1(F)
+      \longrightarrow G
+      \longrightarrow\Z
+      \longrightarrow 1.
+\]
+The homomorphism to \(\Z\) is the abelianization: a meridian maps to a
+generator, and \(H_1(E)\cong\Z\). Hence
+\[
+    G'\cong\pi_1(F)\cong F_{2g},
+\]
+where \(F_{2g}\) is the free group of rank \(2g\).
+
+Seifert--van Kampen identifies the filling homomorphism as the
+surjection
+\[
+    G\twoheadrightarrow
+    G/\langle\!\langle\mu^p\lambda^q\rangle\!\rangle
+    \cong\Gamma.
+\]
+A surjective homomorphism maps the commutator subgroup onto the
+commutator subgroup: every commutator in the target is the image of
+a commutator of lifts.
+\review{verbose and unnecessary}
+Therefore \(G'\twoheadrightarrow\Gamma'\),
+and
+\begin{equation}\label{eq:upper-rank}
+    \rk(\Gamma')\leq 2g.
+\end{equation}
+
+\medskip
+\noindent\emph{Next, the homology sphere summand forces at least \(2n\)
+generators.}
+The standard surgery homology calculation gives
+\begin{equation}\label{eq:surgery-homology}
+    H_1(Y)\cong\Z/n\Z.
+\end{equation}
+Indeed, \(H_1(E)\) is generated by the meridian, the longitude is
+null-homologous, and filling imposes the relation \(p[\mu]=0\).
+
+Because \(Y=X\# Z\) and \(H_1(Z)=0\), the connected-sum homology
+formula gives
+\[
+    H_1(X)\cong\Z/n\Z.
+\]
+Let \(\widetilde X\to X\) be the connected \(n\)-sheeted covering
+corresponding to
+\[
+    \ker\bigl(\pi_1(X)\longrightarrow H_1(X)\bigr).
+\]
+For \(n=1\), this is simply the identity covering.
+
+Choose the balls used to form \(X\# Z\), and write
+\[
+    X^\circ=X\setminus\intt B^3,\qquad
+    Z^\circ=Z\setminus\intt B^3.
+\]
+The inverse image of the ball in \(X\) consists of \(n\) disjoint
+balls in \(\widetilde X\). Attach one copy of \(Z^\circ\) to each of
+the resulting boundary spheres. This constructs a connected
+\(n\)-sheeted covering
+\[
+    \widetilde Y\longrightarrow Y
+\]
+with
+\begin{equation}\label{eq:cover-sum}
+    \widetilde Y\cong
+    \widetilde X\#
+    \underbrace{Z\#\cdots\# Z}_{n\text{ copies}}.
+\end{equation}
+To identify the covering subgroup, observe that
+\[
+    \pi_1(Y)\cong\pi_1(X)*\pi_1(Z).
+\]
+The covering monodromy is abelianization on the first factor and is
+trivial on the second, since \(H_1(Z)=0\). 
+\review{Not well justified}
+It is therefore precisely
+the abelianization
+\[
+    \Gamma\longrightarrow H_1(Y)\cong\Z/n\Z.
+\]
+Consequently,
+\[
+    \pi_1(\widetilde Y)\cong\Gamma'.
+\]
+
+The group \(B=\pi_1(Z)\) is perfect because \(H_1(Z)=0\).
+It is nontrivial by the Poincar\'e theorem and the assumption
+\(Z\not\cong S^3\). A nontrivial perfect group cannot be generated by
+one element, since a one-generator group is abelian. Thus
+\[
+    \rk(B)\geq 2.
+\]
+
+Applying Seifert--van Kampen to \eqref{eq:cover-sum} gives
+\[
+    \Gamma'\cong
+    \pi_1(\widetilde X)*
+    \underbrace{B*\cdots*B}_{n\text{ factors}}.
+\]
+Grushko's rank theorem states that generating rank is additive under
+free products of finitely generated groups; see \cite{Stallings}.
+\review{Grushko should get a citation}
+It follows that
+\begin{equation}\label{eq:lower-rank}
+    \rk(\Gamma')
+      =\rk\bigl(\pi_1(\widetilde X)\bigr)+n\rk(B)
+      \geq 2n.
+\end{equation}
+Combining \eqref{eq:upper-rank} and \eqref{eq:lower-rank} yields
+\(2n\leq 2g\), and hence \(n=|p|\leq g\).
+\end{proof}
+
+\section{Proof of the main theorem}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Mirroring changes surgery coefficients by a sign and reverses the
+orientation of the filled manifold:
+\[
+    \surg{-r}{\overline K}\cong-\surg{r}{K}.
+\]
+The \(L\)-space condition is invariant under orientation reversal,
+as is the number of prime summands. We may therefore assume that
+\(K\) admits a positive \(L\)-space surgery; compare
+\cite[Section~1]{HLZ}.
+
+Meridional surgery gives \(S^3\), so assume \(r\) is finite.
+If \(K\) is the unknot, its exterior has cyclic fundamental group,
+and every filling has cyclic fundamental group. The observation
+following Theorem~\ref{thm:three} settles this case.
+If \(K\) is a nontrivial cable, Lemma~\ref{lem:cable} settles the
+claim.
+
+We may consequently assume that \(K\) is nontrivial and non-cabled.
+Suppose, for a contradiction, that
+\[
+    Y=\surg{r}{K}
+\]
+has more than two nontrivial prime summands. In particular, \(Y\) is
+reducible. Put \(g=g(K)\). By Theorem~\ref{thm:slope},
+\[
+    r=n=2g-1.
+\]
+Since \(K\) is nontrivial, \(g\geq 1\), so \(n>0\).
+
+Theorem~\ref{thm:three} supplies a decomposition
+\[
+    Y\cong L_1\#L_2\# Z,
+\]
+where \(L_1,L_2\) are nontrivial lens spaces and \(Z\not\cong S^3\)
+is an integer homology sphere. Let
+\[
+    a_i=|H_1(L_i)|,\qquad i=1,2.
+\]
+Both \(a_i\) exceed \(1\). The surgery homology calculation and the
+connected-sum homology formula imply
+\[
+    n=|H_1(Y)|=a_1a_2>1.
+\]
+Together with \(n=2g-1\), this shows that \(g\geq 2\).
+
+By Theorem~\ref{thm:fibered}, \(K\) is fibered.
+Apply Lemma~\ref{lem:genus} to the integer homology sphere summand
+\(Z\), taking \(X=L_1\#L_2\). It gives
+\[
+    2g-1=n\leq g.
+\]
+This is impossible for \(g\geq 2\). The supposed decomposition cannot
+exist, proving the theorem.
+\end{proof}
+
+\begin{thebibliography}{99}
+
+\bibitem[BS22]{BaldwinSivek}
+J.~A. Baldwin and S. Sivek,
+\emph{\(L\)-space knots are fibered and strongly quasipositive},
+The Open Book Series \textbf{5} (2022), no.~1, 81--94.
+
+\bibitem[Gor83]{Gordon}
+C.~McA. Gordon,
+\emph{Dehn surgery and satellite knots},
+Trans. Amer. Math. Soc. \textbf{275} (1983), no.~2, 687--708.
+
+\bibitem[GL87]{GordonLuecke}
+C.~McA. Gordon and J. Luecke,
+\emph{Only integral Dehn surgeries can yield reducible manifolds},
+Math. Proc. Cambridge Philos. Soc. \textbf{102} (1987), no.~1, 97--101.
+
+\bibitem[HLZ15]{HLZ}
+J. Hom, T. Lidman, and N. Zufelt,
+\emph{Reducible surgeries and Heegaard Floer homology},
+Math. Res. Lett. \textbf{22} (2015), no.~3, 763--788.
+
+\bibitem[How02]{Howie}
+J. Howie,
+\emph{A proof of the Scott--Wiegold conjecture on free products of
+cyclic groups},
+J. Pure Appl. Algebra \textbf{173} (2002), no.~2, 167--176.
+
+\bibitem[Mil62]{Milnor}
+J. Milnor,
+\emph{A unique decomposition theorem for \(3\)-manifolds},
+Amer. J. Math. \textbf{84} (1962), no.~1, 1--7.
+
+\bibitem[MT07]{MorganTian}
+J. Morgan and G. Tian,
+\emph{Ricci Flow and the Poincar\'e Conjecture},
+Clay Mathematics Monographs, vol.~3,
+American Mathematical Society, Providence, RI, and
+Clay Mathematics Institute, Cambridge, MA, 2007.
+
+\bibitem[Mos71]{Moser}
+L. Moser,
+\emph{Elementary surgery along a torus knot},
+Pacific J. Math. \textbf{38} (1971), no.~3, 737--745.
+
+\bibitem[Sch90]{Scharlemann}
+M. Scharlemann,
+\emph{Producing reducible \(3\)-manifolds by surgery on a knot},
+Topology \textbf{29} (1990), no.~4, 481--500.
+
+\bibitem[Sta65]{Stallings}
+J.~R. Stallings,
+\emph{A topological proof of Grushko's theorem on free products},
+Math. Z. \textbf{90} (1965), 1--8.
+
+\end{thebibliography}
+
+\end{document}

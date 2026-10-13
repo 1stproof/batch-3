@@ -1,0 +1,130 @@
+```latex
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\begin{document}
+
+\title{A cubic identity in hyperfields}
+\author{}
+\date{}
+
+\maketitle
+
+Let $\mathbb{H}$ be a hyperfield with multivalued addition $\boxplus$. 
+We use the standard hyperfield axioms: $\boxplus$ is commutative and associative, 
+$0\boxplus x=\{x\}$ for all $x$, every $x$ has a unique additive inverse $-x$ with 
+$0\in x\boxplus(-x)$, and multiplication distributes over $\boxplus$.
+
+\begin{lemma}
+\label{lem:zero-preservation}
+Let $A_1,\dots,A_n\subseteq \mathbb{H}$ be nonempty subsets such that $0\in A_i$ 
+for every $i$. Suppose that a formal hyperaddition
+\[
+A_1\boxplus \cdots \boxplus A_n
+\]
+is simplified by deleting a pair of opposite terms $u$ and $-u$. 
+If $u\neq 0$, delete only those two terms; if $u=0$, replace the two zero terms 
+by one zero term. Then the resulting hyperaddition still contains $0$.
+\end{lemma}
+
+\begin{proof}
+It suffices to prove the claim for one deletion. Let $A_i'$ be the subsets 
+obtained after the deletion.
+
+If $u\neq 0$, then neither $u$ nor $-u$ is $0$, so every $A_i'$ still contains 
+$0$. Hence
+\[
+0\in \underbrace{0\boxplus\cdots\boxplus 0}_{n\text{ terms}}
+\subseteq A_1'\boxplus\cdots\boxplus A_n'.
+\]
+If $u=0$, then the two deleted terms are both $0$, and we replace them by one 
+zero term. Again every $A_i'$ contains $0$, so the same argument applies.
+\end{proof}
+
+\begin{theorem}
+\label{thm:cubic}
+Let $\mathbb{H}$ be a hyperfield and let $x,y,z\in \mathbb{H}$. If
+\[
+0\in x\boxplus y\boxplus z,
+\]
+then
+\[
+0\in x^3\boxplus y^3\boxplus z^3\boxplus (-xyz)\boxplus (-xyz)\boxplus (-xyz).
+\]
+\end{theorem}
+
+\begin{proof}
+Assume that $0\in x\boxplus y\boxplus z$. Define six subsets
+\[
+\begin{aligned}
+A_1 &= x^2(x\boxplus y\boxplus z),\\
+A_2 &= y^2(x\boxplus y\boxplus z),\\
+A_3 &= z^2(x\boxplus y\boxplus z),\\
+A_4 &= (-xy)(x\boxplus y\boxplus z),\\
+A_5 &= (-yz)(x\boxplus y\boxplus z),\\
+A_6 &= (-zx)(x\boxplus y\boxplus z).
+\end{aligned}
+\]
+Since $0\in x\boxplus y\boxplus z$, multiplication by any element gives
+\[
+0\in A_i \qquad (i=1,\dots,6).
+\]
+By distributivity and associativity of $\boxplus$, the full expansion
+\[
+A_1\boxplus A_2\boxplus A_3\boxplus A_4\boxplus A_5\boxplus A_6
+\]
+is exactly the expansion of the product
+\[
+(x\boxplus y\boxplus z)\left(x^2\boxplus y^2\boxplus z^2\boxplus (-xy)\boxplus (-yz)\boxplus (-zx)\right).
+\]
+Explicitly,
+\[
+\begin{aligned}
+A_1 &= x^3\boxplus x^2y\boxplus x^2z,\\
+A_2 &= xy^2\boxplus y^3\boxplus y^2z,\\
+A_3 &= xz^2\boxplus yz^2\boxplus z^3,\\
+A_4 &= -x^2y\boxplus -xy^2\boxplus -xyz,\\
+A_5 &= -xyz\boxplus -y^2z\boxplus -yz^2,\\
+A_6 &= -x^2z\boxplus -xyz\boxplus -xz^2.
+\end{aligned}
+\]
+Now delete the following opposite pairs:
+\[
+\begin{aligned}
+&x^2y \text{ and } -x^2y,\\
+&xy^2 \text{ and } -xy^2,\\
+&x^2z \text{ and } -x^2z,\\
+&xz^2 \text{ and } -xz^2,\\
+&y^2z \text{ and } -y^2z,\\
+&yz^2 \text{ and } -yz^2.
+\end{aligned}
+\]
+After these deletions, the remaining terms are precisely
+\[
+x^3,\quad y^3,\quad z^3,\quad -xyz,\quad -xyz,\quad -xyz.
+\]
+Since each $A_i$ contains $0$, Lemma~\ref{lem:zero-preservation} applies after each 
+deletion. Therefore the final hyperaddition contains $0$, i.e.
+\[
+0\in x^3\boxplus y^3\boxplus z^3\boxplus (-xyz)\boxplus (-xyz)\boxplus (-xyz).
+\]
+\end{proof}
+
+\begin{remark}
+The argument is the hyperfield analogue of the ordinary polynomial identity
+\[
+x^3+y^3+z^3-3xyz=(x+y+z)(x^2+y^2+z^2-xy-yz-zx).
+\]
+The lemma is needed because in a hyperfield an opposite pair $u\boxplus(-u)$ need not 
+collapse to $\{0\}$; however, the presence of zero in each factor of the expansion 
+is enough to preserve the desired zero after the usual cancellations.
+\end{remark}
+
+\end{document}
+```

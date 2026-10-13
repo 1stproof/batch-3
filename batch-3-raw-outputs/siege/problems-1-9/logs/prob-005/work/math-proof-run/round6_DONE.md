@@ -1,0 +1,1 @@
+The [GOAL] (ledger #14) is REFUTED. The answer is NO, by the explicit infinite hyperfield counterexample in round4_q2 (Proposition 1, Lemmas 2-4, instance x = t, y = t^4, z = 1), certified by round5_q1 and round5_q2 (entries 22 and 23).

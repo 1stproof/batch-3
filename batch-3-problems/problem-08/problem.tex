@@ -1,0 +1,548 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%							Standard Paper Template
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt]{amsart}
+
+\newif\ifdebug
+% \debugtrue
+\debugfalse
+
+\newif \iffig
+%\figtrue
+\figfalse
+
+\newif \iftable
+%\tabletrue
+\tablefalse
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		Packages
+
+%==============================================================================
+%							Standard AMS stuff
+\usepackage{
+	amsmath,
+	amsfonts,
+	amsthm,
+	amssymb,
+	bbm,
+	mathrsfs,
+	mathtools}
+%==============================================================================
+%	Link typesetting
+% The hyphens option for {url} will allow breaks in long urls
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+
+% The code below alows further breaks
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+%
+
+% 	change \href colors
+\usepackage{color}
+\definecolor{darkred}{rgb}{0.4,0,0}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+\definecolor{darkblue}{rgb}{0,0,0.4}
+
+
+%----------------------------------------------------
+%			Autoref Fixes
+%----------------------------------------------------
+%	Some fixes are in the Theorem styles part
+%
+%	Section references
+\renewcommand*{\sectionautorefname}{Section}
+
+%	subsection \S gives paragraph symbol
+%	the ~ binds them together
+\def\subsek~{\S{}}
+\renewcommand*\subsectionautorefname{\subsek}
+
+\renewcommand*\subsubsectionautorefname{\subsek}
+
+\renewcommand{\itemautorefname}{}
+
+
+%	Makes \autoref do "Eqn. (3.1)"
+%	instead of "Eqn. 3.1"
+\def\equationautorefname~#1\null{%
+  Eqn.~(#1)\null
+}
+%==============================================================================
+
+%==============================================================================
+%					Section styles and numbering
+%==============================================================================
+
+%
+%	Documentation for \@startsection:
+% The  \@startsection{<name>}{<level>}{<indent>}{<beforeskip>}{<afterskip>}{<style>}*[<altheading>]{<heading>}
+% The part after the *, including the * is optional.
+%
+%   name: e.g., subsection
+%   level: a number, denoting depth of section - e.g., chapter = 1, section = 2, etc.
+%   indent: Indentation of heading from left margin
+%   beforeskip: Absolute value = skip to leave above the heading.
+% 	      If negative, then paragraph indent of text following heading is suppressed.
+%   afterskip: If positive, then skip to leave below heading, else negative of skip to leave to right of run-in heading.
+%   style: Commands to set style. Since June 1996 release the last command in this argument may be a command such as \MakeUppercase or  \fbox that takes an argument. The section heading will be supplied as the argument to this command. So setting #6 to, say, \bfseries\MakeUppercase would produce bold, uppercase headings.
+%
+% If * is missing, then increment the counter. If it is present, then there should be no [<altheading>] argument. The command uses the counter secnumdepth. It contains a pointer to the highest section level that is to be numbered.
+
+%----------------------------------------------------
+%
+%	Hacking the (sub(sub))section commands
+%
+%
+%	Boldness issue: I would like section and subsection not bold.
+%	But I need the counter of subsubsections to be bold, and same for theorems.
+%	This is \@secnumfont and it's one for all of these! (in amsart). Ridiculous.
+%	So all counters have to be bold, so all titles have to be bold.
+%
+\makeatletter
+\renewcommand{\@secnumfont}{\bfseries}
+\makeatother
+%		Redefining section
+%	sections are centered, bold sans-serif
+%  Format:
+%{\@startsection{name}
+% 				{1}   	% Level
+% 				{\z@}	% ?
+% 				{-3.5ex \@plus -1ex \@minus -.2ex} % Above spacing
+%				{2.3ex \@plus.2ex} % After title spacing
+%				{\centering \normalfont \Large \bfseries \sffamily}}% Title format
+%	% the 5ex \@plus \@minus allow TeX to stretch more or less by those amounts
+
+\makeatletter
+\renewcommand{\section}
+{\@startsection{section}
+				   {1}
+				   {\z@}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {2.3ex \@plus.2ex}%
+                                   {\centering \normalfont \Large \bfseries \sffamily}}%
+\makeatother
+
+%		Redefining subsection
+%	subsections are left-aligned, bold sans-serif
+\makeatletter
+\renewcommand{\subsection}
+{\@startsection{subsection}
+				     {2}
+				     {\z@}%
+                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                     {1.5ex \@plus .2ex}%
+                     {\normalfont \large \bfseries \sffamily}}% from \large
+\makeatother
+
+%		Redefining subsubsection
+%	subsubsections are "2.3.1 Name" with Name in bold, no linebreak for subsequent text
+\makeatletter
+\renewcommand{\subsubsection}
+{\@startsection{subsubsection}
+				     {3}
+				     {\z@}%
+                     {1ex \@plus1ex \@minus.2ex}%
+				     {-\fontdimen 2\font }
+	                 {\normalfont\normalsize\bfseries}}
+\makeatother
+
+%----------------------------------------------------
+%		Redefining paragraph
+\makeatletter
+\renewcommand{\paragraph}{%
+\@startsection {paragraph}
+				    {4}
+				    {\z@}
+				    {\z@}
+				    {-\fontdimen 2\font }
+				    {\normalfont\normalsize\bfseries}
+}
+\makeatother
+
+
+%----------------------------------------------------
+%		Enumerate and Itemize indices will be (i), (ii), etc.
+%
+\renewcommand{\labelenumi}{\theenumi}%
+\renewcommand{\theenumi}{(\roman{enumi})}%
+%----------------------------------------------------
+
+
+%%----------------------------------------------------
+%%		Enumerate Lists will be numbered
+%%		automatically as (i), (ii) after
+%%		just using \item
+\renewcommand\labelenumi{(\roman{enumi})}
+\renewcommand\theenumi\labelenumi
+%==============================================================================
+
+
+
+
+
+
+%==============================================================================
+%								Typesetting
+%==============================================================================
+%
+%----------------------------------------------------
+%					Fonts
+%----------------------------------------------------
+%	{microtype} package will improve typesetting
+%	[final] option is so that it also does it in
+%	draft mode
+\usepackage[stretch=10, final]{microtype}
+%
+%	For Latin Modern update to Computer Modern see
+%	http://tex.stackexchange.com/questions/1390/latin-modern-vs-cm-super
+\usepackage{lmodern}
+%
+%	[T1]{fontenc} adds more glyphs
+%	Don't use with XeLaTeX; Just plain LaTeX
+%	http://tex.stackexchange.com/questions/664/why-should-i-use-usepackaget1fontenc
+%	Can lead to bad PDFs if not used with a modern font
+%	http://tex.stackexchange.com/questions/1291/why-are-bitmap-fonts-used-automatically
+\usepackage[T1]{fontenc}
+%
+%	Warning: fontenc + lmodern can sometimes create funny characters
+%	especially if non-ASCII stuff appears.
+%----------------------------------------------------
+%						Date Fixing
+%----------------------------------------------------
+%	amsart places the date in a footnote
+%	Patch below will place it below author name
+%
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\@maketitle}
+  {\ifx\@empty\@dedicatory}
+  {\ifx\@empty\@date \else {\vskip3ex \centering\footnotesize\@date\par\vskip1ex}\fi
+   \ifx\@empty\@dedicatory}
+  {}{}
+\patchcmd{\@adminfootnotes}
+  {\ifx\@empty\@date\else \@footnotetext{\@setdate}\fi}
+  {}{}{}
+\makeatother
+%----------------------------------------------------
+
+% Define a command to apply the no-indent behavior to a specific environment
+% requires etoolbox package
+\makeatletter
+\newcommand*\NoIndentAfterEnv[1]{%
+  \AfterEndEnvironment{#1}{\par\@afterindentfalse\@afterheading}%
+}
+\makeatother
+
+% Apply this to your desired environment, e.g., a custom 'myenv'
+% \NoIndentAfterEnv{myenv}
+
+% xspace is necessary for correct spacing after pre-defined names
+\usepackage{xspace}
+
+% recommended package for bold math
+% https://tex.stackexchange.com/questions/595/how-can-i-get-bold-math-symbols
+% works especially well for bold Greek or other symbols
+% LATER: replace \mathbf{-} below by \bm{-}
+\usepackage{bm}
+
+% Keep using amsfonts
+% for \mathbb
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\newcommand \cC {\mathcal{C}}
+\newcommand \cV {\mathcal{V}}
+\newcommand \cL {\mathcal{L}}
+\newcommand \cG {\mathcal{G}}
+\newcommand \bN {\mathbb{N}}
+\newcommand \bR {\mathbb{R}}
+
+% 	Inner product
+\newcommand{\ip}[1]{\left\langle#1\right\rangle}
+\newcommand{\Frechet}     {\xspace{{F}r\'echet}\xspace}
+% epsilon
+\newcommand{\ve}{\varepsilon}
+%	approximate inequalities
+\newcommand{\leqapprox}{\lesssim}
+\newcommand{\geqapprox}{\gtrsim}
+% Absolute value typeset nicely
+\newcommand{\abs}[1]{\left|#1\right|}
+% Norm of a vector
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\id}{\mathbf{1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                   Theorem styles and numbering
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+
+%--------------- New theorem style ------------------
+%   spaces above and below are a bit larger
+%   Keeps the . after theorem name
+\newtheoremstyle{mytheoremstyle}% name
+    {5pt}                       % Space above
+    {5pt}                       % Space below
+    {\itshape
+    \hangindent \parindent}     % Body font - makes it indented by \parindent amount
+    {}                          % Indent amount
+    {\bfseries}                 % Theorem head font
+    {.}                         % Punctuation after theorem head
+    {.5em}                      % Space after theorem head
+    {}              % Theorem head spec (can be left empty, meaning ‘normal’)
+
+%--------------- New definition/etc style ------------------
+%   spaces above and below are a bit larger (usually 3pt)
+%   Keeps the . after definition name
+%   Makes text normal.
+\newtheoremstyle{mydefinitionstyle}% name
+    {5pt}                       % Space above
+    {5pt}                       % Space below
+    {}                          % Body font
+    {}                          % Indent amount
+    {\bfseries}                 % Theorem head font
+    {.}                         % Punctuation after theorem head
+    {.5em}                      % Space after theorem head
+    {}              % Theorem head spec (can be left empty, meaning ‘normal’)
+
+
+% Switch to custom theorem style
+\theoremstyle{mytheoremstyle}
+
+%   package for fixing counters to work with autoref
+\usepackage{aliascnt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                   Theorems for Introduction
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%   Main Theorems are in the introduction.
+%   Will be labeled Theorem A, Theorem B, etc.
+\newtheorem{theoremmain}{Theorem}
+\renewcommand{\thetheoremmain}{\Alph{theoremmain}}
+
+\providecommand*{\theoremmainautorefname}{The\-o\-rem}
+
+
+% Theorem in the introduction are numbered independently (1,2,3 etc)
+% add [section] to have 1.1, 1.2 etc.
+\newtheorem{theoremintro}{Theorem}
+\providecommand*{\theoremintroautorefname}{The\-o\-rem}
+
+
+
+% INTRO CONJECTURES are numbered as intro theorems
+\newaliascnt{conjectureintro}{theoremintro}
+\newtheorem{conjectureintro}[conjectureintro]{Conjecture}
+\aliascntresetthe{conjectureintro} 
+\providecommand*{\conjectureintroautorefname}{Con\-jec\-ture}
+
+% INTRO COROLLARIES are numbered as intro theorems
+\newaliascnt{corollaryintro}{theoremintro}
+\newtheorem{corollaryintro}[corollaryintro]{Corollary}
+\aliascntresetthe{corollaryintro} 
+\providecommand*{\corollaryintroautorefname}{Co\-rollary}
+
+
+% making INTRO REMARKS and QUESTIONS plain text style
+\theoremstyle{mydefinitionstyle}
+
+% INTRO QUESTIONS are numbered as intro theorems
+\newaliascnt{questionintro}{theoremintro}
+\newtheorem{questionintro}[questionintro]{Question}
+\aliascntresetthe{questionintro} 
+\providecommand*{\questionintroautorefname}{Ques\-tion}
+
+% INTRO REMARKS are numbered as intro theorems
+\newaliascnt{remarkintro}{theoremintro}
+\newtheorem{remarkintro}[remarkintro]{Remark}
+\aliascntresetthe{remarkintro} 
+\providecommand*{\corollaryintroautorefname}{Re\-mark}
+
+
+\theoremstyle{mytheoremstyle}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                  Theorems and environments for main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% change numbering to "2.3.1 Theorem" rather than "Theorem 2.3.1"
+\swapnumbers
+
+% Theorem numbers are within SECTIONS
+\newtheorem{theorem}{Theorem}[section]
+
+%   Hyphenate Theorem references
+\renewcommand{\theoremautorefname}{The\-o\-rem}
+
+% Equations are numbered within SECTIONS
+\numberwithin{equation}{section}
+
+% Makes theorems numbered with the same counter as equations
+\makeatletter
+    \let\c@theorem \c@equation
+\makeatother
+
+% Makes subsections numbered with the same counter as equations
+\makeatletter
+    \let\c@subsection\c@equation
+\makeatother
+
+%       Redefining subsection
+%   subsections are left-aligned, bold sans-serif
+\makeatletter
+\renewcommand{\subsection}
+{\@startsection{subsection}
+                     {2}
+                     {\z@}%
+                     {1ex \@plus1ex \@minus.2ex}%
+                     {-\fontdimen 2\font }
+                     {\normalfont\normalsize\bfseries}}
+\makeatother
+
+
+%       NEXT INSTRUCTIONS ARE NOW IN package_settings.sty
+% Makes figures numbered with the same counter as equations
+% \makeatletter
+%   \let\c@figure\c@equation      % Note that need to include (above) \numberwithin{figure}{subsubsection}
+% \makeatother
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%       Creates Lemma, Proposition, etc. environments
+%
+%   Fixes \autoref numberings, creates alias counters
+%   Now \autoref will produce Lemma 2.3.1 etc.
+%
+%   based on aliascnt package
+
+
+\newaliascnt{conjecture}{theorem}  
+\newtheorem{conjecture}[conjecture]{Conjecture}
+\aliascntresetthe{conjecture} 
+\providecommand*{\conjectureautorefname}{Con\-jec\-ture}
+
+\newaliascnt{lemma}{theorem}  
+\newtheorem{lemma}[lemma]{Lemma}  
+\aliascntresetthe{lemma} 
+\providecommand*{\lemmaautorefname}{Lem\-ma}
+
+\newaliascnt{proposition}{theorem}
+\newtheorem{proposition}[proposition]{Proposition}
+\aliascntresetthe{proposition} 
+\providecommand*{\propositionautorefname}{Pro\-po\-si\-tion}
+
+\newaliascnt{corollary}{theorem}  
+\newtheorem{corollary}[corollary]{Corollary}  
+\aliascntresetthe{corollary} 
+\providecommand*{\corollaryautorefname}{Co\-ro\-lla\-ry}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%       Changes to custom definition style (normal body text)
+\theoremstyle{mydefinitionstyle}
+
+
+
+\newaliascnt{question}{theorem}  
+\newtheorem{question}[question]{Question}  
+\aliascntresetthe{question} 
+\providecommand*{\questionautorefname}{Ques\-tion}
+
+
+\newaliascnt{problem}{theorem}  
+\newtheorem{problem}[problem]{Problem}  
+\aliascntresetthe{problem} 
+\providecommand*{\problemautorefname}{Prob\-lem}
+
+
+\newaliascnt{exercise}{theorem}  
+\newtheorem{exercise}[exercise]{Exercise}  
+\aliascntresetthe{exercise} 
+\providecommand*{\exerciseautorefname}{Ex\-er\-cise}
+
+\newaliascnt{definition}{theorem}  
+\newtheorem{definition}[definition]{Definition}  
+\aliascntresetthe{definition} 
+\providecommand*{\definitionautorefname}{De\-fi\-ni\-ti\-on}
+
+\newaliascnt{remark}{theorem}  
+\newtheorem{remark}[remark]{Remark}  
+\aliascntresetthe{remark} 
+\providecommand*{\remarkautorefname}{Re\-mark}
+
+\newaliascnt{example}{theorem}  
+\newtheorem{example}[example]{Example}  
+\aliascntresetthe{example} 
+\providecommand*{\exampleautorefname}{Ex\-am\-ple}
+
+
+
+\NoIndentAfterEnv{theorem}
+\NoIndentAfterEnv{proposition}
+\NoIndentAfterEnv{corollary}
+\NoIndentAfterEnv{lemma}
+\NoIndentAfterEnv{problem}
+\NoIndentAfterEnv{question}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%				Title & Date
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	also: Add it in the hyperref setup
+%
+%	change to \title[short title]{Actual title}
+%	if what appears on headers is too long
+
+%	Hyperref options
+\hypersetup{
+	pdfkeywords={MSC},	% list of keywords
+	pdfnewwindow=true,		% links in new window
+	colorlinks=true,		% false: boxed links; true: colored links
+	linkcolor=darkblue,		% color of internal links (change box color with linkbordercolor)
+	citecolor=darkred,		% color of links to bibliography
+	filecolor=darkblue,		% color of file links
+	urlcolor=darkblue,		% color of external links
+	pdfborder={0 0 0},
+	breaklinks=true
+}
+
+
+%---------------------------------------
+%						Date of revision
+
+%						Date First posted
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%						Author info
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%		Address
+%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%							Start of Main Document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\paragraph{Problem Statement.}
+Let $M$ be a compact connected smooth manifold.
+Let $X$ be a smooth vector field on $M$.
+
+Assume that $X$ has the following property:
+If $f$ is a smooth function, and $u$ is a distribution,
+and we have $\mathcal{L}_X u = f$, then $u$ is a smooth function.
+Let $g_t$ denote the flow generated by $X$.
+
+Show that the flow $g_t$ has zero topological entropy.
+\end{document}

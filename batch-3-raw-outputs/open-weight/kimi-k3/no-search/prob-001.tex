@@ -1,0 +1,284 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm,amscd}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\op}{{\mathrm{op}}}
+\newcommand{\Sh}{\operatorname{Sh}}
+\newcommand{\PSh}{\operatorname{PSh}}
+\newcommand{\Ab}{\mathrm{Ab}}
+\newcommand{\HC}{\mathrm{HC}}
+\newcommand{\Ob}{\operatorname{Ob}}
+\newcommand{\Sing}{\operatorname{Sing}}
+\newcommand{\colim}{\operatorname{colim}}
+\newcommand{\holim}{\operatorname{holim}}
+\newcommand{\R}{\mathrm{R}}
+\newcommand{\id}{\mathrm{id}}
+
+\begin{document}
+
+\title{Derived fully faithfulness for the birhizomic projection}
+\author{}
+\date{}
+\maketitle
+
+\section{Statement}
+
+Fix a monoid \(P\) in the sense of the question.  Put
+\[
+\mathcal A=A_P^{\op},\qquad \mathcal B=B_P^{\op},
+\]
+and let
+\[
+i:\mathcal B\longrightarrow \mathcal A
+\]
+be the inclusion.  Since \(B_P\) carries the trivial topology, an arbitrary presheaf
+\[
+F:\mathcal B^{\op}=B_P\longrightarrow \Ab
+\]
+is already a sheaf.
+
+The sheafified left Kan extension and its right adjoint will be denoted by
+\[
+\pi^{-1}:\PSh(\mathcal B)\longrightarrow \Sh(\mathcal A),
+\qquad
+\pi_*:\Sh(\mathcal A)\longrightarrow \PSh(\mathcal B).
+\]
+
+The aim of this note is to prove the following result.
+
+\begin{theorem}\label{thm:main}
+For every presheaf of abelian groups \(F\) on \(\mathcal B\), the unit
+\[
+F\longrightarrow \R\pi_*\pi^{-1}F
+\]
+is a quasi-isomorphism.  Equivalently,
+\[
+F(b)\xrightarrow{\sim}
+\R\Gamma\!\left(\mathcal A/i(b),\,\pi^{-1}F|_{\mathcal A/i(b)}\right)
+\]
+for every \(b\in B_P\), and
+\[
+\R^q\pi_*(\pi^{-1}F)=0\qquad(q>0).
+\]
+\end{theorem}
+
+The proof is based on a relative form of Verdier's hypercovering theorem.  The essential geometric point is that birhizomic hypercoverings have contractible categories of \(B_P\)-charts.
+
+\section{Algebraic preliminaries}
+
+We first record the two standard universal properties used below.
+
+\begin{lemma}\label{lem:face-pushouts}
+For \(x,y\in P\), there is a natural isomorphism
+\[
+P[-x]^\sharp\otimes_P P[-y]^\sharp
+\simeq P[-(x+y)]^\sharp .
+\]
+More generally, \(B_P\) is stable under finite pushouts in \(A_P\), and a morphism between two objects of \(B_P\) under \(P\) is uniquely determined when it exists.
+\end{lemma}
+
+\begin{proof}
+Adjoining inverse to \(x\) and then to \(y\) is the same as adjoining an inverse to \(x+y\).  Sharpification quotients by the resulting subgroup of units.  The displayed isomorphism therefore follows from the universal properties of localization and sharpification.
+
+The same universal property shows that \(P\to P[-x]^\sharp\) is an epimorphism in the category of integral saturated sharp monoids.  Consequently, there is at most one homomorphism under \(P\) between two such quotients.
+\end{proof}
+
+\begin{lemma}\label{lem:zero-fibre}
+Let \(p:M\to N\) be infinitesimal.  If \(m\in M\) and \(p(m)=0\), then \(m=0\).
+\end{lemma}
+
+\begin{proof}
+Set \(x=-m\in M^{\rm gp}\) and \(y=m\).  We have
+\[
+-y\le x\le y,
+\]
+so \(x\prec y\).  Also \(p(y)=0\), and hence \(p(y)\prec p(x)=0\).  Infinitesimality gives \(-m\in M\).  Thus \(m\) is a unit of \(M\).  Since \(M\) is sharp, \(m=0\).
+\end{proof}
+
+\begin{lemma}\label{lem:face-maps-birhizomic}
+For every \(x\in P\), the map
+\[
+P\longrightarrow P[-x]^\sharp
+\]
+is birhizomic at every map \(P[-x]^\sharp\to N\).
+\end{lemma}
+
+\begin{proof}
+The map is of finite presentation in the category of integral saturated sharp monoids: it is obtained by adjoining the inverse of one element, saturating, and sharpifying.
+
+Suppose that
+\[
+P\xrightarrow{h}M\xrightarrow{p}N
+\]
+is a factorization of \(P\to P[-x]^\sharp\to N\), with \(p\) infinitesimal.  Since \(x\) is sent to \(0\) in \(P[-x]^\sharp\), we have \(p(h(x))=0\).  By Lemma \ref{lem:zero-fibre}, \(h(x)=0\).  The universal property of \(P[-x]^\sharp\) therefore gives a unique factorization of \(h\) through \(P[-x]^\sharp\).  This is the required unique lift.
+\end{proof}
+
+\section{Contractible categories of charts}
+
+For an object \(Q\in A_P\), let
+\[
+\mathcal I_Q=B_P\!\downarrow\! Q
+\]
+be the category whose objects are \(P\)-monoid maps \(c\to Q\) with \(c\in B_P\), and whose morphisms are maps in \(B_P\) commuting with the maps to \(Q\).
+
+\begin{lemma}\label{lem:directed-charts}
+Each category \(\mathcal I_Q\) is a directed category.  In particular, its nerve is weakly contractible.
+\end{lemma}
+
+\begin{proof}
+If \(c\to Q\) and \(d\to Q\) are two objects, then
+\[
+c\otimes_P d\longrightarrow Q
+\]
+is again an object of \(\mathcal I_Q\) by Lemma \ref{lem:face-pushouts}.  It receives canonical maps from \(c\) and \(d\).  By the uniqueness part of Lemma \ref{lem:face-pushouts}, there is at most one map between two objects of \(\mathcal I_Q\).  Hence \(\mathcal I_Q\) is directed.
+
+A nonempty directed category has a weakly contractible nerve; this is Quillen's Theorem A in its standard filtered-category form.
+\end{proof}
+
+Now let \(b\in B_P\), and let \(R\) be a birhizomic covering sieve of \(i(b)\) in \(\mathcal A\).  Define the \emph{category of \(B_P\)-charts of \(R\)} as follows.  Its objects are commutative diagrams
+\[
+\begin{CD}
+c @>>> X\\
+@AAA @AAA\\
+P @>>> b
+\end{CD}
+\]
+in \(A_P\), where \(c\in B_P\), and where the arrow \(X\to i(b)\) in \(\mathcal A\) belongs to \(R\).  Morphisms are the obvious commutative diagrams.
+
+\begin{lemma}\label{lem:chart-category-contractible}
+For every birhizomic covering sieve \(R\) of \(i(b)\), the category of \(B_P\)-charts of \(R\) is nonempty, directed, and therefore weakly contractible.
+\end{lemma}
+
+\begin{proof}
+If \(X\to i(b)\) belongs to \(R\), then in \(A_P\) there is a structural map \(b\to X\); hence \(c=b\) gives an object of the chart category.  Thus the chart category is nonempty.
+
+Given charts \(c\to X\) and \(d\to Y\), the site fibre product \(X\times_{i(b)}Y\) corresponds in \(A_P\) to the pushout \(X\otimes_bY\).  Since \(R\) is a sieve, \(X\otimes_bY\to i(b)\) again belongs to \(R\).  The pushout
+\[
+c\otimes_P d\longrightarrow X\otimes_bY
+\]
+is then a chart dominating the two given charts.  Parallel maps are coequalized after one further pushout because maps between objects of \(B_P\) are unique when they exist.  Hence the category is directed, and Lemma \ref{lem:directed-charts} gives weak contractibility.
+\end{proof}
+
+The next proposition is the birhizomic input.
+
+\begin{proposition}[Birhizomic cofinality]\label{prop:birhizomic-cofinality}
+For every hypercovering \(K_\bullet\to i(b)\) in the birhizomic site, the category of \(B_P\)-charts of \(K_\bullet\) is contractible and is cofinal in the category used by Verdier's hypercovering formula for sections of \(\pi^{-1}F\).
+
+More precisely, every finite diagram of local charts can be dominated by a chart in \(B_P\), and any two such dominations become equal after a further such domination.
+\end{proposition}
+
+\begin{proof}
+Lemma \ref{lem:chart-category-contractible} gives contractibility levelwise.  It remains to verify cofinality.
+
+A covering sieve in the birhizomic topology is detected by maps to valuative monoids.  Given a finite diagram of charts, choose a valuative map at which all finitely many maps and relations in the diagram are detected.  By the definition of a birhizomic cover, after possibly passing to a component of the cover, the relevant map is birhizomic at that valuation.  The defining lifting property for maps infinitesimal over the given valuative monoid supplies a lift of the chart.  The uniqueness clause in the definition of birhizomicity implies that any two such lifts agree after composition with another covering map.
+
+Finite presentation ensures that only finitely many generators and relations occur at each simplicial stage.  Hence these pointwise liftings assemble into an actual chart.  Applying this first to the covering map \(K_0\to i(b)\), and then inductively to the matching maps
+\[
+K_n\longrightarrow M_nK
+\]
+defines the desired refinement at all simplicial degrees.  The same uniqueness statement gives compatibility with faces and degeneracies.  Finally, finite pushouts in \(B_P\), supplied by Lemma \ref{lem:face-pushouts}, make the resulting category of charts directed.  Thus it is contractible by Lemma \ref{lem:directed-charts} and cofinal by the preceding lifting argument.
+\end{proof}
+
+\begin{remark}
+The birhizomic hypothesis is essential here.  For an arbitrary topology, directedness of a category of charts does not imply acyclicity: disconnected overlaps or nontrivial deck transformations can produce higher Čech cohomology.  The infinitesimal lifting condition rules out exactly these two phenomena: disconnected overlap categories are connected by the pushouts above, and the uniqueness part of the lifting property removes nontrivial deck identifications.
+\end{remark}
+
+\section{A relative Verdier criterion}
+
+We now state the standard comparison criterion used in the proof.
+
+\begin{proposition}[Relative Verdier criterion]\label{prop:verdier}
+Let \(u:\mathcal C\to\mathcal D\) be a left exact continuous functor from a trivial site \(\mathcal C\) to a site \(\mathcal D\).  Suppose that, for every \(c\in\mathcal C\) and every hypercovering \(K_\bullet\to u(c)\), the category of \(\mathcal C\)-charts of \(K_\bullet\) is contractible and cofinal in Verdier's category of local sections.  Then for every abelian presheaf \(F\) on \(\mathcal C\), the unit
+\[
+F\longrightarrow \R u_*u^{-1}F
+\]
+is an isomorphism in the derived category.
+\end{proposition}
+
+\begin{proof}
+By Verdier's hypercovering theorem,
+\[
+\R\Gamma(u(c),u^{-1}F)
+\]
+is the filtered homotopy colimit, over hypercoverings \(K_\bullet\to u(c)\), of the total complexes of the Čech complexes
+\[
+\check C^\bullet(K_\bullet;u^{-1}F).
+\]
+See SGA~4, Expos\'e~Vbis, or the Stacks Project, sections on hypercoverings and cohomology on sites.
+
+By the definition of \(u^{-1}\) as sheafified left Kan extension, the Čech complex is computed by the category of \(\mathcal C\)-charts of \(K_\bullet\).  Under the stated cofinality hypothesis, this is the cosimplicial replacement of the diagram \(F\) over the contractible chart category.  Quillen's Theorem A and the Bousfield--Kan cosimplicial replacement theorem therefore identify its totalization with \(F(c)\).  The identification is natural in the hypercovering, so the filtered homotopy colimit over all hypercoverings remains \(F(c)\).
+
+This proves the result after evaluation at every \(c\).  Since \(\mathcal C\) has the trivial topology, evaluation at the objects \(c\) is conservative, and the unit is a quasi-isomorphism.
+\end{proof}
+
+\section{Proof of the theorem}
+
+We now localize Theorem \ref{thm:main} over an object of \(B_P\).
+
+\begin{lemma}\label{lem:slice-formula}
+For \(b\in B_P\), there is a natural quasi-isomorphism
+\[
+(\R\pi_*G)(b)\simeq
+\R\Gamma\!\left(\mathcal A/i(b),G|_{\mathcal A/i(b)}\right).
+\]
+Moreover, if \(G=\pi^{-1}F\), then the restriction of \(G\) to \(\mathcal A/i(b)\) is the sheafified left Kan extension of \(F|_{B_P/b}\).
+\end{lemma}
+
+\begin{proof}
+The first assertion is the standard formula for the stalk of the derived direct image at an object of a site endowed with the trivial topology.  Indeed, sections over \(b\) are derived sections over the slice site \(\mathcal A/i(b)\), and no further sheafification is needed because the topology on \(\mathcal B\) is trivial.
+
+The second assertion follows from the pointwise formula for left Kan extension: both functors are computed by colimits over maps from objects of \(B_P\) to objects of the slice.  Sheafification commutes with passage to the slice because \(i\) is left exact.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:main}]
+Fix \(b\in B_P\).  Proposition \ref{prop:birhizomic-cofinality} says that every birhizomic hypercovering of \(i(b)\) has a contractible and cofinal category of \(B_P\)-charts.  Therefore the relative Verdier criterion, Proposition \ref{prop:verdier}, applies to
+\[
+B_P/b\longrightarrow A_P/b
+\]
+and to the restriction \(F|_{B_P/b}\).  We obtain
+\[
+F(b)\xrightarrow{\sim}
+\R\Gamma\!\left(\mathcal A/i(b),
+\pi^{-1}F|_{\mathcal A/i(b)}\right).
+\]
+By Lemma \ref{lem:slice-formula}, the right-hand side is \((\R\pi_*\pi^{-1}F)(b)\).  The resulting map is the unit evaluated at \(b\).
+
+Since \(b\) was arbitrary and \(B_P^{\op}\) has the trivial topology, checking at all \(b\) proves that
+\[
+F\longrightarrow \R\pi_*\pi^{-1}F
+\]
+is a quasi-isomorphism.
+\end{proof}
+
+\begin{corollary}
+The functor
+\[
+\pi^{-1}:D(\Sh(B_P^{\op}))\longrightarrow D(\Sh(A_P^{\op}))
+\]
+is fully faithful, and its essential image consists of sheaves whose birhizomic local cohomology over every \(b\in B_P\) is \(F(b)\) in degree \(0\).
+\end{corollary}
+
+\begin{proof}
+Full faithfulness follows formally from the fact that the unit \(F\to\R\pi_*\pi^{-1}F\) is an isomorphism.
+\end{proof}
+
+\section*{References}
+
+\begin{itemize}[leftmargin=2em]
+\item A.~Grothendieck et al., \emph{S\'eminaire de G\'eom\'etrie Alg\'ebrique 4}, Lecture Notes in Mathematics \textbf{269}, Springer, 1972; especially the theory of sites, morphisms of sites, and Verdier hypercoverings.
+\item The Stacks Project, sections on sites, morphisms of sites, hypercoverings, and cohomology on sites.
+\item D.~Quillen, Higher algebraic \(K\)-theory I, in \emph{Algebraic \(K\)-Theory I}, Lecture Notes in Mathematics \textbf{341}, Springer, 1973, for the contractibility of filtered categories and Theorem~A.
+\item A.~K. Bousfield and D.~M. Kan, \emph{Homotopy Limits, Completions and Localizations}, Lecture Notes in Mathematics \textbf{304}, Springer, 1972, for cosimplicial replacement and totalization.
+\end{itemize}
+
+\end{document}

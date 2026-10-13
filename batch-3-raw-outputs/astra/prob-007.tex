@@ -1,0 +1,951 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\C}{\mathbb C}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Sphere}{\widehat{\mathbb C}}
+\newcommand{\Teich}{\operatorname{Teich}}
+\newcommand{\PMod}{\operatorname{PMod}}
+\newcommand{\Def}{\mathcal D}
+\newcommand{\Par}{\mathcal P}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\wind}{\operatorname{wind}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{construction}[theorem]{Construction}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{An explicit Dehn twist with an infinite component orbit\\
+in the period-four deformation space}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We describe a simple closed curve for which the Dehn twist itself,
+not merely a proper power, preserves the deformation space in the
+question and has an infinite orbit on its connected components.
+The curve is first specified for one explicit normalized rational map
+and is then transported to an arbitrary map in the family.
+The proof uses an explicit Hurwitz covering and a free-group quotient
+of the stabilizer of a component.  It does not assume that the
+components of the deformation space are simply connected.
+\end{abstract}
+
+\section{The explicit curve and the statement}
+
+All marked points are labelled.  Thus mapping class groups below are
+pure mapping class groups, and moduli spaces are moduli spaces of
+ordered configurations.
+
+\begin{lemma}[Normal form]\label{lem:normal}
+After the unique M\"obius normalization
+\[
+c_1=0,\qquad f(c_1)=\infty,\qquad f^{\circ 2}(c_1)=1,
+\]
+the map in the question is
+\begin{equation}\label{eq:normal}
+F_r(z)=
+1-\frac{r^2+r-1}{(r-1)z}
++\frac{r(2r-1)}{(r-1)z^2},
+\end{equation}
+with critical cycle
+\[
+0\longmapsto\infty\longmapsto1\longmapsto r\longmapsto0.
+\]
+Its other critical value is
+\begin{equation}\label{eq:nu}
+\nu(r)=
+-\frac{(r^2-3r+1)^2}{4r(r-1)(2r-1)}.
+\end{equation}
+The allowed parameter space is
+\begin{equation}\label{eq:parameter}
+\Par=
+\left\{
+r\in\C:
+r(r-1)(2r-1)
+(r^2-3r+1)(r^2+r-1)(3r^2-3r+1)\ne0
+\right\}.
+\end{equation}
+In particular, $\Par$ is path connected.
+\end{lemma}
+
+\begin{proof}
+A quadratic rational map with $0$ critical, $F(0)=\infty$, and
+$F(\infty)=1$ has the form
+\[
+F(z)=1+\frac b z+\frac c{z^2},\qquad c\ne0.
+\]
+The equations $F(1)=r$ and $F(r)=0$ give
+\[
+1+b+c=r,\qquad r^2+br+c=0,
+\]
+and solving them gives \eqref{eq:normal}.  The second critical value is
+$1-b^2/(4c)$, which simplifies to \eqref{eq:nu}.
+Writing $d(r)=4r(r-1)(2r-1)$, one also obtains
+\[
+\nu(r)-1=-\frac{(r^2+r-1)^2}{d(r)},\qquad
+\nu(r)-r=-\frac{(3r^2-3r+1)^2}{d(r)}.
+\]
+These formulas give precisely \eqref{eq:parameter}.  Its complement
+in $\C$ is finite, so $\Par$ is path connected.
+\end{proof}
+
+Set
+\[
+R=100,\qquad
+v_*=\nu(R)=-\frac{9701^2}{4\cdot100\cdot99\cdot199}.
+\]
+Notice that
+\begin{equation}\label{eq:vbound}
+-12<v_*<-11.
+\end{equation}
+Write
+\[
+A_*=\{0,\infty,1,R\},\qquad B_*=A_*\cup\{v_*\}.
+\]
+For a simple closed curve $a$, let $T_a$ denote the positive Dehn twist
+about $a$.
+
+\begin{construction}[The model curve]\label{con:model}
+On $(\Sphere,B_*)$, take the circle
+\[
+C=\{z:|z-50|=55\}.
+\]
+Let $\alpha$ be the embedded polygonal arc
+\[
+[v_*,v_*-200i]\ \cup\
+[v_*-200i,R-200i]\ \cup\
+[R-200i,R].
+\]
+Let $\delta$ be the boundary of a sufficiently thin regular
+neighborhood of $\alpha$, for example its $1/10$-neighborhood with
+corners rounded.  Define
+\begin{equation}\label{eq:modelcurve}
+\boxed{\ \gamma_*=T_\delta(C).\ }
+\end{equation}
+Here any representative of $T_\delta$ supported in a thin collar of
+$\delta$ may be used; the resulting isotopy class of $\gamma_*$
+relative to $B_*$ is independent of that choice.
+\end{construction}
+
+Thus $\delta$ surrounds precisely $v_*$ and $R$, whereas $C$, and hence
+$\gamma_*$, separates $\{v_*,\infty\}$ from $\{0,1,R\}$.
+The twist in \eqref{eq:modelcurve} is important: the partition of the
+marked points alone does not specify the required curve.
+
+Here is the corresponding explicit prescription for the map in the
+question.
+
+\begin{construction}[Transport to an arbitrary map]\label{con:general}
+Let $m$ be the normalization in Lemma~\ref{lem:normal}, so that
+$mfm^{-1}=F_{r_0}$ for some $r_0\in\Par$.
+
+Choose a piecewise smooth path $r(t)$ in $\Par$ from $r_0$ to $R$.
+This choice can be made entirely explicit: take the polygonal path
+\[
+r_0\longrightarrow N+iN^2\longrightarrow R,
+\]
+where $N$ is the least positive integer for which both segments avoid
+$\C\setminus\Par$.  Such an $N$ exists, because the forbidden
+intermediate points lie on finitely many real lines, each meeting
+the parabola $\{x+ix^2:x\in\mathbb R\}$ finitely often.
+
+Choose an ambient isotopy $h_t$ of $\Sphere$, starting at the identity,
+such that
+\[
+h_t(0)=0,\quad h_t(1)=1,\quad h_t(\infty)=\infty,\quad
+h_t(r_0)=r(t),\quad h_t(\nu(r_0))=\nu(r(t)).
+\]
+Define
+\begin{equation}\label{eq:generalcurve}
+\boxed{\ \gamma_f=m^{-1}\bigl(h_1^{-1}(\gamma_*)\bigr).\ }
+\end{equation}
+Existence of $h_t$, and independence of its choice up to the relevant
+isotopy, are justified in Section~\ref{sec:transport}.
+\end{construction}
+
+\begin{theorem}\label{thm:main}
+The curve $\gamma_f$ of Construction~\ref{con:general} satisfies
+\[
+T_{\gamma_f}(\Def_f)=\Def_f.
+\]
+If $\mathcal C_f$ is the connected component containing the standard
+complex structure of the given rational map, then
+\[
+T_{\gamma_f}^{\,n}(\mathcal C_f),\qquad n\in\Z,
+\]
+are pairwise distinct connected components of $\Def_f$.
+Consequently, the power requested in the question can be taken to be
+$1$.
+\end{theorem}
+
+The Hurwitz-space coordinates used below are those of
+Hironaka--Koch \cite[Proposition~3.1]{HK}; we verify the required
+properties explicitly.  Related pairs of equalizing curves occur in
+Firsova--Kahn--Selinger \cite[Section~9, case~(12b), arXiv version]{FKS}.
+The argument below identifies a particular single twist and proves
+its infinite component orbit.
+% Sources for the cited coordinate model and related curve types:
+% ([math.fsu.edu](https://www.math.fsu.edu/~hironaka/papers/disconnected.pdf))
+
+\section{A covering-space model for the deformation space}
+
+Put
+\[
+M=\C\setminus\{0,1\},\qquad
+Y=\{(y,z)\in M^2:y\ne z\}.
+\]
+These are the moduli spaces of the configurations
+$(0,\infty,1,x)$ and $(0,\infty,1,y,z)$, respectively.
+
+We use the standard facts that the Teichm\"uller spaces of these
+labelled punctured spheres are their universal covers, with deck
+groups their pure mapping class groups.  Contractibility and the
+properly discontinuous action are standard Teichm\"uller theory;
+the labelled genus-zero action is free because a M\"obius map fixing
+three labelled points is the identity.  See
+\cite[Chapters~10 and~12]{FM}, or the formulation for marked spheres in
+\cite[Section~2.2]{HK}.
+% Source for these standard Teichmuller-covering facts:
+% ([pagine.dm.unipi.it](https://pagine.dm.unipi.it/~a019210/Farb%20Magalit_Primer%20on%20Teichmuller%20theory.pdf))
+
+We let a mapping class $h$ act on markings by
+\[
+h\cdot[\varphi]=[\varphi\circ h^{-1}].
+\]
+Accordingly, a configuration loop extended to an ambient isotopy
+$H_t$ determines the deck element $[H_1^{-1}]$.
+Peripheral loops will always be oriented to represent the indicated
+Dehn twist.
+
+\subsection{The explicit Hurwitz covering}
+
+For $(x,y)\in\C^2$, define
+\[
+\begin{split}
+D(x,y)&=x(x-1)(x+y-1),\\
+Q_0(x,y)&=(x-1)^2-y,\\
+Q_1(x,y)&=x^2+y-1,\\
+Q_y(x,y)&=(x-1)^2+(2x-1)y,
+\end{split}
+\]
+and
+\begin{equation}\label{eq:Z}
+Z(x,y)=-\frac{Q_0(x,y)^2}{4D(x,y)}.
+\end{equation}
+Let
+\begin{equation}\label{eq:W}
+W=
+\left\{(x,y):
+y(y-1)D(x,y)Q_0(x,y)Q_1(x,y)Q_y(x,y)\ne0
+\right\}.
+\end{equation}
+
+\begin{lemma}\label{lem:cover}
+The map
+\[
+q:W\longrightarrow Y,\qquad q(x,y)=(y,Z(x,y)),
+\]
+is a connected, unbranched covering of degree four.
+The two maps from $W$ to $M$ recording the source configuration and
+the target configuration with the extra critical value forgotten are
+\[
+p_x(x,y)=x,\qquad p_y(x,y)=y.
+\]
+\end{lemma}
+
+\begin{proof}
+A normalized quadratic map satisfying
+\[
+0\longmapsto\infty,\qquad
+\infty\longmapsto1,\qquad
+1\longmapsto y,\qquad x\longmapsto0
+\]
+must be
+\begin{equation}\label{eq:Fxy}
+G_{x,y}(t)=\frac{(t-x)(t-s)}{t^2},
+\qquad s=\frac{x+y-1}{x-1}.
+\end{equation}
+Indeed, the first two conditions make the numerator monic, and
+$G_{x,y}(1)=y$ determines $s$.
+Its second critical value is
+\[
+1-\frac{(x+s)^2}{4xs}=Z(x,y).
+\]
+Direct expansion gives
+\begin{equation}\label{eq:Zidentities}
+Z-1=-\frac{Q_1^2}{4D},\qquad
+Z-y=-\frac{Q_y^2}{4D},\qquad
+\frac{\partial Z}{\partial x}
+=-\frac{Q_0Q_1Q_y}{4D^2}.
+\end{equation}
+Thus \eqref{eq:W} says exactly that the source and target markings
+are distinct and that the second critical value avoids the other
+target markings.
+
+For fixed $(y,z)\in Y$, the equation $Z(x,y)=z$ is
+\[
+Q_0(x,y)^2+4zD(x,y)=0,
+\]
+a monic polynomial equation of degree four in $x$.
+None of its roots is $0$, $1$, or $1-y$:
+at these points $Q_0$ is nonzero because $y\ne0,1$.
+The identities \eqref{eq:Zidentities} show that all four roots are
+simple when $z\notin\{0,1,y\}$.  The implicit function theorem gives
+four local inverse branches of $q$.  Hence $q$ is an unbranched
+four-sheeted covering.
+
+Finally, $W$ is path connected.  Given two of its points, restrict
+the nonvanishing polynomial defining $W$ to the complex affine line
+through them.  It is not identically zero, and therefore excludes only
+finitely many points of that line.  The two points can be joined in
+the complement of those finitely many points.
+
+The descriptions of $p_x$ and $p_y$ follow from
+\eqref{eq:Fxy}.
+\end{proof}
+
+\begin{lemma}\label{lem:teich}
+For each $r\in\Par$, there is a universal covering
+\[
+U_r:\Teich(B_r)\longrightarrow W,\qquad
+B_r=\{0,\infty,1,r,\nu(r)\},
+\]
+taking the standard marked structure $\tau_r$ to $(r,r)$, such that
+\begin{equation}\label{eq:coverdiagram}
+qU_r=\pi_{B_r},\qquad
+\pi_{A_r}F_r^*=p_xU_r,\qquad
+\pi_{A_r}i_*=p_yU_r,
+\end{equation}
+where $A_r=\{0,\infty,1,r\}$.
+\end{lemma}
+
+\begin{proof}
+Given a marked complex structure $[\varphi]\in\Teich(B_r)$, normalize
+$\varphi$ to fix $0,\infty,1$.  Uniformize the pullback complex
+structure, obtaining a normalized marking $\psi$ for which
+\[
+G=\varphi\circ F_r\circ\psi^{-1}
+\]
+is rational.  This is the usual uniformization description of the
+pullback map; see \cite[Sections~2.1--2.2, Proposition~2.1]{HK}.
+Set
+\[
+x=\psi(r),\qquad y=\varphi(r),\qquad z=\varphi(\nu(r)).
+\]
+The map $G$ has precisely the normalization in \eqref{eq:Fxy}, so
+$z=Z(x,y)$.  This gives the continuous lift $U_r$ and all identities
+in \eqref{eq:coverdiagram}.
+
+Since $\Teich(B_r)$ is the universal cover of $Y$ and $q$ is a
+connected covering, its lift $U_r$ is the universal cover of $W$.
+This is the standard composition and lifting property of coverings;
+see \cite[Section~1.3]{H}.
+\end{proof}
+
+\subsection{The stabilizer of one component}
+
+For the rest of the model argument, use $r=R$, write $U=U_R$, and
+take the basepoints
+\[
+\tau_*=\tau_R,\qquad w_*=(R,R).
+\]
+The injection $q_*$ identifies
+\[
+L:=\pi_1(W,w_*)
+\]
+with a subgroup of the deck group of $\Teich(B_*)\to Y$.
+
+Define
+\[
+d:\Par\longrightarrow W,\qquad d(r)=(r,r),
+\qquad
+K:=\im\bigl(d_*:\pi_1(\Par,R)\to L\bigr).
+\]
+The formulas defining $W$ show that its diagonal is exactly
+$d(\Par)$.
+
+\begin{lemma}\label{lem:stabilizer}
+Let $\mathcal C_*$ be the component of $\Def_{F_R}$ containing
+$\tau_*$.  Then:
+\begin{enumerate}
+\item $\Def_{F_R}$ is a union of connected components of
+$U^{-1}(d(\Par))$, and each such component is path connected;
+\item for $g\in L$,
+\[
+g(\mathcal C_*)=\mathcal C_*
+\quad\Longleftrightarrow\quad g\in K;
+\]
+\item if
+\[
+(p_x)_*(g)=(p_y)_*(g)
+\quad\text{in }\pi_1(M,R),
+\]
+then $g(\Def_{F_R})=\Def_{F_R}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+On $U^{-1}(d(\Par))$, the maps $F_R^*$ and $i_*$ are lifts to
+$\Teich(A_*)$ of the same map to $M$, by
+\eqref{eq:coverdiagram}.  On a connected component, two lifts either
+agree everywhere or nowhere: if they agree at one point, uniqueness
+of lifting makes them agree throughout that component.
+Since $U^{-1}(d(\Par))\to d(\Par)$ is a covering of a Riemann surface,
+its components are path connected.  This proves the first assertion.
+
+A deck element $g\in L$ carries $\tau_*$ into $\mathcal C_*$ exactly
+when there is a path in $U^{-1}(d(\Par))$ from $\tau_*$ to
+$g(\tau_*)$.  Projecting this path gives a loop in $d(\Par)$
+representing $g$; conversely, such a loop lifts to such a path.
+This proves the second assertion.
+
+For the last assertion, lifting uniqueness gives the equivariance
+relations
+\[
+F_R^*\circ g=(p_x)_*(g)\circ F_R^*,
+\qquad
+i_*\circ g=(p_y)_*(g)\circ i_*,
+\]
+where the elements on the right act as deck transformations of
+$\Teich(A_*)$.  Equality of the two deck elements implies
+$g(\Def_{F_R})\subseteq\Def_{F_R}$; applying the same argument to
+$g^{-1}$ gives equality.
+\end{proof}
+
+This is the covering-space form of the special-liftable and
+component-stabilizer descriptions in
+\cite[Sections~2.8--2.9]{HK}.  The covering facts used in its proof are
+the lifting and deck-transformation results in
+\cite[Section~1.3, especially Proposition~1.39]{H}.
+% Sources for the cited stabilizer and covering-space descriptions:
+% ([math.fsu.edu](https://www.math.fsu.edu/~hironaka/papers/disconnected.pdf))
+
+\section{A free-group quotient detecting movement of components}
+
+Enlarge $W$ to the five-line complement
+\[
+X=\{(x,y)\in M^2:x+y\ne1\},
+\]
+and let $j:W\hookrightarrow X$ be inclusion.  Put
+\[
+\Par_0=\C\setminus\{0,1,\tfrac12\},\qquad
+e:\Par_0\longrightarrow X,\quad e(r)=(r,r).
+\]
+This auxiliary complement also appears in
+\cite[Section~2.12]{HK}.  The properties needed here have short direct
+proofs.
+% Source for the auxiliary five-line complement:
+% ([math.fsu.edu](https://www.math.fsu.edu/~hironaka/papers/disconnected.pdf))
+
+\begin{lemma}\label{lem:freeimage}
+The map $e_*$ is injective.  Consequently
+\[
+H:=e_*\pi_1(\Par_0,R)
+\]
+is a free group of rank three.  Moreover,
+\begin{equation}\label{eq:imageK}
+j_*(K)=H.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Consider
+\[
+\Phi:X\longrightarrow M,\qquad
+\Phi(x,y)=\frac{xy}{x+y-1}.
+\]
+It avoids $0$ because $xy\ne0$, and it avoids $1$ because
+\[
+xy-(x+y-1)=(x-1)(y-1)\ne0.
+\]
+On the diagonal,
+\[
+\Phi e(r)=\psi(r):=\frac{r^2}{2r-1}.
+\]
+The map $\psi:\Par_0\to M$ is an unbranched double covering.
+Indeed, for $w\notin\{0,1\}$ its inverse points are the two distinct
+roots of
+\[
+r^2-2wr+w=0,
+\]
+and neither root is $0$, $1$, or $1/2$.
+Thus $\psi_*$ is injective, as is the fundamental-group homomorphism
+of any covering.  Since $\Phi_*e_*=\psi_*$, $e_*$ is injective.
+
+The plane with three points removed has fundamental group free of
+rank three: disjoint small circles about the punctures, joined to a
+basepoint by a tree of arcs, give the usual graph model.
+Thus $H\cong F_3$.
+
+Finally, $\Par$ is obtained from $\Par_0$ by deleting finitely many
+additional points.  The inclusion $\Par\hookrightarrow\Par_0$
+induces a surjection on fundamental groups: a loop can be perturbed
+in small disks to avoid those additional points.
+Using $jd=e|_{\Par}$ proves \eqref{eq:imageK}.
+\end{proof}
+
+We will also use the winding-number homomorphism
+\begin{equation}\label{eq:lambda}
+\lambda:\pi_1(X,w_*)\longrightarrow\Z,\qquad
+\lambda([\beta])=\wind_0\bigl((x+y-1)\circ\beta\bigr).
+\end{equation}
+
+\begin{lemma}[A free-group centralizer criterion]\label{lem:centralizer}
+Let $F$ be a free group and $\theta:F\to G$ a homomorphism.
+If $\theta(t)$ has infinite order, then
+\[
+\{a\in F:at=ta,\ \theta(a)=1\}=\{1\}.
+\]
+\end{lemma}
+
+\begin{proof}
+The centralizer of a nonidentity element of a free group is infinite
+cyclic.  To recall the argument, let the free group act on its Cayley
+tree.  Writing an element as a conjugate of a cyclically reduced word
+exhibits its translation axis, which is unique.  A commuting element
+preserves this axis and acts on it by a translation, not a reflection.
+Signed translation distance embeds the centralizer into $\Z$:
+an element with zero translation fixes a vertex, and the left action
+of a free group on its Cayley tree is free on vertices.
+The centralizer is therefore cyclic.
+
+Write this centralizer as $\langle b\rangle$, with $t=b^k$, $k\ne0$.
+Since $\theta(t)$ has infinite order, so does $\theta(b)$.
+Hence $\theta$ is injective on $\langle b\rangle$, proving the claim.
+\end{proof}
+
+\section{Verification for the explicit model curve}
+
+\subsection{Elementary twist conventions}
+
+We will use three elementary facts:
+\[
+T_{h(a)}=hT_ah^{-1},
+\]
+twists about disjoint curves commute, and a twist about the boundary
+of a disk containing exactly two marked points is represented by
+moving one of those points once around the other.
+
+For completeness, the first two facts follow by transporting, or
+choosing disjoint, annular supports.  For the third, identify the disk
+with a round disk, place the fixed puncture at its center, and use
+\[
+z\longmapsto e^{2\pi it\chi(|z|)}z,
+\]
+where $\chi$ is one on a disk containing the moving puncture and zero
+near the boundary.  The puncture travels once around the center, and
+the endpoint is one boundary Dehn twist, with sign determined by the
+chosen conventions.  Reversing the loop gives the other sign.
+These are also the standard twist and point-pushing facts in
+\cite[Sections~3.3 and~4.2]{FM}.
+% Source for the cited twist and point-pushing facts:
+% ([pagine.dm.unipi.it](https://pagine.dm.unipi.it/~a019210/Farb%20Magalit_Primer%20on%20Teichmuller%20theory.pdf))
+
+Let
+\[
+\eta=\{z:|z|=2\},\qquad
+u=T_\delta,\qquad
+g=T_{\gamma_*}=uT_Cu^{-1}.
+\]
+The disk bounded by $\eta$ lies strictly inside the disk bounded by
+$C$, and the neighborhood defining $\delta$ is disjoint from that
+disk.  Therefore
+\begin{equation}\label{eq:disjoint}
+\gamma_*\cap\eta=\varnothing
+\end{equation}
+for suitable representatives.
+
+\subsection{The monodromy of the required twist}
+
+\begin{lemma}\label{lem:meridian}
+The element $g=T_{\gamma_*}$ belongs to $L$ and satisfies
+\begin{equation}\label{eq:gproperties}
+(p_x)_*(g)=1,\qquad
+(p_y)_*(g)=1,\qquad
+|\lambda(j_*g)|=1.
+\end{equation}
+In particular,
+\[
+g(\Def_{F_R})=\Def_{F_R}.
+\]
+\end{lemma}
+
+\begin{proof}
+Keep $y=R$ fixed and consider the rational map
+\[
+x\longmapsto Z(x,R).
+\]
+By \eqref{eq:Zidentities}, its branch values are $0,1,R$.
+Each has two simple ramification points.  Its four poles
+\[
+0,\quad1,\quad1-R,\quad\infty
+\]
+are simple.
+
+The M\"obius involution
+\begin{equation}\label{eq:involution}
+J(x)=\frac{(1-R)(x-1)}{x+R-1}
+\end{equation}
+satisfies
+\begin{equation}\label{eq:Jidentities}
+J^2=\id,\qquad Z(J(x),R)=Z(x,R).
+\end{equation}
+Both identities follow by substitution.  Its fixed-point equation is
+\[
+x^2+2(R-1)x+1-R=0,
+\]
+which is exactly $Q_y(x,R)=0$.
+Thus its fixed points are the two ramification points over $R$.
+
+It follows that the sheet monodromy of a based meridian about the
+critical value $R$ is $J$.  Indeed, close to either of these
+ramification points a meridian interchanges the two local inverse
+branches, as does $J$.  Transport to the basepoint commutes with
+$J$ by \eqref{eq:Jidentities}.  The assertion holds for either
+orientation of the meridian.
+
+By the point-pushing description, $u=T_\delta$ is represented by such
+a meridian about $z=R$, with $y=R$ fixed.  Consequently its lift to
+the four-sheeted covering starts at $x=R$ and ends at $x=J(R)$.
+
+The twist $T_C$ is represented by a meridian about $z=\infty$.
+Its access path from $v_*$ to infinity may be chosen along the negative
+real axis, since that ray lies in the complementary disk of $C$
+containing $v_*$ and $\infty$.
+
+Starting on the sheet $x=R$, the lift of this access path tends to
+$x=\infty$.  To see this directly, for real $x\ge R$ all three
+quantities $Q_0(x,R),Q_1(x,R),Q_y(x,R)$ are positive.
+Equation \eqref{eq:Zidentities} therefore gives
+\[
+\frac{d}{dx}Z(x,R)<0.
+\]
+Moreover,
+\[
+Z(R,R)=v_*,\qquad Z(x,R)\longrightarrow-\infty
+\quad(x\longrightarrow+\infty).
+\]
+Thus this real inverse branch parametrizes precisely the required
+lift.
+
+Starting instead at $J(R)$, the lifted access path is its image under
+$J$, and therefore tends to
+\[
+J(\infty)=1-R.
+\]
+Because this is a simple pole, the infinity meridian lifts to a
+single meridian about $x=1-R$, and returns to the same sheet.
+
+Now represent
+\[
+g=uT_Cu^{-1}
+\]
+by the corresponding conjugated configuration loop.  Its lift first
+changes the sheet from $R$ to $J(R)$, then makes the just-described
+meridian about $x=1-R$, and finally returns along the inverse
+conjugating path.  Hence the lift is closed, proving $g\in L$.
+In the fiber $y=R$, its homotopy class is a based conjugate of a
+single meridian about $x=1-R$.
+
+Since $1-R\notin\{0,1\}$, that meridian is null-homotopic after
+projection to the $x$-coordinate space $M$.  Its $y$-coordinate is
+constant.  On the other hand, $x+y-1=x+R-1$ winds once, with one of
+the two signs, about zero.  This proves \eqref{eq:gproperties}.
+
+The final assertion follows from Lemma~\ref{lem:stabilizer}(3).
+\end{proof}
+
+\subsection{A commuting twist that does preserve the base component}
+
+\begin{lemma}\label{lem:cusp}
+The diagonal loop
+\begin{equation}\label{eq:tloop}
+t(s)=\bigl(Re^{2\pi is},Re^{2\pi is}\bigr),
+\qquad 0\le s\le1,
+\end{equation}
+defines an element $t\in K$ whose mapping class is
+$T_\eta$ or $T_\eta^{-1}$.
+Moreover, $(p_y)_*(j_*t)$ has infinite order in $\pi_1(M,R)$.
+\end{lemma}
+
+\begin{proof}
+The defining factors of \eqref{eq:parameter} do not vanish on
+$|r|=R=100$, by the triangle inequality.  Thus \eqref{eq:tloop}
+is a loop in $d(\Par)$, so $t\in K$.
+
+We identify its mapping class.  A calculation from \eqref{eq:nu}
+gives
+\[
+\frac{\nu(r)}r+\frac18
+=
+\frac{9r^3-21r^2+12r-2}
+     {8r^2(r-1)(2r-1)}.
+\]
+Consequently, when $|r|=R=100$,
+\begin{equation}\label{eq:estimate}
+\left|\frac{\nu(r)}r+\frac18\right|
+\le
+\frac{9R^3+21R^2+12R+2}
+     {8R^2(R-1)(2R-1)}
+<\frac1{100}.
+\end{equation}
+Set $a_0=\nu(R)/R$.
+The projected configuration loop
+\[
+\bigl(r(s),\nu(r(s))\bigr),\qquad r(s)=Re^{2\pi is},
+\]
+has the based homotopy
+\[
+\left(
+r(s),\
+r(s)\left((1-a)\frac{\nu(r(s))}{r(s)}+aa_0\right)
+\right),
+\qquad 0\le a\le1.
+\]
+Indeed, the expression in parentheses stays in the convex disk
+of radius $1/100$ about $-1/8$.
+The moving critical value therefore has modulus greater than
+$11.5$, and is never $0$, $1$, or $r(s)$.
+At the end of the homotopy the loop is
+\[
+\bigl(Re^{2\pi is},v_*e^{2\pi is}\bigr).
+\]
+
+Choose a smooth radial function $\chi$ equal to zero on $[0,2]$
+and equal to one on $[10,\infty)$.
+The ambient isotopy
+\[
+H_s(z)=e^{2\pi is\chi(|z|)}z,\qquad H_s(\infty)=\infty,
+\]
+realizes this last configuration loop.  Its endpoint is one Dehn
+twist in the unmarked annulus $2<|z|<10$, and hence is a twist
+about $\eta$.  Passing to the deck-action convention may invert
+it, which proves the asserted description of $t$.
+
+Finally, the $y$-coordinate of \eqref{eq:tloop} winds once about zero.
+Its image in $\pi_1(M,R)$ therefore has infinite order.
+\end{proof}
+
+\subsection{Infinitely many different components}
+
+\begin{proposition}\label{prop:model}
+The components
+\[
+g^n(\mathcal C_*),\qquad n\in\Z,
+\]
+are pairwise distinct.
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{lem:meridian}, $g$ preserves the deformation space.
+Suppose that
+\[
+g^n(\mathcal C_*)=\mathcal C_*
+\]
+for some nonzero integer $n$.  Lemma~\ref{lem:stabilizer}(2) gives
+$g^n\in K$, and hence, by Lemma~\ref{lem:freeimage},
+\[
+j_*(g^n)\in H.
+\]
+Also $j_*t\in H$.
+
+The curves $\gamma_*$ and $\eta$ are disjoint by
+\eqref{eq:disjoint}.  Thus $g$ commutes with the mapping class of
+$t$.  Since $q_*$ is injective, they commute in $L$, and their images
+commute in $\pi_1(X,w_*)$.
+
+Apply Lemma~\ref{lem:centralizer} to the free group $H$ and the
+homomorphism
+\[
+(p_y)_*|_H:H\longrightarrow\pi_1(M,R).
+\]
+By Lemma~\ref{lem:cusp}, the image of $j_*t$ has infinite order.
+By Lemma~\ref{lem:meridian}, the image of $j_*(g^n)$ is the identity.
+The centralizer criterion therefore gives
+\[
+j_*(g^n)=1.
+\]
+But \eqref{eq:gproperties} and \eqref{eq:lambda} imply
+\[
+\left|\lambda\bigl(j_*(g^n)\bigr)\right|=|n|>0,
+\]
+a contradiction.
+
+Thus no nonzero power of $g$ stabilizes $\mathcal C_*$.
+If two of the displayed components were equal, their index
+difference would give such a power.  They are therefore pairwise
+distinct.
+\end{proof}
+
+\section{Transport and completion of the proof}\label{sec:transport}
+
+We first justify the isotopy required in
+Construction~\ref{con:general}.
+Along the compact parameter path, the five labelled points
+\[
+0,\quad1,\quad\infty,\quad r(t),\quad\nu(r(t))
+\]
+remain distinct.  On each smooth portion of the path, choose disjoint
+small disks around the two moving finite points, avoiding $0$ and $1$.
+A compactly supported time-dependent vector field which equals the
+velocity of each moving point near that point has a flow tracking
+both points and fixing $0,1,\infty$.  Concatenating these flows
+constructs $h_t$.
+
+If $h_t$ and $\widetilde h_t$ are two such extensions of the same
+configuration path, then
+\[
+\widetilde h_t^{-1}h_t
+\]
+fixes the initial labelled configuration pointwise for every $t$.
+Thus the two endpoint pullbacks of $\gamma_*$ are isotopic relative
+to that configuration.  This proves that the construction specifies
+an isotopy class without any further choice of ambient isotopy.
+
+\begin{lemma}\label{lem:transport}
+For the isotopy $h_t$ of Construction~\ref{con:general}, put $h=h_1$.
+There is a homeomorphism
+\[
+\Theta:\Teich(B_*)\longrightarrow\Teich(B_{r_0}),
+\qquad
+\Theta([\chi])=[\chi\circ h],
+\]
+such that
+\[
+\Theta(\Def_{F_R})=\Def_{F_{r_0}}.
+\]
+It takes $\mathcal C_*$ onto the component containing the standard
+complex structure for $F_{r_0}$, and intertwines $T_{\gamma_*}$ with
+$T_{h^{-1}(\gamma_*)}$.
+\end{lemma}
+
+\begin{proof}
+Consider the path
+\[
+\tau(t)=[h_t]\in\Teich(B_{r_0}).
+\]
+Its projection to $Y$ is
+\[
+\bigl(r(t),\nu(r(t))\bigr).
+\]
+The diagonal path $(r(t),r(t))$ is a lift of this path to $W$.
+By Lemma~\ref{lem:teich} and uniqueness of lifting,
+\[
+U_{r_0}(\tau(t))=(r(t),r(t)).
+\]
+The two paths $F_{r_0}^*(\tau(t))$ and $i_*(\tau(t))$ are therefore
+lifts to $\Teich(A_{r_0})$ of the same path $r(t)$ in $M$.
+They start at the same point, so they coincide for every $t$.
+Consequently
+\[
+\tau(t)\in\Def_{F_{r_0}}.
+\]
+
+At $t=1$, normalized uniformization of the pullback gives a marking
+$h'$ such that
+\begin{equation}\label{eq:equivalence}
+F_R\circ h'=h\circ F_{r_0}.
+\end{equation}
+The rational map on the left is $F_R$ because its Hurwitz coordinates
+are $(R,R)$, and \eqref{eq:Fxy} uniquely determines that normalized
+map.  Since $\tau(1)$ lies in the deformation space,
+\[
+h'\simeq h\quad\text{relative to }A_{r_0}.
+\]
+
+Let
+\[
+\Theta_A:\Teich(A_*)\longrightarrow\Teich(A_{r_0})
+\]
+be change of marking by $h|_{A_{r_0}}$.
+Naturality of pullback applied to \eqref{eq:equivalence}, and the
+relative isotopy of $h'$ and $h$, give
+\[
+F_{r_0}^*\Theta=\Theta_A F_R^*,
+\qquad
+i_*\Theta=\Theta_A i_*.
+\]
+Since $\Theta_A$ is a homeomorphism, these identities imply
+\[
+\Theta(\Def_{F_R})=\Def_{F_{r_0}}.
+\]
+
+Furthermore, $\Theta(\tau_*)=[h]=\tau(1)$ lies in the same component
+as the standard structure $\tau(0)$.  Hence $\Theta$ carries
+$\mathcal C_*$ onto that component.
+
+Finally, change of marking conjugates a mapping class $a$ to
+$h^{-1}ah$.  Since conjugating a Dehn twist gives the Dehn twist
+about the inverse-image curve, $\Theta$ intertwines the stated
+twists.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Lemma~\ref{lem:meridian} and Proposition~\ref{prop:model} prove the
+theorem for $F_R$ and $\gamma_*$.
+Lemma~\ref{lem:transport} transfers both preservation of the
+deformation space and pairwise distinctness of the component orbit
+to $F_{r_0}$ and $h^{-1}(\gamma_*)$.
+Undoing the M\"obius normalization transfers these conclusions to
+$f$ and the curve \eqref{eq:generalcurve}.
+\end{proof}
+
+\begin{remark}
+The proof distinguishes two assertions which should not be conflated.
+The vanishing of both coordinate monodromies proves that the twist
+preserves the \emph{whole} deformation space.
+Its failure to preserve any nonzero-power iterate of the base
+component is a separate fact, detected by the winding homomorphism
+\eqref{eq:lambda} together with a cyclic-centralizer argument in the
+free group $H$.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{FM}
+B.~Farb and D.~Margalit,
+\emph{A Primer on Mapping Class Groups},
+Princeton Mathematical Series, vol.~49,
+Princeton University Press, Princeton, NJ, 2012.
+
+\bibitem{FKS}
+T.~Firsova, J.~Kahn, and N.~Selinger,
+On deformation spaces of quadratic rational functions,
+\emph{International Mathematics Research Notices}
+\textbf{2023} (2023), no.~8, 6703--6738.
+doi:10.1093/imrn/rnab320.
+The arXiv version referred to above is
+arXiv:1606.00723v4.
+% Bibliographic verification:
+% ([academic.oup.com](https://academic.oup.com/imrn/article-abstract/2023/8/6703/6545985))
+
+\bibitem{H}
+A.~Hatcher,
+\emph{Algebraic Topology},
+Cambridge University Press, Cambridge, 2002.
+
+\bibitem{HK}
+E.~Hironaka and S.~Koch,
+A disconnected deformation space of rational maps,
+\emph{Journal of Modern Dynamics}
+\textbf{11} (2017), 409--423.
+doi:10.3934/jmd.2017016.
+% Bibliographic verification:
+% ([aimsciences.org](https://www.aimsciences.org/article/doi/10.3934/jmd.2017016))
+
+\end{thebibliography}
+
+\end{document}

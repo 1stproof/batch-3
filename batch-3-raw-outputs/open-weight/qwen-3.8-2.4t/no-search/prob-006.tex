@@ -1,0 +1,137 @@
+
+
+```latex
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\numberwithin{equation}{section}
+
+\title{Prime summands of Dehn surgeries on L-space knots}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We prove that every closed 3-manifold obtained by Dehn surgery on an L-space knot has at most two prime summands.  In fact, we prove a stronger classical statement: every closed 3-manifold obtained by Dehn surgery on any knot in $S^3$ has at most two prime summands.  The proof uses only standard results on reducible Dehn surgery, namely Scharlemann's theorem on the integrality of reducible surgery slopes and the Gordon--Luecke cabling theorem together with the standard cable-surgery formula.
+\end{abstract}
+
+\section{Conventions and preliminaries}
+
+We use the standard notation $S^3_{a/b}(K)$ for the closed 3-manifold obtained by $a/b$-Dehn surgery on a knot $K\subset S^3$, where $a/b\in \mathbb Q\cup\{\infty\}$ is written with $\gcd(a,b)=1$ and $b\ge 0$, and $\infty=1/0$ denotes the meridional filling.  Integer surgery $n$ means slope $n/1$.
+
+By an \emph{L-space knot} we mean a knot $K\subset S^3$ such that some positive Dehn surgery on $K$ is an L-space \cite{OSz}.  Many authors require L-space knots to be nontrivial; our argument also covers the unknot.
+
+A closed orientable 3-manifold is \emph{irreducible} if every embedded $2$-sphere bounds a $3$-ball.  It is \emph{prime} if whenever it is written as a connected sum $M_1\# M_2$, one of the summands is homeomorphic to $S^3$.  By the Kneser--Milnor prime decomposition theorem, every closed orientable 3-manifold has a finite connected-sum decomposition into prime manifolds, unique up to order and omission of $S^3$ factors \cite{Hempel}.  In this note, ``prime summands'' means prime factors other than $S^3$.
+
+We record a few elementary facts.
+
+\begin{lemma}\label{lem:basic}
+\begin{enumerate}
+\item Every closed orientable irreducible 3-manifold is prime.
+\item Lens spaces are prime.  The manifold $S^2\times S^1$ is also prime.
+\item If $U\subset S^3$ is the unknot, then $S^3_{a/b}(U)$ is a lens space when $a\ne 0$, and is $S^2\times S^1$ when $a=0$.  In particular, surgery on the unknot has at most one prime summand.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The first assertion is immediate: if an irreducible manifold were a nontrivial connected sum, the sphere along which the connected sum is formed would be an essential sphere.
+
+Lens spaces are irreducible; for example, they have universal cover $S^3$, so $\pi_2=0$, and by the sphere theorem they contain no essential sphere.  Hence they are prime.  The fact that $S^2\times S^1$ is prime is standard; see for instance \cite{Hempel}.
+
+Finally, Dehn filling a solid torus along a torus of slope $a/b$ gives the lens space $L(a,b)$ if $a\ne 0$, and gives $S^2\times S^1$ if $a=0$ \cite{Rolfsen}.  Lens spaces and $S^2\times S^1$ are prime, so surgery on the unknot has at most one prime summand.
+\end{proof}
+
+\section{Reducible surgeries on knots in $S^3$}
+
+We now recall the two deep classical inputs.
+
+\begin{theorem}[Scharlemann {\cite{Sch}}]\label{thm:Scharlemann}
+Let $J\subset S^3$ be a nontrivial knot.  If $S^3_{a/b}(J)$ is reducible, then $|b|=1$.  Equivalently, every nonintegral Dehn surgery on a nontrivial knot in $S^3$ is irreducible.
+\end{theorem}
+
+\begin{theorem}[Gordon--Luecke {\cite{GL}}]\label{thm:GL}
+Let $K\subset S^3$ be a nontrivial knot.  If $S^3_r(K)$ is reducible, then $K$ is a nontrivial cable knot.  More precisely, $K$ is the $(p,q)$-cable of a companion knot $C\subset S^3$, with $|p|\ge 2$ and $\gcd(p,q)=1$, where $|p|$ is the winding number of the cable.  The reducible surgery slope is the integer cabling slope
+\[
+r=pq,
+\]
+and there is a homeomorphism
+\begin{equation}\label{eq:cable-formula}
+S^3_{pq}(K)\cong L\#\, S^3_{q/p}(C),
+\end{equation}
+where $L$ is a lens space.
+\end{theorem}
+
+\begin{remark}
+The connected-sum decomposition \eqref{eq:cable-formula} is the standard cable-surgery formula; see also \cite{Rolfsen}.  The precise orientation and the precise lens space $L$ depend on conventions, but the only properties used here are that $L$ is a lens space and that the induced surgery slope on the companion is $q/p$, whose denominator is the winding number $|p|$.
+\end{remark}
+
+\section{The main theorem}
+
+\begin{theorem}\label{thm:all-knots}
+Let $K\subset S^3$ be any knot, and let $r\in \mathbb Q\cup\{\infty\}$ be any surgery slope.  Then $S^3_r(K)$ has at most two prime summands.  Moreover, if $K$ is nontrivial and $S^3_r(K)$ is reducible, then it is a connected sum of a lens space and a prime manifold.
+\end{theorem}
+
+\begin{proof}
+First suppose $K$ is the unknot.  By Lemma \ref{lem:basic}(3), $S^3_r(K)$ is either a lens space or $S^2\times S^1$, hence has at most one prime summand.
+
+Now suppose $K$ is nontrivial, and put $M=S^3_r(K)$.  If $M$ is irreducible, then by Lemma \ref{lem:basic}(1) it is prime, so it has at most one prime summand.
+
+Assume therefore that $M$ is reducible.  By Theorem \ref{thm:GL}, $K$ is a nontrivial $(p,q)$-cable of a companion knot $C$, with $|p|\ge 2$ and $\gcd(p,q)=1$, the surgery slope is $r=pq$, and
+\[
+M\cong L\#\, S^3_{q/p}(C),
+\]
+where $L$ is a lens space.  By Lemma \ref{lem:basic}(2), $L$ is prime.
+
+We claim that $Y:=S^3_{q/p}(C)$ is prime.  If $C$ is the unknot, then $Y$ is a lens space by Lemma \ref{lem:basic}(3), hence prime.  If $C$ is nontrivial, then $q/p$ is not an integer, because $\gcd(p,q)=1$ and $|p|\ge 2$.  Therefore Theorem \ref{thm:Scharlemann} implies that $Y$ is irreducible, and Lemma \ref{lem:basic}(1) implies that $Y$ is prime.
+
+Thus $M$ is a connected sum of two prime manifolds, up to possible $S^3$ factors which are omitted in the prime decomposition.  Hence $M$ has at most two prime summands.
+\end{proof}
+
+\begin{corollary}\label{cor:L-space-knot}
+Let $K\subset S^3$ be an L-space knot.  Then every closed 3-manifold obtained by Dehn surgery on $K$ has at most two prime summands.
+\end{corollary}
+
+\begin{proof}
+By definition, an L-space knot is a knot in $S^3$.  The result is therefore immediate from Theorem \ref{thm:all-knots}.
+\end{proof}
+
+\begin{remark}
+The proof shows that the L-space hypothesis is not used.  The statement is a purely topological consequence of the classification of reducible surgeries on knots in $S^3$.  In particular, the only way a surgery on a nontrivial knot in $S^3$ can have two prime summands is when the knot is a cable knot and the surgery is the cabling surgery; one summand is a lens space, and the other is an irreducible rational surgery on the companion knot.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{Hempel}
+J.~Hempel, \emph{3-Manifolds}, Annals of Mathematics Studies, No.~86, Princeton University Press, Princeton, NJ, 1976.
+
+\bibitem{Rolfsen}
+D.~Rolfsen, \emph{Knots and Links}, Mathematics Lecture Series, No.~7, Publish or Perish, Berkeley, CA, 1976.
+
+\bibitem{Sch}
+M.~Scharlemann, Producing reducible 3-manifolds by surgery on a knot, J. Differential Geom. \textbf{22} (1985), no.~1, 49--73.
+
+\bibitem{GL}
+C.~McA. Gordon and J.~Luecke, Dehn surgery on knots, Ann. of Math. (2) \textbf{129} (1989), no.~2, 199--248.
+
+\bibitem{OSz}
+P.~Ozsv\'ath and Z.~Szab\'o, Absolutely graded Floer homologies and intersection forms for four-manifolds with boundary, Adv. Math. \textbf{173} (2003), no.~2, 179--261.
+
+\end{thebibliography}
+
+\end{document}
+```

@@ -1,0 +1,1253 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{fullpage}
+\usepackage{amsmath,amssymb,amsthm,mathtools,array}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\C}{\mathbb C}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\F}{\mathbb F}
+\newcommand{\NS}{\operatorname{NS}}
+\newcommand{\Pic}{\operatorname{Pic}}
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\Bl}{\operatorname{Bl}}
+\newcommand{\calX}{\mathcal X}
+\newcommand{\calW}{\mathcal W}
+\newcommand{\calZ}{\mathcal Z}
+\newcommand{\calL}{\mathcal L}
+\newcommand{\II}{\mathrm{II}}
+\newcommand{\I}{\mathrm{I}}
+\newcommand{\LK}{\Lambda_{\mathrm{K3}}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\fptitle}{Review of Problem 10 -- ProofCouncil}
+\newcommand{\reviewtag}{Reviewer 1}
+\usepackage{fp-review}
+
+\begin{document}
+\maketitle
+
+\section{Review}
+
+\paragraph{Correctness.}
+\begin{itemize}
+	\item  1: essentially flawless mathematical argument
+	\item  0.5: minor errors that are easily corrected
+	\item  0: blank solution, or acknowledged partial result
+	\item  $-0.5$: major errors
+	\item  $-1$: proposed proof makes no progress towards the result.
+\end{itemize}
+Note that points should be docked for wrong statements/ solutions.
+
+\noindent Score: 1
+
+I think this model's solution is better than the human-produced one. The latter relied on a hard explicit computation which used a nonpublic sage package. The model's solution avoids this hard computation by choosing a better route, splitting a large unimodular lattice into smaller unimodular summands in a very natural way. Myself, I would probably pick this way as well.
+
+\paragraph{Exposition.}
+\begin{itemize}
+	\item  1: well-written and clear solution.
+	\item  0: argument that is possible to follow with serious effort
+	\item  $-1$: very poor exposition
+\end{itemize}
+
+\noindent Score: 1
+
+I like the exposition. It is clear and easy to read.
+
+\paragraph{Attributions.}
+\begin{itemize}
+	\item  1: solutions contains fully appropriate attributions
+		to related work and theorems being used.
+	\item  0: moderate issues with missing attributions or hallucinated references
+	\item  $-1$: blatant plagiarism or hallucinations
+\end{itemize}
+
+\noindent Score: 1
+
+I think the citations are detailed and fully appropriate.
+
+\newpage
+\section{Submission with inline comments}
+
+
+\begin{center}
+\textbf{Mirror fibrations for very general \(H\)-polarised Tyurin
+degenerations of K3 surfaces}
+\end{center}
+
+\section{Introduction}
+
+\subsection{The statement}
+
+Throughout, \(H\) is the hyperbolic plane lattice (even, unimodular,
+of signature \((1,1)\)), \(E_8\) the negative definite \(E_8\) root
+lattice, \(\LK=H^{\oplus3}\oplus E_8^{\oplus2}\) the K3 lattice, and
+\(M=H\oplus E_8\oplus E_8\). For an even lattice \(N\) of signature
+\((1,\rk N-1)\), an \emph{\(N\)-quasipolarised} K3 surface is a K3
+surface \(Y\) with a primitive embedding \(N\hookrightarrow\NS(Y)\)
+satisfying the chamber convention of \cite[Definition~3.19]{GT} (the
+embedding sends a fixed very irrational positive vector of
+\(N\otimes\mathbb R\) to a nef and big class; the convention goes back
+to \cite{Do}); in particular the image of \(N\) contains a nef and big
+class. 
+\review{A small remark: one could cite \cite{AE} or \cite{AE2} for the corrected definition of $N$-quasipolarized K3 surfaces, as  \cite{GT} does. However, this delicate point is irrelevant for the unimodular lattices $N=H$ and $N=H\oplus E_8\oplus E_8$ appearing in this solution. }
+For very general such \(Y\) (outside countably
+many Noether--Lefschetz divisors of the moduli space)
+\(N\simeq\NS(Y)\). In Dolgachev's mirror symmetry for
+lattice-polarised K3 surfaces \cite{Do} the lattices \(H\) and \(M\)
+are mirror to each other, as \(H^\perp_{\LK}\simeq H\oplus M\).
+
+A \emph{Kulikov model} is a proper flat family
+\(\pi\colon\calX\to\Delta\) over a disc with smooth total space,
+trivial canonical bundle, reduced normal crossings central fibre and
+smooth K3 general fibre \cite{Ku}. A \emph{Tyurin degeneration} is a
+Kulikov model whose central fibre \(X_0=V_1\cup V_2\) is the union of
+two smooth rational surfaces meeting transversally along a smooth
+elliptic curve \(C\) (a Kulikov model of \emph{Type~II}: the double
+curves are elliptic). By adjunction \(C\) is anticanonical on each
+\(V_i\), and smoothness of \(\calX\) makes \(X_0\) \(d\)-semistable
+\cite{Fr83}: \(N_{C/V_1}\otimes N_{C/V_2}\simeq\mathcal O_C\), so
+\((C^2)_{V_1}+(C^2)_{V_2}=0\).
+
+Following the proposal of Doran, Harder and Thompson \cite{DHT} that
+Tyurin degenerations should be mirror to fibrations over \(\PP^1\),
+Giovenzana and Thompson \cite{GT} define when an \(N\)-polarised
+Tyurin degeneration (Definition~\ref{def:Hpol} below, for \(N=H\)) and
+an elliptic fibration on the mirror K3 surface, split into two pieces
+by a loop in \(\PP^1\), form a \emph{mirror pair}
+\cite[Definition~5.1]{GT}; the relevant notions are recalled in
+\S\ref{sec:recall}.
+
+\begin{definition}\label{def:Hpol}
+A Tyurin degeneration \(\pi\colon\calX\to\Delta\) is
+\emph{\(H\)-polarised} if
+(1) (monodromy invariance) over the punctured disc \(\Delta^*\)
+there is a trivial local subsystem \(\calL\subset R^2\pi_*\Z\) with
+fibre \(H\), such that for each \(t\in\Delta^*\) the fibre
+\(\calL_t\subset H^2(X_t;\Z)\) defines an \(H\)-quasipolarisation of
+\(X_t\); and
+(2) (positivity) there is an effective, flat (over \(\Delta\), i.e.\
+with no component inside \(X_0\)) and nef Cartier divisor
+\(A\) on \(\calX\) whose restriction \(A_t\) to every fibre \(X_t\),
+\(t\in\Delta^*\), is nef and big with \([A_t]\in\calL_t\), and whose
+restriction to each component satisfies \((A|_{V_i})^2>0\),
+\(i=1,2\).
+\end{definition}
+
+This is \cite[Definition~3.20]{GT} with two strengthenings of (2)
+that are part of our hypotheses: the membership \([A_t]\in\calL_t\),
+which corrects the arXiv version of that definition, and the
+componentwise positivity \((A|_{V_i})^2>0\).
+
+\begin{theorem}\label{thm:main}
+Let \(\pi\colon\calX\to\Delta\) be an \(H\)-polarised Tyurin
+degeneration of K3 surfaces with central fibre \(X_0=V_1\cup V_2\).
+Assume it is very general, in the sense that the image of
+\(0\in\Delta\) under the map from \(\Delta\) to the
+Alexeev--Brunyate--Engel compactification \cite{ABE} of the moduli
+space of \(H\)-polarised K3 surfaces lies in no Noether--Lefschetz
+locus. Let \(Y\) be a very general \(M\)-quasipolarised K3 surface.
+Then there exist an elliptic fibration \(Y\to\PP^1\) and an allowable
+loop \(\gamma\subset\PP^1\) \cite[Definition~4.11]{GT} such that the
+\(M\)-quasipolarisation is compatible with the fibration and
+\(\gamma\) \cite[Definition~4.21]{GT}, and such that \(\calX\to\Delta\)
+and \((Y\to\PP^1,\gamma)\) form a mirror pair in the sense of
+\cite[Definition~5.1]{GT}.
+\end{theorem}
+
+\subsection{Conventions and interpretation}\label{sec:conventions}
+
+We use the definitions of \cite{GT} in arXiv version~3.
+Noether--Lefschetz loci on the compactification are the closures of
+the Noether--Lefschetz loci of its interior. All lattices and homology
+groups are integral; \(x\cdot y\) or \((x,y)\) denotes the bilinear
+form, \(x^2=(x,x)\), and a \emph{root} is a vector of square \(-2\).
+
+The degeneration determines more than the image point of \(0\) in the
+ABE compactification: it determines the \emph{marked} (``mixed-marked''
+in \cite{AE}) Type~II period of its central fibre, namely the isotropic
+plane \(I\) of the monodromy (\S\ref{sec:degside}) and the restriction
+homomorphism \(\varphi\) of \S\ref{sec:period}. We always work with
+this marked period. The distinction matters: over one of the two
+Type~II boundary strata the boundary normalisation map of
+\cite[Theorem~7.58]{ABE} has degree eight, so a coarse boundary point
+does not determine a marked period; we never pass from one to the
+other, and no base change or level cover is introduced.
+
+\subsection{Strategy}\label{sec:strategy}
+
+Both sides produce an even unimodular lattice of signature \((1,17)\)
+with a distinguished sublattice and two mutually orthogonal sublattices
+(one for each component of \(X_0\), respectively each piece of the
+split fibration); a mirror pair is essentially an isometry of these
+rank-\(18\) lattices matching the embedded sublattices and lifting to
+the K3 lattices (compare \cite[Proposition~5.3]{GT}). On the
+degeneration side the hypotheses do not describe \(X_0\) explicitly.
+Section~\ref{sec:period} shows that very generality forces
+the kernel of the restriction homomorphism to be the polarising
+lattice \(L\simeq H\), so the rank-\(18\) lattice is \(L\oplus R_X\)
+with \(R_X\simeq E_8^2\) or \(D_{16}^+\) (notation of
+\S\ref{sec:recall}). Section~\ref{sec:reference} constructs, for the
+given marked period, an explicit Kulikov model \(\calW\) isomorphic to
+\(\calX\) over \(\Delta^*\) and in codimension one. Since Kulikov
+models are unique only up to elementary modifications (flops along
+curves in the central fibre), \(\calW\) need not be \(\calX\);
+Section~\ref{sec:models}
+transports the divisor \(A\) to \(\calW\) and compares the contractions
+of \(\calW\) and \(\calX\) defined by \(A\). Componentwise positivity
+of \(A\) leaves exactly three central fibres, \(\mathrm E_0,\mathrm E_1\)
+(for \(R_X=E_8^2\)) and \(\mathrm D\) (for \(R_X=D_{16}^+\)), whose
+embedded lattices are computed in \S\ref{sec:latticesX}. On the
+fibration side, \S\ref{sec:fibrations} exhibits two elliptic
+fibrations on \(Y\) (the \emph{standard} one, with singular fibres
+\(2\,\II^*+4\,\I_1\), and the \emph{alternate} one, with
+\(\I_{12}^*+6\,\I_1\)) and three allowable splitting loops
+\(\gamma_0,\gamma_1,\gamma_D\); \S\ref{sec:latticesY} proves
+compatibility and computes the embedded lattices, which match the
+degeneration cases according to
+\(\mathrm E_0\leftrightarrow(\text{standard},\gamma_0)\),
+\(\mathrm E_1\leftrightarrow(\text{standard},\gamma_1)\),
+\(\mathrm D\leftrightarrow(\text{alternate},\gamma_D)\).
+The delicate points are integral: the small piece of \(\gamma_D\) has
+``degree \(8'\)'' 
+rather than \(8\), and the large piece carries an
+index-two parity condition (\S\ref{sec:latticesY}).
+Section~\ref{sec:final} lifts the isometry to the K3 lattices and
+checks every clause of \cite[Definition~5.1]{GT}.
+
+\section{Notation and recollections}\label{sec:recall}
+
+\subsection{Lattices}
+
+\(D_{16}\) is the negative definite \(D_{16}\) root lattice and
+\(D_{16}^+\) its even unimodular index-two overlattice; \(E_8^2\) and
+\(D_{16}^+\) are the only even unimodular negative definite lattices of
+rank \(16\) \cite[\S8]{Se}. \(\I_{1,n}\) is the odd unimodular lattice
+of signature \((1,n)\) and \(\langle m\rangle\) the rank-one lattice
+with generator of square \(m\). A sublattice \(S\subset\Lambda\) is
+\emph{primitive} if \(\Lambda/S\) is torsion free; a vector \(k\) is
+\emph{characteristic} if \(k\cdot x\equiv x^2\pmod 2\) for all \(x\).
+Two facts from \cite{Ni} are used repeatedly: a unimodular sublattice
+\(S\subset\Lambda\) is a direct summand, \(\Lambda=S\oplus S^\perp\);
+and if \(v\) is a primitive vector of a unimodular lattice with
+\(v^2\neq0\), then \(v^\perp\) has cyclic discriminant group of order
+\(|v^2|\).
+
+\subsection{The degeneration side}\label{sec:degside}
+
+Let \(\pi\colon\calX\to\Delta\) be as in Theorem~\ref{thm:main}, with
+\(C=V_1\cap V_2\) and \(c_i=[C]=-K_{V_i}\in\NS(V_i)\). Put
+\begin{equation}\label{eq:limit}
+ \xi=(c_1,-c_2)\in\NS(V_1)\oplus\NS(V_2),\qquad
+ \Lambda_X=\xi^\perp/\Z\xi=I^\perp/I .
+\end{equation}
+Here \(I\subset H^2(X_t;\Z)\) is the primitive isotropic plane of the
+degeneration (the image of \(\log T\), where \(T\) is the unipotent
+monodromy acting on \(H^2(X_t;\Z)\)), and the second equality in \eqref{eq:limit} is an
+\emph{integral} isomorphism \cite[Proposition~3.5]{GT}; \(\Lambda_X\)
+is even, unimodular and of signature \((1,17)\). The monodromy
+invariant lattice \(\calL_t\simeq H\) lies in \(I^\perp\) and meets
+\(I\) trivially; we write \(L\subset\Lambda_X\) for its image, and
+\begin{equation}\label{eq:SX}
+ R_X=L^\perp_{\Lambda_X},\qquad
+ S_{X,i}=\im\bigl(c_i^\perp\longrightarrow\Lambda_X\bigr),
+ \quad\text{where } c_i^\perp\subset\NS(V_i).
+\end{equation}
+The maps \(c_i^\perp\to\Lambda_X\), \(D\mapsto[(D,0)]\) or
+\([(0,D)]\), are injective, and \(S_{X,1}\perp S_{X,2}\) since
+\((D_1,0)\cdot(0,D_2)=0\).
+
+\subsection{The fibration side}\label{sec:fibside}
+
+We paraphrase the framework of \cite[\S\S2,4,5]{GT}, which builds on
+the pseudolattice formalism of \cite{Kuz,HT}; the precise definitions
+are those of \cite{GT}. Let \(Y\to\PP^1\) be an elliptic K3 surface
+with a section and \(\gamma\subset\PP^1\) a loop avoiding the critical
+values, with \(\PP^1=\Delta_1\cup_\gamma\Delta_2\) a union of closed
+discs, \(Y_i\) the preimage of \(\Delta_i\) and \(F_p\) the fibre over
+a base point \(p\in\gamma\). The relative homology \(H_2(Y_i,F_p)\) is
+free of rank \(e(Y_i)\), the Euler number of \(Y_i\) (the sum over the
+singular fibres in \(\Delta_i\)), generated, when these fibres are nodal,
+by Lefschetz thimbles (the discs swept out by the vanishing cycles
+along paths from \(p\) to the critical values). It carries the
+unimodular \emph{Seifert form} \(\chi_i\) (upper triangular with ones
+on the diagonal in a basis of distinguished thimbles, i.e.\ over an
+ordered system of disjoint paths, the entries above the diagonal being
+intersection numbers of vanishing cycles). The boundary map
+\(\phi_i\colon H_2(Y_i,F_p)\to H_1(F_p)\) is the \emph{charge map}, and
+its \emph{right adjoint} \(r_i\colon H_1(F_p)\to H_2(Y_i,F_p)\) is
+defined by \(\chi_i(v,r_i(x))=\langle\phi_i(v),x\rangle\), where
+\(\langle\ ,\ \rangle\) is the intersection form on \(H_1(F_p)\). Fix a
+symplectic basis \(a,b\) of \(H_1(F_p)\) with \(\langle a,b\rangle=-1\)
+(the sign convention of \cite{GT}). The loop is \emph{allowable}
+\cite[Definition~4.11]{GT} if both pieces satisfy
+\cite[Assumption~4.9]{GT}: the monodromy around \(\gamma\), traversed
+as the anticlockwise boundary of \(\Delta_i\), is
+\(\left(\begin{smallmatrix}1&e(Y_i)-12\\0&1\end{smallmatrix}\right)\)
+in the basis \((a,b)\), and \(r_i(a)\) is primitive. For such a piece
+\(r_i(a)\) plays the role of the point class of a surface-like
+pseudolattice \cite[\S\S2,4]{GT}, whose N\'eron--Severi lattice is
+\(N_i=r_i(a)^\perp/\Z\,r_i(a)\), where
+\(r_i(a)^\perp=\{v:\chi_i(v,r_i(a))=0\}\), with the surface-like form
+\(q_i=-\chi_i\) (symmetric there), and whose canonical class is, up to a sign that does
+not affect its orthogonal complement, \(k_i=[r_i(b)]\in N_i\). Since
+\(a\) is monodromy invariant, transporting it around \(\gamma\) sweeps
+out a torus in \(Y\); let \(F\) be the fibre class and
+\(\bar\tau\in F^\perp/\Z F\) the class of this torus. The
+quasipolarisation \(M\subset\NS(Y)\) is \emph{compatible} with the
+fibration and \(\gamma\) \cite[Definition~4.21]{GT} if \(F\in M\) and
+\(\bar\tau\) has a lift \(\tau\in F^\perp\subset H^2(Y;\Z)\) with
+\(\tau\in M^\perp\). Given such a lift one forms
+\begin{equation}\label{eq:LambdaY}
+ \Lambda_Y=(\Z F+\Z\tau)^\perp/(\Z F+\Z\tau),\qquad
+ \Gamma=F^\perp_M/\Z F\subset\Lambda_Y,\qquad
+ S_{Y,i}=\im\bigl(k_i^\perp\longrightarrow\Lambda_Y\bigr),
+\end{equation}
+where \(k_i^\perp\subset N_i\) and the maps come from the integral
+gluing of \cite[Propositions~4.18 and~4.20]{GT}, recalled in
+\eqref{eq:glue} below. The four clauses of the \emph{mirror pair} definition
+\cite[Definition~5.1]{GT} are verified one by one, each identified by
+its number, in \S\ref{sec:final}.
+
+\subsection{Elliptic fibrations}
+
+Singular fibres are named by Kodaira type: \(\I_1\) (nodal, Euler
+number \(1\)), \(\II^*\) (Euler number \(10\), components not meeting
+the zero section spanning \(E_8\)), \(\I_n^*\) (Euler number \(n+6\),
+such components spanning \(D_{n+4}\)). A nodal fibre has monodromy the Picard--Lefschetz
+transvection \(T_v\) along its vanishing cycle \(v\in H_1(F_p)\); in
+the basis \((a,b)\), with \(\langle a,b\rangle=-1\) and \(v=pa+qb\),
+\begin{equation}\label{eq:PL}
+ T_{(p,q)}=\left(\begin{smallmatrix}1-pq&p^2\\-q^2&1+pq\end{smallmatrix}\right),
+ \qquad\text{so that}\qquad
+ T_a=\left(\begin{smallmatrix}1&1\\0&1\end{smallmatrix}\right).
+\end{equation}
+
+\section{The restriction period and very generality}\label{sec:period}
+
+The \emph{restriction period} of the central fibre
+\cite[Construction~4.3, Proposition~4.4]{AE} is the homomorphism
+\(\varphi\colon\Lambda_X\to\Pic^0(C)\) sending the class of
+\((D_1,D_2)\in\xi^\perp\) to \(D_1|_C-D_2|_C\). It is well defined:
+\(D_1\cdot c_1=D_2\cdot c_2\) on \(\xi^\perp\), so the difference has
+degree zero, and \(\varphi(\xi)=c_1|_C+c_2|_C=0\) is exactly
+\(d\)-semistability. The inclusion \(L\subset\ker\varphi\) holds
+because the classes of \(\calL\) extend to line bundles on all of
+\(\calX\), the period arc of \(\calX\) (the image of \(\Delta^*\)
+under the marked period map) lying in the \(H\)-locus (the locus of
+\(H\)-polarised periods) \cite[\S7E]{AE}, and the
+restrictions of a line bundle on \(X_0\) to \(V_1\) and to \(V_2\)
+agree on \(C\). Since \(L\simeq H\) is unimodular,
+\(\Lambda_X=L\oplus R_X\) with \(R_X\) even, unimodular and negative
+definite of rank \(16\). Before using the period domain we lift this
+splitting to \(H^2(X_t)\).
+
+\begin{lemma}\label{lem:dec}
+There is an orthogonal decomposition
+\begin{equation}\label{eq:dec}
+ H^2(X_t;\Z)=H_{e_1}\oplus H_{e_2}\oplus L\oplus R_X,\qquad
+ H_{e_j}=\Z e_j\oplus\Z e_j^\vee\simeq H,\quad I=\Z e_1\oplus\Z e_2,
+\end{equation}
+compatible with \eqref{eq:limit}, i.e.\ inducing the identification
+\(I^\perp/I=L\oplus R_X\).
+\end{lemma}
+
+\begin{proof}
+The unimodular \(L\) splits off \(H^2(X_t;\Z)\); the complement
+\(L^\perp\) is even unimodular and \(I\) is primitive in it, so
+restriction to \(I\) maps \(L^\perp\) onto \(I^\vee\). Choose a basis
+\(e_1,e_2\) of \(I\) and \(e_j^\vee\in L^\perp\) with
+\(e_i\cdot e_j^\vee=\delta_{ij}\); replace \(e_j^\vee\) by
+\(e_j^\vee-\tfrac12(e_j^\vee)^2e_j\) (integral by evenness) and then
+\(e_2^\vee\) by \(e_2^\vee-(e_1^\vee\cdot e_2^\vee)e_1\). The new
+\(e_j^\vee\) are isotropic and mutually orthogonal, so
+\(H_{e_1}\oplus H_{e_2}\) is unimodular, contains \(I\) and splits off;
+its complement in \(L^\perp\) maps isomorphically onto
+\((I^\perp/I)/L=R_X\).
+\end{proof}
+
+\begin{lemma}\label{lem:kernel}
+Under the very-generality hypothesis of Theorem~\ref{thm:main},
+\(\ker\varphi=L\).
+\end{lemma}
+
+\begin{proof}
+Because \(\varphi\) vanishes on \(L\), it suffices to show that
+\(\varphi(r)\neq0\) for \(0\neq r\in R_X\). Fix \eqref{eq:dec}, in
+which \(R_X\) is lifted to a sublattice of \(H^2(X_t;\Z)\) orthogonal
+to \(e_1,e_2\).
+In a mixed-marked Type~II chart of the period domain near the
+boundary point of the degeneration \cite[Theorem~7.1]{AE}, the
+coordinates are the modulus \(\tau_C\) of \(C\simeq\C/(\Z+\tau_C\Z)\),
+an extension coordinate \(z\in R_X\otimes\C\) and a logarithmic
+smoothing coordinate \(w\) (the boundary corresponds to
+\(\operatorname{Im}w\to\infty\)). In the decomposition \eqref{eq:dec},
+normalised by \((\Omega,e_1)=1\), the period vector is
+\(\Omega=e_1^\vee+\tau_Ce_2^\vee+z+we_2-(\tau_Cw+z^2/2)e_1\), the last
+coefficient being forced by \(\Omega^2=0\); and the restriction period
+\(\varphi(r)\) of \(r\in R_X\) is \((r,z)\bmod(\Z+\tau_C\Z)\), the
+extension coordinate recording the period of the central fibre
+\cite[Construction~4.3, Proposition~4.13]{AE}.
+If this vanishes for some \(r\neq0\), then \((r,z)=m+n\tau_C\) with
+\(m,n\in\Z\), and \(r'=r-me_1-ne_2\) is integral, orthogonal to \(L\),
+of square \(r'^2=r^2<0\) (as \(I\) is isotropic and orthogonal to
+\(r\)), with \((\Omega,r')=(r,z)-m-n\tau_C=0\). So the hyperplane
+\(\{(\Omega,r')=0\}\) of periods orthogonal to \(r'\) passes through
+the boundary point and meets the interior of the period domain (its
+equation does not involve \(w\), so take \(\operatorname{Im}w\)
+large): the boundary point lies on the
+closure of the Noether--Lefschetz locus of \(r'\), whose image in the
+ABE compactification is the closed Noether--Lefschetz locus excluded
+by the hypothesis.
+\end{proof}
+
+Consequently \(R_X\) is isometric to \(E_8^2\) or to \(D_{16}^+\)
+\cite[\S8]{Se}; these are the two Type~II boundary components
+(``cusps'') of the \(H\)-polarised period space
+\cite[\S7F, Theorem~7.58]{ABE}.
+
+Finally we fix a basis of \(L\). The lattice \(L\simeq H\) contains
+exactly two roots \(\pm s\); by
+Riemann--Roch one of them is effective on each smooth fibre, and the
+effective sign is constant in the smooth family (semicontinuity). Let
+\(s\) be the effective root and \(f\) the primitive isotropic class
+with \(s\cdot f=1\) lying in the closure of the positive cone of
+\(X_t\) (the component containing \(A_t\)); of the two candidates
+\(f\) and \(-s-f\) exactly one does. Then
+\begin{equation}\label{eq:ab}
+ s^2=-2,\qquad f^2=0,\qquad s\cdot f=1,\qquad
+ [A_t]=as+bf\quad\text{with } a>0,\ b\geq2a .
+\end{equation}
+The inequalities hold because \(A_t\) is nef and big:
+\(A_t\cdot f=a\geq0\) as both lie in the closed positive cone,
+\(A_t\cdot s=b-2a\geq0\) as \(s\) is effective, and
+\(A_t^2=2a(b-a)>0\) forces \(a>0\).
+
+\section{Reference models}\label{sec:reference}
+
+The hypotheses give no explicit description of \(X_0\). We therefore
+construct, for the given marked period, an explicit Kulikov model
+\(\calW\to\Delta\) with the same punctured family; \S\ref{sec:models}
+compares \(\calX\) with it. A \emph{surface pair} is a \(d\)-semistable union \(V_1\cup_CV_2\) of
+smooth rational surfaces along a common anticanonical elliptic curve,
+and \(\Lambda_W\) denotes the lattice \eqref{eq:limit} of such a pair
+(it depends only on \(\NS(V_i)\ni c_i\)). An \emph{interior}
+\((-2)\)-curve on a component is one disjoint from \(C\).
+
+\begin{proposition}\label{prop:reference}
+After shrinking the disc, there is a Kulikov model \(\calW\to\Delta\),
+isomorphic over \(\Delta^*\) to the given family together with its
+\(H\)-classes and monodromy, without base change, whose central fibre
+\(W_1\cup W_2\) is as follows.
+If \(R_X=E_8^2\), the \(W_i\) are rational elliptic surfaces
+without reducible fibres; the double curve is a fibre \(c_i\) of each,
+and there are sections \(s_i\subset W_i\) (\((-1)\)-curves) meeting
+\(C\) at the same point, with
+\begin{equation}\label{eq:Eref}
+ s=(s_1,s_2),\qquad f=(c_1,0)=(0,c_2)\quad\text{in }\Lambda_W .
+\end{equation}
+If \(R_X=D_{16}^+\), then \(W_1=\F_2\) is the Hirzebruch
+surface with negative section \(s_1\), ruling \(g_1\), and
+\(c_1=2s_1+4g_1\) (so \(c_1^2=8\) and
+\(C\cap s_1=\emptyset\)); \(W_2\) is the blow-up of \(\F_0\) at sixteen
+points of a smooth anticanonical curve of bidegree \((2,2)\), lying on
+distinct fibres of one ruling \(g_2\); \(W_2\) has no interior
+\((-2)\)-curve, and
+\begin{equation}\label{eq:Dref}
+ s=(s_1,0),\qquad f=(g_1,g_2),\qquad c_2^2=-8 .
+\end{equation}
+The birational identification \(\calW\dashrightarrow\calX\) is an
+isomorphism in codimension one; in particular the divisor \(A\)
+itself has a strict transform on \(\calW\), an effective, flat Cartier
+divisor.
+\end{proposition}
+
+The construction realises the \emph{given} \(\varphi\), not just its
+cusp type (compare \cite[Proposition~7.23]{AE}). It uses the
+lattices \(\Lambda_W\) of the two pairs,
+\(L\oplus E_8^{(1)}\oplus E_8^{(2)}\) (the superscript indicating the
+component \(W_i\) carrying the summand) and \(L\oplus D_{16}^+\), with
+\(s,f\) as in \eqref{eq:Eref}, \eqref{eq:Dref}, computed in
+\S\ref{sec:latticesX} directly from \(\NS(W_i)\) (independently of
+Lemma~\ref{lem:models} below). As \(R_X\) is isometric to the rank-\(16\)
+summand, we fix an isometry \(\Lambda_W\to\Lambda_X\) sending \(s,f\)
+to \(s,f\), and regard \(\varphi\) as a homomorphism on \(\Lambda_W\),
+hence on \(E_8^{(i)}\), vanishing on \(L\).
+
+\begin{proof}
+\emph{Step 1: a surface pair with period \(\varphi\), case \(E_8^2\).}
+Let \(P_i=\Z l_i\oplus\bigoplus_{j=1}^9\Z e_{ij}\) be the Picard
+lattice of \(\PP^2\) blown up at nine points, with anticanonical class
+\(c_i=3l_i-\sum_je_{ij}\) and \(s_i=e_{i9}\). The plane
+\(\langle s_i,c_i\rangle\) is unimodular (Gram matrix
+\(\left(\begin{smallmatrix}-1&1\\1&0\end{smallmatrix}\right)\)), so
+\(P_i=\langle s_i,c_i\rangle\oplus E_8^{(i)}\). Choose \(P\in\Pic^1(C)\)
+and define \(\rho_i\colon P_i\to\Pic(C)\) by \(\rho_i(s_i)=P\),
+\(\rho_i(c_i)=0\), \(\rho_1|_{E_8^{(1)}}=\varphi\),
+\(\rho_2|_{E_8^{(2)}}=-\varphi\) (the sign comes from the definition
+of \(\varphi\)).
+Then \(\deg\rho_i(D)=D\cdot c_i\). Embed \(C\) in a plane by the
+degree-three bundle \(\rho_i(l_i)\) and blow up the nine points of
+\(C\) given by the degree-one bundles \(\rho_i(e_{ij})\). On the
+resulting surface \(W_i\) the curve \(C\) is anticanonical with
+restriction map \(\rho_i\); as \(\rho_i(c_i)=0\), its normal bundle is
+trivial and \(0\to\mathcal O\to\mathcal O(C)\to\mathcal O_C\to0\)
+shows that \(|c_i|\) is a basepoint-free pencil with section \(s_i\).
+A coincidence among the nine points, or a reducible fibre, would give
+a root in \(c_i^\perp\) with zero period (\(e_{ij}-e_{ik}\),
+respectively an interior \((-2)\)-curve). Its class in
+\(\Lambda_W=L\oplus R_X\) is a root outside \(L\), since the classes
+of \(L\) supported on one component are the multiples of the
+isotropic \(f\); as \(\varphi\) vanishes on \(L\), its
+\(R_X\)-component would be a nonzero element of \(\ker\varphi\),
+contradicting Lemma~\ref{lem:kernel}. Both sections meet \(C\) at
+\(P\). This constructs \eqref{eq:Eref} with restriction period
+\(\varphi\).
+
+\emph{Step 2: case \(D_{16}^+\).}
+Choose \(G\in\Pic^2(C)\). The double cover \(C\to\PP^1\) defined by
+\(|G|\) embeds \(C\) in \(\F_2\) as an anticanonical curve disjoint
+from the negative section, with normal bundle \(4G\). For the other
+component consider the abstract lattice
+\(P_2=\Z z\oplus\Z g_2\oplus\bigoplus_{j=1}^{16}\Z E_j\) with
+\(z^2=g_2^2=0\), \(z\cdot g_2=1\), \(E_j^2=-1\) and
+\(c_2=2z+2g_2-\sum_jE_j\),
+the Picard lattice of \(\F_0\) blown up at sixteen points, and its
+index-two sublattice \(P_2^{\rm ev}=\{D: c_2\cdot D\in2\Z\}\). For
+\(D\in P_2^{\rm ev}\) with \(c_2\cdot D=2m\) prescribe
+\(\rho_2(D)=mG-\varphi([(mg_1,D)])\), where \((mg_1,D)\in\xi^\perp\)
+because \(mg_1\cdot c_1=2m\). This is a homomorphism with
+\(\rho_2(g_2)=G\) and \(\rho_2(c_2)=-4G\), since \((g_1,g_2)=f\) and
+\((-4g_1,c_2)+\xi=2s\) lie in \(L=\ker\varphi\). Extend \(\rho_2\) to
+\(P_2\) by choosing a degree-one square root of \(\rho_2(2E_1)\)
+(multiplication by two is surjective on \(\Pic^0(C)\)). Put
+\(Z=\rho_2(z)\) and \(p_j=\rho_2(E_j)\in C\). The degree-two bundles
+\(Z,G\) are distinct, since otherwise the root \(z-g_2\perp c_2\)
+would have zero period; their two maps to \(\PP^1\) embed \(C\) as a
+smooth \((2,2)\)-curve in \(\F_0\). Blow up the \(p_j\). They are
+distinct and lie on distinct fibres of the ruling \(g_2\), since
+otherwise \(E_i-E_j\) or \(g_2-E_i-E_j\) would have zero period; these
+negative-square classes lie outside \(L\), whose classes supported on
+this component are multiples of \(2s+4f\), of positive square. The
+resulting restriction map is \(\rho_2\), and \(\sum_jp_j=2Z+6G\) (the
+degree-sixteen part of \(\rho_2(c_2)=-4G\)) says that the normal
+bundle of \(C\) in \(W_2\) is \(-4G\): the pair is \(d\)-semistable.
+Its restriction period is \(\varphi\) by the defining formula on
+\(P_2^{\rm ev}\), and an interior \((-2)\)-curve on \(W_2\) would again
+contradict \(\ker\varphi=L\). This is the generic component
+\eqref{eq:Dref}, not the special \(\Bl_{16}\F_2\) model of
+\cite[\S7F]{ABE}.
+
+\emph{Step 3: a family over the same disc.}
+A Tyurin degeneration has monodromy of multiplicity one in the sense
+of \cite[Theorem~3.13]{AE}, so its mixed-marked period arc is
+transverse to the boundary. Both constructed pairs are
+\(d\)-semistable, hence are central fibres of Kulikov models
+\cite{Fr83}, and by the Type~II local period theorem
+\cite[Theorem~7.1, Corollary~7.24]{AE} the local period map on the
+semiuniversal smoothing of such a pair is unramified. Pulling its
+local inverse back along the period arc of the \emph{original} family
+gives a smooth Kulikov model \(\calW\) over the same disc, with no base
+change. The \(H\)-classes extend on the \(H\)-locus \cite[\S7E]{AE},
+and the markings can be matched at one smooth point, so the monodromy
+generators agree.
+
+\emph{Step 4: identification over \(\Delta^*\).}
+For an even integer \(N\gg0\) the class \(A_N=4s+Nf\) has central
+extensions \(\bigl(4s_1+\tfrac N2c_1,\ 4s_2+\tfrac N2c_2\bigr)\),
+respectively \(\bigl(2s_1+(N-4)g_1,\ Ng_2+c_2\bigr)\), on the two
+reference pairs; positivity on every curve follows from the pencils
+and the absence of interior roots, so these are ample. They extend on
+the \(H\)-locus and remain relatively ample near the reference central
+fibre.
+
+On the original smooth fibres \(f\) is nef. Indeed, let
+\(d=xs+yf+r\), \(r\perp L\), be an effective root with
+\(x=d\cdot f<0\). Nefness of \(A_t\) gives
+\(0\leq A_t\cdot d=ay+(b-2a)x\), which with \(x<0\), \(b\geq2a\)
+forces \(y\geq0\); then \(-2=d^2=-2x^2+2xy+r^2\) with \(xy\leq0\),
+\(r^2\leq0\) forces \(d=-s\), which is not effective. Since \(f\) lies
+in the closure of the positive cone and pairs nonnegatively with all
+effective roots, it is nef \cite[Ch.~8]{Hu}. For \(N/4>b/a\),
+\(A_N=(4/a)A_t+(N-4b/a)f\) is nef on the original fibres, and ample
+because an \(A_N\)-orthogonal algebraic root there would be algebraic
+on the reference fibre with the same period, where \(A_N\) is ample.
+Strong Torelli \cite[Theorem~2.3]{AE} now identifies the two punctured
+families with their \(H\)-classes, and the elementary-modification
+theorem for Kulikov models \cite[Corollary~3.1]{SB} makes this
+identification an isomorphism in codimension one.
+
+Finally, strict transform under a codimension-one isomorphism
+preserves horizontal prime divisors, and smoothness of \(\calW\) makes
+their sum Cartier and flat. All choices used the marked period of the
+given arc, never a coarse boundary point (\S\ref{sec:conventions}).
+\end{proof}
+
+\section{Classification of the central fibre}\label{sec:models}
+
+We now determine the central fibre of \(\calX\) itself. The idea is to
+transport \(A\) to \(\calW\), make it nef by at most one elementary
+modification, and compare the contractions of \(\calW\) and \(\calX\)
+defined by the common relative section ring
+\(\bigoplus_{m\ge0}\pi_*\mathcal O(mA)\). Componentwise positivity
+of \(A\) is what excludes the endpoints of the parameter intervals
+below.
+
+\begin{lemma}\label{lem:models}
+Up to interchanging the components, the tuple
+\((\Lambda_X,L,S_{X,1},S_{X,2})\) of \(\calX\) is that of one of the
+following surface pairs:
+(\(\mathrm E_0\)) the reference pair \eqref{eq:Eref};
+(\(\mathrm E_1\)) the pair obtained from \eqref{eq:Eref} by
+contracting \(s_1\) in \(W_1\) and blowing up the point
+\(s_1\cap C=s_2\cap C\) on \(W_2\), so that \(c_1^2=1\), \(c_2^2=-1\);
+(\(\mathrm D\)) the reference pair \eqref{eq:Dref}, with
+\(c_1^2=8\) and \(\NS(W_1)\) even.
+\end{lemma}
+
+\begin{proof}
+\emph{Step 1: the restrictions of \(A\).}
+Transfer the divisor \(A\) to \(\calW\) by
+Proposition~\ref{prop:reference}; its restrictions \(D_1,D_2\) to
+\(W_1,W_2\) are effective. Two extensions of the line bundle
+\(\mathcal O(A)\) from the punctured family differ by a multiple of a
+central component, hence \((D_1,D_2)\) is determined by \eqref{eq:ab} up to
+adding an \emph{integral} multiple of \(\xi\).
+
+In case \eqref{eq:Eref} this gives, for an integer parameter,
+\begin{equation}\label{eq:ED}
+ D_1=as_1+xc_1,\qquad D_2=as_2+yc_2,\qquad x+y=b .
+\end{equation}
+Since \(s_i+c_i\) is nef on \(W_i\) and \((s_i+c_i)\cdot D_i\) equals
+\(x\), respectively \(y\), effectivity gives \(x,y\geq0\).
+
+In case \eqref{eq:Dref}, for an integer \(u\),
+\begin{equation}\label{eq:DD}
+ D_1=(a-2u)s_1+(b-4u)g_1,\qquad D_2=bg_2+uc_2 .
+\end{equation}
+Intersecting with the nef rulings gives \(D_1\cdot g_1=a-2u\geq0\) and
+\(D_2\cdot g_2=2u\geq0\), that is, \(0\leq u\leq a/2\).
+
+\emph{Step 2: a nef model, case \(E_8^2\).}
+If \(x,y\geq a\), both divisors in \eqref{eq:ED} are nef, and the
+only curves with zero intersection are the sections \(s_1\) (if
+\(x=a\)) and \(s_2\) (if \(y=a\)). If \(0\leq x<a\), then \(y>a\), and
+we perform the elementary modification along \(s_1\): this
+\((-1)\)-curve of \(W_1\) meets \(C\) once, so it is a
+\((-1,-1)\)-curve of the threefold; flopping it contracts \(s_1\) in
+\(W_1\) and blows up its point of attachment on \(W_2\). Write
+\(q\colon W_2'\to W_2\) for this blow-up, \(E\) for its exceptional
+curve, \(W_1'\) for the contraction, and primes for strict transforms.
+The strict transform of \(A\) restricts to
+\begin{equation}\label{eq:flop}
+ D_1'=xc_1',\qquad D_2'=q^*(as_2+yc_2)+(x-a)E ,
+\end{equation}
+the coefficient of \(E\) being forced by
+\(D_1'\cdot c_1'=D_2'\cdot c_2'=x\). The pullback of \(c_1'\) to \(W_1\) is \(s_1+c_1\), whose only curve
+of zero intersection is \(s_1\); thus \(c_1'\) is ample on \(W_1'\)
+and \(D_1'\) is nef, with no curve of zero intersection when \(x>0\).
+On \(W_2'\), \(D_2'\cdot E=a-x\), \(D_2'\cdot s_2'=b-2a\) and
+\(D_2'\cdot c_2'=x\). For every other irreducible curve \(\Theta\subset W_2\), of
+multiplicity \(m\) at the centre, \(c_2\cdot\Theta\geq m\) and
+\(s_2\cdot\Theta\geq0\), hence
+\(D_2'\cdot\Theta'=a(s_2\cdot\Theta)+y(c_2\cdot\Theta)-(a-x)m\geq
+(y-a+x)m\geq0\); if \(c_2\cdot\Theta=0\) then \(\Theta\) is an
+irreducible fibre and \(s_2\cdot\Theta=1>0\). So \(D_2'\) is nef, and
+for \(0<x<a\) the only possible curve of zero intersection is
+\(s_2'\), an interior \((-2)\)-curve, occurring when \(b=2a\). The case
+\(y<a\) is symmetric under interchanging the components.
+
+\emph{Step 3: a nef model, case \(D_{16}^+\).}
+For \(0\leq u\leq a/2\) both divisors \eqref{eq:DD} are already nef:
+on \(\F_2\), a class \(\alpha s_1+\beta g_1\) with \(\alpha\geq0\) is
+nef iff \(\beta\geq2\alpha\), and \(b-4u\geq2(a-2u)\) is
+\(b\geq2a\); on \(W_2\), every irreducible curve other than \(C\) has
+nonnegative intersection with both \(g_2\) and \(c_2\), while
+\(D_2\cdot C=2b-8u\geq4a-8u\geq0\). The squares are
+\(D_1^2=2(a-2u)(b-a-2u)\) and \(D_2^2=4u(b-2u)\).
+For \(0<u<a/2\) the only possible curve of zero intersection is
+\(s_1\) (an interior \((-2)\)-curve), when \(b=2a\): indeed
+\(D_1\cdot s_1=b-2a\), \(D_1\cdot g_1=a-2u>0\), \(D_2\cdot C>0\), and
+each component of a singular fibre of the ruling \(g_2\) has positive
+\(c_2\)-degree, since the blown-up points lie on distinct fibres.
+
+\emph{Step 4: the common contraction excludes the endpoints.}
+Denote the nef model of Steps 2--3 by \((\calW',D)\); it is isomorphic
+to \(\calX\) in codimension one, so by Hartogs extension the relative
+section rings of \((\calW',D)\) and \((\calX,A)\) coincide. A
+relatively nef extension of a line bundle that is nef and big on the
+general fibre is relatively semiample \cite[\S2A]{ABE}, so there are
+proper bimeromorphic morphisms
+\(\calW'\xrightarrow{\,\mu\,}\calZ\xleftarrow{\,\nu\,}\calX\) to the same
+normal relative \(\operatorname{Proj}\). A central component is
+contracted to dimension at most one precisely when the restriction of
+the nef line bundle to it is not big, and the components of
+\(\calW'_0\) and \(X_0\) correspond under the codimension-one
+identification. At \(x=0\), \(y=0\), \(u=0\) or \(u=a/2\) one of the
+\(D_i\) has square zero, so the corresponding \(V_i\) would be
+contracted, contradicting \((A|_{V_i})^2>0\).
+
+\emph{Step 5: resolution counting.}
+It remains to see that the remaining nef models determine \(X_0\); we
+do this directly, without assuming connectivity of nef models by
+divisor-trivial flops. First, \(\nu\) does not contract the double curve
+of \(X_0\): the squares of \(C\) on \(V_1,V_2\) sum to zero, so one is
+nonnegative, and the Hodge index theorem for the nef and big class
+\(A|_{V_i}\) gives \(A|_{V_i}\cdot C>0\) there (a nef and big class
+orthogonal to \(C\) would force \(C^2<0\)); the two degrees
+\(A|_{V_i}\cdot C\) agree, both being \(\deg A|_C\). Let \(Z_i\) be the normalisations of the
+central components of \(\calZ\). By the lists of curves of zero
+intersection in Steps 2--3, the minimal resolutions \(U_i\to Z_i\) are
+obtained from \(W_i'\) by contracting the \((-1)\)-sections of zero
+\(D\)-degree, while interior \((-2)\)-curves of zero degree are
+retained. The double curves \(C_i^U\subset U_i\), identified with
+\(C\), are smooth with \(K_{U_i}+C_i^U=0\). Each birational morphism
+\(V_i\to Z_i\) factors through the minimal resolution \(U_i\), and
+\(V_i\to U_i\) is a composition of \(n_i\) point blow-ups. The
+identity \(K_{V_i}+C=0\) forces every centre to lie on the successive
+strict transform of \(C_i^U\): a blow-up off that curve introduces a
+positive discrepancy which later blow-ups cannot cancel. Each such
+blow-up lowers \(C^2\) by one, so \(d\)-semistability of \(X_0\) gives
+\(n_1+n_2=(C_1^U)^2+(C_2^U)^2\). Moreover, no centre lies over a smooth point of \(\calZ\): a proper
+bimeromorphic morphism from a smooth space with trivial canonical
+bundle to a normal space is an isomorphism over the smooth locus of
+the target. (Over a smooth ball \(U\subset\calZ\), the Jacobian of
+\(\nu\) with respect to nowhere vanishing volume forms is a holomorphic
+function on \(\nu^{-1}(U)\) vanishing exactly on the exceptional locus
+of \(\nu\); it descends through
+\(\nu_*\mathcal O_{\calX}=\mathcal O_{\calZ}\) to a holomorphic function
+on \(U\), whose zero set is the image of that exceptional locus, of
+codimension at least two in \(U\), hence empty.) Note that only proper analytic
+contractions and projective surface resolutions have been used;
+projectivity of \(\calX\) is not assumed.
+
+Now count. If no \((-1)\)-section was contracted, the right-hand side
+of this identity is \((C^2)_{W_1'}+(C^2)_{W_2'}=0\), so \(V_i=U_i=W_i'\): this gives
+\(\mathrm E_0\) (for \(x,y>a\)), \(\mathrm E_1\) (for \(0<x<a\) or
+\(0<y<a\)) and \(\mathrm D\). If exactly one section was contracted,
+say \(s_1\) with \(x=a<y\), the right-hand side is one; away from the
+image \(p_0\) of \(s_1\), \(\mu\) is an isomorphism along the double
+curve, so \(\calZ\) is smooth there, and the single blow-up is at the
+point over \(p_0\), on \(U_1\) (giving back \(W_1\), i.e.\
+\(\mathrm E_0\)) or on \(U_2\) (giving \(\mathrm E_1\)). Two sections
+are contracted only when \(x=y=a\), so \(b=2a\); they meet \(C\) at
+the same point, the count is two, both centres lie over \(p_0\), and a
+second blow-up on the same component must be at the unique point of
+the strict transform of the double curve over \(p_0\). The
+distributions \((1,1),(2,0),(0,2)\) of the two blow-ups give
+\(\mathrm E_0\) and the two orders of \(\mathrm E_1\).
+
+\emph{Step 6: the embedded lattices.}
+Thus the central pair \((V_1\cup V_2,C)\) is isomorphic to one of the
+listed pairs. The construction \eqref{eq:limit}--\eqref{eq:SX} is
+intrinsic to the central pair, the isomorphism preserves the
+restriction period, and \(L=\ker\varphi\) by Lemma~\ref{lem:kernel};
+hence it identifies the \emph{given} embedded \(L\) and both
+\(S_{X,i}\) with those of the listed pair, without any choice of a full
+cohomology marking.
+\end{proof}
+
+\section{The embedded lattices on the degeneration side}\label{sec:latticesX}
+
+We compute the tuple \((\Lambda,L,S_1,S_2)\) of \eqref{eq:limit},
+\eqref{eq:SX} for each of the three surface pairs of
+Lemma~\ref{lem:models} directly from the pair; by that lemma the
+result is the tuple of \(\calX\). In the splitting \(L\oplus R_X\),
+with the basis \(s,f\) of \(L\) of \eqref{eq:ab}, one finds the
+following; labels \(1,2\) may be interchanged here and below.
+\begin{align}
+ \mathrm E_0:\quad&
+ R_X=E_8^{(1)}\oplus E_8^{(2)},&
+ S_{X,i}&=\Z f\oplus E_8^{(i)};                \label{eq:XE0}\\
+ \mathrm E_1:\quad&
+ R_X=E_8^{(1)}\oplus E_8^{(2)},&
+ S_{X,1}&=E_8^{(1)},\qquad
+ S_{X,2}=L\oplus E_8^{(2)}.                    \label{eq:XE1}
+\end{align}
+For the third case write \(h=s+2f\) (so \(h^2=2\)) and
+\(\epsilon\colon D_{16}^{+}\to D_{16}^{+}/D_{16}\simeq\Z/2\); then
+\begin{equation}\label{eq:XD}
+ \mathrm D:\quad R_X=D_{16}^{+},\qquad S_{X,1}=\Z s,\qquad
+ S_{X,2}=\{\,mh+r:\ m\in\Z,\ r\in D_{16}^{+},\
+                   \epsilon(r)\equiv m\ (\mathrm{mod}\ 2)\,\}.
+\end{equation}
+\emph{Case \(\mathrm E_0\).} Here
+\(\NS(W_i)=\Z s_i\oplus\Z c_i\oplus E_8^{(i)}\) with
+\(\left(\begin{smallmatrix}s_i^2&s_ic_i\\s_ic_i&c_i^2\end{smallmatrix}\right)
+=\left(\begin{smallmatrix}-1&1\\1&0\end{smallmatrix}\right)\), and
+\(c_i^\perp=\Z c_i\oplus E_8^{(i)}\). Passing to \(\xi^\perp/\Z\xi\),
+where \((c_1,0)=(0,c_2)=f\) and \((s_1,s_2)=s\), gives \eqref{eq:XE0}.
+
+\emph{Case \(\mathrm E_1\).} Contracting \(s_1\) leaves
+\(c_1^\perp=E_8^{(1)}\) unchanged (now \(c_1^2=1\)), so
+\(S_{X,1}=E_8^{(1)}\), a unimodular summand of \(\Lambda_X\). On the
+other component \(c_2^2=-1\), so \(\Z c_2\) splits off \(\NS(V_2)\) and
+\(c_2^\perp\) is unimodular of rank \(10\); its image \(S_{X,2}\) is a
+unimodular sublattice of the rank-\(10\) lattice
+\(S_{X,1}^\perp=L\oplus E_8^{(2)}\), hence equal to it. This proves
+\eqref{eq:XE1}.
+
+\emph{Case \(\mathrm D\).} We first locate the root sublattice
+\(D_{16}\subset R_X\). In the basis \(z,g_2,E_j\) of
+\(\NS(W_2)=P_2\) from the proof of Proposition~\ref{prop:reference},
+the lattice
+\begin{equation}\label{eq:D16}
+ R_0=c_2^\perp\cap g_2^\perp
+ =\Bigl\{-\tfrac12\bigl(\textstyle\sum_jt_j\bigr)g_2+\sum_jt_jE_j:
+                     t_j\in\Z,\ \sum_jt_j\equiv0\ (\mathrm{mod}\ 2)\Bigr\}
+\end{equation}
+has form \(-\sum t_j^2\) on the even-sum vectors \((t_j)\), so it is
+\(D_{16}\). An element of \(R_X=L^\perp\) has a representative
+\begin{equation}\label{eq:rep}
+ \bigl(k(s_1+2g_1),D\bigr),\qquad
+ D\cdot g_2=-k,\quad D\cdot c_2=4k ,
+\end{equation}
+since orthogonality to \(s=(s_1,0)\) forces the first entry to be a
+multiple of \(s_1+2g_1\), orthogonality to \(f\) gives
+\(D\cdot g_2=-k\), and \((s_1+2g_1)\cdot c_1=4\). Changing the
+representative by \(\xi=(2s_1+4g_1,-c_2)\) changes \(k\) by \(2\). The
+classes with even \(k\) form \eqref{eq:D16}, and odd \(k\) occurs
+(\(k=1\), \(D=-z+3g_2\)), so \(R_X\) is an even unimodular index-two overlattice of \(D_{16}\):
+\(R_X=D_{16}^+\), with \(\epsilon\) the parity of \(k\). Next,
+\(c_1^\perp=\Z s_1\) in \(\NS(\F_2)\), so \(S_{X,1}=\Z s\). If
+\((0,D)\) with \(D\cdot c_2=0\) represents an element of \(S_{X,2}\),
+put \(m=D\cdot g_2\); subtracting \(mh=(m(s_1+2g_1),2mg_2)\) leaves the
+element \((-m(s_1+2g_1),D-2mg_2)\) of \(R_X\), whose coefficient in
+\eqref{eq:rep} is \(k=-m\), so \(\epsilon(r)\equiv m\). Conversely,
+given \(mh+r\) with \(\epsilon(r)\equiv m\), choose the representative
+of \(r\) with \(k=-m\); then \(mh+r=(0,D+2mg_2)\) lies in \(S_{X,2}\).
+This proves \eqref{eq:XD}.
+
+\section{Fibrations and splitting loops on \texorpdfstring{\(Y\)}{Y}}\label{sec:fibrations}
+
+Since \(Y\) is very general, \(\NS(Y)=M\). We use two elliptic
+fibrations with section on \(Y\): the \emph{standard} fibration, with
+singular fibres \(2\,\II^*+4\,\I_1\), and the \emph{alternate}
+fibration, with singular fibres \(\I_{12}^*+6\,\I_1\)
+\cite[\S2.2]{DPT}, \cite{CD}.
+
+\paragraph{The standard fibration and the loops \(\gamma_0,\gamma_1\).}
+On the base with coordinate \(t\neq0,\infty\), a Weierstrass equation
+of the standard fibration can be normalised to the Inose form
+\cite{CD}
+\begin{equation}\label{eq:Inose}
+ z^2=u^3+\alpha u+\beta+t+t^{-1}:
+\end{equation}
+the \(\II^*\) conditions at \(t=0,\infty\) force the Weierstrass
+coefficients to be \(\alpha t^4\) and
+\(t^5(\lambda_0+\lambda_1t+\lambda_2t^2)\), and
+rescaling \(t,u,z\) gives \eqref{eq:Inose}, with generic parameters
+\(\alpha,\beta\). We use two splitting loops, distributing the
+singular fibres over the two pieces \(Y_1\mid Y_2\) as
+\begin{equation}\label{eq:Eloops}
+ \gamma_0\colon\ \II^*+2\,\I_1\ \big|\ \II^*+2\,\I_1,\qquad\qquad
+ \gamma_1\colon\ \II^*+\I_1\ \big|\ \II^*+3\,\I_1 .
+\end{equation}
+Since arbitrary loops with these fibre counts need not have the
+monodromy required for allowability, we construct them explicitly.
+The standard fibration is the quadratic base change
+\(v=\beta+t+t^{-1}\) of the rational elliptic surface
+\(z^2=u^3+\alpha u+v\), whose singular fibres are \(\II^*+2\,\I_1\).
+Choose the parameters so that some disc containing the two branch
+values \(v=\beta\pm2\) contains no critical value of this rational
+surface. Over the complement of that disc the cover is trivial, a
+disjoint union of two copies of the complement; the boundary of either copy is \(\gamma_0\), with
+identity monodromy on each side. Moving one nodal critical value
+across this boundary gives \(\gamma_1\): choosing the symplectic basis
+so that its vanishing cycle is \(a\), the anticlockwise monodromy on
+the side with Euler number \(11\) is \(T_a^{-1}\) and on the other side
+it is \(T_a\). These
+constructions transport to the given generic parameters: the space of
+base changes with distinct branch and critical values is connected,
+and the fibrations and loops are topologically locally trivial over it.
+
+\paragraph{The alternate fibration and the loop \(\gamma_D\).}
+Taking \(u\) as base coordinate in \eqref{eq:Inose} and \(\eta=tz\)
+gives the alternate fibration
+\begin{equation}\label{eq:alt}
+ \eta^2=t\bigl(t^2+P(u)t+1\bigr),\qquad P(u)=u^3+\alpha u+\beta ,
+\end{equation}
+with a section, a section of order two (\(t=\eta=0\)), an
+\(\I_{12}^*\) fibre at \(u=\infty\) (the Weierstrass invariant \(c_4\)
+and the discriminant vanish there to orders \(2\) and \(18\)) and six nodal fibres over
+\(P(u)=\pm2\) (the discriminant away from infinity is a nonzero
+constant times \(P(u)^2-4\)). We construct a loop \(\gamma_D\) with
+the splitting \(4\,\I_1\mid\I_{12}^*+2\,\I_1\). View \eqref{eq:alt} as the pull-back under the cubic \(v=P(u)\) of the
+rational elliptic surface \(\eta^2=t(t^2+vt+1)\), with singular fibres
+\(\I_4^*+2\,\I_1\). On this rational surface the two nodal vanishing
+cycles may be taken to be
+\begin{equation}\label{eq:BC}
+ B=b,\qquad D=b+2a\qquad(\langle a,b\rangle=-1):
+\end{equation}
+the product of the two positive nodal Picard--Lefschetz
+transformations is the inverse of the \(\I_4^*\) monodromy, of trace
+\(-2\); as \(T_BT_D\) has trace \(2-\langle B,D\rangle^2\), the
+vanishing cycles have intersection number \(\pm2\), and a choice of
+signs and of the symplectic basis gives \eqref{eq:BC}.
+
+Choose the cubic \(P\) so that the inverse image of a disc containing
+\(\pm2\) consists of three disjoint discs. A path in the \(v\)-plane
+from that disc to a finite branch value of \(P\) lifts to an arc
+joining two of the three discs; the two finite branch values of the
+generic cubic \(P\) connect in this way two different pairs of discs
+(the cover is connected), hence all three. The image of each
+connecting arc goes out and back through regular values of the
+rational elliptic surface, so parallel transport along it is trivial
+on \(H_1(F_p)\). Thus, in a common marking, the vanishing-cycle pairs
+in the three discs are \((B,D),(B,D),(B,D)\). A regular
+neighbourhood of two of the discs and their connecting arc is a disc;
+its boundary is \(\gamma_D\). As before, connectedness of the
+complement of the discriminant in the parameter space of cubics
+transports this loop to all generic members of \eqref{eq:alt}. In the
+convention \eqref{eq:PL},
+\begin{equation}\label{eq:monodromy}
+ T_BT_D=\left(\begin{smallmatrix}-1&4\\0&-1\end{smallmatrix}\right),
+ \qquad
+ (T_BT_D)^2=\left(\begin{smallmatrix}1&-8\\0&1\end{smallmatrix}\right)=T_a^{-8},
+\end{equation}
+which is the monodromy around \(\gamma_D\) on the four-node side, as
+required for \(e(Y_1)=4\); the complementary monodromy is its inverse
+\(T_a^{8}\), as required for \(e(Y_2)=20\).
+
+\paragraph{Allowability.}
+The monodromies computed above are
+\(\left(\begin{smallmatrix}1&e(Y_i)-12\\0&1\end{smallmatrix}\right)\)
+in all cases: the Euler numbers are \(12,12\) for \(\gamma_0\),
+\(11,13\) for \(\gamma_1\) and \(4,20\) for \(\gamma_D\). It remains to
+check primitivity of \(r_i(a)\). An integral relative class \(v\) of
+charge \(b\), i.e.\ with \(\phi_i(v)=b\), satisfies
+\(\chi_i(v,r_i(a))=\langle b,a\rangle=1\), so
+\(r_i(a)\) is primitive whenever such a \(v\) exists. For the
+splittings \eqref{eq:Eloops} the charge map is surjective already on a
+neighbourhood of the \(\II^*\) fibre, since its nodal resolution has
+charges generating \(H_1(F_p)\) \cite[Lemma~4.7, Proposition~4.8,
+Table~4.1]{GT}, so this applies for every chosen primitive \(a\). For
+\(\gamma_D\) each side contains a nodal pair \eqref{eq:BC}, so it
+applies directly. Consequently all three loops are allowable in the
+sense of \cite[Definition~4.11]{GT}.
+
+\section{Compatibility and the lattices on the fibration side}\label{sec:latticesY}
+
+\paragraph{Compatibility.}\label{sec:compat}
+For any of the three loops, the torus class
+\(\bar\tau\in F^\perp/\Z F\) of \S\ref{sec:fibside} is primitive and
+isotropic by the integral gluing description
+\cite[Propositions~4.18 and~4.20]{GT}. Choose a lift \(\tau_0\in F^\perp\), let \(Q\) be the class
+of the zero section, and set \(\tau=\tau_0-(\tau_0\cdot Q)F\). The
+torus lies over the loop, hence in smooth fibres, so \(\tau_0\) is
+orthogonal to \(F\) and to every singular-fibre component, and the
+correction makes \(\tau\cdot Q=0\) as well. These classes span
+\(\NS(Y)\otimes\Q\) (\(Q\), \(F\) and the fibre components not meeting
+\(Q\) span a sublattice of rank \(18=\rk M\) in both fibrations), hence
+\(F\in M\) and \(\tau\in M^\perp\). This is compatibility,
+including the integral lift required by \cite[Definition~4.21]{GT}.
+
+\paragraph{The frame.}
+With \(\Lambda_Y\) and \(\Gamma\) as in \eqref{eq:LambdaY}, since
+\(M\) is unimodular and \(Q\cdot F=1\),
+\begin{equation}\label{eq:frame}
+ \Lambda_Y=H_0\oplus\Gamma,\qquad H_0=\tau^\perp_{M^\perp}/\Z\tau\simeq H,
+ \qquad
+ \Gamma\simeq E_8^{(1)}\oplus E_8^{(2)}\ \text{(standard)},\quad
+ \Gamma\simeq D_{16}^{+}\ \text{(alternate)}.
+\end{equation}
+Indeed
+\(H^2(Y;\Z)=M\oplus M^\perp\) with \(F\in M\), \(\tau\in M^\perp\), so
+\(\Lambda_Y=\Gamma\oplus(\tau^\perp_{M^\perp}/\Z\tau)\) orthogonally
+(whence \(H_0=\Gamma^\perp\) in \(\Lambda_Y\)), and the second
+summand is \(H\) because \(M^\perp\simeq H^{\oplus2}\) and \(\tau\) is
+primitive isotropic (primitivity of \(\bar\tau\) implies that of
+\(\tau\)). The unimodular plane \(\langle Q,F\rangle\simeq H\) splits
+off \(M\), so \(\Gamma\) is even unimodular negative definite of rank
+\(16\) containing the fibre-root lattice \(E_8\oplus E_8\), respectively
+\(D_{16}\); in the alternate case \(D_{16}\) has index two in
+\(\Gamma\), by its determinant \(4\) (or by the two-torsion section).
+
+\paragraph{Pseudolattice facts.}
+The gluing results of \cite[Propositions~4.18 and~4.20]{GT}
+give the integral identification
+\begin{equation}\label{eq:glue}
+ \Lambda_Y=(k_1,-k_2)^\perp/\Z(k_1,-k_2)
+ \ \subset\ (N_1\oplus N_2)/\Z(k_1,-k_2),
+\end{equation}
+with \(S_{Y,i}\) the image of \(k_i^\perp\subset N_i\). The two
+images are orthogonal, the maps \(k_i^\perp\to\Lambda_Y\) are
+injective (no \((0,w)\) with \(w\neq0\) is a multiple of
+\((k_1,-k_2)\)), and the classes of fibre components of \(Y_i\) go to
+the corresponding fibre roots in \(\Gamma\). For an allowable piece of
+Euler number \(n\in\{11,12,13,20\}\) the lattice \(N_i\) is the odd
+unimodular lattice \(\I_{1,n-3}\), and \(k_i\) is characteristic,
+primitive and of square \(12-n\)
+\cite[Theorems~2.18 and~4.10, Lemma~2.20]{GT}; for the pieces with a
+\(\II^*\) fibre, primitivity also follows from the surjectivity of
+\(\phi_i\) noted in \S\ref{sec:fibrations}. The sign convention for
+\(k_i\) does not affect \(k_i^\perp\). As at least one \(k_i\) is
+primitive in each case, \((k_1,-k_2)\) spans a saturated subgroup and
+\eqref{eq:glue} is the integral construction, not a rational one. The
+piece of Euler number \(4\) is computed by hand below.
+
+\paragraph{The splitting \(\gamma_0\).}
+Here \(e(Y_i)=12\), so \(k_i\) is primitive, isotropic and
+characteristic in \(N_i=\I_{1,9}\). The fibre roots of the \(\II^*\)
+fibre on each side give a unimodular \(E_8^{(i)}\subset k_i^\perp\),
+which splits off: \(N_i=E_8^{(i)}\oplus U_i\) with \(U_i\ni k_i\)
+odd unimodular of signature \((1,1)\). Choose \(\varepsilon_i\in U_i\)
+with \(\varepsilon_i\cdot k_i=1\) (unimodularity and primitivity);
+since \(k_i\) is characteristic, \(\varepsilon_i^2\) is odd, and adding
+a multiple of \(k_i\) we may assume \(\varepsilon_i^2=-1\). Thus
+\(N_i=(\Z\varepsilon_i\oplus\Z k_i)\oplus E_8^{(i)}\) and
+\(k_i^\perp=\Z k_i\oplus E_8^{(i)}\). In \eqref{eq:glue} the images
+of \((k_1,0)\) and \((0,k_2)\) coincide in a primitive isotropic
+vector \(\kappa\), and together with the image of
+\((\varepsilon_1,\varepsilon_2)\) (square \(-2\), pairing \(1\) with
+\(\kappa\)) it spans \(H_0=\Gamma^\perp\). Hence
+\(S_{Y,i}=\Z\kappa\oplus E_8^{(i)}\). Mapping \(\kappa\mapsto f\),
+\(H_0\to L\) isometrically and the root summands to their namesakes
+gives an isometry \(\psi\colon\Lambda_Y\to\Lambda_X\) carrying
+\eqref{eq:frame} and the \(S_{Y,i}\) to \eqref{eq:XE0}, with
+\(\Gamma\mapsto R_X\).
+
+\paragraph{The splitting \(\gamma_1\).}
+Here \(k_1^2=1\) and \(k_2^2=-1\), so \(\Z k_i\) splits off \(N_i\).
+The complement \(k_1^\perp\) is unimodular of rank \(8\) and contains
+the fibre roots \(E_8^{(1)}\), hence equals them. Writing
+\(N_1=\Z k_1\oplus E_8^{(1)}\) and \(N_2=\Z k_2\oplus k_2^\perp\),
+the vectors of \((k_1,-k_2)^\perp\) are
+\(\alpha(k_1,-k_2)+(e,w)\) with \(e\in E_8^{(1)}\), \(w\in k_2^\perp\),
+so \eqref{eq:glue} splits integrally as
+\(\Lambda_Y=E_8^{(1)}\oplus k_2^\perp\), with
+\(S_{Y,1}=E_8^{(1)}\) and \(S_{Y,2}=k_2^\perp=H_0\oplus E_8^{(2)}\).
+The last equality holds because \(k_2^\perp\) is unimodular of
+signature \((1,9)\), even (as \(k_2\) is characteristic), and contains
+the unimodular fibre roots \(E_8^{(2)}\). This is \eqref{eq:XE1}, and
+any isometry \(H_0\to L\) together with the identity on the root
+summands gives \(\psi\), again with \(\Gamma\mapsto R_X\).
+
+\paragraph{The splitting \(\gamma_D\).}
+Two integral points must be checked: the small side has ``degree
+\(8'\)'' rather than \(8\) 
+(its pseudolattice is that of
+\(\PP^1\times\PP^1\), with \(N_1\simeq H\) even and
+\(k_1^\perp\simeq\langle-2\rangle\), not that of \(\F_1\), with
+\(N_1=\I_{1,1}\) and \(k_1^\perp\simeq\langle-8\rangle\)), and the
+large side carries the parity condition of \eqref{eq:XD}.
+
+\emph{Small side.} Use distinguished thimbles
+\(\theta_1,\dots,\theta_4\) with charges \(B,D,B,D\) as in
+\eqref{eq:BC}. In the basis \((a,b)\), with
+\(J=\left(\begin{smallmatrix}0&-1\\1&0\end{smallmatrix}\right)\), the
+charge matrix, the Seifert matrix and the right adjoint are
+\[
+ V=\begin{pmatrix}0&2&0&2\\1&1&1&1\end{pmatrix},\qquad
+ \chi_1=\begin{pmatrix}1&2&0&2\\0&1&-2&0\\0&0&1&2\\0&0&0&1\end{pmatrix},
+ \qquad r_1=\chi_1^{-1}V^{t}J ,
+\]
+the entries of \(V^tJ\) being \(\langle\phi_1(\theta_i),a\rangle\)
+and \(\langle\phi_1(\theta_i),b\rangle\). Direct multiplication gives
+\(r_1(a)=(1,-1,-1,1)\) and \(r_1(b)=(-8,6,4,-2)\). Since
+\(\chi_1(\theta_i,r_1(a))=1\) for all \(i\), the subgroup
+\(r_1(a)^\perp\) consists of the vectors whose coordinates sum to zero. Modulo
+\(r_1(a)\) it has basis \(u=\theta_1-\theta_4\),
+\(v=\theta_2-\theta_4\), with
+\(\bigl(q_1(u,u),q_1(u,v),q_1(v,v)\bigr)=(0,-1,-2)\) for
+\(q_1=-\chi_1\), and \(k_1=-4u+2v\). In particular \(N_1\simeq H\) is
+even, \(k_1^2=8\), and \(k_1^\perp=\Z v\) with \(v^2=-2\).
+
+Write \(\delta\) for the image of \(v\) in \(\Lambda_Y\). Every
+\(D_{16}\) fibre-root class is supported on the other side of the
+loop, so is orthogonal to \(\delta\); the saturation of \(D_{16}\) is
+\(\Gamma\), so \(\delta\in\Gamma^\perp=H_0\), and it is a primitive
+root there. Choose a basis \(\delta,f_0\) of \(H_0\) with \(f_0^2=0\),
+\(\delta\cdot f_0=1\), and put \(h_0=\delta+2f_0\). Then
+\begin{equation}\label{eq:delta}
+ S_{Y,1}=\Z\delta,\qquad \delta^\perp_{\Lambda_Y}=\Z h_0\oplus D_{16}^{+}.
+\end{equation}
+
+\emph{Large side.} Here \(N_2=\I_{1,17}\) and \(k_2\) is primitive of
+square \(-8\), so \(k_2^\perp\simeq S_{Y,2}\) has determinant \(8\)
+and cyclic discriminant group \(\Z/8\). Since
+\(S_{Y,2}\perp S_{Y,1}\) and \(\delta^\perp\) has determinant \(2\),
+\(S_{Y,2}\) has index two in the right-hand side of \eqref{eq:delta}.
+We claim that
+\begin{equation}\label{eq:primitiveD}
+ S_{Y,2}\cap\Gamma=D_{16}.
+\end{equation}
+Let \(G_*\) be the relative homology of a neighbourhood of the
+\(\I_{12}^*\) fibre and order the two remaining nodal thimbles last,
+so \(H_2(Y_2,F_p)=G_*\oplus\Z^2\). The kernel of the charge map on
+\(G_*=H_2(U,F_p)\), \(U\) the neighbourhood, is the image of
+\(H_2(U)\), that is \(H_2(U)/\Z[F]\), which is spanned by the fibre
+components modulo the total fibre: it is exactly the \(D_{16}\)
+fibre-root lattice and is primitive in \(G_*\). The two nodal
+thimbles have charges \(B,D\) with \(\langle B,D\rangle=2\), as on the
+small side, so the last diagonal block of the upper-triangular Seifert
+matrix is \(\left(\begin{smallmatrix}1&2\\0&1\end{smallmatrix}\right)\)
+and the corresponding right-adjoint equation has right-hand side
+\((1,1)^t\); hence the last two coordinates of \(r_2(a)\) are
+\((-1,1)\). Hence \(D_{16}\) remains primitive in
+\(N_2=r_2(a)^\perp/\Z r_2(a)\): if \(nx=d+m\,r_2(a)\) with
+\(d\in D_{16}\), the last two coordinates show \(n\mid m\), and
+primitivity in \(G_*\) gives \(x-(m/n)r_2(a)\in D_{16}\). So
+\(D_{16}\) is primitive in \(S_{Y,2}\), and its saturation
+\(S_{Y,2}\cap\Gamma\) equals \(D_{16}\), proving
+\eqref{eq:primitiveD}.
+
+Thus \(S_{Y,2}\) is the kernel of a nonzero character
+\(\alpha\colon\Z h_0\oplus D_{16}^{+}\to\Z/2\) whose restriction to
+\(D_{16}^+\) is \(\epsilon\), by \eqref{eq:primitiveD}. If
+\(\alpha(h_0)=0\), the kernel would be \(\Z h_0\oplus D_{16}\), with
+discriminant group \((\Z/2)^3\), not \(\Z/8\). Hence \(\alpha(h_0)=1\)
+and
+\begin{equation}\label{eq:SY2}
+ S_{Y,2}=\{\,mh_0+r:\ \epsilon(r)\equiv m\ (\mathrm{mod}\ 2)\,\}.
+\end{equation}
+Equations \eqref{eq:frame}, \eqref{eq:delta} and \eqref{eq:SY2} agree
+exactly with \eqref{eq:XD}. Map \(\delta,f_0\) to \(s,f\) and identify
+the two copies of \(D_{16}^+\) by any isometry (every isometry of
+\(D_{16}^+\) preserves its root sublattice \(D_{16}\), hence
+\(\epsilon\)). This supplies the integral isometry in the third case.
+
+In all three cases we have constructed an isometry
+\(\psi\colon\Lambda_Y\to\Lambda_X\) with
+\(\psi(\Gamma)=L^\perp_{\Lambda_X}=R_X\) and \(\psi(S_{Y,i})=S_{X,i}\)
+(\(i=1,2\)), for the pairing of loops with central fibres listed in
+\S\ref{sec:strategy}.
+
+\section{Lifting and proof of Theorem~\ref{thm:main}}\label{sec:final}
+
+It remains to verify the clauses of \cite[Definition~5.1]{GT}. On the
+degeneration side we have \eqref{eq:dec}. On the
+fibration side, \(\tau\) is primitive and isotropic in
+\(M^\perp\simeq H^{\oplus2}\); in an even unimodular lattice a
+primitive isotropic vector has an isotropic dual pairing to \(1\),
+spanning with it a hyperbolic plane \(H_\tau\). Likewise \(F\in M\)
+with dual \(Q+F\) spans \(H_F\). Hence
+\(H^2(Y;\Z)=H_\tau\oplus H_F\oplus H_0\oplus\Gamma\) with
+\(M^\perp=H_\tau\oplus H_0\) and \(M=H_F\oplus\Gamma\).
+The inclusions \(L\subset\Lambda_X\) and \(\Gamma\subset\Lambda_Y\) are
+split, in particular primitive: this is clause (1).
+Clause (2) is the componentwise equality \(\psi(S_{Y,i})=S_{X,i}\)
+established in \S\ref{sec:latticesY}. For clause
+(3), extend \(\psi\) from \(H_0\oplus\Gamma\) by isometries
+\(H_\tau\to H_{e_1}\) and \(H_F\to H_{e_2}\) taking \(\tau\) to
+\(e_1\) and \(F\) to \(e_2\); this gives
+\begin{equation}\label{eq:hatpsi}
+ \widehat\psi\colon H^2(Y;\Z)\longrightarrow H^2(X_t;\Z),\qquad
+ \widehat\psi(M^\perp)=H_{e_1}\oplus L,
+\end{equation}
+since \(\psi(H_0)=\psi(\Gamma^\perp)=R_X^\perp=L\). Finally,
+\(\tau\) is \(1\)-admissible in the sense of
+\cite[Definition~3.30]{GT}: it is primitive and isotropic in
+\(M^\perp\), and its isotropic dual \(g\in M^\perp\) satisfies
+\((\tau,g)=1\), so \(\tau\) and \(g\) both have divisibility one in
+\(M^\perp\). Thus \eqref{eq:hatpsi} is clause (4a) with \(m=1\).
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+By Lemma~\ref{lem:models} the degeneration is of type \(\mathrm E_0\),
+\(\mathrm E_1\) or \(\mathrm D\), with embedded lattices
+\eqref{eq:XE0}, \eqref{eq:XE1} or \eqref{eq:XD}. Choose on the given
+very general \(Y\) the standard fibration with \(\gamma_0\), the
+standard fibration with \(\gamma_1\), or the alternate fibration with
+\(\gamma_D\), respectively. These are allowable
+(\S\ref{sec:fibrations}), the \(M\)-quasipolarisation is compatible
+(\S\ref{sec:compat}), and \(\psi\), \eqref{eq:hatpsi} verify
+\cite[Definition~5.1]{GT}. Hence \(\calX\to\Delta\) and
+\((Y\to\PP^1,\gamma)\) form a mirror pair.
+\end{proof}
+
+\begin{thebibliography}{ABE22}
+
+\bibitem[ABE22]{ABE}
+V.~Alexeev, A.~Brunyate and P.~Engel,
+\emph{Compactifications of moduli of elliptic K3 surfaces: stable pair
+and toroidal}, Geom.\ Topol.\ \textbf{26} (2022), 3525--3588.
+
+\bibitem[AE23]{AE}
+V.~Alexeev and P.~Engel,
+\emph{Compact moduli of K3 surfaces},
+Ann.\ of Math.\ \textbf{198} (2023), 727--789.
+
+\bibitem[AE25]{AE2}
+V.~Alexeev and P.~Engel,
+\emph{Compact moduli of K3 surfaces}, to appear in Proc. of Steklov Math. Inst., https://arxiv.org/abs/2505.22557.
+
+\bibitem[CD07]{CD}
+A.~Clingher and C.~F.~Doran,
+\emph{Modular invariants for lattice polarized K3 surfaces},
+Michigan Math.\ J.\ \textbf{55} (2007), 355--393.
+
+\bibitem[Do96]{Do}
+I.~V.~Dolgachev,
+\emph{Mirror symmetry for lattice polarized K3 surfaces},
+J.\ Math.\ Sci.\ \textbf{81} (1996), 2599--2630.
+
+\bibitem[DHT17]{DHT}
+C.~F.~Doran, A.~Harder and A.~Thompson,
+\emph{Mirror symmetry, Tyurin degenerations and fibrations on
+Calabi--Yau manifolds},
+Proc.\ Sympos.\ Pure Math.\ \textbf{96} (2017), 93--131.
+
+\bibitem[DPT25]{DPT}
+C.~F.~Doran, J.~Prebble and A.~Thompson,
+\emph{Normal forms and Tyurin degenerations of K3 surfaces polarised
+by a rank 18 lattice}, Math.\ Nachr.\ \textbf{298} (2025), 806--828.
+
+\bibitem[Fr83]{Fr83}
+R.~Friedman,
+\emph{Global smoothings of varieties with normal crossings},
+Ann.\ of Math.\ \textbf{118} (1983), 75--114.
+
+\bibitem[GT24]{GT}
+L.~Giovenzana and A.~Thompson,
+\emph{Degenerations and fibrations of K3 surfaces: lattice
+polarisations and mirror symmetry}, arXiv:2405.12009v3 (2024).
+
+\bibitem[HT20]{HT}
+A.~Harder and A.~Thompson,
+\emph{Pseudolattices, del Pezzo surfaces, and Lefschetz fibrations},
+Trans.\ Amer.\ Math.\ Soc.\ \textbf{373} (2020), 2071--2104.
+
+\bibitem[Hu16]{Hu}
+D.~Huybrechts,
+\emph{Lectures on K3 surfaces},
+Cambridge Univ.\ Press, 2016.
+
+\bibitem[Ku77]{Ku}
+V.~S.~Kulikov,
+\emph{Degenerations of K3 surfaces and Enriques surfaces},
+Math.\ USSR-Izv.\ \textbf{11} (1977), 957--989.
+
+\bibitem[Kuz17]{Kuz}
+A.~Kuznetsov,
+\emph{Exceptional collections in surface-like categories},
+Sb.\ Math.\ \textbf{208} (2017), 1368--1398.
+
+\bibitem[Ni80]{Ni}
+V.~V.~Nikulin,
+\emph{Integral symmetric bilinear forms and some of their
+applications}, Math.\ USSR-Izv.\ \textbf{14} (1980), 103--167.
+
+\bibitem[Se62]{Se}
+J.-P.~Serre,
+\emph{Formes bilin\'eaires sym\'etriques enti\`eres \`a discriminant
+\(\pm1\)}, S\'em.\ H.~Cartan \textbf{14} (1961--62), exp.\ 14--15.
+
+\bibitem[SB83]{SB}
+N.~I.~Shepherd-Barron,
+\emph{Extending polarizations on families of K3 surfaces},
+in: The Birational Geometry of Degenerations, Progr.\ Math.\
+\textbf{29}, Birkh\"auser, 1983, 135--171.
+
+\end{thebibliography}
+
+\end{document}

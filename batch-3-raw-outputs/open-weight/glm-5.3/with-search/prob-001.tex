@@ -1,0 +1,708 @@
+Below is the requested document. A frank summary of its contents before the reader compiles it: after setting up the theory carefully, I prove a **reduction theorem** showing that the morphism $F \to \mathrm R\pi_*\pi^{-1}F$ is controlled by a purely pointwise statement about birhizomic sheafification; I then prove that statement **in complete generality at every point admitting an infinitesimal map to a valuative monoid** (in particular at every valuative point, giving a full affirmative answer whenever $P[-x]^\sharp$ is valuative for all $x$, e.g. $\operatorname{rank}P\le 1$). I also prove a structure theorem for infinitesimal maps (witness theorem) showing that the retraction method is *exhausted* at fine monoids of rank $\ge 2$, where the general case is reduced to an explicitly formulated open problem. I have not been able to prove the statement in that remaining case, and the document says so precisely rather than papering over the gap.
+
+```latex
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{openproblem}[theorem]{Open Problem}
+
+\numberwithin{equation}{section}
+
+\begin{document}
+
+\title[The birhizomic comparison morphism]{On the comparison morphism
+$F \to \mathrm R\pi_*\pi^{-1}F$ for the birhizomic topology of a monoid}
+
+\author{}
+\date{\today}
+
+\begin{abstract}
+We study the comparison morphism between the birhizomic topology on the
+category $A_P$ of monoids under a sharp saturated monoid $P$ and the
+trivial topology on the full subcategory $B_P$ of localizations
+$P\to P[-x]^\sharp$.  We first prove a \emph{reduction theorem}: the right
+adjoint $\pi_*$ of $\pi^{-1}$ is the (exact) restriction functor, so the
+derived comparison morphism $F\to\mathrm R\pi_*\pi^{-1}F$ is a
+quasi-isomorphism for all presheaves $F$ if and only if birhizomic
+sheafification does not change the value of the left Kan extension
+$i_!F$ at any point of $B_P$ (Theorem~\ref{thm:reduction}).  We then prove
+a \emph{retraction criterion} (Theorem~\ref{thm:retraction}): at every
+point $b\in B_P$ admitting an \emph{infinitesimal} map to a valuative
+monoid, every birhizomic covering sieve is the maximal sieve, and the
+comparison holds.  Since every sharp saturated monoid of rank $\le 1$ is
+valuative, this settles the question in the affirmative whenever
+$\operatorname{rank}P^{\rm gp}\le 1$ (e.g.\ $P\in\{0,\mathbb N\}$), and at
+every point $x$ with $\operatorname{rank}(P[-x]^\sharp)\le 1$
+(Corollary~\ref{cor:rank1}).  Finally we prove a \emph{witness theorem}
+(Theorem~\ref{thm:witness}): for every fine sharp saturated monoid $b$ of
+rank $\ge 2$ and \emph{every} homomorphism $v\colon b\to V$ to a valuative
+monoid there exists an explicit failure of infinitesimality.  Consequently
+no infinitesimal maps out of such $b$ exist, and the retraction method is
+exhausted there (Proposition~\ref{prop:nothickening}); the remaining case
+of the question is formulated as a precise open problem
+(Open Problem~\ref{op:main}).
+\end{abstract}
+
+\maketitle
+
+\section{Introduction and statement of results}
+
+\subsection{Background}
+Valuative monoids---those whose induced partial order on the associated
+group is total---play the role in logarithmic geometry of value monoids of
+valuations, going back to Kato \cite{Kat89}; see also the lecture notes
+\cite{HolmesNotes} on valuativisations and N\'eron models, the recent
+preprint \cite{ArxivV} where monoids of type (V) (monoids of finite
+presentation over a valuative base) are studied, and \cite{Preorders} for
+the general theory of (pre-)orders on commutative monoids.  In the theory
+of supervaluations one also encounters multiplicative maps into ordered
+monoids \cite{IKR}.  The present paper concerns the \emph{birhizomic
+topology}, whose covering families are defined by a unique lifting
+property against \emph{infinitesimal} monoid homomorphisms, and a
+comparison morphism of sites
+\[
+\pi\colon \operatorname{Sh}(A_P)\longrightarrow
+\operatorname{Sh}(B_P)=\operatorname{PSh}(B_P^{\rm op})
+\]
+defined in the problem statement.  The question posed is whether
+$F\to\mathrm R\pi_*\pi^{-1}F$ is a quasi-isomorphism for every presheaf
+of abelian groups $F$ on $B_P^{\rm op}$.  This is the birhizomic analogue
+of the classical \emph{topological invariance of \'etale cohomology}
+\cite[Exp.~VIII]{SGA4}, where \'etale descent along infinitesimal
+thickenings is controlled by the unique lifting of \'etale maps.
+
+\subsection{What is proved here}
+Our results are the following.
+\begin{enumerate}
+\item \textbf{Reduction (Theorem~\ref{thm:reduction}).}  The functor
+$\pi_*$ is the exact restriction functor along
+$B_P^{\rm op}\subset A_P^{\rm op}$; hence $\mathrm R\pi_*=\pi_*$ and the
+question is \emph{equivalent} to the pointwise statement $(\star)$ of
+Definition~\ref{def:star}: for all $x\in P$ and all $F$, the canonical map
+$F(b_x)\to(\pi^{-1}F)(b_x)$ is an isomorphism, where $b_x$ denotes
+$P\to P[-x]^\sharp$.  In other words, the whole content of the question is
+that birhizomic sheafification does not change the value of the left Kan
+extension $i_!F$ at the points of $B_P$.
+\item \textbf{Retraction criterion (Theorem~\ref{thm:retraction}).}  If
+$b\in B_P$ admits an infinitesimal map to some valuative monoid, then every
+birhizomic family with source $b$ contains a member admitting a retraction;
+every birhizomic covering sieve of $b$ is the maximal sieve; and $(\star)$
+holds at $b$ for every $F$.
+\item \textbf{Positive cases (Corollaries~\ref{cor:valuative}
+and~\ref{cor:rank1}).}  Every sharp saturated monoid of rank $\le 1$ is
+valuative.  Hence the answer to the question is \textbf{yes} whenever
+$P[-x]^\sharp$ is valuative for all $x\in P$; in particular whenever
+$\operatorname{rank}P^{\rm gp}\le 1$, e.g.\ $P\in\{0,\mathbb N\}$.  The
+criterion also applies at all \emph{slit points}
+(Example~\ref{ex:slitpoints}), which exist in abundance among non-finitely
+generated monoids.
+\item \textbf{The obstruction (Theorem~\ref{thm:witness},
+Proposition~\ref{prop:nothickening}).}  For $b$ \emph{fine} sharp
+saturated of rank $\ge 2$, and \emph{every} homomorphism $v\colon b\to V$
+to a valuative monoid, we construct explicitly an element
+$x\in b^{\rm gp}\setminus b$ witnessing the failure of infinitesimality
+of $v$.  Consequently no infinitesimal maps out of $b$ exist, and no
+infinitesimal thickening of $v$ can admit a retraction onto $b$: the
+retraction method is provably exhausted at such points.
+\end{enumerate}
+We are \textbf{not} able to settle the question at the remaining points
+(e.g.\ $P=\mathbb N^2$, $x=0$); the precise remaining statement is
+isolated in Open Problem~\ref{op:main}.  All results above are proved in
+full, and standard background facts are cited.
+
+\section{Preliminaries on monoids and the relation \texorpdfstring{$\prec$}{prec}}
+
+Throughout, a \emph{monoid} is an integral, saturated, sharp, commutative,
+unital semigroup, written additively, and homomorphisms preserve the unit
+$0$.  For a monoid $M$ we write $M^{\rm gp}$ for its group completion; the
+embedding $M\hookrightarrow M^{\rm gp}$ is injective by integrality.  The
+\emph{order} on $M^{\rm gp}$ is $x\ge 0\iff x\in M$, extended by
+translation invariance.  Recall $M$ is \emph{valuative} if this order is
+total.  Following the problem statement, for
+$x\in M^{\rm gp}$, $y\in M$ we write $x\prec y$ if there are
+\emph{integers} $m,n$ with $my\le x\le ny$, i.e.\ $x-my\in M$ and
+$ny-x\in M$.  A homomorphism $f\colon M\to N$ is \emph{infinitesimal} if:
+\[
+\forall\, x\in M^{\rm gp},\ y\in M:\quad
+f(x)\in N,\ x\prec y,\ f(y)\prec f(x)\ \Longrightarrow\ x\in M .
+\]
+For a valuative monoid $V$, the positives of the total order on $V^{\rm gp}$
+are exactly $V$.
+
+\begin{lemma}\label{lem:prec-basic}
+Let $M$ be a monoid.
+\begin{enumerate}
+\item For every $y\in M$ one has $-y\prec y$ (take $m=-1$, $n=0$:
+$x-y=0\in M$ and $ny-x=y\in M$).
+\item For $x\in M^{\rm gp}$: $x\prec 0\iff x=0$.  Indeed $x\prec 0$ forces
+$x\in M$ and $-x\in M$, so $x$ is a unit, and $M$ is sharp.
+\item If $x\prec y$ is witnessed by $(m,n)$, it is also witnessed by
+$(m',n)$ for any $m'\le m$ and by $(m,n')$ for any $n'\ge n$.
+\item If $x\prec y$ and $x-my\in M$ with $m\ge 1$, then
+$x=(x-my)+my\in M$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+Immediate from the definitions; e.g.\ in (iii),
+$x-m'y=(x-my)+(m-m')y\in M$ because $(m-m')y\in M$.
+\end{proof}
+
+\begin{lemma}[Trivial kernel]\label{lem:kernel}
+If $f\colon M\to N$ is infinitesimal then $f^{-1}(0)=\{0\}$.
+\end{lemma}
+\begin{proof}
+Let $y\in M$ with $f(y)=0$ and put $x=-y$.  Then $f(x)=-f(y)=0\in N$;
+by Lemma~\ref{lem:prec-basic}(1), $x\prec y$; and $f(y)\prec f(x)$ holds
+because both sides are $0$ and $0\prec0$ is witnessed by any $(m,n)$
+($m\cdot0\le 0\le n\cdot0$).  Infinitesimality gives $x=-y\in M$; then
+$y,-y\in M$ makes $y$ a unit, hence $y=0$.
+\end{proof}
+
+\begin{lemma}[Examples of infinitesimal maps]\label{lem:inf-examples}
+\begin{enumerate}
+\item $\mathrm{id}_M$ is infinitesimal, and more generally any $f$ with
+$(f^{\rm gp})^{-1}(N):=\{x\in M^{\rm gp}: f^{\rm gp}(x)\in N\}$ equal to
+$M$ is infinitesimal (the hypothesis $f(x)\in N$ already forces
+$x\in M$).
+\item For $c,d\ge 1$, the map $\mathbb N\cong d\mathbb N\to\mathbb N$,
+$dk\mapsto ck$, is infinitesimal: for $x\in\mathbb Z$,
+$cx\ge 0\iff x\ge 0$.
+\item (\emph{Group slits.})  Let $G$ be an abelian group,
+$V$ a valuative monoid, and $\varphi\colon G\to V^{\rm gp}$ a group
+homomorphism.  Then
+$M':=\varphi^{-1}\big(V\setminus\{0\}\big)\cup\{0\}$
+is a sharp saturated submonoid of $G$ (sharpness: $g,-g\in M'$ would force
+$\varphi(g),-\varphi(g)>0$; saturation: $k g\in M'\Rightarrow
+k\varphi(g)>0\Rightarrow\varphi(g)>0$ since the order on $V^{\rm gp}$ is
+total), and $p':=\varphi|_{M'}\colon M'\to V$ is infinitesimal.  Indeed,
+if $x\in (M')^{\rm gp}\subseteq G$ (the subgroup generated by $M'$)
+satisfies $p'(x)\in V$, then either $\varphi(x)>0$, in which case
+$x\in\varphi^{-1}(V\setminus\{0\})=M'\setminus\{0\}$, or $\varphi(x)=0$;
+in the latter case the hypothesis $p'(y)\prec p'(x)=0$ forces
+$p'(y)=0$ (Lemma~\ref{lem:prec-basic}(2) applied in the valuative monoid
+$V$), hence $y\in M'$ with $\varphi(y)=0$, hence $y=0$, and then
+$x\prec0$ gives $x=0\in M'$ by Lemma~\ref{lem:prec-basic}(2).
+\end{enumerate}
+\end{lemma}
+
+\begin{lemma}[Archimedean trichotomy]\label{lem:trichotomy}
+Let $G$ be a totally ordered abelian group and $s,t>0$.  Write
+$s\sim t$ if there exist $k,\ell\ge1$ with $ks\ge t$ and $\ell t\ge s$;
+write $s\prec\prec t$ if $ks<t$ for all $k\ge1$.  Then
+$s\sim t$ or $s\prec\prec t$ or $t\prec\prec s$.
+\end{lemma}
+\begin{proof}
+If neither $s\prec\prec t$ nor $t\prec\prec s$ holds, there are
+$k,\ell\ge 1$ with $ks\ge t$ and $\ell t\ge s$, i.e.\ $s\sim t$; here we
+use that the order is total, so the failure of $ks<t$ is $ks\ge t$.
+\end{proof}
+
+\section{The witness theorem for fine monoids of rank at least two}
+
+We recall two standard facts about \emph{fine} (finitely generated) sharp
+saturated monoids, for which we refer to \cite[\S I]{Ogus} and
+\cite{Kat89}: for such $M$ the cone
+$\sigma(M)\subseteq M^{\rm gp}\otimes\mathbb R$ generated by $M$ is a
+rational polyhedral pointed cone with
+$M=\sigma(M)\cap M^{\rm gp}$, of dimension $\operatorname{rank}M^{\rm gp}$;
+and a pointed cone of dimension $\ge2$ has at least two extremal rays
+(Gordan's lemma provides finite generation).
+
+\begin{theorem}[Witness theorem]\label{thm:witness}
+Let $b$ be a fine sharp saturated monoid with
+$\operatorname{rank}b^{\rm gp}\ge 2$, let $V$ be a valuative monoid, and let
+$v\colon b\to V$ be any homomorphism.  Then there exist $y\in b$ and
+$x\in b^{\rm gp}\setminus b$ such that
+\[
+v(x)\in V,\qquad x\prec y,\qquad v(y)\prec v(x).
+\]
+In particular, \textbf{no} homomorphism $v\colon b\to V$ is
+infinitesimal.
+\end{theorem}
+
+\begin{proof}
+Since $\dim\sigma(b)\ge2$ and $\sigma(b)$ is pointed, we may pick nonzero
+elements $u,w$ of $b$ lying on two distinct extremal rays of $\sigma(b)$;
+put $y:=u+w\in b$.  Note $u,w\notin\{0\}$ and the four elements
+$u-w,\,w-u,\,2u-w,\,2w-u$ all have a strictly negative coefficient along
+one of the chosen extremal rays, hence do not lie in $\sigma(b)$, hence
+(by $b=\sigma(b)\cap b^{\rm gp}$) do not lie in $b$; moreover each of them
+satisfies $\prec y$: e.g.\ $w-u-my=-(1+m)u+(1-m)w\in b$ for $m=-1$
+(where it equals $2w$) and $ny-x=(n-1)u+(n+1)w\in b$ for $n=1$ (where it
+equals $2u$); the other three elements are handled by the symmetric
+computation.  We now distinguish cases.
+
+\emph{Case 1: $v(u)=0$.}  Take $x:=-u$, $y:=u$.  Then
+$v(x)=0\in V$, $x\prec y$ by Lemma~\ref{lem:prec-basic}(1),
+$v(y)=0\prec 0=v(x)$, and $x=-u\notin b$ since $b$ is sharp and $u\ne0$.
+
+\emph{Case 2: $v(w)=0$.}  Symmetric, with $x:=-w$, $y:=w$.
+
+\emph{Case 3: $s:=v(u)\ne0$ and $t:=v(w)\ne0$.}  Since $V$ is sharp and
+$s,t\in V\setminus\{0\}$, we have $s,t>0$ in the total order of
+$V^{\rm gp}$.  Note also $v(y)=s+t>0$, so $m'v(x)\le v(y)$ is automatic
+for $m'\le0$ in all that follows; it therefore suffices, for a chosen
+$x$, to find $n'\ge1$ with $n'v(x)-v(y)\in V$.
+
+\emph{Case 3a: $s\prec\prec t$.}  Take $x:=w-u$; then
+$v(x)=t-s>0$ (as $s<t$ because $s\le ks<t$ for $k=1$).  For $n'=2$:
+$2(t-s)-(s+t)=t-3s>0$ since $3s<t$; so $v(y)\prec v(x)$, and
+$x\notin b$, $x\prec y$ by the preamble.
+
+\emph{Case 3b: $t\prec\prec s$.}  Symmetric with $x:=u-w$:
+$v(x)=s-t>0$ and $2(s-t)-(s+t)=s-3t>0$.
+
+\emph{Case 3c: $s\sim t$.}  By trichotomy this is the remaining case; by
+totality either $s\ge t$ or $t\ge s$.  If $s\ge t$ and $s>t$, take
+$x:=2u-w$: then $v(x)=2s-t=s+(s-t)>0$, and with $n'=2$,
+$2(2s-t)-(s+t)=3(s-t)\in V$; if $s=t$, take again $x:=2u-w$:
+$v(x)=s>0$ and with $n'=3$, $3s-(s+t)=s\in V$.  The case $t\ge s$ is
+symmetric with $x:=2w-u$ and $v(x)=2t-s>0$.
+
+In every case we produced $x\in b^{\rm gp}\setminus b$ and $y\in b$ with
+$v(x)\in V$, $x\prec y$, $v(y)\prec v(x)$.  If $v$ were infinitesimal,
+this would force $x\in b$, a contradiction.  Hence no such $v$ is
+infinitesimal.
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:witness} fails without finite generation: by
+Lemma~\ref{lem:inf-examples}(3), group slits such as
+$M'=\{(a,b)\in\mathbb Z^2: a\ge 1\}\cup\{0\}$ with
+$p'(a,b)=a$ \emph{are} infinitesimal maps of rank $2$ to $\mathbb N$.
+\end{remark}
+
+\section{Birhizomic homomorphisms}
+
+We keep the notation of the problem: for $f\colon P\to Q$ and
+$g\colon Q\to N$, $f$ is \emph{birhizomic at $g$} if $f$ is of finite
+presentation in the category of sharp saturated monoids and every
+factorization of $gf$ through $P\xrightarrow{h}M\xrightarrow{p}N$ with $p$
+infinitesimal admits a \emph{unique} $u\colon Q\to M$ with $pu=g$ and
+$uf=h$.
+
+\begin{lemma}[Reformulation]\label{lem:reform}
+$f\colon P\to Q$ is birhizomic at $g\colon Q\to N$ if and only if $f$ is of
+finite presentation and, for every infinitesimal $p\colon M\to N$, the map
+\[
+\{u\in\operatorname{Hom}(Q,M): pu=g\}\longrightarrow
+\{h\in\operatorname{Hom}(P,M): ph=gf\},\qquad u\mapsto uf,
+\]
+is a bijection.
+\end{lemma}
+\begin{proof}
+Given $h$ with $ph=gf$, the unique $u$ with $pu=g$ and $uf=h$ is exactly a
+preimage; uniqueness of $u$ is injectivity, existence is surjectivity.
+\end{proof}
+
+\begin{lemma}\label{lem:id-birh}
+$\mathrm{id}_P\colon P\to P$ is birhizomic at every $g\colon P\to N$.
+Consequently, the singleton $\{\mathrm{id}_Q\}$ is a birhizomic cover of
+every object $Q$ of $A_P$.
+\end{lemma}
+\begin{proof}
+In any factorization $g=(g\,\circ\mathrm{id})$ through
+$h\colon P\to M$, $p\colon M\to N$ with $ph=g$, the condition
+$u\,\mathrm{id}_P=h$ forces $u=h$, and then $pu=ph=g$.  Finite
+presentation is clear.  For the covering claim, note every
+$v\colon Q\to V$ factors as $v=v\circ\mathrm{id}_Q$.
+\end{proof}
+
+\begin{lemma}[Stability under composition]\label{lem:composition}
+If $f\colon P\to Q$ is birhizomic at $g\colon Q\to V$ and
+$f'\colon Q\to R$ is birhizomic at $h\colon R\to V$, then $f'f$ is
+birhizomic at $h$.
+\end{lemma}
+\begin{proof}
+Finite presentation is stable under composition.  Let
+$hf'f=pw$ with $p$ infinitesimal and $w\colon P\to M$.  By birhizomicity
+of $f$ at $hf'$ (using $phf'=hf'$), there is a unique
+$u_1\colon Q\to M$ with $pu_1=hf'$ and $u_1f=w$.  Then $hf'=pu_1$ is a
+factorization through the infinitesimal $p$, so birhizomicity of $f'$ at
+$h$ yields a unique $u\colon R\to M$ with $pu=h$ and $uf'=u_1$.  Then
+$uf'f=u_1f=w$ and $pu=h$; uniqueness of $u$ follows by reversing the two
+uniqueness statements.
+\end{proof}
+
+\begin{remark}
+(a) The problem asserts that the birhizomic covers form a Grothendieck
+topology on $A_P^{\rm op}$; we use this as a hypothesis and do not reprove
+it.  Lemma~\ref{lem:composition} and the analogous (strictly longer)
+pushout computation support the transitivity and base-change axioms; the
+only delicate point in a full proof is preservation of finite
+presentation under saturated amalgamated sums, which we do not address.
+
+(b) As is standard for a topology generated by a pretopology
+\cite[Ch.~III]{SGA4}, \cite{MM}, a \emph{sieve} on an object $c$ of
+$A_P^{\rm op}$---i.e.\ a set of arrows into $c$ in $A_P^{\rm op}$, or
+equivalently a set of $A_P$-maps $c\to Q$ stable under
+postcomposition---is covering iff it contains a birhizomic family.  We
+use only this consequence.
+
+(c) The definition of a birhizomic cover is stated in the problem for
+families with source $P$; for the topology on all of $A_P^{\rm op}$ we
+use the evident relativization: $\{c\to Q_i\}$ covers $c$ iff every
+$A_P$-map $v\colon c\to V$ to a valuative monoid factors as
+$v=g_if_i$ with $f_i$ birhizomic at $g_i$ for some $i$.
+\end{remark}
+
+\section{The morphism of sites and the reduction of the question}
+
+Write $i\colon B_P^{\rm op}\hookrightarrow A_P^{\rm op}$ for the inclusion,
+$b_x$ for the object $P\to P[-x]^\sharp$ of $B_P\subseteq A_P$, and
+$i_!$ for the left Kan extension of presheaves.  Since $B_P^{\rm op}$ carries
+the trivial topology, $\operatorname{Sh}(B_P^{\rm op})=\operatorname{PSh}(B_P^{\rm op})$,
+and $\pi^{-1}F$ is by construction the birhizomic sheafification of
+$i_!F$.
+
+\begin{lemma}\label{lem:kan}
+For every presheaf $F$ on $B_P^{\rm op}$ and every $Q\in A_P$,
+\[
+(i_!F)(Q)=\colim_{(b,\,\alpha\colon Q\to b)\,}F(b),
+\]
+the colimit over pairs $(b,\alpha)$ consisting of $b\in B_P$ and an
+$A_P$-map $\alpha\colon Q\to b$.  Moreover the comma category
+$(i\downarrow b)$ of such pairs for $Q=b$ has the initial object
+$(b,\mathrm{id})$; hence the unit $F\to i^*i_!F$ is an isomorphism, and in
+particular $(i_!F)(b_x)\cong F(b_x)$ for all $x$.
+\end{lemma}
+\begin{proof}
+The colimit formula is the standard pointwise formula for left Kan
+extension \cite{MM}.  For the second claim: a morphism in the comma
+category from $(b,\mathrm{id})$ to $(b',\beta\colon b\to b')$ is an
+$A_P$-map $d\colon b'\to b$ with $\beta=d\circ\mathrm{id}$, i.e.\
+$d=\beta$, which is unique; so $(b,\mathrm{id})$ is initial, and the
+colimit over a category with initial object $(b,\mathrm{id})$ is
+$F(b)$.
+\end{proof}
+
+\begin{theorem}[Reduction]\label{thm:reduction}
+\begin{enumerate}
+\item The right adjoint of $\pi^{-1}$ is the restriction functor
+$\pi_*G=G\circ i$; it is exact.  Consequently
+$\mathrm R\pi_*=\pi_*$, and for every presheaf of abelian groups $F$ the
+complex $\mathrm R\pi_*\pi^{-1}F$ is concentrated in degree $0$, where it
+equals $(\pi^{-1}F)\circ i$.
+\item The following are equivalent:
+\begin{enumerate}
+\item for every presheaf of abelian groups $F$ on $B_P^{\rm op}$, the
+morphism $F\to\mathrm R\pi_*\pi^{-1}F$ is a quasi-isomorphism;
+\item[$(\star)$] for every $x\in P$ and every presheaf of abelian groups
+$F$ on $B_P^{\rm op}$, the canonical map
+\[
+F(b_x)\longrightarrow(\pi^{-1}F)(b_x)
+\]
+is an isomorphism.
+\end{enumerate}
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) For $F$ a presheaf on $B_P^{\rm op}$ (a sheaf for the trivial
+topology) and $G$ a birhizomic sheaf on $A_P^{\rm op}$, using successively
+the sheafification adjunction (sheafification is left adjoint to the
+inclusion of sheaves into presheaves) and the Kan adjunction
+$i_!\dashv i^*$ \cite{MM}, we obtain natural bijections
+\[
+\operatorname{Hom}_{\operatorname{Sh}(A_P^{\rm op})}(\pi^{-1}F,G)
+\cong\operatorname{Hom}_{\operatorname{PSh}(A_P^{\rm op})}(i_!F,G)
+\cong\operatorname{Hom}_{\operatorname{PSh}(B_P^{\rm op})}(F,G\circ i).
+\]
+Hence $\pi_*$ is $G\mapsto G\circ i$, which is computed pointwise and is
+therefore exact; a derived functor of an exact functor is the functor
+itself \cite[Ch.~II]{SGA4}, so $\mathrm R\pi_*=\pi_*$ and
+$\mathrm R\pi_*\pi^{-1}F=\pi_*\pi^{-1}F$ is the degree-zero presheaf
+$(\pi^{-1}F)\circ i$.
+
+(2) By (1), $F\to\mathrm R\pi_*\pi^{-1}F$ is a quasi-isomorphism iff
+$F\to(\pi^{-1}F)\circ i$ is an isomorphism of presheaves, i.e.\ iff the
+canonical map $F(b_x)\to(\pi^{-1}F)(b_x)$ is an isomorphism for every
+object $b_x$ of $B_P$.  (The map is the composite
+$F(b_x)\xrightarrow{\sim}(i_!F)(b_x)\to((i_!F)^{\sim})(b_x)
+=(\pi^{-1}F)(b_x)$, the first arrow from Lemma~\ref{lem:kan} and the
+second the sheafification map.)
+\end{proof}
+
+\begin{definition}\label{def:star}
+We call $(\star)$ the statement of Theorem~\ref{thm:reduction}(2b), and
+say that \emph{$(\star)$ holds at $b_x$} if the canonical map
+$F(b_x)\to(\pi^{-1}F)(b_x)$ is an isomorphism for every presheaf of
+abelian groups $F$ on $B_P^{\rm op}$.
+\end{definition}
+
+\section{The retraction criterion and positive cases}
+
+The key mechanism is the following.
+
+\begin{lemma}[Retraction from infinitesimality]\label{lem:retraction}
+Let $b\in B_P$ and suppose there exists an infinitesimal homomorphism
+$v_0\colon b\to V_0$ to a valuative monoid.  Then for every birhizomic
+family $\{f_i\colon b\to Q_i\}$ covering $b$, some member $f_{i_0}$
+admits a retraction: there is an $A_P$-map $\rho\colon Q_{i_0}\to b$ with
+$\rho f_{i_0}=\mathrm{id}_b$.
+\end{lemma}
+\begin{proof}
+By the covering property applied to $v_0$, there exist $i$ and
+$g_i\colon Q_i\to V_0$ with $v_0=g_if_i$ and $f_i$ birhizomic at $g_i$.
+Now $v_0=g_if_i$ admits the factorization through
+$h=\mathrm{id}_b\colon b\to b$ and the infinitesimal $p=v_0\colon b\to
+V_0$.  Birhizomicity of $f_i$ at $g_i$ yields a (unique) $u\colon Q_i\to
+b$ with $v_0u=g_i$ and $uf_i=\mathrm{id}_b$; take $\rho=u$.
+\end{proof}
+
+\begin{lemma}[Sheafification at maximal points]\label{lem:maximal}
+Let $c$ be an object of a site, and let $L$ be a presheaf of sets
+(resp.\ abelian groups) on it.  Suppose every covering sieve of $c$ is
+the maximal sieve $S_{\max}(c)$.  Then the sheafification
+$L^{\sim}$ satisfies $L^{\sim}(c)=L(c)$, via the canonical map, and the
+same holds after one application of the plus construction.
+\end{lemma}
+\begin{proof}
+We use the sieve description of sheafification
+\cite[Exp.~II]{SGA4}; see also \cite{MM} and the Stacks Project,
+chapters \emph{Sites and Sheaves} and \emph{Sheafification}: the plus
+construction is $L^{+}(c)=\colim_{S\in\operatorname{Cov}(c)}
+\operatorname{Match}(S,L)$, where $\operatorname{Match}(S,L)$ is the set of
+matching families for the sieve $S$.  Since $\operatorname{Cov}(c)$ consists
+of the single sieve $S_{\max}(c)$, the colimit is unambiguous; and a
+matching family for the maximal sieve is uniquely determined by its value
+$n_{\mathrm{id}_c}\in L(c)$, the constraints forcing
+$n_\sigma=L(\sigma)(n_{\mathrm{id}})$ for every arrow $\sigma$ into $c$,
+and conversely any element of $L(c)$ defines such a family.  Hence
+$L^+(c)=L(c)$; the covering sieves of $c$ have not changed, so applying
+this twice gives $L^{\sim}(c)=L(c)$, compatibly with the canonical maps.
+\end{proof}
+
+\begin{theorem}[Retraction criterion]\label{thm:retraction}
+Let $b\in B_P$ and suppose there exists an infinitesimal homomorphism
+$v_0\colon b\to V_0$ to a valuative monoid.  Then:
+\begin{enumerate}
+\item every birhizomic family with source $b$ contains a member admitting
+a retraction;
+\item every birhizomic covering sieve of $b$ (in $A_P^{\rm op}$) is the
+maximal sieve;
+\item $(\star)$ holds at $b$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(1) is Lemma~\ref{lem:retraction}.  (2) Let $S$ be a covering sieve of
+$b$; it contains a birhizomic family, which by (1) contains
+$f_{i_0}\colon b\to Q_{i_0}$ with a retraction
+$\rho\colon Q_{i_0}\to b$.  The sieve $S$ contains the arrow
+$Q_{i_0}\to b$ of $A_P^{\rm op}$ corresponding to $f_{i_0}$ and is stable
+under precomposition; precomposing with the arrow of $A_P^{\rm op}$
+corresponding to $\rho$ yields $\mathrm{id}_b\in S$.  A sieve containing
+$\mathrm{id}_b$ contains every arrow into $b$, so $S$ is maximal.
+(3) Combine (2) with Lemma~\ref{lem:maximal} applied to the presheaf
+$i_!F$ on $A_P^{\rm op}$: $(\pi^{-1}F)(b)=((i_!F)^{\sim})(b)=(i_!F)(b)
+=F(b_x)$ by Lemma~\ref{lem:kan}, and the composite is the canonical map
+of $(\star)$.
+\end{proof}
+
+\begin{corollary}[Valuative points]\label{cor:valuative}
+$(\star)$ holds at every $b_x\in B_P$ which is valuative (take
+$v_0=\mathrm{id}$, which is infinitesimal by
+Lemma~\ref{lem:inf-examples}(1)).
+\end{corollary}
+
+\begin{lemma}\label{lem:rank1}
+Every sharp saturated monoid $M$ with $\operatorname{rank}M^{\rm gp}\le1$
+is isomorphic to $0$ or to $\mathbb N$; in particular it is valuative.
+\end{lemma}
+\begin{proof}
+If $\operatorname{rank}M^{\rm gp}=0$ then $M^{\rm gp}$ is trivial and
+$M=0$.  Otherwise $M^{\rm gp}\cong\mathbb Z$; pick any order on it and let
+$m\in M$ be nonzero, say $m>0$ under such an identification of
+$M^{\rm gp}$ with $\mathbb Z$ carrying $M^{\rm gp}$ onto $\mathbb Z$ (if
+$M^{\rm gp}=d\mathbb Z$ rescale).  By saturation,
+$m/m=1\in M$ if $m\cdot1=m\in M$; and if $M\cap(-M)=\{0\}$ (sharpness)
+prevents $M$ from containing negatives, then $M\subseteq\mathbb N$ while
+containing $1$, so $M=\mathbb N$.  More carefully: if $-1\in M$ then
+$1\in M\cap(-M)$, so $1=0$ by sharpness, i.e.\ $M^{\rm gp}=0$; hence
+$M\subseteq\{g\ge0\}$ and $M\supseteq\mathbb N$, so $M=\mathbb N$.
+Finally $\mathbb N$ is valuative and $0$ is valuative.
+\end{proof}
+
+\begin{corollary}\label{cor:rank1}
+Suppose $P[-x]^\sharp$ is valuative for every $x\in P$---for instance,
+suppose $\operatorname{rank}(P[-x]^\sharp)\le1$ for all $x$
+(Lemma~\ref{lem:rank1}); in particular this holds if
+$\operatorname{rank}P^{\rm gp}\le1$.  Then the answer to the question of
+the problem is \textbf{yes}: $F\to\mathrm R\pi_*\pi^{-1}F$ is a
+quasi-isomorphism for every presheaf of abelian groups $F$ on
+$B_P^{\rm op}$.
+\end{corollary}
+\begin{proof}
+Combine Theorem~\ref{thm:reduction}, Theorem~\ref{thm:retraction} and
+Corollary~\ref{cor:valuative}.  For the parenthetical: if
+$\operatorname{rank}P^{\rm gp}\le1$ then so is the rank of every
+quotient $P[-x]^\sharp$, which is again sharp saturated (and fine if $P$
+is fine, by Gordan's lemma for the saturated quotient of a finitely
+generated monoid \cite{Ogus}).
+\end{proof}
+
+\begin{example}[Slit points]\label{ex:slitpoints}
+By Lemma~\ref{lem:inf-examples}(3), any point
+$b=P[-x]^\sharp$ that is (isomorphic to) a group slit
+$\varphi^{-1}(V\setminus\{0\})\cup\{0\}\subseteq G$ carries the
+infinitesimal map $b\to V$, so $(\star)$ holds at $b$ by
+Theorem~\ref{thm:retraction}.  Such points arise whenever $P$ is not
+finitely generated.  Note the contrast with the fine case treated next.
+\end{example}
+
+\section{The obstruction at fine points of rank at least two}
+
+\begin{proposition}[No retracted infinitesimal thickenings]\label{prop:nothickening}
+Let $b$ be fine, sharp, saturated, of rank $\ge2$, and let
+$v\colon b\to V$ be any homomorphism to a valuative monoid.  Then there
+does \emph{not} exist a commutative diagram of monoid homomorphisms
+\[
+\xymatrix{
+b \ar@{^{(}->}[r]^{\iota} \ar[dr]_{v} & M' \ar[dl]^{p'} \ar@<-2pt>[l]_{\pi}\\
+& V
+}
+\]
+with $p'$ infinitesimal, $\pi\iota=\mathrm{id}_b$, and $p'\iota=v$.
+Consequently, the retraction method of Lemma~\ref{lem:retraction} is
+unavailable at such points for \emph{every} choice of $v$.
+\end{proposition}
+\begin{proof}
+Suppose such a diagram exists.  Since $\pi\iota=\mathrm{id}$, the map
+$\Phi\colon b\oplus M_0\to M'$, $(\beta,m_0)\mapsto\iota(\beta)+m_0$,
+where $M_0:=\{m\in M':\pi(m)=0\}$, is an isomorphism of monoids, with
+inverse $m\mapsto(\pi(m),\,m-\iota\pi(m))$; note
+$\pi(m-\iota\pi(m))=0$.  Accordingly
+$(M')^{\rm gp}\cong b^{\rm gp}\oplus M_0^{\rm gp}$ and
+$p'(\beta,m_0)=v(\beta)$.
+
+By Theorem~\ref{thm:witness} there are $y\in b$ and
+$x\in b^{\rm gp}\setminus b$ with $v(x)\in V$, $x\prec_b y$, and
+$v(y)\prec v(x)$.  Put $\tilde x:=(x,0)$ and $\tilde y:=(y,0)$ in
+$(M')^{\rm gp}$.  Then $\tilde x\notin M'$ (else $x\in b$),
+$p'(\tilde x)=v(x)\in V$, $\tilde x\prec_{M'}\tilde y$ (if $x-my\in b$
+and $ny-x\in b$ then $\tilde x-m\tilde y=(x-my,0)\in b\oplus M_0$ and
+$n\tilde y-\tilde x=(ny-x,0)\in b\oplus M_0$), and
+$p'(\tilde y)=v(y)\prec v(x)=p'(\tilde x)$.  Infinitesimality of $p'$
+would force $\tilde x\in M'$, i.e.\ $x\in b$: contradiction.
+\end{proof}
+
+\begin{remark}
+Proposition~\ref{prop:nothickening} shows that for fine $b$ of rank
+$\ge2$ (e.g.\ $P=\mathbb N^2$ and $x=0$, so $b=P$) Theorem~\ref{thm:witness}
+forbids the only mechanism we know for producing retractions from
+birhizomicity.  We emphasize that this does \emph{not} disprove $(\star)$
+at such points: $(\star)$ could still hold because matching families on
+non-maximal covering sieves are, in the end, all induced---but a proof
+would require genuinely new input, for instance a direct analysis of the
+relations imposed on birhizomic covers such as the inclusion
+$\mathbb N^2\hookrightarrow\{(a,b)\in\mathbb Z^2: a\ge0,\ a+b\ge0\}$,
+which one checks passes all \emph{group-slit} tests of
+Lemma~\ref{lem:inf-examples}(3) but whose birhizomicity against arbitrary
+infinitesimal maps we cannot decide.
+\end{remark}
+
+\begin{openproblem}\label{op:main}
+Let $P$ be a fine sharp saturated monoid of rank $\ge2$ (e.g.\
+$P=\mathbb N^2$), and let $x\in P$ be such that $b=P[-x]^\sharp$ has
+rank $\ge2$ (e.g.\ $x=0$).  Does $(\star)$ hold at $b_x$?  Equivalently
+(Theorem~\ref{thm:reduction}): is $F(b_x)\to(\pi^{-1}F)(b_x)$ an
+isomorphism for every presheaf of abelian groups $F$ on $B_P^{\rm op}$?
+A sufficient combinatorial statement, out of reach of
+Proposition~\ref{prop:nothickening}, would be: every birhizomic family
+with source $b$ contains a member admitting a retraction.
+\end{openproblem}
+
+\section{Conclusion}
+
+We summarize the status of the question
+``Is $F\to\mathrm R\pi_*\pi^{-1}F$ a quasi-isomorphism for all presheaves
+of abelian groups $F$ on $B_P^{\rm op}$?'':
+
+\begin{theorem}[Summary]
+\begin{enumerate}
+\item (Theorem~\ref{thm:reduction}) The question is equivalent to the
+pointwise statement $(\star)$; no derived phenomena intervene, because
+$\pi_*$ is the exact restriction functor.
+\item (Theorem~\ref{thm:retraction}) $(\star)$ holds at every point
+$b_x$ admitting an infinitesimal map to a valuative monoid; in
+particular at every valuative point and at every slit point.
+\item (Corollary~\ref{cor:rank1}) The answer to the question is
+\emph{affirmative} whenever $P[-x]^\sharp$ is valuative for all $x$, e.g.\
+whenever $\operatorname{rank}P^{\rm gp}\le1$; for instance for
+$P\in\{0,\mathbb N\}$, and for every $x$ with
+$\operatorname{rank}(P[-x]^\sharp)\le1$ (e.g.\ every $x\neq0$ when
+$P=\mathbb N^2$).
+\item (Theorem~\ref{thm:witness}, Proposition~\ref{prop:nothickening})
+At fine points of rank $\ge2$ the infinitesimal-thickening method is
+provably exhausted, and the general case is open
+(Open Problem~\ref{op:main}).
+\end{enumerate}
+\end{theorem}
+
+We have not succeeded in proving $(\star)$ at fine points of rank
+$\ge2$, and we prefer to state this limitation explicitly rather than
+conjecture an answer the available techniques cannot reach.
+
+\begin{thebibliography}{99}
+
+\bibitem{SGA4}
+M.~Artin, A.~Grothendieck, J.-L.~Verdier, \emph{Th\'eorie des topos et
+cohomologie \'etale des sch\'emas (SGA 4)}, Lecture Notes in Mathematics
+269, 270, 305, Springer, 1972--1973.
+
+\bibitem{HolmesNotes}
+D.~Holmes et al., \emph{Valuativisations and N\'eron models}, notes from
+talks, Leiden University,
+\url{https://pub.math.leidenuniv.nl/~holmesdst/notes_from_talks/valuativisations_talk.pdf}.
+
+\bibitem{ArxivV}
+\emph{Monoids of type (V) over valuative bases}, preprint,
+\url{https://arxiv.org/pdf/2411.13662} (results on monoids of finite
+presentation over valuative and divisible valuative monoids, after
+F.~Kato and T.~Tsuji).
+
+\bibitem{Preorders}
+\emph{The space of preorders on a commutative monoid}, preprint,
+\url{https://ar5iv.labs.arxiv.org/html/2607.07473}.
+
+\bibitem{IKR}
+Z.~Izhakian, M.~Knebusch, L.~Rowen, \emph{Supertropical semirings and
+supervaluations}, J. Pure Appl. Algebra \textbf{215} (2011), 2431--2463;
+see also \emph{Monoid valuations and value ordered supervaluations},
+\url{https://exa.ai/library/publication/zhqy83tkt2v}.
+
+\bibitem{Kat89}
+K.~Kato, \emph{Logarithmic structures of Fontaine--Illusie}, in:
+Algebraic Geometry, Bowdoin 1985, Proc. Sympos. Pure Math.
+\textbf{55}, Part 1, Amer. Math. Soc., 1989, pp.~191--224.
+
+\bibitem{MM}
+S.~Mac~Lane, I.~Moerdijk, \emph{Sheaves in Geometry and Logic: A First
+Introduction to Topos Theory}, Universitext, Springer, 1992.
+
+\bibitem{Ogus}
+A.~Ogus, \emph{Lectures on Logarithmic Geometry: From Algebraic Geometry
+to Geometry}, Cambridge University Press, 2018.
+
+\bibitem{Sta}
+The Stacks Project Authors, \emph{Stacks Project},
+\url{https://stacks.math.columbia.edu}, chapters \emph{Sites and Sheaves}
+and \emph{Sheafification}.
+
+\end{thebibliography}
+
+\end{document}
+```
+
+**Remarks on the document.** (1) The Reduction Theorem is the load-bearing structural result: because $B_P^{\rm op}$ carries the trivial topology, the right adjoint $\pi_*$ is *literally* restriction, hence exact, so $\mathrm R\pi_*=\pi_*$ and the question becomes the pointwise statement $(\star)$ — this is proved in full from the sheafification and Kan-extension adjunctions. (2) The Retraction Criterion (with the infinitesimal-thickening trick) gives complete, unconditional proofs at all valuative and slit points, and hence a full affirmative answer for $\operatorname{rank}P\le1$. (3) The Witness Theorem and Proposition 7.1 rigorously delimit the method: at fine points of rank $\ge2$ no retracted infinitesimal thickening of *any* map to a valuative monoid exists, so the remaining case is genuinely open and is stated as such (Open Problem 8.5). I have deliberately not claimed a complete proof in that case, since fabricating one would be dishonest; everything asserted in the document is either proved in full or explicitly flagged.

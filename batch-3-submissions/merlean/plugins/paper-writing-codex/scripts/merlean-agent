@@ -1,0 +1,95 @@
+#!/usr/bin/env python3
+"""Resolve a MerLean agent/grade target without launching a model or changing plan state."""
+import argparse
+import json
+from pathlib import Path
+
+
+def main():
+    root = Path(__file__).resolve().parents[1]
+    installed_providers = [p for p in ("claude", "codex")
+                           if (root / f".{p}-plugin/plugin.json").is_file()]
+    installed_provider = installed_providers[0] if len(installed_providers) == 1 else None
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("-NL", "--nl", action="store_true", help="Lite modifier: disable all Lean execution; retain Silver gates")
+    modes = parser.add_mutually_exclusive_group()
+    modes.add_argument("-lite", "--lite", dest="mode", action="store_const", const="lite")
+    modes.add_argument("-heavy", "--heavy", dest="mode", action="store_const", const="heavy")
+    modes.add_argument("--paper-writing", dest="mode", action="store_const", const="paper-writing")
+    modes.add_argument("--referee", dest="mode", action="store_const", const="referee")
+    parser.add_argument("--provider", choices=("claude", "codex"),
+                        default=installed_provider or "codex")
+    parser.add_argument("--task", choices=("research", "formalize", "prove", "translate-only", "paper", "referee"))
+    parser.add_argument("--resume-mode", choices=("lite", "heavy", "paper-writing", "referee"),
+                        help="explicit mode from the campaign being resumed; no ambient state lookup")
+    parser.add_argument("--campaign", action="store_true",
+                        help="opt in to outer multi-problem coordination; selection only, no state or dispatch")
+    parser.add_argument("--exam", action="store_true",
+                        help="select the shared 24-hour exam profile with automatic writing at hour 22.75; selection only")
+    args = parser.parse_args()
+    if args.mode and args.resume_mode and args.mode != args.resume_mode:
+        parser.error("explicit mode conflicts with resumed campaign mode")
+    mode = args.mode or args.resume_mode
+    requested_mode = "referee" if args.task == "referee" else "paper-writing" if args.task == "paper" else "heavy" if args.task in {"formalize", "prove", "translate-only"} else None
+    if mode and requested_mode and mode != requested_mode:
+        parser.error("selected mode conflicts with requested task")
+    if mode == "referee" and args.task not in {None, "referee"}:
+        parser.error("referee mode conflicts with requested task")
+    mode = mode or requested_mode or "lite"
+    if args.exam and (mode == "referee" or args.task == "translate-only"):
+        parser.error("--exam applies to research or paper writing, not referee/translation-only tasks")
+    if args.nl and (mode != "lite" or args.resume_mode):
+        parser.error("-NL requires fresh Lite research; resumed capability is inherited from persisted policy")
+    agent = mode if mode in {"paper-writing", "referee"} else "merlean-" + mode
+    installed = root / "skills" / agent / "SKILL.md"
+    bundled = root / "plugins" / f"{agent}-{args.provider}" / "skills" / agent / "SKILL.md"
+    entry = installed if installed_provider == args.provider and installed.is_file() else bundled
+    # All bundles retain internal capabilities, but selecting another public agent
+    # does not pretend to install that agent or launch an LLM.
+    selection = {
+        "agent": agent, "provider": args.provider, "lite": mode == "lite",
+        "nl_only": None if args.resume_mode else args.nl, "lean_enabled": None if args.resume_mode else not args.nl,
+        "capability_policy": "inherit_persisted" if args.resume_mode else "nl" if args.nl else "lean-enabled",
+        "grade_target": None if args.task == "translate-only" or mode in {"paper-writing", "referee"} else "SILVER" if mode == "lite" else "GOLD",
+        "workflow": args.task or ("paper" if mode == "paper-writing" else "referee" if mode == "referee" else "research"),
+        "entrypoint": str(entry) if entry.is_file() else None,
+        "source_instructions": str(root / "workflows" / f"{agent}.md"),
+        "launches_model": False,
+        "campaign_enabled": args.campaign,
+        "campaign_entrypoint": str(root / "scripts/merlean-campaign") if args.campaign else None,
+        "profile": "exam" if args.exam else "standard",
+        "convergence": {
+            "enabled": True, "exam_required": False,
+            "trigger": "promising_coherent_high_level_skeleton",
+            "changes_research_acceptance": False,
+            "source_instructions": str(root / "docs/research-convergence.md"),
+        },
+    }
+    if args.exam:
+        selection["exam"] = {
+            "clock_scope": "whole_exam_all_problems", "wall_clock_seconds": 86400,
+            "paper_transition_seconds": 81900, "max_pages_per_solution": 16,
+            "writing_profile": "exam", "full_polishing_required": True,
+            "changes_research_acceptance": False,
+            "source_instructions": str(root / "docs/exam-mode.md"),
+            "runtime_entrypoint": str(root / "scripts/merlean-codex-pilot")
+                if args.provider == "codex" and mode == "lite" else None,
+            "runtime_requires_explicit_launch": True,
+        }
+    if args.provider == "codex":
+        selection["model_defaults"] = {
+            "main": "gpt-6-astra", "execution_subagent": "gpt-6.1-sol",
+            "independent_reviewer": "gpt-6-astra", "optional_supervisor": "gpt-6-astra",
+        }
+    if mode == "referee":
+        selection.update({
+            "verification_agent": "merlean-lite", "verification_mode": "lite",
+            "verification_grade_ceiling": "SILVER",
+            "verification_source_instructions": str(root / "workflows/merlean-lite.md"),
+        })
+    print(json.dumps(selection, indent=2))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

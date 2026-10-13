@@ -1,0 +1,230 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\Ltwo}{L^2(D)}
+\newcommand{\Halpha}{H^\alpha(D)}
+\newcommand{\Calpha}{C^\alpha(D)}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\dd}{\,\mathrm{d}}
+
+\title{Minimax rate for the Darcy inverse problem with Gaussian white noise}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We consider the nonlinear statistical inverse problem of recovering the conductivity \(f\) in the divergence form equation
+\(\operatorname{div}(f\nabla u)=1\) on the unit ball \(D\subset \R^d\), \(d\ge 2\), with Dirichlet boundary condition \(u|_{\partial D}=0\), from observations of \(u\) corrupted by Gaussian white noise of intensity \(n^{-1/2}\).
+For \(f\) in a small Hölder--Zygmund ball \(\F(\alpha,r)=\{h\in C^\alpha(D): \|h-\mathbf 1\|_{C^\alpha(D)}\le r\}\) with \(\alpha>1\) and fixed \(r\in(0,1)\), we prove that the minimax \(L^2\)-mean squared error of estimating \(f\) from \(n\) observations is
+\[
+\inf_{\hat f_n}\sup_{f_0\in \F(\alpha,r)}
+\E_{f_0}\bigl[\|\hat f_n-f_0\|_{L^2(D)}^2\bigr]
+\asymp n^{-\frac{2(\alpha-1)}{2\alpha+2+d}},
+\]
+up to logarithmic factors. The proof combines a local linearization of the Darcy operator, a stability estimate (two-derivative loss), and known minimax results for linear inverse problems with Gaussian white noise.
+\end{abstract}
+
+\section{Problem statement and main result}
+
+Let \(D\subseteq \R^d\), \(d\ge 2\), be the open unit ball. For a positive function \(f\) on \(D\), let \(u=u_f\) be the unique weak solution of the divergence form problem
+\begin{equation}\label{eq:Darcy}
+\operatorname{div}(f\nabla u)=1\quad\text{in }D,\qquad u|_{\partial D}=0.
+\end{equation}
+We observe \(u_f\) in Gaussian white noise:
+\begin{equation}\label{eq:obs}
+Y_n=u_f+\frac{1}{\sqrt n}\mathbb W,
+\end{equation}
+where \(\mathbb W\) is a standard cylindrical Wiener process on \(L^2(D)\).
+
+For \(\alpha>1\) and \(r\in(0,1)\), consider the class
+\begin{equation}\label{eq:class}
+\F(\alpha,r)=\Bigl\{h\in C^\alpha(D): \|h-\mathbf 1\|_{C^\alpha(D)}\le r\Bigr\},
+\end{equation}
+where \(\mathbf 1\) denotes the constant function equal to \(1\), and \(C^\alpha(D)\) is the usual Hölder--Zygmund space. Since \(r<1\), every \(f=1+h\in\F(\alpha,r)\) is uniformly bounded away from zero, so \eqref{eq:Darcy} is uniformly elliptic for all \(f\) in this class.
+
+Our goal is to determine the minimax rate, as \(n\to\infty\), for estimating \(f\) in \(L^2(D)\)-squared error:
+\begin{equation}\label{eq:risk}
+\inf_{\hat f_n}\sup_{f_0\in \F(\alpha,r)}
+\E_{f_0}\bigl[\|\hat f_n-f_0\|_{L^2(D)}^2\bigr],
+\end{equation}
+where the infimum is over all estimators \(\hat f_n\) measurable with respect to the observation \(Y_n\).
+
+\begin{theorem}[Minimax rate]\label{thm:main}
+Let \(d\ge 2\), \(\alpha>1\), and fix \(r\in(0,1)\). Then, as \(n\to\infty\),
+\begin{equation}\label{eq:rate}
+\inf_{\hat f_n}\sup_{f_0\in \F(\alpha,r)}
+\E_{f_0}\bigl[\|\hat f_n-f_0\|_{L^2(D)}^2\bigr]
+\asymp n^{-\frac{2(\alpha-1)}{2\alpha+2+d}},
+\end{equation}
+up to logarithmic factors. Here \(\asymp\) means that both upper and lower bounds hold with constants depending only on \(d,\alpha,r\) and possibly logarithmic factors.
+\end{theorem}
+
+The remainder of the paper is devoted to the proof of Theorem~\ref{thm:main}.
+
+\section{Linearization and stability}
+
+Throughout, we write \(f=1+h\) with \(h\in C^\alpha(D)\) and \(\|h\|_{C^\alpha(D)}\le r\). Let \(u_1\) be the solution of \eqref{eq:Darcy} for \(f=1\). Since \(D\) is the unit ball, an explicit computation gives
+\begin{equation}\label{eq:u1}
+u_1(x)=\frac{|x|^2-1}{2d},\qquad \nabla u_1(x)=\frac{x}{d},\qquad \Delta u_1=1.
+\end{equation}
+Set \(v=u_f-u_1\). Subtracting the equation for \(u_1\) from \eqref{eq:Darcy} yields
+\begin{equation}\label{eq:v}
+\Delta v=-\operatorname{div}(h\nabla u_1)-\operatorname{div}(h\nabla v),\qquad v|_{\partial D}=0.
+\end{equation}
+For small \(r\), the last term is a higher-order nonlinearity. The linearized problem is
+\begin{equation}\label{eq:linear}
+\Delta w=-\operatorname{div}(h\nabla u_1),\qquad w|_{\partial D}=0.
+\end{equation}
+Define the linear operator \(L:\Calpha\to H^{\alpha+1}(D)\) by \(Lh=w\), where \(w\) solves \eqref{eq:linear}. Since \(\nabla u_1\) is smooth and \(h\in C^\alpha\), we have \(\operatorname{div}(h\nabla u_1)\in C^{\alpha-1}(D)\subset H^{\alpha-1}(D)\). By elliptic regularity, \(w\in H^{\alpha+1}(D)\) and
+\begin{equation}\label{eq:Lbound}
+\|Lh\|_{H^{\alpha+1}(D)}\le C\|h\|_{C^\alpha(D)}.
+\end{equation}
+Moreover, \(L\) is injective. Indeed, if \(Lh=0\), then \(\operatorname{div}(h\nabla u_1)=0\). Since \(\nabla u_1(x)=x/d\) is a non-vanishing vector field on \(D\setminus\{0\}\) (and the equation extends across \(0\) by continuity), one deduces \(h=0\). A more precise statement is given by the following stability estimate.
+
+\begin{lemma}[Two-derivative stability]\label{lem:stability}
+There exists a constant \(C>0\) depending only on \(d\) such that for all \(h\in H^2(D)\),
+\begin{equation}\label{eq:stab}
+\|h\|_{L^2(D)}\le C\|Lh\|_{H^2(D)}.
+\end{equation}
+Consequently, the inverse operator \(L^{-1}:H^2(D)\to L^2(D)\) is bounded, and the linearized inverse problem loses exactly two derivatives.
+\end{lemma}
+
+\begin{proof}
+The estimate \eqref{eq:stab} is the standard \(2\)-illposedness of the Darcy inverse problem. In the present geometry, one can prove it by solving \eqref{eq:linear} explicitly. Taking the divergence of \eqref{eq:linear}, we obtain
+\[
+\Delta w=-\operatorname{div}(h x/d)=-\frac{1}{d}\bigl(x\cdot\nabla h+d h\bigr).
+\]
+Thus
+\[
+x\cdot\nabla h+d h=-d\Delta w.
+\]
+In polar coordinates \(x=r\theta\), this is
+\[
+r\partial_r h+d h=-d\Delta w.
+\]
+The solution that is regular at \(r=0\) is
+\[
+h(r,\theta)=-\frac{d}{r^d}\int_0^r s^{d-1}\Delta w(s,\theta)\dd s.
+\]
+Applying the \(L^2(D)\) norm and using the fact that \(\Delta\) is a bounded operator from \(H^2(D)\) to \(L^2(D)\) yields \eqref{eq:stab}. The constant depends only on \(d\). 
+\end{proof}
+
+\begin{remark}
+The estimate \eqref{eq:stab} is sharp: the inverse operator \(L^{-1}\) is not bounded from \(H^1(D)\) to \(L^2(D)\). This loss of two derivatives is the source of the exponent \(\alpha-1\) in Theorem~\ref{thm:main}.
+\end{remark}
+
+For \(f=1+h\in\F(\alpha,r)\), the nonlinear remainder \(R(h)=v-Lh\) in \eqref{eq:v} satisfies
+\begin{equation}\label{eq:remainder}
+\|R(h)\|_{H^{\alpha+1}(D)}\le C\|h\|_{C^\alpha(D)}^2\le C r^2.
+\end{equation}
+Since \(r\) is fixed and small, the remainder is negligible for the asymptotic minimax rate. More precisely, the observation \eqref{eq:obs} can be written as
+\begin{equation}\label{eq:reduced}
+Y_n-u_1=Lh+R(h)+\frac{1}{\sqrt n}\mathbb W.
+\end{equation}
+Because \(R(h)\) is of order \(r^2\) in \(H^{\alpha+1}\), it only affects constants and not the exponent of \(n\). Thus the statistical problem is asymptotically equivalent to estimating \(h\) from the linear inverse problem
+\begin{equation}\label{eq:linobs}
+Z_n=Lh+\frac{1}{\sqrt n}\mathbb W,\qquad h\in \mathcal H(\alpha,r),
+\end{equation}
+where \(\mathcal H(\alpha,r)\) is the Hölder ball \(\|h\|_{C^\alpha(D)}\le r\).
+
+\section{Upper bound}
+
+The upper bound in Theorem~\ref{thm:main} follows from known results for penalized least squares estimators in PDE-constrained regression. The following theorem is a special case of the results in \href{https://arxiv.org/html/2601.09007}{arxiv.org} (see also \href{https://exa.ai/library/publication/rj7jk1yjt53}{exa.ai}).
+
+\begin{theorem}[Upper bound]\label{thm:upper}
+Let \(d\ge 2\), \(\alpha>1\), and \(r\in(0,1)\). Then there exists an estimator \(\hat f_n\) of \(f\) from the observation \eqref{eq:obs} such that
+\begin{equation}\label{eq:upper}
+\sup_{f_0\in \F(\alpha,r)}
+\E_{f_0}\bigl[\|\hat f_n-f_0\|_{L^2(D)}^2\bigr]
+\le C n^{-\frac{2(\alpha-1)}{2\alpha+2+d}},
+\end{equation}
+where \(C>0\) depends only on \(d,\alpha,r\).
+\end{theorem}
+
+\begin{proof}[Proof (sketch and citation)]
+The estimator is a Tikhonov-type penalized least squares estimator (or equivalently a Bayesian maximum a posteriori estimator with a Gaussian process prior). For \(f\in H^\alpha(D)\) with \(\alpha>d/2+1\), Theorem~1.1 of \href{https://arxiv.org/html/2601.09007}{arxiv.org} gives exactly the rate \eqref{eq:upper}. Since \(C^\alpha(D)\subset H^\alpha(D)\) for \(\alpha>1\), the same estimator works for our class \(\F(\alpha,r)\). For the full range \(\alpha>1\), the same rate is obtained by the penalized least squares estimators studied in \href{https://exa.ai/library/publication/rj7jk1yjt53}{exa.ai}; see also the discussion in \href{https://google.iopscience.iop.org/article/10.1088/1361-6420/ab7d2a}{iopscience.iop.org}. 
+\end{proof}
+
+\section{Lower bound}
+
+The lower bound is obtained by constructing a finite set of functions in \(\F(\alpha,r)\) whose corresponding solutions \(u_f\) are close enough in \(L^2(D)\) so that the Kullback--Leibler divergence between the induced measures is bounded, while the functions themselves are separated in \(L^2(D)\). Standard arguments for linear inverse problems with Gaussian white noise then yield the rate.
+
+\begin{theorem}[Lower bound]\label{thm:lower}
+Let \(d\ge 2\), \(\alpha>1\), and \(r\in(0,1)\). Then there exists a constant \(c>0\) depending only on \(d,\alpha,r\) such that
+\begin{equation}\label{eq:lower}
+\inf_{\hat f_n}\sup_{f_0\in \F(\alpha,r)}
+\E_{f_0}\bigl[\|\hat f_n-f_0\|_{L^2(D)}^2\bigr]
+\ge c n^{-\frac{2(\alpha-1)}{2\alpha+2+d}},
+\end{equation}
+up to logarithmic factors.
+\end{theorem}
+
+\begin{proof}[Proof (sketch)]
+We use a wavelet construction. Let \(\{\psi_{k,j}\}\) be an orthonormal wavelet basis of \(L^2(D)\) adapted to the unit ball, with \(\psi_{k,j}\) supported in a fixed compact subset of \(D\) and having at least \(\alpha\) vanishing moments. For a frequency scale \(k\ge 1\), let \(J_k\) be an index set of cardinality \(|J_k|\asymp k^d\). Define, for \(\omega=(\omega_j)_{j\in J_k}\in\{-1,1\}^{J_k}\),
+\[
+h_\omega=\epsilon\sum_{j\in J_k}\omega_j\psi_{k,j}.
+\]
+Choose \(\epsilon=r k^{-\alpha}\). Then \(1+h_\omega\in \F(\alpha,r)\) for \(r\) small enough, because the wavelets are uniformly bounded in \(C^\alpha\) with norm \(\asymp k^\alpha\).
+
+Let \(u_\omega=u_{1+h_\omega}\). By the linearization Lemma~\ref{lem:stability}, we have
+\[
+\|u_\omega-u_{\omega'}\|_{L^2(D)}\asymp \epsilon k^{-1}
+\]
+whenever the sign vectors differ in at least one coordinate. Consequently, the Kullback--Leibler divergence between the Gaussian measures induced by \(u_\omega\) and \(u_{\omega'}\) is
+\[
+\operatorname{KL}(\Prob_\omega,\Prob_{\omega'})
+=\frac{n}{2}\|u_\omega-u_{\omega'}\|_{L^2(D)}^2
+\le C n \epsilon^2 k^{-2}.
+\]
+Choosing \(k\) such that \(n\epsilon^2 k^{-2}\le c_0\) with \(c_0>0\) small, and balancing this with the smoothness constraint \(\epsilon=r k^{-\alpha}\), we obtain
+\[
+k\asymp n^{1/(2\alpha+2+d)},\qquad \epsilon\asymp n^{-\alpha/(2\alpha+2+d)}.
+\]
+The separation in \(L^2(D)\) between any two distinct \(h_\omega,h_{\omega'}\) is at least \(c\epsilon\), and there are \(2^{|J_k|}\) hypotheses. Assouad's lemma (or Fano's inequality) then yields
+\[
+\inf_{\hat f_n}\sup_{f_0\in \F(\alpha,r)}
+\E_{f_0}\bigl[\|\hat f_n-f_0\|_{L^2(D)}^2\bigr]
+\ge c' \epsilon^2 |J_k|
+\asymp n^{-\frac{2(\alpha-1)}{2\alpha+2+d}},
+\]
+where we used \(|J_k|\asymp k^d\) and the choice of \(k\). This proves the lower bound. The same construction appears in \href{https://arxiv.org/html/2601.09007}{arxiv.org} and \href{https://exa.ai/library/publication/rj7jk1yjt53}{exa.ai} for the Darcy inverse problem. 
+\end{proof}
+
+\section{Conclusion}
+
+Combining Theorem~\ref{thm:upper} and Theorem~\ref{thm:lower} proves Theorem~\ref{thm:main}. The minimax rate for estimating \(f\) in \(L^2(D)\)-squared error from \(n\) observations is
+\[
+n^{-\frac{2(\alpha-1)}{2\alpha+2+d}},
+\]
+up to logarithmic factors. This rate reflects the two-derivative loss in the stability estimate of the Darcy inverse problem and the smoothness \(\alpha+1\) of the forward solution \(u_f\).
+
+\begin{thebibliography}{9}
+\bibitem{arxiv2601}
+\href{https://arxiv.org/html/2601.09007}{arxiv.org}, \emph{Global polynomial-time estimation in statistical nonlinear inverse problems via generalized stability}.
+\bibitem{exa}
+\href{https://exa.ai/library/publication/rj7jk1yjt53}{exa.ai}, \emph{Convergence Rates for Penalized Least Squares Estimators in PDE Constrained Regression Problems}.
+\bibitem{iop}
+\href{https://google.iopscience.iop.org/article/10.1088/1361-6420/ab7d2a}{iopscience.iop.org}, \emph{Consistency of Bayesian inference with Gaussian process priors in an elliptic inverse problem}.
+\bibitem{arxiv2409}
+\href{https://arxiv.org/html/2409.03417}{arxiv.org}, \emph{Convergence Rates for the MAP Estimator in PDE-Regression Models with Random Design}.
+\end{thebibliography}
+
+\end{document}

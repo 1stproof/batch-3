@@ -1,0 +1,714 @@
+%\documentclass[review, hidelinks]{siamart220329}
+\documentclass{article}
+\usepackage{a4wide}
+\usepackage{amsmath,amssymb,amsfonts,amstext,amsbsy,amscd}
+\usepackage{amsthm}
+
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{mathrsfs}
+%\usepackage[notref,notcite]{showkeys}
+\usepackage{color}
+%\usepackage[authoryear]{natbib}
+\RequirePackage[colorlinks,citecolor=blue,urlcolor=blue]{hyperref}
+%\RequirePackage{hyperref}
+\usepackage{mdframed}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[textwidth=4cm]{todonotes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% my definitions
+
+\frenchspacing
+\allowdisplaybreaks[4]
+
+\numberwithin{equation}{section}
+
+
+\swapnumbers
+
+\newtheorem{satz}{Satz}[section]
+\newtheorem{theo}[satz]{Theorem}
+\newtheorem{prop}[satz]{Proposition}
+\newtheorem{theorem}[satz]{Theorem}
+\newtheorem{proposition}[satz]{Proposition}
+\newtheorem{corollary}[satz]{Corollary}
+\newtheorem{lemma}[satz]{Lemma}
+\newtheorem{assumption}[satz]{Assumption}
+\newtheorem{korollar}[satz]{Korollar}
+ \theoremstyle{definition}
+\newtheorem{definition}[satz]{Definition}
+\newtheorem{bemerkung}[satz]{Bemerkung}
+\newtheorem{remark}[satz]{Remark}
+\newtheorem{remarks}[satz]{Remarks}
+\newtheorem{beispiel}[satz]{Beispiel}
+\newtheorem{example}[satz]{Example}
+\newtheorem*{literatur}{Literatur}
+
+\DeclareMathOperator{\E}{{\mathbb E}}
+\DeclareMathOperator{\F}{{\mathbb F}}
+\DeclareMathOperator{\G}{{\mathbb G}}
+\DeclareMathOperator{\D}{{\mathbb D}}
+\DeclareMathOperator{\R}{{\mathbb R}}
+\DeclareMathOperator{\C}{{\mathbb C}}
+\DeclareMathOperator{\Z}{{\mathbb Z}}
+\DeclareMathOperator{\N}{{\mathbb N}}
+\DeclareMathOperator{\K}{{\mathbb K}}
+\DeclareMathOperator{\T}{{\mathbb T}}
+\DeclareMathOperator{\PP}{{\mathbb P}}
+\DeclareMathOperator{\QQ}{{\mathbb Q}}
+\DeclareMathOperator{\Q}{{\mathbb Q}}
+\DeclareMathOperator{\RR}{{\mathbb R}}
+\DeclareMathOperator{\spann}{span}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\supp}{supp} \DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\rg}{rg} \DeclareMathOperator{\Eig}{Eig}
+\DeclareMathOperator{\sgn}{sgn} \DeclareMathOperator{\ran}{ran}
+\DeclareMathOperator{\kerr}{ker} \DeclareMathOperator{\dimm}{dim}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\esssup}{esssup}
+\DeclareMathOperator{\diag}{diag} \DeclareMathOperator{\KL}{KL}
+\DeclareMathOperator{\grad}{grad} \DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\argmin}{argmin}\DeclareMathOperator{\argmax}{argmax}
+\DeclareMathOperator{\Var}{Var} \DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\dom}{dom} \DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\sign}{sign} \DeclareMathOperator{\Exp}{Exp}
+\DeclareMathOperator{\Bin}{Bin} \DeclareMathOperator{\Poiss}{Poiss}
+ \DeclareMathOperator{\Pol}{Pol}
+\DeclareMathOperator{\id}{id}
+
+\renewcommand{\d}{\ensuremath {\,\text{d}}}
+\providecommand{\eps}{\varepsilon}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\theta}{\vartheta}
+\renewcommand{\subset}{\subseteq}
+\renewcommand{\supset}{\supseteq}
+\renewcommand{\cdot}{{\scriptstyle \bullet} }
+\providecommand{\abs}[1]{\lvert #1 \rvert}
+\providecommand{\norm}[1]{\lVert #1 \rVert}
+\providecommand{\bnorm}[1]{{\Bigl\lVert #1 \Bigr\rVert}}
+\providecommand{\babs}[1]{{\Bigl\lvert #1 \Bigr\rvert}}
+\providecommand{\scapro}[2]{\langle #1,#2 \rangle}
+\providecommand{\bscapro}[2]{\Bigl\langle #1,#2 \Bigr\rangle}
+\providecommand{\floor}[1]{\lfloor #1 \rfloor}
+\providecommand{\dfloor}[1]{{\lfloor #1 \rfloor_\Delta}}
+\providecommand{\ceil}[1]{\lceil #1 \rceil}
+\providecommand{\wraum}{$(\Omega,{\scr F},\PP)$}
+\providecommand{\fwraum}{$(\Omega,{\scr F},\PP,({\scr F}_t))$}
+\providecommand{\sraum}{$(S,{\scr S})$}
+\providecommand{\statexp}{$({\cal X},{\scr
+F},(\PP_\theta)_{\theta\in\Theta})$}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+
+\newcommand{\cit}[1]{\citeasnoun{#1}}
+\providecommand{\MR}{$\clubsuit$}
+\allowdisplaybreaks[1]
+\sloppy
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
+
+
+\let\scr\mathscr     % More beautiful calligraphic
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\cF}{\mathcal{F}}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Darcy First Proof} 
+
+%\headers{Information bounds for stochastic evolution equations}{G. Pasemann and M. Rei\ss{}}
+
+\author{
+Markus Rei{\ss}\thanks{
+Institut für Mathematik, Humboldt-Universität zu Berlin, Germany.
+}
+\and
+Sven Wang{}\footnotemark[2]\thanks{
+Institute of Mathematics, EPFL, Switzerland.
+}
+}
+
+%\date{\today}
+
+\begin{document}
+
+\maketitle
+
+
+\section{Problem}
+
+
+Let $D\subseteq \R^d$, $d\ge 2$, denote the $d$-dimensional Euclidean unit ball. Given a function $f\in C^\alpha(D)$ with H\"older-Zygmund smoothness $\alpha > 1$ on $D$ and let $u=u_f$ denote the unique solution of the following divergence form PDE (Darcy's problem)
+\[ \text{div}(f\nabla u)=1~~\text{on}~D,~~~u|_{\partial D} = 0.\]
+Consider the non-linear statistical inverse problem of reconstructing $f$ from noisy measurements of $u$ corrupted by Gaussian white noise
+\[Y_n= u_f + \frac 
+1{\sqrt n}\mathbb W.\] For $r\in (0,1)$ consider the following class of conductivities
+\[ f\in \mathcal F(\alpha, r) = \{ h\in C^\alpha(D),~\|h-\mathbf 1\|_{C^\alpha(D)} \le r \},\]  
+where $\mathbf 1$ denotes a  constant function with value $1$. For small (but fixed) $r\in(0,1)$, what is the minimax rate as $n\to\infty$ for estimating $f$ in the ${L^2}$-mean squared error 
+\[ \inf_{\hat f_N}\sup_{f_0\in \mathcal F(\alpha, r)} \E_{f_0}\big[ \|\hat f_n-f_0\|_{L^2(D)}^2\big],  \]
+up to logarithmic factors?
+
+
+\subsection{Context} The Darcy problem is a prototypical non-linear statistical inverse problem, see e.g.~\cite{stuart2010inverse,nickl2023bayesian, cohen2011analytic}, and is also a key example used for MCMC methodology in infinite-dimensions, e.g.~\cite{cotter2013mcmc,hairer2014spectral}. Minimax rates are currently unknown in all dimensions $d\ge 1$. Statistical consistency results with sub-optimal rates have been derived e.g.~in \cite{nickl2020convergence, siebel2024convergence} and other references, where the best known rate is currently $n^{-\frac{\alpha-1}{2\alpha+2+d}}$, corresponding intuitively to a $2$-ill posed rate with $(\alpha-1)$-smooth ground truth. The difficulty of the Darcy problem lies in that the problem has a `mixed ill-posedness' which is spatially inhomogeneous. The location of $2$-ill-posedness needs to be estimated in a data-driven way since it depends on the unknown $f$, making the current problem non-standard from a nonparametric statistical perspective.
+
+
+
+
+\section{Solution}
+The main theorem states that the minimax rate corresponds to the rate expected in a $2$-ill-posed inverse problem in $d-1$ dimensions with $\alpha$-smooth ground truth.
+\begin{mdframed}
+\begin{theorem} Let $d\ge 2$ and $\alpha>1$. There exists $r_0>0$ such that for all $r\le r_0$, the minimax rate of estimation over $f\in \mathcal F(\alpha,r)$ in $L^2(D)$-loss is given, up to logarithmic factors, by $n^{-\alpha/(2\alpha+3+d)}$.
+\end{theorem}
+\end{mdframed}
+
+
+The majority of the work consists of proving the upper bound. For any $x\in D$, we have the inversion formula 
+\[f(x) = \int_{-\infty}^0 \exp\Big(-\int_s^0 \Delta u_f(\varphi(v))dv \Big) ds, \]
+where $\varphi$ is a characteristic given by the `backward in time' ODE $\varphi'(s)=\nabla u_f(\varphi(s)),~s\le 0$ with initial condition $\varphi(0)=x$, see for example \cite{richter1981inverse}. Note that $\phi$ depends on $x$ through its initial condition.
+
+Motivated by this, we study the following estimator. Let $K(\cdot)$ be a smooth kernel function with sufficiently many vanishing moments, satisfying $\int_{\R^d} K(y)dy =1$ and  support $\operatorname{supp}(K)$ in the  unit ball $D$. For $K_\delta(y)=\delta^{-d}K(y/\delta)$, where the small bandwidth $\delta>0$ is chosen later, we estimate
+\begin{align*} 
+\hat u(y)=(K_\delta\ast Y_n)(y),\qquad 
+\Delta \hat u(y)=\Delta(K_\delta\ast Y_n)(y)=\Delta K_\delta\ast Y_n (y).
+\end{align*}
+Near the boundary of $D$, we employ a standard boundary correction for the kernel $K$ (such as detailed in \cite{MullerStadtmuller1999}, which still has vanishing moments). We then consider for each $x\in D$ the estimator
+\[\hat f(x) = \int_{-S}^0 \exp\Big(-\int_s^0 \Delta \hat u(\bar{\varphi}(v))dv  \Big) ds. \]
+Throughout we will choose $S=C\log n $ for $C>0$ being a sufficiently large constant, and  $\bar{\varphi}(v)$ are `pre-estimated' characteristics which we detail now.
+
+\subsection{Properties of the pre-estimator}
+We assume that $\bar{\varphi}$ arises from the gradient flow of an independent and sufficiently smooth pilot estimate $\bar u\in C^1$ of $u_f$. In particular we assume that such an estimator $\bar u$ is obtained via an independent sample (we can assume such sample splitting w.l.o.g., while increasing the noise level by a factor of $\sqrt 2$) and that $\bar{\varphi}'(v)= \nabla \bar u(\bar{\varphi}(v))$, $v\le 0$, with $\bar\phi(0)=x$.
+
+
+Since $f\in \mathcal F(r,\alpha)\subseteq C^\alpha(D)$, we have that $u_f\in C^{\alpha+1}(D)$ (see for instance \cite{nickl2020convergence}) whence we may assume that the pilot estimator $\bar u$ satisfies convergence rates
+\begin{equation}\label{pre-rate}
+    \E_f \|\bar u - u_f\|_{C^1}^2\le C\big(\frac{\log n}{n}\big)^{\frac{2\alpha}{2\alpha +2 +d}},~\E_f \|\bar u - u_f\|_{C^2}^2\le C\big(\frac{\log n}{n}\big)^{\frac{2(\alpha-1)}{2(\alpha-1) +4 +d}},
+\end{equation}
+for some $C>0$. For $f=\textbf{1}$ we have the explicit radial solution $u_{\mathbf 1} = \frac 1{2d} (\|x\|^2-1)$ which has constant Hessian $ \nabla^2u_{\mathbf 1}(x)= \diag(1/d \dots 1/d )$. By Lemma \ref{lemma-convex} we can choose $r>0$ small enough such that $\nabla^2 u_{ f}(x)$ has minimal and maximal eigenvalues bounded below and above  by $1/d-\eta/2$ and $1/d+\eta/2$ respectively, uniformly in $f$ and $x$. Standard estimators for $u_f$, such as kernel-type or wavelet projection estimators, satisfy the above convergence rates as well as exponential concentration inequalities. In particular,~one may assume that for any $\eta>0$ there are constants $c_1,c_2,\gamma >0$ (uniformly in $f\in \mathcal F(\alpha,r)$) such that
+\[ \mathbb P_f\big(\|\bar u- u_f\|_{C^2} \ge \eta /2 \big) \le c_1\exp\big(-c_2n^\gamma \big). \]
+We may thus modify the pre-estimator $\bar u$ on an event (measurable with respect to the data) of probability at most $c_1\exp\big(-c_2n^\gamma \big)$ to ensure that with probability $1$,
+\[\forall x\in D:\;  1/d-\eta \le \lambda_{min}[\nabla^2\bar u (x)] \le \lambda_{max}[\nabla^2 \bar u (x)] \le 1/d+\eta, \]
+while simultaneously satisfying the convergence rates \eqref{pre-rate}.
+
+
+In the next subsections, unless otherwise noted, expected values  are taken only with respect to the statistical sample which supports the main estimator $\hat u$, and $\bar u$ may be treated as fixed and satisfying the above convergence rates. Throughout, $C^\alpha(D)$ denotes the $\alpha$-H\"older-Zygmund smooth functions on $D$.
+
+
+\subsection{Bias}
+
+\begin{proposition}[Bias] Suppose that the bandwidth is chosen at least as large as $\delta\gtrsim n^{-\frac{1}{2\alpha+d+3}}$. Then for any $x\in D$, the bias is of order at most
+\[  \E_f[ \hat f(x) ]- f(x) = O\big(\log (n) \delta^\alpha\big) + O\big(\log (n)\|\bar u-u_f\|_{C^1}\big).\]
+Here, the constants implicit in $O(\cdot)$ are uniform over $x\in D$ and $f\in \mathcal F(\alpha,r)$.
+\end{proposition}
+
+\begin{proof} Fix $f$. For simplicity we write $\E$ for $\E_f$, and $u$ for $u_f$. \\
+\noindent \textbf{Step 1.}  The expectation of $\hat f(x)$ (conditional on $\bar\varphi$) can be written as 
+\begin{align*}
+   \E[\hat f(x)] &= \E  \int_{-S}^0 \exp\Big(-\int_s^0 \Delta \hat u(\bar \varphi(v))dv  \Big) ds\\
+   & =\int_{-S}^0 \exp\Big(-\int_s^0 [\Delta u \ast K_\delta] (\bar \varphi(v))dv  \Big)  \times \E \Big[ \exp\Big(-\int_s^0 \frac 1{\sqrt n} [\mathbb W \ast \Delta K_\delta] (\bar \varphi(v))dv  \Big) \Big] ds.
+\end{align*}
+
+
+
+The expression inside the last exponential is centered normal with variance
+\begin{align*}
+ \frac1n\E\Big[\Big(\int_s^0[\mathbb W \ast \Delta K_\delta] (\bar \varphi(v))dv\Big)^2\Big]  
+ &= \frac1n\int_{\R^d} \Big(\int_s^0 \Delta K_\delta (\bar \varphi(v)-z) dv\Big)^2 dz\\
+ &\le \frac {\abs{s}}n\int_{\R^d} \int_s^0 \Delta K_\delta (\bar \varphi(v)-z)^2 dv dz\\
+ &\lesssim  \frac {s^2}n  \delta^{-d-4},
+\end{align*}
+where $\norm{\Delta K_\delta}_\infty\lesssim \delta^{-d-2}$ and the support of $\Delta K_\delta$ in a ball of radius $\delta$ were used. By the exponential moment $\E[e^Z]=e^{\sigma^2/2}$ for $Z\sim N(0,\sigma^2)$ and $s^2\lesssim \log(n)^2$ we thus find with a constant $C>0$
+\begin{align*}
+    \E \Big[ \exp\Big(-\int_s^0 \frac 1{\sqrt n} \mathbb W \ast \Delta K_\delta(\bar \varphi(v))dv  \Big) \Big] &\le \exp\Big(C\log(n)^2n^{-1}\delta^{-(d+4)}\Big)
+\\
+&=1+O\Big(\log(n)^2n^{-1}\delta^{-(d+4)}\Big)\\
+&= 1+O(\delta^\alpha),
+\end{align*}
+where we used $n^{-1}\delta^{-(\alpha+d+4)}\lesssim n^{-(\alpha-1)/(2\alpha+d+3)}\lesssim (\log n)^{-2}$ by our choice of $\delta$ and $\alpha>1$.\\
+
+
+\noindent \textbf{Step 2.} Using $\Delta u=(1-\nabla u\cdot \nabla f) / f$, we have
+\[
+        \exp\Big( -\int_s^0 \Delta u \ast K_\delta (\bar{\varphi} (v)) dv \Big) 
+        =  \exp\Big(-\int_s^0 \frac 1f \ast K_\delta ~(\bar{\varphi} (v)) dv\Big) \exp \Big(\int_s^0 \frac{\nabla u\cdot \nabla f}{f}\ast K_\delta ~(\bar{\varphi} (v)) dv  \Big). 
+\]
+We treat the second term  using the key Lemma \ref{lemma-reiss}. Since $\nabla f\in C^{\alpha-1}$ and $\nabla u\in C^\alpha$, and using $\nabla \bar u(\bar\varphi(v)) = \bar\varphi'(v)$, we obtain
+\begin{align*}
+    \int_s^0 \frac{\nabla u\cdot \nabla f}{f}\ast K_\delta ~(\bar{\varphi} (v)) dv & = \int_s^0 [(\nabla \log f \cdot \nabla u)\ast K_\delta] ~(\bar{\varphi} (v)) dv \\
+    &= \int_s^0 [ (\nabla \log f \ast K_\delta ) \cdot \nabla u](\bar{\varphi} (v)) dv +O(s\delta^\alpha)\\
+    &= \int_s^0 [ (\nabla (\log f \ast K_\delta) ) \cdot \nabla \bar u](\bar{\varphi} (v)) dv \\
+    &\qquad+ \int_s^0 [ (\nabla \log f \ast K_\delta ) \cdot [\nabla u-\nabla \bar u](\bar{\varphi} (v)) dv  +O(s\delta^\alpha)\\
+    &= [(\log f\ast K_\delta ) (\bar \varphi(\cdot))]_{s}^0 + O(s\|u-\bar u\|_{C^1}) +O(s\delta^\alpha)\\
+    &= (\log f \ast K_\delta) (x) - (\log f \ast K_\delta )(\bar \varphi(s))
+   + O(s\|\bar u-u\|_{C^1}) + O(s\delta^\alpha).
+\end{align*}
+In view of $S\lesssim\log(n)$ we have proved so far
+\begin{align} 
+\E[\hat f(x)]&=\int_{-S}^0 \exp\Big(-\int_s^0 \frac 1f \ast K_\delta (\bar \varphi(v))dv + (\log f\ast K_\delta)(x)-(\log f\ast K_\delta)(\bar\phi(s)) \Big)  ds\notag\\ &\qquad \times\Big(1+O\big(\log(n)\delta^\alpha+\log(n)\norm{\bar u-u}_{C^1}\big)\Big).\label{EqStep2}
+\end{align}
+
+\noindent \textbf{Step 3.}
+We aim to use the key identity without convolution
+\begin{align*}
+    \exp\Big(-\int_s^0 \frac 1{f}  ~(\bar \varphi (v)) dv - \log f  (\bar \varphi(s)) \Big)
+    &= \frac{d}{ds}\exp\Big(-\int_s^0 \frac 1{f}  ~(\bar \varphi (v)) dv\Big).
+\end{align*}
+Note that $\log(\cdot)$, $\exp(\cdot)$ and their derivatives have uniformly bounded supremum norm  on compact sets in $(0,\infty)$, in particular on the  range of $f$ and $1/f$,
+So we have the approximation properties $ (\log f \ast K_\delta )(x) = \log f(x) + O(\delta^\alpha)$ and $ -(\log f \ast K_\delta )(\bar \varphi(s)) = \log \frac {1}{f}(\bar \varphi(s)) + O(\delta^\alpha)$ uniformly in $x$ and $s$. We thus proceed from \eqref{EqStep2}
+\begin{align*}
+\E[\hat f(x)]    &= \exp\Big(\log f(x) + O(\delta^\alpha) \Big) \int_{-S}^0 \exp\Big( -\int_s^0 \frac 1{f} \ast K_\delta ~(\bar \varphi (v)) dv - (\log f \ast K_\delta )(\bar \varphi(s)) \Big) ds \\
+    &\qquad\qquad \times\Big(1+O\big(\log(n)\delta^\alpha+\log(n)\norm{\bar u-u}_{C^1}\big)\Big)\\
+    &=   f(x)  \int_{-S}^0 \exp\Big(-\int_s^0 \frac 1{f}  ~(\bar \varphi (v)) dv - \log f  (\bar \varphi(s)) +O(\log(n)\delta^\alpha)\Big) ds \\
+    &\qquad\qquad \times\Big(1+O\big(\log(n)\delta^\alpha+\log(n)\norm{\bar u-u}_{C^1}\big)\Big)\\
+    &=  {f}(x) \Big[\exp \Big(-\int_\cdot^0 \frac 1{f} (\bar\varphi (v)) dv \Big)\Big]_{-S}^0 \Big(1+O\big(\log(n)\delta^\alpha+\log(n)\norm{\bar u-u}_{C^1}\big)\Big)\\
+    &=f(x) + O\Big(\log(n)\delta^\alpha+\log(n)\norm{\bar u-u}_{C^1}+\exp(-C\log (n)/(1+r) ) \Big),
+\end{align*}
+where  $f\le 1+r$ and $S=C\log n$ were used. For all $C\ge 1+r$ we obtain the bias estimate.
+\end{proof}
+
+
+\subsection{Variance}
+
+
+\begin{proposition}
+    Let $\bar x$ denote the unique minimizer of $\bar u$. 
+    %{\color{blue} OLD??? We condition on $\bar u$ and suppose that 
+    %\[ \| \bar u -u_f \|_{C^2} \le \log n,\]
+    %which happens with probability tending to $1-c_1\exp(-c_2 n^{-\gamma})$ (for some $c_1,c_2,\gamma>0$, under the $\mathbb P_{f}$-law of the pilot estimator). }
+    For $x\in D$ the variance (conditional on $\bar \varphi$) of $\hat f(x)$ satisfies, for $\delta$ chosen at least as large as $\delta\gtrsim n^{-\frac{1}{2\alpha+d+3}}$,
+    \[
+\operatorname{Var}(\hat f(x))
+\lesssim n^{-1}
+\delta^{-d-4}
+\min\left(\log(n),\frac{\delta}{|x-\bar x|}\right).
+\]
+\end{proposition}
+
+
+
+\begin{proof} 
+Recall the estimator 
+\[ \hat f(x)=\int_{-S}^0 \exp\Big(-\int_s^0 \Delta \hat u(\bar \phi(v))\,dv\Big)\,ds\text{ with } \Delta \hat u(y)=((\Delta K_\delta)\ast Y_n)(y).\]
+We write $\hat f(x)=T(\mathbb W)$ as a nonlinear functional of white noise, generating a cylindrical Gaussian measure on Wiener space $L^2(D)$, and plan to apply the infinite-dimensional Poincar\'e inequality, see e.g. \cite{nourdin2009second},
+\[ \Var(\hat f(x))\le \E\big[\norm{DT_{\mathbb W}}_{L^2(D)'}^2\big],\]
+where $DT_\psi$ denotes the Fr\'echet derivative of $T:L^2(D)\to\R$ at $\psi\in L^2(D)$.
+
+By definition of $\hat f(x)$ we have  for $\psi\in L^2(D)$
+\[  T(\psi) =\int_{-S}^0 e_{u+n^{-1/2}\psi}(s)\,ds \text{ with }e_h(s):=\exp\Big(-\int_s^0 (\Delta K_\delta)\ast h(\bar \phi(v))\,dv\Big).
+\]
+The Fr\'echet derivative  of $T:L^2(D)\to\R$ at $\psi\in L^2(D)$ in direction $h\in L^2(D)$ is given by
+\[ DT_\psi[h]=-\int_{-S}^0 e_{u+n^{-1/2}\psi}(s)\int_s^0((\Delta K_\delta)\ast n^{-1/2}h)(\bar \phi(v))\,dv\,ds .
+\]
+Integration by parts yields with $E_h(v):=\int_{-S}^ve_h(s)ds$
+\begin{align*} 
+(DT_\psi[h])^2 &= n^{-1}\Big(\int_{-S}^0 e_{u+n^{-1/2}\psi}(s)\int_s^0((\Delta K_\delta)\ast h)(\bar\phi(v))\,dv\,ds\Big)^2\\ 
+&= n^{-1}\Big(\int_{-S}^0E_{u+n^{-1/2}\psi}(v)((\Delta K_\delta)\ast h)(\bar \phi(v))\,dv\Big)^2.
+\end{align*}
+Moreover, by  Cauchy-Schwarz inequality for $\norm{h}_{L^2}\le 1$ 
+\begin{align*}
+\Big(\int_{-S}^0E_{u+n^{-1/2}\psi}(v)((\Delta K_\delta)\ast h)(\bar \phi(v))\,dv\Big)^2 &= \Big(\int_D\int_{-S}^0E_{u+n^{-1/2}\psi}(v)\Delta K_\delta(\bar \phi(v)-z) h(z)\,dv\,dz\Big)^2\\
+&\le \int_{\R^d}\Big(\int_{-S}^0E_{u+n^{-1/2}\psi}(v)\abs{\Delta K_\delta(\bar \phi(v)-z)}\,dv\Big)^2 dz
+\end{align*}
+holds. Therefore we have shown
+\[ \norm{DT_\psi}_{L^2(D)'}^2\le n^{-1}\int_{\R^d}\Big(\int_{-S}^0E_{u+n^{-1/2}\psi}(v)\abs{\Delta K_\delta(\bar \phi(v)-z)}\,dv\Big)^2 dz.
+\]
+We now use $\abs{\Delta K_\delta(y)}\lesssim \delta^{-d-2}{\bf 1}(\abs{y}\le\delta)$ to conclude further
+\begin{align*}
+&\norm{DT_\psi}_{L^2(D)'}^2\\
+&\lesssim n^{-1}\delta^{-2d-4}\int_{-S}^0\int_{-S}^0  E_{u+n^{-1/2}\psi}(v)E_{u+n^{-1/2}\psi}(v')\int_{\R^d}{\bf 1}(\abs{\bar \phi(v)-z}\le\delta,\,\abs{\bar \phi(v')-z}\le\delta)\, dz\,dv\,dv'\\
+& \lesssim n^{-1}\delta^{-d-4}\int_{-S}^0 E_{u+n^{-1/2}\psi}(v')\int_{-S}^{v'}  E_{u+n^{-1/2}\psi}(v){\bf 1}(\abs{\bar \phi(v)-\bar \phi(v')}\le2\delta)\, dv\,dv'.
+\end{align*}
+From part (b) of Lemma \ref{exponential-lemma} and  the monotonicity of $E_{u+n^{-1/2}\psi}$ we deduce for 
+$\delta\in(0, |\bar\varphi(v')-\bar x|/4)$
+\begin{align*} 
+\int_{-S}^{v'} E_{u+n^{-1/2}\psi}(v){\bf 1}(\abs{\bar \phi(v)-\bar \phi(v')}\le2\delta)\,dv &\le E_{u+n^{-1/2}\psi}(v')\frac{4 \delta}{(1/d-\eta)\abs{\bar\phi(v')-\bar x}}.
+%&\lesssim  E_{u+n^{-1/2}\psi}(v')e^{(1/d+\eta)v'}\frac{ \delta}{\abs{x-\bar x}}.
+\end{align*}
+Generally, we can bound the indicator by one so that the integral is always smaller than
+\begin{align*} 
+\int_{-S}^{v'} E_{u+n^{-1/2}\psi}(v)\,dv &= 
+\int_{-S}^{v'} (v'-s)  e_h(s)\,ds\le S E_{u+n^{-1/2}\psi}(v').
+\end{align*}
+Inserting both bounds for the inner integral yields with $S\thicksim \log n$
+\[ \norm{DT_\psi}_{L^2(D)'}^2\lesssim n^{-1}\delta^{-d-4}\int_{-S}^0 E_{u+n^{-1/2}\psi}(v')^2\Big(\frac{ \delta }{\abs{\bar\phi(v')-\bar x}}\wedge \log(n)\Big)\,dv'
+\]
+and thus for the expectation
+\begin{align*}
+\E\big[\norm{DT_{\mathbb W}}_{L^2(D)'}^2\big] 
+& \lesssim n^{-1}\delta^{-d-4}\int_{-S}^0 \E[E_{u+n^{-1/2}{\mathbb W}}(v')^2]\Big(\frac{ \delta }{\abs{\bar\phi(v')-\bar x}}\wedge \log(n)\Big)\,dv'.
+\end{align*}
+Using the exponential moment $\E[e^Z]=e^{\sigma^2/2}$ for $Z\sim N(0,\sigma^2)$ and $(\Delta u)\ast K_\delta(x)\ge 1-\eta$ uniformly, we obtain with a constant $C>0$
+\begin{align*}
+\E[E_{u+n^{-1/2}{\mathbb W}}(v')^2]&=\int_{-S}^{v'} \int_{-S}^{v'} \E\Big[e^{-(\int_s^0+\int_{s'}^0) (\Delta K_\delta)\ast (u+n^{-1/2}\mathbb W)(\bar\phi(w))\,dw}\Big]\,ds\,ds'\\
+&=\int_{-S}^{v'}\int_{-S}^{v'} e^{-(\int_s^0+\int_{s'}^0) (\Delta u)\ast K_\delta(\bar\phi(w))\,dw}e^{n^{-1}\norm{(\int_s^0+\int_{s'}^0)\Delta K_\delta(\bar\phi(w)-\cdot)dw}_{L^2}^2/2} ds\,ds'\\
+&\le\Big(\int_{-S}^{v'} e^{-\int_s^0 (\Delta u)\ast K_\delta(\bar\phi(w))\,dw}e^{n^{-1}\norm{\int_s^0\Delta K_\delta(\bar\phi(w)-\cdot)dw}_{L^2}^2} ds\Big)^2\\
+&\le\Big(\int_{-S}^{v'} \exp\Big((1-\eta)s+Cn^{-1}\delta^{-d-4}s^2\Big) ds\Big)^2.
+%&\le\Big(e^{C'n^{-1}(\log n)^2\delta^{-d-4}}\int_{-S}^0se^{-\int_s^0 (\Delta u)\ast K_\delta(\phi(w))\,dw} ds\Big)^2.
+\end{align*}
+Because of $S\thicksim\log(n)$ and $n^{-1}\delta^{-d-4}\log(n)\to 0$, we derive further 
+\[ \E[E_{u+n^{-1/2}{\mathbb W}}(v')^2]\lesssim \Big(\int_{-S}^{v'} e^{(1-2\eta)s} ds\Big)^2\lesssim e^{2(1-2\eta)v'}.\]
+Finally, $\abs{\bar\phi(v')-\bar x}\ge e^{(1/d+\eta)v'}\abs{x-\bar x}$ from Lemma \ref{exponential-lemma} and $\eta\le 1/4$, say, imply
+\[ \E\big[\norm{DT_{\mathbb W}}_{L^2(D)'}^2\big] \lesssim n^{-1}\delta^{-d-4}\Big(\frac{\delta}{\abs{x-\bar x}}\wedge \log(n)\Big).
+\]
+Poincar\'e's inequality gives the result.
+\end{proof}
+
+
+\subsection{Mean squared error}
+We now complete the proof of the upper bound. With $\bar x$ denoting the minimum of $\bar u$ we have
+\[ \E[(\hat f (x)-f(x))^2]\lesssim \log(n)^2 \delta^{2\alpha}+n^{-1}\delta^{-4-d}\big(\delta\abs{x-\bar x}^{-1}\wedge\log(n)\big) + (\log n)^2\|\bar u- u_f\|_{C^1}^2.\]
+The optimal (up to log-factors) choice for estimation at $x$ is
+\[\delta\thicksim n^{-1/(2\alpha+4+d)}\wedge (n\abs{x-\bar x})^{-1/(2\alpha+3+d)},\]
+which is data-driven because $\bar x$ is obtained by pre-estimation. This gives the  pointwise estimation rate
+\[ \E[(\hat f(x)-f(x))^2]\lesssim (\log n)^2 \big( n^{-2\alpha/(2\alpha+4+d)}\wedge (n\abs{x-\bar x})^{-2\alpha/(2\alpha+3+d)} + \|\bar u- u_f\|_{C^1}^2\big).\]
+
+Finally we integrate over the unit ball $D$ to obtain the $L^2$-risk. We use radial coordinates around $\bar x$ and only use the $(n\abs{x-\bar x})^{-2\alpha/(2\alpha+3+d)}$-rate, which remains integrable, to obtain
+\begin{align*}
+ \frac {1}{(\log n)^2}\int_D\E[(\hat f(x)-f(x))^2]dx &\lesssim \int_0^2 (nr)^{-2\alpha/(2\alpha+3+d)}r^{d-1}dr+\|\bar u- u_f\|_{C^1}^2 \\
+&\thicksim n^{-2\alpha/(2\alpha+3+d)}+\|\bar u- u_f\|_{C^1}^2.
+ \end{align*}
+In view of the faster pre-estimation rate from \eqref{pre-rate} we have thus proved with expectation over both samples
+\begin{equation*}
+\boxed{
+\E[\| \hat f -f \|_{L^2(D)}^2]\lesssim (\log n)^2 n^{-2\alpha/(2\alpha+3+d)}.}
+\end{equation*}
+
+\subsection{Auxiliary results}
+
+
+We begin with the following lemma concerning interchanging convolution and multiplication. 
+
+\begin{lemma}\label{lemma-reiss}
+    Let $f_1,f_2:\R^d\to \R$ satisfy $f_1\in C^{\alpha-1},~f_2\in C^\alpha$ for  $\alpha> 1$ and $K_\delta=\delta^{-d}K(\cdot/\delta)$ as before (with sufficiently many vanishing moments). Then we have for $x\in \R^d$ and $\delta\to 0$
+    \[ [f_1\ast K_\delta](x) f_2 (x) - [(f_1f_2)\ast K_\delta] (x)= O(\delta^\alpha). \]
+    The same holds for functions $f_1,f_2:D\to \R$ and suitable boundary corrected kernels.
+\end{lemma}
+\begin{proof}
+    We prove the result at $x=0$, for the non-boundary corrected case. [With boundary corrections, the proof is analogous, using Taylor expansion on $D\subseteq \R^d$ only, and vanishing moments of the boundary corrected kernels.] By Taylor expansion around zero we have that for $|y|\le \delta$ and multi-indices $k\in\N_0^d$, $\abs{k}=k_1+\cdots+k_d$
+    \[\begin{aligned}
+        f_1(y) &= \sum_{\abs{k}\le\floor{\alpha}-1}a_k y^k + O(\delta^{\alpha-1})= P_1(y) + R_1(y),\\
+    f_2(y) &= \sum_{\abs{k}\le \floor{\alpha}}b_k y^k + O(\delta^{\alpha})= P_2(y) + R_2(y)
+    \end{aligned} \] 
+with some coefficients $a_k,b_k\in\R$. For integer $\alpha$ we use the convention $\floor{\alpha}=\alpha-1$.
+ Due to the vanishing moments of $K_\delta$, we obtain
+    \[ (f_1\ast K_\delta)(0)f_2 (0) = (a_0 + [R_1\ast K_\delta] (0) ) b_0= a_0b_0 + [R_1\ast K_\delta] (0) b_0, \]
+    as well as
+    \[ (f_1f_2)\ast K_\delta (0) = (P_1P_2 + R_1 b_0 + R_1 (P_2-b_0) + P_1R_2 + R_1R_2 )\ast K_\delta (0). \]
+    Since $|P_2(y)-b_0 |\lesssim \delta $ holds for $|y|\le \delta$, the vanishing moments of $K_\delta$ yield
+ \[ \begin{aligned}
+(f_1f_2)\ast K_\delta (0) &=a_0b_0+ [R_1\ast K_\delta](0) b_0 + \big[( O(\delta^\alpha) + O(\delta^\alpha)  + O(\delta^{2\alpha-1}) )\ast K_\delta\big](0)\\
+&= (f_1\ast K_\delta)(0)f_2 (0) + O(\delta^\alpha),
+ \end{aligned} \]
+ where the $O(\cdot)$-terms within the convolution denote supremum norm bounds over $\abs{y}\le\delta$.
+\end{proof}
+
+
+
+
+\begin{lemma}\label{lemma-convex}
+    Let $\alpha >1$. For any $\eta>0$ there exists $r>0$ small enough such that for all $f\in \mathcal F(\alpha,r)$ 
+    \[ \inf_{x\in D}\lambda_{min}(\nabla^2 u_f(x)) \ge 1/d-\eta/2, ~~ \sup_{x\in D}\lambda_{max}(\nabla^2 u_f(x)) \le 1/d+\eta/2.\]
+    \end{lemma}
+\begin{proof}
+By elliptic regularity estimates for H\"older-Zygmund spaces \cite[Chapter 5]{Triebel1978} (for non-integer $\alpha$, we can also use standard Schauder theory \cite{GilbargTrudinger2001}) give
+\[ M:=\sup_{f\in\mathcal F(\alpha,r)}\|u_f\|_{C^{\alpha+1}}  <\infty. \]
+Using this and $\alpha>1$, we obtain  for a suitable small $\eps>0$  the local Lipschitz estimate
+\[ \|u_{f}-u_{f'}\|_{C^{2+\eps}}\le L \|f-f'\|_{C^{1+\eps}},  \]
+where $L$ may depend on $M$. This is proved by a PDE perturbation argument, such as performed in \cite{nickl2020convergence}. The claim follows by choosing $f'={\bf 1}$ and by taking $r$ small enough, in fact of order  $\eta$.
+\end{proof}
+
+The previous lemma implies that exponential trapping lemmas on the characteristics are satisfied `uniformly in a neighborhood' of unit diffusivity.
+
+
+
+
+\begin{lemma}[Exponential convergence of characteristics]\label{exponential-lemma}
+Let $u$ be a strongly convex $C^2$-function on $D$ with a unique interior minimum $x_*$ and such that for some $\eta\in (0,1/d)$ and every $x\in D$
+\[1/d -\eta \le \lambda_{min} \big[ \nabla^2 u(x) \big] \le \lambda_{max}\big[ \nabla^2 u(x)\big] \le 1/d +\eta. \]
+For fixed $x\in D$ let $\phi$ solve the  gradient flow $\phi'(t)=\nabla u(\phi(t))$, $t\le 0$, with  $\varphi(0)=x$. Then: 
+\begin{enumerate}
+\item $\lim_{t\to-\infty} \varphi(t) = x^*$ holds, more precisely
+\[\forall t\le 0:\;
+    e^{(1/d+\eta)t}|x-x_\ast|
+    \le
+    |\phi(t)-x_\ast|
+    \le
+    e^{(1/d-\eta)t}|x-x_\ast|.
+\]
+\item For $t\le s\le 0$ and $\delta\in(0, |\varphi(s)-x_\ast|/4)$ we have the implication
+\[
+   |\varphi(s)-\varphi(t)|\le 2\delta \Rightarrow
+    s-t\le 
+    \frac{4 \delta}{(1/d-\eta)\abs{\phi(s)-x_\ast}}.
+\]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Define $y(t):=\phi(t)-x_\ast$. Due to $\nabla u(x_\ast)=0$ the
+fundamental theorem of calculus gives
+\[
+    \nabla u(\phi(t))
+    =
+    \nabla u(x_\ast+y(t))-\nabla u(x_\ast)
+    =
+    \int_0^1
+    \nabla^2u(x_\ast+\theta y(t))\,y(t)\,d\theta.
+\]
+Taking the inner product with $y(t)$ and using the assumption on $\nabla^2u (x)$, we have
+\[
+    (1/d-\eta)|y(t)|^2
+    \le
+    \scapro{y(t)}{\nabla u(\phi(t))}
+    \le
+    (1/d+\eta)|y(t)|^2 .
+\]
+Moreover, we have $y'(t)=\phi'(t)=\nabla u(\phi(t))$ and therefore
+\[
+    \frac12\frac{d}{dt}|y(t)|^2
+    = \scapro{y(t)}{y'(t)}=
+    \scapro{y(t)}{\nabla u(\phi(t))}.
+\]
+Using the previous bounds, this gives the differential inequality for $F(t):=|y(t)|^2$ 
+\[
+2(1/d-\eta)F(t)
+    \le
+    F'(t)
+    \le
+    2(1/d+\eta)F(t).
+\]
+Consequently, Gronwall's lemma  yields
+\[
+    e^{2(1/d+\eta)t}F(0)
+    \le
+    F(t)
+    \le
+    e^{2(1/d-\eta)t}F(0),\quad t\le 0,
+\]
+which proves (a).
+
+For (b) we obtain from above by the reverse triangle inequality
+\[
+    |\varphi(s)-\varphi(t)|
+    =
+    |y(s)-y(t)|
+    \ge
+    |y(s)|-|y(t)|\ge 
+    \abs{y(s)}\big(1-e^{(1/d-\eta)(t-s)}\big).
+\]
+Therefore, $|\varphi(s)-\varphi(t)|\le 2\delta$
+implies
+$1- 2\delta/\abs{y(s)}\le e^{(1/d-\eta)(t-s)}$
+and hence
+\[
+    s-t
+    \le
+    \frac1{1/d-\eta}\log\left(\frac{\abs{y(s)}}{\abs{y(s)}-2\delta}\right)\le \frac1{1/d-\eta} \log\Big(1 +\frac {4\delta}{\abs{y(s)}}\Big)\le \frac{4 \delta}{(1/d-\eta)\abs{y(s)}},
+\]
+using $2\delta\le \abs{y(s)}/2$.
+\end{proof}
+
+
+
+\subsection{Lower bound}
+
+We prove the lower bound using multiple hypothesis testing techniques, see, e.g., \cite{tsybakov2003introduction}.
+
+\textbf{Step 1: Construction of alternatives.} We employ spherical coordinates and write  $x\in D\setminus\{0\}$ as $(r,\omega)$ with $r=\abs{x}\in (0,1]$ and $\omega=x/\abs{x}\in S_{d-1}$ (the radius $r$ should not be confused with the bound $r$ on the H\"older norm). The Laplace operator can then be expressed as
+\[ \Delta=\frac{\partial^2}{\partial r^2}+\frac{d-1}{r}\frac{\partial}{\partial r}+\frac{1}{r^2}\Delta_{S_{d-1}}
+\]
+with $\Delta_{S_{d-1}}$ denoting the Laplace-Beltrami operator  on the sphere.
+
+Let $\omega_1,\ldots,\omega_m\in S_{d-1}$ be a maximal $(2\delta)$-packing of $S_{d-1}$ with respect to Euclidean distance in $\R^d$. Then $m\thicksim \delta^{-(d-1)}$ holds. For some $c>0$ we define
+\[ \psi_i(r,\omega)=c\delta^{\alpha+2}a(r)b((\omega-\omega_i)/\delta),\quad i=1,\ldots,m,\]
+with a smooth function $a:[0,1]\to\R$, satisfying $a\ge 0$, $\supp(a)\subset[1/4,3/4]$, $\norm{a}_{L^2}=1$, and a smooth function $b:\R^d\to\R$, satisfying  $\supp(b)\subseteq D$, $\norm{b}_{L^2}=1$. Note that the supports of the $\psi_i$ are mutually disjoint. For any sign vector $\eps\in\{-1,+1\}^m$ consider
+\[ u_\eps(r,\omega)=u_0(r,\omega)+\sum_{i=1}^m\eps_i\psi_i(r,\omega) \text{ with } u_0(r,\omega)=\frac{r^2-1}{2d}.\]
+Denoting by $P_\eps$ the observational law of $Y_n$ under $u_\eps$ and by $P_0$ the one under $u_0$, we have 
+\[ \KL(P_\eps\,|\,P_0)\le n \norm{u_\eps-u_0}_{L^2}^2=c^2n\sum_{i=1}^m \delta^{2\alpha+4}\int_0^1a(r)^2r^{d-1}dr \int_{S_{d-1}}b((\omega-\omega_i)/\delta)^2\,d\omega
+\thicksim nm\delta^{2\alpha+4}\delta^{d-1}.\]
+For a suitable choice of $\delta\thicksim n^{-1/(2\alpha+3+d)}$ this is bounded by a small constant times $m$ and the classical lower bound technique in $L^2$, see \cite{tsybakov2003introduction}, yields the asserted lower bound, provided that the diffusivities $f_\eps$ associated to $u_\eps$ satisfy
+\begin{enumerate}
+\item $f_\eps\in {\cal F}(\alpha,r)$;
+\item $\norm{f_\eps-f_{\eps'}}_{L^2}^2\gtrsim \delta^{2\alpha}m^{-1}\sum_{i=1}^m {\bf 1}(\eps_i\not=\eps_i')$.
+\end{enumerate}
+
+\textbf{Step 2: Signal separation.} 
+We first assume that the diffusion coefficient is obtained by integrating along the radial gradient flow $\phi_0(t)=xe^{t/d}$ instead of $\phi_\eps$ with $\phi_\eps'(t)=\Delta u_\eps(\phi_\eps(t))$. Consider the associated `approximate' inversion formula
+\[ \tilde f_\eps(x)=\int_{-\infty}^0\exp\Big(-\int_s^0 \Delta u_\eps(\phi_0(v))\,dv\Big)\,ds.
+\]
+By a change of variables in $v$ and $s$ and inserting $\Delta u_0=1$, this can be written as
+\begin{align*}
+\tilde f_\eps(x)&=\int_0^1 \exp\Big(-d\int_{s'}^1 \Delta u_\eps(v'x)\frac{dv'}{v'}\Big)\,\frac{ds'}{s'}\\
+&=\int_0^1 d(s')^{d-1}\exp\Big(-d\sum_{i=1}^m\eps_i\int_{s'}^1 \frac{\Delta \psi_i(v'x)}{v'}\, dv'\Big)\,ds'.
+\end{align*}
+Concerning the H\"older regularity of $\tilde f_\eps$, note that $\norm{\Delta \psi_i}_{C^\alpha}\lesssim 1$ holds due to the $\delta^{\alpha+2}$-scaling. Moreover, for each $x=(r,\omega)\in D$ there is at most one $\omega_i$ with $\abs{\omega_i-\omega}<\delta$ such that at most one term in the sum inside the exponential is non-zero. Due to $\Delta \psi_i(v'x)=0$ for $v'\abs{x}\le 1/4$ division by $v'$ does not harm. We conclude $\norm{\tilde f_\eps-\mathbf 1}_{C^\alpha}\lesssim c\norm{\Delta \psi_i}_{C^\alpha}\lesssim c$ and for each $r>0$ we can choose $c>0$ sufficiently small to  guarantee $\norm{\tilde f_\eps-\mathbf 1}_{C^\alpha}\le r/2$.
+
+We bound $\norm{\tilde f_\eps-\tilde f_{\eps'}}_{L^2}^2$ from below. Consider $x=(r,\omega)$ with $\abs{\omega-\omega_i}\le\delta$ for some (necessarily unique) $\omega_i$. Whenever $\eps_i\not=\eps_i'$,
+\[ \abs{\tilde f_\eps(x)-\tilde f_{\eps'}(x)}=\babs{\int_0^1 \Big(\exp\Big(-d\int_{sr}^r \frac{\Delta \psi_i(v\omega)}{v}\, dv\Big)-\exp\Big(-d\int_{sr}^r \frac{\Delta \psi_i(v\omega)}{v}\, dv\Big)\Big)ds^{d-1} ds}
+\]
+holds. We evaluate, using the quadratic scaling of the Laplace-Beltrami operator in the spherical coordinates,
+\begin{align*}
+\int_{s}^1 \frac{\Delta \psi_i(vx)}{v}\, dv &=c\delta^{\alpha+2}\Big(\int_{sr}^r \frac{a''(v)+(d-1)r^{-1}a'(v)}{v}dv\Big)b((\omega-\omega_i)/\delta)\\
+&\quad +c\delta^\alpha\Big(\int_{sr}^r \frac{a(v)}{r^2v}dv\Big)\Delta_{\delta^{-1}S_{d-1}}b((\omega-\omega_i)/\delta)
+\end{align*}
+We thus obtain uniformly over $x$ with $\abs{\omega-\omega_i}\le\delta$ as $\delta\to 0$
+\[ \frac{\abs{f_\eps(x)-f_{\eps'}(x)}}{\delta^\alpha}\to c\int_0^1 \Big(2d\int_{sr}^r \frac{a(v)}{r^2v}dv\Big)ds^{d-1} ds\abs{\Delta_{\delta^{-1}S_{d-1}} b((\omega-\omega_i)/\delta)},
+\]
+noting that $a$ is a non-negative function. For $r\ge 1/2$ and $\abs{\omega-\omega_i}\le\delta/2$, say, the right-hand side is uniformly bounded away from zero. This shows
+\[ \delta^{-2\alpha}\norm{f_\eps-f_{\eps'}}_{L^2(D)}^2\thicksim \int_{1/2}^1\int_{S_{d-1}}\sum_{i:\eps_i\not=\eps_i'}{\bf 1}(\abs{\omega-\omega_i}\le\delta/2)r^{d-1}drd\omega\thicksim  \sum_{i:\eps_i\not=\eps_i'}\delta^{d-1}\thicksim m^{-1}\sum_{i=1}^m{\bf 1}(\eps_i\not=\eps_i'),
+\]
+as required.
+
+{
+\textbf{Step 3. Non-radial characteristics.} We have by definition
+\[\sup_\eps \|u_\eps\|_{C^{\alpha+2}} \lesssim 1,\quad
+ \|u_\eps - u_0\|_{C^1} = \big\|\sum_{i=1}^m \eps_i\psi_i(r,\omega) \big \|_{C^1} \lesssim \delta^{\alpha +1}, \]
+since the $\psi_i$ have disjoint support. By choosing the constant $c$ in $\psi_i$ small enough, we may assume that the $u_\eps$ are all strictly convex with convexity parameter at least $1-\eta$ for any $\eta\in(0,1)$.
+
+Given $x\in D$ let $\varphi_\eps$ be the characteristic given by $\varphi_\eps'(t)=\nabla u_\eps(\varphi_\eps(t)) , t\le 0$, and $\phi_0$ correspondingly for $u_0$. By Lemma \ref{exponential-lemma} there exists some $t_0$ such that for all $x\in D$, all $\eps$ and all $t\le -t_0$, $|u_\eps(\varphi_\eps(t))|<1/4$. For all $z\in B_{1/4}(0)$ (open ball) we have that $\nabla u_\eps(z)=\nabla u_0(z)=x/d$. Moreover, note that the gradient flow of $u_0$ is contractive, i.e. if $\varphi_1, \varphi_2$ are characteristics of $\nabla u_0$ starting at $y_1,y_2\in D$, respectively, then $|\varphi_1(s) -\varphi_2(s)|\le |y_1-y_2|$. By a Gr\"onwall argument, we have that up until time $t_0$, for some constant $C$, we have the estimate
+\[ \sup_{v\in [-t_0,0]}\|\varphi_\eps(v) -\varphi_0 (v)\|\le C \|\nabla u_\eps - \nabla u_0\|_{L^\infty}\le  C \|u_\eps - u_0\|_{C^1}\lesssim \delta^{\alpha+1}. \]
+For all times $t\le -t_0$ the same holds by contractivity such that we have the \textit{global} in time bound
+\[ \sup_{v\in (-\infty,0]}\|\varphi_\eps(v) -\varphi_0(v)\|\lesssim \delta^{\alpha+1}. \]
+Let us denote by $\tilde f_\eps(x)$ the previous reconstruction under the radial characteristic $\varphi_0$. From $\Delta u_\eps\ge 1-\eta$ and $x\mapsto \exp(-x)$  globally Lipschitz for $x\ge0$ we deduce
+\begin{align*}
+    |\tilde f_\eps(x)-f_\eps(x)| &= \Big| \int_{-\infty}^0 \exp\Big(- \int_{s}^0\Delta u_\eps(\varphi_0(v)) dv\Big) ds - \int_{-\infty}^0 \exp\Big(-\int_{s}^0\Delta u_\eps(\varphi_\eps(v)) dv\Big) ds\Big|\\
+    &\le \int_{-\infty}^0 e^{s(1-\eta)} \int_s^0 \|u_\eps\|_{C^{2+\alpha}}|\varphi_0(v) -\varphi_\eps(v)|\, dv ~ ds \\
+    & \lesssim  \sup_{v\in (-\infty,0]}\|\varphi_\eps(v) -\varphi_0 (v)\|\int_{-\infty}^0 s e^{s(1-\eta)}  ds \lesssim \delta^{\alpha+1}.
+\end{align*} 
+This holds uniformly for all $x$ and is of smaller order than the $\delta^\alpha$ separation shown previously. 
+
+}
+
+{\bf Step 4: H\"older constraint.} Finally, let us prove that $f_\eps\in C^\alpha$ and restrict to integer smoothness $\alpha\in\N$ to remain concise. We write 
+\[f_\eps = \int_{-\infty}^0\exp\Big(\int_s^0 \Delta u_\eps \circ \Phi_v  dv\Big ) ds, \]
+where $\Phi_v:D\to D$ is the time-$v$ flow map of $\nabla u_\eps$. We will show that $\sup_{v\le 0} \|\Phi_v\|_{C^\alpha}\le C$. This will imply $f_\eps\in C^\alpha$ by the chain rule: when $D^m$ denotes the tensor of $m$-fold derivatives, there is for any multi-index $\beta$, $|\beta|\le \alpha$, a multivariate polynomial $P_\beta$ of order at most $\alpha$ with
+\begin{align}
+        \|  \partial^\beta  f_\eps \|_\infty &= \Big\|\int_{-\infty}^0 P_\beta(\Delta u_\eps \circ \Phi_v, D [ \Delta u_\eps \circ \Phi_v ],\dots,  D^\alpha [\Delta u_\eps \circ \Phi_v])\exp\Big(\int_s^0 \Delta u_\eps \circ \Phi_v  \,dv\Big ) \,ds\Big\|_\infty \notag\\
+        &\lesssim    \int_{-\infty}^0 e^{(1-\eta)s} ds, \label{poly-display}
+\end{align}
+since $\sup_{\eps,v} ( \|\Delta u_\eps \|_{C^\alpha}+  \|\Phi_v\|_{C^\alpha} )= O(1) $ and $\Delta u_\eps(x)\ge 1-\eta$ uniformly over $x$ for any $\eta>0$ when choosing $c=c(\eta)>0$ sufficiently small in the definition of $u_\eps$. 
+
+
+We prove $\sup_{v\le 0} \|\Phi_v\|_{C^\alpha}\le C$ by induction over $\alpha\in\N$. 
+Start with $\alpha=1$ and note that 
+\[ \partial_t D\phi_\eps = D\dot{\phi_\eps} = D(Du_\eps\circ \phi_\eps)= (D^2u_\eps \circ \phi_\eps) D\phi_\eps,~~~t\le 0, \]
+applying the derivative tensors $D,D^2$ to the solution $u_\eps$ and the flow $\phi_\eps$ appropriately, with terminal condition $D\dot \phi_\eps(0) = \Id$. Thus, with the HS-norm $\|\cdot\|_{HS}$,
+\[ \partial_t \| D\phi_\eps \|^2_{HS} = 2\langle  D\phi_\eps,(D^2u_\eps \circ \phi_\eps) D\phi_\eps\rangle_{HS}\ge 2 (1/d-\eta)\|D\phi_\eps\|^2_{HS},  \]
+where we used that $(D^2u_\eps \circ \phi)\succeq (1/d-\eta) \Id$ uniformly. By Gronwall's inequality in backward time and using that $\|D\phi_\eps(0)\|_{HS}^2=d$, we obtain
+\[ \| D\phi_\eps (t) \|^2_{HS} \le d e^{2(1/d-\eta)t}, ~~~t\le 0, \]
+which proves  $\|\Phi_t\|_{C^1} \le C$ uniformly over $t$.
+
+For the induction step $(k-1)\mapsto k$, $k=1,\ldots,\alpha+1$, assume that there exists some constant $C_{k-1}<\infty$ with $\|\Phi_t\|_{C^{k-1}} \le C_{k-1}$. We use the chain rule repeatedly to assert
+\begin{equation} \label{EqDkphi}
+    \begin{split}
+        D^k \dot \phi_\eps &= D^k( Du_\eps\circ \phi_\eps)\\
+        & = (D^{k+1} u_\eps \circ \phi_\eps)( D\phi_\eps)^{\otimes k} + (D^{k} u_\eps \circ \phi_\eps)\sum_{l=0}^{k-2}a_l( D\phi_\eps)^{\otimes l} \otimes (D^2\phi_\eps ) \otimes (D\phi_\eps)^{\otimes (k-2-l)}\\
+        &\qquad + \cdots + ( D^2u_\eps\circ \phi_\eps) D^k\phi_\eps
+    \end{split}
+\end{equation}
+with real coefficients $a_l$ and further terms involving $D^lu_\eps$, $l=3,\ldots,k-1$, and  derivatives of $\phi_\eps$ up to order $k-1$.
+Only the final term involves $D^k\phi_\eps$.  Since all third partial derivatives of $u_0$ vanish, and $\|u_\eps -u_0 \|_{C^{\alpha+2 }}\le\eta$ can be achieved by a small choice of $c=c(\eta)$, the induction hypothesis yields 
+\[ \partial_t D^k \phi_\eps = D^k \dot \phi_\eps = - {\mathcal O}(\eta) + (D^2\circ u_\eps)D^k\phi_\eps\]
+Taking, as before for matrices, a scalar product between tensors and denoting the constant involved in ${\mathcal O}(\eta)$ under the norm by $C_k$, we obtain as for the case $k=1$ that with another constant $C_k'$ 
+\[\partial_t \|D^k \phi_\eps\|^2 \ge 2(1/d-\eta) \| D^k\phi_\eps \|^2 - C_k\eta \| D^k\phi_\eps \| \ge (1/d-\eta) \| D^k\phi_\eps \|^2 - C_k'\eta ^2. \]
+Gronwall's inequality yields 
+\[ \|D^k\phi_\eps \|^2\le \int_t^0 e^{(1/d-\eta)(t-s)} C_k'\eta^2  ds \le \frac{C_k'\eta^2 }{1/d-\eta}, \]
+which again remains bounded. By induction, we conclude  $\sup_{\eps,v}\|\Phi_v\|_{C^{\alpha+1}}\le C$.
+
+
+
+
+Finally we show that a sufficiently small choice of $c>0$ can ensure  $ \norm{f_\eps-{\bf 1}}_{C^\alpha}\le r$. Above we have seen that we can assure $\norm{\tilde f_\eps-{\bf 1}}_{C^\alpha}\le r/2$ for the approximation along the radial flow and it remains to show $\norm{f_\eps-\tilde f_\eps}_{C^\alpha}\le r/2$. This can be seen from the representation \eqref{poly-display} as well as \eqref{EqDkphi}. Indeed $\partial^\beta\tilde f_\eps$ can be represented in the same form using the flow  $\Phi_{0,v}$ associated to the radial characteristics $\varphi(\cdot)$,
+\[\partial^\beta  \tilde f_\eps = \int_{-\infty}^0 P_\beta(\Delta u_\eps \circ \Phi_{0,v}, D [ \Delta u_\eps\circ \Phi_v ],\dots,  D^\alpha [\Delta u_\eps \circ \Phi_{0,v}])\exp\Big(\int_s^0 \Delta u_\eps\circ \Phi_{0,v}  dv\Big ) ds,\]
+and $D^k\dot\varphi$ satisfies \eqref{EqDkphi} with $u_0,\varphi$ in place of $u_\eps,\phi_\eps$. Since $\norm{u_\eps-u_0}_{C^{\alpha+2}}\le\eta$ we can ensure $\norm{\Phi_v-\Phi_{0,v}}_{C^\alpha} \lesssim \eta$ for any fixed $\eta$. This finally gives $\norm{\partial_\beta(f_\eps-\tilde f_\eps)}_\infty\lesssim \eta$ and thus $\norm{f_\eps-\tilde f_\eps}_{C^\alpha}\le r/2$, by choosing a sufficently small $\eta>0$ and $c=c(\eta)>0$.
+
+
+
+
+\begin{thebibliography}{99}
+
+\bibitem{MullerStadtmuller1999}
+H.-G. M{\"u}ller and U. Stadtm{\"u}ller,
+``Multivariate boundary kernels and a continuous least squares principle,''
+\emph{Journal of the Royal Statistical Society: Series B (Statistical Methodology)},
+vol.~61, no.~2, pp.~439--458, 1999.
+doi:~10.1111/1467-9868.00186.
+
+\bibitem{cohen2011analytic}
+A.~Cohen, R.~DeVore, and C.~Schwab.
+\newblock Analytic regularity and polynomial approximation of parametric and
+stochastic elliptic PDEs.
+\newblock \emph{Analysis and Applications}, 9(1):11--47, 2011.
+
+\bibitem{cotter2013mcmc}
+S.~Cotter, G.~Roberts, A.~Stuart, and D.~White.
+\newblock MCMC methods for functions: Modifying old algorithms to make them
+faster.
+\newblock \emph{Statistical Science}, 28(3):424--446, 2013.
+
+\bibitem{GilbargTrudinger2001}
+D.~Gilbarg and N.~S.~Trudinger,
+\emph{Elliptic Partial Differential Equations of Second Order},
+Classics in Mathematics,
+Springer-Verlag, Berlin, 2001.
+
+\bibitem{hairer2014spectral}
+M.~Hairer, A.~M. Stuart, and S.~J. Vollmer.
+\newblock Spectral gaps for a Metropolis--Hastings algorithm in infinite
+dimensions.
+\newblock 2014.
+
+\bibitem{nickl2023bayesian}
+R.~Nickl.
+\newblock \emph{Bayesian Non-linear Statistical Inverse Problems}.
+\newblock Zurich Lectures in Advanced Mathematics. EMS Press, 2023.
+
+\bibitem{nickl2020convergence}
+R.~Nickl, S.~van de Geer, and S.~Wang.
+\newblock Convergence rates for penalized least squares estimators in
+PDE-constrained regression problems.
+\newblock \emph{SIAM/ASA Journal on Uncertainty Quantification},
+8(1):374--413, 2020.
+
+\bibitem{nourdin2009second}
+I.~Nourdin, G.~Peccati, and G.~Reinert.
+\newblock Second order Poincar\'e inequalities and CLTs on Wiener space.
+\newblock \emph{Journal of Functional Analysis}, 257(2):593--609, 2009.
+
+\bibitem{richter1981inverse}
+G.~R. Richter.
+\newblock An inverse problem for the steady state diffusion equation.
+\newblock \emph{SIAM Journal on Applied Mathematics}, 41(2):210--221, 1981.
+
+\bibitem{siebel2024convergence}
+M.~Siebel.
+\newblock Convergence Rates for the Maximum A Posteriori Estimator in PDE-Regression Models with Random Design.
+\newblock \emph{SIAM/ASA Journal on Uncertainty Quantification} 13(4): 1862--1903, 2025.
+
+
+\bibitem{stuart2010inverse}
+A.~M. Stuart.
+\newblock Inverse problems: A Bayesian perspective.
+\newblock \emph{Acta Numerica}, 19:451--559, 2010.
+
+\bibitem{Triebel1978}
+H.~Triebel,
+\emph{Interpolation Theory, Function Spaces, Differential Operators},
+North-Holland Mathematical Library, Vol.~18,
+North-Holland Publishing Company, Amsterdam, 1978.
+
+\bibitem{tsybakov2003introduction}
+A.~B. Tsybakov.
+\newblock \emph{Introduction \`a l'estimation non param\'etrique}, volume~41.
+\newblock Springer Science \& Business Media, 2003.
+
+\end{thebibliography}
+
+
+\end{document} 

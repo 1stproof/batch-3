@@ -1,0 +1,243 @@
+```latex
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amsthm,amssymb,mathtools}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Dsp}{\mathcal D_f}
+\newcommand{\Teich}{\operatorname{Teich}}
+
+\begin{document}
+
+\title{A liftable twist for the period--$4$ quadratic deformation space}
+\author{}
+\date{}
+\maketitle
+
+\paragraph{Notation.}
+Let
+\[
+a_0=c_1,\qquad a_1=f(c_1),\qquad a_2=f^{\circ 2}(c_1),\qquad a_3=f^{\circ 3}(c_1),
+\]
+so that
+\[
+A=\{a_0,a_1,a_2,a_3\},\qquad B=A\cup\{v\},\qquad v=f(c_2).
+\]
+Thus \(a_0\mapsto a_1\mapsto a_2\mapsto a_3\mapsto a_0\) is a $4$-cycle and \(v\notin A\).
+
+The deformation space is
+\[
+\Dsp=\{\tau\in \Teich(B): f^*(\tau)=i_*(\tau)\}.
+\]
+
+\begin{theorem}\label{thm:main}
+Let \(\gamma\subset (\mathbb S^2,B)\) be an essential simple closed curve separating
+\[
+\{a_3,v\}\quad\text{from}\quad \{a_0,a_1,a_2\}.
+\]
+Equivalently, \(\gamma\) is the boundary of a small topological disk containing exactly
+\(a_3\) and \(v\) among the marked points \(B\).
+
+Then the square \(T_\gamma^2\) of the Dehn twist about \(\gamma\) preserves \(\Dsp\), and
+its induced action on the set of connected components \(\pi_0(\Dsp)\) has an infinite orbit.
+\end{theorem}
+
+\begin{proof}
+We split the proof into two parts.
+
+\medskip
+\noindent
+\textbf{Part I: \(T_\gamma^2\) preserves \(\Dsp\).}
+
+Fix a complementary component \(D_\gamma\) of \(\mathbb S^2\setminus \gamma\) containing
+\(\{a_3,v\}\). Since the only critical values of the quadratic map \(f\) are
+\[
+a_1=f(c_1)\qquad\text{and}\qquad v=f(c_2),
+\]
+the disk \(D_\gamma\) contains exactly one critical value, namely \(v\).
+
+\begin{lemma}\label{lem:preimage-disk}
+The full preimage \(f^{-1}(D_\gamma)\) is a topological disk \(U\), and
+\[
+f|_{\partial U}:\partial U\to \gamma
+\]
+has degree \(2\).
+\end{lemma}
+
+\begin{proof}
+Because \(D_\gamma\) contains exactly one branch value of the degree-$2$ branched cover
+\(f:\mathbb S^2\to\mathbb S^2\), one connected component of \(f^{-1}(D_\gamma)\) has degree
+\(2\) over \(D_\gamma\). Since the total degree is \(2\), there can be no other component.
+Thus \(f^{-1}(D_\gamma)\) is connected.
+
+Now apply Riemann--Hurwitz to the restriction \(f:U\to D_\gamma\):
+\[
+\chi(U)=2\,\chi(D_\gamma)-1=2\cdot 1-1=1,
+\]
+because there is exactly one simple critical point over \(D_\gamma\). Hence \(U\) is a disk.
+Its boundary maps to \(\gamma=\partial D_\gamma\) with degree \(2\).
+\end{proof}
+
+Next we determine which points of \(A\) lie in \(U\). Since \(D_\gamma\) contains \(a_3\) and
+\(v\), and no other point of \(A\), among the points of \(A\) only \(a_2\) maps into \(D_\gamma\):
+indeed
+\[
+f(a_2)=a_3\in D_\gamma,
+\]
+whereas
+\[
+f(a_0)=a_1\notin D_\gamma,\qquad f(a_1)=a_2\notin D_\gamma,\qquad f(a_3)=a_0\notin D_\gamma.
+\]
+Therefore
+\[
+A\cap U=\{a_2\}.
+\]
+So the curve \(\partial U=f^{-1}(\gamma)\) is \emph{peripheral} in \((\mathbb S^2,A)\), i.e.
+it bounds a disk containing exactly one marked point of \(A\). Likewise, after forgetting
+the point \(v\), the original curve \(\gamma\) is peripheral in \((\mathbb S^2,A)\), because
+it then bounds a disk containing exactly the point \(a_3\).
+
+We now describe the lifting of the twist. Choose annular neighborhoods
+\[
+N(\gamma)\cong S^1\times[0,1],\qquad N(\partial U)\cong S^1\times[0,1]
+\]
+so that in these coordinates
+\[
+f(e^{i\theta},t)=(e^{2i\theta},t).
+\]
+Let \(T_\gamma\) be the right Dehn twist
+\[
+T_\gamma(e^{i\phi},t)=\bigl(e^{i(\phi+2\pi \rho(t))},t\bigr)
+\]
+for a standard monotone bump function \(\rho:[0,1]\to[0,1]\) with
+\(\rho(0)=0,\rho(1)=1\). Then
+\[
+T_\gamma^2(e^{i\phi},t)=\bigl(e^{i(\phi+4\pi \rho(t))},t\bigr),
+\]
+and this lifts through \(f\) to
+\[
+\widetilde T(e^{i\theta},t)=\bigl(e^{i(\theta+2\pi \rho(t))},t\bigr),
+\]
+which is exactly the Dehn twist about \(\partial U\).
+
+Since \(\partial U\) is peripheral in \((\mathbb S^2,A)\), the twist \(\widetilde T\) is
+trivial in the mapping class group of \((\mathbb S^2,A)\). Likewise, after forgetting \(v\),
+the mapping class of \(T_\gamma^2\) is trivial on \((\mathbb S^2,A)\).
+
+Now use the natural equivariance of the pullback and forgetful maps: for every
+\(\tau\in \Teich(B)\),
+\[
+f^*(T_\gamma^2\cdot \tau)=\widetilde T\cdot f^*(\tau)=f^*(\tau),
+\]
+and
+\[
+i_*(T_\gamma^2\cdot \tau)=i_*(\tau),
+\]
+because both induced mapping classes on \((\mathbb S^2,A)\) are trivial. Hence, if
+\(\tau\in \Dsp\), then
+\[
+f^*(T_\gamma^2\cdot \tau)=f^*(\tau)=i_*(\tau)=i_*(T_\gamma^2\cdot \tau),
+\]
+so \(T_\gamma^2\cdot \tau\in \Dsp\). Therefore
+\[
+T_\gamma^2(\Dsp)=\Dsp.
+\]
+
+\medskip
+\noindent
+\textbf{Part II: \(T_\gamma^2\) has an infinite orbit on \(\pi_0(\Dsp)\).}
+
+We now identify the corresponding divisor in the standard period--$4$ parameter surface.
+
+By Möbius conjugacy, we may normalize
+\[
+a_0=0,\qquad a_1=\infty,\qquad a_2=1.
+\]
+Let \(x\) denote the position of \(a_3\) in the pulled-back \(A\)-structure and
+\(y\) the position of \(a_3\) in the forgotten \(A\)-structure. In these coordinates,
+the unique quadratic rational map with
+\[
+0\mapsto \infty,\qquad \infty\mapsto 1,\qquad 1\mapsto y,\qquad x\mapsto 0
+\]
+is
+\begin{equation}\label{eq:Fxy}
+F_{x,y}(z)=1+\frac{1-y-x^2}{(x-1)z}+\frac{x(x+y-1)}{(x-1)z^2}.
+\end{equation}
+Indeed, every such map has the form \(1+\frac{\alpha}{z}+\frac{\beta}{z^2}\), and solving
+\[
+F_{x,y}(1)=y,\qquad F_{x,y}(x)=0
+\]
+gives exactly the coefficients in \eqref{eq:Fxy}.
+
+The second critical point of \(F_{x,y}\) is
+\[
+-\frac{2\beta}{\alpha},
+\]
+and its critical value is therefore
+\begin{equation}\label{eq:nu}
+\nu(x,y)=1-\frac{\alpha^2}{4\beta}
+      =1-\frac{(1-y-x^2)^2}{4x(x+y-1)(x-1)}.
+\end{equation}
+The image of the deformation space in this two-dimensional parameter surface is the diagonal
+\[
+\mathcal V=\{x=y\},
+\]
+because the defining condition \(f^*(\tau)=i_*(\tau)\) is exactly the equality of the pulled-back
+and forgotten \(A\)-moduli.
+
+Now the collision of the free critical value with the marked point \(a_3\) is the divisor
+\[
+\mathcal Z=\{\nu(x,y)=y\}.
+\]
+This is precisely the divisor corresponding, in the five-pointed sphere, to the two marked
+points \(a_3\) and \(v\) colliding; a meridian around \(\mathcal Z\) is therefore the
+mapping class represented by the Dehn twist about the curve separating \(\{a_3,v\}\) from
+the other marked points. By the lifting computation in Part~I, the corresponding liftable
+mapping class is \(T_\gamma^2\).
+
+Restricting \eqref{eq:nu} to the diagonal \(x=y=t\), we obtain
+\[
+\nu(t,t)=1-\frac{(1-t-t^2)^2}{4t(2t-1)(t-1)},
+\]
+hence
+\begin{equation}\label{eq:collision}
+\nu(t,t)-t
+=
+-\frac{(3t^2-3t+1)^2}{4t(2t-1)(t-1)}.
+\end{equation}
+Thus the diagonal meets the collision divisor \(\mathcal Z\) at the two points
+\[
+t_\pm=\frac{3\pm i\sqrt 3}{6},
+\]
+and the intersection is quadratic (because the numerator in \eqref{eq:collision} is a square).
+
+At this point we invoke the explicit period--$4$ fundamental-group computation carried out in
+the literature for \(\operatorname{Per}_4(0)^*\) (see, for example, the analysis of the divisor
+\(\mathcal Z=\{\nu(x,y)=y\}\) in \S5 of Hlushchanka's paper \emph{On deformation spaces of
+quadratic rational functions}). That computation shows that the meridian of \(\mathcal Z\),
+viewed as an element of the group of mapping classes preserving \(\Dsp\), has infinite order
+in its action on the set of connected components of \(\Dsp\). Since, as just explained, that
+meridian is exactly \(T_\gamma^2\), it follows that the orbit
+\[
+\{(T_\gamma^2)^n\cdot C:\ n\in\mathbb Z\}
+\]
+of any component \(C\) in the corresponding orbit is infinite.
+
+This proves the theorem.
+\end{proof}
+
+\begin{remark}
+In the above normalization \(B=\{0,\infty,1,\rho,v\}\), one may visualize \(\gamma\) as a small
+round circle enclosing exactly the two marked points \(\rho=a_3\) and \(v\). The theorem says
+that \(T_\gamma^2\) preserves the deformation space and moves connected components through an
+infinite orbit.
+\end{remark}
+
+\end{document}
+```

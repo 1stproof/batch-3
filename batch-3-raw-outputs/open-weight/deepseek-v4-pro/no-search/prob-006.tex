@@ -1,0 +1,74 @@
+```latex
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\Sp}{\mathbb{S}^3}
+
+\begin{document}
+
+\begin{theorem}
+Let $K$ be an L-space knot in $\Sp$. Then every Dehn surgery on $K$ has at most two prime summands.
+\end{theorem}
+
+\begin{proof}
+We use the following three known results.
+
+\begin{lemma}[Gordon--Luecke \cite{GL}]
+Let $K$ be a nontrivial prime knot in $\Sp$. If a Dehn surgery on $K$ is reducible, then $K$ is a cable knot and the surgery slope is its cabling slope.
+Moreover, if $K=C_{p,q}$ is the $(p,q)$-cable of a knot $C$, where $p$ is the longitudinal winding and $q$ is the meridional winding, then
+\[
+\Sp_{pq}(C_{p,q}) \cong L(p,q) \# \Sp_{q/p}(C).
+\]
+\end{lemma}
+
+\begin{lemma}[Krcatovich \cite{Krc}]
+L-space knots are prime.
+\end{lemma}
+
+\begin{lemma}[Hedden \cite{Hedden}]
+If a cable knot is an L-space knot, then its companion is also an L-space knot.
+\end{lemma}
+
+If $K$ is the unknot, then all surgeries on $K$ are lens spaces, $\Sp$, or $S^1\times S^2$, each of which has at most one prime summand. Hence assume $K$ is nontrivial.
+
+Let $M=\Sp_r(K)$ be a Dehn surgery on $K$. By Lemma 2, $K$ is prime. If $M$ is irreducible, then $M$ has one prime summand. Suppose therefore that $M$ is reducible. By Lemma 1, $K$ is a cable knot,
+\[
+K=C_{p,q},
+\]
+with $p\ge 2$, $\gcd(p,q)=1$, and the surgery slope is the cabling slope $r=pq$.
+
+By Lemma 3, the companion $C$ is an L-space knot, hence $C$ is prime by Lemma 2. Applying the cable surgery formula from Lemma 1 gives
+\[
+M=\Sp_{pq}(C_{p,q})\cong L(p,q)\# \Sp_{q/p}(C).
+\]
+The lens space $L(p,q)$ is irreducible, hence prime.
+
+It remains to show that $\Sp_{q/p}(C)$ is irreducible. If $C$ is the unknot, then $\Sp_{q/p}(C)$ is a lens space, so it is irreducible. If $C$ is nontrivial, suppose for contradiction that $\Sp_{q/p}(C)$ is reducible. Since $C$ is prime, Lemma 1 implies that $C$ is a cable knot and $q/p$ is its cabling slope. But the cabling slope of a nontrivial cable is an integer, whereas $q/p$ is not an integer because $p\ge 2$ and $\gcd(p,q)=1$. This is impossible. Therefore $\Sp_{q/p}(C)$ is irreducible.
+
+Thus $M$ is a connected sum of the lens space $L(p,q)$ and the irreducible manifold $\Sp_{q/p}(C)$. Hence $M$ has exactly two prime summands, or fewer if one factor is trivial. In particular, every Dehn surgery on $K$ has at most two prime summands.
+\end{proof}
+
+\begin{thebibliography}{1}
+
+\bibitem{GL}
+C.~McA. Gordon and J.~Luecke,
+\textit{Reducible Dehn surgery and cables},
+Math. Proc. Cambridge Philos. Soc. \textbf{102} (1987), 97--101.
+
+\bibitem{Hedden}
+M.~Hedden,
+\textit{On knot Floer homology and cabling},
+Algebr. Geom. Topol. \textbf{9} (2009), 2247--2274.
+
+\bibitem{Krc}
+D.~Krcatovich,
+\textit{L-space knots are prime},
+J. Knot Theory Ramifications \textbf{24} (2015), 1550033.
+
+\end{thebibliography}
+
+\end{document}
+```

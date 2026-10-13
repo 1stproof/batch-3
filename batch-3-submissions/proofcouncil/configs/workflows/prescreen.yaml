@@ -1,0 +1,78 @@
+workflow: proofstack.agents.dag_workflow.DAGWorkflow
+description: 'One-shot pre-screen for a submitted research problem. Runs GPT-6 Astra Pro at maximum reasoning effort with web_search
+  + code_interpreter to (a) check that the statement is well-defined, well-posed, and free of obvious
+  issues, (b) do a brief literature / sanity-check pass for known or easy answers, and (c) emit a cleaned
+  standalone LaTeX version plus a structured verdict the filing script can merge into metadata.yaml.
+
+  '
+inputs:
+  problem: ''
+budget:
+  max_usd: 80.0
+  max_wallclock_s: 14400
+components:
+  cfg_prescreen:
+    model: models/openai/gpt-6-astra-pro
+    tool_refs:
+    - code_interpreter
+    - web_search_preview
+    max_tool_calls: 16
+    system_prompt: "You are a senior research mathematician acting as referee for a\npre-screen of a problem\
+      \ submitted to an AI-based math research\nworkflow. Your job is NOT to solve the problem in full.\
+      \ It is to:\n\n1. Decide whether the statement is well-defined, well-posed, and free\n   of obvious\
+      \ typos or missing assumptions.\n2. Do a brief literature scan (web_search) and a small computational\n\
+      \   sanity check (code_interpreter) when useful, to see whether the\n   problem has a known answer\
+      \ or is much easier or much harder than\n   it appears.\n3. Produce a cleaned standalone LaTeX version\
+      \ of the statement with\n   obvious issues fixed (or annotated where you cannot fix them\n   yourself).\n\
+      4. Emit a short structured verdict so the result can be filed\n   automatically.\n\nBe terse and\
+      \ precise. Do not invent results; cite sources for any\nclaim that depends on the literature. If\
+      \ you spot an issue, propose\nthe minimal fix rather than rewriting the whole problem.\n\nUse ``$...$``\
+      \ for inline math and ``$$...$$`` for display math in the\nmarkdown report so it renders cleanly\
+      \ through pandoc.\n"
+    user_prompt: "Submitted problem (verbatim):\n\n----\n{problem}\n----\n\nConduct the pre-screen described\
+      \ in the system prompt. Then return\nyour response in exactly the three blocks below, in this order,\
+      \ with\nno text outside them:\n\n<report>\n## Verdict\n\nOne paragraph: is the statement well-posed\
+      \ as written? If not, what\nis the issue and what is the minimal fix?\n\n## Main issues found\n\n\
+      Short list of typos, missing assumptions, or mathematical problems.\n\n## First research attack\n\
+      \nA brief look at whether the result is known, easy to derive, or in\nreach of standard techniques.\
+      \ Cite sources where relevant.\n\n## Bottom line\n\nOne or two sentences: does the problem look\
+      \ suitable for the\npressure-test run (challenging but plausibly solvable in 10-20\npages), or should\
+      \ it be revised or dropped?\n</report>\n\n<cleaned_latex>\nA complete standalone LaTeX document\
+      \ containing only the corrected\nproblem statement, wrapped in a single ```latex ... ``` fenced\
+      \ code\nblock. Use the article documentclass and load amsmath, amssymb, and\nmathtools. Do NOT include\
+      \ the prescreen analysis or any commentary\nhere; this block should be self-contained and compilable.\n\
+      </cleaned_latex>\n\n<verdict>\n```yaml\nverdict: <one of: well-posed | typo-or-clarification | mathematical-issues\
+      \ | known-answer | easy>\nsummary: <one-sentence takeaway>\nsuitable_for_test: <true | false>\n\
+      flags:\n  - <short tag, e.g. statement-incorrect>\n  - <short tag, e.g. resolved-in-corrected-version>\n\
+      ```\n</verdict>\n"
+    input_schema:
+      problem: string
+    output:
+      xml_tags:
+      - report
+      - cleaned_latex
+      - verdict
+      default_field: report
+    output_schema:
+      report: string
+      cleaned_latex: string
+      verdict: string
+dag:
+  nodes:
+  - id: prescreen
+    kind: agent
+    agent: proofstack.agents.configurable_prompt.ConfigurablePromptAgent
+    name: cfg_prescreen
+    inputs:
+      problem: $input.problem
+    ui:
+      x: 126
+      y: -43
+  outputs:
+    report: $node.prescreen.report
+    cleaned_latex: $node.prescreen.cleaned_latex
+    verdict: $node.prescreen.verdict
+  ui:
+    workflow_output:
+      x: 625
+      y: 13

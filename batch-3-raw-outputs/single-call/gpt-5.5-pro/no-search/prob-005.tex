@@ -1,0 +1,144 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm}
+
+\newcommand{\bplus}{\boxplus}
+\newcommand{\bigbplus}{\mathop{\boxplus}}
+\DeclareMathOperator{\hdet}{hdet}
+
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+
+\title{A Cubic Identity in Hyperfields}
+\author{}
+\date{}
+\maketitle
+
+\begin{abstract}
+We prove that, for every commutative hyperfield $\mathbb H$, if
+$0\in x\bplus y\bplus z$, then
+\[
+0\in x^3\bplus y^3\bplus z^3\bplus (-xyz)\bplus (-xyz)\bplus (-xyz).
+\]
+The proof is a direct application of the standard determinant criterion for
+singular matrices over hyperfields.
+\end{abstract}
+
+\section*{Preliminaries}
+
+Throughout, a hyperfield means a commutative hyperfield. Finite hyper-sums are
+unambiguous because the additive structure of a hyperfield is a canonical
+commutative hypergroup. For an $n\times n$ matrix $A=(a_{ij})$ over a hyperfield,
+define its hyperdeterminant by
+\[
+\hdet(A)
+ :=
+ \bigbplus_{\sigma\in S_n}
+ \operatorname{sgn}(\sigma)\,
+ a_{1,\sigma(1)}a_{2,\sigma(2)}\cdots a_{n,\sigma(n)}.
+\]
+Here $\operatorname{sgn}(\sigma)\in\{1,-1\}\subset \mathbb H$, and multiplication
+by $-1$ means additive negation.
+
+We use the following standard theorem of Viro.
+
+\begin{theorem}[Viro's singularity criterion]\label{thm:viro}
+Let $A=(a_{ij})\in M_n(\mathbb H)$. Suppose there exists a nonzero vector
+$v=(v_1,\dots,v_n)^t\in \mathbb H^n$ such that, for every $i$,
+\[
+0\in \bigbplus_{j=1}^n a_{ij}v_j.
+\]
+Then
+\[
+0\in \hdet(A).
+\]
+Equivalently, hyperlinear dependence of the columns of a square matrix implies
+singularity, where singularity means that $0$ belongs to the hyperdeterminant.
+\end{theorem}
+
+\begin{proof}[Reference]
+This is the ``linear dependence implies singular determinant'' direction of
+Viro's determinant theorem for matrices over hyperfields; see O.~Viro,
+\emph{Hyperfields for tropical geometry I. Hyperfields and dequantization},
+arXiv:1006.3034, Section~4, where it is proved in the discussion of singular
+matrices over hyperfields. The same statement is also standard in the language
+of represented matroids over hyperfields; see M.~Baker and N.~Bowler,
+\emph{Matroids over hyperfields}, Adv. Math. 343 (2019), 821--863.
+\end{proof}
+
+\section*{The cubic identity}
+
+\begin{theorem}
+Let $\mathbb H$ be a hyperfield and let $x,y,z\in \mathbb H$. If
+\[
+0\in x\bplus y\bplus z,
+\]
+then
+\[
+0\in x^3\bplus y^3\bplus z^3\bplus (-xyz)\bplus (-xyz)\bplus (-xyz).
+\]
+\end{theorem}
+
+\begin{proof}
+Consider the circulant matrix
+\[
+M=
+\begin{pmatrix}
+x & y & z\\
+z & x & y\\
+y & z & x
+\end{pmatrix}.
+\]
+Let $e=(1,1,1)^t$. Since $0\in x\bplus y\bplus z$ and hyperaddition is
+commutative, each coordinate of $Me$ contains $0$:
+\[
+0\in x\bplus y\bplus z,\qquad
+0\in z\bplus x\bplus y,\qquad
+0\in y\bplus z\bplus x.
+\]
+Thus $0\in Me$. Also $e\neq 0$ because $1\neq 0$ in a hyperfield. By
+Theorem~\ref{thm:viro},
+\[
+0\in \hdet(M).
+\]
+
+It remains only to expand $\hdet(M)$. The even permutations in $S_3$ give
+\[
+x\cdot x\cdot x=x^3,\qquad
+y\cdot y\cdot y=y^3,\qquad
+z\cdot z\cdot z=z^3,
+\]
+while the three odd permutations each give the product $xyz$, with a minus sign.
+Hence
+\[
+\hdet(M)
+=
+x^3\bplus y^3\bplus z^3
+\bplus (-xyz)\bplus (-xyz)\bplus (-xyz).
+\]
+Therefore
+\[
+0\in x^3\bplus y^3\bplus z^3
+\bplus (-xyz)\bplus (-xyz)\bplus (-xyz),
+\]
+as required.
+\end{proof}
+
+\begin{thebibliography}{9}
+
+\bibitem{Viro}
+O.~Viro,
+\emph{Hyperfields for tropical geometry I. Hyperfields and dequantization},
+arXiv:1006.3034.
+
+\bibitem{BakerBowler}
+M.~Baker and N.~Bowler,
+\emph{Matroids over hyperfields},
+Adv. Math. \textbf{343} (2019), 821--863.
+
+\end{thebibliography}
+
+\end{document}

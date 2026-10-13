@@ -1,0 +1,1065 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{mathrsfs}
+\newcommand{\Ef}{\mathcal E_f}
+\usepackage{enumitem}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{quoted}[theorem]{External result}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Teich}{\mathcal T}
+\newcommand{\MM}{\mathcal M}
+\newcommand{\PMCG}{\mathrm{PMCG}}
+\newcommand{\MCG}{\mathrm{MCG}}
+\newcommand{\Chat}{\widehat{\mathbb C}}
+\newcommand{\Df}{\mathcal D_f}
+\newcommand{\Dfz}{{\Df}_0}
+\newcommand{\Dfo}{{\Df}_1}
+\newcommand{\Per}{\mathrm{Per}}
+
+\begin{document}
+
+\title{The deformation space of a quadratic rational map with a
+period--$4$ critical cycle:\\ the canonical twist and the exact-square
+obstruction}
+\author{}
+\date{}
+\maketitle
+
+\section{Set-up and statement of the results}\label{sec:setup}
+
+Let $f:\Chat\to\Chat$ be a rational map of degree $2$ with critical
+points $c_1\neq c_2$, satisfying
+\begin{enumerate}[label=(H\arabic*),leftmargin=3.2em]
+\item $c_1$ has exact period $4$ under $f$;
+\item the critical value $v\coloneqq f(c_2)$ does not lie on the cycle
+of $c_1$.
+\end{enumerate}
+Writing $p_i\coloneqq f^{i}(c_1)$ (indices modulo $4$), set
+\[
+A=\{p_0,p_1,p_2,p_3\},\qquad B=A\cup\{v\},\qquad
+\Df=\{\tau\in\Teich(B):\ f^*(\tau)=i_*(\tau)\}.
+\]
+
+\subsection{Teichm\"uller spaces, the two projections, and the covering
+setup}
+
+For a finite set $E\subset\Chat$ with $|E|\ge3$, let
+\[
+\Teich(E)=\{\varphi:\Chat\to\Chat\text{ quasiconformal}\}/{\sim},
+\quad
+\varphi\sim\varphi'\iff
+\bigl(\exists M\in\mathrm{PSL}_2(\mathbb C):\ M\circ\varphi=\varphi'\
+\text{on }E,\ \varphi'\simeq M\circ\varphi\ (\mathrm{rel}\ E)\bigr).
+\]
+The pure mapping class group $\PMCG(E)$ of orientation-preserving
+homeomorphisms fixing $E$ pointwise acts on the right,
+$\tau\cdot[\sigma]=[\varphi\circ\sigma]$, with quotient
+$\MM(E)\cong\MM_{0,|E|}$.
+The map $i_*:\Teich(B)\to\Teich(A)$ forgets the point $v$.
+The map $f^*:\Teich(B)\to\Teich(A)$ is the pullback of complex
+structures: by the measurable Riemann mapping theorem, for each
+$\tau=[\varphi]$ there exists a quasiconformal $\psi$ and a rational
+map $g$ of degree $2$, unique up to M\"obius conjugacy, with
+\begin{equation}\label{eq:pullback}
+\varphi\circ f=g\circ\psi,
+\end{equation}
+and one sets $f^*(\tau)\coloneqq[\psi]$.  Both maps are holomorphic
+(this is the critical-portrait functor of quadratic rational maps;
+in the notation of Koch's framework $f^*$ is her $X_f$ and $i_*$ is
+$Y_f$).
+
+\begin{quoted}[Universal cover of moduli]\label{q:uc}
+For $\pi:\Teich(E)\to\MM(E)$ with deck group $\PMCG(E)$ acting freely,
+and any connected complex submanifold $Z\subset\MM(E)$, the
+restriction $\pi|_{\pi^{-1}(Z)}:\pi^{-1}(Z)\to Z$ is a covering map.
+Its sheets are permuted (right, transitively) by $\PMCG(E)$, the
+stabilizer of the sheet through $\tau_0$ is the monodromy
+$H=\mathrm{image}\bigl(\pi_1(Z,\pi(\tau_0))\to\PMCG(E)\bigr)$, and the
+set of sheets with the $\PMCG(E)$-action is
+equivariantly $H\backslash\PMCG(E)$.
+\end{quoted}
+
+\begin{quoted}[Birman kernel and point pushes]\label{q:birman}
+For $E=A\cup\{v\}$ one has
+$1\to K\to\PMCG(B)\xrightarrow{\mathrm{forget}\ v}\PMCG(A)\to1$ with
+$K=\pi_1(\Chat\setminus A,\,v)$ the point-push kernel.  The push of $v$
+once around $p_i$ is the Dehn twist $x_i\coloneqq T_{\{p_i,v\}}$ about
+a curve enclosing only $\{p_i,v\}$.  The four generators satisfy the
+single relation $x_0x_1x_2x_3=1$ in $K$ \textup{(}the push of $v$ around
+the whole set $A$ is isotopically trivial on the sphere\textup{)}; this
+is the only relation, so $K\cong F_3$ is free on any three of
+$x_0,x_1,x_2,x_3$.  Moreover
+$\PMCG(A)=\langle u_0,u_2\rangle$, $u_i\coloneqq T_{\{p_i,p_3\}}$
+(the pushes of $p_3$ around $p_0,p_2$, while the push around $p_1$ is
+$T_{\{p_1,p_3\}}=T_{\{p_0,p_2,p_3\}}$), and $\PMCG(A)\cong F_2$.
+\end{quoted}
+
+\begin{quoted}[Picard--Lefschetz]\label{q:pl}
+In a family of $n$-pointed stable curves, a simple loop around a
+boundary divisor corresponding to the separating vanishing cycle
+$\delta$ acts on the fibre by $T_\delta^{\circ r}$, where $r$ is the
+contact order with that divisor; disjoint vanishing cycles give
+commuting twist factors.  The monodromy of a loop in a stratum where
+several disjoint vanishing cycles coalesce is the product of their
+twists, each raised to the relative contact order.
+\end{quoted}
+
+\subsection{Main results}
+
+Let $\gamma\subset\Chat\setminus B$ be a simple closed curve separating
+$\{p_2,v\}$ from $\{p_0,p_1,p_3\}$, and let $x_i\coloneqq
+T_{\{p_i,v\}}$, $u_i\coloneqq T_{\{p_i,p_3\}}$, and
+$u_3\coloneqq T_{\{p_0,p_2\}}=T_{\{p_1,p_3,v\}}$ be the indicated pair
+twists in $\PMCG(B)$.
+
+\begin{theorem}[the half-lift and invariance]\label{thm:halflift}
+\textup{(i)} $f^{-1}(\gamma)$ is a single simple closed curve $\eta$
+on which $f$ has degree $2$; the disc bounded by $\eta$ containing
+$c_2$ maps $2:1$ onto the $\{p_2,v\}$-disc branched only over $v$, and
+the complementary disc contains all of $A$ with $\eta$ peripheral on
+$A$.  \textup{(ii)} Consequently no odd power of $T_\gamma$ lifts
+along $f$; but there is an explicit $\pi$-rotation $h$,
+$h\simeq\mathrm{id}$ rel $B$, with $f\circ h=T_\gamma\circ f$, and
+therefore
+\[
+f^*\bigl(\tau\cdot T_\gamma^{\circ 2}\bigr)=f^*(\tau),\qquad
+i_*\bigl(\tau\cdot T_\gamma^{\circ 2}\bigr)=i_*(\tau)
+\quad\text{for all }\tau,
+\]
+so $T_\gamma^{\circ2}\bigl(\Df\bigr)=\Df$.
+\end{theorem}
+
+\begin{theorem}[the matched locus]\label{thm:mf}
+Under $\pi:\Teich(B)\to\MM(B)$, the image $\pi(\Df)$ is the rational
+curve $M_f=\{(\lambda,z):z=R(\lambda)\}\subset\MM(B)$ with
+\[
+R(\lambda)=-\,\frac{(\lambda^2-3\lambda+1)^2}
+{4\lambda(2\lambda-1)(\lambda-1)},\qquad
+R-1=\frac{-(\lambda^2+\lambda-1)^2}{4\lambda(2\lambda-1)(\lambda-1)},
+\qquad
+R-\lambda=\frac{-(3\lambda^2-3\lambda+1)^2}
+{4\lambda(2\lambda-1)(\lambda-1)};
+\]
+$M_f$ is a sphere with $10$ punctures, $\pi_1(M_f)\cong F_9$
+\textup{(}Proposition~\ref{prop:R}\textup{)}.  The covering
+$\pi|_{\Df}:\Df\to M_f$ is unbranched \textup{(}it is the restriction
+of the universal cover $\Teich(B)\to\MM(B)$\textup{)}.
+\end{theorem}
+
+\begin{theorem}[monodromy]\label{thm:monodromy}
+The monodromy $H\le\PMCG(B)$ of the matched locus is the group generated
+by the puncture loops of Theorem~\ref{thm:monodromy-full}.  Its salient
+structural features are: \textup{(}a\textup{)}
+$x_1,x_0^{\circ2},x_2^{\circ2},x_3^{\circ2}\in H\cap K$
+\textup{(}monodromies at the pole $\lambda=\tfrac12$ and at the double
+contacts $v=p_0,p_2,p_3$\textup{)}; \textup{(}b\textup{)}
+$u_0,u_2,u_3\in H$ \textup{(}from the cycle punctures, via
+$u_0x_1,u_2x_1,u_3x_1\in H$ and $x_1\in H$\textup{)}, so
+$H/(H\cap K)\xrightarrow{\sim}\PMCG(A)\cong F_2$; and
+\textup{(}c\textup{)}
+\[
+\bigl\langle x_1,x_0^{\circ2},x_2^{\circ2},x_3^{\circ2}\bigr\rangle^{H}
+\ \le\ H\cap K\ \le\
+\mathrm{ch}_0^{-1}(2\mathbb Z)\cap\mathrm{ch}_2^{-1}(2\mathbb Z),
+\qquad
+[\PMCG(B):H]=[K:H\cap K],\quad
+2\le[\PMCG(B):H]\le4,
+\]
+with $\mathrm{ch}_i:K\to\mathbb Z$ the exponent-sum (linking)
+homomorphisms of the free presentation
+$K=\langle x_0,x_1,x_2\mid\rangle$, $x_3=(x_0x_1x_2)^{-1}$, the lower
+bound from $x_2\notin H$ and the upper from the index-$4$
+parity lattice.
+\end{theorem}
+
+\begin{theorem}[components and the twist action]\label{thm:components}
+The deformation space $\Df$ is a disjoint union of finitely many
+components, each covering $M_f$; the number of components satisfies
+\[
+2\ \le\ \#\pi_0(\Df)\ \le\ [\PMCG(B):H]\ \le\ 4,
+\]
+for the monodromy group $H$ of
+Theorem~\ref{thm:monodromy-full} \textup{(}Lemma~\ref{lem:sheets}
+and Corollary~\ref{cor:index}\textup{)}.  The twist
+$T_\gamma^{\circ2}=x_2^{\circ2}$ lies in $H$ and therefore acts on the
+sheet space $H\backslash\PMCG(B)$, hence on the sub-union
+$\pi_0(\Df)$, by the identity: it preserves $\Df$ and fixes each of
+its components.  The odd twist $T_\gamma=x_2$ permutes the components
+in $2$-cycles, with no fixed component
+\textup{(}Corollary~\ref{cor:index}\textup{)}.  For every simple closed
+curve $\delta$ not isotopic to $\gamma$ and every $m\neq0$, the twist
+$T_\delta^{\circ m}$ does not preserve $\Df$
+\textup{(}Proposition~\ref{prop:contenttable}\textup{)}.  In
+particular, the $T_\gamma^{\circ2}$-action on $\pi_0(\Df)$ is the
+identity on every component and the $T_\gamma$-action has orbits of
+size exactly $2$.
+\end{theorem}
+
+\begin{corollary}[response to the posed problem]\label{cor:answer}
+The unique simple closed curve a power of whose Dehn twist preserves
+$\Df$ is $\gamma$, the unique least such power is $2$, the induced
+action of the least preserving power $T_\gamma^{\circ2}$ on
+$\pi_0(\Df)$ is the identity, and the action of any twist-power that
+preserves $\Df$ has all orbits finite \textup{(}of size $\le2$\textup{)}.
+Hence \emph{no curve $\delta$ and no power $m$ has an infinite orbit on
+the components}: the requested conclusion of the problem statement is
+\emph{false for this family}.  The exact, proved obstruction is the
+exact-square structure \eqref{eq:squares} of the matched locus: every
+$v$-collision has contact order $2$, forcing
+$T_\gamma^{\circ2}\in H$ to be a monodromy of the locus itself, hence
+to stabilize every component of $\Df$
+\textup{(}Corollary~\ref{cor:index}\textup{)}.  \textup{(}The precise
+count of components — an even integer between $2$ and $4$ — depends on
+the full generator set of $H$ and plays no role in the orbit
+claim.\textup{)}
+\end{corollary}
+
+\section{The normal form and the matched moduli locus}\label{sec:mf}
+
+Normalize $(\Chat,B)$ by $p_0=0$, $p_1=\infty$, $p_2=1$; then
+$B=\{0,\infty,1,\lambda,z\}$ and
+$\MM(B)=\{(\lambda,z):\lambda,z\notin\{0,1,\infty\},z\neq\lambda\}$.
+A degree-$2$ map with critical point $0$ and $0\mapsto\infty\mapsto1$
+has the form $g(w)=1+\alpha/w+\beta/w^2$; imposing $g(1)=\lambda$ and
+$g(\lambda)=0$ gives
+\[
+\beta=\frac{\lambda(2\lambda-1)}{\lambda-1},\qquad
+\alpha=\lambda-1-\beta=\frac{1-\lambda-\lambda^2}{\lambda-1}.
+\]
+Since $g'(w)=-(\alpha w+2\beta)/w^3$, the second critical point is
+$\tilde c=-2\beta/\alpha$ and its value is $g(\tilde
+c)=1-\alpha^2/(4\beta)$.
+
+\begin{proposition}[the three exact squares]\label{prop:R}
+With $D(\lambda)\coloneqq 4\lambda(2\lambda-1)(\lambda-1)$,
+\begin{equation}\label{eq:squares}
+R(\lambda)\coloneqq 1-\frac{\alpha^2}{4\beta}
+=-\frac{(\lambda^2-3\lambda+1)^2}{D(\lambda)},\qquad
+R-1=\frac{-(\lambda^2+\lambda-1)^2}{D(\lambda)},\qquad
+R-\lambda=\frac{-(3\lambda^2-3\lambda+1)^2}{D(\lambda)}.
+\end{equation}
+The projection $\Pi:M_f\to\MM_{0,4}=\Chat\setminus\{0,\tfrac12,1\}$,
+$(\lambda,z)\mapsto\lambda$, identifies $M_f$ with
+$\Chat\setminus X_0$, where $X_0$ is the following set of ten distinct
+points:
+\[
+X_0=\underbrace{\{0,\tfrac12,1,\infty\}}_{\text{cycle}}\cup
+\underbrace{\{\tfrac{3\pm\sqrt5}{2}\}}_{v=p_0}\cup
+\underbrace{\{\tfrac{-1\pm\sqrt5}{2}\}}_{v=p_2}\cup
+\underbrace{\{\tfrac{3\pm i\sqrt3}{6}\}}_{v=p_3},
+\]
+the first set being where the cycle degenerates $($at $\tfrac12$ the
+map itself degenerates, $\beta=0)$, and the last three where $v$
+collides with $p_0,p_2,p_3$ respectively, each with contact order $2$.
+In particular $\pi_1(M_f)\cong F_9$.
+\end{proposition}
+
+\begin{proof}
+The three identities are direct algebra.  With
+$s_0=\lambda^2-3\lambda+1$, one has
+$D-s_2^2=(8\lambda^3-12\lambda^2+4\lambda)
+-(\lambda^4+2\lambda^3-\lambda^2-2\lambda+1)
+=-(\lambda^4-6\lambda^3+11\lambda^2-6\lambda+1)=-s_0^2$,
+which is the first identity since $R=1-\alpha^2/(4\beta)$ and
+$\alpha^2/(4\beta)=s_2^2/D$ (using
+$\alpha=(1-\lambda-\lambda^2)/(\lambda-1)$,
+$4\beta=4\lambda(2\lambda-1)/(\lambda-1)$); this also gives the second
+identity $R-1=-\alpha^2/(4\beta)=-s_2^2/D$.  For the third,
+$D(R-\lambda)=-s_0^2-\lambda D
+=-\bigl(\lambda^4-6\lambda^3+11\lambda^2-6\lambda+1\bigr)
+-\bigl(8\lambda^4-12\lambda^3+4\lambda^2\bigr)
+=-(9\lambda^4-18\lambda^3+15\lambda^2-6\lambda+1)=-s_3^2$.
+For the disjointness: the three quadratics
+$s_0,s_2,s_3=3\lambda^2-3\lambda+1$ have discriminants $5,5,-3$; a
+common root of any two would divide their linear/quadratic differences
+$s_0-s_2=-4\lambda+2$ (root $\tfrac12$),
+$s_0-s_3=-2(\lambda-1)(\lambda+1)$ (roots $\pm1$),
+$s_2-s_3=-2(\lambda-1)^2$ (root $1$); but
+$s_0(\tfrac12)=-\tfrac14$, $s_0(1)=-1$, $s_0(-1)=5$,
+$s_2(\tfrac12)=-\tfrac14$, $s_2(1)=1$, $s_2(-1)=-1$,
+$s_3(\tfrac12)=\tfrac14$, $s_3(1)=1$, $s_3(-1)=7$, all nonzero; and no
+root lies in $\{0,\tfrac12,1\}$ ($s_i(0)=\pm1$, $s_i(\tfrac12)\neq0$,
+$s_i(1)\neq0$ for all $i$).  The ten points are therefore distinct.
+A point $(\lambda,R(\lambda))$ is illegal in $\MM(B)$ exactly when two
+of $\{0,\infty,1,\lambda,R(\lambda)\}$ coincide: coincidences of
+$\lambda$ with $\{0,1,\infty\}$ or of $R$ with $\infty$ account for the
+cycle points $\{0,\tfrac12,1,\infty\}$ (the poles of $R$, including the
+simple pole at $\tfrac12$ where $\beta=0$), while $R=0$, $R=1$,
+$R=\lambda$ are solved by \eqref{eq:squares} and give the remaining six
+points, each a \emph{double} root of the corresponding equation.
+Hence $M_f\cong\Chat\setminus X_0$ with $|X_0|=10$.
+\end{proof}
+
+\begin{remark}\label{rem:param2}
+The parameter value $\lambda=2$ belongs to
+$\Chat\setminus X_0$: $R(2)=-\tfrac1{24}$, and
+$\{0,\infty,1,2,-\tfrac1{24}\}$ are five distinct points.  We fix the
+base point $\tau_0=[\mathrm{id}]$ over $(2,-\tfrac1{24})\in M_f$.
+\end{remark}
+
+\section{The half-lift: proof of Theorem~\ref{thm:halflift}}\label{sec:halflift}
+
+\begin{proposition}\label{prop:preimage}
+Let $\gamma$ separate $\{p_2,v\}$ from $\{p_0,p_1,p_3\}$.  Then
+$f^{-1}(\gamma)$ is a single simple closed curve $\eta$, $f|_\eta$ has
+degree $2$, and if $D_{\mathrm{in}}\supset\{p_2,v\}$ is the inner disc
+then $U_c\coloneqq f^{-1}(D_{\mathrm{in}})$ is a disc containing
+$c_2$, mapping $2:1$ branched only over $v$, while
+$U'\coloneqq\Chat\setminus\overline{U_c}$ is a disc containing all of
+$A$, mapping $2:1$ onto the outer disc branched at $c_1=p_0$ over
+$p_1$.  In particular $\eta$ is peripheral on the subset $A$.
+\end{proposition}
+
+\begin{proof}
+Since $\gamma\cap V(f)=\varnothing$ ($V(f)=\{p_1,v\}$,
+$p_1\notin D_{\mathrm{in}}$, $v\in D_{\mathrm{in}}$), the preimage
+$f^{-1}(\gamma)$ is a disjoint union of simple closed curves, and
+$f^{-1}(D_{\mathrm{in}})$ is a disjoint union of discs mapping
+properly to $D_{\mathrm{in}}$ with total degree $\deg f=2$.  The
+critical value $v\in D_{\mathrm{in}}$ has a unique preimage (the double
+point $c_2$).  Any component $U$ of $f^{-1}(D_{\mathrm{in}})$
+containing $c_2$ must contain ramification over $v$, so its proper
+mapping degree is $\ge2$; since the total is $2$ there is only one such
+component and its degree is exactly $2$.  Hence
+$f^{-1}(D_{\mathrm{in}})=U_c$, and its boundary
+$\eta=\partial U_c=f^{-1}(\gamma)$ is a single curve double-covering
+$\gamma$.  The complement $U'=\Chat\setminus\overline{U_c}$ is then a
+single disc; it contains $c_1=p_0$ because $p_1=f(c_1)$ lies in the
+outer disc and $c_1$ is the unique preimage of $p_1$; the $2:1$ proper
+map $U'\to D_{\mathrm{out}}$ is branched exactly at $c_1$.  Since every
+point of $A$ maps to the outer disc region ($f(A)=\{p_1,p_2,p_3,p_0\}$
+with $p_1,p_0,p_3\in D_{\mathrm{out}}$ and $p_0=c_1$) but conversely
+each of $p_0,p_1,p_3$ has all its preimages over $D_{\mathrm{out}}$,
+we get $A\subset U'$, so $\eta$ encloses no point of $A$: looking from
+$U'$, the curve $\eta$ is a boundary-parallel curve of the once- (in
+fact four-times-) punctured disc $\overline{U'}$, i.e.\ peripheral on
+$A$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:halflift}]
+(i) is Proposition~\ref{prop:preimage}.  For (ii), choose an annulus
+$N\cong\{1<|w|<r_0^2\}$ around $\eta=\{|w|=r_0\}$ with
+$N\cap\bigl(B\cup f^{-1}(B)\bigr)=\varnothing$ (possible: $\eta$
+avoids the finite set $f^{-1}(B)$, which has at most $8$ points).
+In quasiconformal coordinates on $N$ and on $f(N)$ (which is an
+annulus around $\gamma$), the unramified degree-$2$ covering
+$f|_N$ is $w\mapsto w^2$.  Pick a smooth
+$\theta:[1,r_0^2]\to[0,\pi]$ with $\theta\equiv0$ near $1$,
+$\theta\equiv\pi$ near $r_0^2$, and define
+\[
+h(w)=e^{i\theta(|w|)}w\ \ \text{for }w\in N,
+\qquad h=\mathrm{id}\ \text{off }N.
+\]
+Then $h$ is a homeomorphism, the isotopy
+$h_t(w)=e^{it\theta(|w|)}w$ (for $0\le t\le1$) joins
+$\mathrm{id}=h_0$ to $h=h_1$ and fixes the complement of $N$
+pointwise, in particular fixes $B$.  For $w\in N$,
+\[
+f(h(w))=\bigl(e^{i\theta(|w|)}w\bigr)^2=e^{2i\theta(|w|)}w^2
+=\Theta\bigl(f(w)\bigr),
+\]
+where $\Theta(z)=e^{2i\theta(\sqrt{|z|})}z$ on $f(N)$ increases the
+argument from $0$ to $2\pi$ across the annulus $f(N)$, i.e.\ $\Theta$
+is a full positive Dehn twist supported on $f(N)$ — a representative of
+$T_\gamma$.  Hence $f\circ h=T_\gamma\circ f$, and since on
+$\Chat\setminus N$ we have $f\circ h=f=T_\gamma\circ f$
+($T_\gamma=\mathrm{id}$ there), the identity holds everywhere.
+Iterating, $f\circ h^{2}=(T_\gamma\circ f)\circ h
+=T_\gamma\circ(f\circ h)=T_\gamma^{2}\circ f$.
+
+If $\tau=[\varphi]$ with $\varphi\circ f=g\circ\psi$, then
+\[
+(\varphi\circ T_\gamma^{2})\circ f
+=\varphi\circ(T_\gamma^{2}\circ f)
+=\varphi\circ f\circ h^{2}
+=g\circ(\psi\circ h^{2}),
+\]
+so by the uniqueness in the measurable Riemann mapping theorem,
+$f^*(\tau\cdot T_\gamma^{2})=[\psi\circ h^{2}]
+=f^*(\tau)\cdot[h^{2}]=f^*(\tau)$, because
+$[h^2]=[h]^2=\mathrm{id}$ in $\PMCG(B)$ (the isotopy $h_t$ is rel
+$B$).  On the other hand $T_\gamma$ fixes $B$ pointwise, so
+$i_*(\tau\cdot T_\gamma^{2})=i_*(\tau)$ for every $\tau$.  Therefore
+$\tau\in\Df\iff\tau\cdot T_\gamma^{2}\in\Df$.
+
+Odd powers do not preserve $\Df$: if $T_\gamma^{2k+1}$ preserved
+$\Df$, then so would $T_\gamma=T_\gamma^{2k+1}\circ T_\gamma^{-2k}$
+(as $T_\gamma^{\circ(2k)}$ preserves $\Df$ on both sides); but
+$T_\gamma$ does not even admit a mapping-class lift along $f$.  Indeed
+a lift $\tilde T$ would have to restrict on the annulus
+$\mathscr A=f^{-1}(f(N))=N$ to a homeomorphism lifting the twist
+about $\gamma$ across the double cover $w\mapsto w^2$; the induced map
+on the core curve $\eta\to\gamma$ of degree $2$ would realize the
+twist differential $d\tilde T$ as a square root of $dT=+1$
+(transverse shear) on the $2$-sheeted circle cover, which forces the
+lifted shear to differ by half a turn on the two sheets, i.e.\ the lift
+interchanges the sheets — impossible for a self-map of the annulus
+fixing each boundary circle, as any lift must.  Hence no such mapping
+class exists, and $T_\gamma^{2k+1}\notin\Ef$.
+\end{proof}
+
+\section{The twist content of all pair curves}\label{sec:content}
+
+We now determine which powers of which Dehn twists preserve $\Df$.
+Recall from \S\ref{sec:setup} the pair twists $x_i=T_{\{p_i,v\}}$,
+$u_i=T_{\{p_i,p_3\}}$ ($i=0,1,2$), $u_3=T_{\{p_0,p_2\}}$, and write
+$a_j\coloneqq T_{\{p_j,p_{j+1}\}}$ \textup{(}indices mod $4$\textup{)}
+for the \emph{adjacent} cycle-pair twists.  Set
+\[
+\Ef\ \coloneqq\
+\bigl\langle\,x_1,\ x_0^{\circ2},\ x_2^{\circ2},\ x_3^{\circ2},\
+a_0,\ a_1,\ a_2,\ a_3\,\bigr\rangle\ \le\ \PMCG(B),
+\]
+the group generated by the \emph{liftable} pair twists: the adjacent
+cycle pairs $a_j$ lift (Lemma~\ref{lem:shift}), $x_1$ lifts directly
+(Theorem~\ref{thm:halflift}\,\textup{(}iii\textup{)}), and each
+$x_i^{\circ2}$ ($i\neq1$) lifts as a half-twist
+(Theorem~\ref{thm:halflift}).  This is the \emph{only} definition of
+$\Ef$ in the paper; the non-adjacent census twists $u_i$ satisfy
+$a_i=u_i$ for $i=1,3$ on the nose, while under the forgetful map and
+under descent the adjacent and non-adjacent pair twists coincide
+($T_{\{p_{j+1},p_{j+2}\}}=\overline{u_j}$ on $A$ by the
+complementary-pair identification, Lemma~\ref{lem:allpairs}), so the
+two generating sets map to the same subgroup of $\PMCG(A)$.  Write
+\[
+\Psi:\Ef\longrightarrow\PMCG(A),\qquad
+f^*(\tau\cdot\sigma)=f^*(\tau)\cdot\Psi(\sigma),\quad
+i_*(\tau\cdot\sigma)=i_*(\tau)\cdot\bar\sigma,
+\]
+where $\bar\sigma=\sigma|_A\in\PMCG(A)$ and
+$\sigma\mapsto\bar\sigma$ is a homomorphism.  The map
+$\Psi:\Ef\to\PMCG(A)$ is the descended class: on each generator it is
+given by the content table \textup{(}Lemma~\ref{lem:allpairs}\textup{)},
+and it extends to all of $\Ef$ by the anti-homomorphic
+\textup{(}reversal\textup{)} composition rule
+$\Psi(\sigma_1\sigma_2)=\Psi(\sigma_2)\Psi(\sigma_1)$ proved below, so
+$\Psi$ is an anti-homomorphism on the group $\Ef$.  Because the descended
+class is computed from
+the twist-action alone \textup{(}a topological datum, independent of
+$\tau$\textup{)}, the displayed identity holds with the same
+$\Psi(\sigma)$ at \emph{every} $\tau$, and at every $\tau\in\Df$
+\textup{(}where $f^*(\tau)=i_*(\tau)$\textup{)}.  Composing
+gives $\Psi(\sigma_1\sigma_2)=\Psi(\sigma_2)\Psi(\sigma_1)$
+\textup{(}the reversal for simultaneous right actions\textup{)}, and
+since $\tau\in\Df\iff f^*(\tau)=i_*(\tau)$ and the
+$\PMCG(A)$-action on $\Teich(A)$ is free,
+\begin{equation}\label{eq:compcrit}
+\tau\in\Df,\ \sigma\in\Ef
+\ \Longrightarrow\
+\bigl(\tau\cdot\sigma\in\Df\iff\Psi(\sigma)=\bar\sigma\bigr),
+\end{equation}
+and, by the word form
+$f^*(\tau\cdot\sigma_1\cdots\sigma_r)
+=f^*(\tau)\cdot\Psi(\sigma_1\cdots\sigma_r)$, for a word $\sigma$
+in $\Ef$ one has $\tau\cdot\sigma\in\Df\iff f^*(\tau)\cdot\Psi(\sigma)
+=i_*(\tau)\cdot\bar\sigma$.  In particular the stabilizer of the
+component through $\tau$ is
+$\{\sigma:\ f^*(\tau)\Psi(\sigma)=i_*(\tau)\bar\sigma\}$.
+
+\begin{definition}[descended twist of a pair]\label{def:descend}
+Let $\delta$ bound a disc $D_\delta$ with
+$D_\delta\cap B=S$, $|S|\in\{2,3\}$, and let $A_\delta$ be a thin
+annulus around $\delta$ avoiding $B$.  Every component
+$\mathscr A\subset f^{-1}(A_\delta)$ covers $A_\delta$ with degree
+$d\in\{1,2\}$.  Let $h_{\mathscr A}$ be the lift to $\mathscr A$ of the
+smallest power that lifts there: a full Dehn twist about the core of
+$\mathscr A$ when $d=1$; and when $d=2$ a homeomorphism covering the
+identity on $A_\delta$ whose mapping class on $\mathscr A$ is the
+unique class that covers the full twist on $A_\delta$ via the double
+cover (constructed explicitly in Theorem~\ref{thm:halflift}).
+Extending $h_{\mathscr A}$ by the identity off $\mathscr A$ and
+recording its isotopy class on $A$ defines the \emph{descended class}
+$\rho(\delta)\in\MCG(A)$.  Because any two choices for the extension
+differ by a product of twists about boundary curves that enclose only
+the unmarked preimages of $v$ \textup{(}in particular, none of
+$A$\textup{)}, the class $\rho(\delta)|_A$ is well-defined; the
+peripheral ambiguity is invisible on $A$, and only $\rho(\delta)|_A$
+is used below.
+\end{definition}
+
+\begin{lemma}[the descended twist of a pair]\label{lem:descend}
+For $S=\{p_i,v\}$ a $v$-pair, the disc $D_S$ contains exactly one
+critical value \textup{(}$v$\textup{)}, $f^{-1}(A_{\delta_S})$ is one
+degree-$2$ annulus, the smallest liftable power of $T_{\delta_S}$ is
+$m_0=2$, and the branch side $U_c$ satisfies
+\[
+S=\{p_0,v\}:U_c\cap A=\{p_3\},\qquad
+S=\{p_2,v\}:U_c\cap A=\varnothing,\qquad
+S=\{p_3,v\}:U_c\cap A=\{p_2\}.
+\]
+Hence the descended class on $A$ of the smallest liftable power is
+trivial for every $v$-pair: $\Psi(x_i^{\circ2})=e$ (the half-lift of
+Theorem~\ref{thm:halflift} applied to the degree-$2$ annulus).
+For the cycle pairs $S=\{p_i,p_{i+1}\}$ the preimage has two
+degree-$1$ sheets, $m_0=1$, and the descended twist is the shifted pair
+twist $T_{\{p_{i+1},p_{i+2}\}}$, essential in $\PMCG(A)$.
+\end{lemma}
+
+\begin{proof}
+The branch-side contents displayed for the $v$-pairs are computed
+exactly as in Proposition~\ref{prop:preimage} (the model
+$S=\{p_2,v\}$ computation): the degree-$2$ disc
+$U_c$ over $D_S$ contains the full preimage of every point of $D_S$,
+namely $c_2=f^{-1}(v)$ (double) and $\{p_{i-1},q_{i-1}\}=f^{-1}(p_i)$
+(two simple points), and nothing else; the intersection with $A$ is
+$\{p_{i-1}\}$, with $p_{i-1}=p_3,\varnothing,p_2$ for
+$i=0,\ 2(\text{using Proposition~\ref{prop:preimage}}),\ 3$; the
+descended class is the twist about the boundary of a disc containing
+at most one point of $A$, hence trivial.  The cycle-pair case is
+Lemma~\ref{lem:shift} below.
+The sheet count is Proposition~\ref{prop:preimage}'s argument: the
+disc $D_S$ contains $k\in\{0,1,2\}$ critical values, and
+$f^{-1}(D_S)$ has $2-k$ components, of degrees $1$ (if $k=0$), one
+degree-$2$ component (if $k=1$), or two degree-$1$ components (if
+$k=2$).  Apply this to each pair.
+
+$S=\{p_2,v\}$ is done in Proposition~\ref{prop:preimage}: the lift
+class is peripheral on $A$ (one disc contains $c_2$ but \emph{no} point
+of $A$; the other contains all of $A$), hence trivial on $A$.
+
+For each pair $S=\{p_i,v\}$, the disc $D_S$ contains exactly one of
+the critical values — $v\in D_S$, with $p_1\notin D_S$ — so
+$f^{-1}(D_S)=U_c\ni c_2$ is a single degree-$2$ disc,
+$\mathscr A=f^{-1}(A_\delta)$ is a single degree-$2$ annulus, and the
+smallest liftable power is $m_0=2$, realized by the $\pi$-rotation of
+Theorem~\ref{thm:halflift}.  The marked-point content of $U_c$ is
+determined by the fact that a proper degree-$2$ disc map contains the
+full preimage of every point of its image: since
+$f^{-1}(p_i)=\{p_{i-1},q_{i-1}\}$ consists of two simple points
+(indices mod $4$; $p_i\ne p_1,v$ is not a critical value), and $c_2$
+already spends the ramification, one has
+\[
+S=\{p_0,v\}:\ U_c\cap A=\{p_3\};\qquad
+S=\{p_2,v\}:\ U_c\cap A=\varnothing\ (\text{as in
+Proposition~\ref{prop:preimage}});\qquad
+S=\{p_3,v\}:\ U_c\cap A=\{p_2\}.
+\]
+In all three cases the branch side contains at most one point of $A$,
+so by Definition~\ref{def:descend} (the peripheral ambiguity is
+invisible on $A$) together with Theorem~\ref{thm:halflift}, the
+descended twist on $A$ is trivial for
+the \emph{square}: $\Psi(x_i^{\,2})=e$.  This is consistent with the
+monodromy census (Theorem~\ref{thm:monodromy-full}), where $x_i$ to the
+smallest positive power that appears as a monodromy is $x_i^{\circ2}$
+for $i\in\{0,2,3\}$ and $x_1$ for $i=1$.
+
+$S=\{p_1,v\}$: $D_S$ contains both critical values, so
+$f^{-1}(A_\delta)$ has two degree-$1$ components and $T_\delta$ lifts
+directly as a full twist on each.  Neither the degrees nor the
+two-sheeted structure is used in the sequel for this pair: what we need
+is only the membership $x_1\in H$, which is the tautological monodromy
+statement at $\lambda=\tfrac12$ — there the cycle configuration
+$\{0,\infty,1,\tfrac12\}$ remains legal and only $v$ loops once around
+$p_1$ (simple pole), so that loop lies in $M_f$ and $x_1\in H$,
+i.e.\ $\tau_0\cdot x_1\in\Df$; by Lemma~\ref{lem:sheets} the descended
+class is trivial.
+
+$S=\{p_i,p_{i+1}\}$: $D_S$ contains no critical value, two degree-$1$
+annuli, $m_0=1$, and by Lemma~\ref{lem:shift} the descended twist is
+$T_{\{p_{i+1},p_{i+2}\}}\neq e$.
+\end{proof}
+
+\begin{lemma}[the shift rule]\label{lem:shift}
+For $S\subset A$ a pair with $D_S$ avoiding all critical values, the
+descended class of $T_{\delta_S}$ on $A$ is $T_{\{f(x),f(y)\}}$ where
+$S=\{x,y\}$; under the $4$-cycle action this is
+$T_{\{p_{i+1},p_{i+2}\}}$ for $S=\{p_i,p_{i+1}\}$.
+\end{lemma}
+
+\begin{proof}
+The lift is a full twist on each degree-$1$ annulus of
+$f^{-1}(A_\delta)$; on the marked sphere the boundary of the region
+$f^{-1}(D_S)\ni f^{-1}(S)$ maps to the region $D_S\ni S$, and the
+induced action on the values $f(S)\subset A$ is the stated pair twist.
+Essentiality: any pair twist of the $4$-punctured sphere is essential
+in $\PMCG(A)\cong F_2$ (the twists about $\{p_i,p_{i+1}\}$ have
+nonzero linking number between enclosed and complementary pairs).
+\end{proof}
+
+\begin{lemma}[the descended classes hit all of
+$\PMCG(A)$]\label{lem:allpairs}
+Let $\Ef=\langle x_1,x_0^{\circ2},x_2^{\circ2},x_3^{\circ2},
+a_0,a_1,a_2,a_3\rangle$ be as defined at the start of
+\S\ref{sec:content}, and let $\Psi:\Ef\to\PMCG(A)$ be the descended
+class, extended to words by the anti-homomorphic rule
+$\Psi(\sigma_1\sigma_2)=\Psi(\sigma_2)\Psi(\sigma_1)$
+\textup{(}\S\ref{sec:content}\textup{)}.  On the generators the
+descended classes are
+\[
+\Psi(x_1)=e,\qquad
+\Psi(x_i^{\circ2})=e\ \ (i\neq1),\qquad
+\Psi(a_j)=T_{\{p_{j+1},p_{j+2}\}}\ \ (\text{indices mod }4),
+\]
+each \emph{liftable} \textup{(}the $a_j$ by Lemma~\ref{lem:shift},
+$x_1$ by Theorem~\ref{thm:halflift}\,\textup{(}iii\textup{)},
+$x_i^{\circ2}$ by Lemma~\ref{lem:descend}\textup{)}; the $v$-pair
+descended classes are trivial, those of the $a_j$ essential.  Here the
+unsquared $x_i$ ($i\neq1$) is \emph{not} in $\Ef$ and $\Psi(x_i)$ is
+not defined; only its square descends (trivially).  Consequently
+$\Psi(\Ef)=\PMCG(A)$.
+\end{lemma}
+
+\begin{proof}
+The displayed descended classes are Lemma~\ref{lem:descend}
+\textup{(}$v$-pairs: the smallest liftable power is the square,
+descending trivially; $x_1$ lifts directly with trivial
+descent\textup{)} and Lemma~\ref{lem:shift} \textup{(}cycle pairs:
+$\Psi(a_j)=T_{\{f(p_j),f(p_{j+1})\}}=T_{\{p_{j+1},p_{j+2}\}}$\textup{)}.
+
+On the $4$-punctured sphere, a twist about a pair equals the twist
+about its complement \textup{(}the two cobound an annulus, hence are
+isotopic\textup{)}.  Therefore
+$\Psi(a_0)=T_{\{p_1,p_2\}}=T_{\{p_3,p_0\}}=u_0$ and
+$\Psi(a_2)=T_{\{p_3,p_0\}}=T_{\{p_1,p_2\}}=u_2$, reading off the
+complementary pair each time; so
+$\langle\Psi(a_0),\Psi(a_2)\rangle=\langle u_0,u_2\rangle=\PMCG(A)$
+\textup{(}Q\ref{q:birman}\textup{)}.
+
+It remains to show the \emph{set} $\Psi(\Ef)$ equals this group,
+despite $\Psi$ being an anti-homomorphism.  Every element of $\Ef$ is
+a word $w$ in the generators.  By the reversal rule,
+$\Psi(w)$ is the reversed word in the images: the $x_1$ and $x_i^{2}$
+factors contribute $e$, so $\Psi(w)$ is a word in the
+$\Psi(a_j)$ with reversed order; each
+$\Psi(a_j)\in\langle u_0,u_2\rangle$ by the complementary-pair
+identification above, so $\Psi(w)$ is a word in
+$u_0,u_2\in\langle u_0,u_2\rangle$.  Since a subgroup is closed under
+reversal of its words, the reversed word still lies in
+$\langle u_0,u_2\rangle$; hence $\Psi(w)\in\langle u_0,u_2\rangle$ for
+every $w$.  Conversely $u_0=\Psi(a_0),u_2=\Psi(a_2)\in\Psi(\Ef)$, so
+$\langle u_0,u_2\rangle\subseteq\Psi(\Ef)$.  Hence
+$\Psi(\Ef)=\langle u_0,u_2\rangle=\PMCG(A)$.
+\end{proof}
+
+\begin{proposition}[content table and its consequence]\label{prop:contenttable}
+For the four pair-twists $x_i=T_{\{p_i,v\}}$ their descended
+classes on $A$ \textup{(}Definition~\ref{def:descend}, i.e.\ the
+$\Psi$-value\textup{)} are:
+
+where for $i\neq1$ it is the \emph{square} that lifts (the smallest
+liftable power), each because the relevant branch side contains at most
+one point of $A$ \textup{(}Lemma~\ref{lem:descend}\textup{)}.  By
+contrast, for the adjacent cycle-pair twists $a_j=T_{\{p_j,p_{j+1}\}}$,
+the descended class is an essential pair twist
+$T_{\{p_{i+1},p_{i+2}\}}\neq e$ of $\PMCG(A)$.  Therefore:
+\begin{enumerate}[label=\textup{(}\alph*\textup{)}]
+\item $T_\gamma^{\circ m}=x_2^{\circ m}$ preserves $\Df$ iff $m$ is
+even \textup{(}Theorem~\ref{thm:halflift}\textup{)}.
+\item For every other pair-partition curve $\delta$ and every
+$m\neq0$, the descended class $\Psi(T_\delta^{\circ m})$ is a nonzero
+power of an essential twist of $(\Chat,A)$, so
+$T_\delta^{\circ m}$ does not preserve the component of any point it
+is applied to; since the descended class depends only on
+$\delta$ \textup{(}Lemma~\ref{lem:shift}, a topological datum, the same
+at every component\textup{)}, $T_\delta^{\circ m}$ does not preserve
+$\Df$ at all.
+\item For a non-pair curve $\delta$ \textup{(}enclosing $2$ or $3$
+points — every essential separating curve on the $5$-punctured sphere
+is a pair curve up to isotopy\textup{)} the same conclusion applies.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Part (a) is Theorem~\ref{thm:halflift}.  For (b): the descended-class
+table is Lemma~\ref{lem:descend}; an essential Dehn twist
+$G_{ij}\in\PMCG(A)$ has infinite order (its action on the Teichm\"uller
+space $\Teich(A)$ — equivalently on the hyperbolic length of the
+enclosed geodesic — is faithful on length functions; for the
+$4$-punctured sphere $\Teich(A)\cong\mathbb H^2\times\mathbb R$, and
+$G_{ij}$ acts as a parabolic with a nontrivial translation component).
+Hence $G_{ij}^m\ne e$ for $m\ne0$, and
+$f^*(\tau\cdot T_\delta^{\circ m})
+=f^*(\tau)\cdot G_{ij}^{m}\neq i_*(\tau)=i_*(\tau\cdot T_\delta^{\circ m})$
+— the inequality holding on $\Teich(A)$ because $G_{ij}^m$ acts there
+without fixed points (the action of $\PMCG(A)$ on $\Teich(A)$ is free,
+Q\ref{q:uc}).  Applying this at any $\tau\in\Df$ gives
+$\tau\cdot T_\delta^{\circ m}\notin\Df$, so the translated set
+$T_\delta^{\circ m}(\Df)$ is disjoint from $\Df$ near generic points;
+since both are analytic sets, $T_\delta^{\circ m}(\Df)\ne\Df$.
+Part (c) follows because every essential separating simple closed curve
+on $\Chat\setminus B$ ($|B|=5$) bounds a disc containing exactly $2$ or
+$3$ of the points, and the $3$-point side is the complement of a pair,
+so $\delta$ is isotopic to a pair curve $T_{\{x,y\}}$ covered by the
+table.
+\end{proof}
+
+\section{The covering structure and the component set}\label{sec:covering}
+
+We record once, in the generality we use it, the covering fact behind
+the component set $\pi_0(\Df)$ sitting inside the sheet space
+$H\backslash\PMCG(B)$.  The decisive
+step is \textup{(}(c)\textup{)}: the equalizer is a
+\emph{right-invariant union of sheets} of $\pi^{-1}(M_f)$.
+
+\begin{lemma}[equalizer as union of sheets]\label{lem:sheets}
+Let $M_f\subset\MM(B)$ be the matched locus and
+$\pi:\Teich(B)\to\MM(B)$ the universal cover.  The two maps
+$f^*,i_*:\Teich(B)\to\Teich(A)$ both cover maps to $\MM(A)$, and on
+the matched locus they lift one and the same map $M_f\to\MM(A)$.
+Hence:
+\begin{enumerate}[label=\textup{(}\alph*\textup{)}]
+\item $\Df\subseteq\pi^{-1}(M_f)$, and on each component $S$ of
+$\pi^{-1}(M_f)$ the two lifts $f^*|_S,i_*|_S$ either coincide
+everywhere or nowhere.
+\item $\Df$ is a disjoint union of components of $\pi^{-1}(M_f)$; the
+covering $\Df\to M_f$ is unbranched.
+\item With base point $\tau_0=[\mathrm{id}]$ over $\ast\in M_f$
+\textup{(}which satisfies $\tau_0\in\Df$\textup{)} and
+$H=\mathrm{image}(\pi_1(M_f,\ast)\to\PMCG(B))$ \textup{(}the
+stabilizer of the sheet through $\tau_0$\textup{)}, the components of
+$\Df$ form a \emph{nonempty, right-$H$-invariant subset} of the sheet
+space \textup{(}a union of full $H$-cosets, containing the identity
+coset\textup{)}, with the canonical $\PMCG(B)$-equivariant inclusion
+\[
+\pi_0(\Df)\ \subseteq\ \pi_0\bigl(\pi^{-1}(M_f)\bigr)\ \cong\
+H\backslash\PMCG(B),
+\qquad
+\text{right translation: }(H\sigma)\cdot g=H(\sigma g).
+\]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Both $f^*,i_*$ are lifts of the same map $\nu:M_f\to\MM(A)$ (the
+restriction of the forgetful map $\MM(B)\to\MM(A)$, with which the
+pullback correspondence agrees on $M_f$ by the definition of matching).
+Any two lifts of $\nu$ to the covering $\Teich(A)$ differ by a deck
+transformation $\delta\in\PMCG(A)$ pointwise constant on each component
+of $\pi^{-1}(M_f)$ (the difference of two lifts of a connected map to
+a covering is locally constant and deck-valued).  Therefore on each
+component $S$ either $\delta=e$ ($f^*=i_*$ on $S$) or
+$f^*(\tau)=\delta\cdot i_*(\tau)\neq i_*(\tau)$ for all $\tau\in S$
+(deck elements act freely).  This gives (a) and (b).  For (c), the
+base membership $\tau_0\in\Df$ is the tautology at the original map:
+with $\varphi=\psi=\mathrm{id}$, \eqref{eq:pullback} reads
+$\mathrm{id}\circ f=f\circ\mathrm{id}$, i.e.\ $g=f$, so
+$f^*([\mathrm{id}])=[\mathrm{id}]=i_*([\mathrm{id}])$.  The covering
+$\pi^{-1}(M_f)\to M_f$ has its sheets permuted transitively by
+$\PMCG(B)$ with stabilizer $H$ \textup{(}Q\ref{q:uc}\textup{)}, so its
+components are the coset space $H\backslash\PMCG(B)$; by
+\textup{(}(a)\textup{)} the truth of ``$\in\Df$'' is constant on each
+sheet, hence the components of $\Df$ form a \emph{right-$H$-invariant
+subset} of $H\backslash\PMCG(B)$ — a union of full $H$-cosets,
+nonempty \textup{(}it contains the identity coset, the sheet through
+$\tau_0$\textup{)}.  Whether every sheet is selected is not determined
+here and is not needed for the orbit conclusion; what is used is
+$1\le\#\pi_0(\Df)\le[\PMCG(B):H]\le4$, the upper bound being
+Theorem~\ref{thm:monodromy}\,\textup{(}c\textup{)}.
+\end{proof}
+\section{The monodromy of $M_f$}\label{sec:monodromy}
+
+We now compute the monodromy group $H$ defined by
+External result~\ref{q:uc} with $Z=M_f$, proving
+Theorem~\ref{thm:monodromy}.  Fix the base point
+$\ast=(2,-\tfrac1{24})\in M_f$ (Remark~\ref{rem:param2}).
+
+\begin{theorem}[puncture census]\label{thm:monodromy-full}
+With the loops taken in the parameter sphere
+$\Chat_\lambda\setminus X_0$ \textup{(}Proposition~\ref{prop:R}\textup{)},
+the monodromies $\pi_1(M_f,\ast)\to\PMCG(B)$ of small loops around the
+punctures are as follows.  The list exhausts the ten punctures of
+$X_0$ ($2+2+2+1+1+1+1$); since $\pi_1(M_f,\ast)$ is generated by these
+loops with the single product-relation, their classes generate the
+monodromy group $H$:
+\begin{enumerate}[label=\textup{(}\roman*\textup{)}]
+\item at the two roots $\tfrac{3\pm\sqrt5}{2}$ of
+$s_0=\lambda^2-3\lambda+1$: the loop encircles a point where
+$R(\lambda)=0$ to order exactly $2$ (double contact of $v$ with $p_0$);
+the monodromy is $T_{\{p_0,v\}}^{\circ2}=x_0^{\circ2}$.  (The square,
+not the twist itself: the derivation is given in the proof below.)
+\item at the two roots $s_2=0$, i.e.\ $\lambda_\pm=\tfrac{-1\pm\sqrt5}2$:
+double contact with $\Delta_{\{p_2,v\}}$, monodromy
+$T_\gamma^{\circ2}=x_2^{\circ2}$.
+\item at the two roots $s_3=0$: double contact with
+$\Delta_{\{p_3,v\}}$, monodromy $x_3^{\circ2}$.
+\item at $\lambda=\tfrac12$: simple pole of $R$ while the cycle
+configuration is nondegenerate \textup{(}$\lambda=\tfrac12$ gives the
+degenerate map $\beta=0$, but as a configuration in $\MM(A)$ it is
+legal: $\{0,\infty,1,\tfrac12\}$ are distinct\textup{)}; the monodromy is
+the point-push of $v$ once around $p_1=\infty$, i.e.\ $x_1$.
+\item at $\lambda=0$: simultaneously $p_3\to p_0$ and $v\to p_1$ with
+simple contacts; monodromy $u_0x_1=T_{\{p_0,p_3\}}T_{\{p_1,v\}}$
+\textup{(}commuting product, vanishing cycles on different sides of the
+stratum\textup{)}.
+\item at $\lambda=1$: $p_3\to p_2$ and $v\to p_1$;
+monodromy $u_2x_1=T_{\{p_2,p_3\}}T_{\{p_1,v\}}$.
+\item at $\lambda=\infty$: as $w=\lambda^{-1}\to0$, both
+$p_3=\lambda=w^{-1}$ and $v=R(\lambda)=-\frac1{8w}(1+O(w))$ approach
+$p_1=\infty$, with bounded ratio $v/p_3\to-\tfrac18$, while $w$ itself
+goes once around $0$.  The monodromy of the simple $w$-loop is the
+commuting product $u_3x_1$, where $u_3=T_{\{p_0,p_2\}}$
+\textup{(}the twist about the curve enclosing $\{p_1,p_3,v\}$,
+equivalently $\{p_0,p_2\}$; it projects to
+$T_{\{p_1,p_3\}}\in\PMCG(A)$, the push of $p_3$ around $p_1$, i.e.\
+$(u_0u_2)^{-1}$ in the pure group
+$\PMCG(A)=\langle u_0,u_2\rangle\cong F_2$, where the loop of $p_3$
+around all three other points is trivial\textup{)} and
+$x_1=T_{\{p_1,v\}}$.  In
+particular $u_3x_1\in H$, hence (with $x_1\in H$ from (iv))
+$u_3\in H$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+At each puncture, one chooses a small loop around the puncture in the
+$\lambda$-sphere, lifts the family of $5$-pointed spheres
+$(\Chat,\{0,\infty,1,\lambda,R(\lambda)\})$ along it, and computes the
+monodromy by (Q\ref{q:pl}).  For (ii),(iii),(iv) the local equation is
+\[
+R(\lambda)-c=\kappa\,t^2\bigl(1+O(t)\bigr),\qquad t\coloneqq\lambda-c,\quad
+\kappa=-\frac{s_i'(c)^2}{D(c)}\neq0,
+\]
+by \eqref{eq:squares}: the vanishing of $R-c$ is of order \emph{exactly}
+$2$ — its \emph{second} derivative does not vanish — because $s_i$ has a
+\emph{simple} zero at $c$ (the discriminants $5,5,-3$ are nonzero, so
+$s_i'(c)\neq0$) and $D(c)\neq0$ (the roots are not in
+$\{0,\tfrac12,1\}$ by Proposition~\ref{prop:R}).  As $t=e^{i\theta}$,
+$0\le\theta\le2\pi$, the point $v$ therefore circles $p_i$ \emph{twice},
+and the loop realizes a full double contact with
+$\Delta_{\{p_i,v\}}$, giving $T_{\{p_i,v\}}^{\circ2}$.
+For (v),(vi): the cycle point $\lambda\to p_{i}$ collides with contact
+$1$ (the equation $\lambda=c$ itself), while $v=R(\lambda)\to
+p_1=\infty$ with contact $1$ \textup{(}the poles of $R$ at $0,1$ are
+simple because $D(\lambda)$ has simple zeros there while
+$s_0(\lambda)^2$ does not vanish: $s_0(0)=1$, $s_0(1)=-1$\textup{)};
+by (Q\ref{q:pl}) the monodromy is the product of the two commuting
+twists $T_{\{p_i,p_3\}}T_{\{p_1,v\}}$.
+For (i): $R$ vanishes to order exactly $2$ at
+$c=\tfrac{3\pm\sqrt5}2$: writing $t=\lambda-c$ and
+$\sigma(t)\coloneqq R(\lambda)/t^2$, one has
+$\sigma(0)=-s_0'(c)^2/D(c)\neq0$ (by the discriminant check of
+Proposition~\ref{prop:R}), so
+\[
+v=R(\lambda)=-s_0'(c)^2\,t^2\,\bigl(1+O(t)\bigr)\,\big/D(c) .
+\]
+Take a loop $\lambda(\theta)=c+\varepsilon e^{i\theta}$,
+$0\le\theta\le2\pi$, with $\varepsilon>0$ so small that the disc
+$|z-c|\le\varepsilon$ contains no marked point other than the limiting
+$p_3=c$ and that $|v(\theta)|=|s_0'(c)|^2\varepsilon^2(1+O(\varepsilon))/|D(c)|$
+is much smaller than $|c-\{0,1\}|$ and much smaller than
+$\varepsilon$ — possible since the roots satisfy $c\neq0,1$ and
+$v=O(\varepsilon^2)$ while $p_3-c=\varepsilon e^{i\theta}$ has modulus
+$\varepsilon$.  Along this loop:
+\begin{itemize}
+\item $p_3(\theta)=c+\varepsilon e^{i\theta}$ winds once around $c$;
+the disc bounded by its path contains \emph{no} marked point (the other
+points $0,1,\infty$ are at distance $\ge\min(|c|,|1-c|)\gg\varepsilon$
+and $v=O(\varepsilon^2)\ll\varepsilon$ stays off the path), so this
+motion is isotopic to the identity: the $p_3$-factor contributes the
+trivial mapping class.
+\item $v(\theta)=\kappa\varepsilon^2 e^{2i\theta}(1+O(\varepsilon))$
+winds \emph{twice} around $0=p_0$ (the argument of $v$ increases by
+$4\pi$), and the circle $|z|=\kappa\varepsilon^2$ encloses only $p_0$
+among the marked points ($p_3$ is at distance $\approx|c|$ from $0$).
+The point-push of $v$ once around $p_0$ is the full twist
+$x_0=T_{\{p_0,v\}}$ (Q\ref{q:birman}); two turns give $x_0^{\circ2}$.
+\end{itemize}
+Both motions are simultaneous along the single $\theta$-loop; since the
+support of the $v$-push (a small annulus around $p_0$) is disjoint from
+the support of the $p_3$-motion (a small annulus around $c$), the two
+factors commute, and the total monodromy is
+$x_0^{\circ2}\cdot\mathrm{id}=x_0^{\circ2}$.  This is the monodromy of
+the simple $\lambda$-loop; hence $x_0^{\circ2}\in H$.
+For (vii): set $w=\lambda^{-1}$ and take the loop
+$\lambda(\theta)=\varepsilon^{-1}e^{-i\theta}$, $0\le\theta\le2\pi$
+(i.e.\ $w=\varepsilon e^{i\theta}$), with $\varepsilon>0$ small.  From
+the square identities \eqref{eq:squares},
+\[
+R(\lambda)=-\frac{\lambda^4(1+O(w))}{8\lambda^3(1+O(w))}
+=-\frac{\lambda}{8}\bigl(1+O(w)\bigr)
+=-\frac{e^{-i\theta}}{8\varepsilon}\bigl(1+O(\varepsilon)\bigr),
+\]
+so $p_3=\lambda$ and $v$ both tend to $\infty=p_1$ as
+$\varepsilon\to0$, with ratio
+\[
+\frac{v}{p_3}\longrightarrow-\frac18
+\qquad\text{and}\qquad
+\frac{R(\lambda)-1}{R(\lambda)-\lambda}
+=\frac{s_2(\lambda)^2}{s_3(\lambda)^2}\longrightarrow1
+\quad(\text{since }s_2,s_3\text{ are monic}\ldots\text{ in fact both }
+\sim\lambda^2).
+\]
+As $\theta$ runs from $0$ to $2\pi$: $p_3(\theta)=w^{-1}$ winds once
+around $\infty=p_1$ (one full turn of $w$ around $0$), $v(\theta)$
+winds once around $\infty=p_1$, and the two are mutually unlinked
+(their ratio stays in a compact set avoiding $0,\infty$).  The marked
+points $0$ and $1=c=p_0,p_2$ stay bounded, in fact fixed.  Choose a
+small disc $\Delta$ around $\infty$ containing $p_1$; for
+$\varepsilon$ small, $p_3$ and $v$ remain inside the annulus
+$\{C^{-1}\varepsilon^{-1}<|z|<C\varepsilon^{-1}\}\subset\Delta$, while
+$p_0,p_2$ remain outside $\Delta$.  The motion is the concatenation of:
+the push of $p_3$ once around $p_1$ inside $\Delta$ — which on $B$
+is the twist about the curve enclosing $\{p_1,p_3\}$, equivalently
+(by taking the complementary side, $p_0,p_2$ being fixed outside
+$\Delta$ together with $v$ at the moment of pushing $p_3$) the class
+$u_3=T_{\{p_0,p_2\}}$, projected in $\PMCG(A)$ to
+$T_{\{p_1,p_3\}}$ — and the push of $v$ once around $p_1$, which is
+$x_1$.  Since the two pushes are realized on disjoint annuli
+($p_3$ moving at radius $|w|^{-1}$, $v$ at radius
+$|8w|^{-1}$, separated by the fixed ratio), they commute, and the
+monodromy is $u_3x_1$.  Hence $u_3x_1\in H$, and with $x_1\in H$
+from (iv), also $u_3=(u_3x_1)\,x_1^{-1}\in H$ and $u_3^{\circ2}\in H$.
+\end{proof}
+
+\begin{corollary}[structural form of $H$]\label{cor:Hstruct}
+Let $K=\langle x_0,x_1,x_2,x_3\mid x_0x_1x_2x_3=1\rangle\cong F_3$ be
+the Birman kernel \textup{(}Q\ref{q:birman}\textup{)}, free on the
+\emph{consecutive triple} $\{x_0,x_1,x_2\}$ with
+$x_3=(x_0x_1x_2)^{-1}$.  For $i=0,1,2$ let
+$\mathrm{ch}_i:K\to\mathbb Z$ be the exponent-sum homomorphism in
+$x_i$ on this free basis \textup{(}so
+$\mathrm{ch}_i(x_j)=\delta_{ij}$ for $i,j\in\{0,1,2\}$, and
+$\mathrm{ch}_i$ is the exponent-sum of $x_i$ in every word; it is
+also the linking number of the $v$-strand with the $p_i$-strand of the
+corresponding pure braid\textup{)}.  The monodromy group $H$
+\textup{(}Theorem~\ref{thm:monodromy-full}\textup{)} satisfies:
+\begin{enumerate}[label=\textup{(}\roman*\textup{)}]
+\item the following elements lie in $H\cap K$:
+\[
+x_1\ (\text{census (iv)}),\qquad
+x_0^{\circ2}\ (\text{(i)}),\qquad
+x_2^{\circ2}\ (\text{(ii)}),\qquad
+(x_0x_1x_2)^{-2}=x_3^{\circ2}\ (\text{(iii)});
+\]
+\item $H\to\PMCG(A)\cong F_2$ is onto \textup{(}images of
+$u_0x_1,u_2x_1$ are $u_0,u_2$\textup{)} with kernel $H\cap K$;
+\item $H\cap K\subseteq
+\mathrm{ch}_0^{-1}(2\mathbb Z)\cap\mathrm{ch}_2^{-1}(2\mathbb Z)
+\eqqcolon F$: each of the ten puncture-loop monodromies of
+Theorem~\ref{thm:monodromy-full} has even $\mathrm{ch}_0$ \emph{and}
+even $\mathrm{ch}_2$ — $x_1$ and
+$u_0x_1,u_2x_1,u_3x_1$ have $(0,0)$; $x_0^2$ has $(2,0)$; $x_2^2$ has
+$(0,2)$; $(x_0x_1x_2)^{-2}$ has $(-2,-2)$ — and
+$(\mathrm{ch}_0,\mathrm{ch}_2):K\to\mathbb Z^2$ is a homomorphism.
+Since every element of $H$ is a word in these loop classes
+\textup{(}the loops generate $\pi_1(M_f)$\textup{)}, every element of
+$H\cap K$ has even charges.  The subgroup $F$ has index $4$ in
+$K=\langle x_0,x_1,x_2\rangle=F_3$;
+\item $x_2\notin H$ \textup{(}$\mathrm{ch}_2(x_2)=1$ is odd, so (iii)
+excludes it from $H\cap K$, and $x_2\in K$\textup{)} while
+$x_2^{\circ2}\in H$.
+\end{enumerate}
+Consequently
+\[
+\bigl\langle x_1,\,x_0^{\circ2},\,x_2^{\circ2},\,(x_0x_1x_2)^{-2}
+\bigr\rangle^{H}\ \le\ H\cap K\ \le\ F,
+\qquad
+H/(H\cap K)\xrightarrow{\ \sim\ }F_2,
+\]
+and $2\le[\PMCG(B):H]=[K:H\cap K]\le 4$, with the lower bound from
+\textup{(}iv\textup{)}.
+\end{corollary}
+
+\begin{proof}
+Items (i) and (ii) read off items (i)—(vi) of
+Theorem~\ref{thm:monodromy-full} together with (Q\ref{q:birman}).
+For (iii), let
+\[
+H_0\ \coloneqq\ \bigl\langle\,x_1,\ x_0^2,\ x_2^2,\ (x_0x_1x_2)^{-2},\
+u_0,\ u_2,\ u_3\,\bigr\rangle\ \subseteq\ H:
+\]
+indeed the census supplies the four $K$-elements and the products
+$u_i x_1$ ($i\in\{0,2\}$ from (v),(vi), $i=3$ from (vii)); since
+$x_1\in H$ by (iv) of the census, these give
+$u_i=(u_ix_1)\,x_1^{-1}\in H$ for $i\in\{0,2,3\}$, and conversely the
+$u_i$ recover the $u_ix_1$.  Because the census loops exhaust the ten
+punctures of $M_f$, $\pi_1(M_f)$ is generated by their classes (with
+the single product-relation), so $H=H_0$; the displayed decomposition
+is legitimate.  The projection of $H_0$ to $\PMCG(A)$ is generated
+by $u_0,u_2,u_3$, hence (using
+$T_{\{p_1,p_3\}}=(u_0u_2)^{-1}$ of the census item (vii)) by
+$u_0,u_2$, and therefore surjects onto
+$\PMCG(A)=\langle u_0,u_2\rangle$; its kernel is $H_0\cap K$.  The
+seven displayed generators each have even
+$(\mathrm{ch}_0,\mathrm{ch}_2)$-value as tabulated in the statement —
+the $u_j$'s, whose defining curves avoid $v$, have value $(0,0)$.
+Since $(\mathrm{ch}_0,\mathrm{ch}_2):K\to\mathbb Z^2$ is a
+\emph{homomorphism}, its value on any word in these generators and
+their inverses is the sum of the values; as every census element lies
+in $H_0$, every element of $H\cap K$ arises as such a word projected
+trivially, hence $H\cap K\subseteq F$.  Finally (iv) is immediate:
+
+$\mathrm{ch}_2(x_2)=1\notin2\mathbb Z$, so $x_2\notin F\supseteq
+H\cap K\ni x_2$ would contradict; more precisely
+$x_2\notin H$ because were $x_2\in H$ then $x_2\in H\cap K\subseteq
+F$, contradiction.  And $x_2^{\circ2}$ is a census generator.
+The bounds $2\le[\PMCG(B):H]\le4$ follow from
+$[K:F]=4$ and $x_2\notin H\cap K$.
+\end{proof}
+
+\begin{corollary}[index and components]\label{cor:index}
+$\pi_0(\Df)$ is a nonempty subset of the finite coset space
+$H\backslash\PMCG(B)$, with $2\le[\PMCG(B):H]\le 4$, hence
+$1\le\#\pi_0(\Df)\le4$; in fact $\#\pi_0(\Df)\in\{2,4\}$ is even.
+The twist $T_\gamma^{\circ2}=x_2^{\circ2}\in H$ acts as the identity on
+$H\backslash\PMCG(B)$, hence on $\pi_0(\Df)$; the odd twist
+$T_\gamma=x_2\notin H$ acts with orbits of size exactly $2$
+\textup{(}no fixed component\textup{)}.
+\end{corollary}
+
+\begin{proof}
+By Lemma~\ref{lem:sheets}, $\pi_0(\Df)\subseteq H\backslash\PMCG(B)$
+is a nonempty, right-$H$-invariant subset (a union of full cosets).
+By Corollary~\ref{cor:Hstruct}\,(iii),
+$H\cap K\subseteq F$ with $[K:F]=4$, and $H$ surjects onto
+$\PMCG(A)$ with kernel $H\cap K$
+\textup{(}Corollary~\ref{cor:Hstruct}\,(ii)\textup{)}; hence
+\[
+[\PMCG(B):H]=[K:H\cap K]\le [K:F]=4,
+\]
+and this is $\ge2$ because $x_2\in K\setminus H$
+\textup{(}Corollary~\ref{cor:Hstruct}\,(iv)\textup{)}.  The action of
+$\PMCG(B)$ on $H\backslash\PMCG(B)$ is by right translation, so any
+element of $H$ — in particular $x_2^{\circ2}$, which lies in $H$ by
+Corollary~\ref{cor:Hstruct}\,(i) — fixes every coset, hence acts as
+the identity on $H\backslash\PMCG(B)$ and on its subset $\pi_0(\Df)$.
+For the odd twist: right multiplication by $x_2$ permutes the
+\emph{selected} components, because $\tau_0\cdot x_2\in\Df$ — the
+monodromy loop at the double zero of $s_2$ has winding number $2$, so
+the two lifts of a parametrized small loop in $M_f$ starting at
+$\tau_0$ and at $\tau_0\cdot x_2$ agree, whence the sheets through
+$\tau_0$ and $\tau_0\cdot x_2$ are simultaneously selected
+\textup{(}part \textup{(}(a)\textup{)} of
+Lemma~\ref{lem:sheets}\textup{)}; and the selected set is
+right-$H$-invariant, so $x_2$ takes the identity coset $H\in\pi_0(\Df)$
+to $Hx_2\in\pi_0(\Df)$, and by $H$-invariance and
+$x_2^2\in H$ it pairs up the whole selected set.  It has no fixed
+component: $Hg=Hgx_2$ would give $gx_2g^{-1}\in H\cap K$
+\textup{(}as $K$ is normal\textup{)}, but $\mathrm{ch}_2$ is
+conjugacy-invariant on $\PMCG(B)$ \textup{(}pure braids fix the labels
+$v,p_2$\textup{)}, so
+$\mathrm{ch}_2(gx_2g^{-1})=\mathrm{ch}_2(x_2)=1$, odd, hence outside
+$F\supseteq H\cap K$ \textup{(}Corollary~\ref{cor:Hstruct}\,(iii)\textup{)}.
+Thus the selected components pair up under $x_2$, so
+$\#\pi_0(\Df)$ is even, in $\{2,4\}$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:components}]
+The component count is Corollary~\ref{cor:index}; the actions there and
+Proposition~\ref{prop:contenttable}\,(b)–(c) give the twist statements.
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor:answer}]
+Any power of a Dehn twist preserving $\Df$ must, by
+Proposition~\ref{prop:contenttable}, be an even power of $T_\gamma$;
+the action of $T_\gamma^{\circ2}$ on $\pi_0(\Df)$ is the identity
+\textup{(}and that of $T_\gamma$ is an involution with $2$-cycles,
+on a set of at most $4$ elements\textup{)}.  Hence no infinite orbit
+exists.  The
+ultimate reason is the perfect-square structure of
+Theorem~\ref{thm:mf}, which forces $x_2^{\circ2}=T_\gamma^{\circ2}$ to
+occur as monodromy of the matched locus (Theorem~\ref{thm:monodromy-full}(ii)),
+i.e.\ the locus itself knows how to loop around its own
+degenerations.
+\end{proof}
+\end{document}

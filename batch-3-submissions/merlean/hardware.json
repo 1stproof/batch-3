@@ -1,0 +1,7 @@
+{
+  "instance_type": "r7i.2xlarge",
+  "env_vars": true,
+  "timeout_minutes": 1440,
+  "storage_gb": 100,
+  "rationale": "Eight CPU cores and 64 GB RAM for parallel problem orchestration, optional Lean/Mathlib verification, Python calculations, and LaTeX compilation. Model inference uses external APIs; no GPU is needed."
+}

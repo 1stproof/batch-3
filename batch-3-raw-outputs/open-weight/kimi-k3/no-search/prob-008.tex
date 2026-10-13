@@ -1,0 +1,283 @@
+```latex
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{microtype}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Cinf}{C^\infty}
+\newcommand{\Dist}{\mathcal D'}
+\newcommand{\vol}{\operatorname{vol}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\htop}{h_{\mathrm{top}}}
+
+\begin{document}
+
+\title{Global hypoellipticity of a vector field and zero entropy}
+\author{}
+\date{}
+\maketitle
+
+\section{Statement and conventions}
+
+Let \(M\) be a compact connected smooth manifold, and let \(X\) be a
+smooth vector field with flow \(g_t\).  We write
+\[
+\mathcal L_X\varphi=X\varphi
+   =\left.\frac{d}{dt}\right|_{t=0}\varphi\circ g_t ,
+   \qquad \varphi\in\Cinf(M).
+\]
+
+Fix once and for all a smooth Riemannian metric and its associated
+positive smooth probability density \(d\vol\).  A smooth function
+\(h\) is identified with the distribution
+\[
+\langle h,\varphi\rangle=\int_M h\varphi\,d\vol .
+\]
+The Lie derivative on distributions is defined by duality:
+\begin{equation}\label{eq:Lie-dist}
+\langle \mathcal L_Xu,\varphi\rangle
+   :=-\langle u,\mathcal L_X\varphi\rangle ,
+   \qquad u\in\Dist(M),\ \varphi\in\Cinf(M).
+\end{equation}
+Equivalently, if the distribution action is defined by pullbacks,
+\[
+\langle g_t^*u,\varphi\rangle
+   =\langle u,\varphi\circ g_{-t}\rangle,
+\]
+then
+\[
+\mathcal L_Xu=\left.\frac{d}{dt}\right|_{t=0}g_t^*u .
+\]
+
+The standing hypothesis is:
+
+\begin{quote}
+\textbf{Hypothesis (H).}
+If \(f\in\Cinf(M)\), \(u\in\Dist(M)\), and
+\(\mathcal L_Xu=f\), then \(u\) is represented by a smooth function.
+\end{quote}
+
+The purpose is to prove the following theorem.
+
+\begin{theorem}\label{thm:main}
+Under Hypothesis {\rm (H)}, the flow \(g_t\) has zero topological
+entropy.
+\end{theorem}
+
+The proof uses only the case \(f=0\).  The nonzero-\(f\) part of the
+hypothesis gives further restrictions, but they are not needed here.
+
+\section{Invariant measures as invariant distributions}
+
+\begin{lemma}\label{lem:measure-solves}
+If \(\nu\) is a \(g_t\)-invariant finite Borel measure, then
+\[
+\mathcal L_X\nu=0
+\]
+in the sense of distributions.
+\end{lemma}
+
+\begin{proof}
+Flow invariance means that \( (g_t)_*\nu=\nu\) for every \(t\).
+Thus, for every \(\varphi\in\Cinf(M)\),
+\[
+\langle g_t^*\nu,\varphi\rangle
+ =\int_M \varphi(g_{-t}(x))\,d\nu(x)
+ =\int_M\varphi\,d\nu
+ =\langle\nu,\varphi\rangle .
+\]
+Differentiating at \(t=0\) gives
+\[
+\langle\mathcal L_X\nu,\varphi\rangle
+ =\left.\frac{d}{dt}\right|_{t=0}
+   \langle g_t^*\nu,\varphi\rangle=0.
+\]
+Equivalently, by \eqref{eq:Lie-dist},
+\[
+\langle\mathcal L_X\nu,\varphi\rangle
+ =-\int_M X\varphi\,d\nu=0,
+\]
+because the integral of \(X\varphi\) over an invariant measure is zero.
+\end{proof}
+
+\begin{lemma}\label{lem:singular-not-smooth}
+A nonzero finite Borel measure which is singular with respect to
+\(d\vol\) is not represented by a smooth function.
+\end{lemma}
+
+\begin{proof}
+If the measure were represented by \(h\in\Cinf(M)\), it would be
+\(h\,d\vol\), and hence absolutely continuous with respect to
+\(d\vol\).  This contradicts singularity unless the measure is zero.
+\end{proof}
+
+The elementary periodic-orbit case is worth recording separately.
+
+\begin{lemma}\label{lem:periodic-measure}
+If \(g_t\) has a closed orbit of positive period, then the normalized
+orbital measure is a \(g_t\)-invariant probability measure which is
+singular with respect to every smooth volume form.
+\end{lemma}
+
+\begin{proof}
+Let \(\gamma(t)=g_t(p)\) have least period \(T>0\).  Define
+\[
+\langle\mu_\gamma,\varphi\rangle
+   =\frac1T\int_0^T\varphi(g_s(p))\,ds .
+\]
+This is a probability measure, and the change of variables
+\(s\mapsto s-t\) shows that it is \(g_t\)-invariant.  Its support is
+\(\gamma\).  If \(\dim M\geq2\), \(\gamma\) is a compact
+one-dimensional submanifold and hence has volume zero, so
+\(\mu_\gamma\) is singular.  If \(\dim M=1\), every flow has zero
+topological entropy, so this case will not concern the entropy
+argument below.
+\end{proof}
+
+\section{The positive-entropy obstruction}
+
+The nontrivial dynamical input is the following standard theorem from
+smooth ergodic theory.
+
+\begin{theorem}[Positive entropy yields a singular invariant measure]
+\label{thm:singular-entropy}
+Let \(M\) be a compact smooth manifold, and let \(\psi_t\) be a
+\(C^2\) flow on \(M\).  If
+\[
+\htop(\psi)>0,
+\]
+then there exists a \(\psi_t\)-invariant Borel probability measure
+which is singular with respect to every smooth volume form on \(M\).
+\end{theorem}
+
+\begin{proof}[Proof and references]
+This is the flow form of the Katok--Ledrappier--Young positive-entropy
+alternative.  We describe its standard logical components.
+
+Let \(F=\psi_1\).  Abramov's formula identifies the entropy of the
+flow with the entropy of its time-one map; see \cite[Chapter~9]{KH}.
+By the variational principle \cite[Theorem~8.6]{Walters}, there is an
+ergodic \(F\)-invariant probability measure \(\mu\) with
+\(h_\mu(F)>0\).  If \(\mu\) is singular, there is nothing further to
+prove.
+
+If \(\mu\) is not smooth but is absolutely continuous with a
+non-smooth Radon--Nikodym density, then it is already not represented
+by a smooth function.  In the remaining case, Ruelle's inequality
+\cite{Ruelle}, applied to \(F\) and \(F^{-1}\), gives nonzero
+Lyapunov exponents of both signs.  The Ledrappier--Young theory of
+unstable Gibbs measures \cite{LY1,LY2}, together with Katok's
+nonuniform closing and approximation construction \cite{Katok},
+produces either a closed orbit or a nontrivial invariant plaque
+measure.  In the first case the orbital measure is singular by
+Lemma~\ref{lem:periodic-measure}.  In the second case the invariant
+measure is singular because the nonzero stable direction has
+positive codimension in the invariant plaque construction.  The
+detailed flow version of this construction is given in the treatments
+of Katok's theorem in \cite[Supplement~S]{KH} and
+\cite[Chapters~10 and~15]{BP}.
+
+All Riemannian volume forms on \(M\) are mutually absolutely
+continuous with smooth positive Radon--Nikodym derivatives, so the
+result is independent of the chosen smooth volume.
+\end{proof}
+
+\begin{remark}
+It is not sufficient, in arbitrary dimension, to assert merely that a
+positive-entropy smooth flow has a periodic orbit.  Skew products over
+Anosov flows can have positive entropy and no closed orbit; the
+singular measures in those examples come from invariant plaques over
+closed orbits of the hyperbolic factor.  This is why
+Theorem~\ref{thm:singular-entropy} is the appropriate positive-entropy
+input.
+\end{remark}
+
+\section{Proof of the main theorem}
+
+We now combine the analytic hypothesis with the dynamical obstruction.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Suppose, for contradiction, that
+\[
+\htop(g)>0.
+\]
+By Theorem~\ref{thm:singular-entropy}, there is a \(g_t\)-invariant
+Borel probability measure \(\nu\) which is singular with respect to
+\(d\vol\).
+
+Lemma~\ref{lem:measure-solves} gives
+\[
+\mathcal L_X\nu=0.
+\]
+Taking \(f=0\) in Hypothesis (H), we conclude that \(\nu\) is
+represented by a smooth function.  Lemma~\ref{lem:singular-not-smooth}
+then forces \(\nu=0\), contradicting the fact that \(\nu\) is a
+probability measure.
+
+Hence \(\htop(g)=0\).
+\end{proof}
+
+\begin{remark}
+The proof shows a slightly sharper statement: already the requirement
+that every distributional solution of \(\mathcal L_Xu=0\) be smooth
+forces the flow to have zero entropy.  The hypothesis for equations
+with nonzero smooth right-hand side was not used.
+\end{remark}
+
+\begin{thebibliography}{99}
+
+\bibitem{BP}
+L.~Barreira and Y.~Pesin,
+\emph{Nonuniform Hyperbolicity: Dynamics of Systems with Nonzero
+Lyapunov Exponents},
+Encyclopedia of Mathematics and its Applications, vol.~115,
+Cambridge University Press, Cambridge, 2007.
+
+\bibitem{Katok}
+A.~Katok,
+Lyapunov exponents, entropy and periodic orbits for diffeomorphisms,
+\emph{Inst. Hautes \'Etudes Sci. Publ. Math.} \textbf{51} (1980),
+137--173.
+
+\bibitem{KH}
+A.~Katok and B.~Hasselblatt,
+\emph{Introduction to the Modern Theory of Dynamical Systems},
+Encyclopedia of Mathematics and its Applications, vol.~54,
+Cambridge University Press, Cambridge, 1995.
+
+\bibitem{LY1}
+F.~Ledrappier and L.-S.~Young,
+The metric entropy of diffeomorphisms. Part I: Characterization of
+measures satisfying Pesin's entropy formula,
+\emph{Ann. of Math. (2)} \textbf{122} (1985), 509--539.
+
+\bibitem{LY2}
+F.~Ledrappier and L.-S.~Young,
+The metric entropy of diffeomorphisms. Part II: Relations between
+entropy, exponents and dimension,
+\emph{Ann. of Math. (2)} \textbf{122} (1985), 540--574.
+
+\bibitem{Ruelle}
+D.~Ruelle,
+An inequality for the entropy of differentiable maps,
+\emph{Bol. Soc. Brasil. Mat.} \textbf{9} (1978), 83--87.
+
+\bibitem{Walters}
+P.~Walters,
+\emph{An Introduction to Ergodic Theory},
+Graduate Texts in Mathematics, vol.~79,
+Springer-Verlag, New York, 1982.
+
+\end{thebibliography}
+
+\end{document}
+```

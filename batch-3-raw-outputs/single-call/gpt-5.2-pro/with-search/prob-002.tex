@@ -1,0 +1,378 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{remark}{Remark}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\D}{D}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\ip}[2]{\left\langle #1,#2\right\rangle}
+
+\title{On minimax rates for recovering a Darcy conductivity from a noisy interior potential}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We consider the inverse problem of recovering a scalar conductivity $f$ in the divergence-form elliptic equation $\nabla\cdot(f\nabla u)=1$ on the unit ball $\D\subset\R^d$, $d\ge2$, from Gaussian white noise observations of the full interior potential $u=u_f$. 
+For a local H\"older--Zygmund class $\mathcal F(\alpha,r)=\{h\in C^\alpha(\D):\|h-1\|_{C^\alpha(\D)}\le r\}$ with $\alpha>1$ and small fixed $r\in(0,1)$, we prove two-sided \emph{non-matching} bounds for the minimax mean squared $L^2$-risk:
+\[
+n^{-\frac{2\alpha}{2\alpha+d+2}}\ \lesssim\ \inf_{\hat f_n}\sup_{f_0\in\mathcal F(\alpha,r)} \mathbb E_{f_0}\|\hat f_n-f_0\|_{L^2(\D)}^2\ \lesssim\ (\log n)^{\kappa}\,n^{-\frac{2(\alpha-1)}{2\alpha+d+2}}.
+\]
+The upper bound follows from a plug-in construction combined with a Lipschitz stability estimate of the inverse map in $H^2\to L^2$ (proved in the PDE-constrained regression literature). The lower bound follows from an Assouad-type argument and a smoothing bound of the forward map in a negative Sobolev norm. We explain why the \emph{exact} minimax rate for estimating $f$ is presently not known in full generality, even in closely related Sobolev settings.
+\end{abstract}
+
+\section{Model and goal}
+
+Let $\D\subset\R^d$, $d\ge2$, be the Euclidean unit ball and let $\alpha>1$. For $f\in C^\alpha(\D)$ with $\inf_\D f>0$, let $u_f$ denote the unique weak solution to
+\begin{equation}\label{eq:darcy}
+\begin{cases}
+\nabla\cdot(f\nabla u)=1 & \text{in }\D,\\
+u=0 & \text{on }\partial\D.
+\end{cases}
+\end{equation}
+We observe $u_f$ in Gaussian white noise:
+\begin{equation}\label{eq:whitenoise}
+Y_n = u_f + \frac{1}{\sqrt n}\, \mathbb W,
+\end{equation}
+where $\mathbb W$ is an $L^2(\D)$-white noise (isonormal Gaussian process) and $\mathbb E_f$ denotes expectation under \eqref{eq:whitenoise} with mean $u_f$.
+
+For fixed $r\in(0,1)$, consider
+\[
+\mathcal F(\alpha,r)=\Bigl\{h\in C^\alpha(\D): \|h-1\|_{C^\alpha(\D)}\le r\Bigr\}.
+\]
+For $r<1$, every $f\in\mathcal F(\alpha,r)$ satisfies $1-r\le f\le 1+r$, hence uniform ellipticity. We study the minimax mean squared $L^2$-risk
+\begin{equation}\label{eq:minimax}
+R_n := \inf_{\hat f_n}\sup_{f_0\in\mathcal F(\alpha,r)}\mathbb E_{f_0}\bigl[\|\hat f_n-f_0\|_{L^2(\D)}^2\bigr].
+\end{equation}
+
+\section{PDE preliminaries}
+
+\subsection{Well-posedness and regularity}
+
+\begin{proposition}[Existence, uniqueness, Schauder regularity]\label{prop:wellposed}
+Let $\alpha>1$ and $f\in C^\alpha(\D)$ satisfy $\inf_\D f\ge c_0>0$. Then \eqref{eq:darcy} has a unique weak solution $u_f\in H^1_0(\D)$. Moreover, since $f\in C^{1,\alpha-1}(\D)$, standard Schauder theory yields $u_f\in C^{2,\alpha-1}(\D)\cap C(\overline\D)$ and
+\[
+\|u_f\|_{C^{2,\alpha-1}(\D)}\le C\bigl(\|f\|_{C^{1,\alpha-1}(\D)},c_0,d\bigr),
+\]
+where $C(\cdot)$ is finite for bounded arguments.
+\end{proposition}
+
+\begin{proof}
+Existence and uniqueness in $H^1_0(\D)$ follow from Lax--Milgram for uniformly elliptic divergence-form operators.
+Since $\alpha>1$, $f\in C^{1,\beta}$ with $\beta=\alpha-1\in(0,1]$, and the right-hand side is smooth; boundary Schauder estimates for divergence-form operators with $C^{1,\beta}$ coefficients on smooth domains imply $u_f\in C^{2,\beta}(\D)$ with the stated estimate. See, e.g., Gilbarg--Trudinger, \emph{Elliptic Partial Differential Equations of Second Order}, Schauder theory for divergence-form equations (with $C^{1,\beta}$ coefficients).
+\end{proof}
+
+\subsection{Forward Lipschitz bound in a negative Sobolev norm}
+
+Let $H^{-1}(\D)$ denote the dual of $H^1_0(\D)$.
+
+\begin{lemma}[A smoothing bound $f\mapsto u_f$ in $H^{-1}$]\label{lem:forwardHminus1}
+Fix $\alpha>1$ and $r\in(0,1)$. There exists $C=C(\alpha,r,d)<\infty$ such that for all $f,g\in\mathcal F(\alpha,r)$,
+\[
+\|u_f-u_g\|_{L^2(\D)} \le C\, \|f-g\|_{H^{-1}(\D)}.
+\]
+\end{lemma}
+
+\begin{proof}
+Let $w=u_f-u_g\in H^1_0(\D)$. Subtracting the weak formulations for $u_f,u_g$ gives
+\begin{equation}\label{eq:w-eq}
+\nabla\cdot(f\nabla w)=\nabla\cdot((g-f)\nabla u_g)\quad\text{in }\D,\qquad w|_{\partial\D}=0,
+\end{equation}
+in the weak sense.
+
+Let $\psi\in H^1_0(\D)$ solve the (self-adjoint) dual problem
+\[
+\nabla\cdot(f\nabla \psi)=w\quad\text{in }\D,\qquad \psi|_{\partial\D}=0.
+\]
+By elliptic $H^2$-regularity for divergence-form operators with $C^{0,1}$ coefficients on smooth domains (here $f\in C^{1,\alpha-1}\subset C^{0,1}$ uniformly over $\mathcal F(\alpha,r)$), we have $\psi\in H^2(\D)$ and
+\begin{equation}\label{eq:H2reg}
+\|\psi\|_{H^2(\D)}\le C_1\|w\|_{L^2(\D)},
+\end{equation}
+with $C_1$ depending only on ellipticity and Lipschitz norms of $f$, hence uniformly bounded over $\mathcal F(\alpha,r)$.
+
+Using \eqref{eq:w-eq} tested against $\psi$ and integration by parts,
+\[
+\|w\|_{L^2}^2 = \int_\D w\,\nabla\cdot(f\nabla\psi)
+= -\int_\D f\nabla w\cdot \nabla\psi
+= \int_\D (f-g)\nabla u_g\cdot \nabla\psi.
+\]
+Since $u_g\in C^{2,\alpha-1}(\D)$ with uniform bounds by Proposition~\ref{prop:wellposed}, we have $\nabla u_g\in W^{1,\infty}(\D)$ uniformly in $g\in\mathcal F(\alpha,r)$.
+Thus the function $\nabla u_g\cdot \nabla\psi$ belongs to $H^1_0(\D)$ and satisfies
+\[
+\|\nabla u_g\cdot\nabla\psi\|_{H^1}\le C_2\|\psi\|_{H^2}.
+\]
+Therefore, using the dual pairing between $H^{-1}$ and $H^1_0$,
+\[
+\|w\|_{L^2}^2 \le \|f-g\|_{H^{-1}}\, \|\nabla u_g\cdot\nabla\psi\|_{H^1}
+\le C_2 \|f-g\|_{H^{-1}} \|\psi\|_{H^2}.
+\]
+Combining with \eqref{eq:H2reg} yields
+\[
+\|w\|_{L^2}^2 \le (C_1C_2)\|f-g\|_{H^{-1}}\|w\|_{L^2},
+\]
+and hence $\|w\|_{L^2}\le C\|f-g\|_{H^{-1}}$ as claimed.
+\end{proof}
+
+\section{An achievable rate (upper bound) via a plug-in procedure}
+
+The key analytic input is a Lipschitz stability estimate for the \emph{inverse} map $u\mapsto f$ in strong norms. Such estimates are classical in coefficient identification, and in the present statistical context were exploited in PDE-constrained regression; in particular, a Lipschitz stability estimate of the type $\|f_1-f_2\|_{L^2}\lesssim \|u_{f_1}-u_{f_2}\|_{H^2}$ (under positivity of the source term and uniform ellipticity) is proved in \cite[Lemma 24]{NVW2019}. ([arxiv.org](https://arxiv.org/pdf/1809.08818))
+
+We will use the following form (for our fixed source $1$); it is a direct specialization of the cited results.
+
+\begin{lemma}[Inverse stability in $H^2\to L^2$]\label{lem:stabilityH2}
+Fix $r\in(0,1)$. There exists $C=C(r,d)<\infty$ such that for all $f_1,f_2\in\mathcal F(\alpha,r)$ with corresponding solutions $u_1=u_{f_1},u_2=u_{f_2}$ of \eqref{eq:darcy},
+\[
+\|f_1-f_2\|_{L^2(\D)} \le C\,\|u_1-u_2\|_{H^2(\D)}.
+\]
+\end{lemma}
+
+\begin{remark}
+Lemma~\ref{lem:stabilityH2} is proved in \cite[Lemma 24]{NVW2019} in a Sobolev setting under $g\ge g_{\min}>0$; the same argument applies here since $g\equiv1$. A closely related ``generalized stability'' estimate allowing PDE residuals is proved in \cite[Lemma 2.2]{Wang2026} and used to derive convergence rates for estimators that only approximately enforce the PDE constraint. ([arxiv.org](https://arxiv.org/pdf/2601.09007))
+\end{remark}
+
+\subsection{Estimating $u_f$ in $H^2$ from white noise}
+
+We now record a standard wavelet projection risk bound in the Gaussian white noise model.
+
+\begin{lemma}[A wavelet projection estimator for $u_f$ in $H^2$]\label{lem:uH2rate}
+Assume $u\in C^{\alpha+1}(\D)$ with $\alpha>1$ and $\|u\|_{C^{\alpha+1}}\le M$. Then there exists an estimator $\hat u_n$ based on \eqref{eq:whitenoise} such that
+\[
+\sup_{\|u\|_{C^{\alpha+1}}\le M}\ \mathbb E\bigl[\|\hat u_n-u\|_{H^2(\D)}^2\bigr]
+\ \le\ C\,(\log n)^{\kappa}\, n^{-\frac{2(\alpha-1)}{2\alpha+d+2}},
+\]
+for some constants $C,\kappa<\infty$ depending on $(M,\alpha,d)$ only.
+\end{lemma}
+
+\begin{proof}
+We sketch a standard wavelet construction; full details can be found in textbooks on nonparametric estimation in white noise (e.g. wavelet methods for Besov classes).
+
+Let $\{\psi_{j,k}:j\ge0,1\le k\le N_j\}$ be an $L^2(\D)$-orthonormal wavelet basis (or frame with a fixed reconstruction) of regularity $> \alpha+1$ adapted to the smooth domain $\D$, with $N_j\simeq 2^{jd}$. Such bases exist on smooth bounded domains (boundary-corrected wavelets; see, e.g., Cohen--Dahmen--DeVore theory).
+
+In the white noise model, the empirical wavelet coefficients
+\[
+Y_{j,k}:=\ip{Y_n}{\psi_{j,k}}=\ip{u}{\psi_{j,k}}+n^{-1/2}Z_{j,k}
+\]
+satisfy $Z_{j,k}\sim N(0,1)$ i.i.d.
+Define the linear projection estimator at resolution $J$,
+\[
+\hat u_J=\sum_{j\le J}\sum_{k\le N_j} Y_{j,k}\,\psi_{j,k}.
+\]
+Then, by orthonormality and the wavelet characterization of Sobolev norms,
+\[
+\mathbb E\|\hat u_J-u\|_{H^2}^2
+\simeq \underbrace{\sum_{j>J}\sum_k 2^{4j}\,\theta_{j,k}^2}_{\text{bias}^2}
++ \underbrace{\frac{1}{n}\sum_{j\le J}\sum_k 2^{4j}}_{\text{variance}},
+\]
+where $\theta_{j,k}=\ip{u}{\psi_{j,k}}$.
+
+Since $u\in C^{\alpha+1}=B^{\alpha+1}_{\infty,\infty}$, its wavelet coefficients satisfy
+$|\theta_{j,k}|\lesssim 2^{-j(\alpha+1+d/2)}$ uniformly in $k$. Hence
+\[
+\text{bias}^2 \ \lesssim\ \sum_{j>J} 2^{4j}\cdot 2^{jd}\cdot 2^{-2j(\alpha+1+d/2)}
+=\sum_{j>J}2^{-2j(\alpha-1)}\ \lesssim\ 2^{-2J(\alpha-1)}.
+\]
+Moreover,
+\[
+\text{variance} \ \lesssim\ \frac{1}{n}\sum_{j\le J} 2^{4j}\cdot 2^{jd}\ \lesssim\ \frac{2^{J(d+4)}}{n}.
+\]
+Choose $2^J\simeq n^{1/(2\alpha+d+2)}$ (and add a logarithmic correction for integer issues); then both terms are of order $n^{-2(\alpha-1)/(2\alpha+d+2)}$ up to logs. This yields the claimed bound.
+\end{proof}
+
+\subsection{A plug-in estimator for $f$}
+
+Let $\hat u_n$ be as in Lemma~\ref{lem:uH2rate}. Define $\hat f_n$ as a (measurable) minimizer over $\mathcal F(\alpha,r)$ of the convex functional
+\begin{equation}\label{eq:plugin}
+\hat f_n \in \arg\min_{h\in\mathcal F(\alpha,r)} \bigl\|\nabla\cdot(h\nabla \hat u_n)-1\bigr\|_{L^2(\D)}^2.
+\end{equation}
+Existence follows from weak compactness of $\mathcal F(\alpha,r)$ in suitable topologies and continuity of the map $h\mapsto \nabla\cdot(h\nabla\hat u_n)$ for fixed $\hat u_n$ (here $\hat u_n$ is smooth enough since it is a finite-dimensional wavelet projection).
+
+\begin{theorem}[Upper bound for conductivity estimation]\label{thm:upper}
+Fix $\alpha>1$ and $r\in(0,1)$ sufficiently small. Then there exist constants $C,\kappa<\infty$ (depending on $\alpha,r,d$ only) such that the estimator $\hat f_n$ defined by \eqref{eq:plugin} satisfies
+\[
+\sup_{f_0\in\mathcal F(\alpha,r)}
+\mathbb E_{f_0}\bigl[\|\hat f_n-f_0\|_{L^2(\D)}^2\bigr]
+\ \le\ C\,(\log n)^{\kappa}\,n^{-\frac{2(\alpha-1)}{2\alpha+d+2}}.
+\]
+\end{theorem}
+
+\begin{proof}
+Fix $f_0\in\mathcal F(\alpha,r)$ and write $u_0=u_{f_0}$. By definition of $\hat f_n$,
+\[
+\|\nabla\cdot(\hat f_n\nabla \hat u_n)-1\|_{L^2}
+\le \|\nabla\cdot(f_0\nabla \hat u_n)-1\|_{L^2}.
+\]
+Using $\nabla\cdot(f_0\nabla u_0)=1$,
+\[
+\nabla\cdot(f_0\nabla \hat u_n)-1 = \nabla\cdot\bigl(f_0\nabla(\hat u_n-u_0)\bigr),
+\]
+and since $f_0\in C^{1,\alpha-1}$ with bounded norm over $\mathcal F(\alpha,r)$, we have the standard estimate
+\[
+\|\nabla\cdot(f_0\nabla(\hat u_n-u_0))\|_{L^2}\lesssim \|\hat u_n-u_0\|_{H^2}.
+\]
+Thus,
+\begin{equation}\label{eq:resid}
+\|\nabla\cdot(\hat f_n\nabla \hat u_n)-1\|_{L^2}\ \lesssim\ \|\hat u_n-u_0\|_{H^2}.
+\end{equation}
+
+Now apply the generalized inverse stability estimate (a version of Lemma~\ref{lem:stabilityH2} allowing PDE residuals; see \cite[Lemma 2.2]{Wang2026} or \cite[Lemma 24]{NVW2019}) to the triplets $(u_1,f_1,g_1)=(u_0,f_0,1)$ and $(u_2,f_2,g_2)=(\hat u_n,\hat f_n,\nabla\cdot(\hat f_n\nabla \hat u_n))$. Using that $\|\hat f_n\|_{C^1}$ is uniformly bounded on $\mathcal F(\alpha,r)$ and \eqref{eq:resid}, we obtain
+\[
+\|\hat f_n-f_0\|_{L^2}\ \lesssim\ \|\hat u_n-u_0\|_{H^2}+\|\nabla\cdot(\hat f_n\nabla \hat u_n)-1\|_{L^2}
+\ \lesssim\ \|\hat u_n-u_0\|_{H^2}.
+\]
+Squaring and taking expectation yields
+\[
+\mathbb E_{f_0}\|\hat f_n-f_0\|_{L^2}^2 \ \lesssim\ \mathbb E_{f_0}\|\hat u_n-u_0\|_{H^2}^2.
+\]
+Finally, Proposition~\ref{prop:wellposed} implies $\sup_{f_0\in\mathcal F(\alpha,r)}\|u_{f_0}\|_{C^{\alpha+1}}\le M$ for some finite $M$, so Lemma~\ref{lem:uH2rate} applies uniformly in $f_0$ and gives the desired bound.
+\end{proof}
+
+\section{A minimax lower bound (non-matching) for estimating $f$}
+
+We prove an information-theoretic lower bound of order $n^{-2\alpha/(2\alpha+d+2)}$ for \eqref{eq:minimax}. This bound is not known to match the upper bound from Theorem~\ref{thm:upper}.
+
+\subsection{Auxiliary: scaling of $H^{-1}$ for localized oscillations}
+
+\begin{lemma}[Scaling estimate]\label{lem:Hminus1scaling}
+Let $\phi\in C^\infty_c(\R^d)$, and define $\phi_{j,x_0}(x)=2^{jd/2}\phi(2^j(x-x_0))$, so that $\|\phi_{j,x_0}\|_{L^2(\R^d)}=\|\phi\|_{L^2(\R^d)}$. Then
+\[
+\|\phi_{j,x_0}\|_{H^{-1}(\R^d)} \lesssim 2^{-j}\|\phi\|_{L^2(\R^d)}.
+\]
+The implied constant depends only on $d$.
+\end{lemma}
+
+\begin{proof}
+This follows from the Fourier characterization:
+$\|h\|_{H^{-1}(\R^d)}^2=\int (1+|\xi|^2)^{-1}|\hat h(\xi)|^2\,d\xi$,
+together with the scaling $\widehat{\phi_{j,x_0}}(\xi)=2^{-jd/2}e^{-i x_0\cdot \xi}\hat\phi(2^{-j}\xi)$, and the bound $(1+|\xi|^2)^{-1}\lesssim 2^{-2j}(1+|2^{-j}\xi|^2)^{-1}$ for $|\xi|$ in the effective support.
+\end{proof}
+
+By localization, the same scaling holds on $\D$ for bump functions supported away from $\partial\D$.
+
+\subsection{Assouad lower bound}
+
+\begin{theorem}[A general minimax lower bound]\label{thm:lower}
+Fix $\alpha>1$ and $r\in(0,1)$ sufficiently small. Then there exists $c=c(\alpha,r,d)>0$ such that
+\[
+R_n \ \ge\ c\, n^{-\frac{2\alpha}{2\alpha+d+2}}
+\]
+for all $n$ large enough.
+\end{theorem}
+
+\begin{proof}
+We use Assouad's lemma (e.g. Tsybakov, \emph{Introduction to Nonparametric Estimation}, Theorem~2.12) together with the Gaussian shift structure.
+
+\medskip
+\noindent\textbf{Step 1: A hypercube of alternatives.}
+Pick a smooth bump $\phi\in C^\infty_c((-1/4,1/4)^d)$ with $\|\phi\|_{C^\alpha(\R^d)}\le 1$ and $\|\phi\|_{L^2(\R^d)}=1$.
+For an integer $j\ge1$, choose a set of points $\{x_k\}_{k=1}^m\subset \D$ such that the cubes $x_k+[-2^{-j-2},2^{-j-2}]^d$ are disjoint and contained in $\D$, with $m\simeq 2^{jd}$.
+Define $\phi_{j,k}(x):=2^{jd/2}\phi(2^j(x-x_k))$, so $\|\phi_{j,k}\|_{L^2(\D)}=1$ and supports are disjoint.
+
+Let $\gamma_j:=c_0\,2^{-j(\alpha+d/2)}$ with $c_0>0$ chosen small enough (depending on $r$ and $\phi$) so that for every sign vector $\varepsilon=(\varepsilon_1,\dots,\varepsilon_m)\in\{-1,1\}^m$,
+\[
+f_\varepsilon := 1 + \gamma_j \sum_{k=1}^m \varepsilon_k \phi_{j,k}\in \mathcal F(\alpha,r)
+\]
+and $f_\varepsilon\ge 1-r/2>0$.
+This is standard since disjointness yields $\|f_\varepsilon-1\|_{C^\alpha}\lesssim \gamma_j\,2^{j(\alpha+d/2)}\le r$.
+
+Moreover, for two sign vectors differing in exactly one coordinate,
+\[
+\|f_\varepsilon-f_{\varepsilon'}\|_{L^2(\D)}^2 = (2\gamma_j)^2.
+\]
+And, for typical pairs with Hamming distance $\simeq m$, the $L^2$-distance squared is $\simeq m\gamma_j^2\simeq 2^{-2j\alpha}$.
+
+\medskip
+\noindent\textbf{Step 2: Controlling the KL divergence.}
+In the Gaussian white noise model \eqref{eq:whitenoise}, the Kullback--Leibler divergence satisfies
+\[
+\mathrm{KL}(\mathbb P_{f}^{(n)},\mathbb P_{g}^{(n)})=\frac{n}{2}\|u_f-u_g\|_{L^2(\D)}^2.
+\]
+By Lemma~\ref{lem:forwardHminus1} and Lemma~\ref{lem:Hminus1scaling} (applied to $f_\varepsilon-f_{\varepsilon'}$ supported in one cube), for neighbors we have
+\[
+\|u_{f_\varepsilon}-u_{f_{\varepsilon'}}\|_{L^2} \lesssim \|f_\varepsilon-f_{\varepsilon'}\|_{H^{-1}}
+\lesssim 2^{-j}\|f_\varepsilon-f_{\varepsilon'}\|_{L^2}
+=2^{-j}\cdot 2\gamma_j.
+\]
+Hence for neighbors,
+\[
+\mathrm{KL}(\mathbb P^{(n)}_{f_\varepsilon},\mathbb P^{(n)}_{f_{\varepsilon'}})
+\lesssim n \cdot 2^{-2j}\gamma_j^2
+= n\cdot 2^{-2j}\cdot 2^{-2j(\alpha+d/2)}
+= n\cdot 2^{-2j(\alpha+1)}2^{-jd}.
+\]
+Choose $j=j_n$ so that the right-hand side is bounded by a sufficiently small absolute constant; equivalently take $2^{j_n}\simeq n^{1/(2\alpha+d+2)}$.
+
+\medskip
+\noindent\textbf{Step 3: Apply Assouad's lemma.}
+Assouad's lemma yields
+\[
+\inf_{\hat f_n}\sup_{\varepsilon}\mathbb E\| \hat f_n-f_\varepsilon\|_{L^2}^2 \gtrsim m\gamma_j^2\,(1-\sqrt{\mathrm{KL}/2}).
+\]
+With the choice of $j=j_n$, the KL term is bounded so that $(1-\sqrt{\mathrm{KL}/2})\ge c'>0$, and
+\[
+m\gamma_{j_n}^2 \simeq 2^{j_nd}\cdot 2^{-2j_n(\alpha+d/2)} = 2^{-2j_n\alpha}
+\simeq n^{-\frac{2\alpha}{2\alpha+d+2}}.
+\]
+Since the family $\{f_\varepsilon\}$ is a subset of $\mathcal F(\alpha,r)$, this yields the stated lower bound for $R_n$.
+\end{proof}
+
+\section{Discussion: what is the minimax rate for $f$?}
+
+Combining Theorems~\ref{thm:upper} and \ref{thm:lower}, we obtain the currently provable bracketing
+\[
+n^{-\frac{2\alpha}{2\alpha+d+2}}
+\ \lesssim\ 
+R_n
+\ \lesssim\
+(\log n)^{\kappa}\,n^{-\frac{2(\alpha-1)}{2\alpha+d+2}}.
+\]
+
+\begin{remark}[Open problem: closing the minimax gap]
+The two exponents differ by $2/(2\alpha+d+2)$. 
+The upper bound is obtained by a plug-in reduction to estimating $u_f$ in $H^2$, together with a Lipschitz stability estimate of the inverse map $u\mapsto f$ in $H^2\to L^2$; such stability ideas were used already in \cite{NVW2019} and later works. ([arxiv.org](https://arxiv.org/pdf/1809.08818))
+However, as explicitly noted in \cite[discussion after Theorem 11]{NVW2019}, a detailed study of \emph{optimal} rates for estimating the coefficient $f$ is subtle and was left open there. ([arxiv.org](https://arxiv.org/pdf/1809.08818))
+More recent work continues to describe the resulting rate as the \emph{best currently known} rate in the Darcy model rather than a settled minimax-optimal one. ([arxiv.org](https://arxiv.org/pdf/2601.09007))
+
+Thus, while $n^{-2(\alpha-1)/(2\alpha+d+2)}$ is an achievable rate (up to logs) by presently available techniques, the exact minimax rate in \eqref{eq:minimax} over $\mathcal F(\alpha,r)$ remains, to the best of our knowledge, an open problem.
+\end{remark}
+
+\section*{Acknowledgements}
+None.
+
+\begin{thebibliography}{99}
+
+\bibitem{NVW2019}
+R.~Nickl, S.~van~de~Geer, and S.~Wang.
+\newblock Convergence rates for penalised least squares estimators in {PDE}-constrained regression problems.
+\newblock \emph{arXiv preprint} arXiv:1809.08818v3, 2019.
+\newblock See in particular Theorems~10--11 and Lemma~24 therein for the divergence-form (Darcy) model. ([arxiv.org](https://arxiv.org/pdf/1809.08818))
+
+\bibitem{Wang2026}
+S.~Wang.
+\newblock Global polynomial-time estimation in statistical nonlinear inverse problems via generalized stability.
+\newblock \emph{arXiv preprint} arXiv:2601.09007, 2026.
+\newblock See Lemma~2.2 for a generalized stability estimate in the Darcy model. ([arxiv.org](https://arxiv.org/pdf/2601.09007))
+
+\bibitem{Tsybakov2009}
+A.~Tsybakov.
+\newblock \emph{Introduction to Nonparametric Estimation}.
+\newblock Springer Series in Statistics, 2009.
+
+\bibitem{GT}
+D.~Gilbarg and N.~S. Trudinger.
+\newblock \emph{Elliptic Partial Differential Equations of Second Order}.
+\newblock Springer, 2nd edition, 1983.
+
+\end{thebibliography}
+
+\end{document}

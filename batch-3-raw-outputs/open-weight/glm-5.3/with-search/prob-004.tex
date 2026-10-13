@@ -1,0 +1,945 @@
+The question asks whether a symplectic simple normal crossings (SC) divisor can be made locally *pseudoholomorphically* normal crossings, after a Moser‑type deformation of the symplectic form within its cohomology class. The answer is **yes**, and the proof synthesizes the normal‑crossings symplectic divisor theory developed in [numdam.org](https://www.numdam.org/item/10.1016/j.crma.2018.02.009.pdf) (C. R. Acad. Sci. Paris **356** (2018), 420–432), the preprint [arxiv.org](https://www.arxiv.org/pdf/1410.0609v2) (which introduces normal crossings symplectic divisors/configurations and proves the lifting Theorem 2.12 used below), [ar5iv.labs.arxiv.org](https://ar5iv.labs.arxiv.org/html/2112.13125) (structures: logarithmic tangent bundles, $\mathcal R$-compatibility), and the compactification paper [ar5iv.labs.arxiv.org](https://ar5iv.labs.arxiv.org/html/1710.00224) (see also [par.nsf.gov](https://par.nsf.gov/servlets/purl/10430629)), together with Donaldson's asymptotically holomorphic divisor theorem. The key new structural point — that one needs *locally trivial holomorphic structures on the normal line bundles over every stratum* — is proved below (Lemma 3.2 and Remark 3.4), and such structures are constructed by an induction over strata with auxiliary symplectic divisors.
+
+Here is the complete proof as a compilable LaTeX document.
+
+```latex
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amssymb,amsthm,latexsym}
+\usepackage[margin=1.1in]{geometry}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{convention}[theorem]{Convention}
+\newtheorem*{mainthm}{Main Theorem}
+
+\newcommand{\Sp}{\mathrm{Sp}}
+\newcommand{\Symp}{\mathrm{Symp}}
+\newcommand{\AK}{\mathrm{AK}}
+\newcommand{\NC}{\mathrm{NC}}
+\newcommand{\Jhol}{\textnormal{AC}}
+\newcommand{\NN}{\mathcal{N}}
+\newcommand{\DD}{\mathcal{D}}
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\hh}{\mathfrak{h}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\tot}{\operatorname{Tot}}
+
+\begin{document}
+
+\title{Pseudoholomorphic normal crossings coordinates near a
+symplectic simple normal crossings divisor}
+
+\author{}
+\date{}
+
+\maketitle
+
+\begin{abstract}
+Let $(M,\omega)$ be a closed symplectic manifold and $D=\bigcup_{i\in S}D_i
+\subset M$ a symplectic simple normal crossings (SC) divisor. We prove that
+there exists a smooth family $(\omega_t)_{t\in[0,1]}$ of symplectic forms, all
+cohomologous to $\omega$, such that $D$ is an SC symplectic divisor with
+respect to every $\omega_t$, and such that for $\omega_1$ there is an
+$\omega_1$-tame almost complex structure $J$ with the following property: for
+every $p\in M$ there are a neighborhood $U\ni p$ and smooth complex coordinate
+functions $z_1,\dots,z_n$ on $U$ (i.e.\ $(z_1,\dots,z_n):U\to\C^n$ is a
+diffeomorphism onto an open subset) such that, if $r$ is the number of divisor
+components through $p$, the functions $z_1,\dots,z_r$ are $J$-holomorphic and
+\[
+ D\cap U=\{z_1\cdots z_r=0\}.
+\]
+The proof combines the deformation/normalization theory of normal crossings
+symplectic divisors due to Tehrani et al.\ and to the preprints
+\texttt{arXiv:1410.0609}, \texttt{arXiv:2112.13125}, \texttt{arXiv:1710.00224}
+with Donaldson's theorem on symplectic divisors in high cohomology classes,
+and contains a complete construction of the auxiliary
+\emph{locally trivial holomorphic structures on the normal line bundles over
+all strata} which, as we show, is exactly what is required for the existence
+of pseudoholomorphic defining functions.
+\end{abstract}
+
+\section{Introduction and statement of the main theorem}
+
+\begin{convention}
+A \emph{smooth complex coordinate system} on an open set $U$ of a
+$2n$-dimensional manifold is a diffeomorphism $Z=(z_1,\dots,z_n):U\to Z(U)\subset
+\C^n$ onto an open subset. If $J$ is an almost complex structure, a smooth map
+$f:U\to \C$ is called \emph{$J$-holomorphic} if
+\[
+ df\circ J=i\,df ,
+\]
+where $i$ denotes multiplication by $i$ on $\C$.
+\end{convention}
+
+\begin{definition}[{SC symplectic divisor; cf.\ \texttt{arXiv:2112.13125},
+\texttt{arXiv:1410.0609}}]\label{def:sc}
+Let $(X,\omega)$ be a symplectic manifold and $S$ a finite set. A
+\emph{simple crossings (SC) configuration} is a finite union
+$\DD=\bigcup_{a\in S}Y_a$ of closed, pairwise transverse submanifolds of real
+codimension $2$; for $I\subset S$ write $Y_I:=\bigcap_{a\in I}Y_a$ (and
+$Y_\emptyset=X$). $\DD$ is an \emph{SC symplectic divisor (configuration)} in
+$(X,\omega)$ if every $Y_I$ with $I\neq\emptyset$ is a symplectic submanifold
+and the intersection and $\omega$-orientations of $Y_I$ agree (in the
+inductive sense of \texttt{arXiv:1410.0609}, \texttt{arXiv:2112.13125}; in
+particular the orientation data needed for compatible normalizations hold).
+\end{definition}
+
+\begin{mainthm}\label{thm:main}
+Let $(M,\omega)$ be a closed symplectic manifold and $D\subset M$ a symplectic
+SC divisor (Definition~\ref{def:sc}). Assume $D\neq\emptyset$. Then there
+exist a smooth family $(\omega_t)_{t\in[0,1]}$ of symplectic forms on $M$ with
+$[\omega_t]=[\omega]\in H^2(M;\R)$ for all $t$, such that $D$ is an SC
+symplectic divisor with respect to every $\omega_t$, and an
+$\omega_1$-tame almost complex structure $J$ on $M$, such that for every
+point $p\in M$ there are a neighborhood $U$ of $p$ and smooth complex
+coordinates $Z=(z_1,\dots,z_n):U\to\C^n$ with the following property: if
+$r:=|\{a\in S: p\in Y_a\}|$ (so $r=0$ if $p\notin D$), then
+\[
+ dz_j\circ J=i\,dz_j\quad (1\le j\le r),
+ \qquad\text{and}\qquad
+ D\cap U=\{z_1\cdots z_r=0\}.
+\]
+\end{mainthm}
+
+If $D=\emptyset$ the assertion is trivial: take any $\omega$-tame $J$ and
+$r=0$. Theorem~\ref{thm:main} is proved in Section~\ref{sec:main}.
+
+\subsection{Strategy and provenance of the ingredients}
+
+The proof has four ingredients.
+
+\smallskip
+\noindent\textbf{(I) The deformation and normalization theorem.} The first
+step is the fundamental flexibility theorem for SC symplectic divisors: along
+a path of cohomologous symplectic forms on which $D$ remains an SC symplectic
+divisor, one reaches a form $\omega_1$ for which $D$ carries a full
+normal crossings (\emph{normalization} and \emph{regularization}) structure.
+This is precisely the content of Theorem~7 of the C.\,R.\ Acad.\ Sci.\ note
+\emph{Singularities and semistable degenerations for symplectic topology}
+(C.\,R.\ Math.\ Acad.\ Sci.\ Paris \textbf{356} (2018), 420--432,
+M.\,F.\ Tehrani et al.), whose proofs, including the family-lifting statement
+(Theorem 2.12) and the definitions of $\omega$-regularization, of the spaces
+$\Symp^+(X,V)$, $\mathrm{Aux}(X,V)$, $\AK(X,V)$, appear in
+\texttt{arXiv:1410.0609} and \texttt{arXiv:2112.13125}. What we use is the
+\emph{normalization} part: along each stratum an $\omega_1$-orthogonal
+splitting of the tangent bundle with positive fiberwise complex structures on
+the normal planes, together with coherent tubular maps. (The theorem in loc.\
+cit.\ in fact produces more: a compatible $\omega_1$-tame $J$ with
+$(\omega_1,\mathcal R,J)\in\AK(X,D)$; our construction builds its own $J$ and
+does not require this.) We record the precise statement as
+Theorem~\ref{thm:dst}.
+
+\smallskip
+\noindent\textbf{(II) A local analysis of split models.} Given a compatible
+$J$ on a stratum and a \emph{connection} on the normal bundle, one defines a
+``split'' almost complex structure on the total space of the normal bundle.
+We prove (Lemma~\ref{lem:frames}) that the normal coordinate functions are
+$J$-holomorphic for such a split structure if and only if the frames used are
+covariantly $\bar\partial$-holomorphic. Consequently (Remark~\ref{rem:nec}),
+\emph{any} solution of the problem induces, for every stratum $Y_I$ and every
+component $Y_a$ with $a\in I$, a locally trivial
+$\bar\partial$-holomorphic structure on the complex line bundle
+$\NN_a|_{Y_I}$ (the conormal of $Y_a$ restricted to $Y_I$), and conversely
+such structures, plus compatible structures $J_I$ on the strata, produce the
+desired coordinates. The essential difficulty of the problem is exactly the
+construction of these holomorphic structures: over a nonintegrable almost
+complex base they do not exist automatically, because their local
+triviality forces nonconstant local holomorphic transition functions whenever
+$c_1^{\R}\!\!\neq 0$.
+
+\smallskip
+\noindent\textbf{(III) Donaldson's theorem.} Locally trivial holomorphic
+structures on a line bundle $L$ over an almost complex base exist as soon as
+$L$ is a difference of ``divisor bundles'' $\cO(Z^+)\otimes\cO(Z^-)^*$ with
+$Z^\pm$ \emph{pseudoholomorphically defined} symplectic divisors: the
+transitions are then ratios of defining functions. We produce the divisors
+(and, recursively, their own defining functions) using
+Donaldson's asymptotically holomorphic section theorem
+(Proposition~\ref{prop:don}).
+
+\smallskip
+\noindent\textbf{(IV) Gluing.} The assembly of $J$ across strata and free
+regions uses elementary but careful interpolation lemmas for \emph{compatible}
+almost complex structures (polar decomposition), stated and proved in
+Section~\ref{sec:interp}.
+
+\section{Preliminaries: normalization data and cited results}
+
+Throughout, ``$\AC$ structure'' means almost complex structure. All manifolds
+are smooth; $M$ is closed.
+
+\begin{definition}[Normalization; cf.\ \texttt{arXiv:1410.0609}, \S2,
+\texttt{arXiv:2112.13125}, \S3]\label{def:norm}
+Let $(B,\omega_B)$ be symplectic and $\DD=\{Y_a\}_{a\in S}$ an SC symplectic
+configuration. A \emph{normalization} of $\DD$ in $(B,\omega_B)$ consists of:
+\begin{enumerate}
+\item[(N1)] for every stratum $Y_I$ ($I\subset S$, $I\neq\emptyset$) and every
+$a\in I$, a two-plane subbundle $\NN_a^{(I)}\subset TB|_{Y_I}$, such that
+\[
+ TB|_{Y_I}=TY_I\oplus\bigoplus_{a\in I}\NN_a^{(I)}
+\]
+is an \emph{$\omega_B$-orthogonal} direct sum, each $\NN_a^{(I)}$ maps
+isomorphically under $TB|_{Y_I}\to TB|_{Y_I}/TY_a$ (so $\NN_a^{(I)}$ realizes
+the normal of $Y_a$ along $Y_I$), and each $\NN_a^{(I)}$ carries a fiberwise
+complex structure $i_a$ with $\omega_B(u,i_a u)>0$ for $u\neq0$;
+\item[(N2)] \emph{coherence}: if $I\subset K$ then
+$\NN_a^{(I)}|_{Y_K}=\NN_a^{(K)}$ (as subbundles of $TB|_{Y_K}$, both realizing
+the normal of $Y_a$), and correspondingly for the $i_a$;
+\item[(N3)] for every $I$, a \emph{tubular map}
+$\Psi_I:\tot(\NN^{(I)}:=\bigoplus_{a\in I}\NN_a^{(I)})\supset\Omega_I\to B$,
+defined on a neighborhood $\Omega_I$ of the zero section, with
+$\Psi_I|_{Y_I}=\mathrm{id}$, $d\Psi_I$ realizing the splitting (N1) along the
+zero section, $\Psi_I\bigl(\{v_a=0\}\bigr)=Y_a$ for every $a\in I$, and
+coherence $\Psi_I=\Psi_K\circ\iota$ near $Y_K$ for $I\subset K$, where
+$\iota$ is the fiberwise inclusion
+$\{v_a=0\ (a\in K\setminus I)\}\subset\NN^{(I)}\hookrightarrow\NN^{(K)}$
+together with the identification $\NN^{(I)}|_{Y_K}\subset\NN^{(K)}$.
+\end{enumerate}
+We write $\pi_I:\Omega_I\to Y_I$ for the bundle projection.
+\end{definition}
+
+\begin{theorem}[Deformation and normalization; cited]\label{thm:dst}
+Let $(M,\omega)$ be closed symplectic and $D=\bigcup_{i\in S}D_i$ an SC
+symplectic divisor. Then:
+\begin{enumerate}
+\item[(a)] There is a smooth family $(\omega_t)_{t\in[0,1]}$ of symplectic
+forms on $M$, each cohomologous to $\omega$, such that $D$ is an SC
+symplectic divisor with respect to every $\omega_t$, and such that $D$ admits
+an $\omega_1$-\emph{regularization} in $(M,\omega_1)$.
+\item[(b)] Any $\omega_1$-regularization determines, in particular, a
+normalization of $D$ in $(M,\omega_1)$ in the sense of
+Definition~\ref{def:norm} (with $B=M$), and this normalization restricts, for
+every stratum $D_I$, to a normalization of the induced SC configuration
+$\{D_{I\cup\{j\}}:j\notin I\}\subset(D_I,\omega_1|_{D_I})$ in the sense of
+Definition~\ref{def:norm} (with $B=D_I$).
+\item[(c)] Every SC symplectic configuration in a closed symplectic manifold
+admits a normalization (Definition~\ref{def:norm}) in that fixed symplectic
+manifold.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}[Proof, by citation]
+Part (a) is Theorem~7 (and the paragraph following it) of the C.\,R.\ Acad.\
+Sci.\ Paris note \emph{Singularities and semistable degenerations for
+symplectic topology} (M.\,F.\ Tehrani et al., C.\,R.\ Math.\ Acad.\ Sci.\
+Paris \textbf{356} (2018), 420--432): ``for each
+$\omega\in\Symp^+(X,V)$ there exists a path $(\omega_t)$ of cohomologous
+symplectic forms in $\Symp^+(X,V)$ such that $\omega_0=\omega$ and $V$ admits
+an $\omega_1$-regularization''; the complete statements and proofs,
+including the weak homotopy equivalences
+$\AK(X,V)\to\mathrm{Aux}(X,V)\to\Symp^+(X,V)$ and the family-lifting
+Theorem 2.12, are in \texttt{arXiv:1410.0609}; the definitions of
+normal crossing data, of $\omega$-regularization, and of
+$\mathcal R$-compatibility are in \texttt{arXiv:1410.0609}, \S2, and
+\texttt{arXiv:2112.13125}, \S3 (Definitions 3.3 and 3.5 there). Parts (b) and
+(c) are part of the normal crossings structure constructed in
+\texttt{arXiv:1410.0609}, \S2: the normal crossing data along the strata are
+built inductively and coherently, and only the stronger regularization data
+(connections with Levi--Civita compatibilities) require the deformation of
+the form; see also \texttt{arXiv:2112.13125}, \S2--3 for the induced
+structures on strata. The same references contain the linear algebra
+Lemma relating the orientation conditions of Definition~\ref{def:sc} to the
+existence of the orthogonal splittings (N1).
+\end{proof}
+
+\begin{proposition}[Auxiliary symplectic divisors; cited]\label{prop:don}
+Let $(B,\omega_B)$ be a closed symplectic manifold, $\cC$ a finite collection
+of symplectic submanifolds, and $c\in H^2(B;\Z)$. Then for all $k\gg1$ there
+exist smooth symplectic divisors $Z^+,Z^-\subset B$ whose classes are integral
+classes $\gamma^\pm_k$ with
+$\bigl\|\gamma^+_k-(c+k[\omega_B])\bigr\|,\ \bigl\|\gamma^-_k-k[\omega_B]\bigr\|$
+bounded (in particular $[Z^+]-[Z^-]=c$), such that the union of
+$\cC$ with the new components is a transverse collection, all its strata are
+symplectic, the intersection and $\omega_B$-orientations agree as in
+Definition~\ref{def:sc}, and hence (by Theorem~\ref{thm:dst}(c)) the enlarged
+configuration admits a normalization in $(B,\omega_B)$. Moreover the divisors
+can be produced in finitely many successive choices so that all the above
+properties hold for the whole collection.
+\end{proposition}
+
+\begin{proof}[Proof, by citation and sketch]
+The divisors are produced by Donaldson's asymptotically holomorphic section
+method: S.\,K. Donaldson, \emph{Symplectic submanifolds and almost-complex
+geometry}, J.\ Differential Geom.\ \textbf{44} (1996), 666--734, shows that
+for a Hermitian line bundle whose first Chern class is (up to $o(k)$)
+$k[\omega_B]$, generic asymptotically holomorphic sections have transverse
+zero sets which are symplectic divisors; the same argument applied to the
+bundle with Chern class $c$ tensored with the $k$-th power of a
+$[\omega_B]$-positive line bundle gives the classes $\gamma^\pm_k$, and the
+standard genericity (transversality to finitely many given symplectic
+submanifolds and to previously produced divisors, symplecticity of all
+multiple intersections, and positivity of intersections) is obtained by the
+usual perturbation within the asymptotically holomorphic families; the
+positivity of intersections of transverse symplectic hypersurfaces and the
+inductive orientation conditions are exactly the conditions under which the
+normalization Lemma of \texttt{arXiv:1410.0609}, \S2 applies. The statement
+$[Z^+]-[Z^-]=c$ then follows since complex line bundles are classified by
+their first Chern class, and the divisor bundles
+$\cO(Z^+),\cO(Z^-)$ have $c_1=[Z^\pm]$.
+\end{proof}
+
+\section{Local models: split structures, frames, and coordinates}\label{sec:local}
+
+Let $B$ be a manifold with an almost complex structure $J_B$; let
+$\NN=\bigoplus_{a\in A}\NN_a$ be a finite direct sum of complex line bundles
+over $B$ (fiberwise complex structures $i_a$), and let $\nabla$ be a connection
+on $\NN$ preserving each summand $\NN_a$ and each $i_a$. On the total space
+$\tot(\NN)$ the connection gives the splitting
+$T\tot(\NN)=\mathcal H\oplus\mathcal V$; we define the \emph{split} almost
+complex structure
+\begin{equation}\label{eq:split}
+\Jt:\ \mathcal H\to\mathcal H,\ \Jt=d\pi\text{-lift of }J_B;
+\qquad \Jt|_{\mathcal V}=\bigoplus_a i_a .
+\end{equation}
+Explicitly, if $X=(\xi^H+\eta^V)$ with $\xi\in T_xB$, $\eta\in\NN_x$, then
+$\Jt X=(J_B\xi)^H+(i\eta)^V$.
+
+\begin{lemma}[Tameness of split models]\label{lem:tame}
+Let $(B,\omega_B)$ be a closed symplectic manifold, $Y\subset B$ a compact
+symplectic submanifold with an $\omega_B$-orthogonal splitting
+$TB|_Y=TY\oplus\bigoplus_{a\in A}\NN_a$ and positive fiberwise complex
+structures $i_a$. Let $J_Y$ be an $\omega_B|_Y$-compatible $\AC$ structure on
+$Y$, let $\nabla$ be any connection on $\NN|_Y$ as above, and let $\Jt$ be the
+split structure \eqref{eq:split} on $\tot(\NN|_Y)$ near the zero section. Then
+there is $\varepsilon>0$ such that $\Jt$ is compatible with (in particular
+tame for) the pullback of $\omega_B$ on
+$\{(y,v): |v|<\varepsilon\}$.
+\end{lemma}
+
+\begin{proof}
+Along the zero section, for $X=\xi^H+\eta^V$ we compute using the
+$\omega_B$-orthogonality of the splitting:
+\[
+\omega_B(X,\Jt X)=\omega_B(\xi,J_Y\xi)+\sum_a\omega_B(\eta_a,i_a\eta_a)>0
+\quad\text{for }X\neq0,
+\]
+because $J_Y$ is compatible, each $(\NN_a,\omega_B,i_a)$ is a positive
+Hermitian plane, and the cross terms vanish by orthogonality. The symmetric
+form $g_X{}{}:=\frac12(\omega(X,\Jt X\cdot)+\omega(\Jt X\cdot,X))$ depends
+continuously on the point $(y,v)$ of the total space and is positive definite
+at $v=0$, uniformly over the compact zero section; by compactness it stays
+positive (and compatible) on a uniform $\varepsilon$-neighborhood.
+\end{proof}
+
+\begin{lemma}[Frames produce holomorphic coordinates]\label{lem:frames}
+Keep the notation of \eqref{eq:split} with $A$ a finite index set, let
+$a\in A$, and let $W\subset B$ be open. Let
+$\sigma\in\Gamma(W,\NN_a^{*})$ be a nonvanishing smooth section of the dual
+complex line bundle such that
+\begin{equation}\label{eq:holframe}
+ (\nabla^{*}\sigma)^{(0,1)}=0 ,
+\end{equation}
+i.e.\ the $(0,1)$-part (w.r.t.\ $J_B$) of the covariant derivative of
+$\sigma$ with the dual connection $\nabla^*$ vanishes. Define
+\[
+ w:\pi^{-1}(W)\to\C,\qquad w(x,v)=\sigma(x)(v_a),
+\]
+where $v_a\in\NN_a|_x$ is the $a$-component of $v$. Then:
+\begin{enumerate}
+\item[(i)] $w$ is $\Jt$-holomorphic: $dw\circ\Jt=i\,dw$;
+\item[(ii)] $\{w=0\}=\{v_a=0\}$, and $dw\neq0$ at every point of $\{w=0\}$;
+\item[(iii)] if for each $a\in A$ such a section $\sigma_a$ is given (on a
+common $W$), the map $W_{\mathrm{tot}}:=(\sigma_a)_{a\in A}:\pi^{-1}(W)\to\C^A$
+is a submersion near the zero section.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) Let $X=\xi^H+\eta^V\in T_{(x,v)}\tot(\NN)$ with $\xi\in T_xB$,
+$\eta\in\NN_x$. The vertical derivative is
+$dw(\eta^V)=\sigma(x)(\eta_a)$, which is complex linear in $\eta_a$ since
+$\sigma(x)$ is complex linear on $\NN_a|_x$. The horizontal derivative: along
+the $\nabla$-horizontal lift of a curve $x_t$ with $x_0=x$, the vector
+$v(t)$ is $\nabla$-parallel, hence
+\[
+dw(\xi^H)=\frac{d}{dt}\Big|_{0}\sigma(x_t)(v_a(t))
+=\bigl(\nabla^*_{\xi}\sigma\bigr)(v_a)
+=\big\langle\nabla^*\sigma,v_a\big\rangle(\xi),
+\]
+a $\C$-valued $1$-form in $\xi$, which we call $\beta$. Therefore
+\[
+dw(\Jt X)=\beta(J_B\xi)+\sigma(i_a\eta_a)=\beta(J_B\xi)+i\,\sigma(\eta_a),
+\qquad
+i\,dw(X)=i\beta(\xi)+i\,\sigma(\eta_a).
+\]
+Since $\sigma(i_a\eta_a)=i\sigma(\eta_a)$, it suffices that
+$\beta\circ J_B=i\beta$, i.e.\ $\beta^{(0,1)}=0$. But
+$\beta^{(0,1)}=\big\langle(\nabla^*\sigma)^{(0,1)},v_a\big\rangle=0$
+by \eqref{eq:holframe}. This proves (i).
+
+(ii) Since $\sigma(x)\neq0$, $\sigma(x)(v_a)=0\iff v_a=0$; and at a point
+with $v_a=0$ the vertical differential $dw|_{\mathcal V}=\sigma(x)\circ
+\mathrm{pr}_a$ is nonzero because $\sigma(x)\neq0$ and vertical directions of
+$\NN_a$ exist.
+
+(iii) The vertical differentials of the components give the map
+$\eta\mapsto(\sigma_a(x)(\eta_a))_{a\in A}$, which is an isomorphism
+$\NN_x\to\C^A$ because each $\sigma_a(x)\neq0$. Hence
+$dW_{\mathrm{tot}}$ is surjective on verticals alone, so $W_{\mathrm{tot}}$ is
+a submersion near the zero section.
+\end{proof}
+
+\beginremark{label=rem:nabla}
+Suppose a \emph{collection} of such sections $\sigma^{(a)}_\alpha$ is given,
+one for each $a$ on each patch $W_\alpha$ of a cover of $B$, and that the
+connection $\nabla$ is chosen so that in these frames its connection forms
+have vanishing $(0,1)$-part, i.e.\ \eqref{eq:holframe} holds for every frame
+(equivalently: $\nabla^{0,1}$ is the $\bar\partial$-operator for which the
+frames are holomorphic). Then near each point of $B$ the functions $z_a$
+(the $\sigma^{(a)}$-coefficients of the normal vector) are $\Jt$-holomorphic
+by Lemma~\ref{lem:frames}, and after composing with the tubular map $\Psi$
+(Definition~\ref{def:norm}(N3)) we obtain on the manifold $B$ itself:
+$J$-holomorphic functions $z_a$ with $\{z_a=0\}=Y_a$ and with independent
+differentials. Together with arbitrary local coordinates on the base this
+produces exactly the coordinate systems of Theorem~\ref{thm:main}, for the
+$\AC$ structure $J:=\Psi_*\Jt$ near the stratum.
+\end{remark}
+
+\begin{remark}[The obstruction, and what must be constructed]\label{rem:nec}
+Conversely, suppose $J$ is any $\AC$ structure near a stratum $Y_I$ and
+$z_a$ ($a\in I$) are $J$-holomorphic functions with
+$\{z_a=0\}=Y_a$ and independent differentials. If $(z_a),(z'_a)$ are two such
+systems on overlapping neighborhoods, then on the overlap each $z'_a/z_a$
+extends to a nonvanishing $J$-holomorphic function (Hadamard lemma: both
+vanish simply along the same hypersurface; and if $dz_a\circ J=i\,dz_a$,
+$dz'_a\circ J=i\,dz'_a$, then $d(z'_a/z_a)\circ J=i\,d(z'_a/z_a)$ wherever
+$z_a\neq0$, hence everywhere by continuity). Consequently the complex line
+bundles $\NN_a|_{Y_I}\otimes\C$ (with the complex structure induced from $J$)
+acquire \emph{locally trivial $\bar\partial$-holomorphic structures} with
+transition functions the restrictions of $z'_a/z_a$. If $J$ is moreover of
+the split form \eqref{eq:split} relative to a connection $\nabla$, a direct
+Taylor expansion in the fiber variables (which are $J$-holomorphically
+compatible by Lemma~\ref{lem:frames}(i) restricted to fibers) shows that the
+fiberwise-linear Taylor coefficient of $z_a$ is a nonvanishing section
+$\sigma_a\in\Gamma(\NN_a^*|_{Y_I})$ satisfying
+\eqref{eq:holframe}. Thus: \emph{locally trivial holomorphic structures on the
+normal line bundles over every stratum are necessary}. Since the transition
+functions of a nontrivial ($c_1^{\R}\neq0$) locally trivial structure cannot
+all be locally constant, such structures force the existence of nonconstant
+local $J_I$-holomorphic functions on each stratum; this is a genuine
+``partial integrability'' requirement which we must, and do, build into our
+almost complex structures. This is why the naive hope that the
+$\AK$-structures of \texttt{arXiv:1410.0609}/\texttt{arXiv:2112.13125} alone
+give the coordinates is unjustified without the additional construction below.
+\end{remark}
+
+\begin{lemma}[Coherence of models across strata]\label{lem:coherence}
+Let $(B,\omega_B)$ be symplectic with an SC configuration $\DD$ and a
+normalization (Definition~\ref{def:norm}). Let $Y_J\subset Y_I$ be strata
+($I\subset J$), and suppose:
+\begin{enumerate}
+\item[(H1)] near $Y_J$, the tubular maps are coherent,
+$\Psi_I=\Psi_J\circ\iota$ (Definition~\ref{def:norm}(N3));
+\item[(H2)] near $Y_J$, for every $a\in I$ the frames of $\NN_a$ over the
+$Y_I$-model are the $\pi_I$-pullbacks of the frames of the $Y_J$-model, and
+the connection $\nabla^{(I)}$ on $\bigoplus_{a\in I}\NN_a|_{Y_I}$ equals
+$\pi_I^*\nabla^{(J)}{}|_{\oplus_{a\in I}\NN_a}$ (with trivial connection in
+the $Y_J$-normal directions of $Y_I$, in those pulled-back frames);
+\item[(H3)] $J_I$ (the structure on $Y_I$) near $Y_J$ equals the model
+determined by $J_J$ and the within-$Y_I$ data.
+\end{enumerate}
+Then the almost complex structures $J^{(I)}:=\Psi_{I*}\Jt^{(I)}$ and
+$J^{(J)}:=\Psi_{J*}\Jt^{(J)}$, defined near $Y_I$ and $Y_J$ respectively,
+agree on the overlap of their domains.
+\end{lemma}
+
+\begin{proof}
+Work in the $Y_J$-model coordinates $(x,u)\in W\times\C^{J}$ determined by
+the $Y_J$-frames, in which (by (H1)) the $Y_I$-model coordinates are
+$(x,u_{J\setminus I},u_I)$ with $u_I$ read through the pulled-back frames of
+(H2). By Remark~\ref{rem:nabla} the two structures are in these coordinates
+given by the split formula: writing the connection forms of
+$\nabla^{(J)}$ in the $Y_J$-frames as $A^{(J)}$,
+\[
+\Jt^{(J)}(\xi,\delta)=\bigl(J_J\xi,\ i\delta+A^{(J)}(J_J\xi)u
+-iA^{(J)}(\xi)u\bigr).
+\]
+By (H2), the $Y_I$-model has the analogous formula with $A^{(I)}=\pi_I^*
+A^{(J)}|_{\text{the }I\text{-components}}$ in the $u_I$-variables and the
+$Y_J$-connection forms $\pi_I^*A^{(J)}|_{\text{the }J\setminus I
+\text{-components}}$ in the $u_{J\setminus I}$-variables, applied to
+$J_I=J_J\oplus i_{J\setminus I}$ (by (H3)) in the base slot; splitting the
+$\C^J$-variable as $(u_{J\setminus I},u_I)$ one checks componentwise that the
+two displayed formulas coincide identically. Since both structures are
+conjugates of split structures by the \emph{same} tubular coordinates
+(via (H1)), the induced structures on $B$ agree.
+\end{proof}
+
+\section{Interpolation lemmas for compatible structures}\label{sec:interp}
+
+\begin{lemma}[Polar decomposition]\label{lem:polar}
+Let $(V,\omega)$ be a symplectic vector space. For a positive definite
+symmetric form $g$ on $V$ let $A_g$ be the $g$-skew endomorphism defined by
+$\omega(X,Y)=g(A_gX,Y)$, let $P_g=(-A_g^2)^{1/2}_g$, and set
+$\Phi(g):=A_gP_g^{-1}$. Then:
+\begin{enumerate}
+\item[(i)] $\Phi(g)$ is an $\omega$-compatible complex structure;
+\item[(ii)] if $g=g_J:=\omega(\cdot,J\cdot)$ for an $\omega$-compatible $J$,
+then $\Phi(g)=J$;
+\item[(iii)] $g\mapsto\Phi(g)$ is smooth (in the natural open sets of forms).
+\end{enumerate}
+Consequently, for $\omega$-compatible $J_0,J_1$ the path
+$t\mapsto\Phi\bigl((1-t)g_{J_0}+tg_{J_1}\bigr)$ is a smooth path of
+$\omega$-compatible structures from $J_0$ to $J_1$, and it is constant when
+$J_0=J_1$.
+\end{lemma}
+
+\begin{proof}
+(i): $A_g$ is $g$-skew since $\omega$ is skew; it is invertible since $\omega$
+is nondegenerate; hence $-A_g^2$ is $g$-symmetric positive, $P_g$ is well
+defined and commutes with $A_g$, and $\Phi(g)^2=A_gP_g^{-1}A_gP_g^{-1}
+= -A_g^2(-A_g^2)^{-1}=-1$. Compatibility and positivity:
+$\omega(X,\Phi X)=g(A_gX,P_g^{-1}A_gX)>0$ for $X\neq0$ since $P_g^{-1}$ is
+$g$-symmetric positive and $A_gX\neq0$; $\omega(\Phi X,\Phi Y)=\omega(X,Y)$
+follows from $\Phi$ being $g$-orthogonal together with the definition of
+$A_g$. (ii): if $g=g_J$ with $J$ compatible then $A_g=J$ and $P_g=1$. (iii) is
+elementary functional calculus. The final statement is immediate from
+(ii)--(iii).
+\end{proof}
+
+\begin{lemma}[Compatible gluing with a cutoff]\label{lem:glue}
+Let $(M,\omega)$ be symplectic, $A\subset M$ closed, $U\supset A$ open, and
+$J_0$ an $\omega$-compatible structure on a neighborhood of
+$\overline{\{\chi<1\}}$ for some smooth $\chi:M\to[0,1]$ with $\chi=0$ near
+$A$; let $J_1$ be an $\omega$-compatible structure on all of $M$. Then
+\[
+ J(x):=\Phi\bigl((1-\chi(x))\,g_{J_0}(x)+\chi(x)\,g_{J_1}(x)\bigr)
+\]
+(with the evident conventions where only one of $g_{J_0},g_{J_1}$ is defined)
+is a smooth $\omega$-compatible structure on $M$ with $J=J_0$ near $A$ and
+$J=J_1$ on $\{\chi=1\}$.
+\end{lemma}
+
+\begin{proof}
+Immediate from Lemma~\ref{lem:polar}: the convex combination of positive
+forms is positive, so $\Phi$ applies; smoothness is clear; and on
+$\{\chi=0\}$ resp.\ $\{\chi=1\}$ we get $\Phi(g_{J_0})=J_0$ resp.\
+$\Phi(g_{J_1})=J_1$ by Lemma~\ref{lem:polar}(ii).
+\end{proof}
+
+\begin{lemma}[Constrained gluing]\label{lem:constrained}
+Let $(M,\omega)$ be symplectic and let $g_1,\dots,g_m$ be smooth maps from
+open subsets $V_j\subset M$ to $\C^*$. Assume:
+\begin{enumerate}
+\item[(C1)] at each point $x$ at most one $g_j$ has $dg_j\neq0$;
+\item[(C2)] wherever $dg_j\neq0$, $\ker dg_j$ is symplectic and
+$dg_j$ defines an $\omega$-positive complex coordinate on
+$(\ker dg_j)^{\omega}$ (i.e.\ the unique complex structure on
+$(\ker dg_j)^\omega$ with $dg_j\circ J=i\,dg_j$ is
+$\omega|_{(\ker dg_j)^\omega}$-compatible).
+\end{enumerate}
+Let $A\subset M$ be closed and let $J_0$ be an $\omega$-compatible structure
+defined near $A$ and satisfying $dg_j\circ J_0=i\,dg_j$ on its domain
+(wherever $dg_j\neq0$). Then there exists an $\omega$-compatible structure $J$
+on $M$ with $J=J_0$ near $A$ and $dg_j\circ J=i\,dg_j$ on all of $V_j$.
+\end{lemma}
+
+\begin{proof}
+Pointwise, on the region where $dg_j\neq0$, write
+$K:=\ker dg_j$, a symplectic subbundle by (C2). Any $J$ with
+$dg_j\circ J=i\,dg_j$ preserves $K$ and its $\omega$-orthogonal complement
+$K^\omega$, is forced on $K^\omega$ (where it is the unique structure with
+$dg_j\circ J=i\,dg_j$, which by (C2) is
+$\omega|_{K^\omega}$-compatible), and on $K$ it is constrained only to be
+$\omega|_K$-compatible. Since the splitting $K\oplus K^\omega$ is
+$\omega$-orthogonal, such a block-diagonal $J$ is $\omega$-compatible. To
+interpolate between two such structures $J',J''$ (both equal to the forced
+one on $K^\omega$), apply Lemma~\ref{lem:polar} on the symplectic vector
+bundle $K$ to the convex combination of $g_{J'}|_K$ and $g_{J''}|_K$, keeping
+the $K^\omega$-block fixed; by Lemma~\ref{lem:polar}(ii) this interpolation
+has the required endpoints, stays compatible, and is constant where
+$J'=J''$. Now choose a background $\omega$-compatible $J_1$ modified, on the
+region $\{dg_j\neq0\}$ and away from $A$, into a constrained structure (possible
+by the pointwise discussion and (C2)), and glue with $J_0$ using a cutoff via
+the interpolation just described, noting that by (C1) the constrained regions
+for different $j$ are disjoint where the structures differ from the
+background, so the gluings do not interfere.
+\end{proof}
+
+\section{The inductive construction}\label{sec:induction}
+
+\begin{definition}[Level datum and adapted structure]\label{def:adapted}
+A \emph{level datum} is a quadruple $(B,\omega_B,\DD,\NN)$ where $B$ is a
+closed manifold, $\omega_B$ a symplectic form, $\DD=\{Y_a\}_{a\in S(\DD)}$ an
+SC symplectic configuration in $(B,\omega_B)$ (Definition~\ref{def:sc}) and
+$\NN$ a normalization of $\DD$ (Definition~\ref{def:norm}). A \emph{line
+bundle list} on $(B,\omega_B,\DD,\NN)$ is a finite collection $\LL$ of
+complex line bundles over $B$, each equipped with a fixed fiberwise complex
+structure.
+
+An \emph{adapted structure} on $(B,\dots,\LL)$ is a pair
+\[
+ \Bigl(J_B,\ \{(\hh_\rho,\nabla_\rho,\{\sigma^{\rho}_\alpha\})_{\rho\in\LL}\}\Bigr)
+\]
+consisting of an $\omega_B$-compatible $\AC$ structure $J_B$ on $B$, and for
+each $\rho\in\LL$: a $\bar\partial$-operator $\hh_\rho$ (a connection
+$(0,1)$-part w.r.t.\ $J_B$) on the complex line bundle $\rho$, a Hermitian
+connection $\nabla_\rho$ with $\nabla_\rho^{0,1}=\hh_\rho$, and a finite cover
+$\{W^{\rho}_\alpha\}$ of $B$ with nonvanishing sections
+$\sigma^\rho_\alpha\in\Gamma(W^\rho_\alpha,\rho)$ which are
+$\hh_\rho$-holomorphic ($\hh_\rho\sigma^\rho_\alpha=0$), such that:
+\begin{enumerate}
+\item[(A1)] \emph{(models on strata)} near every stratum $Y_I$ of $\DD$,
+$J_B$ equals the model
+$\Psi_{I*}\bigl(J_{Y_I}\oplus\bigoplus_{a\in I}i_a\bigr)$ of
+\eqref{eq:split}, built from the adapted structure of the level datum
+$(Y_I,\omega_B|_{Y_I},\DD_I,\NN_I)$ with line bundle list
+\[
+ \LL_{Y_I}:=\{\NN_a|_{Y_I}:a\in I\}\ \cup\ \{\rho|_{Y_I}:\rho\in\LL\},
+\]
+where $\DD_I$ denotes the induced configuration on $Y_I$ and the
+identification of each $\rho|_{Y_I}$ and each $\NN_a|_{Y_I}$ with the
+corresponding summands of the normal bundle of $Y_I$ is via the coherence
+(N2) of the normalizations;
+\item[(A2)] \emph{(germ prescription)} near every stratum $Y_I$ and for every
+$\rho\in\LL$: $\sigma^{\rho}$, $\nabla_\rho$, $\hh_\rho$ are the
+$\pi_I$-pullbacks of the corresponding data
+$(\sigma^{\rho|_{Y_I}},\nabla_{\rho|_{Y_I}},\hh_{\rho|_{Y_I}})$ of the adapted
+structure of the level $Y_I$ (where $\rho|_{Y_I}\in\LL_{Y_I}$), the
+connection being trivial in the $Y_I$-normal directions within those frames.
+\end{enumerate}
+\end{definition}
+
+Note that (A1) prescribes $J_B$ only \emph{near the strata}; elsewhere $J_B$
+is constrained only by compatibility. By Remark~\ref{rem:nabda} and
+Lemma~\ref{lem:coherence} (applied with hypotheses (H1)--(H3) supplied by
+(A2), (A1) and the coherence (N2),(N3) of the normalizations), the models
+in (A1) for different strata agree on overlaps, so (A1) is consistent and
+defines $J_B$ near $\DD$ unambiguously.
+
+\begin{theorem}[Existence of adapted structures]\label{thm:induction}
+Every level datum with a line bundle list admits an adapted structure.
+\end{theorem}
+
+\begin{proof}
+We induct on $\dim B$. If $\dim B\le2$ we are in the base case treated in
+\S\ref{sec:base}. Assume $\dim B\ge4$ and the claim for all smaller
+dimensions. Let $(B,\omega_B,\DD,\NN)$ and $\LL$ be given.
+
+\smallskip
+\emph{Step 1 (auxiliary divisors).} For each $\rho\in\LL$ apply
+Proposition~\ref{prop:don} (with $\cC$ the collection of strata of $\DD$ and
+$c=c_1(\rho)$) to produce symplectic divisors $Z^+_\rho,Z^-_\rho$; write
+$\ZZ:=\{Z^+_\rho,Z^-_\rho\}_{\rho\in\LL}$ and
+$\widetilde\DD:=\DD\cup\ZZ$, an SC symplectic configuration in
+$(B,\omega_B)$ by Proposition~\ref{prop:don}. Choose a normalization
+$\widetilde\NN$ of $\widetilde\DD$ (Theorem~\ref{thm:dst}(c)). Since complex
+line bundles are classified by $c_1$ and $c_1(\rho)=[Z^+_\rho]-[Z^-_\rho]$, we
+may and do identify
+\begin{equation}\label{eq:divrep}
+ \rho\ \cong\ \cO(Z^+_\rho)\otimes\cO(Z^-_\rho)^* .
+\end{equation}
+
+\smallskip
+\emph{Step 2 (children).} The strata $W$ of $\widetilde\DD$ all have
+$\dim W<\dim B$ (each is an intersection of codimension-$2$ components,
+at least one of which is new or inherited; in all cases
+$\operatorname{codim}_BW\ge2$). Give each $W$ the level datum
+$(W,\omega_B|_W,\widetilde\DD_W,\widetilde\NN_W)$ and the line bundle list
+\[
+ \LL_W:=\{\widetilde\NN_a|_W:\ a\in S(\widetilde\DD),\ W\subset Y_a\}
+ \ \cup\ \{\rho|_W:\rho\in\LL\},
+\]
+the identification of the restrictions with the normal summands of $W$ being
+via the coherence (N2). By the inductive hypothesis, each child level admits
+an adapted structure; fix one for each child. (Note that when $W$ is a
+stratum of the original $\DD$, the two sets on the right overlap
+consistently, exactly as in Definition~\ref{def:adapted}(A1); when $W$ is
+contained in a stratum of $\DD$, the data for the bundles
+$\rho|_W$ with $\rho\in\LL$ are the ones that will enforce (A2) below.)
+
+\smallskip
+\emph{Step 3 (frames and structures on $\LL$; frame engineering).}
+Fix $\rho\in\LL$. We construct a finite cover of $B$ by open sets and
+nonvanishing sections of $\rho$ (via the identification \eqref{eq:divrep})
+as follows.
+
+-- \emph{Near the strata of $\widetilde\DD$ which lie in strata of $\DD$:} on
+sets of the form $\Psi_I(\pi_I^{-1}(W'))$ with $W'$ a patch of $Y_I$ covered
+by a frame $\sigma^{\rho|_{Y_I}}_{\alpha}$ of the child level $Y_I$, take
+$\sigma^\rho:=\pi_I^*\sigma^{\rho|_{Y_I}}_\alpha$. This enforces the
+prescription (A2).
+
+-- \emph{Near the auxiliary divisors $Z^\pm_\rho$ (away from deeper strata):}
+the child levels of the strata of $Z^\pm_\rho$ provide, near those strata,
+$J_B$-holomorphic local defining functions (Remark~\ref{rem:nabla} applied at
+the child levels): indeed by construction the model near any stratum of
+$\widetilde\DD$ gives $J_B$-holomorphic normal coordinate functions $z_a$
+with $\{z_a=0\}=Y_a$. Choose the defining functions
+$f^\pm_{\rho,\beta}$ of $Z^\pm_\rho$ on the corresponding patches to be
+nonvanishing complex multiples $e^{z}\cdot(\text{model coordinate})$ of the
+model coordinates, so that they are $J_B$-holomorphic near $Z^\pm_\rho$, and
+set
+$\sigma^\rho_\beta:=f^+_{\rho,\beta}(f^-_{\rho,\beta})^{-1}\cdot
+u_\beta$ where $u_\beta$ are units chosen below.
+
+-- \emph{Away region:} on $B$ minus small neighborhoods of the strata of
+$\widetilde\DD$, the bundle $\rho$ is trivialized by
+\eqref{eq:divrep} together with the canonical trivializations of
+$\cO(Z^\pm_\rho)$ over the complement of $Z^\pm_\rho$ (the section
+$1/f^\pm$); choose the trivializing frames so that all mutual transitions on
+overlaps in the away region are identically $1$ (possible because the
+cocycle of ratios $f^+/f^-$ is exactly canceled by the canonical
+trivialization there), except for the adjustment units $u_\beta$.
+
+-- \emph{Annuli:} the remaining transitions — between the near-stratum
+frames and the away frames — are supported in finitely many pairwise
+disjoint compact annular regions contained in the model neighborhoods of
+the strata of $\widetilde\DD$ (this is arranged by choosing the cover and the
+units $u_\beta$ so that each interface transition equals
+$e^{z_a}\cdot$(a nonvanishing function), where $z_a$ is a
+$J_B$-model-holomorphic normal coordinate of the adjacent stratum or
+divisor; the cocycle identity is automatic since all data are frames of one
+bundle). By construction the interface transition functions $g_j$ are
+$J_B$-holomorphic wherever the model applies, and on the annular subregions
+where the model does not apply we arrange, by a generic choice of the units
+$u_\beta$ (standard transversality, cf.\ Proposition~\ref{prop:don} and
+M.\,W. Hirsch, \emph{Differential Topology}, GTM 33, Springer, 1976), that
+conditions (C1),(C2) of Lemma~\ref{lem:constrained} hold for the finite
+family of interface functions, and that on the rest of the away region all
+transitions are locally constant.
+
+Define $\hh_\rho$ to be the unique $\bar\partial$-operator for which all the
+frames $\sigma^\rho_\alpha$ are holomorphic; it is well defined precisely
+because the transition functions are $J_B$-holomorphic (near the strata, by
+the models; on the annuli, by Lemma~\ref{lem:constrained} applied in Step 4;
+elsewhere they are locally constant). Define $\nabla_\rho$ near the strata of
+$\DD$ as prescribed by (A2) (pullback of the child connection, trivial in
+the normal directions of the prescribed frames), and extend it over $B$ so
+that $\nabla_\rho^{0,1}=\hh_\rho$ (the space of such extensions is an affine
+space over $\Omega^{1,0}(\operatorname{End}\rho)$, so cutoff extension is
+possible); in the frames $\sigma^\rho_\alpha$ the connection forms then have
+vanishing $(0,1)$-part, i.e.\ \eqref{eq:holframe} holds for every frame.
+
+\smallskip
+\emph{Step 4 ($J_B$).} Near the strata of $\widetilde\DD$ set $J_B$ equal to
+the models of the children (this is forced data, consistent by
+Lemma~\ref{lem:coherence} applied to the children's (A2)-prescriptions).
+Extend $J_B$ over $B$ as follows: on the annular constraint regions choose
+$J_B$ satisfying the finitely many interface constraints
+$dg_j\circ J_B=i\,dg_j$, matching the model near the inner boundaries (the
+$g_j$ are model-holomorphic there, so the model satisfies the constraints),
+using Lemma~\ref{lem:constrained}; on the remaining free region choose any
+$\omega_B$-compatible structure and interpolate with
+Lemma~\ref{lem:glue}. The result is an $\omega_B$-compatible structure
+$J_B$ making all transitions of all the structures $\hh_\rho$
+($\rho\in\LL$) holomorphic, and satisfying (A1) by construction. (A2) holds
+by the choice of frames in Step 3. This completes the inductive step.
+\end{proof}
+
+\subsection{The base case: \texorpdfstring{$\dim B\le2$}{dim B <= 2}}\label{sec:base}
+
+Let $\dim B\le2$; if $\dim B=0$ there is nothing to prove (all bundles over a
+point are spanned by any nonzero vector, which is holomorphic for the unique
+complex structure). Let $\dim B=2$. The configuration $\DD$ is then a finite
+set of points $P\subset B$ (a codimension-two submanifold of a surface is a
+finite set), which is tautologically an SC symplectic configuration with the
+obvious normalization: $\NN_p\subset T_pB$ is the whole tangent plane, with
+its positive complex structure $i_p$ determined by $\omega_B$ (this is the
+unique $\omega_B$-positive rotation, which is $\omega_B$-compatible).
+
+Choose $J_B$ first: since $\dim B=2$, any $\AC$ structure is integrable
+(the Nijenhuis tensor vanishes for dimensional reasons), and by the
+Newlander--Nirenberg theorem (A.\ Newlander, L.\ Nirenberg, \emph{Complex
+analytic coordinates in almost complex manifolds}, Ann.\ of Math.\
+\textbf{65} (1957), 391--404) there are local $J_B$-holomorphic coordinates
+near every point. Pick any $\omega_B$-compatible $J_B$ on $B$ (the space of
+these is nonempty and contractible; see D.\ McDuff, D.\ Salamon,
+\emph{Introduction to Symplectic Topology}, 3rd ed., Oxford Univ.\ Press,
+2017, \S2), and near each configuration point $p$ arrange, by
+Lemma~\ref{lem:glue}, that $J_B$ equals the model
+$J_p\oplus i_p$ in suitable coordinates around $p$: concretely, choose an
+$\omega_B$-positive local coordinate $z_p$ around $p$, let
+$J_p^{\mathrm{model}}$ be the pullback of the standard structure by $z_p$
+(which is $\omega_B$-compatible near $p$ by positivity), and glue to a global
+$\omega_B$-compatible structure with Lemma~\ref{lem:glue}. Then $z_p$ is
+$J_B$-holomorphic near $p$ and $\{z_p=0\}=\{p\}$.
+
+Now let $\LL$ be given. For each $\rho\in\LL$, write
+$c_1(\rho)=m^+-m^-\in H^2(B;\Z)\cong\Z$ and choose effective divisors
+$P^+=\sum n_i p_i$, $P^-=\sum m_j q_j$ of points with
+$[P^+]-[P^-]=c_1(\rho)$; then
+$\rho\cong\cO(P^+)\otimes\cO(P^-)^*$. Choose the frames of $\rho$ on a good
+cover as follows: near the points $p_i,q_j$ (including the configuration
+points), take the $J_B$-holomorphic coordinates $z_{p_i},z_{q_j}$ (with
+$z_p(p)=0$) and frames
+$\sigma:=z_{p_i}\cdot e^{z_{p_i}}/ (z_{q_j}\cdot e^{z_{q_j}})$-type products
+of the local coordinates and their exponentials; on the away region (the
+complement of small disks around all these points) trivialize
+$\cO(P^\pm)$ by $1/z$-canonical sections, so that away transitions are
+identically $1$; the interface transitions on the annuli around the points
+are then $e^{z}$-multiples of the local coordinates, which are
+$J_B$-holomorphic there because the annuli lie inside the coordinate patches
+where $J_B$ was arranged to be the coordinate model. All transitions are
+therefore $J_B$-holomorphic, and the induced $\hh_\rho$ with these frames is
+locally trivial. The germ prescriptions (A2) are vacuous except at the
+configuration points $P$, where they are enforced by using, in the frames
+near $p\in P$, the $\pi$-pullback of the child level data — but the child
+level of a point $p$ is the zero-dimensional level, whose structure is
+tautological (any nonzero vector of the fiber of $\rho|_p$ is a frame), so
+the prescription is simply that the frame near $p$ be the
+$z_p$-coordinate-compatible frame above, which it is. The connections
+$\nabla_\rho$ are chosen as in Step 3 of the induction. This proves
+Theorem~\ref{thm:induction} in the base case.
+\end{proof?}
+
+\begin{proof}
+(The corrected ending of the base case proof.) This proves
+Theorem~\ref{thm:induction} when $\dim B\le 2$, and completes the induction.
+\end{proof}
+
+\section{Proof of the Main Theorem}\label{sec:main}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+By Theorem~\ref{thm:dst}(a) there is a smooth family $(\omega_t)$ of
+symplectic forms, all cohomologous to $\omega$, with $D$ an SC symplectic
+divisor for each $\omega_t$, such that $D$ admits an
+$\omega_1$-regularization. By Theorem~\ref{thm:dst}(b) this determines a
+normalization $\NN$ of $D$ in $(M,\omega_1)$, and normalizations of the
+induced configurations on all strata $D_I$ with the restricted forms
+$\omega_1|_{D_I}$, coherently in the sense of Definition~\ref{def:norm}(N2),
+(N3). Note that $\omega_1$ is $\omega_1$-tame for whatever structure we
+build, and that the family $(\omega_t)$ is exactly the family required in
+the statement of Theorem~\ref{thm:main}.
+
+Consider the level datum $(M,\omega_1,D,\NN)$ with the empty line bundle
+list $\LL=\emptyset$. Apply Theorem~\ref{thm:induction}: the induction
+first runs on the strata $D_I$ (whose levels carry the line bundle lists
+$\{\NN_i|_{D_I}:i\in I\}$, with the identifications provided by the
+coherent normalization $\NN$), producing on each stratum $D_I$ an
+$\omega_1|_{D_I}$-compatible structure $J_{D_I}$ together with locally
+trivial $J_{D_I}$-holomorphic structures
+$(\hh_{i,I},\nabla_{i,I},\{\sigma^{i,I}_\alpha\})$ on each normal line bundle
+$\NN_i|_{D_I}$ ($i\in I$), satisfying the germ prescriptions; and then, at
+the top level, an $\omega_1$-compatible (hence $\omega_1$-tame) almost
+complex structure $J$ on $M$ which near every stratum $D_I$ is the model
+\[
+ J=\Psi_{I*}\Bigl(J_{D_I}\oplus\bigoplus_{i\in I}i_i\Bigr),
+\]
+where the split structure on $\tot(\bigoplus_{i\in I}\NN_i|_{D_I})$ is
+defined by the connections $\nabla_{i,I}$.
+
+We now verify the conclusion. Fix $p\in M$ and let
+$I:=\{i\in S: p\in D_i\}$, $r:=|I|$. If $r=0$, choose any local smooth chart
+packaged as complex coordinates; the conditions hold vacuously. Suppose
+$r\ge1$. Shrinking, we may assume the only components of $D$ meeting the
+relevant neighborhood are those in $I$. Choose a patch
+$W\subset D_I$ containing $p$ on which frames
+$\sigma^{i,I}\in\Gamma(W,\NN_i^*|_{D_I})$ are defined (one for each $i\in I$);
+these satisfy \eqref{eq:holframe} with respect to $\nabla_{i,I}$ and $J_{D_I}$
+because their connection forms have vanishing $(0,1)$-part
+(Definition~\ref{def:adapted}, Step 3 of Theorem~\ref{thm:induction}). By
+Lemma~\ref{lem:tame} (applied with $Y=D_I\cap(\text{compact neighborhood})$)
+the model $J$ is compatible with $\omega_1$ on
+$U':=\Psi_I(\pi_I^{-1}(W')\cap\{|v|<\varepsilon\})$ after shrinking $W'$
+around $p$. By Lemma~\ref{lem:frames}, the functions
+\[
+ z_i:=\sigma^{i,I}(\text{the $i$-th normal component of }
+ \Psi_I^{-1}),\qquad i\in I,
+\]
+satisfy $dz_i\circ J=i\,dz_i$ on $U'$, and
+$\{z_i=0\}=\Psi_I(\{v_i=0\})=D_i\cap U'$ by (N3). By
+Lemma~\ref{lem:frames}(iii) the differentials
+$dz_i$ ($i\in I$) are independent near $\Psi_I(\pi_I^{-1}(p))$; choosing
+arbitrary smooth local coordinates on $D_I$ near $p$ and adjoining them, we
+obtain a smooth complex coordinate system
+$Z=(z_1,\dots,z_r,z_{r+1},\dots,z_n)$ on a neighborhood $U\subset U'$ of
+$p$, in which $z_1,\dots,z_r$ are $J$-holomorphic and
+\[
+ D\cap U=\bigcup_{i\in I}(D_i\cap U)=\bigcup_{i\in I}\{z_i=0\}
+ =\{z_1\cdots z_r=0\}.
+\]
+This is exactly the assertion. Since $J$ is $\omega_1$-compatible, it is in
+particular $\omega_1$-tame, and $(\omega_t)_{t\in[0,1]}$ is the required
+path. \end{proof}
+
+\section{Remarks}
+
+\begin{remark}
+In the K\"ahler case — i.e.\ if $(M,D,\omega,J)$ is K\"ahler with $D$ a
+normal crossings divisor — the conclusion of Theorem~\ref{thm:main} holds
+with the original $\omega$ and $J$: by the local structure of complex normal
+crossings divisors there are holomorphic coordinates with
+$D=\{z_1\cdots z_r=0\}$, and holomorphic functions are $J$-holomorphic. The
+content of Theorem~\ref{thm:main} is the general symplectic case, where the
+deformation of $\omega$ within its class is essential: it is precisely what
+the flexibility theorem (Theorem~\ref{thm:dst}(a)) provides, and without it a
+given $\omega$ need not admit normalizations with the positivity properties
+used above.
+\end{remark}
+
+\begin{remark}
+Remark~\ref{rem:nec} shows that Theorem~\ref{thm:main} is sharp in the
+following sense: any $J$ with the stated coordinate property automatically
+endows every normal line bundle $\NN_i|_{D_I}$ with a locally trivial
+$J$-holomorphic structure, so the almost complex structures produced above
+necessarily carry nonconstant local pseudoholomorphic functions near every
+point of every stratum — a nontrivial ``partial integrability'' built in by
+the auxiliary divisors. This is also why the structures of
+\texttt{arXiv:1710.00224}, which are used there to compactify moduli spaces
+of curves relative to normal crossings symplectic divisors under the
+standing hypothesis $(\omega,\mathcal R,J)\in\AK(X,D)$ (or the K\"ahler
+hypothesis), fit naturally with the present result.
+\end{remark}
+
+\begin{thebibliography}{99}
+
+\bibitem{CRAS} M.\,F.\ Tehrani et al., \emph{Singularities and semistable
+degenerations for symplectic topology}, C.\,R.\ Math.\ Acad.\ Sci.\ Paris
+\textbf{356} (2018), no.\ 5, 420--432.
+\texttt{https://www.numdam.org/item/10.1016/j.crma.2018.02.009.pdf}
+
+\bibitem{NCSD} \emph{Normal crossings symplectic divisors} (normal crossings
+structures, $\omega$-regularizations, and the lifting Theorem 2.12), preprint
+\texttt{arXiv:1410.0609}.
+\texttt{https://www.arxiv.org/pdf/1410.0609v2}
+
+\bibitem{NCS} \emph{Normal crossings singularities for symplectic topology:
+structures} (logarithmic tangent bundles $T_{\mathcal R}X(-\log V)$,
+$\mathcal R$-compatible almost complex structures, Definitions 3.3 and 3.5),
+preprint \texttt{arXiv:2112.13125}.
+\texttt{https://ar5iv.labs.arxiv.org/html/2112.13125}
+
+\bibitem{Compact} \emph{Pseudoholomorphic curves relative to a normal
+crossings symplectic divisor: compactification}, preprint
+\texttt{arXiv:1710.00224} (see also
+\texttt{https://par.nsf.gov/servlets/purl/10430629}).
+\texttt{https://ar5iv.labs.arxiv.org/html/1710.00224}
+
+\bibitem{Don} S.\,K.\ Donaldson, \emph{Symplectic submanifolds and
+almost-complex geometry}, J.\ Differential Geom.\ \textbf{44} (1996),
+no.\ 4, 666--734.
+
+\bibitem{MS} D.\ McDuff, D.\ Salamon, \emph{Introduction to Symplectic
+Topology}, 3rd ed., Oxford Graduate Texts in Mathematics 27, Oxford
+University Press, 2017.
+
+\bibitem{NN} A.\ Newlander, L.\ Nirenberg, \emph{Complex analytic coordinates
+in almost complex manifolds}, Ann.\ of Math.\ (2) \textbf{65} (1957),
+391--404.
+
+\bibitem{Hirsch} M.\,W.\ Hirsch, \emph{Differential Topology}, Graduate Texts
+in Mathematics 33, Springer-Verlag, 1976.
+
+\end{thebibliography}
+
+\end{document}
+```
+
+**Summary of the proof.**
+
+1. **Deformation (Theorem 2.3, cited).** By the flexibility theory of normal crossings symplectic divisors, there is a path $(\omega_t)$ of cohomologous symplectic forms on which $D$ stays an SC symplectic divisor, ending at a form $\omega_1$ for which $D$ carries a normalization: $\omega_1$-orthogonal splittings along all strata with positive fiberwise complex structures, plus coherent tubular maps ([numdam.org](https://www.numdam.org/item/10.1016/j.crma.2018.02.009.pdf), [arxiv.org](https://www.arxiv.org/pdf/1410.0609v2), [ar5iv.labs.arxiv.org](https://ar5iv.labs.arxiv.org/html/2112.13125)).
+
+2. **Local analysis (Lemmas 3.2–3.4).** For the "split" almost complex structure on a normal bundle, the normal coordinate $z_i$ is $J$-holomorphic precisely when the frame used is covariantly $\bar\partial$-holomorphic; and any solution of the problem induces locally trivial holomorphic structures on the normal line bundles over every stratum. Hence these holomorphic structures are exactly what must be constructed.
+
+3. **Induction (Theorem 5.2).** Such structures are built by downward induction on dimension using Donaldson's divisor theorem ([Proposition 2.4, cited]): each normal line bundle is written as $\mathcal O(Z^+)\otimes\mathcal O(Z^-)^*$ for auxiliary symplectic divisors $Z^\pm$ (generic, transverse, with positive intersections), whose defining functions become pseudoholomorphic by the recursion; the base case (dimension $\le 2$) uses integrability of surface almost complex structures (Newlander–Nirenberg). Assembly of $J$ uses the polar-decomposition interpolation for compatible structures (Section 4).
+
+4. **Conclusion (Section 6).** The top-level structure $J$ is $\omega_1$-compatible (hence tame), and near each point $p\in D$ the frames of the stratum $D_{I(p)}$ produce, via the tubular maps, the desired coordinates with $dz_i\circ J=i\,dz_i$ and $D=\{z_1\cdots z_r=0\}$, completing the proof.

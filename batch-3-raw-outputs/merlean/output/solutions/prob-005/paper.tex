@@ -1,0 +1,612 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}
+\newcommand{\K}{\mathbb K}
+\newcommand{\hz}{\mathbf 0}
+\newcommand{\hs}{\boxplus}
+\DeclareMathOperator{\Diff}{Diff}
+\title{A cubic null-sum implication fails for hyperfields}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Over a field, a triple with sum zero satisfies the identity
+$x^3+y^3+z^3=3xyz$. We show that the corresponding implication for
+hyperaddition fails in general, even when the three copies of $-xyz$ are
+kept as separate summands. We construct a countably infinite hyperfield
+with infinite cyclic multiplicative group in which $(1,g,g^4)$ is a
+counterexample. The construction uses translates of a subset of the
+integers representing each nonzero integer uniquely as an ordered
+difference. We prove the required incidence properties and all
+hyperfield axioms directly. We also prove that the implication holds
+for quotients of fields, for triples with a singleton pairwise
+hypersum, and, under $-1=1$, for triples with equal squares.
+\end{abstract}
+
+\section{The question and the result}
+
+A hyperfield has an ordinary multiplication and a multivalued addition:
+$x\hs y$ is a nonempty set of elements. A finite list is a
+\emph{null sum} if its hypersum contains zero. The question is whether,
+in every hyperfield $H$ and for every $x,y,z\in H$,
+\begin{equation}\label{eq:question}
+ 0\in x\hs y\hs z
+ \quad\Longrightarrow\quad
+ 0\in x^3\hs y^3\hs z^3\hs(-xyz)\hs(-xyz)\hs(-xyz).
+\end{equation}
+Here $-xyz$ denotes the additive inverse of the product $xyz$.
+The last three summands are three separate copies of this element;
+we do not replace them by a scalar coefficient.
+
+For ordinary fields, the implication follows from
+\begin{equation}\label{eq:field-identity}
+ x^3+y^3+z^3-3xyz
+ =(x+y+z)(x^2+y^2+z^2-xy-yz-zx).
+\end{equation}
+It also holds in every quotient of a field by a multiplicative subgroup,
+because a null triple in the quotient can be lifted to representatives
+whose ordinary sum is zero; see Proposition~\ref{prop:quotient}.
+The obstacle in a general hyperfield is that membership in a hypersum
+does not identify that set with one of its members. Consequently,
+ordinary polynomial manipulations cannot be transferred merely by
+replacing addition signs with hyperaddition signs.
+
+\begin{theorem}\label{thm:main}
+There is a countably infinite hyperfield
+\[
+ H=\{\hz\}\cup\{g^n:n\in\Z\},\qquad
+ g^ag^b=g^{a+b},\qquad g^0=1,
+\]
+in which every element is its own additive inverse and
+\begin{align}
+ \hz&\in 1\hs g\hs g^4,\label{eq:witness-premise}\\
+ \hz&\notin 1\hs g^3\hs g^{12}\hs g^5\hs g^5\hs g^5.
+ \label{eq:witness-failure}
+\end{align}
+Here $\hz$ is the additive zero, and the $g^n$ are pairwise distinct
+nonzero elements. Thus \eqref{eq:question} is false for arbitrary
+hyperfields.
+\end{theorem}
+
+The geometric method has established precedents. Connes and Consani
+relate hyperaddition to projective incidence in
+\cite[Proposition~3.1 and Lemma~3.5]{CC}; their
+Example~4.7 describes hyperfields from difference sets, including
+infinite cyclic examples arising from Hall's construction.
+Thas discusses this connection and partial difference sets in
+\cite[Sections~2.2--2.3 and 4.1]{Thas}.
+We use this method with explicit integer data chosen to make
+\eqref{eq:question} fail. The general geometric construction is not a
+new assertion here. The proof below supplies the particular difference
+set, verifies the hyperfield axioms, and evaluates the six summands.
+No classification theorem for hyperfields or projective planes is needed.
+
+Section~\ref{sec:conventions} fixes the hyperfield conventions.
+Sections~\ref{sec:differences}--\ref{sec:witness} construct and verify the
+counterexample. Section~\ref{sec:positive} gives sufficient conditions
+under which the implication does hold.
+
+\section{Hyperaddition conventions}\label{sec:conventions}
+
+We use commutative hyperfields, with the conventions of
+\cite[Definitions~2.1, 2.4 and 2.8]{BB}.
+For subsets $A,B\subseteq H$, define
+\[
+ A\hs B=\bigcup_{a\in A,\ b\in B}(a\hs b),
+ \qquad tA=\{ta:a\in A\}.
+\]
+An element used in a subset hypersum stands for its singleton.
+A \emph{canonical commutative hypergroup} is a set with a nonempty-valued
+operation $\hs$, an element $0$, and the following properties:
+\begin{enumerate}
+\item $a\hs b=b\hs a$ and $(a\hs b)\hs c=a\hs(b\hs c)$;
+\item $0\hs a=\{a\}$;
+\item for each $a$, there is a unique element $-a$ with $0\in a\hs(-a)$;
+\item $c\in a\hs b$ if and only if $b\in c\hs(-a)$.
+\end{enumerate}
+The last property is called \emph{reversibility}.
+A \emph{hyperfield} is such a hypergroup with an abelian group structure
+on $H^\times=H\setminus\{0\}$, with identity $1\ne0$, extended by
+absorbing zero, such that exact scalar distributivity holds:
+\begin{equation}\label{eq:distributivity}
+ t(a\hs b)=ta\hs tb\qquad(t,a,b\in H).
+\end{equation}
+Associativity defines finite hypersums without a choice of parentheses.
+Subset hypersums are monotone in each argument by their union definition.
+
+We will use two elementary consequences. Unique inverses give
+\begin{equation}\label{eq:zero-test}
+ 0\in a\hs b\quad\Longleftrightarrow\quad b=-a,
+ \qquad
+ 0\in a\hs b\hs c\quad\Longleftrightarrow\quad -c\in a\hs b.
+\end{equation}
+For the second equivalence, an intermediate element $u\in a\hs b$
+can satisfy $0\in u\hs c$ exactly when $u=-c$.
+Distributing $t$ over $0\in a\hs(-a)$ and using uniqueness shows that
+$t(-a)=-(ta)$. In particular
+\begin{equation}\label{eq:signs}
+ -a=(-1)a,\qquad (-1)^2=1,\qquad (-a)^3=-a^3.
+\end{equation}
+Here $-(-a)=a$ follows already from commutativity and inverse uniqueness.
+
+\section{An integer set with unique differences}\label{sec:differences}
+
+We first construct the incidence structure that will determine
+hyperaddition. For a finite set $F\subseteq\Z_{\ge0}$ containing $0$, put
+\[
+ \Diff(F)=\{d-e:d,e\in F,\ d>e\}.
+\]
+We say its positive differences are unique if every member of
+$\Diff(F)$ has exactly one representation of this form.
+The next extension fills a missing difference without changing any
+existing representation. Placing both new points far beyond $F$
+separates the new cross differences from the old ones.
+
+\begin{lemma}\label{lem:extension}
+Suppose $F\subseteq\Z_{\ge0}$ is finite, contains $0$, and has unique
+positive differences. Let
+\[
+ B=\max F,\qquad
+ q=\min\bigl(\Z_{>0}\setminus\Diff(F)\bigr),\qquad
+ M=2B+q+14.
+\]
+Then $F'=F\cup\{M,M+q\}$ has unique positive differences, preserves
+every old representation, and represents $q$.
+\end{lemma}
+
+\begin{proof}
+The new positive differences, besides those in $\Diff(F)$, are
+\[
+ q,\qquad M-d\ (d\in F),\qquad M+q-d\ (d\in F).
+\]
+Old differences are at most $B$, and $q$ is not an old difference.
+Every cross difference is at least
+$M-B=B+q+14$, which exceeds both $B$ and $q$.
+There are no repetitions within either cross family. An equality
+$M-d=M+q-e$ would give $e-d=q$ with $d,e\in F$, contrary to the
+choice of $q$. These exhaust the possible collisions. Finally,
+$q=(M+q)-M$ is its new representation.
+\end{proof}
+
+Start with
+\begin{equation}\label{eq:seed}
+ D_0=\{0,1,4,6\}.
+\end{equation}
+Its six positive differences are $1,2,3,4,5,6$, each once.
+For $n\ge0$, define
+\begin{equation}\label{eq:recursion}
+ \begin{split}
+ q_n&=\min\bigl(\Z_{>0}\setminus\Diff(D_n)\bigr),\qquad
+ B_n=\max D_n,\\
+ M_n&=2B_n+q_n+14,\qquad
+ D_{n+1}=D_n\cup\{M_n,M_n+q_n\},\qquad
+ D=\bigcup_{n\ge0}D_n.
+ \end{split}
+\end{equation}
+The fixed offset $14$ keeps every new point above $13$.
+This exclusion will separate the cubic indices from one particular line.
+
+\begin{lemma}\label{lem:perfect}
+The map
+\[
+ \{(d,e)\in D^2:d\ne e\}\longrightarrow\Z\setminus\{0\},
+ \qquad (d,e)\longmapsto d-e
+\]
+is a bijection. The set $D$ is infinite, contains $0,1,4,6$, and does
+not contain $13$.
+\end{lemma}
+
+\begin{proof}
+Each stage is finite, so $q_n$ exists. Lemma~\ref{lem:extension} applies
+inductively. All positive integers below $q_n$ were already represented,
+and stage $n+1$ also represents $q_n$. Hence $q_{n+1}>q_n$.
+Since $q_0=7$, we have $q_n\ge n+7$; thus $D_n$ represents every
+positive integer at most $n+6$. Every positive integer is therefore a
+difference in $D$, and reversal covers every negative integer.
+
+If two ordered pairs in $D$ represented the same nonzero difference,
+all four entries would belong to a single finite stage. Uniqueness at
+that stage rules out distinct representations, also for negative
+differences by reversal.
+
+Each extension adds two points above the preceding maximum, so $D$ is
+infinite. In the first extension $M_0=33$ and
+\[
+ D_1=\{0,1,4,6,33,40\}.
+\]
+All later new points exceed the previous maximum. Since $13\notin D_0$,
+we obtain $13\notin D$.
+\end{proof}
+
+For $t\in\Z$, call $D+t$ a \emph{line} on the point set $\Z$.
+Points are \emph{collinear} if they lie on a common line.
+This use of lines is purely an incidence definition.
+
+\begin{lemma}\label{lem:incidence}
+Two distinct integer points lie on exactly one line. Two lines with
+distinct translation parameters meet in exactly one point and are
+different sets. Every line is infinite, and translation by any integer
+preserves lines.
+\end{lemma}
+
+\begin{proof}
+For $a\ne b$, write $a-b=d-e$ with $d,e\in D$, uniquely by
+Lemma~\ref{lem:perfect}. The required line is $D+t$, where
+$t=a-d=b-e$. Any other line through $a,b$ gives another representation
+of $a-b$ and hence the same $d,e,t$.
+
+An intersection point of $D+s$ and $D+t$, for $s\ne t$, has the form
+$d+s=e+t$, or equivalently $d-e=t-s$. The latter has exactly one
+solution in $D^2$, so the intersection consists of exactly one point.
+Since each translate is infinite, the two lines cannot coincide.
+Finally, $(D+t)+h=D+(t+h)$.
+\end{proof}
+
+Write $L(a,b)$ for the unique line through distinct integer points
+$a,b$. In particular,
+\begin{equation}\label{eq:translation}
+ L(a+h,b+h)=L(a,b)+h.
+\end{equation}
+Only the properties proved in Lemma~\ref{lem:incidence}, rather than an
+external incidence theorem, will be used below.
+
+\section{The hyperfield and its axioms}\label{sec:hyperfield}
+
+Let
+\[
+ H=\{\hz\}\cup\{g^n:n\in\Z\},
+\]
+where all the displayed symbols are distinct. The additive zero $\hz$
+is different from the integer index $0$ and from $g^0=1$.
+Transport each integer line to $H^\times$ by $n\mapsto g^n$.
+For distinct $A=g^a,B=g^b$, write
+\[
+ \ell(A,B)=\{g^c:c\in L(a,b)\}.
+\]
+The incidence properties of Lemma~\ref{lem:incidence} hold for these
+transported lines as well.
+
+Define hyperaddition by
+\begin{equation}\label{eq:addition}
+ \hz\hs u=u\hs\hz=\{u\},\qquad
+ A\hs A=\{\hz,A\},\qquad
+ A\hs B=\ell(A,B)\setminus\{A,B\}\quad(A\ne B),
+\end{equation}
+where $A,B$ in the last two rules are nonzero. This is the usual
+line-based addition from \cite[Proposition~3.1]{CC}, here applied to the
+specific integer lines. The removal of the two endpoints makes three
+distinct nonzero elements add to zero precisely when they are collinear.
+We verify the laws directly, including the associativity calculation
+needed to evaluate the counterexample.
+
+\begin{proposition}\label{prop:hypergroup}
+The operation \eqref{eq:addition} makes $H$ a canonical commutative
+hypergroup, with $-u=u$ for all $u\in H$. For noncollinear nonzero points
+$A,B,C$, its three-term hypersum is
+\begin{equation}\label{eq:triangle}
+ A\hs B\hs C
+ =H^\times\setminus\bigl(\ell(A,B)\cup\ell(A,C)\cup\ell(B,C)\bigr).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Every line is infinite, so every addition value is nonempty.
+Commutativity and the zero identity are immediate. The rules give
+\begin{equation}\label{eq:self-inverse}
+ \hz\in u\hs v\quad\Longleftrightarrow\quad u=v.
+\end{equation}
+Thus each element is its own unique additive inverse.
+
+To verify reversibility, examine the relation $w\in u\hs v$.
+If one entry is zero, the permitted triples are the permutations of
+$(\hz,u,u)$, including the all-zero case. For three nonzero entries,
+the permitted patterns are that all three are equal, or that they are
+distinct and collinear. Each condition is invariant under permutation.
+Since negation is the identity, this symmetry is exactly reversibility.
+
+It remains to prove associativity. We compute the left-associated
+hypersum for each possible configuration; the resulting expressions
+also determine the other parenthesization.
+A zero entry reduces the assertion to the identity rule. Suppose
+therefore that $A,B,C$ are nonzero.
+
+If all three entries equal $A$, both parenthesizations give
+$\{\hz,A\}$. If exactly two entries agree, denote the repeated point
+by $A$ and the other by $B$, and put $\ell=\ell(A,B)$. Then
+\[
+ (A\hs A)\hs B
+ =\{B\}\cup\bigl(\ell\setminus\{A,B\}\bigr)
+ =\ell\setminus\{A\},
+\]
+whereas
+\[
+ A\hs(A\hs B)
+ =\bigcup_{U\in\ell\setminus\{A,B\}}
+       \bigl(\ell\setminus\{A,U\}\bigr)
+ =\ell\setminus\{A\}.
+\]
+For the last equality, any point of $\ell$ other than $A$ survives by
+choosing $U$ different from that point; the infinite line supplies such
+choices. Commutativity covers the other placements of $B$.
+
+Suppose next that $A,B,C$ are distinct and lie on a line $\ell$.
+In $(A\hs B)\hs C$, the intermediate choice $U=C$ contributes
+$\{\hz,C\}$, while each $U\in\ell\setminus\{A,B,C\}$ contributes
+$\ell\setminus\{U,C\}$. There are at least two such $U$, so
+\[
+ (A\hs B)\hs C=\ell\cup\{\hz\}.
+\]
+The same calculation applies with the entries permuted and proves
+associativity in this case.
+
+Finally let $A,B,C$ be noncollinear. We prove
+\eqref{eq:triangle} first for $(A\hs B)\hs C$.
+An intermediate point $U$ belongs to
+$\ell(A,B)\setminus\{A,B\}$, so $U\ne C$. A point
+$V\in U\hs C$ lies on $\ell(U,C)$ and differs from $U,C$.
+The lines $\ell(U,C)$ and $\ell(A,B)$ are distinct and meet only at
+$U$. Moreover, $\ell(U,C)$ differs from both $\ell(A,C)$ and
+$\ell(B,C)$: equality with either would give two intersections with
+$\ell(A,B)$. Its intersection with each of these latter lines is
+therefore only $C$. Hence $V$ lies outside all three lines on the
+right of \eqref{eq:triangle}. Also $\hz$ cannot occur, since $U\ne C$.
+
+Conversely, let $V$ be outside those three lines. The line $\ell(C,V)$
+meets $\ell(A,B)$ at a unique point $U$. This point is neither $A$
+nor $B$, since otherwise $V$ would belong to $\ell(A,C)$ or
+$\ell(B,C)$. Also $V\ne U,C$. Thus
+$U\in A\hs B$ and $V\in U\hs C$, proving the reverse inclusion.
+The right side of \eqref{eq:triangle} is symmetric in $A,B,C$.
+Applying the same computation to $(B\hs C)\hs A$ and using
+commutativity yields $A\hs(B\hs C)$, as required.
+\end{proof}
+
+\begin{proposition}\label{prop:hyperfield}
+Define $g^ag^b=g^{a+b}$ and make $\hz$ absorbing. Together with
+\eqref{eq:addition}, these operations make $H$ a countably infinite
+hyperfield.
+\end{proposition}
+
+\begin{proof}
+The nonzero elements form an infinite cyclic abelian group, with
+identity $g^0=1$ and inverse $(g^a)^{-1}=g^{-a}$. In particular,
+$1\ne\hz$. Multiplication by $g^h$ translates all integer indices by
+$h$. Equation~\eqref{eq:translation} shows that it carries the line
+through $g^a,g^b$ to the line through $g^{a+h},g^{b+h}$ and carries
+the removed endpoints to the removed endpoints. It therefore preserves
+the distinct nonzero case of \eqref{eq:addition} exactly. The equal
+and zero cases are preserved by inspection of their formulas. This
+proves \eqref{eq:distributivity} for every nonzero scalar. For scalar
+$\hz$, both sides are $\{\hz\}$, using nonemptiness of addition values.
+Proposition~\ref{prop:hypergroup} supplies all remaining axioms.
+The underlying set is countably infinite.
+\end{proof}
+
+\section{Evaluation of the counterexample}\label{sec:witness}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Take the hyperfield of Proposition~\ref{prop:hyperfield}.
+The indices $0,1,4$ are distinct members of $D$. Thus
+$g^4\in 1\hs g$, and $\hz\in g^4\hs g^4$ proves
+\eqref{eq:witness-premise}.
+
+For $(x,y,z)=(1,g,g^4)$, the cubes are $1,g^3,g^{12}$.
+Every element is its own negative, so each mixed summand is
+$-xyz=xyz=g^5$. To locate their hypersum, observe that
+\begin{equation}\label{eq:key-line}
+ L(0,3)=D-1,\qquad 5\in D-1,\qquad 12\notin D-1.
+\end{equation}
+Indeed, $1,4\in D$ identify the line through $0,3$;
+$6\in D$ gives the second assertion; and $13\notin D$ gives the third.
+Consequently $1,g^3,g^{12}$ are noncollinear. By
+\eqref{eq:triangle}, the set
+\[
+ T=1\hs g^3\hs g^{12}
+\]
+contains neither $\hz$ nor $g^5$, since $g^5$ lies on the line
+through $1,g^3$.
+
+On the other hand, the equal-element addition rule gives
+\[
+ g^5\hs g^5\hs g^5
+ =\{\hz,g^5\}\hs g^5=\{\hz,g^5\}.
+\]
+Associativity identifies the required six-term hypersum with
+$T\hs\{\hz,g^5\}$. By \eqref{eq:self-inverse},
+\[
+ \hz\in T\hs\{\hz,g^5\}
+ \quad\Longleftrightarrow\quad
+ T\cap\{\hz,g^5\}\ne\varnothing.
+\]
+The intersection is empty, proving \eqref{eq:witness-failure}.
+\end{proof}
+
+\section{Cases in which the implication holds}\label{sec:positive}
+
+The failure above does not apply to every hyperfield or every null
+triple. We record several sufficient conditions and prove them using
+only the stated hyperfield laws. In this section $H$ is again an
+arbitrary hyperfield and its zero is denoted by $0$.
+
+\begin{lemma}\label{lem:normalization}
+The implication \eqref{eq:question} holds if at least one coordinate
+is zero. If $xyz\ne0$, set
+\[
+ t=-z^{-1},\qquad a=tx,\qquad b=ty.
+\]
+Then its premise is equivalent to $1\in a\hs b$, and its conclusion
+is equivalent to
+\begin{equation}\label{eq:normalized}
+ 1\in a^3\hs b^3\hs ab\hs ab\hs ab.
+\end{equation}
+Conversely, a failure of \eqref{eq:normalized} with $1\in a\hs b$
+yields a counterexample $(a,b,-1)$ to \eqref{eq:question}.
+\end{lemma}
+
+\begin{proof}
+If $z=0$, then $y=-x$ by \eqref{eq:zero-test}; the mixed summands
+vanish and the cubes form an opposite pair by \eqref{eq:signs}.
+Symmetry covers all positions of a zero, including the all-zero triple.
+
+For nonzero coordinates, multiplication by $t$ is a bijection fixing
+zero and preserving hypersums, and $tz=-1$. The premise is therefore
+equivalent to $0\in a\hs b\hs(-1)$, or $1\in a\hs b$.
+Multiplying the six-term conclusion by $t^3$ gives precisely
+\[
+ 0\in a^3\hs b^3\hs(-1)\hs ab\hs ab\hs ab,
+\]
+because $(tz)^3=-1$ and $t^3(-xyz)=-(tx)(ty)(tz)=ab$.
+The zero test converts this to \eqref{eq:normalized}. Every step is
+reversible. Substituting $(a,b,-1)$ proves the final assertion.
+\end{proof}
+
+\begin{proposition}\label{prop:quotient}
+Let $F$ be a commutative field and $G\le F^\times$ a subgroup.
+Then \eqref{eq:question} holds in the quotient hyperfield $F/G$,
+in every characteristic.
+\end{proposition}
+
+\begin{proof}
+Write $[r]=rG$ for $r\ne0$, and $[0]=\{0\}$. Multiplication is
+$[r][s]=[rs]$, and hyperaddition is
+\begin{equation}\label{eq:quotient}
+ [r]\hs[s]=\{[r'+s']:r'\in[r],\ s'\in[s]\}.
+\end{equation}
+This is the quotient construction of
+\cite[Proposition~2.5]{CC} and \cite[Remark~2.7]{BB}.
+These results apply because $F$ is a commutative ring and $G$ is a
+subgroup of its units; every nonzero class is invertible since $F$
+is a field. The additive inverse is $-[r]=[-r]$, as
+$[0]\in[r]\hs[-r]$ and inverses are unique.
+
+Suppose $0\in x\hs y\hs z$. By \eqref{eq:zero-test},
+$-z\in x\hs y$, so \eqref{eq:quotient} provides representatives
+$r\in x$, $s\in y$ with $[r+s]=-z$. Set $q=-(r+s)$.
+Then $q\in z$ and $r+s+q=0$. Identity~\eqref{eq:field-identity} gives
+\[
+ r^3+s^3+q^3-rsq-rsq-rsq=0.
+\]
+For any finite list in $F$, the class of its ordinary sum belongs to
+the hypersum of the classes: the two-term statement is
+\eqref{eq:quotient}, and induction appends one term at a time.
+Projecting the displayed equality proves \eqref{eq:question}.
+No division by $3$ is involved.
+\end{proof}
+
+\begin{proposition}\label{prop:singleton}
+Suppose $0\in x\hs y\hs z$ in a hyperfield. If any of
+$x\hs y$, $y\hs z$, $z\hs x$ is a singleton, then the conclusion
+of \eqref{eq:question} holds.
+\end{proposition}
+
+\begin{proof}
+Lemma~\ref{lem:normalization} treats zero coordinates.
+Otherwise permute the singleton pair to $x,y$. By
+\eqref{eq:zero-test} its sum is $\{-z\}$, so the same normalization
+reduces the claim to $a\hs b=\{1\}$.
+Scaling $1\in a\hs b$ by $a$ and $b$ gives
+\[
+ a\in a^2\hs ab,\qquad b\in ab\hs b^2.
+\]
+Monotonicity and associativity yield
+$1\in a^2\hs b^2\hs ab\hs ab$.
+Scaling instead by $a^2$ and $b^2$ gives
+\[
+ a^2\in a^3\hs a^2b,\qquad b^2\in ab^2\hs b^3.
+\]
+Substituting these memberships into the preceding hypersum yields
+\[
+ 1\in a^3\hs b^3\hs ab\hs ab\hs(a^2b\hs ab^2).
+\]
+Here exact distributivity and the singleton hypothesis give the
+set equality $a^2b\hs ab^2=ab(a\hs b)=\{ab\}$.
+This proves \eqref{eq:normalized}, and scaling back proves the claim.
+\end{proof}
+
+\begin{proposition}\label{prop:squares}
+Suppose $-1=1$, $x^2=y^2=z^2$, and $0\in x\hs y\hs z$.
+Then the conclusion of \eqref{eq:question} holds.
+\end{proposition}
+
+\begin{proof}
+The zero-coordinate case follows from Lemma~\ref{lem:normalization}.
+Otherwise put $k=x^2=y^2=z^2\ne0$, $p=xyz$, and $q=p/k$.
+Negation is the identity by \eqref{eq:signs}. Thus
+$z\in x\hs y$, and scaling this membership by $xy/k$ gives
+\[
+ q\in y\hs x,
+\]
+since $(xy/k)x=y$ and $(xy/k)y=x$.
+Cyclically, $q\in y\hs z$ and $q\in z\hs x$.
+Reversibility now gives
+\[
+ y\in x\hs q,\qquad z\in y\hs q,\qquad x\in z\hs q.
+\]
+Consequently, by monotonicity,
+\[
+ 0\in y\hs z\hs x
+ \subseteq (x\hs q)\hs(y\hs q)\hs(z\hs q).
+\]
+Multiply by $k$. Since $kx=x^3$, $ky=y^3$, $kz=z^3$, and
+$kq=p=-xyz$, the resulting membership is the required conclusion.
+\end{proof}
+
+\begin{remark}\label{rem:cancellation}
+The singleton equality used in Proposition~\ref{prop:singleton} is
+essential to that argument. Knowing only $ab\in a^2b\hs ab^2$
+does not allow a membership in the larger hypersum to be retained
+after replacing this set by $\{ab\}$. Cancellation of opposite
+summands is likewise unavailable in general. For example, in the
+Krasner hyperfield $\K=\{0,1\}$ with $1\hs1=\{0,1\}$,
+\[
+ 0\in1\hs1\hs1=\{0,1\},\qquad 0\notin\{1\}.
+\]
+Here $-1=1$, so deleting an opposite pair destroys zero membership.
+This familiar hyperfield is described in \cite[Example~2.10]{BB};
+it also equals $\mathbb F_3/\mathbb F_3^\times$ under
+\eqref{eq:quotient}. Thus the cancellation example itself satisfies
+the cubic implication by Proposition~\ref{prop:quotient}.
+\end{remark}
+
+Any counterexample therefore has three nonzero coordinates and no
+singleton pairwise hypersum. The witness in Theorem~\ref{thm:main}
+has infinite pairwise hypersums and distinct squares. The construction
+is infinite and does not settle whether a finite counterexample exists.
+The quotient result also shows that this particular hyperfield cannot
+be isomorphic to a quotient $F/G$ of a field: such an isomorphism would
+preserve the premise and all six terms of the failed conclusion.
+
+\begin{thebibliography}{9}
+\bibitem{BB}
+M. Baker and N. Bowler,
+\emph{Matroids over hyperfields},
+arXiv:1601.01204v5 (2017),
+\url{https://arxiv.org/abs/1601.01204v5}.
+
+\bibitem{CC}
+A. Connes and C. Consani,
+\emph{The hyperring of ad\`ele classes},
+arXiv:1001.4260v2 (2010),
+\url{https://arxiv.org/abs/1001.4260v2}.
+
+\bibitem{Thas}
+K. Thas,
+\emph{Hyperfield extensions, characteristic one and the Connes--Consani
+plane connection},
+arXiv:1407.0607v1 (2014),
+\url{https://arxiv.org/abs/1407.0607v1}.
+\end{thebibliography}
+\end{document}

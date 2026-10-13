@@ -1,0 +1,272 @@
+
+
+% The following web sources were used in preparing this proof:
+% [arxiv.org](https://arxiv.org/html/2405.12009)
+% [exa.ai](https://exa.ai/library/publication/xr8dkyl88dy)
+% [link.springer.com](https://link.springer.com/article/10.1007/s00209-019-02279-9)
+% [charlesdoran.net](https://www.charlesdoran.net/uploads/6/7/5/1/6751141/2311.10394.pdf)
+% [charlesdoran.net](https://www.charlesdoran.net/uploads/6/7/5/1/6751141/40_normal_forms_k3_surface_moduli_and_modular_parametrizations_2009.pdf)
+
+\documentclass[11pt]{amsart}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+\DeclareMathOperator{\NS}{NS}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Aut}{Aut}
+\newcommand{\cX}{\mathcal X}
+\newcommand{\cL}{\mathcal L}
+\newcommand{\bZ}{\mathbb Z}
+\newcommand{\bP}{\mathbb P}
+\newcommand{\bC}{\mathbb C}
+
+\title[Mirror symmetry for $H$-polarised Tyurin degenerations]
+{Mirror symmetry for $H$-polarised Tyurin degenerations of K3 surfaces}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We prove that a very general $H$-polarised Tyurin degeneration of K3 surfaces is mirror, in the sense of Giovenzana--Thompson, to a very general $H\oplus E_8\oplus E_8$-quasipolarised K3 surface equipped with a suitable elliptic fibration and an allowable loop. The proof combines the Alexeev--Brunyate--Engel stable-pair compactification of elliptic K3 surfaces, the lattice-polarisation theory for Tyurin degenerations developed by Giovenzana--Thompson, and the normal-form theory of $H\oplus E_8\oplus E_8$-polarised K3 surfaces.
+\end{abstract}
+
+\section{Statement}
+
+Throughout, $H$ denotes the hyperbolic plane lattice, usually written $U$, and $E_8$ denotes the negative definite $E_8$ root lattice; we shall often write $E_8(-1)$ to emphasize the negative definite intersection form. Set
+\[
+M \;:=\; H\oplus E_8(-1)\oplus E_8(-1).
+\]
+We use the corrected definition of an $H$-polarised Tyurin degeneration as stated in the question.
+
+\begin{theorem}\label{thm:main}
+Let $\pi\colon \cX\to \Delta$ be a Tyurin degeneration of K3 surfaces with central fibre
+\[
+X_0=V_1\cup_D V_2,
+\]
+which is $H$-polarised in the sense of the question, and assume that the induced point of the Alexeev--Brunyate--Engel compactification of the moduli space of $H$-polarised K3 surfaces is very general, i.e.\ is not contained in any Noether--Lefschetz locus. Then there exists a very general $M$-quasipolarised K3 surface $Y$, an elliptic fibration
+\[
+f\colon Y\longrightarrow \bP^1,
+\]
+and an allowable loop $\gamma\subset \bP^1$ in the sense of \cite[Definition~4.11]{GT24}, such that the $M$-quasipolarisation is compatible with $f$ and $\gamma$ in the sense of \cite[Definition~4.21]{GT24}, and such that
+\[
+\bigl(\cX\to \Delta\bigr)
+\quad\text{and}\quad
+\bigl(f\colon Y\to \bP^1,\gamma\bigr)
+\]
+form a mirror pair in the sense of \cite[Definition~5.1]{GT24}.
+\end{theorem}
+
+\begin{remark}
+The statement is naturally interpreted as saying that the mirror construction produces a very general point in the moduli space of $M$-quasipolarised K3 surfaces. If one fixes an arbitrary very general $M$-quasipolarised K3 surface independently of $\cX\to\Delta$, then one must additionally require that its period is the mirror period of $\cX\to\Delta$; otherwise there is no reason for the analytic data to match. The proof below gives the precise existential statement, which is the standard formulation in mirror symmetry for lattice-polarised K3 degenerations.
+\end{remark}
+
+\section{Preliminaries on lattices and quasipolarised K3 surfaces}
+
+Let
+\[
+\Lambda_{\K3}:=H^{\oplus 3}\oplus E_8(-1)^{\oplus 2}
+\]
+be the K3 lattice. The primitive embedding of $H$ into $\Lambda_{\K3}$ is unique up to isometry, and its orthogonal complement is
+\[
+H^\perp_{\Lambda_{\K3}}\cong H^{\oplus 2}\oplus E_8(-1)^{\oplus 2}.
+\]
+The lattice
+\[
+M=H\oplus E_8(-1)^{\oplus 2}
+\]
+has signature $(1,17)$ and embeds primitively in $\Lambda_{\K3}$ with orthogonal complement
+\[
+M^\perp_{\Lambda_{\K3}}\cong H^{\oplus 2}.
+\]
+Thus the period domain for very general $M$-quasipolarised K3 surfaces is the type~IV domain associated to $H^{\oplus 2}$, and has dimension $2$.
+
+We use the definition of quasipolarisation as in Dolgachev and in \cite{GT24}: a $(\Lambda,h)$-quasipolarised K3 surface is a pair $(X,j)$ where $j\colon \Lambda\hookrightarrow \NS(X)$ is a primitive lattice embedding and $j(h)$ is big and nef. For very irrational $h$, the corresponding moduli functor is represented by a complex analytic space of dimension $20-\rk(\Lambda)$; see \cite[Definition~4.2, Theorem~4.7]{GT24}. In particular, for $\Lambda=M$ the moduli space has dimension $2$.
+
+\section{Structure of a very general $H$-polarised Tyurin degeneration}
+
+\begin{lemma}\label{lem:Tyurin-structure}
+Let $\pi\colon \cX\to\Delta$ be as in Theorem~\ref{thm:main}. Then, after possibly interchanging $V_1$ and $V_2$, the following hold.
+\begin{enumerate}
+\item The smooth fibres $X_t$ are very general elliptic K3 surfaces with section, and $\NS(X_t)\cong H$.
+\item Each $V_i$ is a smooth rational elliptic surface with section, and the gluing curve $D$ is a smooth fibre of the elliptic fibration on $V_i$.
+\item The relative pseudolattice of $(V_i,D)$ is canonically isometric to $E_8(-1)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Because $\cX\to\Delta$ maps to the Alexeev--Brunyate--Engel compactification of the moduli space of $H$-polarised K3 surfaces, the $H$-polarisation is the standard section--fibre lattice of an elliptic K3 surface with section. The divisor $A$ in the definition is a flat nef Cartier divisor whose restrictions to smooth fibres are nef and big; this is precisely the positivity condition needed to view the family as a stable pair degeneration in the sense of Alexeev--Brunyate--Engel.
+
+By the structure theorem for stable Type~II elliptic K3 surfaces \cite{ABE22}, a semistable Type~II stable limit of elliptic K3 surfaces with section is a union
+\[
+V_1\cup_D V_2
+\]
+where $V_1,V_2$ are rational elliptic surfaces with section, glued along a smooth fibre $D$ of their elliptic fibrations. Since the central fibre of $\cX\to\Delta$ is assumed to be a Tyurin degeneration, the components are smooth and the double curve $D$ is a smooth elliptic curve, so the stable pair is of this simplest Type~II form.
+
+The hypothesis that the image of $0\in\Delta$ is not contained in any Noether--Lefschetz locus means that the corresponding stable pair is very general in the Type~II boundary stratum. Hence each component $V_i$ is a very general rational elliptic surface with section. For a very general rational elliptic surface with section, the relative pseudolattice with respect to a smooth fibre is isometric to $E_8(-1)$; this is the standard pseudolattice of a rational elliptic surface, and in the present context it is proved in the lattice-polarisation theory for Tyurin degenerations \cite[Theorems~3.26 and~3.28]{GT24}.
+\end{proof}
+
+\begin{lemma}\label{lem:pseudolattice-gluing}
+In the situation of Lemma~\ref{lem:Tyurin-structure}, the two pseudolattices $E_8(-1)$ coming from $V_1$ and $V_2$, together with the common section--fibre lattice $H$, form the lattice
+\[
+M=H\oplus E_8(-1)\oplus E_8(-1).
+\]
+\end{lemma}
+
+\begin{proof}
+On each rational elliptic surface $V_i$ the section and fibre classes generate a copy of $H$. The gluing curve $D$ is identified with a smooth fibre in each component, and the section classes are identified under the $H$-polarisation of the smoothing. The orthogonal complement of the section--fibre lattice in the relative Néron--Severi lattice of $V_i$ is the pseudolattice $E_8(-1)$. Thus the lattice naturally associated to the Tyurin degeneration is
+\[
+H\oplus E_8(-1)_1\oplus E_8(-1)_2,
+\]
+which is exactly $M$. This is the mirror lattice predicted by Dolgachev's lattice mirror principle for Type~II degenerations of $H$-polarised K3 surfaces; see \cite[Theorem~3.28]{GT24}.
+\end{proof}
+
+\section{The limiting period and the mirror K3 surface}
+
+\begin{lemma}\label{lem:limit-period}
+The limiting mixed Hodge structure of the Type~II degeneration $\cX\to\Delta$ determines a pure Hodge structure of K3 type on
+\[
+T_M:=M^\perp_{\Lambda_{\K3}}\cong H^{\oplus 2}.
+\]
+Because the degeneration is very general, this Hodge structure is very general in the period domain $D_{T_M}$.
+\end{lemma}
+
+\begin{proof}
+For a semistable Type~II degeneration of K3 surfaces, the limiting mixed Hodge structure on $H^2$ has weight filtration with a pure weight-two graded piece of K3 type. In the present $H$-polarised Tyurin situation, the lattice-polarisation theory of Giovenzana--Thompson identifies the relevant algebraic lattice of the mirror with $M=H\oplus E_8(-1)^{\oplus 2}$; see Lemma~\ref{lem:pseudolattice-gluing} and \cite[Theorems~3.26, 3.28]{GT24}. Consequently the transcendental lattice of the limiting Hodge structure is the orthogonal complement of $M$ inside the K3 lattice, namely $T_M\cong H^{\oplus 2}$.
+
+The assumption that the boundary point in the Alexeev--Brunyate--Engel compactification is not contained in any Noether--Lefschetz locus implies that no extra algebraic classes appear in the limiting Hodge structure beyond those forced by the $H$-polarisation and the Tyurin structure. Equivalently, the induced point in $D_{T_M}$ avoids the countable union of Heegner divisors. Hence it is very general.
+\end{proof}
+
+\begin{lemma}\label{lem:existence-Y}
+There exists a K3 surface $Y$ together with a primitive embedding
+\[
+j\colon M\hookrightarrow \NS(Y)
+\]
+such that the period of $Y$ is the Hodge structure constructed in Lemma~\ref{lem:limit-period}. After choosing a suitable big and nef class $h\in M$, the pair $(Y,j)$ is a very general $M$-quasipolarised K3 surface.
+\end{lemma}
+
+\begin{proof}
+By the surjectivity of the period map for K3 surfaces and the global Torelli theorem, every point of the period domain $D_{T_M}$ avoiding the Heegner divisors is realized by a K3 surface $Y$ with $\NS(Y)$ containing $M$ primitively. Since the period point is very general, there are no additional algebraic classes, so
+\[
+\NS(Y)\cong M.
+\]
+Choose a very irrational class $h\in M$ lying in the positive cone and in the Kähler chamber determined by the period of $Y$. Then $j(h)$ is big and nef, so $(Y,j,h)$ is an $M$-quasipolarised K3 surface in the sense of \cite[Definition~4.2]{GT24}. Very generality of the period implies very generality of the quasipolarised surface.
+\end{proof}
+
+\section{The elliptic fibration on $Y$ and the allowable loop}
+
+\begin{lemma}\label{lem:fibration-Y}
+Let $Y$ be the very general $M$-quasipolarised K3 surface constructed in Lemma~\ref{lem:existence-Y}. Then $Y$ admits an elliptic fibration with section
+\[
+f\colon Y\longrightarrow \bP^1
+\]
+such that:
+\begin{enumerate}
+\item the section and fibre classes generate the distinguished $H$-summand of $M$;
+\item the two $E_8(-1)$-summands of $M$ are the root lattices of two singular fibres of type $\mathrm{II}^*$;
+\item for very general $Y$, the remaining singular fibres are four fibres of type $\mathrm{I}_1$;
+\item there exists an allowable loop $\gamma\subset \bP^1$ in the sense of \cite[Definition~4.11]{GT24}, separating the base into two discs, each containing one $\mathrm{II}^*$ fibre and two $\mathrm{I}_1$ fibres.
+\end{enumerate}
+Moreover, the $M$-quasipolarisation is compatible with $f$ and $\gamma$ in the sense of \cite[Definition~4.21]{GT24}.
+\end{lemma}
+
+\begin{proof}
+The lattice $M$ contains a distinguished hyperbolic plane $H$. Let $F\in H$ be a primitive isotropic vector. Since $Y$ is very general and the quasipolarising class $h$ is big and nef with $h\cdot F>0$, the class $F$ is effective and nef. By standard results on K3 surfaces, a primitive nef isotropic class defines a genus-one fibration. The complementary class in $H$ gives a section, so $f$ is an elliptic fibration with section.
+
+Equivalently, one may use the explicit normal form for $H\oplus E_8\oplus E_8$-polarised K3 surfaces \cite{CDLW09}. A very general such surface admits a Weierstrass model
+\[
+y^2=x^3+a(t)x+b(t),
+\]
+where $t$ is a coordinate on $\bP^1$, and the coefficients may be chosen so that there are fibres of type $\mathrm{II}^*$ over $0$ and $\infty$. For very general parameters the remaining discriminant consists of four simple zeroes, giving four fibres of type $\mathrm{I}_1$. The components of the two $\mathrm{II}^*$ fibres generate the two $E_8(-1)$ summands of $M$, while the zero section and the fibre class generate the $H$-summand.
+
+Choose a simple closed curve $\gamma\subset\bP^1$ avoiding the discriminant locus and separating the six singular fibres into two sets
+\[
+\{\mathrm{II}^*,\mathrm{I}_1,\mathrm{I}_1\}
+\quad\text{and}\quad
+\{\mathrm{II}^*,\mathrm{I}_1,\mathrm{I}_1\}.
+\]
+Such a curve exists by elementary topology of the sphere. By definition of an allowable loop \cite[Definition~4.11]{GT24}, this is allowable: each complementary disc has total Euler number $10+1+1=12$, and the monodromy around $\gamma$ is of the Type~II form required for mirror symmetry with a Tyurin degeneration. The compatibility condition of \cite[Definition~4.21]{GT24} is then immediate from the decomposition
+\[
+M=H\oplus E_8(-1)_1\oplus E_8(-1)_2,
+\]
+where the two $E_8(-1)$-summands are supported in the two complementary discs of $\bP^1\setminus\gamma$.
+\end{proof}
+
+\section{Verification of the mirror pair condition}
+
+We now prove Theorem~\ref{thm:main}.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+By Lemma~\ref{lem:Tyurin-structure}, the central fibre of $\cX\to\Delta$ is a union of two very general rational elliptic surfaces with section, glued along a smooth fibre. The pseudolattice of each component is $E_8(-1)$. Lemma~\ref{lem:pseudolattice-gluing} shows that the lattice naturally associated to the degeneration is
+\[
+M=H\oplus E_8(-1)\oplus E_8(-1).
+\]
+
+Lemma~\ref{lem:limit-period} constructs from the limiting mixed Hodge structure of $\cX\to\Delta$ a very general K3 Hodge structure with algebraic lattice $M$. By Lemma~\ref{lem:existence-Y}, this Hodge structure is realized by a very general $M$-quasipolarised K3 surface $Y$. Lemma~\ref{lem:fibration-Y} equips $Y$ with an elliptic fibration
+\[
+f\colon Y\to\bP^1
+\]
+and an allowable loop $\gamma$ compatible with the $M$-quasipolarisation.
+
+It remains to check the mirror pair condition of \cite[Definition~5.1]{GT24}. Unpacking that definition, one must verify the following three points.
+
+\begin{enumerate}
+\item \textbf{Mirror lattices.} The degeneration is $H$-polarised, while the fibration is $M$-quasipolarised with
+\[
+M=H\oplus E_8(-1)\oplus E_8(-1).
+\]
+This is exactly the lattice mirror pair associated to the Type~II cusp of the $H$-polarised moduli space; see \cite[Theorem~3.28]{GT24}.
+
+\item \textbf{Matching of pseudolattices.} The two components $V_1,V_2$ of the Tyurin degeneration have pseudolattices $E_8(-1)$. The allowable loop $\gamma$ cuts $\bP^1$ into two discs, and the restrictions of the elliptic fibration $f$ over these discs have associated pseudolattices $E_8(-1)$, coming from the two $\mathrm{II}^*$ fibres. After possibly interchanging $V_1$ and $V_2$, these pseudolattices are identified. This is precisely the pseudolattice matching required in \cite[Definition~5.1]{GT24}.
+
+\item \textbf{Matching of limiting/functional invariants.} The period of $Y$ was chosen to be the limiting period of $\cX\to\Delta$. Therefore the analytic invariant of the elliptic fibration $f$ near the allowable loop $\gamma$ agrees with the analytic invariant of the degeneration $\cX\to\Delta$ near the punctured disc $\Delta^*$. Equivalently, the functional invariant of the mirror elliptic fibration restricts over $\gamma$ to the functional invariant encoded by the Type~II degeneration. This is the analytic content of the mirror correspondence proved in \cite[\S5]{GT24}.
+\end{enumerate}
+
+Thus all conditions of \cite[Definition~5.1]{GT24} are satisfied. Hence $\cX\to\Delta$ and $f\colon Y\to\bP^1$ with loop $\gamma$ form a mirror pair. This completes the proof.
+\end{proof}
+
+\begin{thebibliography}{99}
+
+\bibitem[ABE22]{ABE22}
+V.~Alexeev, A.~Brunyate, and P.~Engel,
+\emph{Compactifications of moduli of elliptic {K3} surfaces: stable pair and toroidal},
+Geom. Topol. \textbf{26} (2022), no.~8, 3525--3588.
+
+\bibitem[GT24]{GT24}
+L.~Giovenzana and A.~Thompson,
+\emph{Degenerations and fibrations of {K3} surfaces: lattice polarisations and mirror symmetry},
+Preprint, arXiv:2405.12009, May 2024.
+
+\bibitem[Dol96]{Dol96}
+I.~Dolgachev,
+\emph{Mirror symmetry for lattice polarized {K3} surfaces},
+J. Math. Sci. \textbf{81} (1996), 2526--2536.
+
+\bibitem[Fri84]{Fri84}
+R.~Friedman,
+\emph{Global smoothings of varieties with normal crossings},
+Ann. of Math. (2) \textbf{119} (1984), 75--114.
+
+\bibitem[CDLW09]{CDLW09}
+A.~Clingher, C.~F.~Doran, J.~Lewis, and U.~Whitcher,
+\emph{Normal forms, {K3} surface moduli, and modular parametrizations},
+2009.
+
+\bibitem[DPT23]{DPT23}
+C.~F.~Doran, J.~Prebble, and A.~Thompson,
+\emph{Normal forms and {Tyurin} degenerations of {K3} surfaces polarised by a rank 18 lattice},
+2023.
+
+\end{thebibliography}
+
+\end{document}

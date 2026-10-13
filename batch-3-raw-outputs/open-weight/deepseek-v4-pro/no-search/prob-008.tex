@@ -1,0 +1,170 @@
+```latex
+\documentclass[11pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\title{Global hypoellipticity of a vector field implies zero topological entropy}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+Let \(M\) be a compact connected smooth manifold, and let \(X\) be a smooth vector field on \(M\). We write \(g_t\) for the flow of \(X\), and \(\mathcal{L}_X\) for the Lie derivative along \(X\), extended to distributions.
+
+We shall prove that if
+\[
+\mathcal{L}_X u=f,\qquad f\in C^\infty(M),\quad u\in \mathcal{D}'(M)
+\]
+implies \(u\in C^\infty(M)\), then \(h_{\mathrm{top}}(g_1)=0\). Since the topological entropy of a flow is by definition the topological entropy of its time-one map, this says that the flow has zero topological entropy.
+
+Fix once and for all a smooth positive density \(\Omega\) on \(M\); such a density exists because \(M\) is compact. For a smooth function \(v\), integration by parts gives
+\[
+\int_M (Xv)\varphi\,\Omega
+=
+-\int_M v\bigl(X\varphi+(\operatorname{div}_\Omega X)\varphi\bigr)\,\Omega,
+\]
+where \(\operatorname{div}_\Omega X\) is defined by
+\[
+\mathcal{L}_X\Omega=(\operatorname{div}_\Omega X)\Omega.
+\]
+Thus the distributional Lie derivative is defined by
+\begin{equation}
+\langle \mathcal{L}_X u,\varphi\rangle
+=
+-\langle u,X\varphi+(\operatorname{div}_\Omega X)\varphi\rangle
+\qquad(\varphi\in C^\infty(M)).
+\end{equation}
+
+\begin{lemma}\label{lem:periodic}
+Assume \(\dim M\ge 2\). If the flow of \(X\) has a nonconstant periodic orbit, then the regularity hypothesis fails.
+\end{lemma}
+
+\begin{proof}
+Let \(\gamma:\mathbb R/T\mathbb Z\to M\) be a nonconstant periodic orbit, with
+\[
+\gamma'(t)=X_{\gamma(t)}.
+\]
+Let \(\Gamma=\gamma(\mathbb R)\). Since \(\gamma\) is a smoothly embedded circle and \(\dim M\ge2\), the set \(\Gamma\) has empty interior in \(M\).
+
+Let \(\gamma^*\Omega=J(t)\,dt\). Since \(\Omega\) is a positive density, \(J\) is smooth, \(T\)-periodic, and strictly positive. Define a distribution \(u\in\mathcal{D}'(M)\) by
+\[
+\langle u,\varphi\rangle
+=
+\int_0^T \varphi(\gamma(t))J(t)\,dt.
+\]
+This is a measure, hence a distribution of order zero.
+
+We claim that \(\mathcal{L}_X u=0\). First note that along \(\gamma\),
+\[
+X\varphi(\gamma(t))=\frac{d}{dt}\varphi(\gamma(t)).
+\]
+Moreover,
+\[
+\gamma(t)^*(\mathcal{L}_X\Omega)
+=
+\frac{d}{ds}\bigg|_{s=0}\gamma(t+s)^*\Omega
+=
+J'(t)\,dt,
+\]
+while
+\[
+\gamma(t)^*(\mathcal{L}_X\Omega)
+=
+(\operatorname{div}_\Omega X)(\gamma(t))\,\gamma(t)^*\Omega
+=
+(\operatorname{div}_\Omega X)(\gamma(t))J(t)\,dt.
+\]
+Hence
+\[
+J'(t)=(\operatorname{div}_\Omega X)(\gamma(t))J(t).
+\]
+Therefore, for every \(\varphi\in C^\infty(M)\),
+\[
+\begin{aligned}
+\langle \mathcal{L}_X u,\varphi\rangle
+&=
+-\int_0^T
+\left(
+X\varphi(\gamma(t))
++
+(\operatorname{div}_\Omega X)(\gamma(t))\varphi(\gamma(t))
+\right)J(t)\,dt\\
+&=
+-\int_0^T
+\left(
+\frac{d}{dt}\varphi(\gamma(t))J(t)
++
+\varphi(\gamma(t))J'(t)
+\right)dt\\
+&=
+-\int_0^T
+\frac{d}{dt}\Bigl(\varphi(\gamma(t))J(t)\Bigr)\,dt\\
+&=
+0,
+\end{aligned}
+\]
+because \(\gamma\) and \(J\) are \(T\)-periodic. Thus \(\mathcal{L}_X u=0\).
+
+It remains to show that \(u\) is not a smooth function. Suppose, toward a contradiction, that \(u=h\in C^\infty(M)\). Then for every \(\varphi\in C^\infty(M)\) with support in \(M\setminus\Gamma\),
+\[
+0=\langle u,\varphi\rangle=\int_M h\varphi\,\Omega.
+\]
+Thus \(h=0\) on \(M\setminus\Gamma\). Since \(\Gamma\) has empty interior, \(M\setminus\Gamma\) is dense in \(M\), and by continuity \(h=0\) on all of \(M\). But then \(\langle u,1\rangle=0\), contradicting
+\[
+\langle u,1\rangle=\int_0^T J(t)\,dt>0.
+\]
+So \(u\) is not smooth. This contradicts the hypothesis, and the lemma follows.
+\end{proof}
+
+We now recall the required dynamical fact.
+
+\begin{theorem}[Katok]\label{thm:katok}
+Let \(f\) be a \(C^{1+\alpha}\) diffeomorphism of a compact manifold. If
+\(h_{\mathrm{top}}(f)>0\), then \(f\) has hyperbolic periodic points of arbitrarily large minimal period.
+\end{theorem}
+
+This is the conjunction of Katok's theorem on the existence of a hyperbolic ergodic invariant measure for positive-entropy \(C^{1+\alpha}\) diffeomorphisms and the Katok closing lemma; see \cite{Katok80}.
+
+\begin{lemma}\label{lem:katok-flow}
+If \(h_{\mathrm{top}}(g_1)>0\), then the flow of \(X\) has a nonconstant periodic orbit.
+\end{lemma}
+
+\begin{proof}
+The time-one map \(g_1\) is a \(C^\infty\) diffeomorphism, hence \(C^{1+\alpha}\). By Theorem~\ref{thm:katok}, \(g_1\) has a periodic point \(p\) of minimal period \(n>1\). Thus
+\[
+g_n(p)=p,\qquad g_1(p)\neq p.
+\]
+The flow orbit
+\[
+O(p)=\{g_t(p):t\in\mathbb R\}
+\]
+is therefore periodic. Since \(g_1(p)\neq p\), we have \(X(p)\neq 0\), so \(O(p)\) is nonconstant.
+\end{proof}
+
+We can now complete the proof.
+
+If \(\dim M=0\), the result is trivial. If \(\dim M=1\), then \(M=S^1\), and \(g_1\) is a homeomorphism of the circle; homeomorphisms of the circle have zero topological entropy. Hence we may assume \(\dim M\ge 2\).
+
+Suppose, toward a contradiction, that \(h_{\mathrm{top}}(g_1)>0\). By Lemma~\ref{lem:katok-flow}, the flow has a nonconstant periodic orbit. Since \(\dim M\ge2\), Lemma~\ref{lem:periodic} contradicts the regularity hypothesis. Therefore
+\[
+h_{\mathrm{top}}(g_1)=0.
+\]
+Thus the flow \(g_t\) has zero topological entropy.
+
+\begin{thebibliography}{1}
+
+\bibitem{Katok80}
+A.~Katok,
+\textit{Lyapunov exponents, entropy and periodic orbits for diffeomorphisms},
+Inst. Hautes \'Etudes Sci. Publ. Math. \textbf{51} (1980), 137--173.
+
+\end{thebibliography}
+
+\end{document}
+```

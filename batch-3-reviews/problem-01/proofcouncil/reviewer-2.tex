@@ -1,0 +1,1196 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{fullpage}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\gp}{\mathrm{gp}}
+\newcommand{\sat}{\mathrm{sat}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Sh}{\operatorname{Sh}}
+\newcommand{\PSh}{\operatorname{PSh}}
+\newcommand{\Ab}{\operatorname{Ab}}
+\newcommand{\R}{\mathrm R}
+\newcommand{\Jb}{J_{\mathrm b}}
+\newcommand{\G}{\mathcal G}
+\newcommand{\E}{\mathcal E}
+\newcommand{\I}{\mathcal I}
+\newcommand{\V}{\mathcal V}
+\newcommand{\Lan}{\operatorname{Lan}}
+\newcommand{\coker}{\operatorname{coker}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\fptitle}{Review of Problem 1 -- ProofCouncil}
+\newcommand{\reviewtag}{Reviewer 2}
+\usepackage{fp-review}
+
+\begin{document}
+\maketitle
+
+\section{Review}
+
+The submission was correct, clear, and thorough. The tree formalism was somewhat more than required for the proof, but I appreciated that its use resulted in somewhat better clarity for the structure of the refining covers. I found its solution to be the clearest of all the solutions I read. 
+
+Certain passages were somewhat misstated, vague, or problematic. Its ``zero-reflecting'' terminology was not standard in the literature -- usually, this property is dubbed either ``local'' or ``sharp.'' This reflects a greater familiarity with, e.g., category-theoretic naming conventions. The claim of finite presentation in Lemma 4.2 depends on which category it is asserted. I believed this was an error, but the paragraph \emph{afterwards} clarifies that finite presentation is meant in the correct category. More natural would have been to describe the assertion within Lemma 4.2. I also found two of the neighboring sentences needlessly opaque. 
+
+Similarly, Lemma 7.1 contains an unfortunate use of wording which I initially believed to be a mathematical error. In ``injectivity on the members of a sign cover,'' the inductive step is for the entire lemma, rather than the present claim $(*)_n$. Reading it as the latter, it seems to make an unnecessarily circular argument. This was the most frustrating part of the draft as a reader. 
+
+The writing would assert that vertices of a graph form a ``sign cover,'' which has only one obvious interpretation but is somewhat careless. Same for ``sign cover of $R$ at $x$'' in Lemma 7.1. The statement in equation (7) should have been a lemma. It cited (B1) in Corollary 5.4, which was not a good choice as it referred both to a general principal instead of a result and would have been better phrased in natural language. In defining the preorder at the start of \S 6, it refrained from using standard terminology $\preceq$ for the preorder or citing standard facts for that relation. I would assign this submission a .8 in exposition if not for the requirement that exposition scores lie in $\mathbb Z$. 
+
+I was very impressed by Step B in Lemma 5.2 in that it reveals a great deal of thoroughness in the solution. However, this technical point could have been easily avoided in allowing isomorphisms in the definition of the covers. 
+
+
+It was thorough in citing both the results that were used, but also related constructions and ideas in the literature that were not used. I found it to be the most generous in this way among the solutions. 
+
+
+\paragraph{Correctness.}
+\begin{itemize}
+	\item  1: essentially flawless mathematical argument
+	\item  0.5: minor errors that are easily corrected
+	\item  0: blank solution, or acknowledged partial result
+	\item  $-0.5$: major errors
+	\item  $-1$: proposed proof makes no progress towards the result.
+\end{itemize}
+Note that points should be docked for wrong statements/ solutions.
+
+
+\noindent Score: 1
+
+\paragraph{Exposition.}
+\begin{itemize}
+	\item  1: well-written and clear solution.
+	\item  0: argument that is possible to follow with serious effort
+	\item  $-1$: very poor exposition
+\end{itemize}
+
+
+\noindent Score: 1
+
+\paragraph{Attributions.}
+\begin{itemize}
+	\item  1: solutions contains fully appropriate attributions
+		to related work and theorems being used.
+	\item  0: moderate issues with missing attributions or hallucinated references
+	\item  $-1$: blatant plagiarism or hallucinations
+\end{itemize}
+
+\noindent Score: 1
+
+\review{Did a good job of citing both for results used, parallel arguments, or even similar constructions/ideas in the literature. }
+
+\newpage
+\section{Submission with inline comments}
+
+
+\begin{abstract}
+Let \(P\) be an integral, saturated, sharp commutative monoid, let \(A_P\) be
+the category of monoids under \(P\), equipped with the birhizomic topology on
+\(A_P^{\mathrm{op}}\), and let \(B_P\subset A_P\) be the full subcategory of
+the sharpened localizations \(P\to P[-x]^\sharp\), \(x\in P\), with the
+trivial topology (all definitions are recalled in \S1).  The inclusion
+induces an inverse image functor \(\pi^{-1}\) from presheaves on
+\(B_P^{\mathrm{op}}\) to birhizomic sheaves, with right adjoint \(\pi_*\),
+and the question answered here asks whether \(F\to\R\pi_*\pi^{-1}F\) is a
+quasi-isomorphism for every presheaf of abelian groups \(F\) on
+\(B_P^{\mathrm{op}}\).  We show that it is, for every \(P\), with no
+finiteness hypothesis.  The proof replaces the birhizomic topology by a
+finer auxiliary topology generated by binary ``sign covers''
+\(\{R\to R\langle x\rangle,\ R\to R\langle -x\rangle\}\), where
+\(R\langle \pm x\rangle\) is the universal monoid under \(R\) in which
+\(\pm x\in R^{\gp}\) becomes nonnegative; a compactness argument shows that
+every birhizomic cover is a cover for it, and the left Kan extension of
+\(F\) turns out to be a sheaf for it with split exact Mayer--Vietoris
+sequences, hence acyclic by an induction on the degree.  Acyclicity then
+descends to the coarser birhizomic topology.
+\end{abstract}
+
+\section{Introduction}
+
+\subsection{Conventions and the objects in the question}
+\label{sec:conventions}
+
+Throughout, a \emph{monoid} means a commutative unital monoid \(M\), written
+additively, that is
+\emph{integral} (cancellative, so that \(M\to M^{\gp}\) is injective, where
+\(M^{\gp}\) is the group completion),
+\emph{saturated} (if \(g\in M^{\gp}\) and \(ng\in M\) for some integer
+\(n\ge1\), then \(g\in M\)), and
+\emph{sharp} (the only unit is \(0\)).
+All monoids, homomorphisms, pushouts and colimits below are taken in this
+category, which we denote by \(\mathbf{Mon}\).  It is a reflective
+subcategory of commutative monoids (the reflection integralizes, saturates
+and sharpens), so it has all colimits; the pushouts we actually need to
+compute are given explicitly in
+\eqref{eq:intersection}--\eqref{eq:basechange}.  Basic facts about
+integral and saturated monoids, localization and sharpening are collected in
+Ogus's book \cite[Ch.~I, \S\S1.3--1.4]{ogus}; the short verifications we need
+are included.
+
+Two operations on submonoids of an abelian group \(G\) recur constantly.
+For a submonoid \(C\subset G\), the \emph{saturation} of \(C\) in \(G\) is
+\(C^{\sat}=\{g\in G:ng\in C\text{ for some }n\ge1\}\),
+and the \emph{sharpening} of \(C\) is \(C^\sharp=C/C^\times\), the quotient by
+the group of units \(C^\times=C\cap(-C)\).  If \(C\) is saturated in \(G\)
+then \(C^\sharp\subset G/C^\times\) is integral, saturated and sharp
+(if \(n(g+C^\times)\in C/C^\times\), then \(ng+h\in C\) for some
+\(h\in C^\times\), hence \(ng\in C\) and \(g\in C\)).
+
+A monoid \(M\) orders its group completion: for \(x,y\in M^{\gp}\) put
+\(x\le y\) if \(y-x\in M\).  This is a translation-invariant partial order,
+and \(M\) is called \emph{valuative} if the order is total, i.e.\
+\(M\cup(-M)=M^{\gp}\).  We note once and for all that \(M^{\gp}\) is
+torsion-free for every monoid \(M\): if \(ng=0\) with \(n\ge1\), saturation
+puts \(g\) and \(-g\) in \(M\), and sharpness forces \(g=0\).
+
+Fix a monoid \(P\); it is arbitrary (in particular, no finite generation
+is assumed), and it stays fixed throughout.  Let \(A_P\) be the category of
+monoids under \(P\),
+i.e.\ of homomorphisms \(P\to Q\); we often abbreviate an object to \(Q\),
+and we say that \(a\in P\) \emph{dies} in \(Q\), or is \emph{killed} by
+\(Q\), if its image in \(Q\) is \(0\).
+For \(x\in P\), the \emph{localization} \(P[-x]=P+\N(-x)\subset P^{\gp}\) is
+saturated in \(P^{\gp}\) (if \(mg=p-nx\) with \(p\in P\), then
+\(m(g+nx)=p+(m-1)nx\in P\), so \(g+nx\in P\) by saturation of \(P\) and
+\(g=(g+nx)-nx\in P[-x]\)), and
+\[
+   L_x:=P[-x]^\sharp
+\]
+is the initial monoid under \(P\) in which \(x\) dies: a homomorphism
+\(P\to T\) sending \(x\) to \(0\) extends uniquely to \(P[-x]\) and then
+kills the units of \(P[-x]\) because \(T\) is sharp.  Let \(B_P\subset A_P\)
+be the full subcategory with objects \(P\to L_x\), \(x\in P\).  Note
+\(L_0=P\).
+
+A \emph{presheaf} on the category \(A_P^{\mathrm{op}}\) is a functor
+\((A_P^{\mathrm{op}})^{\mathrm{op}}=A_P\to\mathbf{Set}\) (or \(\to\Ab\)),
+hence a \emph{covariant} functor on monoids under \(P\); one should think of
+\(A_P^{\mathrm{op}}\) as a category of affine ``monoid schemes''
+\(\operatorname{Spec}Q\).  Accordingly, a family of homomorphisms
+\(\{R\to Q_i\}\) in \(A_P\) is the same as a family of maps
+\(\{Q_i\to R\}\) in \(A_P^{\mathrm{op}}\), and we refer to it as a family
+\emph{over} \(R\); fibre products in \(A_P^{\mathrm{op}}\) over \(R\) are
+pushouts in \(A_P\) under \(R\).  As usual for such large sites we work in
+sufficiently large fixed universes, so that sheafification and injective
+resolutions are available.
+
+\subsection{The birhizomic topology}
+
+We recall the definitions from the question.  For a monoid \(M\),
+\(x\in M^{\gp}\) and \(y\in M\), write \(x\prec y\) if there are integers
+\(m,n\) with \(my\le x\le ny\).  (This boundedness notation also appears in
+Molcho--Wise \cite[Def.~2.1.3.1]{MW}.)  A homomorphism \(f:M\to N\) is
+\emph{infinitesimal} if, whenever \(x\in M^{\gp}\) and \(y\in M\) satisfy
+\(f(x)\in N\), \(x\prec y\) and \(f(y)\prec f(x)\), one has \(x\in M\).
+If \(R\xrightarrow{f}Q\xrightarrow{g}N\) are homomorphisms, \(f\) is
+\emph{birhizomic at \(g\)} if \(f\) is of finite presentation in
+\(\mathbf{Mon}\) (discussed in \S\ref{sec:adjoin}) and for every factorization \(gf=ph\) with
+\(R\xrightarrow{h}M\xrightarrow{p}N\) and \(p\) infinitesimal, there is a
+unique \(u:Q\to M\) with \(pu=g\) and \(uf=h\).  A family
+\(\{R\to Q_i\}_{i\in I}\) is a \emph{birhizomic cover} if for every valuative
+monoid \(V\) and every homomorphism \(v:R\to V\) there is a factorization of
+\(v\) through some \(Q_i\to V\) such that \(R\to Q_i\) is birhizomic at
+\(Q_i\to V\).  The question stipulates that the birhizomic covers (of objects
+\(R\) of \(A_P\), all maps being under \(P\)) form a Grothendieck topology on
+\(A_P^{\mathrm{op}}\), the \emph{birhizomic topology} \(\Jb\): a sieve on
+\(R\) is \(\Jb\)-covering when it contains a birhizomic cover.  (If one
+prefers to read \(\Jb\) as the topology \emph{generated} by the birhizomic
+covers, nothing below changes: Corollary~\ref{cor:finer} exhibits a
+topology \(\tau\) for which every birhizomic cover is covering, and
+\(\tau\) then contains \(\Jb\) under either reading.)  These definitions
+are taken from the question as stated; a related but different notion of
+``infinitesimal'' homomorphism occurs in \cite[Def.~2.1.2.9]{MW}, and we use
+only the definition above.
+
+Only two features of this definition enter the proof:
+(B1) a map birhizomic at anything is of finite presentation; and
+(B2) in a birhizomic cover of \(R\), every homomorphism from \(R\) to
+a valuative monoid factors through a member of the family that is of finite
+presentation over \(R\).
+The infinitesimal lifting condition is never analysed; see
+Remark~\ref{rem:infinitesimal}.
+
+\subsection{The functors \texorpdfstring{\(\pi^{-1}\)}{pi\^{}-1} and
+  \texorpdfstring{\(\pi_*\)}{pi\_*}, and the main theorem}
+\label{sec:functors}
+
+Give \(B_P^{\mathrm{op}}\) the trivial topology, for which every presheaf is a
+sheaf, so \(\Sh(B_P^{\mathrm{op}})=\PSh(B_P^{\mathrm{op}})\).  Let
+\(j:B_P\hookrightarrow A_P\) be the inclusion.  As in the question,
+\(\pi^{-1}:\Sh(B_P^{\mathrm{op}})\to\Sh(A_P^{\mathrm{op}},\Jb)\) is the
+composite of the left Kan extension along \(j\) with \(\Jb\)-sheafification,
+and \(\pi_*\) is its right adjoint.  Concretely, for a presheaf \(F\) on
+\(B_P^{\mathrm{op}}\), i.e.\ a functor \(F:B_P\to\Ab\), the left Kan extension
+is the presheaf
+\begin{equation}
+  (\Lan_jF)(P\to Q)
+   =\varinjlim_{(L_a\to Q)\in B_P/Q}F(L_a),
+  \label{eq:kan}
+\end{equation}
+the colimit over the comma category \(B_P/Q\) whose objects are pairs
+\((L_a,\ L_a\to Q\text{ under }P)\) \cite[Tags 00VC, 00VE]{stacks}; and
+\(\pi_*\) is restriction along \(j\): for a sheaf \(E\) on
+\(A_P^{\mathrm{op}}\),
+\(\Hom(\pi^{-1}F,E)=\Hom_{\PSh}(\Lan_jF,E)=\Hom(F,E\circ j)\), so
+\(\pi_*E=E\circ j\).  The same formulas define \(\pi^{-1}\) and \(\pi_*\) on
+abelian (pre)sheaves \cite[Tag 00VF]{stacks}; we check in \S\ref{sec:kan}
+that the colimit
+\eqref{eq:kan} is filtered, so that the Kan extension of an abelian presheaf
+computed in \(\Ab\) agrees with the one computed in sets.  Since \(\pi_*\) is
+left exact on abelian sheaves, it has a right derived functor \(\R\pi_*\),
+and the unit of the adjunction gives a natural map
+\(F\to\pi_*\pi^{-1}F\to\R\pi_*\pi^{-1}F\).
+
+\begin{theorem}\label{thm:main}
+Let \(P\) be an arbitrary monoid (integral, saturated and sharp, as
+always).  For every presheaf of
+abelian groups \(F\) on \(B_P^{\mathrm{op}}\), the unit
+\[
+             F\longrightarrow \R\pi_*\pi^{-1}F
+\]
+is a quasi-isomorphism of complexes of abelian presheaves on
+\(B_P^{\mathrm{op}}\), i.e.\ an isomorphism in the derived category of
+the category \(\Ab\PSh(B_P^{\mathrm{op}})\) of abelian presheaves.  More precisely, the left Kan extension
+\(\G=\Lan_jF\) of \eqref{eq:kan} is already a \(\Jb\)-sheaf, so
+\(\pi^{-1}F=\G\); the unit \(F\to\pi_*\G\) is an isomorphism; and
+\(H^n_{\Jb}(Q,\G)=0\) for every \(n>0\) and every object \(Q\) of \(A_P\),
+where \(H^n_{\Jb}(Q,-)\) denotes the \(n\)th right derived functor of
+evaluation at \(Q\) on abelian \(\Jb\)-sheaves (\S\ref{sec:acyclic}).
+\end{theorem}
+
+The title refers to the following reformulation: since \(\pi^{-1}\) is
+exact (the colimit \eqref{eq:kan} is filtered and sheafification is exact),
+it is left adjoint to \(\R\pi_*\) between the bounded below derived
+categories of \(\Ab\PSh(B_P^{\mathrm{op}})\) and of
+\(\Ab\Sh(A_P^{\mathrm{op}},\Jb)\).  Taking \(E=\pi^{-1}F'[n]\) in
+\(\Hom(\pi^{-1}F,E)=\Hom(F,\R\pi_*E)\) and using
+\(F'\simeq\R\pi_*\pi^{-1}F'\), the theorem gives that the map
+\(\operatorname{Ext}^n(F,F')\to\operatorname{Ext}^n(\pi^{-1}F,\pi^{-1}F')\)
+induced by \(\pi^{-1}\) (which, by naturality of the unit, is the
+composite of these two identifications) is bijective for all \(F,F'\) and
+\(n\), the Ext groups being computed in the two categories just named.
+
+\subsection{Strategy}
+
+Cohomology for the birhizomic topology is awkward to compute directly, since
+its covers are defined by a lifting property.  We therefore work with an
+auxiliary topology \(\tau\) on \(A_P^{\mathrm{op}}\) that has an explicit
+basis and is \emph{finer} than \(\Jb\).  Its generating covers are the
+\emph{sign covers}
+\[
+   \{\,R\to R\langle x\rangle,\quad R\to R\langle -x\rangle\,\},
+   \qquad x\in R^{\gp},
+\]
+where \(R\langle x\rangle\) is the universal monoid under \(R\) in which
+\(x\) becomes \(\ge0\) (\S\ref{sec:adjoin}).  Geometrically, if \(x=a-b\) with
+\(a,b\in R\), these are the two charts of the blow-up of the ideal
+\((a,b)\), saturated and sharpened; this chart construction is classical in
+toric and logarithmic geometry, see e.g.\ Nizio{\l} \cite[\S4]{niziol}.
+After the preliminaries on \(R\langle x\rangle\) in \S\ref{sec:adjoin},
+the proof has four steps.
+
+\begin{enumerate}
+\item \emph{Comparison of topologies} (\S\ref{sec:tau}).  Every birhizomic
+cover is a \(\tau\)-cover (Corollary~\ref{cor:finer}).  By (B2) this reduces
+to Proposition~\ref{prop:valuative}: a family of finitely presented maps
+\(R\to Q_i\) through which every valuative map \(R\to V\) factors is refined
+by finitely many iterated sign covers. 
+Since \(R\) may be infinitely
+generated, there is no a priori bound on the number of sign choices
+needed; we obtain one by a compactness argument on the space of ``total
+precones'', the saturated submonoids \(D\subset R^{\gp}\) with
+\(R\subset D\) and \(D\cup(-D)=R^{\gp}\), a closed subset of
+\(\{0,1\}^{R^{\gp}}\).
+\item \emph{The Kan extension is a \(\tau\)-sheaf with split Mayer--Vietoris
+sequences} (\S\ref{sec:kan}).  The value \(\G(Q)\) depends only on which
+elements of \(P\) die in \(Q\), so \(\G\) is insensitive to
+\emph{zero-reflecting} maps, i.e.\ homomorphisms \(f\) with
+\(f^{-1}(0)=\{0\}\).  
+\review{usually called sharp or local}
+Write \(R_\pm=R\langle\pm x\rangle\) for the two
+members of a sign cover and \(R_0=R\langle x,-x\rangle\) for their
+``intersection'' \(R_+\amalg_RR_-\).  The maps from \(R\) to
+\(R_+\), \(R_-\) and \(R_0\) are zero-reflecting unless \(x\) or \(-x\)
+already lies in \(R\), in which case the cover contains the identity.  In
+both cases the Mayer--Vietoris sequence
+\(0\to\G(R)\to\G(R_+)\oplus\G(R_-)\to\G(R_0)\to0\) is split exact
+(Lemma~\ref{lem:mvsections}).
+\item \emph{Acyclicity for \(\tau\)} (\S\ref{sec:acyclic}).  Let
+\(H^n_\tau(R,-)\) denote the \(n\)th right derived functor of evaluation at
+\(R\) on abelian \(\tau\)-sheaves.  For a \(\tau\)-sheaf \(\E\) whose
+sign-cover Mayer--Vietoris sequences are exact on the right, we show
+\(H^n_\tau(R,\E)=0\) for all \(n>0\) and all \(R\)
+(Lemma~\ref{lem:acyclic}) by induction on \(n\): a class vanishing on both
+members of a sign cover vanishes (Mayer--Vietoris); every class vanishes on
+some \(\tau\)-cover (locality of cohomology); and \(\tau\)-covers are
+refined by trees of sign covers, along which the vanishing propagates from
+the leaves to the root.
+\item \emph{Descent to the coarser topology and conclusion}
+(\S\ref{sec:acyclic}--\ref{sec:unit}).  Since \(\tau\)-sheafification is
+exact, the inclusion of \(\tau\)-sheaves into \(\Jb\)-sheaves preserves
+injectives.  A \(\tau\)-injective resolution of
+\(\G\) is exact on every object by step~3, hence is also a
+\(\Jb\)-injective resolution, so \(H^n_{\Jb}(Q,\G)=0\) for \(n>0\).  Since
+\(\pi_*\) is restriction and \(\G\) restricts to \(F\), this is
+Theorem~\ref{thm:main}.
+\end{enumerate}
+
+\section{Adjoining inequalities}
+\label{sec:adjoin}
+
+The basic construction is the universal way of forcing finitely many
+elements of \(R^{\gp}\) to become nonnegative.
+
+\begin{definition}\label{def:adjoin}
+Let \(R\) be a monoid, \(G=R^{\gp}\), and \(S\subset G\) a subset.  Put
+\begin{equation}
+ R\langle S\rangle
+  =\Bigl(\bigl(R+\textstyle\sum_{s\in S}\N s\bigr)^{\sat}\Bigr)^\sharp ,
+ \label{eq:adjoin}
+\end{equation}
+where the saturation is taken inside \(G\) and the sharpening is as in
+\S\ref{sec:conventions}; thus if \(C=(R+\sum_{s\in S}\N s)^{\sat}\), then
+\(R\langle S\rangle=C/(C\cap(-C))\), a monoid with group completion
+\(G/(C\cap(-C))\).  It comes with the homomorphism
+\(R\to R\langle S\rangle\) induced by \(R\subset C\).  For finite sets we
+write \(R\langle s_1,\dots,s_k\rangle\).
+\end{definition}
+
+\begin{lemma}[Universal property]\label{lem:universal}
+For every monoid \(T\), composition with \(R\to R\langle S\rangle\)
+identifies
+\begin{equation}
+ \Hom(R\langle S\rangle,T)
+ =
+ \{\,a:R\longrightarrow T:
+                    a^{\gp}(s)\in T\text{ for every }s\in S\,\},
+ \label{eq:universal}
+\end{equation}
+where \(a^{\gp}:G\to T^{\gp}\) is the induced homomorphism of groups.  In
+particular \(R\to R\langle S\rangle\) is an epimorphism in \(\mathbf{Mon}\),
+and if \(S\) is finite it is of finite presentation.
+\review{I don't think it's of finite presentation, because we're sharpening here. Take a face $F \preceq R$ which is not finitely generated as a monoid but generated by a single element as a face, then adjoint the inverse of that element. Unclear what is meant by fp here -- in what category? In \emph{sharp} int sat monoids, I believe it, so I'll assume that's what they mean}
+\end{lemma}
+
+\begin{proof}
+Let \(a:R\to T\) with \(a^{\gp}(S)\subset T\).  Then \(a^{\gp}\) maps
+\(R+\sum_{s\in S}\N s\) into \(T\); it maps \(C\) into \(T\) because \(T\) is
+saturated (if \(ng\in R+\sum\N s\) then \(na^{\gp}(g)\in T\), so
+\(a^{\gp}(g)\in T\)); and it kills \(C\cap(-C)\) because \(T\) is sharp.
+Hence \(a^{\gp}\) induces \(C/(C\cap(-C))\to T\) extending \(a\).  The
+extension is unique, because a homomorphism out of the integral monoid
+\(R\langle S\rangle\) is determined by the induced map on group completions,
+and \(G\to G/(C\cap(-C))\) is surjective.  Conversely, for any
+\(R\langle S\rangle\to T\) the composite \(a\) with \(R\to R\langle S\rangle\)
+has \(a^{\gp}(s)\in T\), since \(s\) maps into \(R\langle S\rangle\).
+Uniqueness of the extension says exactly that \(R\to R\langle S\rangle\) is an
+epimorphism.
+
+For finite presentation, write each \(s\in S\) as \(s=p_s-q_s\) with
+\(p_s,q_s\in R\).  Then \eqref{eq:universal} says that \(R\langle S\rangle\)
+is obtained from \(R\) by adjoining one generator \(t_s\) and imposing the
+relation \(q_s+t_s=p_s\), for each \(s\in S\), in \(\mathbf{Mon}\): a
+homomorphism \(R\langle S\rangle\to T\) is a homomorphism \(a:R\to T\)
+together with elements \(t_s\in T\) satisfying \(a(q_s)+t_s=a(p_s)\), the
+\(t_s=a^{\gp}(s)\) being unique by integrality.  In other words,
+\(R\langle S\rangle\) is the quotient, in \(\mathbf{Mon}\), of
+\(R\oplus\N^S\) by the finitely many relations \(q_s+t_s=p_s\).
+\end{proof}
+
+The question speaks of finite presentation ``in the category of (integral,
+saturated, sharp) monoids''.  
+\review{Ah good, this answers my previous question}
+One may read this as a presentation by
+finitely many generators and relations in \(\mathbf{Mon}\) (\(Q\) is the
+quotient in \(\mathbf{Mon}\) of \(R\oplus\N^n\) by \(m\) relations
+\(u_i=v_i\) with \(u_i,v_i\in R\oplus\N^n\), so that \(\Hom_R(Q,T)\), the
+set of homomorphisms under \(R\), is the set of \(t\in T^n\) satisfying the \(m\) equations obtained by
+evaluating \(u_i,v_i\) at \(a:R\to T\) and \(t\)), or categorically.  Under
+either reading, the property we shall use is the usual one: \emph{for
+\(Q\) of finite presentation over \(R\), the functor \(\Hom_R(Q,-)\) on
+monoids under \(R\) commutes with filtered colimits}.  The categorical
+reading is this property by definition; 
+\review{I don't know what the previous clause means}
+for the presentation reading it
+follows from the next lemma, because \(\Hom_R(Q,T)\) is then the equalizer
+of two maps \(T^n\rightrightarrows T^m\) natural in \(T\), a finite limit
+of functors \(T\mapsto T^k\), which commute with filtered colimits computed
+on underlying sets.
+\review{I don't understand this second statement but I think it's just for the reader's benefit}
+
+\begin{lemma}\label{lem:filtered}
+Filtered colimits exist in \(\mathbf{Mon}\) and are computed as filtered
+colimits of ordinary commutative monoids, i.e.\ on underlying sets.
+\end{lemma}
+
+\begin{proof}
+Let \(T=\varinjlim T_\alpha\) be a filtered colimit of ordinary commutative
+monoids, with \(T_\alpha\) integral, saturated and sharp.  Every element of
+\(T\) comes from some stage and every equality in \(T\) holds at some later
+stage; so cancellation (\(u+v=u+w\Rightarrow v=w\)) and sharpness
+(\(u+v=0\Rightarrow u=v=0\)) pass from the \(T_\alpha\) to \(T\).
+Saturation: if \(g=u-v\in T^{\gp}\) with \(u,v\in T\) and \(ng\in T\), say
+\(nu=nv+w\) with \(w\in T\), lift \(u,v,w\) and this equality to a stage
+\(T_\alpha\); there \(n(u-v)=w\in T_\alpha\), so \(u-v\in T_\alpha\) by
+saturation, and its image in \(T\) is \(g\).  Thus \(T\) lies in
+\(\mathbf{Mon}\), and it is then the colimit there.  (Integrality and
+saturation are also covered by \cite[Prop.~I.1.3.6]{ogus}.)
+\end{proof}
+
+Two formal consequences of \eqref{eq:universal}, both proved by comparing
+the functors \(\Hom(-,T)\), are used repeatedly: for subsets
+\(S,S'\subset G\) and a homomorphism \(u:R\to R'\),
+\begin{align}
+ R\langle S\rangle\amalg_R R\langle S'\rangle
+       &\simeq R\langle S\cup S'\rangle, \label{eq:intersection}\\
+ R'\amalg_R R\langle S\rangle
+       &\simeq R'\langle u^{\gp}(S)\rangle .\label{eq:basechange}
+\end{align}
+Indeed, a map out of the left side of \eqref{eq:intersection} to \(T\) is a
+map \(a:R\to T\) with \(a^{\gp}(S)\subset T\) and \(a^{\gp}(S')\subset T\),
+and a map out of the left side of \eqref{eq:basechange} is a map
+\(b:R'\to T\) with \((bu)^{\gp}(S)=b^{\gp}(u^{\gp}(S))\subset T\).
+In particular \(R\langle S\rangle\langle u^{\gp}(S')\rangle
+\simeq R\langle S\cup S'\rangle\) for \(u:R\to R\langle S\rangle\).
+
+The remaining two lemmas of this section are the algebraic heart of the
+argument: the first produces valuative monoids, the second says that
+adjoining a sign is harmless from the point of view of which elements become
+zero.
+
+\begin{lemma}[Extension of an order]\label{lem:order}
+Every monoid \(R\) embeds into a valuative monoid \(W\) with
+\(W^{\gp}=R^{\gp}\).
+\end{lemma}
+
+This is \cite[Lemma~2.1.2.11]{MW}; we include the short proof.
+
+\begin{proof}
+Let \(G=R^{\gp}\).  Saturated sharp submonoids of \(G\) containing \(R\) form
+a poset under inclusion in which every chain has an upper bound, its union
+(saturation and sharpness are conditions on finitely many elements at a
+time).  By Zorn's lemma choose a maximal one, \(C\).  We claim
+\(C\cup(-C)=G\), so that \(W=C\) is valuative with \(W^{\gp}=G\).
+
+Suppose that neither \(x\) nor \(-x\) belongs to \(C\).  We show that
+\(C'=(C+\N x)^{\sat}\) is still sharp; since \(C'\) is saturated, contains
+\(R\), and contains \(x\notin C\), this contradicts the maximality of \(C\).  Let \(u,-u\in C'\).  Then
+there are \(m,n>0\), \(a,b\in C\) and \(i,j\geq0\) such that
+\[
+       mu=a+ix,\qquad -nu=b+jx .
+\]
+Multiplying the first equation by \(n\), the second by \(m\), and adding,
+\[
+       0=na+mb+(ni+mj)x.
+\]
+If \(ni+mj>0\), then \(-(ni+mj)x=na+mb\in C\), and saturation of \(C\) gives
+\(-x\in C\), a contradiction.  Otherwise \(i=j=0\), so \(mu\) and \(-nu\) lie
+in \(C\); then \(mnu\) and \(-mnu\) lie in \(C\), sharpness of \(C\) gives
+\(mnu=0\), and torsion-freeness of \(G\) gives \(u=0\).
+\end{proof}
+
+Call a homomorphism of monoids \(f:Q\to Q'\) \emph{zero-reflecting} if
+\(f^{-1}(0)=\{0\}\).  (Between sharp monoids this is the condition that
+\(f\) reflects units, called \emph{local} in \cite[p.~15]{ogus}.)
+
+\begin{lemma}\label{lem:zero}
+Let \(x\in R^{\gp}\), and set
+\[
+ R_+=R\langle x\rangle,\qquad
+ R_-=R\langle -x\rangle,\qquad
+ R_0=R\langle x,-x\rangle .
+\]
+\begin{enumerate}
+\item If neither \(x\) nor \(-x\) lies in \(R\), the three maps
+\(R\to R_+\), \(R\to R_-\) and \(R\to R_0\) are zero-reflecting.
+\item If \(x\in R\), then \(R_+=R\), and \(R_0=R_-\) with \(R_-\to R_0\) the
+identity and \(R_+\to R_0\) the map \(R\to R_-\).  Symmetrically, if
+\(-x\in R\), then \(R_-=R\) and \(R_0=R_+\).
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(2) If \(x\in R\), then \(R+\N x=R\), which is saturated and sharp, so
+\(R_+=R\); and \(R\langle x,-x\rangle=R\langle -x\rangle\) by
+\eqref{eq:adjoin}, since \(\N x\subset R\).  The description of the maps
+follows from the uniqueness in Lemma~\ref{lem:universal}.  The case
+\(-x\in R\) is obtained by replacing \(x\) with \(-x\).
+
+(1) Since \(R\to R_0\) factors through \(R\to R_+\) and through \(R\to R_-\)
+(Lemma~\ref{lem:universal}), it suffices to treat \(R_0\).  Before
+sharpening, \(R_0\) is \(C=(R+\Z x)^{\sat}\).  If \(r\in R\) maps to zero in
+\(C^\sharp\), then \(-r\in C\), so
+\[
+                   -nr=a+kx
+       \qquad(n>0,\ a\in R,\ k\in\Z).
+\]
+If \(k>0\), then \(-kx=a+nr\in R\), and saturation gives \(-x\in R\);
+if \(k<0\), then \((-k)x=a+nr\in R\) gives \(x\in R\).  Both are excluded.
+If \(k=0\), then \(nr\) and \(-nr\) lie in \(R\), so \(nr=0\) by sharpness
+and \(r=0\) by torsion-freeness.
+\end{proof}
+
+\section{A topology finer than the birhizomic topology}
+\label{sec:tau}
+
+\begin{definition}\label{def:tau}
+For an object \(R\) of \(A_P\) and \(x\in R^{\gp}\), the \emph{sign cover}
+of \(R\) at \(x\) is the family
+\begin{equation}
+             \{\,R\longrightarrow R\langle x\rangle,\quad
+                    R\longrightarrow R\langle -x\rangle\,\}
+             \qquad(\text{written in the monoid direction}).
+                                                         \label{eq:binary}
+\end{equation}
+Let \(\tau\) be the Grothendieck topology on \(A_P^{\mathrm{op}}\) generated
+by the sign covers, i.e.\ the smallest topology for which the sieve generated
+by every sign cover is covering.
+\end{definition}
+
+By \eqref{eq:basechange}, the base change of the sign cover at \(x\) along
+\(u:R\to R'\) (a fibre product in \(A_P^{\mathrm{op}}\)) is the sign cover of
+\(R'\) at \(u^{\gp}(x)\): \emph{sign covers are stable under base change}.
+This gives \(\tau\) an explicit description.  A \emph{tree family} over
+\(R\) is the family of leaves \(\{R\to T_\ell\}_{\ell\in\Lambda}\) of a finite
+binary tree with root \(R\) in which the two children of each internal
+vertex \(M\) form a sign cover of \(M\) 
+\review{what does it mean to form a sign cover of a vertex of a tree? It seems that what is meant here is just an iterated sign cover}
+(\(R\to T_\ell\) being the
+composite along the path from the root); its \emph{depth} is the depth of
+the tree, the trivial tree (depth \(0\)) giving \(\{\mathrm{id}_R\}\).
+Base change along \(u:R\to R'\) takes a tree family over \(R\) to a tree
+family over \(R'\) of the same depth (apply \eqref{eq:basechange} vertex
+by vertex), and replacing each leaf of a tree family by a tree family over
+that leaf (grafting) gives again a tree family.  Consequently the sieves
+containing a tree family form a Grothendieck topology (the three axioms---maximal sieve, stability under base change, local
+character, i.e.\ transitivity---follow from the trivial tree, base change
+and grafting respectively), in
+which sign covers are covering; conversely, in any topology in which sign
+covers are covering, every tree family generates a covering sieve, by
+induction on the depth using the local character axiom.  Hence
+\begin{equation}
+  \text{a sieve on \(R\) is \(\tau\)-covering if and only if it contains
+  a tree family over \(R\).}\label{eq:treesieve}
+\end{equation}
+\review{the above seemingly should have been a lemma}
+For \(\tau\), or any other topology \(J\) on \(A_P^{\mathrm{op}}\), we say
+that a family over \(R\) is a \emph{\(J\)-cover} if the sieve it generates
+is \(J\)-covering.  Thus a family over \(R\) is a \(\tau\)-cover as soon as
+it is \emph{refined} by a tree family, meaning that every leaf \(T_\ell\)
+receives a map under \(R\) from some member of the family.
+
+Members of tree families are epimorphisms, being composites of the
+epimorphisms \(M\to M\langle\pm x\rangle\) (Lemma~\ref{lem:universal}).
+Recall that a presheaf \(\mathcal F\) on \(A_P^{\mathrm{op}}\) satisfies the
+\emph{sheaf condition} for a family \(\{R\to T_\ell\}_{\ell\in\Lambda}\) if
+\(\mathcal F(R)\to\prod_\ell\mathcal F(T_\ell)\) is injective with image
+the \emph{compatible} families \((s_\ell)\), those for which \(s_\ell\) and
+\(s_m\) have the same image in \(\mathcal F(T_\ell\amalg_RT_m)\) for all
+\(\ell,m\) (fibre products in \(A_P^{\mathrm{op}}\) being pushouts in
+\(A_P\)); when \(R\to T_\ell\) is an epimorphism,
+\(T_\ell\amalg_RT_\ell=T_\ell\) and the condition for \(\ell=m\) is vacuous.
+For a sign cover, compatibility of \((s_+,s_-)\) means that \(s_+\) and
+\(s_-\) have the same image in
+\(\mathcal F(R\langle x\rangle\amalg_RR\langle -x\rangle)
+=\mathcal F(R\langle x,-x\rangle)\) \eqref{eq:intersection}.
+
+\begin{lemma}[Sheaf criterion]\label{lem:criterion}
+A presheaf \(\mathcal F\) of sets or of abelian groups on
+\(A_P^{\mathrm{op}}\) is a \(\tau\)-sheaf as soon as it satisfies the sheaf
+condition for every sign cover \eqref{eq:binary}.
+\end{lemma}
+
+\begin{proof}
+\emph{Step A: \(\mathcal F\) satisfies the sheaf condition for every tree
+family, over every object.}  We induct on the depth \(d\); depth \(0\) is
+trivial and depth \(1\) is the hypothesis.  Let \(\{R\to T_\ell\}\) have
+depth \(d+1\ge2\), let \(R_\pm\) be the children of the root and
+\(\Lambda=\Lambda_+\sqcup\Lambda_-\) the leaves of the two subtrees, which
+are tree families over \(R_\pm\) of depth \(\le d\).  Let \((s_\ell)\) be
+compatible.  For \(\ell,m\in\Lambda_+\), restricting along the canonical map
+\(T_\ell\amalg_RT_m\to T_\ell\amalg_{R_+}T_m\) 
+\review{an isomorphism}
+shows that
+\((s_\ell)_{\ell\in\Lambda_+}\) is compatible over \(R_+\), so by induction
+there is a unique \(s_+\in\mathcal F(R_+)\) restricting to \(s_\ell\) for
+all \(\ell\in\Lambda_+\); similarly \(s_-\).  We claim that \(s_+\) and
+\(s_-\) have the same image in \(\mathcal F(R_0)\), \(R_0=R_+\amalg_RR_-\).
+The base change of the \(R_+\)-subtree along \(R_+\to R_0\) is a tree
+family over \(R_0\) of depth \(\le d\) with leaves
+\(T_\ell\amalg_{R_+}R_0=T_\ell\amalg_RR_-\) (\(\ell\in\Lambda_+\)), so by
+the injectivity part of the induction hypothesis it suffices to compare the
+restrictions of \(s_+\) and \(s_-\) to each \(T_\ell\amalg_RR_-\); these are
+the restrictions of \(s_\ell\) and of \(s_-\).  In turn, the base change of
+the \(R_-\)-subtree along \(R_-\to T_\ell\amalg_RR_-\) is a tree family of
+depth \(\le d\) with leaves \(T_\ell\amalg_RT_m\) (\(m\in\Lambda_-\)), on
+which \(s_\ell\) and \(s_-\) restrict to the images of \(s_\ell\) and
+\(s_m\), which agree by compatibility; injectivity once more proves the
+claim.  By the sheaf condition for the sign cover \(\{R\to R_\pm\}\) there
+is a unique \(s\in\mathcal F(R)\) restricting to \(s_\pm\), hence to all
+\(s_\ell\).  If \(s'\in\mathcal F(R)\) also restricts to all \(s_\ell\), then
+\(s'|_{R_\pm}=s_\pm\) by the uniqueness in the induction hypothesis, so
+\(s'=s\).
+
+\emph{Step B: \(\mathcal F\) is a \(\tau\)-sheaf} (this is the usual
+comparison between sheaves for a site and for its associated topology,
+cf.\ \cite[Tag 00ZC]{stacks}; we include the argument since tree families,
+not being closed under isomorphism, do not form a site in the sense of that
+tag).  
+\review{Very subtle! And unnecessary if isomorphisms are included in the def of sign topology}
+Let \(\Sigma\) be a
+\(\tau\)-covering sieve on \(R\); by \eqref{eq:treesieve} it contains a
+tree family \(\{R\to T_\ell\}\).  A compatible family on \(\Sigma\) is a
+collection of sections \(s_V\in\mathcal F(V)\), one for each arrow
+\((R\to V)\in\Sigma\) (sections are indexed by arrows; we write \(s_V\)
+when the arrow is clear), with \(s_{V'}=s_V|_{V'}\) for every \(V\to V'\)
+under \(R\), and we must show that \(s\mapsto(s|_V)_V\) is a bijection from
+\(\mathcal F(R)\) onto such collections.  Injectivity follows from Step~A
+for \(\{R\to T_\ell\}\).  Given \((s_V)\), the sections \(s_{T_\ell}\) are
+compatible (both \(s_{T_\ell}\) and \(s_{T_m}\) restrict to
+\(s_{T_\ell\amalg_RT_m}\)), so Step~A gives \(s\in\mathcal F(R)\) with
+\(s|_{T_\ell}=s_{T_\ell}\) for all \(\ell\).  For \((R\to V)\in\Sigma\), the
+sections \(s|_V\) and \(s_V\) both restrict to \(s_{V\amalg_RT_\ell}\) on
+each leaf of the base-changed tree family \(\{V\to V\amalg_RT_\ell\}\),
+hence are equal by Step~A.
+\end{proof}
+
+Our goal in this section is to show that \(\tau\) is finer than \(\Jb\).
+The next proposition concerns finitely presented families that ``see'' all
+valuative monoids; by (B2), it applies to birhizomic covers.  It contains
+the compactness argument needed for possibly infinitely generated \(R\).
+
+\begin{proposition}\label{prop:valuative}
+Let \(R\) be an object of \(A_P\) and let \(\{R\to Q_i\}_{i\in I}\) be a
+family of maps of finite presentation such that every homomorphism
+\(R\to V\) to a valuative monoid \(V\) factors through some \(R\to Q_i\).
+Then the family is refined by a tree family; in particular it is a
+\(\tau\)-cover.
+\end{proposition}
+
+\begin{proof}
+\emph{Step 1: a compact space of orders.}
+Let \(G=R^{\gp}\), and let \(\V(R)\) be the set of saturated submonoids
+\(D\subset G\) with
+\[
+                         R\subset D,\qquad D\cup(-D)=G .
+\]
+Such a \(D\) is a ``total precone'': it induces a total preorder on \(G\),
+but it need not be sharp, and it is essential to allow this: the precones
+\(D_\epsilon\) produced in Step~5 below contain the kernel of a surjection
+\(G\to T_\epsilon^{\gp}\) and are not sharp in general.  Identify \(D\) with its characteristic
+function and regard \(\V(R)\) as a subset of the product \(\{0,1\}^{G}\),
+compact by Tychonoff's theorem.  It is closed: each of the conditions
+\(r\in D\) (for \(r\in R\)), \(0\in D\), ``\(g,h\in D\Rightarrow g+h\in D\)'',
+``\(ng\in D\Rightarrow g\in D\)'' and ``\(g\in D\) or \(-g\in D\)'' involves
+finitely many coordinates, and \(\V(R)\) is the intersection of these closed
+conditions.  Hence \(\V(R)\) is compact.  (The same device, embedding a set of
+valuation-like objects into a Boolean product, appears in
+\cite[Lemma~5.3.6]{CT}.)  For finite \(S\subset G\), the subset
+\[
+                       U_S=\{D\in\V(R):S\subset D\}
+\]
+is open and closed, being defined by finitely many coordinates.
+
+\emph{Step 2: the valuative monoid of a precone as a filtered colimit.}
+For \(D\in\V(R)\), write \(H_D=D\cap(-D)\) and \(V_D=D/H_D=D^\sharp\).
+Then \(V_D\) is a monoid (integral, saturated, sharp, cf.\
+\S\ref{sec:conventions}), valuative because \(D\cup(-D)=G\), and a monoid
+under \(R\) via \(R\subset D\to V_D\).  We claim that, in the category of
+monoids under \(R\),
+\begin{equation}
+       V_D=\varinjlim_{\substack{S\subset D\\ S\ {\rm finite}}}
+                                         R\langle S\rangle,
+                         \label{eq:valcolim}
+\end{equation}
+the colimit being over the directed set of finite subsets of \(D\), with
+transition maps \(R\langle S\rangle\to R\langle S'\rangle\) for
+\(S\subset S'\) given by Lemma~\ref{lem:universal}.  Indeed, by
+\eqref{eq:universal} a compatible family of maps \(R\langle S\rangle\to T\)
+under \(a:R\to T\) is the same as the condition \(a^{\gp}(D)\subset T\).
+Given this condition, \(a^{\gp}|_D:D\to T\) kills \(H_D\) (as \(T\) is sharp)
+and so factors uniquely through \(V_D\); conversely a map \(V_D\to T\) under
+\(R\) composed with \(D\to V_D\) shows \(a^{\gp}(D)\subset T\).  So \(V_D\)
+represents the functor \(\varprojlim_S\Hom_R(R\langle S\rangle,-)\), which is
+the claim.
+
+\emph{Step 3: finite presentation yields finite stages.}
+Fix \(D\in\V(R)\).  By hypothesis the valuative map \(R\to V_D\) factors as
+\(R\to Q_i\to V_D\) for some \(i\).  Since \eqref{eq:valcolim} is a
+filtered colimit of monoids under \(R\) and \(\Hom_R(Q_i,-)\) commutes with
+such colimits (finite presentation; see the discussion following
+Lemma~\ref{lem:universal}), the map \(Q_i\to V_D\) factors as
+\[
+                       Q_i\longrightarrow R\langle S_D\rangle
+                                      \longrightarrow V_D
+\]
+under \(R\), for some finite \(S_D\subset D\).  The clopen sets \(U_{S_D}\),
+\(D\in\V(R)\), cover \(\V(R)\), since \(D\in U_{S_D}\).  By compactness choose
+\(D_1,\dots,D_m\) with \(\V(R)=U_{S_1}\cup\cdots\cup U_{S_m}\), where
+\(S_j=S_{D_j}\), and retain the maps
+\begin{equation}
+                         Q_{i_j}\longrightarrow R\langle S_j\rangle
+                         \qquad(j=1,\dots,m)
+                         \label{eq:retained}
+\end{equation}
+under \(R\).  Put \(S=S_1\cup\cdots\cup S_m\), a finite subset of \(G\).
+
+\emph{Step 4: the sign tree.}
+Enumerate \(S=\{s_1,\dots,s_k\}\) and form the binary tree of depth \(k\)
+whose vertex at level \(\ell\) with sign history
+\(\epsilon(s_1),\dots,\epsilon(s_\ell)\) is
+\(R\langle\epsilon(s_1)s_1,\dots,\epsilon(s_\ell)s_\ell\rangle\); by
+\eqref{eq:basechange} and \eqref{eq:intersection}, the sign cover of this
+vertex at the image of \(s_{\ell+1}\) has as members the two vertices at the
+next level.  The leaves are
+\begin{equation}
+      T_\epsilon
+          =R\langle\,\epsilon(s)s:s\in S\,\rangle,
+             \qquad \epsilon:S\longrightarrow\{1,-1\},
+             \label{eq:signcover}
+\end{equation}
+so \(\{R\to T_\epsilon\}_\epsilon\) is a tree family.  It remains to show
+that each \(R\to T_\epsilon\) factors through some
+\(R\langle S_j\rangle\); composing with \eqref{eq:retained} then shows that
+the tree family refines \(\{R\to Q_i\}\).
+
+\emph{Step 5: each leaf factors through some \(R\langle S_j\rangle\).}
+The idea is to attach to each leaf \(T_\epsilon\) a precone
+\(D_\epsilon\in\V(R)\) extending the inequalities \(\epsilon(s)s\ge0\)
+that define \(T_\epsilon\); the finite subcover gives
+\(S_j\subset D_\epsilon\) for some \(j\), and we then check that the
+elements of \(S_j\) are nonnegative already in \(T_\epsilon\).
+Fix \(\epsilon\).  By Lemma~\ref{lem:order}, embed \(T_\epsilon\) into a
+valuative monoid \(W_\epsilon\) with
+\(W_\epsilon^{\gp}=T_\epsilon^{\gp}\).  Let \(D_\epsilon\subset G\) be the
+inverse image of \(W_\epsilon\) under the group homomorphism
+\(G\to T_\epsilon^{\gp}=W_\epsilon^{\gp}\).  Then \(D_\epsilon\in\V(R)\):
+it contains \(R\) (which maps into \(T_\epsilon\subset W_\epsilon\)), it is
+saturated (as the inverse image of a saturated monoid under a group
+homomorphism), and \(D_\epsilon\cup(-D_\epsilon)=G\) because
+\(W_\epsilon\cup(-W_\epsilon)=W_\epsilon^{\gp}\).  Choose \(j\) with
+\(D_\epsilon\in U_{S_j}\), i.e.\ \(S_j\subset D_\epsilon\).
+
+We check that every \(s\in S_j\) becomes nonnegative in \(T_\epsilon\).
+Let \(\bar s\in T_\epsilon^{\gp}\) be the image of \(s\).  If
+\(\epsilon(s)=1\), then \(\bar s\in T_\epsilon\) by construction of
+\(T_\epsilon\).  If \(\epsilon(s)=-1\), then \(-\bar s\in T_\epsilon\subset
+W_\epsilon\), while \(s\in D_\epsilon\) says \(\bar s\in W_\epsilon\);
+sharpness of \(W_\epsilon\) gives \(\bar s=0\) in
+\(W_\epsilon^{\gp}=T_\epsilon^{\gp}\), so again \(\bar s\in T_\epsilon\).
+(Here it matters that \(W_\epsilon\) has the \emph{same} group completion as
+\(T_\epsilon\): a map to an arbitrary valuative monoid would only give
+\(\bar s\mapsto0\) there.)  By Lemma~\ref{lem:universal} there is a map
+\(R\langle S_j\rangle\to T_\epsilon\) under \(R\), as required.
+\end{proof}
+
+\begin{corollary}\label{cor:finer}
+Every birhizomic covering sieve on \(A_P^{\mathrm{op}}\) is \(\tau\)-covering;
+that is, \(\Jb\) is coarser than \(\tau\), \(\Jb\subset\tau\).  Consequently
+every \(\tau\)-sheaf is a \(\Jb\)-sheaf.
+\end{corollary}
+
+\begin{proof}
+Let \(\{R\to Q_i\}_{i\in I}\) be a birhizomic cover and let \(I'\subset I\)
+be the set of indices for which \(R\to Q_i\) is of finite presentation. By (B1) 
+\review{should cite a lemma, hyperlink, instead of this}
+and the definition of a birhizomic cover, every homomorphism from
+\(R\) to a valuative monoid factors through some \(Q_i\) with \(i\in I'\).
+Proposition~\ref{prop:valuative} applied to \(\{R\to Q_i\}_{i\in I'}\) shows
+that the sieve generated by this subfamily, hence also the sieve generated
+by the whole family, is \(\tau\)-covering.  Every \(\Jb\)-covering sieve
+contains a birhizomic cover and is therefore \(\tau\)-covering.  The last
+assertion follows, since a \(\tau\)-sheaf satisfies the sheaf condition for
+every \(\tau\)-covering sieve, in particular for every \(\Jb\)-covering one.
+\end{proof}
+
+\section{The Kan extension and its Mayer--Vietoris sequences}
+\label{sec:kan}
+
+Fix a presheaf of abelian groups \(F\) on \(B_P^{\mathrm{op}}\), i.e.\ a
+functor \(F:B_P\to\Ab\), and let \(\G=\Lan_jF\) be its left Kan extension
+\eqref{eq:kan} to \(A_P\), a presheaf of abelian groups on
+\(A_P^{\mathrm{op}}\):
+\[
+       \G(P\to Q)=
+              \varinjlim_{(L_a\to Q)\in B_P/Q} F(L_a).
+\]
+We first make the indexing category explicit.  By the universal property of
+\(L_a=P[-a]^\sharp\), a map \(L_a\to Q\) under \(P\) exists if and only if
+the image of \(a\) in \(Q\) is zero, and it is then unique.  In particular
+\(B_P\) is a \emph{thin} category (a preorder): there is at most one map
+\(L_a\to L_b\), and it exists if and only if \(a\mapsto0\) in \(L_b\).  So
+\(B_P/Q\) is the preorder of elements \(a\in P\) that die in \(Q\)
+(elements giving the same object of \(B_P\) being identified), with \(a\le b\) 
+\review{usually denoted $\preceq$}
+when
+\(a\) dies in \(L_b\).  It is nonempty, since it contains \(L_0=P\),
+and directed: if \(a\) and \(b\) die in \(Q\), so does \(a+b\), and
+\(a,b\mapsto0\) in \(L_{a+b}\) because the images of \(a\) and \(b\) in the
+sharp monoid \(L_{a+b}\) sum to zero.  Thus \eqref{eq:kan} is a filtered
+colimit, and since filtered colimits of abelian groups are computed on
+underlying sets, the Kan extension of \(F\) in abelian presheaves is the same
+as in presheaves of sets, as announced in the introduction.
+
+Two consequences will be used.
+
+\begin{lemma}\label{lem:kanprops}
+\begin{enumerate}
+\item For \(Q=L_a\) in \(B_P\), the comma category \(B_P/L_a\) has the
+terminal object \((L_a,\mathrm{id})\), so the unit of the Kan extension is an
+isomorphism
+\begin{equation}
+                              F(L_a)\xrightarrow{\ \sim\ }\G(L_a).
+                     \label{eq:restrict}
+\end{equation}
+\item If \(Q\to Q'\) is a zero-reflecting map under \(P\), then an element
+\(a\in P\) dies in \(Q\) if and only if it dies in \(Q'\), so the comma
+categories \(B_P/Q\) and \(B_P/Q'\) coincide, and the restriction map
+\begin{equation}
+                              \G(Q)\xrightarrow{\ \sim\ }\G(Q')
+                     \label{eq:zeroreflect}
+\end{equation}
+is an isomorphism (it is the identity of the common colimit).
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(1) Every object \((L_b,L_b\to L_a)\) of \(B_P/L_a\) has the given map as
+its unique map to \((L_a,\mathrm{id})\), by thinness; a colimit over a
+category with a terminal object is the value at that object, and the unit
+is the corresponding structure map.  (2) An element killed in \(Q\) is
+killed in \(Q'\); conversely, if \(a\mapsto0\) in \(Q'\), then the image of
+\(a\) in \(Q\) is killed by the zero-reflecting map \(Q\to Q'\), so it is
+\(0\).  The restriction map \(\G(Q)\to\G(Q')\) is induced by the identity of
+the diagrams, hence is the identity.
+\end{proof}
+
+In words, \(\G(Q)\) depends only on the set \(\{a\in P:a\text{ dies in }Q\}\)
+of elements of \(P\) killed by \(Q\) (a \emph{face} of \(P\): a submonoid
+containing \(a\) and \(b\) whenever it contains \(a+b\)), and \(\G\) is
+``locally constant'' along zero-reflecting maps.  Combined with Lemma~\ref{lem:zero}, which says that
+sign covers consist of zero-reflecting maps except in the degenerate case,
+this gives the sheaf property and more.
+
+\begin{lemma}\label{lem:mvsections}
+For every sign cover \eqref{eq:binary}, with \(R_\pm\) and \(R_0\) as in
+Lemma~\ref{lem:zero}, the sequence
+\begin{equation}
+ 0\longrightarrow\G(R)
+   \longrightarrow\G(R_+)\oplus\G(R_-)
+   \longrightarrow\G(R_0)\longrightarrow0,
+                         \label{eq:mvsections}
+\end{equation}
+whose first map is the pair of restrictions and whose second map is the
+difference of the two restrictions to \(R_0\), is exact, and in fact split.
+Moreover \(\G\) is a
+\(\tau\)-sheaf, hence (Corollary~\ref{cor:finer}) a \(\Jb\)-sheaf.
+\end{lemma}
+
+\begin{proof}
+Suppose first that neither \(x\) nor \(-x\) lies in \(R\).  By
+Lemma~\ref{lem:zero}(1) the maps \(R\to R_+\), \(R\to R_-\) and
+\(R\to R_0\) are zero-reflecting, so by \eqref{eq:zeroreflect} the three
+restriction maps out of \(\G(R)\) are isomorphisms; since
+\(\G(R)\to\G(R_\pm)\to\G(R_0)\) composes to the isomorphism
+\(\G(R)\to\G(R_0)\), the maps \(\G(R_\pm)\to\G(R_0)\) are isomorphisms too.
+Identifying all four groups with \(A=\G(R)\) through these isomorphisms,
+every restriction map becomes the identity of \(A\) and the sequence
+becomes
+\[
+                   0\longrightarrow A
+                    \xrightarrow{a\mapsto(a,a)}A\oplus A
+                    \xrightarrow{(a,b)\mapsto a-b}A
+                    \longrightarrow0,
+\]
+which is exact, and split by \(a\mapsto(a,0)\).
+
+If \(x\in R\), then by Lemma~\ref{lem:zero}(2) \(R_+=R\), \(R_0=R_-\), the
+map \(R_-\to R_0\) is the identity and \(R_+\to R_0\) is \(R\to R_-\).
+Writing \(A=\G(R)\), \(B=\G(R_-)\) and \(\rho:A\to B\) for the restriction,
+the sequence reads
+\[
+                   0\longrightarrow A
+                    \xrightarrow{a\mapsto(a,\rho(a))}A\oplus B
+                    \xrightarrow{(a,b)\mapsto \rho(a)-b}B
+                    \longrightarrow0,
+\]
+which is exact, split by \((a,b)\mapsto a\), for any homomorphism \(\rho\).
+The case \(-x\in R\) is the same with the roles of \(R_+\) and \(R_-\)
+exchanged.
+
+For the sheaf property, by Lemma~\ref{lem:criterion} it suffices to check
+the sheaf condition for sign covers, and as noted before that lemma this
+condition says that \(\G(R)\) is the equalizer of the two restriction maps
+\(\G(R_+)\times\G(R_-)\rightrightarrows\G(R_0)\), which is exactness of
+\eqref{eq:mvsections} at the first two terms.
+\end{proof}
+
+\section{Acyclicity, and passage to the coarser topology}
+\label{sec:acyclic}
+
+For a Grothendieck topology \(J\) on \(A_P^{\mathrm{op}}\), an object \(R\)
+and an abelian \(J\)-sheaf \(\E\), we write \(H^n_J(R,\E)\) for the \(n\)th
+right derived functor of \(\E\mapsto\E(R)\) on the abelian category
+\(\Ab\Sh(A_P^{\mathrm{op}},J)\) of abelian \(J\)-sheaves, computed by
+injective resolutions.  We shall
+use two standard facts.  First, the Mayer--Vietoris sequence
+\cite[Tag 0EVY]{stacks} for a cover \(\{R_\pm\to R\}\) in
+\(A_P^{\mathrm{op}}\) by two monomorphisms (\(R\to R_\pm\) being
+epimorphisms in \(A_P\)) with fibre product \(R_0\); we spell out the
+version we need in the proof below.  Second,
+\emph{locality of cohomology} \cite[Tag 03P1]{stacks}: for \(n>0\), every
+class \(\xi\in H^n_J(R,\E)\) vanishes on the members of some \(J\)-cover
+of \(R\) (in the sense of \S\ref{sec:tau}).  (Explicitly: if \(\E\to\I^\bullet\) is an injective
+resolution and \(z\in\I^n(R)\) a cocycle representing \(\xi\), the exactness
+of \(\I^\bullet\) as a complex of \emph{sheaves} in degree \(n>0\) says that
+\(z\) is locally a coboundary.)
+
+\begin{lemma}\label{lem:acyclic}
+Let \(\E\) be an abelian \(\tau\)-sheaf on \(A_P^{\mathrm{op}}\) such that for
+every sign cover \eqref{eq:binary}, with \(R_\pm\) and \(R_0\) as in
+Lemma~\ref{lem:zero}, the difference map
+\begin{equation}
+                   \E(R_+)\oplus\E(R_-)\longrightarrow\E(R_0)\label{eq:surj}
+\end{equation}
+is surjective.  Then \(H^n_\tau(R,\E)=0\) for all \(n>0\) and all objects
+\(R\) of \(A_P\).
+\end{lemma}
+
+\begin{proof}
+\emph{Mayer--Vietoris.}  For an object \(Y\) of \(A_P\) let \(h_Y\) be the
+presheaf represented by \(Y\) on \(A_P^{\mathrm{op}}\), so
+\(h_Y(X)=\Hom_{A_P}(Y,X)\), and let \(\Z_\tau[Y]\) be the \(\tau\)-sheaf
+associated with the free abelian presheaf \(\Z[h_Y]\); then
+\(\Hom(\Z_\tau[Y],\E)=\E(Y)\) for every abelian \(\tau\)-sheaf \(\E\)
+\cite[Tag 03AB]{stacks}, so that
+\(H^n_\tau(Y,\E)=\operatorname{Ext}^n(\Z_\tau[Y],\E)\), the Ext group being
+computed in \(\Ab\Sh(A_P^{\mathrm{op}},\tau)\) (apply
+\(\Hom(\Z_\tau[Y],-)\) to an injective resolution of \(\E\)).
+Fix a sign cover of \(R\) at \(x\).  
+\review{``at $x$?''}
+For every \(X\), the universal
+property \eqref{eq:universal} identifies \(h_{R_\pm}(X)\) with subsets of
+\(h_R(X)\), with intersection \(h_{R_0}(X)\) by \eqref{eq:intersection}.
+The elementary exact sequence
+\(0\to\Z[U\cap U']\to\Z[U]\oplus\Z[U']\to\Z[U\cup U']\to0\) of free abelian
+groups on two subsets of a set therefore gives an exact sequence of
+presheaves
+\[
+ 0\longrightarrow \Z[h_{R_0}]
+  \longrightarrow \Z[h_{R_+}]\oplus\Z[h_{R_-}]
+  \longrightarrow \Z[h_R]
+\]
+whose cokernel is \(\Z[h_R]/\Z[h_{R_+}\cup h_{R_-}]\).  This cokernel has
+zero \(\tau\)-sheafification: a section of \(h_R\) over \(X\) is a map
+\(f:R\to X\), and on the two members of the sign cover of \(X\) at
+\(f^{\gp}(x)\), which are \(X\amalg_RR_\pm\) by \eqref{eq:basechange}, the
+restrictions of \(f\) lie in \(h_{R_+}\) and \(h_{R_-}\) respectively.
+Since sheafification is exact we obtain a short exact sequence of
+\(\tau\)-sheaves
+\[
+ 0\longrightarrow \Z_\tau[R_0]
+  \longrightarrow \Z_\tau[R_+]\oplus\Z_\tau[R_-]
+  \longrightarrow \Z_\tau[R]\longrightarrow0,
+\]
+and applying \(\operatorname{Ext}^\bullet(-,\E)\) the long exact sequence
+\begin{equation}
+\begin{split}
+ 0\to\E(R)\to\E(R_+)\oplus\E(R_-)\to\E(R_0)\to H^1_\tau(R,\E)\to\cdots
+ \\
+ \cdots\to H^{n-1}_\tau(R_0,\E)\to H^n_\tau(R,\E)
+ \to H^n_\tau(R_+,\E)\oplus H^n_\tau(R_-,\E)\to H^n_\tau(R_0,\E)\to\cdots
+\end{split}
+\label{eq:mvlong}
+\end{equation}
+This is the Mayer--Vietoris sequence of \cite[Tag 0EVY]{stacks} for the
+present situation.
+
+\emph{Injectivity on the members of a sign cover.}  We prove the lemma by
+induction on \(n\ge1\), simultaneously for all objects \(R\).  Consider the
+statement \((\ast)_n\) that, for every sign cover of every object \(R\), the
+map
+\[
+  H^n_\tau(R,\E)\longrightarrow
+  H^n_\tau(R_+,\E)\oplus H^n_\tau(R_-,\E)
+\]
+is injective.  For \(n=1\), \((\ast)_1\) follows from \eqref{eq:mvlong} and the assumed
+surjectivity of \eqref{eq:surj}, which makes the connecting map
+\(\E(R_0)\to H^1_\tau(R,\E)\) zero.  For \(n>1\), if
+\(H^{n-1}_\tau(-,\E)=0\) on all objects, 
+\review{isn't this what is being shown? Edit: The proof means to induct for the proof of the \emph{whole} lemma, not just this stage of the argument. This was confusing and circular if interpreted in the latter fashion. }
+then in particular
+\(H^{n-1}_\tau(R_0,\E)=0\) and \eqref{eq:mvlong} gives \((\ast)_n\).
+
+\emph{From the leaves to the root.}  Having established \((\ast)_n\)
+(unconditionally for \(n=1\), and under the induction hypothesis for
+\(n>1\)), let
+\(\xi\in H^n_\tau(R,\E)\).  By locality of cohomology, \(\xi\) vanishes on
+the members of some \(\tau\)-cover of \(R\).  By \eqref{eq:treesieve}, the
+sieve generated by this family contains a tree family
+\(\{R\to T_\ell\}\) (each \(T_\ell\) receives a map under \(R\) from a
+member on which \(\xi\) vanishes), so \(\xi|_{T_\ell}=0\) for every leaf.  Now argue
+upward through the tree: if \(M\) is an internal vertex with children
+\(M_+,M_-\) forming a sign cover of \(M\), and \(\xi|_{M_+}=0=\xi|_{M_-}\),
+then \(\xi|_M=0\) by \((\ast)_n\) applied to the sign cover of \(M\).
+Induction on the height of a vertex gives \(\xi|_R=\xi=0\).  Hence
+\(H^n_\tau(R,\E)=0\) for all \(R\), which completes the induction on \(n\).
+\end{proof}
+
+\begin{corollary}\label{cor:Gtau}
+Let \(\G=\Lan_jF\) be the Kan extension of \S\ref{sec:kan}.  For every
+object \(R\) of \(A_P\) and every \(n>0\), \(H^n_\tau(R,\G)=0\).
+\end{corollary}
+
+\begin{proof}
+By Lemma~\ref{lem:mvsections}, \(\G\) is a \(\tau\)-sheaf whose maps
+\eqref{eq:surj} are surjective.  Apply Lemma~\ref{lem:acyclic}.
+\end{proof}
+
+We now transfer this vanishing to the coarser topology \(\Jb\).  Some care
+is needed, since the inclusion of \(\tau\)-sheaves into \(\Jb\)-sheaves is
+not exact in general (cokernels involve different sheafifications); what
+does transfer is injectivity of objects, and Corollary~\ref{cor:Gtau} makes
+a \(\tau\)-injective resolution exact already as a complex of presheaves.
+
+\begin{proposition}\label{prop:Gbir}
+For \(\G=\Lan_jF\), every object \(R\) of \(A_P\) and every \(n>0\),
+\(H^n_{\Jb}(R,\G)=0\).
+\end{proposition}
+
+\begin{proof}
+Since \(\Jb\subset\tau\) (Corollary~\ref{cor:finer}), the identity of
+\(A_P^{\mathrm{op}}\) is a morphism of sites
+\((A_P^{\mathrm{op}},\tau)\to(A_P^{\mathrm{op}},\Jb)\) whose direct image is
+the inclusion
+\[
+   \iota:\Ab\Sh(A_P^{\mathrm{op}},\tau)\longrightarrow\Ab\Sh(A_P^{\mathrm{op}},\Jb)
+\]
+and whose inverse image is \(\tau\)-sheafification, an exact functor
+\cite[Tag 0EWK]{stacks}.  A right adjoint whose left adjoint is exact
+preserves injectives \cite[Tag 015Z]{stacks}; hence \(\iota\) carries
+injective \(\tau\)-sheaves to injective \(\Jb\)-sheaves.
+
+Choose an injective resolution \(\G\to\I^\bullet\) in
+\(\Ab\Sh(A_P^{\mathrm{op}},\tau)\).  By Corollary~\ref{cor:Gtau}, for every
+object \(R\) the augmented complex of abelian groups
+\begin{equation}
+        0\longrightarrow\G(R)\longrightarrow\I^0(R)
+         \longrightarrow\I^1(R)\longrightarrow\cdots\label{eq:complex}
+\end{equation}
+is exact.  So \(\G\to\I^\bullet\) is exact as a complex of presheaves, hence
+exact as a complex of \(\Jb\)-sheaves (kernels of maps of sheaves are
+computed in presheaves, and a presheaf image that is already a sheaf equals
+the sheaf image).  Its terms \(\iota\I^k\) are injective \(\Jb\)-sheaves by
+the preceding paragraph.  Thus \(\G\to\iota\I^\bullet\) is an injective
+resolution of \(\G\) in \(\Ab\Sh(A_P^{\mathrm{op}},\Jb)\), and
+\(H^n_{\Jb}(R,\G)\) is the \(n\)th cohomology of the same complex
+\eqref{eq:complex}, which vanishes for \(n>0\).
+\end{proof}
+
+\section{Proof of Theorem~\ref{thm:main}}
+\label{sec:unit}
+
+
+Recall from \S\ref{sec:functors} that \(\pi^{-1}F\) is the \(\Jb\)-sheafification of the
+left Kan extension \(\G=\Lan_jF\), and that \(\pi_*\) is restriction along
+\(j:B_P\hookrightarrow A_P\).
+
+\emph{\(\pi^{-1}F=\G\).}  By Lemma~\ref{lem:mvsections}, \(\G\) is already a
+\(\Jb\)-sheaf, so no sheafification is needed and \(\pi^{-1}F=\G\).
+
+\emph{The unit in degree zero.}  The unit \(F\to\pi_*\pi^{-1}F=\G\circ j\)
+evaluated at \(L_a\) is the Kan extension unit \(F(L_a)\to\G(L_a)\), an
+isomorphism by \eqref{eq:restrict}.
+
+\emph{Vanishing of \(R^n\pi_*\) for \(n>0\).}  Let \(\G\to\I^\bullet\) be an
+injective resolution in \(\Ab\Sh(A_P^{\mathrm{op}},\Jb)\).  By definition
+\(\R\pi_*\G\) is represented by the complex of presheaves
+\(\pi_*\I^\bullet=\I^\bullet\circ j\) on \(B_P^{\mathrm{op}}\).  Since
+\(B_P^{\mathrm{op}}\) carries the trivial topology, evaluation at any object
+\(L_a\) is an exact functor on \(\Ab\Sh(B_P^{\mathrm{op}})=\Ab\PSh(B_P^{\mathrm{op}})\),
+so
+\[
+             (R^n\pi_*\G)(L_a)=H^n\bigl(\I^\bullet(L_a)\bigr)
+             =H^n_{\Jb}(L_a,\G)=0
+                                      \qquad(n>0)
+\]
+by Proposition~\ref{prop:Gbir}.  As the \(L_a\) are all the objects of
+\(B_P\), the cohomology presheaves \(R^n\pi_*\G\) vanish for \(n>0\), and
+\(R^0\pi_*\G=\pi_*\G\cong F\) by the previous paragraph.  Hence
+\(F\to\R\pi_*\pi^{-1}F\) is a quasi-isomorphism.  This proves
+Theorem~\ref{thm:main}, including the three ``more precise'' assertions.
+\qed
+
+\begin{remark}[Where the hypotheses are used]\label{rem:infinitesimal}
+The infinitesimal lifting condition in the definition of a birhizomic cover
+is never analysed: Proposition~\ref{prop:valuative} shows that \emph{any}
+family of finitely presented maps through which every valuative map
+factors is a \(\tau\)-cover, and this is all that is used.  Finite
+presentation enters exactly once, in Step~3 of that proof, to factor
+\(Q_i\to V_D\) through a finite stage of the colimit \eqref{eq:valcolim};
+the colimit identity itself needs no finiteness.  Finite generation of
+\(P\) is never used, which is why the compactness argument on \(\V(R)\) is
+needed in place of a dimension count.  Finally, the argument of
+Proposition~\ref{prop:Gbir} shows that \(\G\) is acyclic for every topology
+coarser than \(\tau\), the birhizomic topology being one instance.
+\end{remark}
+
+\begin{remark}[Two small examples]
+For \(R=\N^2\) and \(x=e_1-e_2\), neither sign lies in \(R\); the members
+of the sign cover are \(\N^2\langle\pm(e_1-e_2)\rangle\), the two charts of
+the blow-up of the origin, and \(R_0=\N^2\langle x,-x\rangle\simeq\N\) via
+\((a,b)\mapsto a+b\).  None of these maps kills a nonzero element of
+\(\N^2\), so \(\G\) takes the same value on all four monoids, as in the first
+case of Lemma~\ref{lem:mvsections}.  For \(R=\N\) and \(x=1\) the sign
+cover is \(\{\N\to\N,\ \N\to0\}\) with \(R_0=0\), and
+\eqref{eq:mvsections} is \(0\to\G(\N)\to\G(\N)\oplus\G(0)\to\G(0)\to0\).
+Deeper in a sign tree a leaf may kill nonzero elements of \(P\); this is
+harmless, as Lemma~\ref{lem:zero} is applied at each internal vertex.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{CT}
+B.~Conrad and M.~Temkin,
+\emph{Non-Archimedean analytification of algebraic spaces},
+J.~Algebraic Geom.\ 18 (2009), 731--788.
+
+\bibitem{MW}
+S.~Molcho and J.~Wise,
+\emph{The logarithmic Picard group and its tropicalization},
+Compos.\ Math.\ 158 (2022), 1477--1562.
+
+\bibitem{niziol}
+W.~Nizio{\l},
+\emph{Toric singularities: log-blow-ups and global resolutions},
+J.~Algebraic Geom.\ 15 (2006), 1--29.
+
+\bibitem{ogus}
+A.~Ogus,
+\emph{Lectures on logarithmic algebraic geometry},
+Cambridge Studies in Advanced Mathematics 178,
+Cambridge University Press, 2018.
+
+\bibitem{stacks}
+The Stacks Project Authors,
+\emph{The Stacks Project}, 2026.
+Tags 00VC, 00VE, 00VF (Kan extension along a functor and its adjoint),
+00ZC (the topology defined by a site),
+03AB (free abelian sheaves),
+015Z (exact left adjoints and injectives),
+03P1 (locality of cohomology),
+0EVY (Mayer--Vietoris on a site),
+0EWK (comparing two topologies).
+
+\end{thebibliography}
+
+\end{document}

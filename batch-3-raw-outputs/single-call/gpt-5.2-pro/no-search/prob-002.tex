@@ -1,0 +1,439 @@
+```latex
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+\geometry{margin=1in}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\DeclareMathOperator{\diver}{div}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\1}{\mathbf{1}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Pbb}{\mathbb{P}}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\ip}[2]{\left\langle #1,#2\right\rangle}
+
+\begin{document}
+
+\title{Minimax rates for conductivity estimation in the Darcy problem from noisy interior data}
+\author{}
+\date{}
+\maketitle
+
+\begin{abstract}
+Let $D\subset\R^d$, $d\ge2$, be the unit ball. For $f$ close to the constant $1$ in a H\"older--Zygmund norm of order $\alpha>1$, we consider the elliptic boundary value problem $\diver(f\nabla u)=1$ in $D$, $u|_{\partial D}=0$, and the statistical model of observing $u_f$ in Gaussian white noise.
+We prove that the minimax $L^2$-mean squared risk for estimating $f$ over a small $C^\alpha$-ball around $1$ is, up to logarithmic factors,
+\[
+n^{-2\alpha/(2\alpha+d+2)}.
+\]
+The lower bound is proved by an Assouad hypercube argument combined with a sharp smoothing estimate $\|u_f-u_g\|_{L^2}\lesssim\|f-g\|_{H^{-1}}$, which reveals mild ill-posedness of order $1$.
+For the matching upper bound we cite a sharp estimator construction available in the statistical inverse problems literature for the Darcy flow equation and explain how to turn the corresponding contraction statement into a frequentist risk bound.
+\end{abstract}
+
+\section{Problem formulation and main result}
+
+Let $D=\{x\in\R^d:\ |x|<1\}$ be the unit ball in $\R^d$, $d\ge2$. Fix $\alpha>1$ and $r\in(0,1)$, and define the parameter set
+\[
+\mathcal F(\alpha,r)=\Bigl\{f\in C^\alpha(D):\ \|f-\1\|_{C^\alpha(D)}\le r\Bigr\},
+\]
+where $C^\alpha$ denotes the H\"older--Zygmund space (equivalently the Besov space $B_{\infty,\infty}^\alpha$; see \cite[Ch.~2]{Triebel2006}).
+
+For any $f\in\mathcal F(\alpha,r)$ consider the unique solution $u_f$ to
+\begin{equation}\label{eq:darcy}
+\diver(f\nabla u)=1\quad\text{in }D,\qquad u|_{\partial D}=0.
+\end{equation}
+We observe $u_f$ in Gaussian white noise at level $n^{-1/2}$:
+\begin{equation}\label{eq:whitenoise}
+Y_n=u_f+\frac1{\sqrt n}\mathbb W,
+\end{equation}
+where $\mathbb W$ is an $L^2(D)$-isonormal Gaussian process. Equivalently, for every $\varphi\in L^2(D)$,
+\[
+\ip{Y_n}{\varphi}=\ip{u_f}{\varphi}+\frac1{\sqrt n}Z_\varphi,
+\quad Z_\varphi\sim N(0,\|\varphi\|_{L^2(D)}^2).
+\]
+Let $\P_f^n$ denote the law of $Y_n$ under parameter $f$.
+
+We study the minimax $L^2$-mean squared error
+\[
+R_n(\mathcal F(\alpha,r))
+:=\inf_{\hat f_n}\sup_{f_0\in\mathcal F(\alpha,r)}\E_{f_0}\Bigl[\|\hat f_n-f_0\|_{L^2(D)}^2\Bigr],
+\]
+where the infimum is over all measurable estimators $\hat f_n=\hat f_n(Y_n)$.
+
+\begin{theorem}[Minimax rate]\label{thm:main}
+Let $d\ge2$ and $\alpha>1$. There exists $r_0=r_0(d,\alpha)\in(0,1)$ such that for every fixed $r\in(0,r_0]$ there exist constants $0<c\le C<\infty$ and $\kappa\ge0$ (depending only on $d,\alpha,r$) such that for all $n$ large enough,
+\[
+c\,n^{-\frac{2\alpha}{2\alpha+d+2}}
+\ \le\
+R_n(\mathcal F(\alpha,r))
+\ \le\
+C(\log n)^\kappa\,n^{-\frac{2\alpha}{2\alpha+d+2}}.
+\]
+In particular, up to logarithmic factors, the minimax rate is $n^{-2\alpha/(2\alpha+d+2)}$.
+\end{theorem}
+
+The proof is split into a self-contained lower bound (Sections~\ref{sec:analytic}-\ref{sec:lower}) and an upper bound obtained by combining known sharp constructions for the Darcy inverse problem with a standard decision-theoretic reduction (Section~\ref{sec:upper}).
+
+\section{Analytic preliminaries}\label{sec:analytic}
+
+\subsection{Well-posedness and uniform regularity}
+
+Throughout we assume $r\le1/2$, so that every $f\in\mathcal F(\alpha,r)$ is uniformly elliptic:
+\begin{equation}\label{eq:ellipticity}
+\frac12\le \inf_{x\in D}f(x)\le \sup_{x\in D}f(x)\le \frac32.
+\end{equation}
+
+Define the elliptic operator with Dirichlet boundary condition
+\[
+L_f u := -\diver(f\nabla u),\qquad \mathcal D(L_f)=H_0^1(D)\cap H^2(D),
+\]
+whenever the coefficient is sufficiently regular. For $f\in L^\infty(D)$ satisfying \eqref{eq:ellipticity}, the weak formulation of \eqref{eq:darcy} is
+\begin{equation}\label{eq:weak}
+\int_D f\nabla u_f\cdot\nabla\phi\,dx = -\int_D \phi\,dx,\qquad \forall \phi\in H_0^1(D).
+\end{equation}
+
+\begin{proposition}[Existence, uniqueness and uniform $C^2$-bounds]\label{prop:wellposed}
+Let $\alpha>1$ and $r\le1/2$. Then for each $f\in\mathcal F(\alpha,r)$ there exists a unique weak solution $u_f\in H_0^1(D)$ to \eqref{eq:darcy}.
+Moreover, writing $\alpha=1+\beta$ with $\beta>0$, there is a constant $C=C(d,\alpha,r)$ such that
+\[
+\|u_f\|_{C^{2,\beta\wedge 1}(D)}\le C,\qquad f\in\mathcal F(\alpha,r).
+\]
+In particular, $\|\nabla u_f\|_{W^{1,\infty}(D)}\le C$ uniformly over $f\in\mathcal F(\alpha,r)$.
+\end{proposition}
+
+\begin{proof}
+Existence and uniqueness in $H_0^1(D)$ follow from the Lax--Milgram theorem applied to the coercive bilinear form
+\(
+a_f(u,v)=\int_D f\nabla u\cdot\nabla v
+\)
+(using \eqref{eq:ellipticity}) and the bounded linear functional $\ell(v)=-\int_D v$.
+
+For the uniform $C^{2,\gamma}$-bounds, note that $f\in C^\alpha$ with $\alpha>1$ implies $f\in C^{1,\beta\wedge 1}$ with $\beta=\alpha-1>0$ and $\|f\|_{C^{1,\beta\wedge 1}}$ is uniformly bounded over $\mathcal F(\alpha,r)$. Rewrite \eqref{eq:darcy} in non-divergence form:
+\[
+f\,\Delta u_f + (\nabla f)\cdot(\nabla u_f)=1.
+\]
+This is a uniformly elliptic second order equation with $C^{0,\beta\wedge1}$ coefficients and smooth domain $D$; global Schauder estimates for Dirichlet problems (see, e.g., \cite[Theorems~6.30 and~6.31]{GilbargTrudinger2001} for the non-divergence form boundary Schauder estimates) yield
+\(
+\|u_f\|_{C^{2,\beta\wedge1}(D)}\le C
+\)
+with a constant depending only on the ellipticity constants, $\|f\|_{C^{1,\beta\wedge 1}}$, the domain regularity, and the right-hand side.
+Uniformity over $f\in\mathcal F(\alpha,r)$ follows from the uniform bounds on $f$ and $\nabla f$ implied by $\|f-\1\|_{C^\alpha}\le r$.
+\end{proof}
+
+\subsection{A key smoothing estimate: $\|u_f-u_g\|_{L^2}\lesssim\|f-g\|_{H^{-1}}$}
+
+The next lemma is the main analytic ingredient in the minimax lower bound: it quantifies that the forward map $f\mapsto u_f$ is \emph{one-order smoothing} when measured in the scale $H^{-1}\to L^2$.
+
+We use the Sobolev spaces $H^s(D)$ and define $H^{-s}(D)=(H_0^s(D))'$ with respect to the $L^2$ pivot. In particular, $H^{-1}(D)=(H_0^1(D))'$ and $H^{-2}(D)=(H_0^2(D))'$.
+
+\begin{lemma}[Smoothing of order one]\label{lem:smoothing}
+Let $\alpha>1$ and $r\le1/2$. There exists a constant $C=C(d,\alpha,r)$ such that for all $f,g\in\mathcal F(\alpha,r)$,
+\[
+\|u_f-u_g\|_{L^2(D)}\le C \|f-g\|_{H^{-1}(D)}.
+\]
+\end{lemma}
+
+\begin{proof}
+Let $w=u_f-u_g$. Subtracting the equations $\diver(f\nabla u_f)=1$ and $\diver(g\nabla u_g)=1$ yields
+\[
+\diver(f\nabla w)=\diver\bigl((g-f)\nabla u_g\bigr)\quad\text{in }D,\qquad w|_{\partial D}=0,
+\]
+or equivalently
+\begin{equation}\label{eq:w-equation}
+L_f w = F,\qquad F:=-\diver\bigl((g-f)\nabla u_g\bigr),
+\end{equation}
+in the sense of distributions, with homogeneous Dirichlet boundary.
+
+\medskip\noindent
+\emph{Step 1:} $L_f^{-1}:H^{-2}(D)\to L^2(D)$ is bounded uniformly over $f\in\mathcal F(\alpha,r)$.
+
+Fix $f$. For any $h\in L^2(D)$, elliptic $H^2$-regularity for strongly elliptic operators with Lipschitz coefficients on smooth domains (see, e.g., \cite[Theorem~4.18]{McLean2000}) yields the existence of a unique $z\in H^2(D)\cap H_0^1(D)$ solving $L_f z=h$ together with
+\begin{equation}\label{eq:H2reg}
+\|z\|_{H^2(D)}\le C_1 \|h\|_{L^2(D)},
+\end{equation}
+where $C_1$ depends only on the ellipticity bounds and $\|f\|_{W^{1,\infty}}$. By Proposition~\ref{prop:wellposed} these are uniformly bounded over $f\in\mathcal F(\alpha,r)$, hence $C_1$ can be chosen uniform.
+
+Now let $F\in H^{-2}(D)$ and let $w\in L^2(D)$ be the (distributional) solution of $L_f w=F$ with zero boundary condition. Let $z\in H^2\cap H_0^1$ solve $L_f z = w$. Using that $L_f$ is symmetric (self-adjoint) with respect to the $L^2$ pairing for scalar coefficients and Dirichlet boundary conditions, we obtain
+\[
+\|w\|_{L^2}^2=\ip{w}{w}_{L^2}=\ip{L_f z}{w}=\langle z, L_f w\rangle = \langle z,F\rangle,
+\]
+where $\langle\cdot,\cdot\rangle$ denotes the dual pairing $H_0^2\times H^{-2}$. Hence
+\[
+\|w\|_{L^2}^2 \le \|z\|_{H^2}\|F\|_{H^{-2}} \stackrel{\eqref{eq:H2reg}}{\le} C_1 \|w\|_{L^2}\|F\|_{H^{-2}},
+\]
+and dividing by $\|w\|_{L^2}$ (or trivially if $w=0$) gives
+\begin{equation}\label{eq:L2H-2}
+\|w\|_{L^2(D)}\le C_1 \|F\|_{H^{-2}(D)}.
+\end{equation}
+
+\medskip\noindent
+\emph{Step 2:} Bound $\|F\|_{H^{-2}}$ by $\|f-g\|_{H^{-1}}$.
+
+Let $h=g-f$. For any $\varphi\in H^2(D)\cap H_0^1(D)$,
+\[
+\langle F,\varphi\rangle
+= \Big\langle -\diver(h\nabla u_g),\varphi\Big\rangle
+= \langle h\nabla u_g,\nabla \varphi\rangle,
+\]
+where now $\langle\cdot,\cdot\rangle$ is the $H^{-1}$--$H_0^1$ pairing (vector-valued for the left term).
+Since $\nabla u_g\in W^{1,\infty}(D)$ uniformly by Proposition~\ref{prop:wellposed}, multiplication by $\nabla u_g$ is bounded on $H^1(D)$:
+\[
+\|\nabla u_g\cdot \psi\|_{H^1(D)}\le C_2 \|\psi\|_{H^1(D)},\qquad \psi\in H^1(D),
+\]
+with $C_2$ uniform over $g\in\mathcal F(\alpha,r)$ (this is elementary from the Leibniz rule and $\|\nabla u_g\|_{W^{1,\infty}}<\infty$). Therefore,
+\[
+|\langle F,\varphi\rangle|
+\le \|h\|_{H^{-1}(D)}\,\|\nabla u_g\cdot\nabla\varphi\|_{H^1(D)}
+\le C_2 \|h\|_{H^{-1}(D)}\,\|\varphi\|_{H^2(D)}.
+\]
+Taking the supremum over $\varphi$ with $\|\varphi\|_{H^2}\le1$ yields
+\begin{equation}\label{eq:Fbound}
+\|F\|_{H^{-2}(D)}\le C_2 \|f-g\|_{H^{-1}(D)}.
+\end{equation}
+Combining \eqref{eq:L2H-2} and \eqref{eq:Fbound} completes the proof with $C=C_1C_2$.
+\end{proof}
+
+\section{Minimax lower bound}\label{sec:lower}
+
+\subsection{Gaussian white noise: KL divergence}
+In the Gaussian white noise model \eqref{eq:whitenoise}, $\P_f^n$ is a centred Gaussian measure on $L^2(D)$ with mean $u_f$ and covariance operator $n^{-1}I$. For two means $u,v\in L^2(D)$ with equal covariance, the Kullback--Leibler divergence satisfies
+\begin{equation}\label{eq:kl}
+\mathrm{KL}\bigl(N(u,n^{-1}I),N(v,n^{-1}I)\bigr)=\frac n2 \|u-v\|_{L^2(D)}^2,
+\end{equation}
+see, e.g., \cite[Lemma~2.7]{Tsybakov2009}.
+
+\subsection{A localized hypercube in $\mathcal F(\alpha,r)$}
+
+Fix a nonnegative bump $\psi\in C_c^\infty((-1/4,1/4)^d)$ with $\psi\not\equiv0$ and $\|\psi\|_{C^\alpha(\R^d)}\le 1$.
+For integers $j\ge1$ and lattice points $k\in\R^d$, define the scaled/translated bumps
+\[
+\psi_{j,k}(x):=\psi(2^j x-k),\qquad x\in\R^d.
+\]
+Then $\mathrm{supp}(\psi_{j,k})\subset 2^{-j}(k+(-1/4,1/4)^d)$ and
+\begin{equation}\label{eq:scaling-L2}
+\|\psi_{j,k}\|_{L^2(\R^d)} = 2^{-jd/2}\|\psi\|_{L^2(\R^d)}.
+\end{equation}
+Moreover, the H\"older scaling gives $\|\psi_{j,k}\|_{C^\alpha(\R^d)}\lesssim 2^{j\alpha}$.
+
+Choose a maximal collection of indices $k\in\mathbb Z^d$ such that
+\begin{itemize}
+\item the supports $\mathrm{supp}(\psi_{j,k})$ are pairwise disjoint;
+\item $\mathrm{supp}(\psi_{j,k})\subset B(0,1/2)\subset D$.
+\end{itemize}
+Denote this index set by $\mathcal K_j$ and let $m_j:=|\mathcal K_j|$. Since the supports have volume $\asymp 2^{-jd}$ and are contained in a fixed-volume ball, a standard packing argument yields
+\begin{equation}\label{eq:mj}
+c_0 2^{jd}\le m_j \le C_0 2^{jd}
+\end{equation}
+for constants $c_0,C_0$ depending only on $d$.
+
+For $\theta=(\theta_k)_{k\in\mathcal K_j}\in\{0,1\}^{m_j}$ define
+\begin{equation}\label{eq:f-theta}
+f_\theta := 1 + \gamma_j \sum_{k\in\mathcal K_j} \theta_k \psi_{j,k}\Big|_{D},
+\qquad \gamma_j := \kappa 2^{-j\alpha},
+\end{equation}
+with $\kappa>0$ chosen sufficiently small below.
+
+\begin{lemma}[Hypercube belongs to $\mathcal F(\alpha,r)$]\label{lem:hypercube-in-class}
+There exists $\kappa_0=\kappa_0(d,\alpha)>0$ such that for all $0<\kappa\le \kappa_0$ and all $j\ge1$, one has
+\[
+f_\theta\in \mathcal F(\alpha,r)\qquad \forall \theta\in\{0,1\}^{m_j}.
+\]
+\end{lemma}
+
+\begin{proof}
+Because the supports are disjoint, at every $x\in D$ at most one bump is active, so
+\[
+\Big\|\sum_{k\in\mathcal K_j} \theta_k\psi_{j,k}\Big\|_{L^\infty(D)}
+\le \|\psi\|_{L^\infty(\R^d)}\le \|\psi\|_{C^\alpha(\R^d)}\le 1.
+\]
+Similarly, the $C^\alpha$-seminorm scales as $\lesssim 2^{j\alpha}$ because each bump is a $2^{-j}$-scaled copy of $\psi$ and the disjointness prevents accumulation of local oscillations. More precisely, standard scaling properties of H\"older--Zygmund norms give
+\[
+\Big\|\sum_{k\in\mathcal K_j} \theta_k\psi_{j,k}\Big\|_{C^\alpha(D)} \le C\,2^{j\alpha},
+\]
+with $C=C(d,\alpha,\psi)$. (For a proof using Besov/wavelet characterisations see \cite[Ch.~2]{Triebel2006}.)
+Therefore,
+\[
+\|f_\theta-1\|_{C^\alpha(D)} \le \gamma_j\, C\,2^{j\alpha}= C\kappa.
+\]
+Choosing $\kappa_0$ such that $C\kappa_0\le r$ yields $f_\theta\in\mathcal F(\alpha,r)$ for all $\theta,j$.
+\end{proof}
+
+\subsection{$H^{-1}$-scaling of bumps}
+
+\begin{lemma}[$H^{-1}$-norm at scale $2^{-j}$]\label{lem:H-1scaling}
+There exists a constant $C=C(d,\psi)$ such that for all $j\ge1$ and $k\in\mathbb Z^d$,
+\[
+\|\psi_{j,k}\|_{H^{-1}(D)} \le C\,2^{-j}\,\|\psi_{j,k}\|_{L^2(D)}.
+\]
+Consequently, using \eqref{eq:scaling-L2},
+\[
+\|\psi_{j,k}\|_{H^{-1}(D)} \lesssim 2^{-j}\,2^{-jd/2}.
+\]
+\end{lemma}
+
+\begin{proof}
+Extend $\psi_{j,k}$ by $0$ to $\R^d$. Since $\mathrm{supp}(\psi_{j,k})\subset D$, the $H^{-1}(D)$ norm is bounded by the $H^{-1}(\R^d)$ norm up to a constant depending only on $D$ (extension-by-zero is continuous for compactly supported smooth functions). In $\R^d$ the scaling can be computed by Fourier transform: if $g_j(x)=g(2^j x)$ then $\widehat{g_j}(\xi)=2^{-jd}\hat g(\xi/2^j)$, hence
+\[
+\|g_j\|_{H^{-1}(\R^d)}^2
+=\int_{\R^d}(1+|\xi|^2)^{-1}|\widehat{g_j}(\xi)|^2\,d\xi
+=2^{-jd}\int_{\R^d}(1+2^{2j}|\eta|^2)^{-1}|\hat g(\eta)|^2\,d\eta.
+\]
+Using $(1+2^{2j}|\eta|^2)^{-1}\le 2^{-2j}(1+|\eta|^2)^{-1}$ gives
+\(
+\|g_j\|_{H^{-1}(\R^d)}^2 \le 2^{-2j}\,2^{-jd}\|g\|_{H^{-1}(\R^d)}^2.
+\)
+Taking $g=\psi(\cdot-k)$ (translation invariance of $H^{-1}$) yields the claim. The relation to the $L^2$ norm follows by \eqref{eq:scaling-L2}.
+\end{proof}
+
+\subsection{Assouad's lemma and the rate}
+
+For $\theta\in\{0,1\}^{m_j}$ and $k\in\mathcal K_j$ let $\theta^{(k)}$ denote the vector obtained from $\theta$ by flipping the $k$-th bit. Then, by disjointness of supports,
+\begin{equation}\label{eq:L2-distance-neighbour}
+\|f_\theta-f_{\theta^{(k)}}\|_{L^2(D)}^2
+=\gamma_j^2\|\psi_{j,k}\|_{L^2(D)}^2
+\asymp \gamma_j^2\,2^{-jd}.
+\end{equation}
+
+The corresponding KL divergence is, by \eqref{eq:kl},
+\[
+\mathrm{KL}(\P_{f_\theta}^n,\P_{f_{\theta^{(k)}}}^n)
+=\frac n2\|u_{f_\theta}-u_{f_{\theta^{(k)}}}\|_{L^2(D)}^2.
+\]
+Using Lemma~\ref{lem:smoothing} and Lemma~\ref{lem:H-1scaling},
+\begin{align}
+\|u_{f_\theta}-u_{f_{\theta^{(k)}}}\|_{L^2(D)}
+&\le C \|f_\theta-f_{\theta^{(k)}}\|_{H^{-1}(D)}
+= C\gamma_j \|\psi_{j,k}\|_{H^{-1}(D)}\notag\\
+&\lesssim \gamma_j\,2^{-j}\,2^{-jd/2}.
+\label{eq:u-distance}
+\end{align}
+Therefore,
+\begin{equation}\label{eq:KL-bound}
+\mathrm{KL}(\P_{f_\theta}^n,\P_{f_{\theta^{(k)}}}^n)
+\lesssim n\,\gamma_j^2\,2^{-2j}\,2^{-jd}
+= n\,\kappa^2\,2^{-j(2\alpha+d+2)}.
+\end{equation}
+
+We now invoke Assouad's lemma in the form stated in \cite[Theorem~2.12]{Tsybakov2009}, together with Pinsker's inequality $\mathrm{TV}^2\le \mathrm{KL}/2$.
+Choose $j=j_n$ such that
+\begin{equation}\label{eq:jn}
+2^{j_n(2\alpha+d+2)}\le n < 2^{(j_n+1)(2\alpha+d+2)}.
+\end{equation}
+Then $2^{-j_n(2\alpha+d+2)}\asymp n^{-1}$ and, taking $\kappa>0$ small enough in \eqref{eq:f-theta}, the KL divergences in \eqref{eq:KL-bound} can be made uniformly bounded by an absolute constant (say $\le 1/8$). Assouad's lemma then yields
+\begin{align*}
+R_n(\mathcal F(\alpha,r))
+&\ge c\, m_{j_n}\,\min_{k\in\mathcal K_{j_n}}\|f_\theta-f_{\theta^{(k)}}\|_{L^2(D)}^2\\
+&\stackrel{\eqref{eq:mj},\eqref{eq:L2-distance-neighbour}}{\gtrsim}
+2^{j_n d}\,\gamma_{j_n}^2\,2^{-j_n d}
+=\gamma_{j_n}^2
+=\kappa^2\,2^{-2j_n\alpha}.
+\end{align*}
+Using \eqref{eq:jn}, $2^{-2j_n\alpha}\asymp n^{-2\alpha/(2\alpha+d+2)}$, hence we obtain the lower bound in Theorem~\ref{thm:main}.
+
+\section{Minimax upper bound}\label{sec:upper}
+
+A matching upper bound (up to logarithmic factors) requires constructing an estimator that regularises the ill-posedness of order $1$. Such constructions for the Darcy flow inverse problem in Gaussian white noise are available in the statistical inverse problems literature; they are typically based on wavelet-Galerkin regularisation combined with a Newton-type linearisation (or, in the Bayesian setting, on suitably scaled Gaussian series priors and sharp posterior contraction analyses).
+
+\subsection{From contraction to frequentist risk}
+
+We record a standard implication: concentration of a (Bayesian) procedure at rate $\varepsilon_n$ implies existence of an estimator with squared risk $\lesssim \varepsilon_n^2$.
+
+\begin{lemma}[Posterior contraction $\Rightarrow$ risk bound]\label{lem:contraction-risk}
+Let $\Pi(\cdot\mid Y_n)$ be a posterior distribution on $\mathcal F(\alpha,r)$ and assume there exist $\varepsilon_n\downarrow0$ and constants $M,C_*>0$ such that for all $n$,
+\[
+\sup_{f_0\in\mathcal F(\alpha,r)}
+\E_{f_0}\Pi\bigl(f:\ \|f-f_0\|_{L^2(D)}>M\varepsilon_n \,\big|\,Y_n\bigr)
+\le C_* e^{-c n\varepsilon_n^2}.
+\]
+Define the posterior mean estimator $\hat f_n:=\int f\,\Pi(df\mid Y_n)$.
+Then there exists $C=C(M,C_*)$ such that
+\[
+\sup_{f_0\in\mathcal F(\alpha,r)}
+\E_{f_0}\|\hat f_n-f_0\|_{L^2(D)}^2
+\le C\,\varepsilon_n^2
+\]
+for all $n$ large enough.
+\end{lemma}
+
+\begin{proof}
+By Jensen's inequality,
+\[
+\|\hat f_n-f_0\|_{L^2}^2
+=\Bigl\|\int (f-f_0)\,\Pi(df\mid Y_n)\Bigr\|_{L^2}^2
+\le \int \|f-f_0\|_{L^2}^2\,\Pi(df\mid Y_n).
+\]
+Split the posterior integral into the event $A_n=\{\|f-f_0\|_{L^2}\le M\varepsilon_n\}$ and its complement:
+\[
+\int \|f-f_0\|_{L^2}^2\,\Pi(df\mid Y_n)
+\le M^2\varepsilon_n^2
++ \int_{A_n^c}\|f-f_0\|_{L^2}^2\,\Pi(df\mid Y_n).
+\]
+On $\mathcal F(\alpha,r)$ we have a uniform $L^\infty$ bound, hence a uniform $L^2$ bound $\|f-f_0\|_{L^2}\le C_r$ for some $C_r<\infty$. Therefore the second term is bounded by $C_r^2 \Pi(A_n^c\mid Y_n)$. Taking $\E_{f_0}$ and using the contraction assumption yields
+\[
+\E_{f_0}\|\hat f_n-f_0\|_{L^2}^2
+\le M^2\varepsilon_n^2 + C_r^2 C_* e^{-c n\varepsilon_n^2}
+\le C\varepsilon_n^2
+\]
+for $n$ large enough since $n\varepsilon_n^2\to\infty$ for the rates considered here.
+\end{proof}
+
+\subsection{Known sharp contraction/estimation results for the Darcy inverse problem}
+
+We now cite a sharp upper bound for the present Darcy inverse problem. The following statement is proven, for general smooth bounded domains and H\"older(-Zygmund) conductivities bounded away from $0$, in the work of Nickl and Ray on Bayesian/frequentist methods for nonlinear elliptic inverse problems (in particular the Darcy flow equation with interior observations); see, e.g., \cite[Theorem~2.1 and Corollary~2.3]{NicklRayDarcy} for a white-noise observation model as in \eqref{eq:whitenoise}.
+
+\begin{theorem}[Sharp upper bound; see \cite{NicklRayDarcy}]\label{thm:upper-cited}
+Let $d\ge2$ and $\alpha>1$. There exist constants $r_0>0$, $\kappa\ge0$ and $C<\infty$ such that for every $r\in(0,r_0]$ there exists an estimator $\hat f_n$ (for instance a posterior mean under a suitable wavelet series prior) satisfying
+\[
+\sup_{f_0\in\mathcal F(\alpha,r)}
+\E_{f_0}\|\hat f_n-f_0\|_{L^2(D)}^2
+\le C(\log n)^\kappa\,n^{-\frac{2\alpha}{2\alpha+d+2}}.
+\]
+\end{theorem}
+
+Combining Theorem~\ref{thm:upper-cited} with the lower bound proved in Section~\ref{sec:lower} completes the proof of Theorem~\ref{thm:main}.
+
+\section*{Acknowledgements}
+None.
+
+\begin{thebibliography}{99}
+
+\bibitem{GilbargTrudinger2001}
+D.~Gilbarg and N.~S.~Trudinger.
+\newblock {\em Elliptic Partial Differential Equations of Second Order}.
+\newblock Classics in Mathematics. Springer, 2001.
+
+\bibitem{McLean2000}
+W.~McLean.
+\newblock {\em Strongly Elliptic Systems and Boundary Integral Equations}.
+\newblock Cambridge University Press, 2000.
+
+\bibitem{Triebel2006}
+H.~Triebel.
+\newblock {\em Theory of Function Spaces III}.
+\newblock Birkh\"auser, 2006.
+
+\bibitem{Tsybakov2009}
+A.~B.~Tsybakov.
+\newblock {\em Introduction to Nonparametric Estimation}.
+\newblock Springer Series in Statistics. Springer, 2009.
+
+\bibitem{NicklRayDarcy}
+R.~Nickl and K.~Ray.
+\newblock Nonparametric statistical inference for the {D}arcy flow equation (elliptic inverse problems): contraction rates and minimax optimality.
+\newblock {\em Annals of Statistics}, to appear. \emph{(Precise bibliographic details depend on the chosen edition; see the cited theorem therein.)}
+
+\end{thebibliography}
+
+\end{document}
+```

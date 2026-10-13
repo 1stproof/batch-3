@@ -1,0 +1,90 @@
+{
+  "started_at": "2026-10-05T00:45:15Z",
+  "finished_at": "2026-10-05T06:24:14Z",
+  "duration_seconds": 20339.288,
+  "in_progress": false,
+  "updated_at": "2026-10-05T06:24:14Z",
+  "operator_stopped": false,
+  "deadline_reached": false,
+  "deadline_seconds": 86100.0,
+  "workflow": "firstproof_batch3",
+  "max_parallel": 10,
+  "page_limit": 16,
+  "n_rounds": 50,
+  "round_batch_size": 5,
+  "adaptive_continuation": false,
+  "adaptive_max_rounds": 200,
+  "round_schedule": [
+    50
+  ],
+  "compute_codex_sandbox": "docker-bypass",
+  "compute_max_parallel_workers": 4,
+  "compute_disabled_reason": null,
+  "cleanup_disabled_reason": null,
+  "author_parallelism": 1,
+  "budget_usd_per_question": 1050.0,
+  "total_budget_usd_requested": 1050.0,
+  "problem_count": 1,
+  "completed_count": 1,
+  "totals": {
+    "input_tokens": 8245060,
+    "output_tokens": 1308123,
+    "reasoning_tokens": 507697,
+    "total_tokens": 9553183,
+    "cost_usd": 149.35409775
+  },
+  "token_counting_convention": {
+    "input_tokens": "Provider input tokens; Google includes promptTokenCount plus toolUsePromptTokenCount.",
+    "output_tokens": "Billable output tokens including reasoning/thinking. Google candidatesTokenCount and thoughtsTokenCount are combined by the adapter. Do not add reasoning again.",
+    "reasoning_tokens": "internal-reasoning tokens. Surfaced via output_tokens_details.reasoning_tokens (OpenAI), completion_tokens_details.reasoning_tokens (OpenAI Chat-Completions o-family), output_tokens_details.thinking_tokens (Anthropic), thoughtsTokenCount (Google), or codex JSONL reasoning_out_tokens (Compute Worker). Zero when not separately reported.",
+    "total_tokens": "When the provider reports a total_tokens field, that is used verbatim. Otherwise we synthesize input_tokens + output_tokens. Reasoning is already included in output.",
+    "cost_usd": "USD cost per call, computed from each provider's rates declared in configs/models/."
+  },
+  "per_problem": [
+    {
+      "id": "prob-010",
+      "safe_id": "prob-010",
+      "status": "ok",
+      "returncode": 0,
+      "solved": true,
+      "in_progress": false,
+      "run_id": "firstproof-prob-010-20261005T004512Z-a95ad400",
+      "log_path": "logs/prob-010.log",
+      "output_tex_path": "prob-010.tex",
+      "started_at": "2026-10-05T00:45:16Z",
+      "finished_at": "2026-10-05T06:24:14Z",
+      "duration_seconds": 20337.664,
+      "stages": [
+        {
+          "stage_index": 1,
+          "n_rounds": 50,
+          "status": "solved",
+          "returncode": 0,
+          "solved": true,
+          "started_at": "2026-10-05T00:45:16Z",
+          "finished_at": "2026-10-05T06:24:13Z",
+          "duration_seconds": 20337.123,
+          "staged_solution_path": "staged_solutions/rounds-050/prob-010.tex"
+        }
+      ],
+      "health": {
+        "helpers_finished": 0,
+        "helpers_completed": 0,
+        "helpers_timed_out": 0,
+        "helpers_artifact_degraded": 0,
+        "last_activity": {
+          "kind": "run.end",
+          "timestamp": "2026-10-05T06:24:12.851Z"
+        }
+      },
+      "totals": {
+        "input_tokens": 8245060,
+        "output_tokens": 1308123,
+        "reasoning_tokens": 507697,
+        "total_tokens": 9553183,
+        "cost_usd": 149.35409775
+      }
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,139 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\cL}{\mathcal L}
+\newcommand{\cX}{\mathcal X}
+\newcommand{\NS}{\operatorname{NS}}
+\newcommand{\Pic}{\operatorname{Pic}}
+\newcommand{\Kthree}{\Lambda_{\mathrm{K3}}}
+
+\title{The mirror fibration for a very general \(H\)-polarized Tyurin degeneration}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove that a very general \(H\)-polarized Tyurin degeneration of K3 surfaces has, in the sense of Giovenzana--Thompson, a mirror given by a very general \(H\oplus E_8\oplus E_8\)-quasipolarized K3 surface equipped with a compatible elliptic fibration and allowable loop. The only external input is the main theorem of Giovenzana--Thompson, used in its corrected \(H\)-case.
+\end{abstract}
+
+\section{The mirror lattice}
+
+Throughout \(H\) denotes the hyperbolic plane and \(E_8\) denotes the negative definite \(E_8\)-root lattice. Thus
+\[
+\Kthree \cong H^{\oplus 3}\oplus E_8^{\oplus 2}
+\]
+is the K3 lattice.
+
+\begin{lemma}\label{lem:mirror-lattice}
+The Dolgachev mirror lattice of \(H\) is
+\[
+\check H \cong H\oplus E_8\oplus E_8 .
+\]
+\end{lemma}
+
+\begin{proof}
+Let \(i\colon H\hookrightarrow \Kthree\) be a primitive embedding. Since \(H\) is unimodular, \(i(H)\) is an orthogonal direct summand of \(\Kthree\). Hence its orthogonal complement
+\[
+K:=i(H)^\perp
+\]
+is again even and unimodular, with signature \((2,18)\). By the classification of indefinite even unimodular lattices, see Nikulin \cite[\S 1]{Nikulin80}, there is an isometry
+\[
+K \cong H^{\oplus 2}\oplus E_8^{\oplus 2}.
+\]
+Dolgachev's mirror construction for a lattice \(M\) whose orthogonal complement contains a hyperbolic plane writes
+\[
+M^\perp_{\Kthree}\cong H\oplus \check M,
+\]
+and defines \(\check M\) up to isometry; see Dolgachev \cite[\S 6]{Dolgachev96}. Applying this with \(M=H\) and using the displayed decomposition of \(K\), we obtain
+\[
+\check H\cong H\oplus E_8\oplus E_8 .
+\]
+\end{proof}
+
+\section{The quoted existence theorem}
+
+We use the following theorem of Giovenzana--Thompson. It is the \(M=H\) specialization of the main theorem proved in \cite[\S 5]{dfk3slpms}, with the notions of allowable loop, compatibility, and mirror pair being those of \cite[Definitions 4.11, 4.21, and 5.1]{dfk3slpms}. The stable-pair compactification and the Noether--Lefschetz loci used to formulate the very-general condition are those of Alexeev--Brunyate--Engel \cite{cmek3sspt}.
+
+\begin{theorem}[Giovenzana--Thompson, corrected \(H\)-case]\label{thm:GT}
+Let \(\pi\colon \cX\to \Delta\) be a Tyurin degeneration of K3 surfaces with central fibre \(X_0=V_1\cup V_2\). Assume that \(\cX\to\Delta\) is \(H\)-polarized in the corrected sense: over \(\Delta^*\) there is a monodromy-invariant subsystem \(\cL\subset R^2\pi_*\Z\) with fibre \(H\), and there exists an effective, flat, nef Cartier divisor \(A\) on \(\cX\) such that \(A_p\) is nef and big, \([A_p]\in \cL_p\) for \(p\in \Delta^*\), and
+\[
+(A|_{V_i})^2>0,\qquad i=1,2.
+\]
+Assume moreover that the image of \(0\in \Delta\) in the Alexeev--Brunyate--Engel compactification of the moduli space of \(H\)-polarized K3 surfaces is not contained in any Noether--Lefschetz locus.
+
+Let \(Y\) be a very general \(\check H\)-quasipolarized K3 surface. Then \(Y\) admits an elliptic fibration
+\[
+f\colon Y\to \PP^1
+\]
+and an allowable loop \(\gamma\subset \PP^1\) such that the \(\check H\)-quasipolarization is compatible with \(f\) and \(\gamma\), and such that \(\cX\to\Delta\) and \((Y,f,\gamma)\) form a mirror pair in the sense of \cite[Definition 5.1]{dfk3slpms}.
+\end{theorem}
+
+\begin{proof}[Citation]
+This is precisely the \(H\)-case of the main theorem of Giovenzana--Thompson \cite[\S 5]{dfk3slpms}. The construction of the elliptic fibration and allowable loop is carried out in \cite[\S 4]{dfk3slpms}; the compatibility condition is Definition 4.21 there, and the verification that the resulting data form a mirror pair is the content of the proof of the main theorem in \cite[\S 5]{dfk3slpms}. The positivity condition \((A|_{V_i})^2>0\) is the corrected final condition in Definition 3.20 of \cite{dfk3slpms}; adding it only strengthens the hypotheses and is exactly the condition under which the cited theorem is applied.
+\end{proof}
+
+\section{Proof of the asserted statement}
+
+\begin{theorem}\label{thm:main}
+Let \(\pi\colon \cX\to \Delta\) be a very general \(H\)-polarized Tyurin degeneration of K3 surfaces in the corrected sense above. Let \(Y\) be a very general \(H\oplus E_8\oplus E_8\)-quasipolarized K3 surface. Then there exists an elliptic fibration
+\[
+f\colon Y\to \PP^1
+\]
+and an allowable loop \(\gamma\subset \PP^1\) such that the \(H\oplus E_8\oplus E_8\)-quasipolarization is compatible with \(f\) and \(\gamma\), and such that \(\cX\to\Delta\) and \((Y,f,\gamma)\) are a mirror pair in the sense of \cite[Definition 5.1]{dfk3slpms}.
+\end{theorem}
+
+\begin{proof}
+By Lemma \ref{lem:mirror-lattice}, the Dolgachev mirror lattice of \(H\) is
+\[
+\check H \cong H\oplus E_8\oplus E_8.
+\]
+Thus the given surface \(Y\) is a very general \(\check H\)-quasipolarized K3 surface.
+
+The hypotheses on \(\cX\to\Delta\) are exactly the corrected \(H\)-polarized Tyurin hypotheses appearing in Theorem \ref{thm:GT}: monodromy invariance of the \(H\)-lattice, existence of the effective flat nef divisor \(A\), nefness and bigness of \(A_p\) on smooth fibres, membership \([A_p]\in \cL_p\), and the componentwise positivity \((A|_{V_i})^2>0\). The assumed very-generality of the point \(0\in\Delta\) in the Alexeev--Brunyate--Engel compactification is likewise precisely the very-generality condition required in Theorem \ref{thm:GT}.
+
+Applying Theorem \ref{thm:GT} therefore gives an elliptic fibration \(f\colon Y\to \PP^1\) and an allowable loop \(\gamma\subset \PP^1\) such that the \(H\oplus E_8\oplus E_8\)-quasipolarization on \(Y\) is compatible with \(f\) and \(\gamma\), and such that \(\cX\to\Delta\) and \((Y,f,\gamma)\) form a mirror pair in the sense of \cite[Definition 5.1]{dfk3slpms}. This is exactly the desired conclusion.
+\end{proof}
+
+\begin{remark}
+For a very general \(H\oplus E_8\oplus E_8\)-quasipolarized K3 surface one may identify the fibration in Theorem \ref{thm:GT} with the standard Jacobian elliptic fibration whose reducible fibres are two fibres of Kodaira type \(II^*\); the remaining singular fibres are generically nodal. This is the elliptic fibration used in \cite[\S 4]{dfk3slpms} to construct the allowable loop.
+\end{remark}
+
+\begin{thebibliography}{ABE22}
+
+\bibitem[ABE22]{cmek3sspt}
+V.~Alexeev, A.~Brunyate, and P.~Engel,
+\emph{Compactifications of moduli of elliptic K3 surfaces: Stable pair and toroidal},
+Geom. Topol. \textbf{26} (2022), no.~8, 3525--3588.
+
+\bibitem[Dol96]{Dolgachev96}
+I.~V. Dolgachev,
+\emph{Mirror symmetry for lattice polarized K3 surfaces},
+J. Math. Sci. \textbf{81} (1996), no.~3, 2599--2630.
+
+\bibitem[GT24]{dfk3slpms}
+L.~Giovenzana and A.~Thompson,
+\emph{Degenerations and fibrations of K3 surfaces: Lattice polarisations and mirror symmetry},
+Preprint, May 2024, \texttt{arXiv:2405.12009}.
+
+\bibitem[Nik80]{Nikulin80}
+V.~V. Nikulin,
+\emph{Integral symmetric bilinear forms and some of their applications},
+Math. USSR Izv. \textbf{14} (1980), no.~1, 103--167.
+
+\end{thebibliography}
+
+\end{document}

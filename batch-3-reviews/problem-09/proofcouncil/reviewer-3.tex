@@ -1,0 +1,1232 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{fullpage}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\newcommand{\M}{\mathcal M}
+\newcommand{\T}{\mathcal T}
+\newcommand{\cl}[1]{\overline{#1}}
+\newcommand{\Mod}{\operatorname{Mod}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\fptitle}{Review of Problem 9 -- ProofCouncil}
+\newcommand{\reviewtag}{Reviewer 3}
+\usepackage{fp-review}
+
+\begin{document}
+\maketitle
+
+\section{Review}
+The solution acknowledges a partial result, only proving cases where the boundary stratum has at least two nodes (Corollary 3) or the totally geodesic surface is nonarithmetic (Corollary 11).
+The remaining case is proved only under an additional nonstandard ``lifting property'' (L) (Theorem 20).
+The intended solution did not need any arithmetic input, instead relying only on the (contemporaneous) work of Arana-Herrera--Wright and Benirschke--Dozier--Rached.
+(The former was cited while the latter was not.)
+
+The proposed strategy from the introduction is unclear, and it does not represent all the directions the paper attempts.
+This includes a very technical computation in Lemma 13 concerning ``sewing obstructions,'' which again seems unnecessary for the original problem.
+Step 2 in Theorem 20 might be getting at the right idea for the general case, but we cannot confirm this, as it is buried among many pages of unnecessary material.
+
+\paragraph{Correctness.}
+\begin{itemize}
+	\item  1: essentially flawless mathematical argument
+	\item  0.5: minor errors that are easily corrected
+	\item  0: blank solution, or acknowledged partial result
+	\item  $-0.5$: major errors
+	\item  $-1$: proposed proof makes no progress towards the result.
+\end{itemize}
+Note that points should be docked for wrong statements/ solutions.
+
+\noindent Score: 0
+
+\paragraph{Exposition.}
+\begin{itemize}
+	\item  1: well-written and clear solution.
+	\item  0: argument that is possible to follow with serious effort
+	\item  $-1$: very poor exposition
+\end{itemize}
+
+\noindent Score: $-1$
+
+\paragraph{Attributions.}
+\begin{itemize}
+	\item  1: solutions contains fully appropriate attributions
+		to related work and theorems being used.
+	\item  0: moderate issues with missing attributions or hallucinated references
+	\item  $-1$: blatant plagiarism or hallucinations
+\end{itemize}
+
+\noindent Score: 0
+
+\newpage
+\section{Submission with inline comments}
+
+
+\noindent\textbf{Partial result: not a complete solution (unreviewed).}\par
+
+\begin{center}
+\textbf{Rigidity of a constant boundary factor of a deformed
+totally geodesic surface: partial results}
+\end{center}
+
+\noindent\textbf{Abstract.}
+Under boundary hypotheses (i)--(ii) we ask whether the constant
+factor \(Y_t\) of the boundary curve of a deformed totally geodesic
+surface \(V_t\subset\M_g\) is independent of \(t\). This is proved
+when the boundary stratum has at least two nodes or \(V_0\) is
+nonarithmetic; in the remaining one-node arithmetic case
+it is proved only under an additional lifting property (L), so the
+problem is \emph{not} fully resolved.
+
+\section{Introduction}
+
+\paragraph{The problem.}
+Let \(\M_g\) be the moduli space of genus \(g\) Riemann surfaces and
+\(\cl{\M}_g\) its Deligne--Mumford compactification. The boundary
+\(\partial\M_g\) is partitioned into strata \(\Delta_G\) parametrizing
+stable curves with dual graph \(G\); \(\Delta_{G'}\) lies
+on the boundary of \(\Delta_G\) when \(G'\) is obtained from \(G\) by
+pinching further curves. Throughout, closures are taken in \(\cl{\M}_g\).
+
+Let \(V_0\subset\M_g\) be a smooth complex surface, totally geodesic
+for the Teichm\"uller metric, and let \(V_t\), \(t\) in the unit disc
+\(\Delta\), be a holomorphic family of subvarieties deforming it:
+there is a complex submanifold \(\mathcal V\subset\M_g\times\Delta\)
+with \(V_t\) its fibre over \(t\), and this family is assumed smoothly
+trivial. The \(V_t\) for \(t\ne0\) are \emph{not} assumed totally
+geodesic. Two hypotheses are imposed:
+(i) for every boundary stratum \(\Delta_G\), the intersections
+\(\cl{V_t}\cap\Delta_G\) form a smoothly trivial family;
+(ii) these boundary families are compatible with \(V_0\): if
+\(\Delta_{G'}\) lies on the boundary of \(\Delta_G\) and
+\(U\subset\cl{\M}_g\) is open with
+\(\cl{\cl{V_0}\cap\Delta_G}\cap\Delta_{G'}\cap U
+   =\cl{V_0}\cap\Delta_{G'}\cap U\),
+then for all \(t\),
+\(\cl{\cl{V_t}\cap\Delta_G}\cap\Delta_{G'}\cap U
+   =\cl{V_t}\cap\Delta_{G'}\cap U\).
+Fix a dual graph \(\Gamma\) whose stratum is a product
+\(\Delta_\Gamma=\M_{g_1,n_1}\times\cdots\times\M_{g_k,n_k}\), with
+projections \(\pi_j\), and put \(\partial V_t=\cl{V_t}\cap\Delta_\Gamma\).
+Suppose \(\dim\partial V_t=1\) and that for some \(i\),
+\(\pi_i(\partial V_t)=\{Y_t\}\) is a single point for every \(t\).
+\emph{The task is to prove \(Y_t=Y_0\) for all \(t\).}
+
+For a boundary stratum \(S\) we write \(B_S(t)=\cl{V_t}\cap S\),
+with its reduced structure; since \(V_t\) is algebraic,
+\(\dim B_S(t)\le1\), and \(\partial V_t=B_{\Delta_\Gamma}(t)\).
+We read ``subvariety'' as closed algebraic, and ``smoothly trivial
+family'' in the embedded sense: the union of the fibres is a smooth
+submanifold of the target times the disc, and projection to the
+disc is a smoothly trivial submersion (merely diffeomorphic fibres
+would be weaker).
+For the boundary families in (i), holomorphicity then
+\emph{follows} (Lemma~\ref{lem:regularity}). All moduli spaces are
+coarse unless a lift to Teichm\"uller space is explicitly specified.
+
+\paragraph{What is proved.}
+Without further hypotheses: (1) if \(\Gamma\) has at least two
+edges, \(Y_t=Y_0\) (Corollary~\ref{cor:deep}); (2) if the field of
+definition \(K_N\) of the affine invariant manifold attached to a
+marked lift \(N\subset\T_g\) of \(V_0\) (Section~\ref{sec:teich}) is
+not \(\mathbb Q\), then \(Y_t=Y_0\)
+(Corollary~\ref{cor:nonarithmetic}); (3) in the sole unresolved case,
+\(\Delta_\Gamma=\M_{h,1}\times\M_{m,1}\) is a one-node separating
+stratum with \(Y_t\in\M_{h,1}\), the active (moving) factor is an
+arithmetic Teichm\"uller curve in \(\M_{m,1}\), \(m\ge2\) (one
+generated by a square-tiled surface), whose generating quadratic
+differential vanishes at the marked point
+(Theorem~\ref{thm:zero}, Proposition~\ref{prop:active-field});
+(4) every two-node cusp (nodal limit point) of the central (\(t=0\))
+one-node boundary curve is isolated in \(\cl{V_0}\cap S\) for its
+two-node stratum \(S\), and by (i)--(ii) has a unique holomorphic
+continuation
+\(p(t)\) (Proposition~\ref{prop:two-corner},
+Corollary~\ref{cor:corner-section}).
+What is \emph{not} proved is that \(p(t)\) is stationary, or that
+its normalization components other than \(Y_t\) are fixed.
+Theorem~\ref{thm:conditional} proves \(Y_t=Y_0\) in general under an
+explicit lifting property (L) on the boundary curves
+(Section~\ref{sec:lifting}); Section~\ref{sec:open} records why (L)
+has not been derived from (i)--(ii).
+
+\paragraph{Strategy.}
+The mechanism is a \emph{corner argument}
+(Proposition~\ref{prop:fixed-cusp}): if a stable curve \(p\) with
+more nodes lies in the closure of \(\partial V_0\), is isolated in
+\(\cl{V_0}\cap S\) for its own stratum \(S\), and \emph{stays} in
+\(\cl{V_t}\cap S\) for small \(t\), then \(Y_t\) lies in the finite
+set of smooth pointed normalization components of \(p\).
+Hypothesis (ii) gives this stationarity when \(S\) has at
+least three nodes (Lemma~\ref{lem:deep-points}); the hard case is a
+one-node stratum, whose simplest corners are two-node curves: we
+obtain their isolation (Proposition~\ref{prop:two-corner}) but not
+their stationarity. Sections~\ref{sec:teich}--\ref{sec:sewing} use the
+boundary theory of \cite{AHW}, cylinder deformations
+\cite{WrightCylinder} and a second-order sewing expansion of period
+matrices \cite{HuNorton}; Section~\ref{sec:lifting} introduces (L)
+and the rigidity of Teichm\"uller curve maps \cite{McMullen}, and
+Section~\ref{sec:conditional} runs the corner argument under (L).
+
+\section{Consequences of hypotheses (i)--(ii)}\label{sec:hyp}
+
+\begin{lemma}[Holomorphicity of the boundary families]\label{lem:regularity}
+Under the above interpretation, the boundary families in (i)
+are holomorphic submersions. In particular \(t\mapsto Y_t\)
+is holomorphic, so local constancy at \(0\) implies constancy
+on the whole disc.
+\end{lemma}
+\begin{proof}
+\emph{Step 1: a generic projective envelope.}
+Embed \(\cl{\M}_g\) in projective space and choose an affine graph
+\((z,F(z,t))\) for one connected component of the interior
+family \(V_t\), near any chosen parameter \(t=0\).
+Every \(F_j(\,\cdot\,,t)\) is algebraic over \(\mathbb C(z)\).
+For each degree \(n\), evaluate the finitely many monomials
+in \((z,F_j)\) of degree at most \(n\) and take their
+Taylor-coefficient matrix in \(z\).
+Linear dependence of its columns is a closed condition on
+\(t\), given by holomorphic minors, and these closed sets cover
+the disc, so Baire's theorem and the identity theorem make all
+maximal minors vanish identically for some \(n\).
+Over \(K=\operatorname{Frac}\mathbb C\{t\}\), finitely many
+rows span the row space; a nonzero vector in their kernel
+annihilates every row and gives a polynomial relation for \(F_j\).
+Thus \(K(z,F)\) is finite over \(K(z)\), and
+\(K\) is algebraically closed in this field:
+differentiating the minimal polynomial of any element
+algebraic over \(K\) shows that all its \(z\)-derivatives
+vanish, so the element is meromorphic in \(t\) alone.
+The prime ideal of all relations therefore defines a
+geometrically integral generic variety \cite[Tag 037P]{Stacks}
+(reducedness is automatic in characteristic zero).
+\review{Doing algebraic geometry at the level of the Stacks project should be completely unneccessary for this problem.}
+Take its
+projective closure over \(\mathbb C\{t\}\) and spread its finitely
+many homogeneous equations over a finitely generated complex
+subalgebra \(R\subset\mathbb C\{t\}\); the generic fibre
+is geometrically integral, since this holds after extending
+\(\operatorname{Frac}R\) to \(K\). Generic flatness and
+generic geometric integrality
+\cite[Tags 052A, 0559, 0578]{Stacks} give integral fibres
+of dimension two after inverting some \(0\ne f\in R\).
+
+The nonzero germ \(f(t)\) has no zeros on a small punctured disc,
+where each envelope fibre contains the original graph and equals
+the individual projective closure of that component by
+irreducibility and dimension. Repeat for the finitely many continued components;
+the central envelope may have extra components, none of which are
+excluded or used here.
+
+\emph{Step 2: the boundary family is complex.}
+Consequently \(\bigcup_{t\ne0}B_S(t)\times\{t\}\) is analytic.
+By (i) its underlying set, including \(t=0\), is an embedded
+smooth family. At the regular points of the analytic part its
+tangent spaces are complex; density and continuity of tangent
+spaces make them complex everywhere, including at \(t=0\), and
+a smooth embedded submanifold with complex tangent spaces
+is a complex submanifold (its local graph maps have complex-linear
+differentials, hence are holomorphic).
+Its projection, already a smooth submersion, is therefore
+a holomorphic submersion. This applies near any parameter.
+Finally, a local holomorphic section followed by \(\pi_i\) gives
+\(Y_t\), and the identity theorem proves the last assertion.
+\end{proof}
+
+The next lemmas exploit the literal quantifier over open sets in
+(ii), applied to the particular open set
+\(U=\cl{\M}_g\setminus\cl{B_S(0)}\), for which both sides of the
+antecedent are empty.
+
+\begin{lemma}[Fixed curves in deeper strata]\label{lem:deep}
+If \(S\) has at least two nodes, every curve component of \(B_S(t)\)
+is contained in \(B_S(0)\). A curve component continued from
+\(B_S(0)\) is therefore fixed, as a subset, for all small \(t\).
+\end{lemma}
+
+\begin{proof}
+Choose a boundary stratum \(H\) obtained by smoothing one node of
+\(S\), and set \(U=\cl{\M}_g\setminus\cl{B_S(0)}\).
+Both sets in the antecedent of (ii), for \(H,S,U\), are empty, since
+\(\cl{B_H(0)}\cap S\subset B_S(0)\), so (ii) gives
+\(B_S(t)\cap U=\cl{B_H(t)}\cap S\cap U\).
+The right side is finite: \(B_H(t)\) has dimension at most
+one, and a locally closed algebraic curve has only finitely many
+points in its closure outside its original locus.
+Because \(B_S(0)\) is closed in \(S\), a curve component of \(B_S(t)\)
+not contained in \(B_S(0)\) would have an infinite, nonempty
+Zariski-open intersection with \(U\), which is impossible. Such a
+curve component must thus be one of the finitely many curve
+components of \(B_S(0)\), and smooth continuation cannot switch
+between that finite collection.
+\end{proof}
+
+\begin{corollary}\label{cor:deep}
+The conclusion of the problem holds if \(\Gamma\) has at least two
+edges.
+\end{corollary}
+
+\begin{proof}
+By Lemma~\ref{lem:deep} the \(i\)-th projection of any curve
+component of \(\partial V_t\) is \(Y_0\); by hypothesis it is \(Y_t\).
+\end{proof}
+
+\begin{lemma}[Coarse continuation in the given, unlabelled stratum]
+\label{lem:isolated}
+An isolated point \(p\) of \(B_S(0)\) has a unique local continuous
+continuation in \(B_S(t)\), and this continuation is holomorphic.
+If the curve components of \(B_S(t)\) are fixed and a continuous
+section \(p(t)\in B_S(t)\) starts on a curve component of \(B_S(0)\),
+then \(p(t)\in B_S(0)\) for all sufficiently small \(t\).
+\end{lemma}
+
+\begin{proof}
+The smooth trivialization continues the isolated points as
+separate zero-dimensional components; holomorphicity
+(Lemma~\ref{lem:regularity}) makes their locally unique sections
+holomorphic. There are finitely many such sections. For the second
+assertion their central values differ from \(p(0)\), so the given
+section stays locally in the fixed curve part.
+\end{proof}
+
+\begin{lemma}[Stationarity beyond two nodes]\label{lem:deep-points}
+If \(S\) has at least three nodes, then
+\(B_S(t)\subseteq B_S(0)\) for all \(t\in\Delta\).
+In particular, every isolated point of \(B_S(0)\) has constant
+local continuation.
+\end{lemma}
+
+\begin{proof}
+Smooth one node of \(S\) to obtain a boundary stratum \(H\) with at
+least two nodes. Lemma~\ref{lem:deep} implies that the curve part
+of \(B_H(t)\) is contained in \(B_H(0)\); the remaining components
+are finitely many points of \(H\), whose closures do not meet \(S\).
+Therefore
+\(\cl{B_H(t)}\cap S\subseteq\cl{B_H(0)}\cap S\subseteq B_S(0)\).
+Applying (ii) with \(U=\cl{\M}_g\setminus\cl{B_S(0)}\), as in
+Lemma~\ref{lem:deep}, gives \(B_S(t)\cap U=\varnothing\); since
+\(B_S(0)\) is closed in \(S\), this proves the inclusion.
+A continuous section through an isolated point of \(B_S(0)\)
+must then be constant near \(0\).
+\end{proof}
+
+\begin{proposition}[A stationary corner suffices]\label{prop:fixed-cusp}
+Let \(S\) lie on the boundary of the chosen stratum
+\(\Delta_\Gamma\). Suppose
+\(p\in\cl{B_{\Delta_\Gamma}(0)}\cap S\)
+is isolated in \(B_S(0)\) and belongs to \(B_S(t)\) for every
+sufficiently small \(t\). Then \(Y_t=Y_0\) for all \(t\). In
+particular the conclusion of the problem holds if
+\(\cl{B_{\Delta_\Gamma}(0)}\) contains a point with at least three
+nodes that is isolated in its full stratum intersection \(B_S(0)\).
+\end{proposition}
+
+\begin{proof}
+Choose an open neighbourhood \(U\) of \(p\) with
+\(B_S(0)\cap U=\{p\}\). Since \(p\) is a limit from the chosen
+stratum, the antecedent of (ii) holds for
+\(\Delta_\Gamma,S,U\). Thus
+\(p\in B_S(t)\cap U=\cl{B_{\Delta_\Gamma}(t)}\cap S\cap U\).
+The compactified clutching map from
+\(\prod_j\cl{\M}_{g_j,n_j}\) to \(\cl{\M}_g\) is proper. For a fixed \(t\),
+the image of its closed subset with \(i\)-th coordinate \(Y_t\)
+therefore contains \(\cl{B_{\Delta_\Gamma}(t)}\).
+Hence the stable curve \(p\) admits a clutching presentation in
+which the \(i\)-th factor is the smooth pointed curve \(Y_t\).
+A fixed stable curve has only finitely many such smooth pointed
+factors (a normalization component with a labelling of its node
+preimages), so \(Y_t\) takes values in a fixed finite set.
+Continuity fixes its value near \(0\), and holomorphicity
+(Lemma~\ref{lem:regularity}) extends the equality to the whole disc.
+For the last assertion combine Lemma~\ref{lem:deep-points} with the
+continuation in (i).
+\end{proof}
+
+These arguments require isolation in the \emph{whole} stratum
+intersection \(B_S(0)\), not just among the limits of the chosen
+curve; the next lemma, about a single surface, handles symmetric
+two-node corners without any lifted family.
+
+\begin{lemma}[Both partial smoothings at an isolated two-node point]
+\label{lem:plumbing}
+Let \(Z\subset\M_g\) be an algebraic surface, and let
+\(p\in\cl Z\) represent a stable curve with exactly two nodes \(a,b\).
+Suppose \(p\) is isolated in the intersection of \(\cl Z\) with its
+stratum. In a local deformation chart with the nodes labelled, the
+closure of \(Z\) contains a curve approaching \(p\) on which exactly
+\(b\) remains nodal, and also such a curve on which exactly
+\(a\) remains nodal.
+\end{lemma}
+
+\begin{proof}
+A versal deformation chart of the stable curve is smooth,
+with plumbing coordinates \(u_a,u_b\) (one for each node, vanishing
+exactly when that node persists). Its map to the coarse space
+is finite and its boundary is \(u_a u_b=0\)
+\cite[Sections 8--10, Proposition 12.2 and Corollary 12.3]{HubbardKoch}
+(a chart for the single fixed surface \(\cl Z\), not a pullback of a
+trivialized family). Choose a lift of \(p\) and an irreducible surface branch \(A\)
+of the closure of the lifted interior through that lift; such a
+branch exists by finiteness of the chart, and its interior is dense.
+Neither \(u_a\) nor \(u_b\) is identically zero on \(A\), so
+the zero set of either function on \(A\) has a one-dimensional
+component through the chosen point, by Krull's principal ideal
+theorem. But \(A\cap\{u_a=u_b=0\}\)
+is zero-dimensional there, since the chart is finite and \(p\) is
+isolated in its stratum intersection. A curve component of
+\(A\cap\{u_b=0\}\) is consequently not contained in \(\{u_a=0\}\);
+its general points give the first assertion, and interchanging
+\(a,b\) gives the second.
+\end{proof}
+
+\begin{corollary}[Equal-genus ends]\label{cor:symmetric}
+Suppose the chosen one-node stratum is
+\(\M_{h,1}\times\M_{h+r,1}\), with \(r\geq1\), and its whole
+intersection with \(\cl{V_t}\) has first coordinate \(Y_t\).
+Suppose it has a two-node limit, isolated in the
+\emph{whole} two-node stratum intersection of \(\cl{V_t}\),
+whose normalization is a chain
+\(Y_t\cup_a A\cup_b W\) with \(g(A)=r\), \(g(W)=h\),
+where \(W\), including its attaching point, is fixed.
+Then \(Y_t=W\).
+\end{corollary}
+
+\begin{proof}
+Apply Lemma~\ref{lem:plumbing} to \(V_t\), smoothing \(a\) and keeping
+\(b\): this produces a curve in the same one-node stratum whose
+genus-\(h\) factor tends to \(W\); that factor is identically \(Y_t\)
+on the entire stratum intersection, so \(Y_t=W\). Since the two
+factors have different genera, no labels on the coarse stratum are
+needed.
+\end{proof}
+
+\section{Teichm\"uller-geometric input on the central surface}\label{sec:teich}
+
+From now on \(N\subset\T_g\) denotes a marked lift of \(V_0\) to
+Teichm\"uller space, a totally geodesic complex surface, and
+\(\cl N\) its closure in the bordification of \(\T_g\) used in
+\cite{AHW}. For
+\(X\in N\), the Teichm\"uller discs through \(X\) tangent to \(N\)
+are generated by a two-dimensional space \(Q_XN\) of holomorphic
+quadratic differentials on \(X\); \(QN\) is the resulting rank-two
+bundle and \(Q_{\max}N\) the locus of differentials in \(QN\) lying
+in the largest (generic) stratum of quadratic differentials (by
+zero orders, not a boundary stratum). Arana-Herrera and Wright
+\cite{AHW} define an equivalence relation on cylinder curves (core
+curves of flat cylinders) of
+differentials in \(QN\): roughly, two parallel cylinders are
+equivalent if they remain parallel, with constant circumference
+ratio, on all nearby surfaces of \(QN\), so that they can only be
+deformed together. We use the following consequences of their work.
+(1) A marked boundary intersection of \(\cl N\) with a stratum is
+smooth, irreducible, algebraic, and \emph{semisimple}: a product of
+Teichm\"uller-space factors on which the components of the pinched
+surface either stay fixed or move along totally geodesic
+submanifolds \cite[Theorem 1.3]{AHW}. A one-dimensional such locus
+has one positive-dimensional simple factor, and its \emph{active}
+(nonconstant) coordinate maps are Teichm\"uller-disc isometries.
+(2) Pinched curves occur in whole equivalence classes; each
+class has a positive multitwist stabilizing \(N\), and a class can
+be unpinched while the other nodes remain pinched
+\cite[Corollary 2.2, Lemmas 2.6 and 2.13, Corollaries 2.12 and
+3.17]{AHW} (integrality of the twist exponents comes from the
+rationality of modulus ratios in Corollary 2.2).
+(3) If a nonpoint simple boundary factor is supported on
+subsurfaces \(U_1,\ldots,U_s\), then
+\(\partial(\bigcup_j U_j)\) is a union of whole equivalence classes
+\cite[Lemma 6.1(3)]{AHW}.
+Successively unpinching \(r\) distinct
+classes gives the \emph{dimension bound} \(\dim L\leq\dim N-r\) for
+a boundary locus \(L\) with those classes pinched; see the proof of
+\cite[Theorem 3.9]{AHW}. Thus all nodes of a boundary \emph{curve}
+of a totally geodesic \emph{surface} form a single equivalence class.
+
+\paragraph{Stabilizers and cusps.}
+Let \(L\) be a marked semisimple curve, \(L_j\) an active
+projection, and \(\Lambda,\Lambda_j\) their setwise stabilizers in
+the product mapping class group and the \(j\)-th mapping class group
+(pinching twists already removed), divided by their pointwise
+kernels. The disc isometry \(L\to L_j\) identifies \(\Lambda\) with
+a subgroup of \(\Lambda_j\) (an element acting trivially on the
+active disc acts trivially on \(L\)); the normalized moduli map is
+the orbifold covering of this inclusion, of finite degree by
+algebraicity, and its source has finite hyperbolic area (a
+torsion-free finite cover is an ordinary finite-area curve).
+We need a cusp only for the chosen active curve:
+Theorem~\ref{thm:zero} makes its differential holomorphic and its
+sole mark a zero; forgetting that zero, and taking the orientation
+double cover if necessary, changes the lattice only by finite index,
+so the noncompactness theorem for algebraic Teichm\"uller curves
+\cite{Veech}, \cite[Proposition 2.4]{McMullenSurvey} supplies a cusp.
+
+\begin{lemma}[Forbidden leaf support]\label{lem:forbidden}
+A totally geodesic surface cannot have a boundary curve in a stratum
+with at least two nodes whose only active normalization component
+corresponds to a vertex with exactly one incident half-edge and no
+loop.
+\end{lemma}
+
+\begin{proof}
+Let \(a\) be the unique node incident to that component \(Y\).
+At a marked lift of a generic point of the proposed curve, all the
+nodes belong to one class by the dimension bound. On the other
+hand, the support assertion (3) makes \(\partial Y=\{a\}\) a union of
+entire classes. The other node or nodes give a contradiction.
+\end{proof}
+
+\paragraph{An arithmetic reduction.}
+Let \(\mathcal A_N\) be the affine invariant manifold of square roots
+of the largest stratum of \(QN\) (an orbit closure of translation
+surfaces, locally linear in period coordinates), and let \(K_N\) be
+its field of definition in period coordinates. We use a connected
+component and make finite marking choices when needed. For a surface
+\(N\), \(\mathcal A_N\) has complex dimension four, rank two, and no
+relative tangent directions \cite[Theorem 1.3 and its proof]{WrightTG}.
+
+\begin{proposition}[A singleton forces arithmeticity]\label{prop:field}
+If the closure of \(N\) contains a stable Riemann surface with
+exactly one node, then \(K_N=\mathbb Q\).
+\end{proposition}
+\begin{proof}
+The node \(a\) is a singleton cylinder class. Realize it
+on a differential in \(Q_{\max}N\).
+If that differential is a square, its cylinder is an entire
+class on the translation surface, and
+\cite[Theorem 7.1]{WrightCylinder} (the field of definition lies in
+the field generated by circumference ratios within a class) gives
+field \(\mathbb Q\).
+Otherwise take the orientation cover. Its involution cannot
+preserve a flat cylinder: in cylinder coordinates its
+derivative is \(-1\), and preservation would give a fixed
+regular point. Thus cylinders upstairs come in pairs and
+project to cylinders downstairs. The two lifts of \(a\)
+have equal circumferences and are equivalent. Any cylinder
+equivalent to them would project to an \(N\)-equivalent
+cylinder, since the square-root locus locally covers
+\(Q_{\max}N\). There are no others. The same theorem, with the
+single ratio \(1\), now gives \(K_N=\mathbb Q\).
+\end{proof}
+
+\begin{corollary}\label{cor:nonarithmetic}
+The conclusion of the problem holds whenever \(K_N\ne\mathbb Q\).
+Consequently the only unresolved one-node case has \(K_N=\mathbb Q\).
+\end{corollary}
+\begin{proof}
+A boundary point has a compatible marked lift: use a local branch
+of the Dehn space as in the proof of \cite[Lemma 3.13]{AHW}.
+Proposition~\ref{prop:field} rules out a one-node stratum when
+\(K_N\ne\mathbb Q\). The chosen stratum must then have at least
+two nodes, and Corollary~\ref{cor:deep} applies.
+\end{proof}
+
+\section{The active differential vanishes at the attachment}\label{sec:sewing}
+
+Only the central totally geodesic surface is used in this section.
+By Corollaries~\ref{cor:deep} and \ref{cor:nonarithmetic}
+the remaining case is a one-node stratum; a nonseparating one-node
+stratum has a single factor, which cannot be constant on a curve, so
+the node is separating. Let \(N\subset\T_g\) be a marked lift of
+\(V_0\) with one-node boundary curve
+\(L=\{(Y,y)\}\times D\), \(D\subset\T_{m,1}\),
+where \((Y,y)\) is the fixed pointed curve of genus \(h\ge1\),
+\(D\) is a Teichm\"uller disc, and \(a\) is the separating node;
+by the dimension bound the class of \(a\) is a singleton. Locally on
+\(D\), use a parameter \(\tau\), write the pointed curve at \(\tau\)
+as \((E_\tau,x_\tau)\), and choose a nonzero holomorphic generator
+\(q_D(\tau)\) of its Teichm\"uller differential line, a meromorphic
+quadratic differential on \(E_\tau\) with at most a simple pole at
+\(x_\tau\). We recall some terminology.
+A quadratic differential with a double pole has a \emph{quadratic
+residue} \(R^2\), the coefficient of \((dz/z)^2\); if \(R^2\ne0\)
+there is a local \emph{exponential coordinate} \(w\), unique up to a
+scalar, in which it equals \(R^2(dw/w)^2\). Given two such
+differentials (``caps'') with matching residues on the two sides of
+a node, identifying \(w_Yw_E=u\) produces a smooth curve with a flat
+cylinder replacing the node: \emph{sewing} with parameter \(u\).
+The \emph{quadratic-Hodge bundle} \(\mathcal H\) over the
+deformation space consists of quadratic differentials with at most
+double poles and matching residues at the node. A
+\emph{Jenkins--Strebel} (or Strebel) differential has closed
+horizontal trajectories off a critical graph, sweeping out flat
+cylinders; it is \emph{complete} for a multicurve if its cylinder
+cores are exactly that multicurve.
+
+\begin{lemma}[A boundary pencil and its sewings]\label{lem:cap-pencil}
+Locally at every point of \(D\) there are meromorphic quadratic
+differentials
+\(Q(\tau,s)=\bigl(q_Y,\ q_E^0(\tau)+s q_D(\tau)\bigr)\)
+on \(Y\sqcup E_\tau\), depending holomorphically on \((\tau,s)\)
+(\(q_E^0(\tau)\) is identified in the proof),
+with matching nonzero quadratic residue
+\(R^2\), independent of \(\tau,s\), at the node.
+They belong to the quadratic-Hodge closure of \(QN\).
+Sewing their double poles in exponential coordinates
+\(w_Yw_E=u\) gives a curve in \(N\), for every sufficiently
+small \(u\ne0\). The cap \(q_Y\), and hence \(w_Y\), is
+independent of both \(\tau\) and \(s\).
+\end{lemma}
+\begin{proof}
+Work in a labelled finite deformation chart of the central
+locus. Close the graph of \(X\mapsto Q_XN\subset\mathcal H_X\),
+\(X\in N\), in the Grassmannian bundle of two-planes in
+\(\mathcal H\). For any limiting plane \(W\) at \(P=(Y,E_\tau)\),
+its residue kernel (the differentials in \(W\) with zero residue at
+the node) is contained in \(\mathbb C(0,q_D(\tau))\), by
+\cite[Corollaries 3.11--3.12 and the proof of Theorem 3.9]{AHW};
+by dimension it equals this line.
+
+\emph{Uniqueness of the limiting plane} (not merely generic
+finiteness). For \(X_n\to P\) realizing \(W\), take the complete
+one-cylinder
+Jenkins--Strebel differentials \(J_n\in Q_{X_n}N\)
+given by \cite[Corollary 2.7]{AHW}, with core \(a\)
+and circumference one.
+They are bounded in a local trivialization of \(\mathcal H\):
+otherwise dividing by their divergent norms gives a nonzero
+limiting differential but horizontal circumference tending
+to zero; a small natural-coordinate disc at a regular
+point of that limit contains a uniform smaller disc for
+the approximants, and a regular point off their critical graphs
+would lie on a closed horizontal trajectory too short
+to leave this disc, impossible in a flat coordinate.
+For any convergent subsequence of \(J_n\), cylinder/residue
+convergence, as in \cite[Lemma 3.10]{AHW}, gives residue
+\(-1/(4\pi^2)\) at the node. Almost every limiting horizontal
+trajectory is closed: away from the critical trajectories,
+flows converge for their common period one, and a bounded
+length trajectory cannot escape down an infinite pole cylinder.
+Each resulting closed leaf is peripheral to the node, since
+the approximating leaves have core \(a\).
+Strebel uniqueness \cite[Theorem 2]{Zvonkine} identifies the
+limit as \(J(P)=(J_Y,J_{E_\tau})\),
+the pair of one-pole Strebel differentials of perimeter one,
+with \(J_Y\) fixed. Thus every \(W\) equals
+\(\mathbb C J(P)+\mathbb C(0,q_D(\tau))\).
+The closure of the graph of \(\tau\mapsto W(\tau)\) over \(L\)
+(with its reduced structure) is now proper with singleton
+fibres, hence finite and birational over the smooth curve
+\(L\), and therefore isomorphic to it. Thus \(W(\tau)\) is
+holomorphic even at formerly exceptional points.
+A holomorphic fixed-residue section of \(W(\tau)\) has
+\(Y\)-part equal to a fixed multiple of \(J_Y\); adding
+\(s(0,q_D)\) gives the asserted pencil.
+
+\emph{Sewing an arbitrary vector of the pencil} (not only a
+differential selected by an existence theorem).
+Approximate the given vector by \((X_n,Q_n)\in Q_{\max}N\). Compact annuli near
+both limiting double poles are zero-free. On its approximating
+annulus the nonzero core period \(L_n=\oint_a\sqrt{Q_n}\) tends
+to \(2\pi iR\), up to sign, and the coordinate
+\(w_n=\exp\bigl(\frac{2\pi i}{L_n}\int\sqrt{Q_n}\bigr)\)
+is single-valued. Choose its multiplicative constant so it converges
+to the limiting exponential coordinate on a slightly larger
+annulus. On a smaller annulus it is then univalent, by
+uniform convergence and the argument principle, and its
+image contains a common round subannulus. After rotating
+\(Q_n\), these round circles are closed horizontal
+trajectories, so \(a\) is a cylinder of \(Q_n\).
+The two annuli belong to the same maximal \(a\)-cylinder:
+an annulus between homotopic flat cores on a holomorphic
+quadratic differential contains no zeros, by Gauss--Bonnet.
+Cutting this cylinder and filling both sides by punctured
+discs in the displayed coordinates is holomorphic locally, and
+convergence on compact subsets on both sides gives convergence
+of these caps to the prescribed pair. The singleton
+Cylinder Deformation Theorem \cite[Theorem 5.1]{WrightCylinder}
+allows arbitrary shear and positive height for this cylinder
+without changing the caps, while staying in \(\mathcal A_N\).
+For each fixed sufficiently small \(u\ne0\) (uniformly over a
+relatively compact cap-parameter neighbourhood: common
+pole-coordinate radii keep the cylinder height positive), choose
+these deformations to have sewing parameter \(u\); changing
+coordinate scalars only reparametrizes \(u\). The sewn approximants
+converge to the sewing of \(Q(\tau,s)\), which lies in \(N\) by
+closedness. Integer changes of the sewing marking are harmless
+because the Dehn twist \(T_a\) stabilizes \(N\); the marked lift of
+the holomorphic sewing family is taken on a simply connected sector
+of the punctured \(u\)-disc, winding around zero giving that twist.
+No simultaneous realization of intersecting cylinder multicurves is
+required.
+\end{proof}
+
+The next lemma is the heart of the obstruction: sewing the pencil
+with parameter \(u\) yields \emph{three} parameters \((\tau,u,s)\)
+unless the active differential vanishes at the attaching point.
+
+\begin{lemma}[Second-order sewing obstruction]\label{lem:sewing}
+For the pencil in Lemma~\ref{lem:cap-pencil}, suppose
+the unpointed curves \(E_\tau\) vary.
+If \(q_D\) has either a simple pole or a regular nonzero
+value at \(x_\tau\), the map \((\tau,u,s)\mapsto\M_g\) given by the
+sewn curves has complex rank three at suitable points with
+arbitrarily small \(u\ne0\).
+\end{lemma}
+\begin{proof}
+Choose a coordinate \(z\) at \(x_\tau\), holomorphically
+in \(\tau\), for which \(q_E^0=R^2(dz/z)^2\), and write
+\(q_D=(d(\tau)z^{-1}+e(\tau)+O(z))\,dz^2\),
+\(A=sd/R^2\), \(B=se/R^2\).
+The exponential coordinate of \(q_E^0+s q_D\), normalized
+by \(w_E/z\to1\), satisfies
+\(w_E=z+\frac A2z^2+(\frac{A^2}{16}+\frac B4)z^3+O(z^4)\).
+For the \(A\)-normalized fundamental bidifferential write
+\(\mathcal B(w,w')=((w-w')^{-2}+\beta+O(w,w'))\,dw\,dw'\).
+A change \(w=z+az^2+bz^3+\cdots\) changes its constant
+regular coefficient by \(a^2-b\): substitute
+\(z=w-aw^2+(2a^2-b)w^3+\cdots\) in the singular part;
+the holomorphic part has unchanged constant coefficient.
+Consequently
+\(\beta_E(\tau,s)=\beta_E(\tau,0)+3s^2d(\tau)^2/(16R^4)
+-se(\tau)/(4R^2)\).
+If \(d\ne0\), its \(s\)-derivative is not identically
+zero; if \(d=0,e\ne0\), that derivative is everywhere
+nonzero.
+
+Let \(\eta_\alpha,\omega_j\) be normalized holomorphic
+one-forms on \(E_\tau,Y\), and set
+\(e_\alpha=(\eta_\alpha/dw_E)(x_\tau)\),
+\(v_j=(\omega_j/dw_Y)(y)\), \(c_*=2\pi i\).
+These evaluations are independent of \(s\), because
+\(dw_E/dz(0)=1\) and the \(Y\)-cap is independent of \(s\).
+Write \(\Omega\) for the sewn period matrix and
+\(\Omega_E,\Omega_Y\) for those of its components.
+The separating-node expansion is
+\begin{align}
+ \Omega_{\alpha\beta}
+    &=(\Omega_E)_{\alpha\beta}
+       +c_*u^2\beta_Y e_\alpha e_\beta+O(u^3),\nonumber\\
+ \Omega_{\alpha j}
+    &=-c_*u e_\alpha v_j+O(u^2),\label{eq:general-periods}\\
+ \Omega_{ij}
+    &=(\Omega_Y)_{ij}
+       +c_*u^2\beta_E v_i v_j+O(u^3).\nonumber
+\end{align}
+Here the \(E\)-block's displayed coefficients are independent
+of \(s\), and \(\Omega_Y\) is constant.
+(Continuation of \(\omega_j\) to \(E\) starts with
+\(-uv_j\,dw_E/w_E^2\), whose normalized extension has
+constant regular coefficient \(-uv_j\beta_E\); returning to \(Y\)
+gives \(u^2v_j\beta_E\,dw_Y/w_Y^2\), with \(B_i\)-period
+\(c_*u^2\beta_Ev_iv_j\). Reversing the components gives the
+\(E\)-block.) The analytic matching construction
+\cite[Theorem 3.3, Section 5.1.1]{HuNorton} controls the
+remainders; their \(\tau,s\)-derivatives have the same
+orders, and a \(u\)-derivative lowers the order by one.
+
+By Torelli's theorem, some entry
+\(F(\tau)=(\Omega_E)_{\rho\sigma}\) is nonconstant.
+Choose a general \(\tau\) with \(F'(\tau)\ne0\), and
+choose \(\alpha,j\) with \(e_\alpha v_j\ne0\), using
+base-point freeness of the canonical systems.
+At an \(s\) with \(\partial_s\beta_E\ne0\),
+\(\det\,\partial(\Omega_{\rho\sigma},\Omega_{\alpha j},\Omega_{jj})
+/\partial(\tau,u,s)
+=-c_*^2F'e_\alpha v_j^3(\partial_s\beta_E)u^2+O(u^3)\ne0\).
+The period matrix is holomorphic in the marked curve, so the
+moduli rank is at least three.
+\end{proof}
+
+\begin{theorem}[A positive-order zero is necessary]\label{thm:zero}
+If a totally geodesic surface has a one-node separating boundary
+curve with one constant factor, then the active Teichm\"uller
+differential vanishes at the attaching point, and the active
+component has genus \(m\ge2\).
+\end{theorem}
+\begin{proof}
+First, the unpointed active curve is nonconstant: for \(m=1\),
+forgetting the sole marking changes no elliptic modulus, and for
+\(m\ge2\), a constant unpointed projection would put the marked Teichm\"uller disc in
+a Bers fibre (a fibre of the forgetful map
+\(\T_{m,1}\to\T_m\), \cite[Section 9(B)]{BersFinite}). Kra's strict
+comparison \cite[Theorem 3, Section 10]{Kra} gives, for distinct
+points in that fibre, ambient Teichm\"uller distance
+strictly less than intrinsic Poincar\'e distance, so
+Schwarz's lemma for a disc mapping into the fibre
+contradicts the ambient disc isometry.
+A Teichm\"uller differential has finite area, hence at most a
+simple pole at the sole marking. Unless it vanishes there,
+Lemmas~\ref{lem:cap-pencil} and \ref{lem:sewing} give
+a rank-three family in the two-dimensional \(N\),
+a contradiction. The singularity order at the marked
+point is constant along its generating disc, so it
+suffices to work at the general points used above.
+Finally, on an elliptic curve,
+\(H^0(K^2(p))=H^0(\mathcal O(p))\) is one-dimensional, and
+every nonzero member is a nowhere-zero holomorphic
+quadratic differential; thus \(m=1\) is impossible.
+\end{proof}
+
+\begin{proposition}[Arithmeticity of the active curve]\label{prop:active-field}
+In the configuration of Theorem~\ref{thm:zero}, the square-root
+orbit of the active differential has field of definition
+\(\mathbb Q\); in particular it contains a square-tiled surface.
+\end{proposition}
+\begin{proof}
+The differential \(q_D\) is holomorphic, so forgetting the
+attachment preserves its Teichm\"uller disc. Its unpointed
+image is an algebraic Teichm\"uller curve (the forgetful map is
+proper, and the marked zero has finitely many choices).
+Choose a periodic direction of \(q_D\), with cylinder cores
+\(B=\{b_1,\ldots,b_r\}\). Its cusp gives a point of \(\cl N\)
+with nodes \(a\cup B\); no core is contracted after forgetting the
+mark, since a holomorphic quadratic differential has neither an
+inessential flat core nor two homotopic distinct maximal cylinders,
+by Gauss--Bonnet. Since \(\{a\}\) is one class, the dimension bound
+shows that \(B\) is exactly one further \(N\)-class.
+
+Proposition~\ref{prop:field} gives \(K_N=\mathbb Q\).
+On its rational square-root tangent space, integrations over
+the lifted cylinder cores are rational linear functionals
+\(\lambda_j\), and equivalence makes
+\(\lambda_j=c_j\lambda_1\) with \(\lambda_1\ne0\).
+Evaluating on a rational tangent vector where \(\lambda_1\ne0\)
+gives \(c_j\in\mathbb Q\) \cite[Lemma 7.2]{WrightCylinder}.
+The finite-area vector \((0,q_D)\) belongs to \(\cl{QN}\), and its
+cylinders persist on approximants in \(Q_{\max}N\): the normalized
+annular coordinates in the proof of Lemma~\ref{lem:cap-pencil}
+apply to compact subcylinders. By \cite[Corollary 2.2]{AHW}, these
+\(c_j\) are the same constants on every approximant with those
+marked cylinders, depending only on the cylinder curves and \(N\).
+Cylinder circumferences converge to those of \(q_D\), so its
+ratios equal these fixed rational numbers (not merely an arbitrary
+limit of rational ratios).
+
+Take the orientation cover of this \emph{smooth} active
+differential, or the differential itself if it is a square.
+In the nonsquare case every downstairs cylinder has two
+equal-circumference lifts, and these exhaust the upstairs
+cylinders: all zeros remain zeros, and a cylinder invariant under
+the orientation involution would contain a fixed regular point.
+Thus all horizontal circumference ratios upstairs are rational, and
+\cite[Theorem 1.9]{WrightCylinder} gives field \(\mathbb Q\). The
+closed square-root orbit has complex dimension two; rational real
+and imaginary relative periods are dense in its rational period
+plane, and after scaling one such point has integral periods and is
+square-tiled. No specialization of a possibly disconnected
+orientation cover is used.
+\end{proof}
+
+The corner argument needs isolation of the two-node cusps of \(L\)
+(points of \(\cl L\) where one further curve \(b\) of \(E_\tau\) is
+pinched) in the \emph{whole} two-node stratum intersection \(B_S(0)\).
+
+\begin{proposition}[Isolation of two-node cusps]\label{prop:two-corner}
+Suppose a cusp of a central one-node boundary curve has exactly
+two nodes. Then its coarse point \(p\) is isolated in the
+whole intersection \(B_S(0)\) with its two-node stratum \(S\).
+\end{proposition}
+\begin{proof}
+Choose a compatible marked lift \(P\in\cl N\), with nodes
+\(a,b\). They are two singleton classes, \(a\) being already a
+singleton along the one-node curve. For \(X_n\in N\) tending
+to \(P\), the complete one-class Strebel differentials
+\(J_{a,n},J_{b,n}\), each normalized to circumference one,
+have canonical limits \(J_a(P),J_b(P)\): the bounded-trajectory
+argument of Lemma~\ref{lem:cap-pencil} applies verbatim. For each,
+the other node has zero residue, since a nonzero residue would produce
+an additional cylinder on the approximants. On each
+normalization component the limit is the Strebel differential
+with its prescribed positive pole perimeters, other node
+preimages being retained as punctures, and components with no such
+pole carry zero; this uses the punctured uniqueness theorem
+\cite[Theorem 2, Remark 3.8]{Zvonkine}.
+Their residue vectors are independent, so every limiting
+plane is \(W(P)=\mathbb C J_a(P)+\mathbb C J_b(P)\).
+
+\emph{All two-cylinder caps lie in \(W(P)\).}
+For any \(r>0\), let \(J_{1,r}(P)\) denote the complete
+Strebel cap differential with perimeters \(1,r\) at the two
+nodes. We claim \(J_{1,r}(P)\in W(P)\).
+On each fixed \(X_n\), positive integral multitwists
+\(T_a^kT_b^l\) stabilize \(N\), and their horocycle differentials
+\cite[Lemmas 2.4--2.5]{AHW} are complete two-cylinder
+Strebel differentials of prescribed modulus ratio \(k/l\).
+Continuity and density allow all positive ratios, and the
+projective endpoints are \(J_{a,n},J_{b,n}\): on a fixed
+smooth \(X_n\), the flat lengths of the fixed curves \(a,b\) have
+positive lower and finite upper bounds on the compact sphere of
+unit-area differentials, so a cylinder whose modulus ratio tends
+to zero has height and area tending to zero, its transverse weight
+vanishes, the limiting horizontal measured foliation is
+supported on the remaining core, and uniqueness gives the
+one-class limit.
+The circumference ratio varies continuously between these
+endpoints; the first endpoint tends to zero as \(n\to\infty\)
+and the second to infinity, because a small
+circle about a zero-residue node in \(J_a(P)\) or \(J_b(P)\)
+has length tending to zero with its radius, and its approximating
+circles bound the opposite core length from above.
+Thus one may choose two-cylinder differentials on \(X_n\)
+with circumferences exactly \(1,r\). They are bounded by the same
+short-trajectory argument, and their limits are \(J_{1,r}(P)\) by
+Strebel uniqueness, proving the claim. Independent cylinder
+deformations, as in Lemma~\ref{lem:cap-pencil}, consequently put
+\emph{all} sufficiently small sewings of these caps in \(N\).
+
+\emph{A second branch would be a translate of \(N\).}
+Suppose another local surface branch over \(p\) has a curve
+in the full two-node stratum. A compatible marked lift
+\(N'\) then has \(\{a,b\}\) as one class, with some fixed
+circumference ratio \(r\), and its complete Strebel limits are
+the same \(J_{1,r}(P)\).
+Classwise cylinder deformation and passage to the limit
+give a nonconstant sewing curve
+\(u_a=c_a z^{d_a}\), \(u_b=c_b z^{d_b}\) with \(c_a c_b\ne0\),
+\(d_a,d_b>0\), in this branch; the positive integral exponents come
+from the rational modulus ratio, and the constants are obtained
+by a subsequence (in exponential coordinates normalized
+at the cap critical graphs their moduli are fixed and
+their phases lie in a compact torus).
+This curve also belongs to the two-parameter sewing family
+in \(N\). On a simply connected sector, after a Dehn-twist
+translate of \(N'\), it lifts to a common holomorphic curve
+in \(N\cap N'\), tending to the same marked \(P\).
+
+Here smoothness of the \emph{coarse interior} \(V_0\) is
+decisive. At every point \(X\) of the common curve, the
+finite stabilizer of \(X\) acts transitively on the local
+branches over the irreducible smooth germ of \(V_0\), so
+some mapping class fixes \(X\) and takes \(N\) to \(N'\).
+There are countably many mapping classes, and their fixed sets
+on the common parameter curve are analytic; unless one
+contains the whole curve, their union is countable.
+Hence one such \(\gamma\) fixes the whole curve and takes
+\(N\) to \(N'\). Continuity gives \(\gamma P=P\), so it permutes
+\(a,b\) and must send their two singleton classes for
+\(N\) to two singleton classes for \(N'\), a contradiction.
+No curve of \(B_S(0)\) passes through \(p\), proving isolation.
+\end{proof}
+
+\begin{corollary}[A continued corner without (L)]\label{cor:corner-section}
+At such a two-node cusp, (i)--(ii) give a unique local
+holomorphic section \(p(t)\in B_S(t)\), lying in the closures
+of both incident one-node stratum intersections.
+This statement does not assert that \(p(t)\) is fixed.
+\end{corollary}
+\begin{proof}
+Use Proposition~\ref{prop:two-corner} and
+Lemma~\ref{lem:isolated}. Both partial smoothings occur centrally
+by Lemma~\ref{lem:plumbing}. Isolation permits (ii) in a
+neighbourhood of \(p\), for either one-node stratum.
+\end{proof}
+
+\section{Curve rigidity and the lifting property (L)}\label{sec:lifting}
+
+To run the corner mechanism in the one-node case we need to know
+how the \emph{deformed} boundary curves \(C_t\subset\partial V_t\)
+look; the only tool available is the rigidity of Teichm\"uller
+curve maps, which requires maps from curves to moduli spaces with
+fixed monodromy. The following condition, stated separately and
+\emph{not} inferred from the hypotheses of the problem, supplies
+this. (A \emph{fine level cover} of \(\M_{h,n}\) is a finite cover
+that is a fine moduli space, so maps into it have well-defined
+monodromy.)
+
+\noindent\textbf{(L)} \emph{The continued normalization of each
+boundary curve used below admits a holomorphic family of connected
+finite algebraic covers with smoothly trivial source, mapping
+holomorphically to fixed fine level covers of the labelled moduli
+factors. The images are the given continued boundary curves. On the
+central fibre these maps are finite orbifold covers of the marked
+semisimple curve maps.}
+
+\noindent Only the curve \(C_t\) of Theorem~\ref{thm:conditional}
+and, when used, its second curve \(C'_t\) need satisfy (L); isolated
+points need no lifting.
+
+\begin{lemma}[Pointed curve-map rigidity]\label{lem:pointed}
+Let \(f_t:C_t\to\M_{h,n}\) be a holomorphic family of maps from
+smoothly trivial finite-area algebraic curves. Assume that the maps
+are locally liftable to \(\T_{h,n}\) and that their
+mapping-class-group monodromy representations \(\rho\) are the same
+under the given topological identification of the sources (as holds
+for an actual family of maps to a fixed fine level
+cover with smoothly trivial source). If \(f_0\) is a
+Teichm\"uller-disc quotient map, then the pairs \((C_t,f_t)\) are
+isomorphic to \((C_0,f_0)\), with the prescribed marking of the source.
+\end{lemma}
+
+\begin{proof}
+\review{There was no need to adapt McMullen's argument---it carries over verbatim.}
+
+This is McMullen's argument \cite{McMullen}, spelled out to
+cover the pointed version. Normalize the hyperbolic metrics
+to curvature \(-4\), so that a Teichm\"uller disc is isometric
+for \(d_{\T}=\frac12\log K\). A hyperbolic element \(\gamma\) of
+the central source group acts on the target by a pseudo-Anosov
+mapping class, whose Teichm\"uller translation length is precisely
+the length \(\ell_0(\gamma)\) of the corresponding source geodesic.
+Schwarz's lemma for a locally liftable map (the Teichm\"uller
+metric is the Kobayashi metric, by Royden's theorem
+\cite[Section 7(A)]{BersFinite}) gives
+\(\ell_t(\gamma)\geq\inf_{x\in\T_{h,n}}d(x,\rho(\gamma)x)
+=\ell_0(\gamma)\); the fixed representation \(\rho\) is essential
+here. The non-domination theorem for marked length spectra of
+finite-area hyperbolic surfaces, used in \cite{McMullen}, now
+identifies \(C_t\) with \(C_0\) as marked Riemann surfaces.
+
+Under this identification lift the maps to the disc and
+\(\T_{h,n}\), with the same equivariance. On the axis of each
+hyperbolic \(\gamma\), equality in the inequality forces
+the lift to map isometrically onto the unique Teichm\"uller axis
+of \(\rho(\gamma)\); uniqueness and realization of this axis hold
+for punctured surfaces as well
+\cite[Theorem 2.1 and its following remark]{Tanigawa}.
+Choose two source axes crossing transversely. Their two fixed
+target axes meet at the central image of the intersection, and
+at no other point. The lift therefore agrees with the central
+lift at that point and along either axis; equivariance fixes its
+orientation along the axis. The identity theorem gives equality
+of the holomorphic lifts everywhere.
+\end{proof}
+
+\begin{lemma}[Product form under (L)]\label{lem:curve}
+For a boundary-curve family satisfying (L), whose central map
+\(f=(f_j)_j\) to the labelled factors is semisimple, the continued
+maps \(F_t=((F_t)_j)_j\) have the following form after passing
+to the covers in (L) and identifying each source with the central
+curve \(C\):
+\begin{equation}\label{eq:product}
+ (F_t)_j(z)=
+ \begin{cases}
+ f_j(z),&j\in I,\\
+ Z_j(t),&j\notin I,
+ \end{cases}
+\end{equation}
+where \(I\) is the set of initially active coordinates and the
+\(Z_j\) are holomorphic. Every central cusp consequently gives a
+holomorphic family of stable limits of the same dual graph; all
+initially active stable factor limits are fixed.
+\end{lemma}
+
+\begin{proof}
+Work on the connected finite covers supplied by (L). For an
+initially constant coordinate the map to its fine level space is
+constant on the central fibre; its monodromy is trivial and
+remains so by smooth triviality of this actual family of level
+maps, so on every fibre it lifts to \(\T_{h_j,n_j}\).
+Bers' bounded-domain realization
+\cite[Section 6]{BersFinite} shows that this lift
+is constant: its bounded coordinate functions extend across the
+finitely many punctures of the algebraic source, and hence are
+constant on its compactification. Evaluating on a local
+holomorphic section of the source family shows that
+\(Z_j(t)\) is holomorphic.
+Apply Lemma~\ref{lem:pointed} to any one active coordinate to
+identify the marked source with \(C\), and its axis argument
+to the other active coordinates with the same marked
+identification; all are then the fixed maps \(f_j\). This proves
+\eqref{eq:product}.
+
+Let \(c\) be a puncture of the compactification of \(C\).
+The fixed algebraic maps \(f_j\) extend to the proper spaces
+\(\cl{\M}_{h_j,n_j}\), and their values at \(c\) are fixed stable
+pointed curves. The other factors are the smooth curves \(Z_j(t)\).
+Gluing their prescribed marked points according to the original
+stratum gives the asserted holomorphic stable-curve family
+in the coarse compactification. Fixed stable factors do not
+smooth or acquire nodes, and the remaining factors stay smooth,
+so its graph is constant. No lifted cusp family was assumed.
+\end{proof}
+
+\section{Conditional completion by coarse corner comparison}\label{sec:conditional}
+
+\begin{theorem}\label{thm:conditional}
+Under the hypotheses of the problem and the additional
+boundary-curve property (L), \(Y_t=Y_0\) for all \(t\).
+\end{theorem}
+
+\begin{proof}
+Work near \(t=0\). By Corollary~\ref{cor:deep} and the reduction
+opening Section~\ref{sec:sewing}, write
+\(\Delta_\Gamma=\M_{h,1}\times\M_{m,1}\), with first
+coordinate \(Y_t\) and separating node \(a\). Choose a continued curve
+component \(C_t\) of \(\partial V_t\). Theorem~\ref{thm:zero} gives
+\(m\ge2\), and (L) with Lemma~\ref{lem:curve} gives a fixed
+Teichm\"uller curve \(D\subset\M_{m,1}\) (the image of the disc
+\(D\) of Section~\ref{sec:sewing}) such that
+\begin{equation}\label{eq:Ct}
+ C_t=\{Y_t\}\times D.
+\end{equation}
+Suppose \(Y_t\) is nonconstant. A cusp of \(D\) has a stable
+pointed limit \(R\), with nonempty node set \(B\). Clutching
+gives a holomorphic section
+\begin{equation}\label{eq:p}
+ p(t)=Y_t\underset a\cup R\in\cl{C_t}.
+\end{equation}
+Its stratum \(S\) has nodes \(\{a\}\cup B\).
+
+\emph{Step 1: \(p(0)\) is isolated in \(B_S(0)\).}
+For \(|B|=1\), Proposition~\ref{prop:two-corner} gives
+isolation of \(p(0)\). For \(|B|\ge2\), if \(p(0)\) belonged
+to a curve component of \(B_S(0)\),
+Lemmas~\ref{lem:deep} and \ref{lem:isolated} would put
+\(p(t)\) in the fixed central curve part. This arc is
+nonconstant, since a fixed stable curve has only finitely
+many smooth pointed normalization components. In the finite
+product cover labelling those components, the explicit arc
+\eqref{eq:p} varies only in its \(Y\)-coordinate; a branch lies
+in a central algebraic curve, and the identity theorem makes its
+other coordinates constant. Its sole active component would be the
+leaf \(Y\), contrary to Lemma~\ref{lem:forbidden}.
+Thus \(p(0)\) is isolated in the whole \(B_S(0)\), and its
+continuation \(p(t)\) is unique and isolated for small
+\(t\). If \(|B|\ge2\), the last assertion of
+Proposition~\ref{prop:fixed-cusp} finishes. Hence assume \(B=\{b\}\).
+
+\emph{Step 2: the second boundary curve.}
+Choose compatible marked lifts of \(C_0,p(0)\) in \(\cl N\).
+Unpinching the singleton class \(a\), while retaining \(b\),
+produces a boundary curve \(C'_0\) approaching \(p(0)\):
+the marked intersection is smooth and irreducible,
+contains points approaching a point outside its stratum,
+and has dimension at most one. Let \(U\) be the normalization
+component obtained by smoothing \(a\). Its coordinate on
+\(C'_0\) is active: a positive power of \(T_a\) stabilizes
+this marked boundary curve and acts on \(\T(U)\) as an
+infinite-order Dehn twist, which cannot fix a point
+(\(a\) remains essential in \(U\), being essential and
+not isotopic to \(b\) on the original surface).
+
+\emph{Step 3a: \(b\) nonseparating.}
+Then \(U\) is the only coordinate of \(C'_0\). Apply (L) and
+Lemma~\ref{lem:curve} to its continuation \(C'_t\). The chosen
+cusp gives the constant section \(p(0)\in B_S(t)\). Uniqueness of
+the continuation (Lemma~\ref{lem:isolated}) identifies it with
+\(p(t)\), fixing \(Y_t\) by Proposition~\ref{prop:fixed-cusp}.
+
+\emph{Step 3b: \(b\) separating.}
+The section has the chain presentation
+\(Y_t\cup_a A\cup_b W\) with \(g(A)=r\), \(g(W)=s\),
+where \(A,W\), including their attachments, are fixed (pieces of
+the fixed \(R\) of \eqref{eq:p}, hence still resting on (L)).
+Stability gives \(r,s\ge1\): a rational component of the
+once-pointed one-node \(R\) would have at most two special
+points. If \(s=h\), Corollary~\ref{cor:symmetric} directly
+gives \(Y_t=W=Y_0\); this uses constancy on the \emph{whole}
+one-node stratum intersection and requires no choice of
+end labels. If \(s\ne h\), apply (L) and Lemma~\ref{lem:curve} to
+\(C'_t\). Its chosen cusp yields \(q(t)\in B_S(t)\), \(q(0)=p(0)\),
+whose stable \(U\)-coordinate is the fixed curve \(Y_0\cup_a A\).
+Uniqueness of the continuation gives \(q(t)=p(t)\). The genus-\(h\) end
+is intrinsically distinguished, since the end genera differ;
+its pointed normalization component is respectively \(Y_0\)
+and \(Y_t\). Thus \(Y_t=Y_0\) in this case too.
+Local constancy extends to the disc by Lemma~\ref{lem:regularity}.
+\end{proof}
+
+\section{Remaining open issues}\label{sec:open}
+
+The unresolved case is a one-node separating stratum with
+\(K_N=\mathbb Q\), an arithmetic active curve of genus \(m\ge2\),
+and an attaching zero of order \(k\ge1\).
+The canonical limiting plane and fixed cap in
+Lemma~\ref{lem:cap-pencil} control \(V_0\), not the normalized
+boundary covers of its deformation. At two-node cusps,
+Corollary~\ref{cor:corner-section} supplies a continued
+corner from (i)--(ii) alone, but its normalization components
+can a priori all move; proving stationarity of that corner,
+or fixing its active remainder, would close this case.
+Theorem~\ref{thm:conditional} uses (L) first to fix the active
+pointed image in \eqref{eq:Ct}, and then for the second curve
+in the nonseparating and unequal-end-genus cases; for cusps with
+more than two nodes, its isolation argument also depends on
+\eqref{eq:Ct}. Neither (i)--(ii) nor the arithmetic reduction
+supplies the fixed-monodromy orbifold maps that (L) demands; a
+source-lifting theorem, or a surface-level replacement, is still
+needed. An alternative route would produce a fixed nodal unpointed remainder
+of the active component in every deformed closure and compare its
+possible attachments; no such persistent remainder has been
+obtained from (i)--(ii).
+
+Two warnings (not moduli-space counterexamples) show why more
+control is needed: the normalized compact curves
+\(z^2=(x^3-1)/(1+tx^2)\) have genus one at \(t=0\) and genus two
+nearby; and the graphs \(y=x^2+tx^3\) have total projective central
+equation \(Z(YZ-X^2)=0\) but individual central closure
+\(YZ-X^2=0\) (products with \(\mathbb P^1\) give surfaces with fixed
+reduced boundary). Lemma~\ref{lem:regularity} supplies boundary
+holomorphicity, not preservation of finite-cover topology or
+exclusion of extra central support.
+
+\begin{thebibliography}{99}
+
+\bibitem{AHW}
+F. Arana-Herrera and A. Wright,
+\emph{The geometry of totally geodesic subvarieties of moduli spaces
+of Riemann surfaces}, arXiv:2412.16330v2, 2025.
+
+\bibitem{BersFinite}
+L. Bers,
+\emph{Finite dimensional Teichm\"uller spaces and generalizations},
+Bull. Amer. Math. Soc. (N.S.) \textbf{5} (1981), 131--172.
+
+\bibitem{HubbardKoch}
+J. H. Hubbard and S. Koch,
+\emph{An analytic construction of the Deligne--Mumford
+compactification of the moduli space of curves},
+J. Differential Geom. \textbf{98} (2014), 261--313.
+
+\bibitem{HuNorton}
+X. Hu and C. Norton,
+\emph{General variational formulas for Abelian differentials},
+Int. Math. Res. Not. \textbf{2020}, 3540--3581; arXiv:1706.05366v2.
+
+\bibitem{Kra}
+I. Kra,
+\emph{On the Nielsen--Thurston--Bers type of some self-maps
+of Riemann surfaces},
+Acta Math. \textbf{146} (1981), 231--270.
+
+\bibitem{McMullen}
+C. T. McMullen,
+\emph{Rigidity of Teichm\"uller curves},
+Math. Res. Lett. \textbf{16} (2009), 647--649.
+
+\bibitem{McMullenSurvey}
+C. T. McMullen,
+\emph{Billiards and Teichm\"uller curves},
+Bull. Amer. Math. Soc. \textbf{60} (2023), 195--250.
+
+\bibitem{Stacks}
+The Stacks Project Authors,
+\emph{The Stacks Project}, Tags 037P, 052A, 0559, 0578.
+
+\bibitem{Tanigawa}
+H. Tanigawa,
+\emph{Orbits and their accumulation points of cyclic subgroups
+of modular groups},
+Tohoku Math. J. (2) \textbf{43} (1991), 289--299.
+
+\bibitem{Veech}
+W. A. Veech,
+\emph{Teichm\"uller curves in moduli space, Eisenstein series and
+an application to triangular billiards},
+Invent. Math. \textbf{97} (1989), 553--583.
+
+\bibitem{WrightCylinder}
+A. Wright,
+\emph{Cylinder deformations in orbit closures of translation surfaces},
+Geom. Topol. \textbf{19} (2015), 413--438.
+
+\bibitem{WrightTG}
+A. Wright,
+\emph{Totally geodesic submanifolds of Teichm\"uller space},
+J. Differential Geom. \textbf{115} (2020), 565--575;
+corrected version arXiv:1702.03249v3, 2024.
+
+\bibitem{Zvonkine}
+D. Zvonkine,
+\emph{Strebel differentials on stable curves and
+Kontsevich's proof of Witten's conjecture},
+arXiv:math/0209071v2, 2004.
+
+\end{thebibliography}
+
+\end{document}

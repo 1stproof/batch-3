@@ -1,0 +1,87 @@
+```latex
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+
+\section{Answer}
+
+No. The statement is false in general. We give a counterexample with \(P=\mathbb N\).
+
+\section{Counterexample}
+
+Let \(P=\mathbb N\), the additive monoid of nonnegative integers. It is integral, saturated, and sharp.
+
+\begin{lemma}
+For \(P=\mathbb N\):
+\begin{enumerate}
+\item \(P[-0]^\sharp\simeq P\), with structure map \(\mathrm{id}_P\colon P\to P\).
+\item For every \(n>0\), \(P[-n]^\sharp\simeq 0\), with structure map the unique map \(P\to 0\).
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+For \(x=0\), the condition that \(x\) is sent to \(0\) is vacuous, and the initial object among sharp monoids under \(P\) is \(P\xrightarrow{\mathrm{id}_P}P\).
+
+For \(x=n>0\), let \(f\colon P\to Q\) be a homomorphism of monoids with \(f(n)=0\). Then \(n f(1)=f(n)=0\) in \(Q\). Since \(Q\) is integral and sharp, this forces \(f(1)=0\). Hence \(f\) is the zero homomorphism \(P\to 0\). Thus the initial such homomorphism is \(P\to 0\).
+\end{proof}
+
+Let
+\[
+a=(P\xrightarrow{\mathrm{id}_P}P),\qquad b=(P\to 0)
+\]
+be the corresponding objects of \(A_P\). By the lemma, \(B_P\) has, up to isomorphism, the two objects \(a\) and \(b\), and there is a unique morphism \(a\to b\) in \(A_P\). Thus in \(B_P^{\mathrm{op}}\) there is a unique non-identity morphism \(b\to a\).
+
+Now observe that in \(A_P\), the object \(b=(P\to 0)\) is terminal: for every object \(X=(P\to Q)\), the unique monoid homomorphism \(Q\to 0\) gives the unique \(A_P\)-morphism \(X\to b\). Therefore, in \(A_P^{\mathrm{op}}\), the object \(b\) is initial.
+
+Let \(F\) be the presheaf of abelian groups on \(B_P^{\mathrm{op}}\) defined by
+\[
+F(a)=\mathbb Z,\qquad F(b)=0,
+\]
+with the unique restriction map \(F(a)\to F(b)\) equal to the zero map. This is a well-defined presheaf, and since \(B_P^{\mathrm{op}}\) has the trivial topology, \(F\) is a sheaf.
+
+Let \(i\colon B_P^{\mathrm{op}}\to A_P^{\mathrm{op}}\) be the inclusion. For any object \(X\in A_P^{\mathrm{op}}\), consider the comma category
+\[
+(i\downarrow X)=\{(Y,\alpha)\mid Y\in B_P^{\mathrm{op}},\ \alpha\colon i(Y)\to X\}.
+\]
+Since \(b\) is initial in \(A_P^{\mathrm{op}}\) and belongs to \(B_P^{\mathrm{op}}\), the unique morphism \(!\colon b\to X\) gives an object \((b,!)\) of \((i\downarrow X)\). For any other object \((Y,\alpha)\), the unique morphism \(\gamma\colon b\to Y\) in \(A_P^{\mathrm{op}}\) lies in \(B_P^{\mathrm{op}}\) because the subcategory is full, and
+\[
+\alpha\circ i(\gamma)=!
+\]
+by uniqueness of morphisms out of the initial object \(b\). Hence \((b,!)\) is an initial object of \((i\downarrow X)\).
+
+The left Kan extension \(i_!F\) is given by the standard colimit formula
+\[
+(i_!F)(X)=\operatorname*{colim}_{(Y,\alpha)\in (i\downarrow X)^{\mathrm{op}}} F(Y).
+\]
+Since \((b,!)\) is initial in \((i\downarrow X)\), it is terminal in \((i\downarrow X)^{\mathrm{op}}\), and therefore the colimit is
+\[
+(i_!F)(X)=F(b)=0.
+\]
+Thus \(i_!F=0\) as a presheaf on \(A_P^{\mathrm{op}}\).
+
+Sheafification of the zero presheaf is the zero sheaf, so
+\[
+\pi^{-1}F=0.
+\]
+Consequently,
+\[
+\mathrm R\pi_*\pi^{-1}F=\mathrm R\pi_*(0)=0.
+\]
+The natural morphism
+\[
+F\longrightarrow \mathrm R\pi_*\pi^{-1}F
+\]
+is therefore the zero morphism \(F\to 0\). But \(F\) is not quasi-isomorphic to \(0\), because its cohomology sheaf in degree \(0\) is \(F\) itself, and
+\[
+F(a)=\mathbb Z\neq 0.
+\]
+Thus the morphism is not a quasi-isomorphism.
+
+Hence the proposed statement fails for \(P=\mathbb N\).
+
+\end{document}
+```

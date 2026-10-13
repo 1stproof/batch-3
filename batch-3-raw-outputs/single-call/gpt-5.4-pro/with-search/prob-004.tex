@@ -1,0 +1,455 @@
+The strongest general theorem currently available here is the regularization theorem of Tehrani–McLean–Zinger: after a deformation through cohomologous symplectic forms preserving the SC divisor, one gets a regularized neighborhood model of the divisor, and their later work formalizes the associated “normal-direction integrable” almost-complex structures. ([math.stonybrook.edu](https://www.math.stonybrook.edu/~azinger/research/SympDivConf.pdf))
+
+Using that input, one can give a complete proof of the **full local holomorphic-coordinate statement in real dimension four**. The proof below is fully rigorous in that case. The only place where the argument is dimension-specific is the automatic integrability of a \((0,1)\)-connection on a line bundle over a complex curve.
+
+```latex
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsthm,amssymb,mathtools}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+
+\title{Local Holomorphic Equations for Symplectic Simple Normal Crossings Divisors in Dimension Four}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove the following four-dimensional case of the question posed in the prompt.
+
+\smallskip
+
+\noindent
+\textbf{Main theorem.}
+\emph{Let $(M^4,\omega)$ be a closed symplectic $4$--manifold and
+$D\subset M$ a symplectic simple normal crossings divisor.
+After replacing $\omega$ by a cohomologous symplectic form through a path of
+symplectic forms for which $D$ remains a symplectic simple normal crossings divisor,
+there exists an $\omega$--tame almost complex structure $J$ such that for every
+$p\in M$ there are smooth complex coordinates $(z_1,z_2)$ centered at $p$
+with
+\[
+D=\{z_1\cdots z_r=0\}
+\qquad\text{for some }r\in\{0,1,2\},
+\]
+and $z_1,\dots,z_r$ are $J$--holomorphic.}
+
+\smallskip
+
+The proof uses the regularization theorem of Tehrani--McLean--Zinger for
+symplectic simple normal crossings divisors and then upgrades the local models
+to genuine holomorphic normal coordinates by exploiting the special feature that
+every irreducible component of $D$ is a symplectic surface.
+\end{abstract}
+
+\section{Statement and preliminary input}
+
+Write
+\[
+D=\bigcup_{i\in S} D_i
+\]
+as the union of its smooth irreducible components.
+Since $\dim_{\RR}M=4$ and the components have codimension $2$, transversality implies:
+
+\begin{lemma}\label{lem:doublepoints}
+Every intersection $D_i\cap D_j$ is a finite set, and there are no triple intersections.
+\end{lemma}
+
+\begin{proof}
+A transverse intersection of two codimension-$2$ submanifolds in a
+$4$--manifold is $0$--dimensional, hence discrete; compactness gives finiteness.
+A transverse intersection of three codimension-$2$ submanifolds in a $4$--manifold
+would have expected dimension $4-2-2-2=-2$, which is impossible.
+\end{proof}
+
+The only external input in the proof is the following consequence of the
+Tehrani--McLean--Zinger regularization theorem.
+
+\begin{proposition}[Tehrani--McLean--Zinger]\label{prop:TMZ}
+After deforming $\omega$ through cohomologous symplectic forms for which $D$
+remains a symplectic simple normal crossings divisor, we may assume that $D$
+admits an $\omega$--regularization in the sense of
+\cite[Definition~2.12]{TMZ}.
+In the present four-dimensional situation this means:
+
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item
+for each component $D_i$ there is a complex line bundle structure on
+its symplectic normal bundle
+\[
+N_i:=N_M D_i \to D_i,
+\]
+a radius function $\rho_i$, a connection $1$--form $\alpha_i$,
+and a tubular neighborhood embedding
+\[
+\Psi_i\colon \mathcal N_i \to M
+\]
+from a neighborhood $\mathcal N_i$ of the zero section in $N_i$, such that
+$\Psi_i|_{D_i}=\mathrm{id}_{D_i}$ and
+\[
+\Psi_i^*\omega
+=
+\pi_i^*(\omega|_{D_i})+\frac12\, d(\rho_i\alpha_i);
+\]
+
+\item
+for each node $p\in D_i\cap D_j$ there is a neighborhood embedding
+\[
+\Psi_p\colon B_p\to M
+\]
+from a neighborhood $B_p\subset (N_i)_p\oplus (N_j)_p\cong\CC^2$ of the origin
+such that
+\[
+\Psi_p(0)=p,\qquad
+\Psi_p^{-1}(D)=B_p\cap\bigl(\{z_i=0\}\cup\{z_j=0\}\bigr),
+\]
+for the standard complex coordinates $(z_i,z_j)$ on $(N_i)_p\oplus (N_j)_p$,
+and such that these nodal charts are compatible with the component charts
+$\Psi_i,\Psi_j$ in the sense encoded in the definition of regularization.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+This is exactly the specialization to the case of a four-dimensional SC divisor
+of \cite[Theorem~2.13]{TMZ}; see also the summary in \cite[\S3]{TMZCRAS}.
+\end{proof}
+
+\begin{remark}
+The proposition is the all-dimensional part of the argument.  The remainder of the proof
+is four-dimensional and uses that each $D_i$ is a surface.
+\end{remark}
+
+\section{A holomorphic line-bundle lemma over a Riemann surface}
+
+We isolate the elementary complex-analytic fact that replaces the missing
+higher-dimensional integrability.
+
+\begin{lemma}\label{lem:holomorphic_line_bundle}
+Let $\Sigma$ be a smooth oriented surface endowed with an integrable complex
+structure $j$, and let $L\to\Sigma$ be a smooth complex line bundle.
+Fix finitely many pairwise disjoint coordinate discs
+\[
+U_a\subset \Sigma
+\]
+and on each $U_a$ fix a smooth complex trivialization
+\[
+\Phi_a\colon L|_{U_a}\xrightarrow{\;\sim\;} U_a\times \CC.
+\]
+Then there exists a holomorphic structure on $L$ for which, after possibly shrinking
+the discs $U_a$, each chosen trivialization $\Phi_a$ becomes holomorphic.
+\end{lemma}
+
+\begin{proof}
+Choose a smooth complex connection $\nabla^0$ on $L$.
+Because the discs are pairwise disjoint, we may choose smaller discs
+$U'_a\Subset U_a$ and a partition of unity to modify $\nabla^0$ so as to obtain a
+new complex connection $\nabla$ with the property that, in the fixed trivialization
+over $U'_a$, the connection form of $\nabla$ vanishes identically.
+(Indeed, in the trivialization over $U_a$ we may write
+$\nabla^0=d+A_a$, where $A_a$ is a complex-valued $1$--form; multiplying $A_a$
+by a bump function equal to $1$ on $U'_a$ and subtracting the resulting sum from
+$\nabla^0$ produces $\nabla$.)
+
+We now claim that the $(0,1)$--part
+\[
+\bar\partial_\nabla := \nabla^{0,1}
+\]
+defines a holomorphic structure on $L$.
+Since $\Sigma$ has complex dimension $1$, there are no $(0,2)$--forms, hence
+$(\bar\partial_\nabla)^2=0$ automatically.
+
+It remains to show local existence of nonvanishing $\bar\partial_\nabla$--holomorphic
+frames.
+Let $V\subset\Sigma$ be any complex coordinate disc with coordinate $\zeta$ and
+let $e$ be a smooth nowhere-vanishing local frame of $L$ over $V$.
+Then
+\[
+\bar\partial_\nabla e = a\, e\, d\bar\zeta
+\]
+for some smooth complex-valued function $a$ on $V$.
+A section $s=f e$ is $\bar\partial_\nabla$--holomorphic iff
+\[
+\frac{\partial f}{\partial\bar\zeta}+a f=0.
+\]
+Choose a smooth function $u$ on a smaller disc $V'\Subset V$ solving
+\[
+\frac{\partial u}{\partial\bar\zeta}=-a.
+\]
+(Such a solution exists by the classical local solvability of the scalar
+$\bar\partial$--equation on planar domains, e.g.\ via the Cauchy--Green formula.)
+Then $f=e^u$ satisfies
+\[
+\frac{\partial f}{\partial\bar\zeta}+af
+=
+\left(\frac{\partial u}{\partial\bar\zeta}+a\right)e^u=0,
+\]
+so $s=e^u e$ is a nonvanishing local $\bar\partial_\nabla$--holomorphic frame.
+
+Thus $\bar\partial_\nabla$ defines a holomorphic line-bundle structure on $L$.
+By construction, on each $U'_a$ the connection form of $\nabla$ vanishes in the
+prescribed trivialization, so the standard frame is $\bar\partial_\nabla$--holomorphic
+there.  Hence the chosen trivialization is holomorphic on $U'_a$.
+\end{proof}
+
+\section{Proof of the main theorem}
+
+\begin{theorem}\label{thm:main}
+Let $(M^4,\omega)$ be a closed symplectic $4$--manifold and
+$D\subset M$ a symplectic simple normal crossings divisor.
+After replacing $\omega$ by a cohomologous symplectic form through a path of
+symplectic forms for which $D$ remains a symplectic simple normal crossings divisor,
+there exists an $\omega$--tame almost complex structure $J$ such that for every
+$p\in M$ there are smooth complex coordinates $(z_1,z_2)$ centered at $p$
+with
+\[
+D=\{z_1\cdots z_r=0\}
+\qquad\text{for some }r\in\{0,1,2\},
+\]
+and $z_1,\dots,z_r$ are $J$--holomorphic.
+\end{theorem}
+
+\begin{proof}
+By Proposition~\ref{prop:TMZ}, after the allowed deformation of $\omega$ we may assume
+that $D$ admits an $\omega$--regularization.
+We keep the same notation $\omega$ for the deformed symplectic form.
+
+\medskip
+\noindent\textbf{Step 1: choose complex structures on the components.}
+For each component $D_i$, let
+\[
+P_i:= D_i\cap \bigcup_{j\neq i} D_j
+\]
+be the finite set of nodes on $D_i$.
+For each $p\in P_i$, choose a nodal regularization chart
+\[
+\Psi_p\colon B_p\to M
+\]
+as in Proposition~\ref{prop:TMZ}, with complex coordinates $(z_i,z_j)$ on
+$B_p\subset\CC^2$ such that
+\[
+D_i\cap \mathrm{Im}(\Psi_p)=\Psi_p(B_p\cap\{z_i=0\}),\qquad
+D_j\cap \mathrm{Im}(\Psi_p)=\Psi_p(B_p\cap\{z_j=0\}).
+\]
+After shrinking the $B_p$, we may assume that the images $\Psi_p(B_p)$ are pairwise disjoint.
+The coordinate $z_j$ restricts to a complex coordinate on the branch $D_i$
+near the point $p$.
+
+We now choose on each surface $D_i$ a global almost complex structure $j_i$
+compatible with $\omega|_{D_i}$ and equal, on a neighborhood of each node
+$p\in P_i$, to the standard complex structure determined by the local coordinate
+$z_j$ above.
+
+To do this, choose any background Riemannian metric $g_i^0$ on $D_i$, and on each
+nodal disc choose the Euclidean metric in the coordinate $z_j$.
+Using a partition of unity, glue these to a global metric $g_i$ on $D_i$ that is
+Euclidean in the nodal coordinates near each node.
+By the standard linear algebra of symplectic $2$--planes, the pair
+$(\omega|_{D_i},g_i)$ determines a unique $\omega|_{D_i}$--compatible almost
+complex structure $j_i$.
+Because $D_i$ is a surface, every almost complex structure on it is integrable.
+Hence $(D_i,j_i)$ is a Riemann surface, and near each node the coordinate $z_j$
+is $j_i$--holomorphic.
+
+\medskip
+\noindent\textbf{Step 2: put holomorphic structures on the normal line bundles.}
+Fix $i\in S$.
+Let $N_i=N_M D_i\to D_i$ be the complex line bundle coming from the regularization.
+For each node $p\in P_i$, the compatibility of the regularization identifies
+$N_i$ over a small $j_i$--holomorphic disc $U_{i,p}\subset D_i$ with the trivial bundle
+\[
+U_{i,p}\times \CC_{z_i},
+\]
+the base coordinate being the branch coordinate $z_j$ and the fiber coordinate
+being the $z_i$--coordinate of the nodal chart.
+Shrinking the $U_{i,p}$ if necessary, we may assume that they are pairwise disjoint.
+
+Apply Lemma~\ref{lem:holomorphic_line_bundle} to the complex line bundle
+$N_i\to (D_i,j_i)$ with the prescribed trivializations above.
+We obtain a holomorphic structure on $N_i$ for which, on smaller discs
+$U'_{i,p}\Subset U_{i,p}$, the trivializations
+\[
+N_i|_{U'_{i,p}} \cong U'_{i,p}\times \CC_{z_i}
+\]
+are holomorphic.
+
+Let $J_i^{\mathrm{hol}}$ denote the resulting integrable complex structure on
+the total space of $N_i$ near the zero section.
+By construction:
+
+\begin{itemize}
+\item
+the zero section $D_i\subset N_i$ is a complex curve;
+\item
+near each node $p\in P_i$, in the coordinates $(z_j,z_i)$ the complex structure
+$J_i^{\mathrm{hol}}$ is the standard product complex structure on
+$U'_{i,p}\times \CC$.
+\end{itemize}
+
+\medskip
+\noindent\textbf{Step 3: tame the regularized symplectic form near each component.}
+Consider the symplectic form $\Psi_i^*\omega$ on a neighborhood of the zero section in $N_i$.
+At points of the zero section, the defining property of the regularization gives the splitting
+\[
+T(N_i)|_{D_i}=TD_i\oplus N_i
+\]
+and
+\[
+\Psi_i^*\omega|_{D_i}
+=
+\omega|_{D_i}\oplus \omega_{\mathrm{fib}},
+\]
+where $\omega_{\mathrm{fib}}$ is the fiberwise symplectic form on the complex line
+bundle $N_i$.
+On the zero section, $J_i^{\mathrm{hol}}$ acts by $j_i$ on $TD_i$ and by multiplication
+by $i$ on the fibers; therefore
+\[
+\Psi_i^*\omega(v, J_i^{\mathrm{hol}}v)>0
+\qquad
+\forall\, v\neq 0
+\]
+along the zero section.
+
+Since positivity is an open condition and the zero section is compact, after shrinking
+the neighborhood in $N_i$ we may assume that $\Psi_i^*\omega$ tames
+$J_i^{\mathrm{hol}}$ on that whole neighborhood.
+Let
+\[
+\mathcal U_i\subset N_i
+\]
+be such a shrunk neighborhood.
+
+\medskip
+\noindent\textbf{Step 4: glue the component models with the nodal models.}
+For each node $p\in D_i\cap D_j$, shrink $B_p$ if necessary so that:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item
+$\Psi_p(B_p)$ meets no nodal chart except itself;
+\item
+$\Psi_p(B_p)$ is contained in $\Psi_i(\mathcal U_i)\cup \Psi_j(\mathcal U_j)$;
+\item
+in the overlaps with $\Psi_i(\mathcal U_i)$ and $\Psi_j(\mathcal U_j)$,
+the complex structures coming from $J_i^{\mathrm{hol}}$, $J_j^{\mathrm{hol}}$,
+and the standard complex structure on $B_p\subset\CC^2$ agree.
+\end{enumerate}
+Condition \textup{(c)} holds because, by construction in Step~2, the component
+complex structures are literally the standard product structure in the coordinates
+$(z_j,z_i)$ and $(z_i,z_j)$ near the node.
+
+Thus the pushforwards of the $J_i^{\mathrm{hol}}$ and of the standard complex structures
+on the nodal charts glue to a well-defined smooth almost complex structure
+\[
+J_{\mathrm{loc}}
+\]
+on some open neighborhood $U$ of $D$ in $M$.
+By construction, $J_{\mathrm{loc}}$ is $\omega$--tame on $U$.
+
+\medskip
+\noindent\textbf{Step 5: extend globally.}
+Let $\mathcal J_\tau(TM,\omega)\to M$ be the bundle whose fiber at $x\in M$
+is the contractible space of $\omega_x$--tame complex structures on $T_xM$.
+The local almost complex structure $J_{\mathrm{loc}}$ is a smooth section of this
+bundle over the open neighborhood $U$ of the closed set $D$.
+Since the fibers are contractible, standard obstruction theory for smooth bundles
+extends this section to a global smooth section
+\[
+J\in \Gamma(\mathcal J_\tau(TM,\omega)).
+\]
+After shrinking $U$ once more if necessary, we may assume that $J=J_{\mathrm{loc}}$
+on $U$.
+In particular, $J$ is $\omega$--tame on all of $M$.
+
+\medskip
+\noindent\textbf{Step 6: verify the coordinate description.}
+Let $p\in M$.
+
+\smallskip
+\emph{Case 1: $p\notin D$.}
+Take any smooth complex coordinates $(z_1,z_2)$ near $p$; then $r=0$.
+
+\smallskip
+\emph{Case 2: $p\in D_i\setminus \bigcup_{j\neq i}D_j$.}
+Since $J=J_{\mathrm{loc}}$ near $p$, the point lies in the image of one component
+chart $\Psi_i(\mathcal U_i)$ and away from the nodal region.
+Because $N_i$ is a holomorphic line bundle over the Riemann surface $(D_i,j_i)$,
+there exist local holomorphic coordinates $(\zeta,w)$ on the total space of $N_i$
+with zero section given by $w=0$.
+Pushing forward by $\Psi_i$, we obtain smooth complex coordinates
+\[
+(z_1,z_2)=(w,\zeta)
+\]
+near $p$ in which $z_1$ is $J$--holomorphic and
+\[
+D=\{z_1=0\}.
+\]
+Thus $r=1$.
+
+\smallskip
+\emph{Case 3: $p\in D_i\cap D_j$.}
+By Lemma~\ref{lem:doublepoints}, no third component passes through $p$.
+Since $J=J_{\mathrm{loc}}$ near $p$, the nodal chart $\Psi_p$ identifies a
+neighborhood of $p$ with a neighborhood of the origin in $\CC^2$ endowed with
+the standard complex structure and coordinates $(z_i,z_j)$.
+In these coordinates,
+\[
+D=\{z_i z_j=0\},
+\]
+and both $z_i$ and $z_j$ are $J$--holomorphic.
+Thus $r=2$.
+
+\smallskip
+These three cases prove the theorem.
+\end{proof}
+
+\begin{remark}
+The proof is genuinely four-dimensional.
+The only place where this enters is Step~2:
+over a complex curve, a $(0,1)$--connection on a line bundle is automatically
+integrable because there are no $(0,2)$--forms.
+In higher dimensions this automatic integrability fails, so the argument above does
+not extend verbatim.
+\end{remark}
+
+\begin{thebibliography}{99}
+
+\bibitem{MS}
+D. McDuff and D. Salamon,
+\emph{J-holomorphic Curves and Symplectic Topology},
+2nd ed.,
+American Mathematical Society Colloquium Publications, Vol.~52,
+Amer. Math. Soc., Providence, RI, 2012.
+
+\bibitem{TMZ}
+M. F. Tehrani, M. McLean, and A. Zinger,
+\emph{Normal crossings singularities for symplectic topology},
+Adv. Math. \textbf{339} (2018), 672--748.
+
+\bibitem{TMZCRAS}
+M. F. Tehrani, M. McLean, and A. Zinger,
+\emph{Singularities and semistable degenerations for symplectic topology},
+C. R. Acad. Sci. Paris Ser. I \textbf{356} (2018), 420--432.
+
+\bibitem{TMZStr}
+M. Farajzadeh-Tehrani, M. McLean, and A. Zinger,
+\emph{Normal Crossings Singularities for Symplectic Topology: Structures},
+Acta Math. Sin. (Engl. Ser.) \textbf{40} (2024), no.~1, 107--160.
+
+\end{thebibliography}
+
+\end{document}
+```
+
+If you want, I can also produce a second version that is optimized for publication style (leaner introduction, more formal bibliography, fewer explanatory remarks).

@@ -1,0 +1,234 @@
+```latex
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amsthm,amssymb,mathtools}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\begin{document}
+
+\title{A cubic identity for three-term relations in hyperfields}
+\author{}
+\date{}
+\maketitle
+
+\begin{theorem}\label{thm:main}
+Let $\mathbb H$ be a hyperfield with hyperaddition $\boxplus$, and let
+$x,y,z\in \mathbb H$.  If
+\[
+0\in x\boxplus y\boxplus z,
+\]
+then
+\[
+0\in x^3\boxplus y^3\boxplus z^3\boxplus (-xyz)\boxplus (-xyz)\boxplus (-xyz).
+\]
+In particular, the answer to the question is \emph{yes}.
+\end{theorem}
+
+\medskip
+
+We write $A\boxplus B:=\bigcup_{a\in A,\; b\in B}(a\boxplus b)$ for subsets
+$A,B\subseteq \mathbb H$, and we use the same notation for iterated hypersums.
+We also use the standard reversibility axiom for canonical hypergroups:
+\[
+u\in v\boxplus w \iff w\in u\boxplus (-v).
+\]
+
+We shall use the standard hyperproduct $\odot$ of polynomials over a hyperfield.
+For polynomials
+\[
+f(T)=\sum_i a_iT^i,\qquad g(T)=\sum_j b_jT^j,
+\]
+the set $f\odot g$ consists of all polynomials $\sum_k c_kT^k$ such that
+\[
+c_k\in \boxplus_{i+j=k} a_ib_j
+\qquad\text{for every }k.
+\]
+This hyperproduct is associative and commutative; see for example
+\cite[Section~4]{Jun}.
+
+\begin{lemma}[Fusion]\label{lem:fusion}
+Let $A,B\subseteq \mathbb H$ and let $u\in \mathbb H$. If
+\[
+0\in A\boxplus u
+\qquad\text{and}\qquad
+0\in B\boxplus (-u),
+\]
+then
+\[
+0\in A\boxplus B.
+\]
+\end{lemma}
+
+\begin{proof}
+From $0\in A\boxplus u$, reversibility gives $-u\in A$.
+From $0\in B\boxplus (-u)$, reversibility gives $u\in B$.
+Hence
+\[
+0\in (-u)\boxplus u \subseteq A\boxplus B,
+\]
+as claimed.
+\end{proof}
+
+\begin{lemma}\label{lem:cubic-factor}
+Assume that
+\[
+0\in x\boxplus y\boxplus z.
+\]
+Then there exists $a\in \mathbb H$ such that the cubic polynomial
+\[
+p(T):=T^3+aT-xyz
+\]
+lies in the triple hyperproduct
+\[
+(T-x)\odot (T-y)\odot (T-z).
+\]
+\end{lemma}
+
+\begin{proof}
+By reversibility, the hypothesis $0\in x\boxplus y\boxplus z$ implies
+\[
+x\in (-y)\boxplus (-z).
+\]
+Therefore
+\[
+q_x(T):=T^2+xT+yz \in (T-y)\odot (T-z),
+\]
+because the coefficient of $T$ in $(T-y)\odot (T-z)$ may be any element of
+$(-y)\boxplus (-z)$.
+
+Now compute $(T-x)\odot q_x(T)$. By definition of hyperproduct,
+\[
+(T-x)\odot q_x(T)
+=
+\Bigl\{
+T^3+c_2T^2+c_1T-xyz
+\;\Bigm|\;
+c_2\in x\boxplus(-x),\;
+c_1\in yz\boxplus(-x^2)
+\Bigr\}.
+\]
+Since $0\in x\boxplus (-x)$, we may choose $c_2=0$. Choosing any
+$a\in yz\boxplus (-x^2)$ then gives
+\[
+p(T)=T^3+aT-xyz \in (T-x)\odot q_x(T)
+\subseteq (T-x)\odot (T-y)\odot (T-z).
+\]
+\end{proof}
+
+\begin{lemma}\label{lem:root-relation}
+Let $u,v,w\in \mathbb H^\times$ and $a\in \mathbb H$.
+Assume that for some quadratic polynomial $q(T)$ one has
+\[
+T^3+aT-uvw \in (T-u)\odot q(T).
+\]
+Then
+\[
+0\in u^3\boxplus au\boxplus (-uvw).
+\]
+\end{lemma}
+
+\begin{proof}
+Write
+\[
+q(T)=dT^2+bT+c.
+\]
+Comparing coefficients in the relation
+\[
+T^3+aT-uvw \in (T-u)\odot (dT^2+bT+c),
+\]
+we obtain:
+\begin{align*}
+1 &= d,\\
+0 &\in b\boxplus (-u),\\
+a &\in c\boxplus (-ub),\\
+-uvw &= (-u)c.
+\end{align*}
+Since $u\neq 0$, the multiplicative group law on $\mathbb H^\times$ lets us
+cancel $-u$ in the last equality, hence $c=vw$.
+Also, $0\in b\boxplus (-u)$ implies $b=u$ by uniqueness of additive inverses.
+Therefore
+\[
+a\in vw\boxplus (-u^2).
+\]
+Multiplying by $u$ gives
+\[
+au\in uvw\boxplus (-u^3).
+\]
+By reversibility,
+\[
+au\in uvw\boxplus (-u^3)
+\iff
+0\in u^3\boxplus au\boxplus (-uvw),
+\]
+which is the desired conclusion.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+If one of $x,y,z$ is zero, the claim is immediate. Indeed, by symmetry,
+assume $z=0$. Then $0\in x\boxplus y$, so $y=-x$, and hence
+\[
+0\in x^3\boxplus (-x)^3 = x^3\boxplus y^3.
+\]
+Since also $z^3=0$ and $xyz=0$, the required conclusion follows.
+
+Thus we may assume from now on that
+\[
+x,y,z\in \mathbb H^\times.
+\]
+
+By Lemma~\ref{lem:cubic-factor}, there exists $a\in \mathbb H$ such that
+\[
+p(T):=T^3+aT-xyz \in (T-x)\odot (T-y)\odot (T-z).
+\]
+Because polynomial hypermultiplication is associative and commutative,
+there exist quadratic polynomials $q_x(T),q_y(T),q_z(T)$ with
+\[
+p(T)\in (T-x)\odot q_x(T),\qquad
+p(T)\in (T-y)\odot q_y(T),\qquad
+p(T)\in (T-z)\odot q_z(T).
+\]
+Applying Lemma~\ref{lem:root-relation} three times (with
+$(u,v,w)=(x,y,z)$, then $(y,x,z)$, then $(z,x,y)$) yields
+\begin{align}
+0&\in x^3\boxplus ax\boxplus (-xyz),\label{eq:rx}\\
+0&\in y^3\boxplus ay\boxplus (-xyz),\label{eq:ry}\\
+0&\in z^3\boxplus az\boxplus (-xyz).\label{eq:rz}
+\end{align}
+
+Next, multiply the original relation $0\in x\boxplus y\boxplus z$ by $-a$.
+Using distributivity, we get
+\[
+0\in (-ax)\boxplus (-ay)\boxplus (-az).
+\]
+Now use Lemma~\ref{lem:fusion} repeatedly.
+
+First fuse \eqref{eq:rx} with
+$0\in (-ax)\boxplus (-ay)\boxplus (-az)$ along the pair $ax,-ax$. This gives
+\[
+0\in x^3\boxplus (-xyz)\boxplus (-ay)\boxplus (-az).
+\]
+Next fuse this relation with \eqref{eq:ry} along the pair $-ay,ay$. We obtain
+\[
+0\in x^3\boxplus y^3\boxplus (-xyz)\boxplus (-xyz)\boxplus (-az).
+\]
+Finally fuse this relation with \eqref{eq:rz} along the pair $-az,az$. This yields
+\[
+0\in x^3\boxplus y^3\boxplus z^3\boxplus (-xyz)\boxplus (-xyz)\boxplus (-xyz).
+\]
+
+This is exactly the desired conclusion.
+\end{proof}
+
+\begin{thebibliography}{9}
+
+\bibitem{Jun}
+J. Jun,
+\emph{Algebraic geometry over hyperrings},
+Adv. Math. \textbf{323} (2018), 142--192.
+
+\end{thebibliography}
+
+\end{document}
+```

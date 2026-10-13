@@ -1,0 +1,24 @@
+# Round 0 Review
+
+I performed a full independent audit: read `problem.tex`, `plan.md`, the round prompt/contract/summary, tracker, bitlesson base, commit history, and the entire `solution.tex`, then re-verified the build myself (`pdflatex` exits 0, **5 pages**, no errors, references resolved) and checked every proof step line by line.
+
+**The disproof is correct.** Independently verified:
+
+- **Lemma 2.1** — strata $J$-invariance is pure pointwise linear algebra from $dz\circ J = i\,dz$; no integrability needed. ✓
+- **Lemma 3.1 (ratio lemma)** — off-divisor CR computation is correct ($\zeta'(Jv)=i\zeta' \Rightarrow dh(Jv)=i\,dh(v)$ where $\zeta\neq0$); smooth nonvanishing extension of the ratio across $D$ via the simple-zero quotient; $d\zeta' = h\,d\zeta$ on $D$; holomorphicity extends across by continuity/density. Continuity is essential because the complex structures at divisor points are mixed-type. ✓
+- **Lemma 4.1** — Nijenhuis–Woolf discs + classical maximum modulus + open/closed/connected argument; parametric NW dependence used only for the swept-neighbourhood step, stated explicitly as the sole genuinely external input. ✓
+- **Theorem 1.1** — conormal frames $e_i=dz_1^{(i)}|_{D_\alpha}$ are $\mathbb C$-linear nowhere-zero sections of the complex conormal line bundle; renumbering at each $p\in D_\alpha$ legitimately puts $D_\alpha$ first ($z_k|_{D_\alpha}\equiv 0$ forces $D_\alpha=\{z_k=0\}$ as regular codim-1 loci); overlap ratios constant ⇒ locally constant cocycle ⇒ flat connection ⇒ $c_1=0$ in $H^2(\cdot;\mathbb R)$ ⇒ $e(\nu)=0$ ⇒ $D_\alpha\cdot D_\alpha = 0$, with dual/sign conventions stated correctly. ✓
+- **Corollary 1.2** — $(\CP^2,\omega_{FS},L)$ satisfies every hypothesis of the question; $\nu_L\cong\mathcal O(1)$, $L\cdot L=1$; the obstruction is topological in the oriented smooth pair $(M,L)$, so the question's cohomologous-deformation clause genuinely cannot help; the two-line nodal case is handled. ✓
+- A subtle trap (the ambient $J$ on an adapted chart **is** the standard integrable complex structure, since $n$ $J$-holomorphic independent functions force integrable coordinates — so existence fails *locally* on noncompact charts) does not affect the argument, which only uses compact coordinate balls.
+
+External facts are all standard (Nijenhuis–Woolf, maximum modulus, Chern–Weil) and stated precisely at point of use. Plan evolution (YES→NO) is justified and well-documented.
+
+**Findings:** no mainline gaps, no blocking issues. Three cosmetic items queued in the tracker (one garbled parenthetical sentence in Step 1 whose surrounding mathematics is nonetheless correct; an $X\times\mathbb C$ vs $X\times\Sigma$ example mismatch in Remark 5.1; Theorem 1.1 could literally recite its own hypothesis-strengthening). Tracker drift fixed (bitlesson task → completed; queued items added). Full details written to `.humanize/rlcr/2026-10-03_01-18-59/round-0-review-result.md`.
+
+```
+ACs: 5/5 addressed | Forgotten items: 0 | Unjustified deferrals: 0
+Capability anchor: N/A | Dependency gaps: 0 | Scope drift: no
+Mainline Progress Verdict: ADVANCED
+```
+
+COMPLETE

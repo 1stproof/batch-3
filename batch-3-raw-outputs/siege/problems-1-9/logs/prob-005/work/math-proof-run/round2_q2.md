@@ -1,0 +1,33 @@
+kind: attempt
+Open question attempted: the headline question itself, aiming at an AFFIRMATIVE PROOF for arbitrary hyperfields that evades the obstruction (B6) below by using auxiliary witness elements.
+
+Background (results obtained earlier in this attempt; each was proved in full in an earlier report, but re-check anything you rely on):
+
+(B1) Conventions. A hyperfield is H = G ∪ {0}, G an abelian multiplicative group, with a commutative, associative multivalued addition ⊞ (sums of several terms are unions over all choices, well defined by associativity), 0 neutral, each a has a unique -a with 0 ∈ a ⊞ -a, reversibility (c ∈ a ⊞ b ⇒ a ∈ c ⊞ -b), and distributivity w(a ⊞ b) = wa ⊞ wb for single elements w. -a = (-1)a with (-1)^2 = 1; possibly -1 = 1. Useful: 0 ∈ A ⊞ B iff A ∩ (-B) ≠ ∅; if c ∈ p ⊞ q then (S ⊞ p ⊞ q) ⊇ (S ⊞ c) ("merging two summands into an element of their sum only shrinks the sum"); H ⊞ a = H for every a; if 0 ∈ S then A ⊞ S ⊇ A.
+
+(B2) Normalization. z = 0 is trivial (y = -x, and 0 ∈ x^3 ⊞ -x^3). For z ≠ 0, scaling by -1/z makes the question equivalent to: for nonzero x, y with 1 ∈ x ⊞ y, is 1 ∈ T := x^3 ⊞ y^3 ⊞ xy ⊞ xy ⊞ xy ?
+
+(B3) Quotient hyperfields F/U (F a field, U ≤ F^×) satisfy the implication (lift to representatives x'+y'+z' = 0 and use x'^3+y'^3+z'^3-3x'y'z' = (x'+y'+z')(…) = 0). So Krasner, sign, tropical, phase, triangle, weak sign, and all their ordered-group extensions satisfy it; a counterexample must be a NON-quotient hyperfield. Also: if H satisfies it, so does any extension H ⋊ Γ by an ordered abelian group (leading-term argument).
+
+(B4) Computer evidence (exhaustive search, unrefereed): no counterexample among all hyperfields H = G ∪ {0} with |G| ≤ 9 (every abelian group of order ≤ 8, and Z9, Z3×Z3). A counterexample has at least 11 elements.
+
+(B5) Composition rule (proved). If 0 ∈ A ⊞ t and 0 ∈ B ⊞ (-t) for sums A, B and an element t, then 0 ∈ A ⊞ B. (From 0 ∈ A ⊞ t, -t ∈ A; from the other, t ∈ B; and 0 ∈ (-t) ⊞ t.) But from 0 ∈ C ⊞ a ⊞ (-a) one can NOT conclude 0 ∈ C in general.
+
+(B6) Obstruction to "linear" proofs (proved). Treat x, y as formal monomials and let R_w be the relation 0 ∈ wx ⊞ wy ⊞ (-w) (w a monomial ±x^i y^j). No derivation that only composes relations R_w via (B5) yields 0 ∈ x^3 ⊞ y^3 ⊞ xy ⊞ xy ⊞ xy ⊞ (-1): term counting forces exactly 4 relations, three of which must be R_1, R_{x^2}, R_{y^2}, and the fourth cannot cancel the 6 unwanted terms. The field identity needs the step x^2y + xy^2 = xy, i.e. contracting the SET x^2y ⊞ xy^2 to its element xy, which hyperfield membership does not allow. So an affirmative proof must use auxiliary witness elements (e.g. elements of 1 ⊞ 1, x ⊞ -xy, …) and the associativity/reversibility relations they satisfy.
+
+(B7) Diagonal case (proved). If 1 ∈ x ⊞ x then 1 ∈ T: x^2 ∈ x^3 ⊞ x^3 gives T ⊇ x^2 ⊞ x^2 ⊞ x^2 ⊞ x^2, and x ∈ x^2 ⊞ x^2 gives this ⊇ x ⊞ x ∋ 1.
+
+(B8) Expansion with a witness (proved). From 1 ∈ x ⊞ y: x ∈ x^2 ⊞ xy, x^2 ∈ x^3 ⊞ x^2y, so x ∈ x^3 ⊞ x^2y ⊞ xy; similarly y ∈ y^3 ⊞ xy^2 ⊞ xy; hence 1 ∈ x^3 ⊞ y^3 ⊞ xy ⊞ xy ⊞ w for some w ∈ x^2y ⊞ xy^2 = xy(x ⊞ y). So 1 ∈ T whenever this w can be taken to be xy (e.g. whenever x ⊞ y = {1}). In general the witness u ∈ x ⊞ y with w = xy·u need not be 1.
+
+(B9) Class results (proved). (a) If a ⊞ -a = H for all a ≠ 0 and -1 = 1, the implication holds (xy ⊞ xy = H so T = H). With -1 ≠ 1 in this class it is proved only when one of x^3, y^3, z^3 equals xyz; otherwise OPEN. (b) If -1 = 1, then 0 ∈ xy ⊞ xy, so T ⊇ x^3 ⊞ y^3 ⊞ xy, and the implication follows from the core claim (C): 1 ∈ x ⊞ y ⇒ 1 ∈ x^3 ⊞ y^3 ⊞ xy. If a ⊞ a = {a} for all a, then xy ⊞ xy ⊞ xy = {xy} and the implication is EQUIVALENT to (C). (C) is OPEN; a field-of-characteristic-2 proof of it uses (x+y)^2 = x^2 + y^2, a cancellation unavailable in hyperfields. (c) Krasner extensions (-1 = 1, a ⊞ a = {0, a}): T = (x^3 ⊞ y^3) ∪ (x^3 ⊞ y^3 ⊞ xy). These correspond to projective geometries with a regular abelian collineation group; all known ones are quotients (Desarguesian), so they are not promising for a counterexample. (d) Hyperfields in which a ∈ a ⊞ b for all a, b (every multi-sum contains each of its summands), e.g. Massouros' "a ⊞ b = {a, b, a+b} for b ≠ -a, a ⊞ -a = F" built on a field F, satisfy the implication in the cases checked (if x ⊞ y ∋ 1 because 1 ∈ {x, y} then T contains the cube 1; otherwise the field sum 1 = x^3+y^3+3xy is in T).
+
+(B10) Exponent-3 reduction (coordinator's computation; check it). Suppose -1 = 1 and g^3 = 1 for all g ∈ G. Put Q := 1 ⊞ 1 ⊞ 1. Since -1 = 1, y ∈ 1 ⊞ x ⇔ 1 ∈ x ⊞ y, so w := xy ranges over x(1 ⊞ x) = x ⊞ x^2. The normalized target is T = 1 ⊞ 1 ⊞ w ⊞ w ⊞ w and 1 ∈ T ⇔ 0 ∈ Q ⊞ wQ ⇔ Q ∩ wQ ≠ ∅. Hence such an H is a counterexample iff there are x ∈ G and nonzero w ∈ x ⊞ x^2 with Q ∩ wQ = ∅. This needs 1 ∉ 1 ⊞ 1 (else 0 ∈ Q) and w ≠ 1.
+
+Your task. Prove: for every hyperfield, 1 ∈ x ⊞ y ⇒ 1 ∈ T = x^3 ⊞ y^3 ⊞ xy ⊞ xy ⊞ xy (equivalently the symmetric original form 0 ∈ x⊞y⊞z ⇒ 0 ∈ x^3⊞y^3⊞z^3⊞-xyz⊞-xyz⊞-xyz; you may find the symmetric form, with its S_3 symmetry, easier). Because of (B6), a proof must introduce auxiliary elements and use associativity in an essential way. Concrete strategies to try (do not just survey them — push one through or show precisely where it breaks):
+ (a) Start from the witness of (B8): 1 ∈ x^3 ⊞ y^3 ⊞ xy ⊞ xy ⊞ xy·u with u ∈ x ⊞ y. Use reversibility on u ∈ x ⊞ y together with 1 ∈ x ⊞ y (both in x ⊞ y) to relate u to 1 — e.g. x ∈ u ⊞ -y and x ∈ 1 ⊞ -y — and try an iteration/"descent" in which the witness is replaced step by step, or a choice of bracketing of the 3-fold expansion of (x ⊞ y)^3 that controls the witness.
+ (b) Use the 4-term associativity applied to the relations 0 ∈ w(x ⊞ y ⊞ -1) for several w simultaneously (e.g. w = x^2, xy, y^2, x, y, 1), choosing the intermediate elements cleverly so that terms cancel by the composition rule (B5) rather than inside a single sum.
+ (c) Alternative field derivations: x^3+y^3+z^3-3xyz = (x+y+z)(x^2+y^2+z^2-xy-yz-zx) = ½(x+y+z)((x-y)^2+(y-z)^2+(z-x)^2) = (x+y+z)^3 - 3(x+y+z)(xy+yz+zx); or substitute z = -(x+y). Find one whose every step can be realized by membership chains.
+ (d) Prove first weaker statements and bootstrap: e.g. 1 ∈ T ⊞ (a ⊞ -a) for a specific a, or the claim when x ⊞ y is a singleton, when 1 ⊞ 1 is a singleton, etc.
+If you become convinced it is false, switch to an explicit counterexample (non-quotient, ≥ 11 elements, all axioms verified, target sum computed).
+
+Deliverable: a complete rigorous proof, or a verified counterexample; otherwise the strongest partial result with full proof and the exact obstacle (state precisely what additional relation would finish the proof).

@@ -1,0 +1,1202 @@
+{
+  "id": "resp_021e0d1a94ec381a006abfbbfef0b487d1acad0ff9b0db0544",
+  "access_programs": null,
+  "created_at": 1790950399.0,
+  "error": null,
+  "incomplete_details": null,
+  "instructions": null,
+  "metadata": {},
+  "model": "gpt-6-astra",
+  "object": "response",
+  "output": [
+    {
+      "id": "rs_021e0d1a94ec381a006abfbc02fba087d1aeb006071b8f5496",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "ws_021e0d1a94ec381a006abfbc0aa62087d1af45f0f8987cc300",
+      "action": {
+        "type": "search",
+        "queries": [
+          "totally geodesic subvarieties moduli space rigidity deformation boundary constant factor",
+          "\"totally geodesic\" \"non-varying\" moduli",
+          "\"totally geodesic\" \"deformations\" \"boundary\" Teichmuller surfaces"
+        ],
+        "query": "totally geodesic subvarieties moduli space rigidity deformation boundary constant factor",
+        "sources": null
+      },
+      "status": "completed",
+      "type": "web_search_call"
+    },
+    {
+      "id": "ws_021e0d1a94ec381a006abfbc0dd65487d18b6689f72285f893",
+      "action": {
+        "type": "open_page",
+        "url": "https://arxiv.org/html/2412.06765v1"
+      },
+      "status": "completed",
+      "type": "web_search_call"
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbc0fae6887d1bf30edce4301b9fc",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "ws_021e0d1a94ec381a006abfbc1344fc87d189b465853affd04c",
+      "action": {
+        "pattern": "constant",
+        "type": "find_in_page",
+        "url": "https://arxiv.org/html/2412.16330v1"
+      },
+      "status": "completed",
+      "type": "web_search_call"
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbc1509b887d19d2df8bfb97110c7",
+      "summary": [
+        {
+          "text": "**Exploring graph interactions**\n\nI need to figure out how to construct a boundary graph that intersects with curves to propagate fixed factors. It sounds like I'll be using multiple curves to fill in the gaps. My next step is to find all the relevant papers that discuss this topic and see if there are more current versions out there. I'll keep looking until I get a solid understanding!",
+          "type": "summary_text"
+        }
+      ],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "ws_021e0d1a94ec381a006abfbc17663487d18fd7c549550a23d0",
+      "action": {
+        "type": "search",
+        "queries": [
+          "\"Teichmüller\" \"rigidity\" \"boundary\" \"deformation\" \"surface\" totally",
+          "\"geodesic\" \"non-varying\" \"deformation\"",
+          "\"totally geodesic\" \"rigid\" Benirschke Dozier Rached"
+        ],
+        "query": "\"Teichmüller\" \"rigidity\" \"boundary\" \"deformation\" \"surface\" totally",
+        "sources": null
+      },
+      "status": "completed",
+      "type": "web_search_call"
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbc1bdca087d1b6006375cec197cd",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbc298cac87d1a9bba0da2c21f749",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "ws_021e0d1a94ec381a006abfbc3095c887d19cd8a84a294e3833",
+      "action": {
+        "type": "open_page",
+        "url": "https://arxiv.org/html/2412.06765v1"
+      },
+      "status": "completed",
+      "type": "web_search_call"
+    },
+    {
+      "id": "ws_021e0d1a94ec381a006abfbc34b03887d1a541a286cab9c1b7",
+      "action": {
+        "type": "open_page",
+        "url": "https://arxiv.org/html/2412.06765v1"
+      },
+      "status": "completed",
+      "type": "web_search_call"
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbc37b0d487d1b2c9013b76c52608",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "ws_021e0d1a94ec381a006abfbc384df887d1a4e67762427d5520",
+      "action": {
+        "type": "search",
+        "queries": [
+          "\"Teichmüller\" \"McMullen\" \"Rigidity\" 2009 curves",
+          "\"totally geodesic\" \"nonvarying\"",
+          "\"boundary\" \"Teichmüller surfaces\" \"rigidity\""
+        ],
+        "query": "\"Teichmüller\" \"McMullen\" \"Rigidity\" 2009 curves",
+        "sources": null
+      },
+      "status": "completed",
+      "type": "web_search_call"
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbc40095087d18cfa7f1e5001958e",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "ws_021e0d1a94ec381a006abfbc40cdf087d1b6657d28252d5ac0",
+      "action": {
+        "type": "open_page",
+        "url": "https://arxiv.org/abs/2412.16330"
+      },
+      "status": "completed",
+      "type": "web_search_call"
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbc46291887d1af5e29e8c6042b9d",
+      "summary": [
+        {
+          "text": "**Evaluating geometrical assumptions**\n\nI’m considering assumptions about finite types, particularly regarding smooth boundary strata families. For V0, it seems totally geodesic could imply it's globally closed. Rigorous definitions are necessary, like stating conventions on subvarieties and using Chow closures. Vt subvarieties might not be totally geodesic, so I need to ensure the holomorphic family condition is met, even if it's assertively smooth. I’ll check how quasi-projective ideas align with algebraic definitions in this context.",
+          "type": "summary_text"
+        }
+      ],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbc5858dc87d18408217a2305c96d",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbc65c2e487d195e402bf9bc576b8",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbc74131c87d1b0a2fe1bdc380dc6",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "ws_021e0d1a94ec381a006abfbc7a9e1887d18db47fdf6e7cd666",
+      "action": {
+        "type": "open_page",
+        "url": "https://public.websites.umich.edu/~alexmw/tghhs.pdf"
+      },
+      "status": "completed",
+      "type": "web_search_call"
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbc7db19487d19d038aab1e157241",
+      "summary": [
+        {
+          "text": "**Clarifying theorem concepts**\n\nI’m thinking about the unpinch lemma and how it relates to stronger simultaneous exactness from any point, and how it simplifies things. I need to dive into the introductions for Theorem 1.3 and 1.6 to better understand their dimensions. It's crucial to grasp these concepts fully, as they’ll really help clarify my approach. I want to make sure I'm getting this right so I can apply it effectively later on!",
+          "type": "summary_text"
+        }
+      ],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "ws_021e0d1a94ec381a006abfbc7fd83087d1b4e9a5d7b37eb268",
+      "action": {
+        "pattern": "Theorem 1.3.",
+        "type": "find_in_page",
+        "url": "https://people.math.harvard.edu/~ctm/papers/home/text/papers/rigidity/rigidity.pdf"
+      },
+      "status": "completed",
+      "type": "web_search_call"
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbc81db2087d190c2f8252ab0ec72",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "ws_021e0d1a94ec381a006abfbc829f6c87d18079de8fd583c890",
+      "action": {
+        "type": "open_page",
+        "url": "https://arxiv.org/html/2412.16330v2"
+      },
+      "status": "completed",
+      "type": "web_search_call"
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbc847c5087d18ed2bd8615ebeab4",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbc915d0887d1a0f3353a1e3dc23d",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbca3b7d887d1ba833d4d38d2d263",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbcb1206087d1816cd0c140b052af",
+      "summary": [
+        {
+          "text": "**Considering mathematical concepts**\n\nI'm thinking about irreducibility and how it relates to smooth subvarieties. The idea is that the intersection of different branches isn't straightforward, especially regarding dimensions. I'm curious about whether a 0-dimensional piece from one branch can actually meet a 1-dimensional piece from another branch at a specific point. It feels like a complex question that challenges my understanding of boundaries and intersections in algebraic geometry. I really want to make sense of this!",
+          "type": "summary_text"
+        }
+      ],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbcc0d13087d198404e546e655f20",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbcd0518c87d19d3883184797975f",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbce14c8487d1a1c334104e8e4b1b",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "ws_021e0d1a94ec381a006abfbceda90487d1bfe8f15384c5bf2b",
+      "action": {
+        "type": "search",
+        "queries": [
+          "\"totally geodesic\" \"boundary\" \"normalization\" \"strata\"",
+          "\"totally geodesic\" \"unpinching\" \"rigidity\"",
+          "\"Teichmüller\" \"stratified\" \"deformations\" \"rigid\"",
+          "\"totally geodesic\" \"holomorphic family\" \"boundary\""
+        ],
+        "query": "\"totally geodesic\" \"boundary\" \"normalization\" \"strata\"",
+        "sources": null
+      },
+      "status": "completed",
+      "type": "web_search_call"
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbcf32eec87d1bdd2b0749ab4dee9",
+      "summary": [
+        {
+          "text": "**Planning search strategies**\n\nI'm reaching the tool call limit, so I need to carefully plan my remaining searches. I might use known books for references on topology, especially focusing on \"no jumps,\" though there's some uncertainty there. I've fetched a good amount already; I need to make sure to batch my remaining queries carefully. I think I have a decent token budget left, so I’m strategizing how to maximize the search outputs while keeping in mind the limits.",
+          "type": "summary_text"
+        },
+        {
+          "text": "**Deriving complete proof**\n\nI'm thinking about how to derive a complete proof while avoiding complications, focusing on condition ii at an arbitrary U. I might just preserve cardinality using a fixed factor, choosing a finite set from the projections of auxiliary strata without needing to track p. Using a geometric combinatorial fact, every point in B0 has a Y factor cusp from some projection, leading to finite possible Y values. It seems central geodesics and auxiliary curves need careful consideration, focusing on their properties as projections near boundaries.",
+          "type": "summary_text"
+        },
+        {
+          "text": "**Exploring rank 2 considerations**\n\nI'm examining a situation involving rank 2 and nodal sets in the graph Γ'. It looks like there might only be one class of different lifts, but there's a challenge with unpinching A from its original class. An auxiliary stratum is needed where A is unpinched and B is pinched. If a component curve at p0 uses all nodes, then A can't be unpinched alone due to the absence of an auxiliary boundary. Therefore, it seems there are issues with equality in Γ', leading to complications for further derivations.",
+          "type": "summary_text"
+        }
+      ],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbd03b19487d18c9e325be7dce026",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbd116cd887d18066670d2721e4d3",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbd2205ec87d18b2d6b6d9a994381",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbd32d7bc87d1a258c1b8c737af71",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbd427d2c87d18eb37ca43881e2d3",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbd51865887d1b4ea685b55fb0629",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbd5f896087d1a45fc4d48e211f87",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbd71610487d1ba9a08e5921f1bed",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbd81d1f487d18b11c13fd11fa2be",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbd9066dc87d181aeecce32144eb0",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbda2c38487d1a42ad64b827bfc47",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbdb27dc087d1ba0407885967cc83",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbdc41ddc87d1b3dc3ff9e37ca16f",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbdd5cb3487d187808b93cb69bb45",
+      "summary": [
+        {
+          "text": "**Evaluating theorems on subvarieties**\n\nI'm wondering if the generic flags of the smooth subvariety theorem actually allow me to choose another cusp in B0 without unintended consequences. It seems the answer is no. I might need to consider an alternative approach, like using option (ii), which isn't at p0 but includes a larger stratum. This could involve Γ itself to ensure the family B_t remains entirely fixed, as long as one edge has a coarser stratum that counts as a boundary stratum.",
+          "type": "summary_text"
+        }
+      ],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbde8fa0487d19c6c2767b0d7039f",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbdf9a34c87d19b5c13b13c07f198",
+      "summary": [
+        {
+          "text": "**Considering geometry definitions**\n\nI'm looking at the concept of a \"(complex) smooth subvariety\" and how it relates to complex submanifolds without assuming they're properly closed. I think I could explore local total geodesics in dimension 2 here. A small open piece of a geodesic surface is considered totally geodesic based on local definitions in differential geometry. However, I wonder if the problem really intends to focus on complete geodesics rather than just local ones. There's a lot to unpack!",
+          "type": "summary_text"
+        }
+      ],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbe0abca087d18a9ba4d8f46dc761",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbe1980d087d181d48aa7531c3519",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbe28f24487d182aadbf66e0094dc",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbe3bd96887d1836ec21fa896c3a5",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbe4c2df087d1b2a2be9f6e28a3e2",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbe5d3a3c87d1a4ec668518d16018",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbe70068c87d1a7b11a8dea6ede33",
+      "summary": [
+        {
+          "text": "**Evaluating family dynamics**\n\nI’m considering how family dynamics can normalize after a significant change. If the boundary remains constant, I might not control normality, but I wonder if the different internal and boundary types could influence the overall structure. There’s something here about the Euler characteristic, relating to the sum of fiber strata and invariants concerning genus. So, how do these elements tie into our understanding of familial relationships? It’s definitely intriguing!",
+          "type": "summary_text"
+        }
+      ],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbe80cb0087d1844e4e6b506e165a",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbe91166c87d1bea41d584ec8b830",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbea51ad887d19cb84eb056daabfb",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbeb7ecf087d1a308f307e4ae2a5a",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbec7815c87d1841657007b23edd1",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbed75dbc87d1acc444675bed8dce",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbee9c2cc87d1b842a64ddf6f9619",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbefc83cc87d1b76857f4a8086818",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "ws_021e0d1a94ec381a006abfbf08368887d1a5fd3150a49b161b",
+      "action": {
+        "type": "search",
+        "queries": [
+          "\"Teichmüller curves\" \"rigidity\" \"marked\" McMullen",
+          "\"totally geodesic\" \"boundary\" \"branches\"",
+          "\"totally geodesic\" \"constant factors\"",
+          "\"Teichmüller\" \"boundary\" \"deformation\" \"compatible\""
+        ],
+        "query": "\"Teichmüller curves\" \"rigidity\" \"marked\" McMullen",
+        "sources": null
+      },
+      "status": "completed",
+      "type": "web_search_call"
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbf138ecc87d1b6dd6e1aca946aaa",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbf1ffbf087d194a02b2321c7b2a7",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbf2dba5887d1a8ffe0dbddf6e346",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbf3bea6487d190c4874b069b6318",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbf4a978887d1b8ac6d57cd61c742",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbf58267887d197deebf8909e80ca",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbf664d5487d1b5bafdf78d8c01d2",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbf730a8c87d1897584f7811b47db",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbf8190b887d1a28bd8c45ca0759c",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbf8f602c87d1957dd8514c745443",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbf9f23b087d1bf39680c926e4de5",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbfaf245c87d18063cbec83bdf4b9",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbfbdfe4487d1af105d57ecd6544a",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbfcce27487d1b18101085318996c",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbfdd4f8087d192db8f5d9e857e7b",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbfecdc3487d1b35f2088cad6615f",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfbff967bc87d1ab4e79b4053c8753",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc008fbc487d19d0723bb5f396de2",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc0188c2487d192eb702cca740092",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc027941487d1ac5e21ab9e771e46",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc0375dc487d198bf01b8b74c7bfd",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc045851087d18fdd491394d7514a",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc055ef2487d1a3050a30900bdfca",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc065864087d1a031ff8576a24a49",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc076075c87d1a5f8ed1a63b4e404",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc08539b887d1a91d26359882a3b1",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc0980b2487d1ab2e9fa0b8afeab3",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc0a7f30087d1a09809b766af1b7d",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc0b5c6dc87d19705a0cffdb6d686",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc0c5b42087d18ddea537ae5aa892",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc0d29bbc87d1b9baaea19e469a9d",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc0e0f5cc87d181e13807ecf6df35",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc0f1120487d1b18cb48c308e6870",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc100ae7087d1bdff279d12b6227a",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc10e80a887d185ac4e86c05dcbdd",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc11ce32487d18f1dc18a5171e3a2",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc12bfaa487d1b2c8fd91edababe1",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc13b024087d190df07e8542935ff",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc14a69b487d198ba904c7d871819",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc15973dc87d1bb99788852ed2d06",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc169cc1887d1a540a6b5c3a2f01e",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc1784fd087d1b4d33825daef14d9",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc1865f0087d18224294dbf8a5089",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc193a8d887d19253066eb94d48a4",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc1a32d8c87d18a4ab2a07ddc03c3",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc1b25b1c87d1b07dc80d667d2e6c",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc1c3f54887d1a4dec21d3ab971f2",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc1d4940887d1bc8f82cc9aeb44e0",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc1e477dc87d1ac17e93fa4411a9c",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc1f3c60087d1a400d64d72929c39",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc2053ef487d18c1cd43ffc94e696",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc2165de487d1b1ac0e1f8693e2c5",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc22724c887d18e60341cdeba9db6",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc23b4cb087d1abcadaca2f91b3eb",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_021e0d1a94ec381a006abfc24a711487d193b461bd5f0b382a",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "msg_021e0d1a94ec381a006abfc259a81087d1b65df34d28f66d0d",
+      "content": [
+        {
+          "annotations": [
+            {
+              "end_index": 4253,
+              "start_index": 4203,
+              "title": "The geometry of totally geodesic subvarieties of moduli spaces of Riemann surfaces",
+              "type": "url_citation",
+              "url": "https://arxiv.org/html/2412.16330v2"
+            },
+            {
+              "end_index": 5590,
+              "start_index": 5508,
+              "title": "",
+              "type": "url_citation",
+              "url": "https://public.websites.umich.edu/~alexmw/tghhs.pdf"
+            },
+            {
+              "end_index": 8127,
+              "start_index": 8016,
+              "title": "rigidity.dvi",
+              "type": "url_citation",
+              "url": "https://people.math.harvard.edu/~ctm/papers/home/text/papers/rigidity/rigidity.pdf"
+            },
+            {
+              "end_index": 18190,
+              "start_index": 18140,
+              "title": "The geometry of totally geodesic subvarieties of moduli spaces of Riemann surfaces",
+              "type": "url_citation",
+              "url": "https://arxiv.org/html/2412.16330v2"
+            }
+          ],
+          "text": "\\documentclass[11pt]{article}\n\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{amsmath,amssymb,amsthm}\n\\usepackage[margin=1in]{geometry}\n\\usepackage{hyperref}\n\n\\newcommand{\\M}{\\mathcal M}\n\\newcommand{\\T}{\\mathcal T}\n\\newcommand{\\V}{\\mathcal V}\n\\newcommand{\\D}{\\Delta}\n\\newcommand{\\ol}[1]{\\overline{#1}}\n\n\\newtheorem{theorem}{Theorem}[section]\n\\newtheorem{lemma}[theorem]{Lemma}\n\\newtheorem{proposition}[theorem]{Proposition}\n\\theoremstyle{remark}\n\\newtheorem{remark}[theorem]{Remark}\n\n\\title{Rigidity of a Constant Boundary Factor}\n\\author{}\n\\date{}\n\n\\begin{document}\n\\maketitle\n\n\\begin{abstract}\nWe prove the asserted constancy using rigidity of Teichm\\\"uller curves\nand the boundary structure theorem for totally geodesic subvarieties.\nAn important preliminary observation is that the compatibility\nhypothesis forces every positive-dimensional boundary locus in a\nstratum with at least two nodes to remain fixed set-theoretically.\nThis observation also handles the possibility that a cusp of one\nboundary curve lies on another positive-dimensional boundary locus.\n\\end{abstract}\n\n\\section{Conventions and geometric input}\n\nWe use the usual moduli-theoretic conventions: subvarieties are\nalgebraic, while their dependence on the disc parameter may be\nholomorphic rather than algebraic. Smooth families and local\narguments on moduli spaces are understood orbifold-locally.\nThus auxiliary level structures and local labels for components and\nbranches of nodes may be introduced. The conclusion is a statement\non the original moduli space and is unaffected by these auxiliary\nchoices.\n\nHere is one consequence of the smooth-family assumption that will\nbe used explicitly. Suppose that \\(x\\) is an isolated point of\n\\[\nZ_0(G):=\\ol{V_0}\\cap\\Delta_G.\n\\]\nIn a local marked chart at \\(x\\), the family\n\\[\n\\{(z,t):z\\in Z_t(G)\\},\\qquad\nZ_t(G):=\\ol{V_t}\\cap\\Delta_G,\n\\]\nhas relative dimension zero and is a submersion to the parameter\ndisc. The holomorphic inverse function theorem therefore gives\na unique local section through the chosen marked point \\(x\\).\nIn particular, two sections through that marked point coincide\nafter shrinking the parameter disc. Introducing such charts is\nlegitimate for hypothesis~(i), which is a smooth-family hypothesis.\nWe will \\emph{not} assume that hypothesis~(ii) holds for individual\nbranches in a refined or marked stratification; it will be used\nonly in the original moduli space.\n\nWe recall the following consequences of the boundary structure\ntheorem. A component of the normalization of a nodal surface will\nbe called \\emph{active} for a boundary locus if the projection of\nthat locus to the corresponding pointed moduli space is\nnonconstant.\n\n\\begin{theorem}[Boundary structure facts]\\label{thm:structure}\nLet \\(N\\subset\\T_{g,n}\\) be an algebraic totally geodesic submanifold.\nThe following statements hold.\n\\begin{enumerate}\n\\item\nIts intersection with a stratum of augmented Teichm\\\"uller space\nis semisimple. In particular, for a one-dimensional boundary\nlocus, every nonconstant factor projection is a Teichm\\\"uller\ndisc upstairs and is a local isometry on the corresponding\nnormalized orbifold curve downstairs.\n\n\\item\nPinchable curves have an \\(N\\)-equivalence relation. A pinched\nmulticurve is a union of entire equivalence classes. If it\ncontains \\(r\\) classes, the corresponding boundary locus has\ndimension at most \\(\\dim N-r\\). Any one class can be unpinched\nwhile all the other classes remain pinched.\n\n\\item\nFor a positive-dimensional simple boundary factor, the union of\nthe boundary curves of its active subsurfaces is a union of\nentire \\(N\\)-equivalence classes.\n\\end{enumerate}\n\\end{theorem}\n\n\\begin{proof}[References]\nThese are, respectively, Theorem~1.3; Theorem~1.6(4),\nCorollary~3.17 and the dimension estimate in the proof of\nTheorem~3.9; and Lemma~6.1(3) of\nArana--Herrera--Wright~\\cite{AHW}. Their numbering here refers\nto version~2 of that paper.\nFor the local-isometry assertion in the first statement, see also\nBenirschke--Dozier--Rached~\\cite[Theorem~1.7 and\nProposition~9.2]{BDR}.\n\\end{proof}\n\n% Sources for the boundary structure and factor-projection assertions:\n% Arana--Herrera--Wright and Benirschke--Dozier--Rached.\n% ([arxiv.org](https://arxiv.org/html/2412.16330v2))\n\nWe need the following useful consequence of the third statement.\n\n\\begin{lemma}[Every node is seen by an active component]\\label{lem:active}\nLet \\(W\\subset\\M_g\\) be a totally geodesic surface, and let \\(E\\)\nbe a one-dimensional irreducible component of its intersection\nwith a boundary stratum. Then every node of the corresponding\nstable curves is incident to at least one component that is\nactive for \\(E\\).\n\\end{lemma}\n\n\\begin{proof}\nChoose a lift \\(N\\subset\\T_g\\) of \\(W\\), and a boundary locus\nupstairs covering \\(E\\). If its pinched multicurve has \\(r\\)\nequivalence classes, Theorem~\\ref{thm:structure}(2) gives\n\\[\n1\\leq 2-r.\n\\]\nSince this is a boundary locus, \\(r\\geq1\\), so \\(r=1\\).\n\nThere is exactly one positive-dimensional simple factor, since\nthe locus has dimension one. Its active subsurfaces have a\nnonempty union of boundary curves: the stable curve is connected,\nhas a node, and the locus has at least one active component.\nBy Theorem~\\ref{thm:structure}(3), this union consists of entire\nequivalence classes. There is only one such class, so the union\nis the whole pinched multicurve. This is precisely the assertion.\n\\end{proof}\n\n% The whole-equivalence-class assertion used in this lemma is\n% Arana--Herrera--Wright, Lemma 6.1(3).\n% ([public.websites.umich.edu](https://public.websites.umich.edu/~alexmw/tghhs.pdf))\n\n\\section{Deformations of boundary curves}\n\nWe will use rigidity of Teichm\\\"uller curves in its usual\npointed and orbifold formulation.\n\n\\begin{theorem}[Rigidity of Teichm\\\"uller curves]\\label{thm:McM}\nLet\n\\[\nf_t:C_t\\longrightarrow \\M_{h,m}\n\\]\nbe a holomorphic, smoothly trivial family of orbifold maps from\nfinite-type curves. Suppose that \\(f_0\\) is a local isometry for\nthe complete finite-area hyperbolic metric on \\(C_0\\) and the\nTeichm\\\"uller metric on the target. Then the family of pairs\n\\((C_t,f_t)\\) is locally trivial.\n\\end{theorem}\n\n\\begin{proof}\nFor unpointed targets this is McMullen's rigidity theorem\n\\cite[Theorem~1]{McM}. We explain why the same argument applies\nto pointed targets.\n\nPass to finite covers to remove orbifold stabilizers, and\nidentify monodromy using the smooth trivialization. For a\nnonperipheral conjugacy class \\(\\gamma\\in\\pi_1(C_0)\\), its\nmonodromy is pseudo-Anosov, with translation length equal to\nthe hyperbolic length \\(\\ell_0(\\gamma)\\). Holomorphic maps\ncontract the Teichm\\\"uller metric, by the\nRoyden--Earle--Kra theorem \\cite{Royden,EK}. Consequently,\n\\[\n\\ell_t(\\gamma)\\geq \\ell_0(\\gamma)\n\\qquad\\text{for every nonperipheral }\\gamma.\n\\]\nThe marked length-spectrum domination principle used in\n\\cite[proof of Theorem~1, fact~(1)]{McM} implies that \\(C_t\\)\nand \\(C_0\\) are conformally identical with their markings.\n\nFor completeness, the maps are then identical as marked maps.\nLift them to equivariant maps from the same hyperbolic disc to\n\\(\\T_{h,m}\\). Equality in the preceding inequality along a\nhyperbolic element's axis forces that axis to map isometrically\nonto the unique Teichm\\\"uller axis of its monodromy\n\\cite{Bers}. Holomorphic continuation identifies the lifted map\nwith the original Teichm\\\"uller-disc parametrization, up to an\nautomorphism of the source disc. Equivariance makes this\nautomorphism commute with the source lattice. A non-elementary\nFuchsian lattice has trivial centralizer in\n\\(\\operatorname{PSL}_2(\\mathbb R)\\): commuting with two\nhyperbolic elements with different axes fixes at least three\nboundary points. The automorphism is therefore the identity.\n\nFinally, the universal property of marked Teichm\\\"uller space\nmakes these identifications holomorphic in the parameter.\nThus the family of pairs is locally trivial.\n\\end{proof}\n\n% Source for the rigidity theorem and the length-domination argument:\n% McMullen, Rigidity of Teichmüller curves.\n% ([people.math.harvard.edu](https://people.math.harvard.edu/~ctm/papers/home/text/papers/rigidity/rigidity.pdf))\n\n\\begin{lemma}[Deforming a curve in a product]\\label{lem:curve}\nSuppose that \\(E_t\\) is a holomorphic, smoothly trivial family\nof algebraic curves in a product of pointed moduli spaces.\nSuppose that every nonconstant factor projection of the\nnormalized central curve is a Teichm\\\"uller local isometry.\nAfter passing to finite covers where necessary and shrinking\nthe parameter disc, the following hold.\n\\begin{enumerate}\n\\item\nThe normalized source curve can be identified with a fixed curve\n\\(C\\), and every initially nonconstant factor map is independent\nof \\(t\\).\n\n\\item\nEvery initially constant factor map remains constant on \\(C\\).\nIts value may depend holomorphically on \\(t\\).\n\n\\item\nEach specified point of the compactification of \\(C\\) determines\na holomorphic family of stable limits of \\(E_t\\). Its dual graph\nis independent of \\(t\\). Every pointed component belonging to\nthe stable limit of an initially nonconstant factor map is fixed.\n\\end{enumerate}\n\\end{lemma}\n\n\\begin{proof}\nAt least one factor projection is nonconstant. Apply\nTheorem~\\ref{thm:McM} to that projection to identify the source\nfamily with \\(C\\times\\D\\). Apply the same theorem to the other\ninitially nonconstant projections. The marked identifications\nof the source agree, proving the first assertion.\n\nConsider an initially constant projection. Its orbifold\nmonodromy has finite image. This image is unchanged under the\ndeformation. After a finite cover of \\(C\\) killing that image,\neach deformed map lifts holomorphically to the target\nTeichm\\\"uller space. A Bers embedding realizes that space as\na bounded domain \\cite{BersEmbedding}. The coordinates of the\nlift are bounded holomorphic functions on a compact Riemann\nsurface minus finitely many points. They extend across the\npunctures and are constant. Hence the original factor map is\nconstant. Its value depends holomorphically on \\(t\\), as is seen\nby evaluating at a fixed point of \\(C\\).\n\nLet \\(\\ol C\\) be the smooth compactification of \\(C\\).\nThe algebraic factor maps extend to the corresponding\nDeligne--Mumford compactifications, with stable reduction or\nfinite covers if needed. For a nonconstant factor the extended\nmap is fixed; for a constant factor it is the moving smooth\npoint just described. Composing their product with the\nclutching morphism gives the claimed family of stable limits.\nClutching and the local stable-curve description are those of\n\\cite{DM}. The nonconstant factors' stable limits are fixed,\nand the constant factors remain smooth pointed curves of the\nsame topological type. Thus the dual graph does not change.\n\\end{proof}\n\n\\begin{lemma}[A boundary curve has a further degeneration]\n\\label{lem:cusp}\nA positive-dimensional algebraic Teichm\\\"uller curve is\nnoncompact. Consequently, a one-dimensional boundary locus as\nin Theorem~\\ref{thm:structure}(1) has a stable limit in a strictly\nsmaller boundary stratum.\n\\end{lemma}\n\n\\begin{proof}\nA nonzero finite-area quadratic differential generating a\nTeichm\\\"uller disc has a cylinder; see \\cite{Masur}.\nRotate the differential so that this cylinder is horizontal,\nand apply Teichm\\\"uller flow in the direction that makes its\nmodulus tend to infinity. Its core curve has extremal length\ntending to zero. By compactness of the thick part of moduli\nspace \\cite{Mumford}, the resulting surfaces leave every compact\nsubset of moduli space. An algebraic Teichm\\\"uller curve is\ntherefore noncompact.\n\nFor a boundary curve in a product, apply this to a nonconstant\nfactor projection. Compactify the normalized source and the\nfactor maps. Some stable limit acquires an additional node,\nand hence lies in a strictly smaller stratum.\n\\end{proof}\n\n\\section{A consequence of the compatibility hypothesis}\n\nThe next observation uses the exact, set-theoretic formulation\nof hypothesis~(ii).\n\n\\begin{lemma}[Deep boundary curves cannot move]\\label{lem:deep}\nLet \\(\\Delta_G\\) be a boundary stratum whose curves have at least\ntwo nodes. For every \\(t\\), every positive-dimensional\nirreducible component of \\(Z_t(G)\\) is contained in \\(Z_0(G)\\).\n\\end{lemma}\n\n\\begin{proof}\nChoose a strictly larger boundary stratum \\(\\Delta_H\\) whose\nclosure contains \\(\\Delta_G\\). Such a stratum exists: smooth\none node while leaving at least one node unsmoothed.\n\nSet\n\\[\nU=\\ol{\\M}_g\\setminus\\ol{V_0}.\n\\]\nFor this open set, both sides of the equality in\nhypothesis~(ii) are empty at \\(t=0\\). That hypothesis therefore\nimplies, for every \\(t\\),\n\\begin{equation}\\label{eq:compat-empty}\nZ_t(G)\\cap U\n=\n\\ol{Z_t(H)}\\cap\\Delta_G\\cap U.\n\\end{equation}\n\nSince \\(\\ol{V_t}\\) is a surface, its boundary has dimension at\nmost one. Thus \\(Z_t(H)\\) has dimension at most one. Every\none-dimensional irreducible component of \\(\\ol{Z_t(H)}\\) has\na dense open subset in \\(\\Delta_H\\); its intersection with the\ndisjoint stratum \\(\\Delta_G\\) is consequently finite.\nZero-dimensional components contribute no boundary points.\nIt follows that\n\\[\n\\ol{Z_t(H)}\\cap\\Delta_G\n\\]\nis finite.\n\nLet \\(E_t\\) be a positive-dimensional irreducible component of\n\\(Z_t(G)\\). If \\(E_t\\) were not contained in \\(\\ol{V_0}\\), then\n\\(E_t\\cap U\\) would be a nonempty open subset of an algebraic\ncurve, and hence infinite. This contradicts\n\\eqref{eq:compat-empty}. Therefore\n\\[\nE_t\\subset\\ol{V_0}\\cap\\Delta_G=Z_0(G).\n\\]\n\\end{proof}\n\n\\begin{remark}\\label{rem:compatibility}\nThe preceding proof is the only use of hypothesis~(ii).\nIn particular, no stronger assertion about preservation of\nindividual incidences between branches is being substituted\nfor the hypothesis in the question.\n\\end{remark}\n\n\\section{Proof of the assertion}\n\n\\begin{theorem}\\label{thm:main}\nUnder the hypotheses of the question,\n\\[\n\\pi_i(\\partial V_t)=\\{Y_0\\}\n\\qquad\\text{for every }t\\in\\D.\n\\]\n\\end{theorem}\n\n\\begin{proof}\nThe function \\(t\\mapsto Y_t\\) is holomorphic. Indeed, locally\nchoose a holomorphic section of the smooth family\n\\(\\partial V_t\\); composing with \\(\\pi_i\\) gives \\(Y_t\\),\nindependently of the chosen section. It suffices to prove\nconstancy near \\(0\\), since the identity principle then gives\nconstancy on the connected disc.\n\nChoose a one-dimensional component \\(B_0\\) of\n\\(\\partial V_0\\), and let \\(B_t\\) be its continuation in the\nsmoothly trivial family from hypothesis~(i).\n\n\\medskip\n\\noindent\\textbf{Step 1: Reduction to a one-node stratum.}\n\nIf \\(\\Gamma\\) has at least two edges,\nLemma~\\ref{lem:deep} gives\n\\[\nB_t\\subset Z_0(\\Gamma)=\\partial V_0.\n\\]\nSince \\(\\pi_i\\) is equal to \\(Y_t\\) on \\(B_t\\) and equal to\n\\(Y_0\\) on \\(\\partial V_0\\), this already proves \\(Y_t=Y_0\\).\n\nWe may therefore assume that \\(\\Gamma\\) has one edge.\nIt cannot be a nonseparating edge: that stratum has just one\nmoduli-space factor, and constancy on that factor would\ncontradict \\(\\dim B_0=1\\). Thus the node is separating.\nWrite its vanishing curve as \\(a\\). Its two pointed components\nwill be denoted\n\\[\nY_t\\in\\M_{h,1},\n\\qquad\nX\\in\\M_{g-h,1}.\n\\]\nThe \\(Y\\)-projection of \\(B_t\\) is constant, whereas the\n\\(X\\)-projection of \\(B_0\\) is nonconstant.\n\nTheorem~\\ref{thm:structure}(1) and\nLemma~\\ref{lem:curve} identify the normalized source of \\(B_t\\)\nwith a fixed curve and make its \\(X\\)-map independent of \\(t\\).\n\n\\medskip\n\\noindent\\textbf{Step 2: A cusp section.}\n\nBy Lemma~\\ref{lem:cusp}, choose a cusp of this fixed\n\\(X\\)-map. Let \\(X^\\ast\\) be its stable pointed limit.\nIt has at least one node. Lemma~\\ref{lem:curve}(3) gives a\nholomorphic section\n\\[\np(t)\\in Z_t(G')\n\\]\nobtained by attaching \\(Y_t\\) to the fixed pointed stable curve\n\\(X^\\ast\\). Here \\(\\Delta_{G'}\\) is a fixed stratum with at least\ntwo nodes. Put \\(p_0=p(0)\\).\n\nUse local labels for the components and nodes of \\(p_0\\).\nAlong \\(p(t)\\), all pointed components coming from \\(X^\\ast\\)\nare fixed. Only the component \\(Y_t\\) can move.\n\nThe smooth locus \\(Z_0(G')\\) has local dimension either zero\nor one at \\(p_0\\). We treat these possibilities separately.\n\n\\medskip\n\\noindent\\textbf{Step 3: A positive-dimensional boundary locus\nthrough \\(p_0\\).}\n\nSuppose first that \\(Z_0(G')\\) has local dimension one at\n\\(p_0\\). Hypothesis~(i) puts \\(p(t)\\), for small \\(t\\), on a\npositive-dimensional component of \\(Z_t(G')\\).\nLemma~\\ref{lem:deep} then implies\n\\[\np(t)\\in Z_0(G').\n\\]\nLet \\(E_0\\) be its local curve component through \\(p_0\\).\n\nChoose any node \\(b\\) of \\(X^\\ast\\). Both components incident\nto \\(b\\), or the single component if \\(b\\) is a self-node,\ncome from \\(X^\\ast\\); their pointed moduli are fixed along\n\\(p(t)\\). On the other hand, Lemma~\\ref{lem:active} says that\nat least one of these components is active for \\(E_0\\).\nProjection of \\(E_0\\) to that factor is locally injective in\na marked chart, by Theorem~\\ref{thm:structure}(1).\nIts value along \\(p(t)\\) is fixed, so \\(p(t)\\) itself is\nconstant near \\(0\\). In particular, \\(Y_t=Y_0\\).\n\n\\medskip\n\\noindent\\textbf{Step 4: An isolated boundary point.}\n\nIt remains to suppose that \\(p_0\\) is isolated in \\(Z_0(G')\\).\nChoose a marked lift of the degeneration to the closure of\na lift \\(N\\subset\\T_g\\) of \\(V_0\\).\nLet \\(A=\\{a\\}\\), and let \\(B\\) be the nonempty multicurve\nconsisting of the additional nodes of \\(X^\\ast\\).\nThus the nodes at \\(p_0\\) correspond to\n\\[\nA\\sqcup B.\n\\]\n\nBecause \\(A\\) itself occurs as the complete pinched multicurve\nalong \\(B_0\\), it is an entire \\(N\\)-equivalence class.\nThere can be at most two equivalence classes in \\(A\\sqcup B\\),\nby Theorem~\\ref{thm:structure}(2) and \\(\\dim N=2\\).\nConsequently \\(B\\) is the other class.\n\nUnpinch the class \\(A\\), leaving \\(B\\) pinched.\nThe unpinching assertion gives points arbitrarily close to\n\\(p_0\\) in the stratum obtained by smoothing \\(a\\).\nThere is therefore a one-dimensional boundary component\n\\(F_0\\) of \\(V_0\\) in that stratum with\n\\[\np_0\\in\\ol{F_0}.\n\\]\nTo justify the dimension assertion explicitly, the boundary of\nthe surface has dimension at most one, and a zero-dimensional\nalgebraic locus is finite and cannot supply points in that\nstratum arbitrarily approaching \\(p_0\\).\n\n% Source for the unpinching operation used in this step:\n% Arana--Herrera--Wright, Lemma 3.16 and Corollary 3.17.\n% ([arxiv.org](https://arxiv.org/html/2412.16330v2))\n\nLet \\(Z\\) denote the component obtained by smoothing \\(a\\).\nIt contains the original \\(Y_0\\) and the component of\n\\(X^\\ast\\) to which \\(Y_0\\) was attached.\nThe projection of \\(F_0\\) to the moduli space of \\(Z\\) is\nnonconstant: its stable limit at the specified cusp has\nthe node \\(a\\), whereas a constant smooth pointed curve\ncannot have a nodal limit.\n\nLet \\(F_t\\) be the continuation of \\(F_0\\) supplied by\nhypothesis~(i). If its ambient stratum is a finite quotient\nof a product, take its product cover and the corresponding\nfinite cover of \\(F_t\\). Apply Lemma~\\ref{lem:curve}.\nThe \\(Z\\)-map is independent of \\(t\\), and its stable limit\nat our specified cusp is independent of \\(t\\).\nIn particular, the pointed component inside that stable\nlimit which is the original \\(Y_0\\) remains exactly \\(Y_0\\).\n\nThe same lemma supplies a cusp section\n\\[\nq(t)\\in Z_t(G'),\n\\qquad q(0)=p_0,\n\\]\nwith the same local component and node labels.\nSince \\(p_0\\) is isolated in the central stratum intersection,\nhypothesis~(i) and the local inverse-function observation in\nSection~1 imply\n\\[\nq(t)=p(t)\n\\]\nnear \\(0\\), in the chosen marked chart.\nTheir specified \\(Y\\)-components agree. The \\(Y\\)-component\nof \\(q(t)\\) is \\(Y_0\\), while that of \\(p(t)\\) is \\(Y_t\\).\nThus \\(Y_t=Y_0\\) near \\(0\\).\n\nThis completes both cases. Descending any auxiliary markings\nor finite covers and applying the identity principle yields\n\\[\n\\pi_i(\\partial V_t)=\\{Y_0\\}\n\\qquad(t\\in\\D).\n\\]\n\\end{proof}\n\n\\begin{remark}\nOnly the central surface and its central boundary curves were\nassumed to be totally geodesic. For \\(t\\ne0\\), rigidity of the\nnonconstant projections of boundary curves follows from\nTheorem~\\ref{thm:McM}; total geodesicity of \\(V_t\\) is never\nused.\n\\end{remark}\n\n\\begin{thebibliography}{99}\n\n\\bibitem{AHW}\nF.~Arana--Herrera and A.~Wright,\n\\emph{The geometry of totally geodesic subvarieties of moduli\nspaces of Riemann surfaces},\narXiv:2412.16330v2, 2025.\n\n\\bibitem{BDR}\nF.~Benirschke, B.~Dozier, and J.~Rached,\n\\emph{The boundary of a totally geodesic subvariety of moduli\nspace},\narXiv:2412.06765.\n\n\\bibitem{Bers}\nL.~Bers,\n\\emph{An extremal problem for quasiconformal mappings and a\ntheorem by Thurston},\nActa Math. \\textbf{141} (1978), 73--98.\n\n\\bibitem{BersEmbedding}\nL.~Bers,\n\\emph{Spaces of Riemann surfaces as bounded domains},\nBull. Amer. Math. Soc. \\textbf{66} (1960), 98--103.\n\n\\bibitem{DM}\nP.~Deligne and D.~Mumford,\n\\emph{The irreducibility of the space of curves of given genus},\nPubl. Math. Inst. Hautes \\'Etudes Sci. \\textbf{36} (1969),\n75--109.\n\n\\bibitem{EK}\nC.~J.~Earle and I.~Kra,\n\\emph{On isometries between Teichm\\\"uller spaces},\nDuke Math. J. \\textbf{41} (1974), 583--591.\n\n\\bibitem{Masur}\nH.~Masur,\n\\emph{Closed trajectories for quadratic differentials with an\napplication to billiards},\nDuke Math. J. \\textbf{53} (1986), 307--314.\n\n\\bibitem{McM}\nC.~T.~McMullen,\n\\emph{Rigidity of Teichm\\\"uller curves},\nMath. Res. Lett. \\textbf{16} (2009), no.~4, 647--650.\n\n\\bibitem{Mumford}\nD.~Mumford,\n\\emph{A remark on Mahler's compactness theorem},\nProc. Amer. Math. Soc. \\textbf{28} (1971), 289--294.\n\n\\bibitem{Royden}\nH.~L.~Royden,\n\\emph{Automorphisms and isometries of Teichm\\\"uller space},\nin \\emph{Advances in the Theory of Riemann Surfaces},\nAnnals of Mathematics Studies, vol.~66,\nPrinceton University Press, 1971, 369--383.\n\n\\end{thebibliography}\n\n\\end{document}",
+          "type": "output_text",
+          "logprobs": []
+        }
+      ],
+      "role": "assistant",
+      "status": "completed",
+      "type": "message",
+      "phase": "final_answer"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "temperature": 1.0,
+  "tool_choice": "auto",
+  "tools": [
+    {
+      "type": "web_search",
+      "external_web_access": null,
+      "filters": null,
+      "search_context_size": "medium",
+      "user_location": {
+        "city": null,
+        "country": "US",
+        "region": null,
+        "timezone": null,
+        "type": "approximate"
+      },
+      "return_token_budget": "default",
+      "search_content_types": [
+        "text"
+      ]
+    }
+  ],
+  "top_p": 0.98,
+  "background": true,
+  "completed_at": 1790952145.0,
+  "conversation": null,
+  "max_output_tokens": null,
+  "max_tool_calls": null,
+  "moderation": null,
+  "previous_response_id": null,
+  "prompt": null,
+  "prompt_cache_diagnostics": null,
+  "prompt_cache_key": null,
+  "prompt_cache_options": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "max",
+    "generate_summary": null,
+    "mode": "standard",
+    "summary": "detailed"
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "status": "completed",
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "top_logprobs": 0,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 140046,
+    "input_tokens_details": {
+      "cache_write_tokens": 962,
+      "cached_tokens": 4370
+    },
+    "output_tokens": 58629,
+    "output_tokens_details": {
+      "reasoning_tokens": 52541
+    },
+    "total_tokens": 198675
+  },
+  "user": null,
+  "billing": {
+    "payer": "developer"
+  },
+  "frequency_penalty": 0.0,
+  "presence_penalty": 0.0,
+  "store": true,
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 5
+    }
+  }
+}

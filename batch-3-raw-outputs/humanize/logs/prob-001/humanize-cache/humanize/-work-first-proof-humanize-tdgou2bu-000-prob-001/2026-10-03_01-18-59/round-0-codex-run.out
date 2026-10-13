@@ -1,0 +1,24 @@
+Both artifacts are now in place (review result file last line: `Mainline Progress Verdict: ADVANCED`; goal tracker updated with the new blocking issues). Here is my review:
+
+---
+
+## Code Review — Round 0 (prob-001)
+
+I read `plan.md`, `problem.tex` (twice, verbatim), the round contract, and all 1,144 lines of `solution.tex` line by line, recompiled it myself (11 pages, 0 errors, 0 undefined references — confirming only the *formal* claims), and audited the mathematics. The full review is written to `round-0-review-result.md` as required, and I updated the goal tracker's mutable section (tasks T1/T3/T4 back to in_progress, blocking issues B-1–B-6 added).
+
+**What holds up:** the overall strategy (valuative collapse ⇒ normal form ⇒ probe-cover descent ⇒ face induction) is sound and creative; Prop. 2.1, Construction 2.2, Lem. 2.13, the descent theorem's Claims A/B and endgame, Lems. 2.8/2.10/4.7/4.8 all verify on the stated domain.
+
+**Blocking findings (mainline gaps — prevent COMPLETE):**
+
+1. **B-1 (AC-1/AC-3):** `solution.tex:43` silently adds **finitely generated** to the problem's definition of "monoid." The entire proof then leans on f.g. (Gordan, finitely many faces, rational polyhedral cones). For non-f.g. P the affirmative mechanism itself can fail (P→P/K need not be f.p., so the CFA cover need not consist of birhizomic-at maps). This must be confronted head-on, not hidden.
+2. **B-2 (AC-1):** Lemma 2.4 Step 2's concluding contradiction is **false as written** — "but δ−g ∈ H₁ (same class)" is wrong (δ−g ∉ H₁ since g ∉ H₁; classes add by max). Reparable in one clause (delete it; the preceding δ ≥ nγ already contradicts archimedeanity), but must be fixed exactly so.
+3. **B-3 (AC-1/AC-3):** Finite presentation — half of the problem's definition of birhizomicity — is never treated: not for folds, CFA pieces, slice maps of given covers, checking maps in Lem. 2.10, or refinement maps in Lem. 4.5; covers are treated as families of objects with non-surjective α allowed while Section 4 computes only over i(b).
+4. **B-4 (AC-1):** The Čech nerve whose cohomology Section 4 computes is never defined or proved cofinal; the Verdier step is cited as raw "Stacks Tag 03F9/01GY" numbers (AC-2).
+5. **B-5 (AC-1):** Lemma 4.3(b)'s "adding a tight fold … leaves the kernel K" is ambiguous/false as stated (two different senses of "tight" needed); must be restated as two exact claims with proofs.
+6. **B-6 (AC-5):** a leftover `\iffalse…\fi` workflow block (~657–690) lives inside the deliverable.
+
+**Goal alignment:** `ACs: 1/5 addressed cleanly | Forgotten items: 0 | Unjustified deferrals: 0` — no scope drift, capability N/A, but the "completed" task statuses claimed in the tracker/summary contradict reality and have been corrected.
+
+A singular, directive Round-1 repair plan (decide the f.g. scope via an explicit cofinality/comparison-lemma test or an honestly stated restriction; one-clause fix to Lem. 2.4; a finite-presentation subsection; a nerve construction + kernel-map criterion; the two exact (C1)/(C2) claims; delete the `\iffalse` block) is included in the review file.
+
+Mainline Progress Verdict: ADVANCED

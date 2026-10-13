@@ -1,0 +1,15 @@
+{% extends "dev_base.html" %}
+{% set active_tab = 'home' %}
+{% block title %}ProofCouncil{% endblock %}
+{% block content %}
+    <section class="home-screen">
+        <img class="home-logo" src="{{ url_for('static', filename='favicon.png') }}" alt="" aria-hidden="true">
+        <h1>ProofCouncil</h1>
+        <div class="home-actions">
+            <a class="big-action" href="{{ url_for('new_agent') }}">Create New Agent</a>
+            <a class="big-action" href="{{ url_for('presets_index') }}">Edit Agent</a>
+            <a class="big-action" href="{{ url_for('run_agent') }}">Run Agent</a>
+            <a class="big-action" href="{{ url_for('runs_index') }}">View Runs</a>
+        </div>
+    </section>
+{% endblock %}

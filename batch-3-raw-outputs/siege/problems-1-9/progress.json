@@ -1,0 +1,92 @@
+{
+  "timestamp_utc": "2026-10-04T12:41:44Z",
+  "status": "5/9 solutions written, 4 declined, 0 in progress",
+  "elapsed_hours": 11.2,
+  "problems": {
+    "prob-001": {
+      "stage": "done",
+      "sessions": 1,
+      "skill_finished": true,
+      "skill_verdict": "PROVED",
+      "skill_ledger_gate": "CONCLUDE",
+      "outcome": "solution submitted",
+      "output_tokens_so_far": 1439366
+    },
+    "prob-002": {
+      "stage": "done",
+      "sessions": 1,
+      "skill_finished": true,
+      "skill_verdict": "PROVED",
+      "skill_ledger_gate": "CONCLUDE",
+      "outcome": "solution submitted",
+      "output_tokens_so_far": 579659
+    },
+    "prob-003": {
+      "stage": "done",
+      "sessions": 1,
+      "skill_finished": true,
+      "skill_verdict": "PROVED",
+      "skill_ledger_gate": "CONCLUDE",
+      "outcome": "no solution submitted",
+      "reason": "the scope check did not confirm that proof.md settles the problem as posed",
+      "output_tokens_so_far": 2228372
+    },
+    "prob-004": {
+      "stage": "done",
+      "sessions": 1,
+      "skill_finished": true,
+      "skill_verdict": "PROVED",
+      "skill_ledger_gate": "CONCLUDE",
+      "outcome": "no solution submitted",
+      "reason": "the scope check did not confirm that proof.md settles the problem as posed",
+      "output_tokens_so_far": 347629
+    },
+    "prob-005": {
+      "stage": "done",
+      "sessions": 1,
+      "skill_finished": true,
+      "skill_verdict": "PROVED",
+      "skill_ledger_gate": "CONCLUDE",
+      "outcome": "solution submitted",
+      "output_tokens_so_far": 1955834
+    },
+    "prob-006": {
+      "stage": "done",
+      "sessions": 1,
+      "skill_finished": true,
+      "skill_verdict": "PROVED",
+      "skill_ledger_gate": "CONCLUDE",
+      "outcome": "solution submitted",
+      "output_tokens_so_far": 1242314
+    },
+    "prob-007": {
+      "stage": "done",
+      "sessions": 1,
+      "skill_finished": true,
+      "skill_verdict": "PROVED",
+      "skill_ledger_gate": "CONCLUDE",
+      "outcome": "solution submitted",
+      "output_tokens_so_far": 747959
+    },
+    "prob-008": {
+      "stage": "done",
+      "sessions": 1,
+      "skill_finished": true,
+      "skill_verdict": "NOT PROVED",
+      "skill_ledger_gate": "REJECT: the newest [GOAL] line (entry 1) is OPEN, not PROVED or REFUTED",
+      "outcome": "no solution submitted",
+      "reason": "the skill's closing verdict on its main claim was NOT PROVED",
+      "output_tokens_so_far": 8999186
+    },
+    "prob-009": {
+      "stage": "done",
+      "sessions": 1,
+      "skill_finished": true,
+      "skill_verdict": "NOT PROVED",
+      "skill_ledger_gate": "REJECT: the newest [GOAL] line (entry 1) is OPEN, not PROVED or REFUTED",
+      "outcome": "no solution submitted",
+      "reason": "the skill's closing verdict on its main claim was NOT PROVED",
+      "output_tokens_so_far": 10181560
+    }
+  }
+}

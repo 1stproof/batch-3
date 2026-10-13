@@ -1,0 +1,205 @@
+```latex
+\documentclass[11pt]{amsart}
+
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\C}{\mathbb C}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\NS}{\operatorname{NS}}
+\newcommand{\Pic}{\operatorname{Pic}}
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\op}{\oplus}
+\newcommand{\perpL}{^{\perp}}
+
+\title[A note on $H$-polarised Tyurin degenerations]{A note on $H$-polarised Tyurin degenerations and the Doran--Harder--Thompson conjecture for K3 surfaces}
+
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The statement requested in the prompt is, up to the specialisation $L=H$, exactly the
+Doran--Harder--Thompson (DHT) conjecture for K3 surfaces as formulated by Giovenzana--Thompson.
+Consequently, a complete proof is currently not available in the literature. We give a precise
+reduction to \cite[Conjecture~5.10]{dfk3slpms}, record the relevant lattice-theoretic input,
+and explain why the remaining step (existence of an \emph{allowable} splitting loop on the mirror
+elliptic fibration with the required compatibility) is open.
+\end{abstract}
+
+\tableofcontents
+
+\section{Lattices and K3 preliminaries}
+
+\subsection{Lattices}
+Let $H$ denote the hyperbolic plane lattice, i.e.\ the even unimodular rank $2$ lattice with Gram matrix
+$\begin{pmatrix}0&1\\1&0\end{pmatrix}$.
+Let $E_8$ denote the negative definite even unimodular $E_8$ root lattice.
+We write the K3 lattice as
+\[
+\Lambda_{K3}\;\cong\; H^{\oplus 3}\oplus E_8^{\oplus 2}.
+\]
+
+\subsection{Lattice polarisations and mirrors (Dolgachev)}
+We use Dolgachev's notion of $m$-admissible isotropic vectors and mirror lattices.
+
+\begin{definition}[{\cite[Definition~3.30]{dfk3slpms} after \cite[Definition~5.4]{Dol96}}]
+Let $L$ be a nondegenerate lattice and $e\in L$ a primitive isotropic element.
+Let $\mathrm{div}(e)$ be the positive generator of the ideal $\langle e,L\rangle\subset \Z$.
+Then $e$ is called \emph{$m$-admissible} in $L$ if $\mathrm{div}(e)=m$ and there exists an isotropic
+$g\in L$ with $\mathrm{div}(g)=m$ and $\langle e,g\rangle=m$.
+\end{definition}
+
+For the definition of the mirror lattice $\check L$ attached to a primitive isotropic vector $e\in L^\perp$
+in the orthogonal complement of a polarising lattice $L\subset \Lambda_{K3}$, we refer to
+\cite[\S5]{Dol96} and to \cite[\S5.3]{dfk3slpms}.
+
+\section{The mirror lattice to $H$}
+
+The prompt fixes the mirror lattice to be $H\oplus E_8\oplus E_8$.
+This is indeed the Dolgachev mirror lattice to $H$ in the standard (divisibility $1$) situation.
+
+\begin{lemma}\label{lem:mirror-of-H}
+Let $L\cong H$ be a primitive sublattice of $\Lambda_{K3}$ and let $e\in L^\perp$ be a primitive isotropic
+vector which is $1$-admissible in $L^\perp$. Then the associated mirror lattice is isomorphic to
+\[
+\check L \;\cong\; H\oplus E_8\oplus E_8.
+\]
+\end{lemma}
+
+\begin{proof}
+Since $L\cong H$ is unimodular and is primitively embedded, the orthogonal complement $L^\perp\subset \Lambda_{K3}$
+is also even unimodular of signature $(2,18)$, hence
+\[
+L^\perp \;\cong\; H^{\oplus 2}\oplus E_8^{\oplus 2}.
+\]
+Choose an identification $L^\perp\cong H\oplus (H\oplus E_8^{\oplus 2})$ such that $e$ lies in the first $H$.
+Write the first $H$ as $\Z e \oplus \Z f$ with $\langle e,f\rangle=1$ and $e^2=f^2=0$.
+Then $e^\perp\subset H\oplus (H\oplus E_8^{\oplus 2})$ equals $\Z e \oplus (H\oplus E_8^{\oplus 2})$,
+and quotienting by $\Z e$ gives
+\[
+e^\perp/\Z e \;\cong\; H\oplus E_8^{\oplus 2}.\qedhere
+\]
+\end{proof}
+
+\begin{remark}
+For $L=H$ the lattice $L^\perp$ is unimodular, so every primitive isotropic vector has divisibility $1$.
+Thus the case relevant to the prompt is the natural one in which $\check L\cong H\oplus E_8^{\oplus 2}$.
+\end{remark}
+
+\section{The DHT conjecture for K3 surfaces}
+
+\subsection{Mirror pairs in the sense of Giovenzana--Thompson}
+Giovenzana--Thompson define a notion of ``mirror pair'' between an $L$-polarised Tyurin degeneration
+and an elliptically fibred K3 surface with an \emph{allowable} loop splitting the base; see
+\cite[Definition~5.1]{dfk3slpms}, together with \cite[Definition~4.11]{dfk3slpms} for allowable loops and
+\cite[Definition~4.21]{dfk3slpms} for compatibility of the lattice quasipolarisation with the splitting.
+
+\subsection{The conjecture}
+The existence statement requested in the prompt is precisely the (first direction of the) DHT conjecture
+for K3 surfaces in \cite{dfk3slpms}.
+
+\begin{conjecture}[DHT for K3 surfaces {\cite[Conjecture~5.10]{dfk3slpms}}]\label{conj:DHT}
+Let $\mathcal X\to \Delta$ be an $L$-polarised Tyurin degeneration of K3 surfaces, with general fibre $X$.
+Assume there is a primitive $e\in I$ which is $m$-admissible in $L^\perp$, and let $\check L=e^\perp_{L^\perp}/\Z e$
+be the mirror lattice. Let $Y$ be a $\check L$-quasipolarised K3 surface. Then $Y$ admits an elliptic fibration
+$\pi:Y\to \PP^1$ and there exists an allowable loop $\gamma\subset \PP^1$ such that the $\check L$-quasipolarisation
+is compatible with $\pi$ and $\gamma$, and such that $\mathcal X\to \Delta$ and $\pi:Y\to \PP^1$ are a mirror pair in
+the sense of \cite[Definition~5.1]{dfk3slpms}.
+\end{conjecture}
+
+The authors emphasise that the choice of the loop $\gamma$ (equivalently, the choice of birational model of the Tyurin
+degeneration) is the difficult part and is not determined by the lattice data alone; see
+\cite[Remark~5.11]{dfk3slpms}.
+
+\section{Identification of the prompt with the conjecture}
+
+We now explain formally why the prompt's requested statement is a special case of Conjecture~\ref{conj:DHT}
+(and hence presently unproved).
+
+\begin{proposition}\label{prop:prompt-equals-conj}
+Let $\mathcal X\to \Delta$ be a Tyurin degeneration of K3 surfaces which is $H$-polarised in the sense of the prompt
+(and hence, in particular, $H$-quasipolarised in the sense of \cite[Definition~3.19]{dfk3slpms}).
+Let $Y$ be a very general $(H\oplus E_8\oplus E_8)$-quasipolarised K3 surface.
+
+Then the conclusion demanded in the prompt (existence of an elliptic fibration $\pi:Y\to \PP^1$ and allowable loop
+$\gamma$, compatible with the quasipolarisation, such that $(\mathcal X\to \Delta)$ and $(\pi:Y\to \PP^1,\gamma)$ form a
+mirror pair in the sense of \cite[Definition~5.1]{dfk3slpms}) is exactly the $L=H$ case of
+\cite[Conjecture~5.10]{dfk3slpms}.
+\end{proposition}
+
+\begin{proof}
+Take $L=H$ in \cite[Conjecture~5.10]{dfk3slpms}.
+As observed in Lemma~\ref{lem:mirror-of-H}, for any primitive $1$-admissible isotropic vector $e\in L^\perp$ the mirror
+lattice is $\check L\cong H\oplus E_8\oplus E_8$.
+Thus the conjecture predicts precisely that an arbitrary $\check L$-quasipolarised K3 surface $Y$ admits an elliptic
+fibration and allowable splitting loop $\gamma$ compatible with the quasipolarisation, yielding a mirror pair in the
+sense of \cite[Definition~5.1]{dfk3slpms}.
+
+The additional ``very general'' hypotheses appearing in the prompt are \emph{stronger} than those assumed in
+\cite[Conjecture~5.10]{dfk3slpms}; they do not change the logical content that the desired conclusion is a special case
+of the conjecture.
+\end{proof}
+
+\section{Status: the requested statement is currently open}
+
+\begin{theorem}[Current status]\label{thm:status}
+As of \cite{dfk3slpms}, no proof is known of the existence of an allowable loop $\gamma$ and compatible elliptic fibration
+on the mirror K3 surface producing a mirror pair in the sense of \cite[Definition~5.1]{dfk3slpms}, even under the ``very
+general'' hypotheses of the prompt. In particular, the statement requested in the prompt is presently conjectural.
+\end{theorem}
+
+\begin{proof}
+This is immediate from Proposition~\ref{prop:prompt-equals-conj} together with the fact that the relevant existence
+statement is explicitly formulated as a conjecture in \cite[Conjecture~5.10]{dfk3slpms}. Moreover, the difficulty of the
+choice of $\gamma$ is explicitly discussed in \cite[Remark~5.11]{dfk3slpms}.
+\end{proof}
+
+\begin{remark}[What \emph{can} be proved unconditionally]
+The paper \cite{dfk3slpms} provides a complete \emph{definition} of mirror pairs
+\cite[Definition~5.1]{dfk3slpms} and proves several compatibility results \emph{conditional on already having a mirror
+pair}; see for instance \cite[Theorem~5.4]{dfk3slpms} (compatibility with the quasi del Pezzo/LG model mirror symmetry
+of \cite{HT20}) and \cite[Proposition~5.3]{dfk3slpms} (a simplification of the definition in the doubly admissible case).
+What remains open, and what is precisely requested in the prompt, is the \emph{existence} of the fibration and loop with
+the required compatibility, i.e.\ the existence direction of the DHT conjecture.
+\end{remark}
+
+\begin{thebibliography}{ABE22}
+
+\bibitem[ABE22]{cmek3sspt}
+V.~Alexeev, A.~Brunyate, and P.~Engel,
+\emph{Compactifications of moduli of elliptic {K3} surfaces: Stable pair and toroidal},
+Geom.\ Topol.\ \textbf{26} (2022), no.~8, 3525--3588.
+
+\bibitem[Dol96]{Dol96}
+I.~Dolgachev,
+\emph{Mirror symmetry for lattice polarized {K3} surfaces},
+J.\ Math.\ Sci.\ \textbf{81} (1996), no.~3, 2599--2630.
+
+\bibitem[GT24]{dfk3slpms}
+L.~Giovenzana and A.~Thompson,
+\emph{Degenerations and fibrations of {K3} surfaces: Lattice polarisations and mirror symmetry},
+Preprint (arXiv:2405.12009v3), July 2024.
+
+\bibitem[HT20]{HT20}
+A.~Harder and A.~Thompson,
+\emph{Pseudolattices, del Pezzo surfaces, and Lefschetz fibrations},
+Selecta Math.\ (N.S.) \textbf{26} (2020), no.~1, Paper No.~9, 113 pp.
+
+\end{thebibliography}
+
+\end{document}
+```

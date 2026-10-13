@@ -1,0 +1,13 @@
+kind: attempt
+Open question attempted: the headline claim itself (OPEN [GOAL]): a globally hypoelliptic smooth vector field X on a compact connected manifold (every distribution u with L_X u smooth is smooth) generates a flow of zero topological entropy.
+
+Task: give a complete, rigorous proof of the claim in the problem statement below, by whatever route you judge best. Write out every step; where you invoke a published theorem (e.g. variational principle, Ruelle inequality, Pesin theory, Katok's closing/horseshoe theorem for flows, closed graph / open mapping theorems for Frechet spaces), state it precisely with its hypotheses and check that they hold.
+
+Conventions to fix at the start: distributions on M are continuous linear functionals on smooth densities (generalized functions), and L_X u is defined by duality, <L_X u, rho> = -<u, L_X rho>. State which convention you use; the result should not depend on it.
+
+Points the proof must not skip (these are where naive arguments fail):
+1. Derive from the hypothesis the structural facts you actually use, with proof: e.g. that the kernel of X on distributions is the constants; that X has closed range on C^infinity with estimates (Peetre-type argument with compact Sobolev embeddings); whether X has zeros; whether the flow preserves a smooth volume and is uniquely ergodic; whether every zero-mean smooth function is a smooth coboundary. Do not merely cite these as "well known" — prove them.
+2. Unique ergodicity plus absence of periodic orbits is NOT by itself enough for zero entropy (there are minimal smooth systems of positive entropy). So if you use Pesin theory/Katok, you must handle the case where the volume (or another positive-entropy measure) has zero Lyapunov exponents in directions other than the flow direction, where Katok's closing lemma does not apply. Explain exactly how the global hypoellipticity is used there.
+3. If you cannot complete the proof, say precisely which step is missing, prove everything else, and isolate the missing step as a clean lemma statement. A clearly marked gap is far more valuable than a papered-over one. If you believe the claim is false, give a counterexample with full verification.
+
+Possibly relevant literature (from memory; may be inaccurate): Greenfield–Wallach (GH vector fields on tori are Diophantine), Hounie (surfaces), Chen–Chi 2000 ("Hypoelliptic vector fields and almost periodic motions"), Forni 2008 (Greenfield–Wallach and Katok conjectures in dimension three), Kocsard 2009, F. and J. Rodriguez Hertz (cohomology-free systems and the first Betti number). If you know a published proof of the claim, reproduce it in full rather than citing it.

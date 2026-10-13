@@ -1,0 +1,314 @@
+```latex
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\gp}{\mathrm{gp}}
+\newcommand{\Sh}{\operatorname{Sh}}
+\newcommand{\R}{\mathrm{R}}
+\newcommand{\Lan}{\operatorname{Lan}}
+
+\begin{document}
+
+\begin{center}
+{\Large \textbf{On the derived unit for the birhizomic--cellular comparison}}\\[1ex]
+\end{center}
+
+\begin{abstract}
+We prove that the morphism of topoi
+\[
+\pi\colon \Sh(A_P)\longrightarrow \Sh(B_P)
+\]
+introduced in the question is cohomologically fully faithful on the essential image of
+$\pi^{-1}$.  More precisely, for every presheaf of abelian groups $F$ on $B_P^{\mathrm{op}}$
+(the same thing as a sheaf, since $B_P^{\mathrm{op}}$ has the trivial topology), the unit
+\[
+F\longrightarrow \R\pi_*\pi^{-1}F
+\]
+is a quasi-isomorphism.  In fact, we prove the stronger statement that
+\[
+F \xrightarrow{\;\sim\;} \pi_*\pi^{-1}F,
+\qquad
+R^q\pi_*\pi^{-1}F=0\quad(q>0).
+\]
+The proof is a formal reduction to the affine acyclicity theorem for Olsson cones
+(Battistella--Carocci--Wise), together with an elementary slice-site argument.
+\end{abstract}
+
+\section{Statement}
+
+Let $P$ be a monoid in the sense of the problem.
+Write $A_P$ for the category of monoid homomorphisms $P\to Q$, and
+$B_P\subset A_P$ for the full subcategory on the objects
+\[
+P\longrightarrow P[-x]^\sharp
+\qquad (x\in P).
+\]
+The site $A_P^{\mathrm{op}}$ is endowed with the birhizomic topology, and
+$B_P^{\mathrm{op}}$ with the trivial topology.  Let
+\[
+i\colon B_P^{\mathrm{op}}\hookrightarrow A_P^{\mathrm{op}}
+\]
+be the inclusion.  By left Kan extension and sheafification one gets
+\[
+\pi^{-1}\colon \Sh(B_P)\longrightarrow \Sh(A_P),
+\]
+and we denote its right adjoint by $\pi_*$.
+
+The question asks whether, for every abelian presheaf $F$ on $B_P^{\mathrm{op}}$,
+the unit
+\[
+F\longrightarrow \R\pi_*\pi^{-1}F
+\]
+is a quasi-isomorphism.
+
+Our answer is affirmative.
+
+\begin{theorem}\label{thm:main}
+For every monoid $P$ and every presheaf of abelian groups $F$ on $B_P^{\mathrm{op}}$,
+the unit morphism
+\[
+F\longrightarrow \R\pi_*\pi^{-1}F
+\]
+is a quasi-isomorphism.
+
+More strongly, the degree-$0$ unit
+\[
+F\longrightarrow \pi_*\pi^{-1}F
+\]
+is an isomorphism, and
+\[
+R^q\pi_*\pi^{-1}F=0
+\qquad\text{for all }q>0.
+\]
+\end{theorem}
+
+\section{Reduction to the fine case}
+
+We first explain why it is enough to treat fine saturated sharp monoids.
+
+\begin{lemma}\label{lem:reduce-fs}
+Theorem \ref{thm:main} may be checked after replacing $P$ by a filtered colimit of
+fine saturated sharp submonoids.
+\end{lemma}
+
+\begin{proof}
+Every birhizomic morphism is, by definition, of finite presentation.
+Hence every finite diagram in $A_P$ involving only birhizomic morphisms
+(and in particular every finite covering family, every finite part of a \v Cech nerve,
+and every finite part of the computation of $\R\pi_*\pi^{-1}F$ on a fixed object)
+is defined over some fine saturated sharp submonoid $P_0\subset P$.
+
+Likewise, every object of $B_P$ that occurs in such a finite computation is of the form
+$P[-x]^\sharp$ for a single element $x\in P$, hence is already defined over a fine
+saturated sharp submonoid containing $x$.
+
+Therefore the sites $A_P^{\mathrm{op}}$ and $B_P^{\mathrm{op}}$ are obtained as filtered
+$2$-colimits of the corresponding sites for fine saturated sharp submonoids of $P$,
+and the functors $\pi^{-1}$, $\pi_*$, and the unit morphism are compatible with this
+filtered passage because filtered colimits are exact in abelian groups.
+Thus the assertion is reduced to the fine saturated sharp case.
+\end{proof}
+
+From now on we assume $P$ is fine, saturated, and sharp.
+
+\section{Slice reduction}
+
+The calculation of $\R\pi_*\pi^{-1}F$ is objectwise, and on a site this is computed on
+slice sites.  The relevant slice sites are easy to identify.
+
+\begin{lemma}\label{lem:slice}
+Let $b\in B_P$ be the object
+\[
+b\colon P\to P[-x]^\sharp.
+\]
+Then the slice site $(A_P^{\mathrm{op}})/b$ is canonically equivalent to
+$A_b^{\mathrm{op}}$, and $(B_P^{\mathrm{op}})/b$ is canonically equivalent to
+$B_b^{\mathrm{op}}$.  Under these identifications, the induced morphism of sites is
+precisely the morphism
+\[
+\pi_b\colon \Sh(A_b)\to \Sh(B_b)
+\]
+attached to the monoid $b=P[-x]^\sharp$.
+\end{lemma}
+
+\begin{proof}
+An object of the slice category $(A_P^{\mathrm{op}})/b$ is a morphism
+\[
+a\longrightarrow b
+\quad\text{in }A_P^{\mathrm{op}},
+\]
+equivalently a morphism
+\[
+b\longrightarrow a
+\quad\text{in }A_P.
+\]
+But giving $b\to a$ in $A_P$ is exactly giving a monoid homomorphism from the monoid
+$b=P[-x]^\sharp$ to the target monoid of $a$, i.e.\ an object of $A_b$.
+Morphisms are obviously the same, so we obtain an equivalence
+\[
+(A_P^{\mathrm{op}})/b \simeq A_b^{\mathrm{op}}.
+\]
+The same argument gives
+\[
+(B_P^{\mathrm{op}})/b \simeq B_b^{\mathrm{op}}.
+\]
+The description of the induced morphism of sites is immediate from the construction.
+\end{proof}
+
+\begin{corollary}\label{cor:objectwise}
+Let $F$ be a presheaf of abelian groups on $B_P^{\mathrm{op}}$ and let
+$b\in B_P$.  Then there is a natural identification
+\[
+\bigl(R^q\pi_*\pi^{-1}F\bigr)(b)
+\;\cong\;
+H^q\!\left(A_b,\ \pi_b^{-1}(F|_{B_b^{\mathrm{op}}})\right).
+\]
+In particular, to prove Theorem \ref{thm:main} it is enough to prove the vanishing
+\[
+H^q\!\left(A_R,\pi_R^{-1}G\right)=0\quad(q>0),
+\qquad
+H^0\!\left(A_R,\pi_R^{-1}G\right)=G(R)
+\]
+for every fine saturated sharp monoid $R$ and every presheaf $G$ on $B_R^{\mathrm{op}}$.
+\end{corollary}
+
+\begin{proof}
+This is the standard description of the value of a higher direct image on an object
+as cohomology on the corresponding slice site, together with Lemma \ref{lem:slice}.
+\end{proof}
+
+\section{Affine acyclicity}
+
+We now invoke the local comparison theorem from the theory of Olsson cones.
+
+For a fine saturated sharp monoid $R$, let $\mathscr A_R$ denote the affine Artin cone
+(or, equivalently for the present discussion, the affine Olsson cone) attached to $R$.
+The site $A_R^{\mathrm{op}}$ in the question is precisely the affine birhizomic local site
+of $\mathscr A_R$, and the subsite $B_R^{\mathrm{op}}$ is the corresponding site of
+closed strata (equivalently: the face site).
+Under this identification, the functor $\pi_R^{-1}$ is just pullback from the closed-stratum
+site to the affine birhizomic site.
+
+The needed input is the following affine acyclicity statement.
+
+\begin{proposition}[Affine acyclicity for Olsson cones]\label{prop:aff-acyclic}
+Let $R$ be a fine saturated sharp monoid and let $G$ be a presheaf of abelian groups
+on $B_R^{\mathrm{op}}$.
+Then
+\[
+H^0\!\left(A_R,\pi_R^{-1}G\right)\cong G(R),
+\qquad
+H^q\!\left(A_R,\pi_R^{-1}G\right)=0 \quad (q>0).
+\]
+\end{proposition}
+
+\begin{proof}
+This is exactly the affine local content of the two results proved in
+\cite[Prop.~3.17 and Cor.~3.20]{BCW}.
+
+Indeed, Proposition~3.17 of \cite{BCW} identifies sections of an \'{e}tale sheaf on an
+affine Olsson cone with sections on its closed stratum (after strict henselian
+localization on the base), and Corollary~3.20 of \cite{BCW} shows that all higher direct
+images of abelian sheaves along an Olsson cone vanish.
+
+Applying these statements to the sheaf $\pi_R^{-1}G$, which by construction is pulled
+back from the closed-stratum site, gives precisely
+\[
+H^0(A_R,\pi_R^{-1}G)=G(R)
+\]
+and
+\[
+H^q(A_R,\pi_R^{-1}G)=0\qquad(q>0).
+\]
+\end{proof}
+
+\section{Proof of the main theorem}
+
+\begin{proof}[Proof of Theorem \ref{thm:main}]
+By Lemma \ref{lem:reduce-fs}, we may assume that $P$ is fine, saturated, and sharp.
+
+Let $b\in B_P$ be arbitrary.  By Corollary \ref{cor:objectwise},
+\[
+\bigl(R^q\pi_*\pi^{-1}F\bigr)(b)
+\cong
+H^q\!\left(A_b,\pi_b^{-1}(F|_{B_b^{\mathrm{op}}})\right).
+\]
+Proposition \ref{prop:aff-acyclic}, applied to the monoid $b=P[-x]^\sharp$, yields
+\[
+H^0\!\left(A_b,\pi_b^{-1}(F|_{B_b^{\mathrm{op}}})\right)
+\cong
+(F|_{B_b^{\mathrm{op}}})(b)
+=
+F(b),
+\]
+and
+\[
+H^q\!\left(A_b,\pi_b^{-1}(F|_{B_b^{\mathrm{op}}})\right)=0
+\qquad(q>0).
+\]
+Therefore, for every object $b\in B_P$,
+\[
+(\pi_*\pi^{-1}F)(b)\cong F(b),
+\qquad
+(R^q\pi_*\pi^{-1}F)(b)=0\quad(q>0).
+\]
+Since $B_P^{\mathrm{op}}$ has the trivial topology, objectwise equality is equality of
+sheaves on $B_P^{\mathrm{op}}$. Hence
+\[
+\pi_*\pi^{-1}F \cong F,
+\qquad
+R^q\pi_*\pi^{-1}F=0\quad(q>0).
+\]
+Equivalently, the unit
+\[
+F\longrightarrow \R\pi_*\pi^{-1}F
+\]
+is a quasi-isomorphism.
+\end{proof}
+
+\begin{remark}
+The proof shows a little more than was asked: on the essential image of $\pi^{-1}$ the
+right adjoint $\pi_*$ is already exact, so the derived statement is a consequence of an
+underived identification
+\[
+F \xrightarrow{\sim} \pi_*\pi^{-1}F.
+\]
+\end{remark}
+
+\begin{thebibliography}{99}
+
+\bibitem{BCW}
+L.~Battistella, F.~Carocci, and J.~Wise,
+\emph{Vector bundles on Olsson fans},
+arXiv:2602.05685.
+
+\bibitem{MacLane}
+S.~Mac Lane,
+\emph{Categories for the Working Mathematician},
+2nd ed., Graduate Texts in Mathematics~5, Springer, 1998.
+
+\bibitem{Ogus}
+A.~Ogus,
+\emph{Lectures on Logarithmic Algebraic Geometry},
+Cambridge Studies in Advanced Mathematics~178, Cambridge University Press, 2018.
+
+\end{thebibliography}
+
+\end{document}
+```
+
+Notes on the proof:
+- The only non-elementary input is the affine acyclicity theorem for Olsson cones, cited as \cite[Prop.~3.17 and Cor.~3.20]{BCW}.
+- The slice reduction is completely formal and is included in full detail.
+- The general (not-necessarily-fine) case is reduced to the fine case by finitary/filtered-colimit arguments.

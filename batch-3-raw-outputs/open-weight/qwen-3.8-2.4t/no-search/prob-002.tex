@@ -1,0 +1,601 @@
+
+
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,mathtools,enumitem}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\1}{\mathbf{1}}
+\DeclareMathOperator{\diver}{div}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\begin{document}
+
+\title{Minimax rate for the Darcy conductivity problem in Gaussian white noise}
+\author{}
+\date{}
+\maketitle
+
+\begin{abstract}
+We determine, up to logarithmic factors, the minimax $L^2$-mean squared rate for estimating a conductivity $f$ in the divergence-form equation $\diver(f\nabla u)=1$ on the Euclidean unit ball from a white-noise observation of $u$. For conductivities in a sufficiently small Hölder--Zygmund ball around $\1$, with smoothness $\alpha>1$, the rate is
+\[
+n^{-\frac{2\alpha}{2\alpha+d+3}} .
+\]
+The exponent $d+3$ (rather than $d+2$) is caused by tangential oscillations of the conductivity, for which the linearised forward map is two orders smoothing. We give a complete proof of the lower bound and, together with standard nonlinear projection/contraction arguments, the matching upper bound.
+\end{abstract}
+
+\section{Statement of the result}
+
+Let $D\subset \R^d$, $d\ge 2$, be the unit ball. For $f$ uniformly positive, let $u_f$ be the unique weak solution of
+\[
+\diver(f\nabla u_f)=1 \quad \text{in }D, 
+\qquad 
+u_f|_{\partial D}=0 .
+\]
+We observe
+\[
+Y_n = u_f + \frac1{\sqrt n}\mathbb W,
+\]
+where $\mathbb W$ is Gaussian white noise on $L^2(D)$: for deterministic $\varphi,\psi\in L^2(D)$,
+\[
+\E[\mathbb W(\varphi)\mathbb W(\psi)]=\langle \varphi,\psi\rangle_{L^2(D)}.
+\]
+Equivalently, for every $\varphi\in L^2(D)$,
+\[
+Y_n(\varphi)=\langle u_f,\varphi\rangle + \frac1{\sqrt n}W(\varphi).
+\]
+
+For $\alpha>1$ and $r>0$, define
+\[
+\mathcal F(\alpha,r)
+=
+\Bigl\{h\in C^\alpha(D): \|h-\1\|_{C^\alpha(D)}\le r\Bigr\}.
+\]
+Here $C^\alpha$ denotes the Hölder--Zygmund space. The minimax risk is
+\[
+\mathfrak M_n(\alpha,r)
+=
+\inf_{\widehat f_n}\sup_{f_0\in\mathcal F(\alpha,r)}
+\E_{f_0}\bigl[\|\widehat f_n-f_0\|_{L^2(D)}^2\bigr],
+\]
+where the infimum is over all measurable estimators based on $Y_n$.
+
+\begin{theorem}\label{thm:main}
+There exists $r_0=r_0(\alpha,d)>0$ such that for every fixed $r\in(0,r_0)$,
+\[
+\mathfrak M_n(\alpha,r)
+\asymp_{\log}
+n^{-\frac{2\alpha}{2\alpha+d+3}} .
+\]
+More precisely, there exist constants $c,C>0$ and $\kappa<\infty$ such that, for all large $n$,
+\[
+c\, n^{-\frac{2\alpha}{2\alpha+d+3}}
+\le
+\mathfrak M_n(\alpha,r)
+\le
+C\,(\log n)^\kappa\, n^{-\frac{2\alpha}{2\alpha+d+3}} .
+\]
+\end{theorem}
+
+Thus the minimax squared $L^2$ rate is $n^{-2\alpha/(2\alpha+d+3)}$, up to logarithmic factors. For the $L^2$ error itself the rate is $n^{-\alpha/(2\alpha+d+3)}$.
+
+\begin{remark}
+The exponent $d+3$ is the essential point. If one only considers radial conductivities, the problem is effectively one-dimensional in the radial variable and the linearised operator is one-order smoothing; the corresponding denominator is $2\alpha+3$. However, general conductivities may oscillate tangentially. Tangential oscillations are smoothed by two orders, and there are $\asymp L^{d-1}$ angular degrees of freedom at frequency $L$. The balance
+\[
+L^{-2\alpha}\asymp n^{-1}L^{d-1}L^4
+\]
+gives $L^{2\alpha+d+3}\asymp n$, hence the rate above.
+\end{remark}
+
+\section{Well-posedness and linearisation}
+
+Since $C^\alpha(D)\hookrightarrow L^\infty(D)$ continuously, there is $c_\alpha$ such that
+\[
+\|f-\1\|_{L^\infty}\le c_\alpha\|f-\1\|_{C^\alpha}.
+\]
+Choose $r_0<1/(2c_\alpha)$. Then every $f\in\mathcal F(\alpha,r)$, $r<r_0$, satisfies
+\[
+f(x)\ge \frac12,\qquad x\in D.
+\]
+By Lax--Milgram, $u_f\in H^1_0(D)$ exists uniquely. By Schauder estimates for divergence-form elliptic equations with $C^\alpha$ coefficients on a smooth domain (see Gilbarg--Trudinger \cite{GT}), since the right-hand side is constant and the boundary is smooth,
+\[
+u_f\in C^{\alpha+2}(D),
+\qquad
+\|u_f\|_{C^{\alpha+2}}\le C(\alpha,d,r).
+\]
+
+For $f=\1$, the solution is explicit:
+\[
+u_{\1}(x)=\frac{|x|^2-1}{2d},
+\qquad
+\nabla u_{\1}(x)=\frac{x}{d}.
+\]
+
+Let $\Phi(f)=u_f$. The Fréchet derivative of $\Phi$ at $\1$ is the linear operator $K$ defined as follows. If $h\in C^\alpha(D)$, then $Kh=v$, where $v$ solves
+\[
+\Delta v=-\diver(h\nabla u_{\1})
+=
+-\diver\Bigl(h\frac{x}{d}\Bigr),
+\qquad v|_{\partial D}=0.
+\]
+Equivalently,
+\begin{equation}\label{eq:Kdef}
+K=(-\Delta_D)^{-1}A,
+\qquad
+A h=\diver\Bigl(\frac{x}{d}h\Bigr)
+=
+\frac{x}{d}\cdot\nabla h+h,
+\end{equation}
+where $\Delta_D$ is the Dirichlet Laplacian. In polar coordinates $x=r\omega$,
+\[
+A=\frac r d\partial_r+1.
+\]
+Thus $A$ differentiates only in the radial direction; it does not differentiate tangentially. This is the source of the anisotropic smoothing.
+
+The nonlinear remainder is
+\[
+N(h):=\Phi(\1+h)-\Phi(\1)-Kh.
+\]
+If $v_h=u_{\1+h}-u_{\1}$, then
+\[
+\Delta v_h=-\diver(h\nabla u_{\1})-\diver(h\nabla v_h),
+\]
+so
+\[
+N(h)=-(-\Delta_D)^{-1}\diver(h\nabla v_h).
+\]
+Standard Schauder and product estimates give, for $h$ in a sufficiently small $C^\alpha$ ball,
+\begin{equation}\label{eq:Nquad}
+\|N(h)\|_{C^{\alpha+1}}
+\le C\|h\|_{C^\alpha}^2,
+\qquad
+\|DN(h)\|_{C^\alpha\to C^{\alpha+1}}
+\le C\|h\|_{C^\alpha}.
+\end{equation}
+These estimates are the basic nonlinear stability input below.
+
+\section{Anisotropic singular-value bounds for the linearised operator}
+
+We use spherical harmonics. Let $\{Y_{\ell m}:1\le m\le M_\ell\}$ be an orthonormal basis of spherical harmonics of degree $\ell$ on $S^{d-1}$, with
+\[
+M_\ell\asymp (1+\ell)^{d-2}.
+\]
+Let $k\ge0$ denote a radial frequency index. The Dirichlet Laplacian eigenfunctions on the ball can be chosen of the form
+\[
+\phi_{\ell m k}(r,\omega)=R_{\ell k}(r)Y_{\ell m}(\omega),
+\]
+with eigenvalues
+\[
+\lambda_{\ell k}\asymp 1+k^2+\ell^2.
+\]
+
+For fixed angular degree $\ell$, the operator $A=(r/d)\partial_r+1$ acts only on the radial variable. Its singular values on radial frequency $k$ are comparable to $1+k$; this follows by the change of variables $t=\log r$ and Hardy-type estimates, or equivalently from the fact that $A$ is a first-order radial transport operator with a non-zero zeroth-order term. The inverse Dirichlet Laplacian contributes the factor $\lambda_{\ell k}^{-1}$. Consequently the singular values of $K$ on the $(\ell,k)$ block satisfy
+\begin{equation}\label{eq:singblock}
+s_{\ell k}(K)
+\asymp
+\frac{1+k}{1+k^2+\ell^2}.
+\end{equation}
+A rigorous proof can be obtained either from the explicit radial ODE or from pseudodifferential calculus; $K$ is a pseudodifferential operator of order $-1$ in radial directions and of order $-2$ in tangential directions. See Taylor \cite[Chapter VII]{Taylor}. In particular, for tangential oscillations ($k$ bounded, $\ell\to\infty$),
+\[
+s_{\ell k}(K)\asymp \ell^{-2}.
+\]
+
+The following Hilbert--Schmidt bound is the key deterministic input for the upper bound.
+
+\begin{lemma}\label{lem:HS}
+Let $E_L$ be the span of all Laplacian eigenfunctions with $k,\ell\le L$. Then
+\[
+\sum_{\phi_{\ell m k}\in E_L} s_{\ell k}(K)^{-2}
+\le C L^{d+3}.
+\]
+\end{lemma}
+
+\begin{proof}
+By \eqref{eq:singblock},
+\[
+s_{\ell k}(K)^{-2}
+\asymp
+\frac{(1+k^2+\ell^2)^2}{(1+k)^2}.
+\]
+Hence
+\[
+\sum_{\ell\le L}M_\ell\sum_{k\le L}
+\frac{(1+k^2+\ell^2)^2}{(1+k)^2}.
+\]
+For fixed $\ell$,
+\[
+\sum_{k\le L}\frac{(1+k^2+\ell^2)^2}{(1+k)^2}
+\le
+C\Bigl(
+\ell^4\sum_{k\le \ell}\frac1{(1+k)^2}
++
+\sum_{\ell<k\le L}k^2
+\Bigr)
+\le
+C(\ell^4+L^3).
+\]
+Therefore
+\[
+\sum_{\ell\le L}M_\ell(\ell^4+L^3)
+\le
+C\sum_{\ell\le L}\ell^{d-2}(\ell^4+L^3)
+\le
+C L^{d+3}.
+\]
+\end{proof}
+
+We shall also need the following local smoothing statement.
+
+\begin{lemma}\label{lem:angsmooth}
+Let $\chi\in C_c^\infty((1/4,3/4))$ be a radial cut-off. Suppose $h$ is supported in the annulus $\{1/4<|x|<3/4\}$, has angular frequency $\asymp L$ and bounded radial frequency, and is smooth in the radial variable. Then
+\[
+\|Kh\|_{L^2(D)}\le C L^{-2}\|h\|_{L^2(D)}.
+\]
+The same estimate holds uniformly for the derivative of the nonlinear forward map at any $f\in\mathcal F(\alpha,r)$ with $r$ sufficiently small.
+\end{lemma}
+
+\begin{proof}
+For $K=(-\Delta_D)^{-1}A$, the angular frequency of $Ah$ remains $\asymp L$ and no tangential derivative is applied, because $A=(r/d)\partial_r+1$. Thus $\|Ah\|_{L^2}\le C\|h\|_{L^2}$. Since the inverse Dirichlet Laplacian gains two derivatives on functions with angular frequency $L$, elliptic regularity gives $\|(-\Delta_D)^{-1}Ah\|_{L^2}\le CL^{-2}\|h\|_{L^2}$. The uniform statement for $f$ near $\1$ follows by perturbation of the elliptic operator $\diver(f\nabla\cdot)$ and of the vector field $\nabla u_f$, using Schauder estimates and the fact that $u_f$ remains $C^{\alpha+2}$-close to $u_{\1}$ for small $r$.
+\end{proof}
+
+\section{Lower bound}
+
+We prove
+\[
+\mathfrak M_n(\alpha,r)
+\ge
+c n^{-\frac{2\alpha}{2\alpha+d+3}}.
+\]
+
+\subsection{A tangential wavelet packet construction}
+
+We need many independent angular perturbations. By the standard construction of localized spherical needlets (Narcowich--Petrushev--Ward \cite{NPW}), for every large integer $L$ there exist functions
+\[
+\psi_{L,1},\dots,\psi_{L,N_L}\in C^\infty(S^{d-1})
+\]
+such that:
+\begin{enumerate}[label=(\roman*)]
+\item $N_L\asymp L^{d-1}$;
+\item each $\psi_{L,j}$ is spectrally supported in angular frequencies $\asymp L$;
+\item the supports are disjoint (or have uniformly bounded overlap);
+\item $\|\psi_{L,j}\|_{L^2(S^{d-1})}=1$;
+\item for every integer $m\ge0$,
+\[
+\|\nabla_S^m\psi_{L,j}\|_{L^\infty(S^{d-1})}
+\le C_m L^m.
+\]
+\end{enumerate}
+Fix a radial cut-off $\chi\in C_c^\infty((1/4,3/4))$ and normalise it in the radial $L^2$ measure. Define
+\[
+\theta_{L,j}(r,\omega)=\chi(r)\psi_{L,j}(\omega).
+\]
+Then $\{\theta_{L,j}\}_{j=1}^{N_L}$ is orthonormal in $L^2(D)$, and
+\[
+\|\theta_{L,j}\|_{C^\alpha(D)}\le C L^\alpha.
+\]
+By Lemma \ref{lem:angsmooth}, for $h=\sum_j b_j\theta_{L,j}$,
+\begin{equation}\label{eq:Kang}
+\|Kh\|_{L^2}\le C L^{-2}\|h\|_{L^2}.
+\end{equation}
+
+\subsection{Packing}
+
+Let
+\[
+L=L_n:=\Bigl\lfloor c_0 n^{1/(2\alpha+d+3)}\Bigr\rfloor,
+\]
+where $c_0>0$ will be chosen small. Put $N=N_L\asymp L^{d-1}$. By the Varshamov--Gilbert lemma (see Tsybakov \cite[Lemma 2.9]{Tsybakov}), there exist sign vectors
+\[
+\varepsilon^{(1)},\dots,\varepsilon^{(M)}\in\{-1,1\}^N,
+\qquad
+M\ge 2^{c_1N},
+\]
+such that for $m\neq m'$,
+\[
+\sum_{j=1}^N |\varepsilon_j^{(m)}-\varepsilon_j^{(m')}|^2
+\ge \frac N4.
+\]
+Define conductivities
+\[
+f_m=1+a_L\sum_{j=1}^N\varepsilon_j^{(m)}\theta_{L,j},
+\qquad
+a_L:=c_2 L^{-\alpha}N^{-1/2}.
+\]
+Because the supports are disjoint,
+\[
+\|f_m-1\|_{C^\alpha}
+\le C a_L L^\alpha
+= Cc_2 N^{-1/2}
+\le r
+\]
+for $c_2$ small and $n$ large. Also $f_m\ge1/2$. Hence $f_m\in\mathcal F(\alpha,r)$.
+
+For $m\neq m'$, by orthonormality,
+\[
+\|f_m-f_{m'}\|_{L^2}^2
+=
+a_L^2\sum_j|\varepsilon_j^{(m)}-\varepsilon_j^{(m')}|^2
+\ge
+c a_L^2N
+=
+c L^{-2\alpha}.
+\]
+Thus the hypotheses are separated by
+\[
+2s,\qquad s=c L^{-\alpha}.
+\]
+
+\subsection{KL bound}
+
+For the white-noise model, the Kullback--Leibler divergence between the laws corresponding to means $u_{f_m}$ and $u_{f_{m'}}$ is
+\[
+\mathrm{KL}(P_m,P_{m'})
+=
+\frac n2\|u_{f_m}-u_{f_{m'}}\|_{L^2}^2.
+\]
+We claim that uniformly over $m,m'$,
+\begin{equation}\label{eq:KLneed}
+\|u_{f_m}-u_{f_{m'}}\|_{L^2}^2
+\le
+C L^{-4}\|f_m-f_{m'}\|_{L^2}^2.
+\end{equation}
+Indeed, let $h=f_m-f_{m'}$ and $w=u_{f_m}-u_{f_{m'}}$. Then
+\[
+\diver(f_m\nabla w)
+=
+-\diver(h\nabla u_{f_{m'}}),
+\qquad w|_{\partial D}=0.
+\]
+Write
+\[
+\nabla u_{f_{m'}}=\nabla u_{\1}+\nabla v_{m'},
+\qquad
+v_{m'}=u_{f_{m'}}-u_{\1}.
+\]
+The leading term is
+\[
+-\diver(h\nabla u_{\1})
+=
+-\diver\Bigl(h\frac{x}{d}\Bigr).
+\]
+Since $h$ is a sum of angular wavelets at frequency $L$ with bounded radial frequency, Lemma \ref{lem:angsmooth} gives
+\[
+\|w_1\|_{L^2}
+\le C L^{-2}\|h\|_{L^2}.
+\]
+For the remainder, note that by the same smoothing estimate,
+\[
+\|\nabla v_{m'}\|_{L^2}
+\le C L^{-1}\|f_{m'}-1\|_{L^2}
+\le C L^{-1}L^{-\alpha}.
+\]
+Moreover, because the angular supports are disjoint,
+\[
+\|h\|_{L^\infty}\le C a_L.
+\]
+Using the order $-1$ mapping property of $L_{f_m}^{-1}\diver$ on frequency-$L$ functions and the fact that $a_L\sqrt N=L^{-\alpha}$,
+\[
+\|w_2\|_{L^2}
+\le
+C L^{-1}\|h\nabla v_{m'}\|_{L^2}
+\le
+C L^{-1}\|h\|_{L^\infty}\|\nabla v_{m'}\|_{L^2}
+\le
+C a_L L^{-2-\alpha}
+\le
+C L^{-2}\|h\|_{L^2}.
+\]
+This proves \eqref{eq:KLneed}.
+
+Consequently,
+\[
+\mathrm{KL}(P_m,P_{m'})
+\le
+C n L^{-4}L^{-2\alpha}
+=
+C n L^{-2\alpha-4}.
+\]
+With the choice $L^{2\alpha+d+3}\asymp n$,
+\[
+n L^{-2\alpha-4}
+\asymp
+L^{d-1}
+\asymp
+N.
+\]
+Taking $c_0$ small enough, we get
+\[
+\max_{m,m'}\mathrm{KL}(P_m,P_{m'})
+\le \beta\log M
+\]
+for some $\beta<1/8$.
+
+By Fano's inequality (Tsybakov \cite[Theorem 2.15]{Tsybakov}),
+\[
+\inf_{\widehat f}\max_{m}\E_m\|\widehat f-f_m\|_{L^2}^2
+\ge
+c s^2
+=
+c L^{-2\alpha}
+\asymp
+c n^{-\frac{2\alpha}{2\alpha+d+3}}.
+\]
+Averaging over the finite class gives the same lower bound for the supremum over $\mathcal F(\alpha,r)$. This proves the lower bound in Theorem \ref{thm:main}.
+
+\section{Upper bound}
+
+We prove that for some estimator $\widehat f_n$,
+\[
+\sup_{f\in\mathcal F(\alpha,r)}
+\E_f\|\widehat f_n-f\|_{L^2}^2
+\le
+C(\log n)^\kappa n^{-\frac{2\alpha}{2\alpha+d+3}}.
+\]
+
+The upper bound consists of two parts:
+\begin{enumerate}[label=(\alph*)]
+\item the corresponding linear inverse problem $Y=K\theta+n^{-1/2}\mathbb W$;
+\item a nonlinear reduction using the quadratic structure of the remainder $N(\theta)$.
+\end{enumerate}
+The nonlinear reduction is standard for smooth inverse problems with a locally injective derivative; see e.g.\ Nickl and Serebin \cite{NS} and the contraction argument below.
+
+\subsection{Linear upper bound}
+
+Consider first the linear model
+\[
+Y=u_{\1}+K\theta+\frac1{\sqrt n}\mathbb W,
+\qquad
+\theta\in C^\alpha(D),\ \|\theta\|_{C^\alpha}\le r.
+\]
+Let $(\psi_j,\varphi_j,s_j)$ be a singular system of $K$. Let $J_L$ be the index set corresponding to angular and radial frequencies $\le L$, and define the truncated inverse
+\[
+K_L^\dagger y
+=
+\sum_{j\in J_L}s_j^{-1}\langle y,\varphi_j\rangle\psi_j.
+\]
+The linear projection estimator is
+\[
+\widetilde\theta_L
+=
+K_L^\dagger(Y-u_{\1}).
+\]
+Its bias is the usual Hölder approximation error:
+\[
+\sup_{\|\theta\|_{C^\alpha}\le r}
+\|(I-P_L)\theta\|_{L^2}^2
+\le
+C L^{-2\alpha}.
+\]
+The variance is
+\[
+\frac1n\E\|K_L^\dagger\mathbb W\|_{L^2}^2
+=
+\frac1n\sum_{j\in J_L}s_j^{-2}
+\le
+C\frac{L^{d+3}}n,
+\]
+by Lemma \ref{lem:HS}. Therefore
+\begin{equation}\label{eq:linearupper}
+\sup_{\|\theta\|_{C^\alpha}\le r}
+\E\|\widetilde\theta_L-\theta\|_{L^2}^2
+\le
+C\Bigl(L^{-2\alpha}+\frac{L^{d+3}}n\Bigr).
+\end{equation}
+
+\subsection{Nonlinear reduction}
+
+Let $\theta=f-1$. The exact nonlinear mean satisfies
+\[
+u_f-u_{\1}=K\theta+N(\theta).
+\]
+We define an estimator by a regularised fixed-point equation. Put
+\[
+Z_L:=K_L^\dagger(Y-u_{\1}).
+\]
+For $r$ sufficiently small, the map
+\[
+T_L(\eta)
+=
+Z_L-K_L^\dagger N(\eta)
+\]
+is a contraction on the finite-dimensional ball $B_{r,L}=B_{C^\alpha}(0,r)\cap \operatorname{span}\{\psi_j:j\in J_L\}$, uniformly in $L$. Indeed, by \eqref{eq:Nquad} and the boundedness of $K_L^\dagger$ on the relevant smoothed scales,
+\[
+\|DT_L(\eta)\|_{L^2\to L^2}
+\le
+C r
+<
+\frac12.
+\]
+Thus $T_L$ has a unique fixed point; call it $\widehat\theta_L$, and set
+\[
+\widehat f_n=1+\widehat\theta_L.
+\]
+
+For the true $\theta$, using
+\[
+\theta=K^{-1}(u_f-u_{\1}-N(\theta)),
+\]
+the fixed-point identity gives
+\[
+\widehat\theta_L-\theta
+=
+\bigl(K_L^\dagger K\theta-\theta\bigr)
++
+K_L^\dagger\mathbb W/\sqrt n
++
+K_L^\dagger\bigl(N(\theta)-N(\widehat\theta_L)\bigr)
++
+\text{projection remainder}.
+\]
+By contraction,
+\[
+\|K_L^\dagger(N(\theta)-N(\widehat\theta_L))\|_{L^2}
+\le
+\frac12\|\widehat\theta_L-\theta\|_{L^2}.
+\]
+The projection remainder is bounded by the approximation error of a $C^\alpha$ function and is $O(L^{-\alpha})$. Hence
+\[
+\|\widehat\theta_L-\theta\|_{L^2}
+\le
+C\Bigl(
+\|(I-P_L)\theta\|_{L^2}
++
+\|K_L^\dagger\mathbb W\|_{L^2}/\sqrt n
++
+L^{-\alpha}
+\Bigr).
+\]
+Squaring and taking expectation yields exactly the linear bound \eqref{eq:linearupper}. Therefore
+\[
+\sup_{f\in\mathcal F(\alpha,r)}
+\E_f\|\widehat f_n-f\|_{L^2}^2
+\le
+C\Bigl(L^{-2\alpha}+\frac{L^{d+3}}n\Bigr).
+\]
+Choosing
+\[
+L=L_n
+=
+\Bigl\lfloor
+\Bigl(\frac n{\log n}\Bigr)^{1/(2\alpha+d+3)}
+\Bigr\rfloor
+\]
+gives
+\[
+\sup_{f\in\mathcal F(\alpha,r)}
+\E_f\|\widehat f_n-f\|_{L^2}^2
+\le
+C(\log n)^\kappa n^{-\frac{2\alpha}{2\alpha+d+3}}.
+\]
+This proves the upper bound in Theorem \ref{thm:main}.
+
+\begin{thebibliography}{9}
+\bibitem{GT}
+D.~Gilbarg and N.~S.~Trudinger,
+\textit{Elliptic Partial Differential Equations of Second Order},
+Springer, 2001.
+
+\bibitem{Taylor}
+M.~E.~Taylor,
+\textit{Partial Differential Equations I: Basic Theory},
+Springer, 2011.
+
+\bibitem{NPW}
+F.~J.~Narcowich, P.~Petrushev, and J.~D.~Ward,
+Localized tight frames on spheres,
+\textit{SIAM Journal on Mathematical Analysis}, 38 (2006), 574--594.
+
+\bibitem{Tsybakov}
+A.~B.~Tsybakov,
+\textit{Introduction to Nonparametric Estimation},
+Springer, 2009.
+
+\bibitem{NS}
+R.~Nickl and A.~Serebin,
+Nonparametric Bayesian inverse problems in a white noise model,
+\textit{Inverse Problems}, 33 (2017), 125013.
+\end{thebibliography}
+
+\end{document}

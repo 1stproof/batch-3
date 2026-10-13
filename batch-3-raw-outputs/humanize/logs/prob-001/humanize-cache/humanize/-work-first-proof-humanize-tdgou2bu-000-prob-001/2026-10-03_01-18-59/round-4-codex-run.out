@@ -1,0 +1,26 @@
+Everything is in order:
+- The immutable section (5 AC definitions, Ultimate Goal, AC-5 present) is intact — only the mutable section was edited.
+- The review result file ends with a single-word `STOP` line.
+
+Let me give a final concise summary of the audit to the user.
+
+---
+
+## Round 4 Full Alignment Audit — Complete
+
+I conducted the mandatory checkpoint against `plan.md` (AC-1..AC-5), `problem.tex`, the round-4 contract, the full `solution.tex`, and the 5-round history. Both deliverables are written:
+- **`round-4-review-result.md`** — full findings, ending in `STOP`.
+- **`goal-tracker.md`** — mutable-section updates (immutable section untouched, verified).
+
+### The decisive mathematical adjudication
+The round hinged on one disagreement: the Round-3 reviewer's **Step B3(iv)** prescribed killing the post-sieve *residuum* by treating it as a constant Cech strand ("R_min = R_max = iB"); the worker refused, calling it unsound for arbitrary *F*.
+
+I independently verified **the worker is correct and the Round-3 prescription has no valid completion.** The residuum `{iB, i(P/K)}` has G-values on genuinely *distinct* groups — `G(iB)=F(P/J)` vs `G(i(P/K))=F(P/K)` — with transitions that are `F` of real quotients `P/J→P/K`, not identities. `lem:const`/`lem:constcx` require a *single* value group with identity transports, so the contraction identity cannot be written. The constant case holds **only** on the dead slice (all kernels P) and in rank ≤ 1 (no intermediate faces) — both correctly used elsewhere — but not on the rank-≥ 2 residuum. I rejected the reviewer's implicit request to complete B3.
+
+### Verdict
+- **AC-2, AC-3, AC-4, AC-5: MET.** The deliverable now proves exactly the sheaf property + degree-zero unit (R^0π_*π^{-1}F = F, f.g. P), records the two open points precisely, claims no counterexample, and contains no unsupported assertion (grep-verified). Compile clean: 0 errors, 0 undefined refs, 15/16 pages.
+- **AC-1: NOT MET** on the full question (the quasi-isomorphism for *all* presheaves / arbitrary P is unproved; only its degree-0, f.g. fragment is).
+- **Mainline Progress Verdict: ADVANCED** — an unsound theorem was honestly replaced by verified content plus a precise open statement.
+
+### Why STOP (not stagnation-by-repetition)
+Round 4 was qualitatively different from the earlier Round-2 stall: it *resolved the status* of the endgame by proving the only proposed mechanism unsound. The toolbox (fold terraces + dead hygiene + constant-strand residuum) is exhausted, and AGENTS.md forbids importing external results while AC-4 forbids fabrication. Further identical rounds would be circular; the loop has converged to the limit of sound progress, with one genuine open mainline item (T2b) recorded.

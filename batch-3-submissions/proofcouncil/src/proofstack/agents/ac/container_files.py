@@ -1,0 +1,554 @@
+"""ContainerFileBridge — manage canonical workspace files inside an
+OpenAI ``code_interpreter`` container.
+
+The OpenAI Responses API has two relevant constraints:
+
+  - Files attached to an ``auto`` container via ``container.file_ids``
+    are mounted **read-only** at ``/mnt/data/file-{platform_id}-{name}``.
+    The ``file-`` prefix is added by the platform and cannot be
+    suppressed via this attachment mechanism.
+  - Files written by the model into ``/mnt/data/`` from a ``code_
+    interpreter`` cell (any path other than the read-only attachments)
+    are writable and persist for the duration of that one Responses
+    call.  After the call returns, ``client.containers.files.list``
+    enumerates them and ``client.containers.files.content.retrieve``
+    streams their contents.
+
+So the design is: upload the workspace's *current* contents as
+read-only attachments, instruct the model to copy/edit each one to a
+canonical *unprefixed* path inside ``/mnt/data/``, then list+download
+those canonical paths after the call.  Any file the model leaves
+untouched at its canonical path falls back to the workspace's current
+contents.
+
+The bridge does not manage container creation — that is the
+``code_interpreter`` tool's ``container: {type: auto}`` flow.  We pull
+the container id out of the response output items after the call and
+hand it to ``download``.
+
+Cleanup is best-effort: uploaded platform files expire on their own,
+but ``cleanup`` deletes them eagerly so the user's OpenAI files list
+does not grow without bound.
+"""
+from __future__ import annotations
+
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Any, Iterable, Literal
+
+from proofstack.agents.ac.blocks import CANONICAL_FILES
+
+
+CONTAINER_DATA_ROOT = "/mnt/data"
+ANTHROPIC_FILES_BETA = "files-api-2025-04-14"
+
+
+@dataclass
+class UploadedFile:
+    name: str
+    platform_file_id: str
+    container_path: str  # e.g. /mnt/data/file-XXXX-answer.tex
+    source_path: Path
+    is_canonical: bool = True
+    # Optional one-line note rendered alongside the listing entry (used
+    # for extra attachments to explain what they are).
+    note: str = ""
+
+
+@dataclass(frozen=True)
+class AttachmentUploadFailure:
+    """A non-canonical attachment that could not be uploaded.
+
+    Canonical workspace files are required and still fail the Author turn.
+    Compute handoffs and other extras are advisory, so bridges record their
+    failure and continue with the canonical files.
+    """
+
+    name: str
+    path: Path
+    size_bytes: int | None
+    error_type: str
+    message: str
+    disposition: Literal["permanent", "transient", "unknown"]
+
+    @property
+    def permanent(self) -> bool:
+        return self.disposition == "permanent"
+
+
+@dataclass
+class ContainerFileBridge:
+    """One-shot helper for a single Author turn's file lifecycle."""
+
+    openai_client: object  # OpenAI client; left untyped to avoid hard import here
+    workspace: Path
+    names: tuple[str, ...] = CANONICAL_FILES
+    # Extra read-only attachments to upload alongside the canonical
+    # workspace files. Each entry is (path, note); the file's basename is
+    # used as the listing name. These do NOT get a writable canonical path
+    # — the Author cannot edit them and they will not be downloaded back.
+    extra_attachments: list[tuple[Path, str]] = field(default_factory=list)
+    uploaded: list[UploadedFile] = field(default_factory=list)
+    extra_upload_failures: list[AttachmentUploadFailure] = field(
+        default_factory=list
+    )
+
+    # ----- upload -----------------------------------------------------------
+
+    def upload(self) -> list[str]:
+        """Upload each canonical workspace file (and any extra
+        attachments) as platform user_data files.
+
+        Missing or empty workspace files are still uploaded as a
+        single-byte placeholder so they appear in ``/mnt/data/`` for
+        the model to read.  Returns the list of platform file_ids in
+        upload order (canonical files first, then extras).
+        """
+        ids: list[str] = []
+        self.extra_upload_failures.clear()
+        for name in self.names:
+            path = self.workspace / name
+            if not path.exists() or path.stat().st_size == 0:
+                # Empty placeholder so the upload succeeds and the
+                # model sees an attachment with the expected basename.
+                path.write_text("(empty)\n", encoding="utf-8")
+            ids.append(self._upload_one(path, name, is_canonical=True, note=""))
+        for attach_path, note in self.extra_attachments:
+            if not attach_path.exists():
+                continue
+            try:
+                ids.append(
+                    self._upload_one(
+                        attach_path,
+                        attach_path.name,
+                        is_canonical=False,
+                        note=note,
+                    )
+                )
+            except Exception as e:
+                self.extra_upload_failures.append(
+                    _attachment_upload_failure(attach_path, e)
+                )
+        return ids
+
+    def _upload_one(
+        self, path: Path, name: str, *, is_canonical: bool, note: str
+    ) -> str:
+        with open(path, "rb") as fh:
+            file_obj = self.openai_client.files.create(
+                file=fh, purpose="user_data"
+            )
+        container_path = (
+            f"{CONTAINER_DATA_ROOT}/file-{file_obj.id.split('-', 1)[1]}-{name}"
+        )
+        self.uploaded.append(
+            UploadedFile(
+                name=name,
+                platform_file_id=file_obj.id,
+                container_path=container_path,
+                source_path=path,
+                is_canonical=is_canonical,
+                note=note,
+            )
+        )
+        return file_obj.id
+
+    # ----- prompt fragment --------------------------------------------------
+
+    def render_workspace_listing(self, *, include_extras: bool = True) -> str:
+        """Render a listing the Author can quote in its prompt.
+
+        Canonical files have both a read-only input path and a writable
+        canonical path. Extra attachments are read-only only — the
+        listing includes whatever ``note`` was supplied so the Author
+        knows what each attachment contains.
+        """
+        lines: list[str] = []
+        for u in self.uploaded:
+            if not include_extras and not u.is_canonical:
+                continue
+            if u.is_canonical:
+                lines.append(
+                    f"- {u.name}: read from `{u.container_path}` (read-only); "
+                    f"write your edited version to `{CONTAINER_DATA_ROOT}/{u.name}`."
+                )
+            else:
+                tail = f" {u.note}" if u.note else ""
+                lines.append(
+                    f"- {u.name} (read-only attachment): `{u.container_path}`.{tail}"
+                )
+        return "\n".join(lines)
+
+    @property
+    def platform_file_ids(self) -> list[str]:
+        return [u.platform_file_id for u in self.uploaded]
+
+    # ----- download ---------------------------------------------------------
+
+    def download(self, container_id: str) -> dict[str, str]:
+        """List the container's files and pull contents at the canonical
+        write paths (``/mnt/data/<name>``).
+
+        Returns ``{name: contents}`` only for the canonical files that
+        were actually written by the model.  Caller treats missing
+        names as "Author left this file unchanged".
+        """
+        target_paths = {f"{CONTAINER_DATA_ROOT}/{n}": n for n in self.names}
+        out: dict[str, str] = {}
+        files = list(self.openai_client.containers.files.list(container_id))
+        for cf in files:
+            path = str(getattr(cf, "path", ""))
+            name = target_paths.get(path)
+            if name is None:
+                continue
+            body = _read_container_file(self.openai_client, container_id, cf.id)
+            out[name] = body
+        return out
+
+    # ----- cleanup ----------------------------------------------------------
+
+    def cleanup(self) -> None:
+        """Delete uploaded platform files. Failures are ignored."""
+        for u in self.uploaded:
+            try:
+                self.openai_client.files.delete(u.platform_file_id)
+            except Exception:
+                pass
+        self.uploaded.clear()
+
+
+@dataclass
+class AnthropicUploadedFile:
+    name: str
+    platform_file_id: str
+    source_path: Path
+    is_canonical: bool = True
+    note: str = ""
+
+
+@dataclass
+class AnthropicContainerFileBridge:
+    """One-shot helper for Anthropic Files + code_execution turns."""
+
+    anthropic_client: object
+    workspace: Path
+    names: tuple[str, ...] = CANONICAL_FILES
+    extra_attachments: list[tuple[Path, str]] = field(default_factory=list)
+    betas: tuple[str, ...] = (ANTHROPIC_FILES_BETA,)
+    uploaded: list[AnthropicUploadedFile] = field(default_factory=list)
+    downloaded_generated_file_ids: list[str] = field(default_factory=list)
+    extra_upload_failures: list[AttachmentUploadFailure] = field(
+        default_factory=list
+    )
+
+    def upload(self) -> list[str]:
+        ids: list[str] = []
+        self.extra_upload_failures.clear()
+        for name in self.names:
+            path = self.workspace / name
+            if not path.exists() or path.stat().st_size == 0:
+                path.write_text("(empty)\n", encoding="utf-8")
+            ids.append(self._upload_one(path, name, is_canonical=True, note=""))
+        for attach_path, note in self.extra_attachments:
+            if not attach_path.exists():
+                continue
+            try:
+                ids.append(
+                    self._upload_one(
+                        attach_path,
+                        attach_path.name,
+                        is_canonical=False,
+                        note=note,
+                    )
+                )
+            except Exception as e:
+                self.extra_upload_failures.append(
+                    _attachment_upload_failure(attach_path, e)
+                )
+        return ids
+
+    def _upload_one(
+        self, path: Path, name: str, *, is_canonical: bool, note: str
+    ) -> str:
+        with open(path, "rb") as fh:
+            file_obj = self.anthropic_client.beta.files.upload(
+                file=fh,
+                betas=list(self.betas),
+            )
+        self.uploaded.append(
+            AnthropicUploadedFile(
+                name=name,
+                platform_file_id=file_obj.id,
+                source_path=path,
+                is_canonical=is_canonical,
+                note=note,
+            )
+        )
+        return file_obj.id
+
+    def render_workspace_listing(self, *, include_extras: bool = True) -> str:
+        lines: list[str] = []
+        for u in self.uploaded:
+            if not include_extras and not u.is_canonical:
+                continue
+            if u.is_canonical:
+                lines.append(
+                    f"- {u.name}: attached as Files API upload `{u.platform_file_id}`. "
+                    f"Read it in code_execution and write the edited result as "
+                    f"a generated file named exactly `{u.name}`."
+                )
+            else:
+                tail = f" {u.note}" if u.note else ""
+                lines.append(
+                    f"- {u.name} (read-only attachment): Files API upload "
+                    f"`{u.platform_file_id}`.{tail}"
+                )
+        return "\n".join(lines)
+
+    def render_container_upload_blocks(
+        self, *, include_extras: bool = True
+    ) -> list[dict[str, str]]:
+        return [
+            {"type": "container_upload", "file_id": u.platform_file_id}
+            for u in self.uploaded
+            if include_extras or u.is_canonical
+        ]
+
+    @property
+    def platform_file_ids(self) -> list[str]:
+        return [u.platform_file_id for u in self.uploaded]
+
+    def download(self, conversation: Iterable[dict]) -> dict[str, str]:
+        """Download generated canonical files from Anthropic Files.
+
+        Uploaded input file IDs also occur in the conversation as
+        ``container_upload`` blocks, so those IDs are explicitly ignored.
+        Only files generated by code_execution and named exactly like a
+        canonical workspace file are returned.
+        """
+        input_ids = set(self.platform_file_ids)
+        target_names = set(self.names)
+        out: dict[str, str] = {}
+        for file_id in find_anthropic_generated_file_ids(conversation):
+            if file_id in input_ids:
+                continue
+            metadata = self.anthropic_client.beta.files.retrieve_metadata(
+                file_id,
+                betas=list(self.betas),
+            )
+            filename = Path(str(getattr(metadata, "filename", ""))).name
+            if filename not in target_names:
+                continue
+            resp = self.anthropic_client.beta.files.download(
+                file_id,
+                betas=list(self.betas),
+            )
+            out[filename] = _read_binary_response(resp)
+            if file_id not in self.downloaded_generated_file_ids:
+                self.downloaded_generated_file_ids.append(file_id)
+        return out
+
+    def cleanup(self) -> None:
+        file_ids: list[str] = []
+        seen: set[str] = set()
+        for file_id in [
+            *[u.platform_file_id for u in self.uploaded],
+            *self.downloaded_generated_file_ids,
+        ]:
+            if file_id in seen:
+                continue
+            seen.add(file_id)
+            file_ids.append(file_id)
+
+        for file_id in file_ids:
+            try:
+                self.anthropic_client.beta.files.delete(
+                    file_id,
+                    betas=list(self.betas),
+                )
+            except Exception:
+                pass
+        self.uploaded.clear()
+        self.downloaded_generated_file_ids.clear()
+
+
+def find_container_id(conversation: Iterable[dict]) -> str | None:
+    """Walk a matharena conversation log and return the last
+    ``code_interpreter_call`` entry's ``container_id``.
+
+    Within one Responses request all ``code_interpreter_call`` items
+    share a container. A local function tool (MultiAuthor's ``delegate``)
+    splits the turn into several requests; if the container expired while
+    the tool ran, later requests get a fresh one, and the final file
+    writes live there.
+    """
+    last: str | None = None
+    for msg in conversation:
+        if isinstance(msg, dict) and msg.get("type") == "code_interpreter_call":
+            cid = msg.get("container_id")
+            if cid:
+                last = str(cid)
+    return last
+
+
+def _attachment_upload_failure(
+    path: Path, error: Exception
+) -> AttachmentUploadFailure:
+    try:
+        size_bytes = path.stat().st_size
+    except OSError:
+        size_bytes = None
+    return AttachmentUploadFailure(
+        name=path.name,
+        path=path,
+        size_bytes=size_bytes,
+        error_type=type(error).__name__,
+        message=str(error)[:1000],
+        disposition=_classify_attachment_upload_error(error),
+    )
+
+
+def _classify_attachment_upload_error(
+    error: Exception,
+) -> Literal["permanent", "transient", "unknown"]:
+    """Classify whether retrying this exact optional file can succeed later.
+
+    Only strong provider evidence is treated as permanent.  Unknown failures
+    deliberately remain retryable on a later Author round; quarantining them
+    would turn a one-off network failure into permanent loss of the handoff.
+    """
+    response = getattr(error, "response", None)
+    status_code = getattr(error, "status_code", None)
+    if status_code is None and response is not None:
+        status_code = getattr(response, "status_code", None)
+    try:
+        status_code = int(status_code) if status_code is not None else None
+    except (TypeError, ValueError):
+        status_code = None
+
+    error_name = type(error).__name__.lower()
+    if status_code in {408, 425, 429} or (
+        isinstance(status_code, int) and status_code >= 500
+    ):
+        return "transient"
+    if any(token in error_name for token in ("timeout", "connection", "ratelimit")):
+        return "transient"
+
+    body = getattr(error, "body", None)
+    code = getattr(error, "code", None)
+    rendered = " ".join(
+        str(value) for value in (code, body, error) if value is not None
+    ).lower()
+    permanent_hints = (
+        "array_above_max_length",
+        "container_file_limit",
+        "file_too_large",
+        "payload_too_large",
+        "request_too_large",
+        "too many files",
+        "too_many_files",
+        "unsupported file",
+        "unsupported_file",
+        "invalid file",
+        "invalid_file",
+        "maximum file size",
+    )
+    if status_code == 413 or any(hint in rendered for hint in permanent_hints):
+        return "permanent"
+    # A 415 is specifically an unsupported upload media type. Generic 400/422
+    # validation errors are not enough to blame the file permanently: they can
+    # also reflect a transient provider/API mismatch or malformed metadata.
+    if status_code == 415:
+        return "permanent"
+    if any(
+        hint in rendered
+        for hint in (
+            "temporarily unavailable",
+            "rate limit",
+            "try again",
+            "timed out",
+            "timeout",
+            "connection reset",
+            "connection aborted",
+        )
+    ):
+        return "transient"
+    return "unknown"
+
+
+def find_anthropic_generated_file_ids(conversation: Iterable[dict]) -> list[str]:
+    ids: list[str] = []
+    seen: set[str] = set()
+    for msg in conversation:
+        if not isinstance(msg, dict) or msg.get("role") != "assistant":
+            continue
+        for file_id in _walk_file_ids(msg):
+            if file_id in seen:
+                continue
+            seen.add(file_id)
+            ids.append(file_id)
+    return ids
+
+
+def _walk_file_ids(obj: Any) -> Iterable[str]:
+    if hasattr(obj, "model_dump"):
+        obj = obj.model_dump()
+    if isinstance(obj, dict):
+        file_id = obj.get("file_id")
+        if isinstance(file_id, str) and file_id:
+            yield file_id
+        for value in obj.values():
+            yield from _walk_file_ids(value)
+        return
+    if isinstance(obj, (list, tuple)):
+        for value in obj:
+            yield from _walk_file_ids(value)
+
+
+def _read_container_file(client: object, container_id: str, file_id: str) -> str:
+    """Stream a container file's contents and decode as UTF-8."""
+    resp = client.containers.files.content.retrieve(
+        file_id, container_id=container_id
+    )
+    if hasattr(resp, "read"):
+        body = resp.read()
+    elif hasattr(resp, "content"):
+        body = resp.content
+    else:
+        body = bytes(resp)
+    if isinstance(body, bytes):
+        try:
+            return body.decode("utf-8")
+        except UnicodeDecodeError:
+            return body.decode("utf-8", errors="replace")
+    return str(body)
+
+
+def _read_binary_response(resp: object) -> str:
+    if hasattr(resp, "read"):
+        body = resp.read()
+    elif hasattr(resp, "content"):
+        body = resp.content
+    elif hasattr(resp, "iter_bytes"):
+        body = b"".join(resp.iter_bytes())
+    else:
+        body = bytes(resp)
+    if isinstance(body, bytes):
+        try:
+            return body.decode("utf-8")
+        except UnicodeDecodeError:
+            return body.decode("utf-8", errors="replace")
+    return str(body)
+
+
+__all__ = [
+    "CONTAINER_DATA_ROOT",
+    "ANTHROPIC_FILES_BETA",
+    "AttachmentUploadFailure",
+    "AnthropicContainerFileBridge",
+    "AnthropicUploadedFile",
+    "ContainerFileBridge",
+    "UploadedFile",
+    "find_anthropic_generated_file_ids",
+    "find_container_id",
+]

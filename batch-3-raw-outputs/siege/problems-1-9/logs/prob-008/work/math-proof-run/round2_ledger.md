@@ -1,0 +1,6 @@
+2. PROVED: Under GH, every distribution u with L_X u = 0 is constant (kernel of X on D' is the constants) — round1_q2
+3. PROVED: Under GH, for each r there are k, C with ||u - mean(u)||_{H^r} <= C ||Xu||_{H^k} for all smooth u (also in C^r/C^k form), so X(C^infinity) is closed and equals the annihilator of the X-invariant distribution densities — round1_q2
+4. PROVED: Under GH, if a periodic orbit has Poincare map with |det DP| = 1 then u = c(theta) delta(y) is a non-smooth solution of Xu = 0, a contradiction — round1_q2
+5. PROVED: If X preserves a smooth volume omega, is uniquely ergodic and every omega-mean-zero smooth f is Xu with u smooth, then for y in the unstable manifold of a Pesin-regular x, integral_{-inf}^0 (f(g_t x) - f(g_t y)) dt = u(x) - u(y), so it is bounded by C ||f||_{C^k} d_M(x,y) — round1_q3
+6. OPEN: GH implies X preserves a smooth positive volume (equivalently div_nu X lies in R + X(C^infinity)); with it, unique ergodicity, no zeros and no periodic orbits would follow since any invariant measure mu gives the distribution mu/omega in ker X — round1_q1
+7. OPEN: A C^infinity flow with smooth invariant volume omega that is uniquely ergodic and cohomology-free with tame estimates has h_omega = 0, including when omega has zero exponents transverse to the flow (hyperbolic case follows from Katok-type closing, cited) — round1_q3

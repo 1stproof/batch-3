@@ -1,0 +1,419 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{enumitem}
+\usepackage[pdfauthor={},pdftitle={Solution},pdfcreator={},pdfproducer={}]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}[proposition]{Lemma}
+\newtheorem{corollary}[proposition]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[proposition]{Definition}
+\newtheorem{remark}[proposition]{Remark}
+
+\newcommand{\Teich}{\mathrm{Teich}}
+\newcommand{\PMod}{\mathrm{PMod}}
+\newcommand{\Ch}{\hat{\mathbb C}}
+\newcommand{\Rh}{\hat{\mathbb R}}
+\newcommand{\HH}{\mathbb H}
+\newcommand{\D}{\mathcal D}
+\newcommand{\M}{\mathcal M}
+\newcommand{\Push}{\mathrm{Push}}
+\newcommand{\Img}{\operatorname{Im}}
+\newcommand{\Rea}{\operatorname{Re}}
+
+\newcommand{\fptitle}{Review of Problem 7 -- Siege}
+\newcommand{\reviewtag}{Reviewer 2}
+\usepackage{fp-review}
+
+\begin{document}
+\maketitle
+
+\section{Review}
+The article follows a seemingly sound strategy for producing the desired explicit description of a simple closed curve $\gamma$, such that the Dehn twist around $\gamma$ has an infinite orbit on the components of the deformation space of quadratic maps with a critical 4-cycle. 
+
+\paragraph{Correctness.}
+
+ I don't know if the argument provided here is correct. It would require substantially longer period of time to check the veracity, because of the choice of presentation.
+
+\noindent Score: 0
+
+\paragraph{Exposition.}
+
+The exposition is rather poor. The article spends a lot of time explaining known facts, but is very dense while trying to explain the parts that actually matter. 
+
+\noindent Score: -1
+
+\paragraph{Attributions.}
+
+The attributions are adequate.
+
+\noindent Score: 0
+
+
+\newpage
+\section{Submission with inline comments}
+
+
+\section{The problem}
+
+Let $f\colon S^2\to S^2$ be a branched cover, $V(f)$ the set of its critical values, and $A,B\subset S^2$ finite sets.
+\begin{enumerate}
+\item If $f(A)\cup V(f)\subset B$, then every complex structure on $(S^2,B)$ can be pulled back to a complex structure on $(S^2,A)$, and this induces the map $f^*\colon\Teich(B)\to\Teich(A)$.
+\item If $A\subset B$, then forgetting the points $B\setminus A$ induces the map $i_*\colon\Teich(B)\to\Teich(A)$.
+\end{enumerate}
+If $f(A)\cup V(f)\cup A\subset B$, then the \emph{deformation space} is defined by
+\[\D_f:=\{\tau\in\Teich(B): f^*(\tau)=i_*(\tau)\}.\]
+Consider a quadratic rational map $f$ with critical points $c_1$ and $c_2$. Assume that $c_1$ belongs to a cycle of length $4$, and the critical value $v=f(c_2)$ does not belong to the cycle. By taking
+\[A=\{c_1,f(c_1),f^{\circ2}(c_1),f^{\circ3}(c_1)\},\qquad B=A\cup\{v\},\]
+we get a deformation space $\D_f\subset\Teich(B)$. Its image in the moduli space is the set of conjugacy classes of quadratic rational maps with the properties described above.
+
+\emph{Explicitly describe a simple closed curve $\gamma\subset(S^2,B)$ such that a power of the Dehn twist around this curve preserves the deformation space, and its action on the set of connected components of $\D_f$ has an infinite orbit.}
+
+\section{The result}
+
+Throughout, $f$ is as in the problem, $a_i=f^{i}(c_1)$ (indices mod $4$), so $A=\{a_0,a_1,a_2,a_3\}$ and $B=A\cup\{v\}$. The critical values of $f$ are $a_1=f(c_1)$ and $v$. For an essential simple closed curve $\gamma\subset S^2\setminus B$ we write $T_\gamma$ for the Dehn twist about $\gamma$, an element of the pure mapping class group $\PMod(S^2,B)$, which acts on $\Teich(B)$ (see \S\ref{sec:teich}).
+
+\begin{theorem}\label{thm:main}
+\textbf{(a) Model case.} Let
+\[f=f_{1/4}(z)=1-\frac{11}{12z}+\frac1{6z^2}.\]
+Its $4$-cycle is $c_1=0\mapsto\infty\mapsto1\mapsto\tfrac14\mapsto0$, 
+its second critical point is $c_2=4/11$, and $v=-25/96$. On $\Rh$ the points of $B$ are ordered as
+\[v<c_1=0<f^{3}(c_1)=\tfrac14<f^{2}(c_1)=1<f(c_1)=\infty .\]
+Let $\alpha$ be a simple arc from $v$ to $f(c_1)=\infty$ with the following crossing pattern with $\Rh$:
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item it leaves $v$ into the lower half-plane and crosses $\mathbb R$ upward at a point $x_1\in(1,\infty)$;
+\item it runs in the upper half-plane and crosses $\mathbb R$ downward at a point $x_2\in(0,\tfrac14)$;
+\item it runs in the lower half-plane and crosses $\mathbb R$ upward at a point $x_3\in(v,0)$;
+\item it stays in the upper half-plane until $\infty$.
+\end{enumerate}
+Thus $\alpha$ meets $\Rh$ only at $v,x_1,x_2,x_3,\infty$, crossing transversally at $x_1,x_2,x_3$. A concrete choice is: the lower semicircle from $v$ to $2$; then the upper semicircle over $[\tfrac18,2]$; then the lower semicircle over $[-\tfrac18,\tfrac18]$; then the vertical ray from $-\tfrac18$ up to $\infty$.
+
+Let $\gamma=\partial N(\alpha)$ be the boundary of a thin closed regular neighbourhood of $\alpha$. Then $\gamma$ is a simple closed curve in $S^2\setminus B$; it bounds a disc containing exactly $v$ and $f(c_1)$, and the complementary disc contains $c_1,f^2(c_1),f^3(c_1)$. The Dehn twist $T_\gamma$ itself (power $1$) satisfies
+\[f^*\circ T_\gamma=f^*\qquad\text{and}\qquad i_*\circ T_\gamma=i_*,\]
+so $T_\gamma(\D_f)=\D_f$. For every connected component $D_0$ of $\D_f$ and every $m\ne0$ we have $T_\gamma^m(D_0)\ne D_0$. Hence every orbit of $\langle T_\gamma\rangle$ on $\pi_0(\D_f)$ is infinite; in particular $\D_f$ has infinitely many components.
+
+\smallskip
+\textbf{(b) Every $f$.} Let $f$ be arbitrary as in the problem. By Proposition~\ref{prop:normal} there are a unique $t\in W$ and a unique M\"obius map $M$ with $M\circ f\circ M^{-1}=f_t$ and $M(c_1)=0$. Choose a path $t_s$ in $W$ from $\tfrac14$ to $t$ and let $h_1$ be the endpoint of an isotopy following the marked points (Lemma~\ref{lem:isotopy}). Then the curve
+\[\gamma_f:=M^{-1}(h_1(\gamma))\]
+has the same property for $f$: $T_{\gamma_f}$ preserves $\D_f$, and every orbit of $\langle T_{\gamma_f}\rangle$ on $\pi_0(\D_f)$ is infinite.
+
+When $t\in\bigl(0,\tfrac{3-\sqrt5}{2}\bigr)$ this is explicit. The five points of $B$ lie on the circle $C=M^{-1}(\Rh)$ in the cyclic order $v,\,c_1,\,f^3(c_1),\,f^2(c_1),\,f(c_1)$. Call the \emph{upper} side of $C$ the image under $M^{-1}$ of the upper half-plane. Then $\gamma_f=\partial N(\alpha_f)$, where $\alpha_f$ is an arc from $v$ to $f(c_1)$ which
+\begin{itemize}[nosep]
+\item leaves $v$ into the lower side and crosses $C$ between $f^2(c_1)$ and $f(c_1)$;
+\item crosses back between $c_1$ and $f^3(c_1)$;
+\item crosses again between $v$ and $c_1$;
+\item then runs on the upper side to $f(c_1)$.
+\end{itemize}
+\end{theorem}
+
+\paragraph{What is known and what is proved here.} The setting of the problem, and the disconnectedness of $\D_f$ for quadratic maps with a $4$-periodic critical point, go back to E.~Hironaka and S.~Koch~\cite{HK}; for background on the pullback map in this generality see \cite{DH,BEKP}. The argument below is self-contained apart from the classical facts (F1)--(F5) listed in \S\ref{sec:teich}, which are quoted with references and not reproved. Everything else (the normal form, the fibre formula, the obstruction $(\star)$, the linking criterion, the face analysis at $t=\tfrac14$, the isotopy and lifting lemmas) is proved here.
+
+\section{Overview of the proof}
+
+After a M\"obius change of coordinates every $f$ is one of the maps $f_t(z)=1+b/z+c/z^2$ with cycle $0\to\infty\to1\to t\to0$, where $t$ ranges over a connected set $W$, the complement of nine points in $\mathbb C$. The space $\Teich(A)$ is the upper half-plane $\HH$, with the modular function $\lambda$ as the universal covering of the moduli space $\mathbb C\setminus\{0,1\}$, so the pair $\Psi=(i_*,f^*)$ maps $\Teich(B)$ to $\HH\times\HH$ and $\D_f=\Psi^{-1}(\text{diagonal})$.
+
+The key algebraic fact is an explicit formula: if a point of $\Teich(B)$ has normalised coordinates $(0,\infty,1,t,v')$, then $w=\lambda(f^*\tau')$ satisfies $V_t(w)=v'$ for an explicit degree-$4$ rational function $V_t$. Since the fifth point $v'$ is never $\infty$, the value $w=1-t$ is never attained. Hence $\Psi(\Teich(B))$ avoids the graphs of all elements $g\in\Gamma(2)S$, where $S(\tau)=-1/\tau$; we call this the obstruction~$(\star)$. If $g$ has no fixed point in $\HH$, the complement $X_g$ of the graph of $g$ in $\HH\times\HH$ contains the diagonal and has $H_1(X_g)\cong\mathbb Z$, measured by winding about the graph. A mapping class $T$ with $\Psi\circ T=\Psi$ preserves $\D_f$. If, moreover, a path from $\tau$ to $T^m\tau$ has $\Psi$-image with nonzero class in $H_1(X_g)$, then $\tau$ and $T^m\tau$ cannot lie in the same component of $\D_f$, because a path inside $\D_f$ maps into the contractible diagonal. This is the linking criterion.
+
+For $f_{1/4}$ we take $\gamma$ around the two critical values $v$ and $a_1$, along the arc $\alpha$. Then $T_\gamma$ is a point push of $v$, so $i_*\circ T_\gamma=i_*$, and its lift through $f$ is computed from the lift of $\alpha$ through $V_{1/4}$. The map $V_{1/4}$ is Galois with Klein four deck group, and its real locus consists of $\Rh$ and two circles; a face-by-face analysis shows that the lift $\beta$ of $\alpha$ starting at $w=\tfrac14$ ends at $\tfrac34$ after winding once clockwise around $0$. Lifting through $\lambda$ yields the element $g=T^{-2}S$, which is parabolic and so has no fixed point. From this we get $f^*\circ T_\gamma=f^*$, and the $\Psi$-image of the fibre path from $\tau_0$ to $T_\gamma^m\tau_0$ winds $\pm m$ times about the graph of $g$, which proves (a). Part (b) follows by transporting $\gamma$ along an isotopy that follows the marked points as $t$ moves in $W$, which conjugates all the structures involved.
+
+\section{Normal form}\label{sec:normal}
+
+\begin{proposition}\label{prop:normal}
+Put $f_t(z)=1+\dfrac bz+\dfrac c{z^2}$, with $b=\dfrac{t^2+t-1}{1-t}$ and $c=\dfrac{t(1-2t)}{1-t}$. Let $E$ be the set of $9$ points
+\[E=\{0,1,\tfrac12\}\cup\{t:t^2-3t+1=0\}\cup\{t:t^2+t-1=0\}\cup\{t:3t^2-3t+1=0\},\]
+and put $W=\mathbb C\setminus E$. For $f$ as in the problem there is exactly one pair $(t,M)$ with $t\in W$, $M$ M\"obius, $MfM^{-1}=f_t$ and $M(c_1)=0$. Conversely, for every $t\in W$ the map $f_t$ is as in the problem, with cycle $0\to\infty\to1\to t\to0$. Finally, $W$ is connected.
+\end{proposition}
+
+\begin{proof}
+\emph{Existence.} Let $M$ be the M\"obius map with $M(a_0,a_1,a_2)=(0,\infty,1)$, put $t=M(a_3)$ and $g=MfM^{-1}$. Then $0$ is a critical point of $g$ with $g(0)=\infty$, so $0$ is a double pole and the only pole; hence $g=P(z)/z^2$ with $\deg P\le2$ and $P(0)\ne0$. Since $g(\infty)=1$, we get $g=1+b/z+c/z^2$ with $c\ne0$. The conditions $g(1)=t$ and $g(t)=0$ read $1+b+c=t$ and $t^2+bt+c=0$. Substituting $c=t-1-b$ into the second gives $b(t-1)=1-t-t^2$. Hence $b$ and $c$ are as stated. (As checks, $b+c=t-1$ and $(1-t)(t^2+bt+c)=0$ identically.)
+
+\emph{Uniqueness.} Any other such $M'$ maps $c_1=a_0$ to $0$, and then $a_1,a_2$ to $f_{t'}(0)=\infty$ and $f_{t'}(\infty)=1$; so $M'(a_0,a_1,a_2)=(0,\infty,1)$ and $M'=M$.
+
+\emph{Which $t$ occur.} The value $t=\tfrac12$ gives $c=0$, and the degree drops. For $t\notin\{0,1,\tfrac12\}$ the map $f_t$ has degree $2$ and $0$ is a critical point of exact period $4$, since $0,\infty,1,t$ are distinct. Since $f_t'(z)=-(bz+2c)/z^3$, we have $c_2=-2c/b$, or $c_2=\infty=a_1$ if $b=0$, i.e.\ if $t^2+t-1=0$. Otherwise
+\[v(t)=1-\frac{b^2}{4c}=-\frac{(t^2-3t+1)^2}{4t(1-t)(1-2t)},\]
+using $(t^2+t-1)^2-(t^2-3t+1)^2=4t(1-t)(1-2t)$. Similarly, with $D=4t(1-t)(1-2t)$, one has $v-1=-(t^2+t-1)^2/D$ and $v-t=-(3t^2-3t+1)^2/D$; the latter because
+\[(t^2-3t+1)^2+t\,D=9t^4-18t^3+15t^2-6t+1=(3t^2-3t+1)^2.\]
+Hence $v=0\iff t^2-3t+1=0$, $v=1\iff b=0$, and $v=t\iff 3t^2-3t+1=0$. So $W$ is exactly the set of admissible parameters. It is $\mathbb C$ minus finitely many points, hence connected.
+\end{proof}
+
+At $t=\tfrac14$ one gets $b=-\tfrac{11}{12}$, $c=\tfrac16$, $c_2=\tfrac4{11}$ and $v=-\tfrac{25}{96}$, which gives the map $f_{1/4}$ of Theorem~\ref{thm:main}(a).
+
+\paragraph{Factorisation.} Put $N_t(z)=z/(z-c_2(t))$ and $M_t(y)=v(t)+(1-v(t))/y$. Then
+\begin{equation}\label{eq:factor}
+f_t(z)=v+(1-v)\Bigl(1-\frac{c_2}{z}\Bigr)^2=M_t\bigl(N_t(z)^2\bigr).
+\end{equation}
+To check it, compare coefficients: $-2(1-v)c_2=b$ and $(1-v)c_2^2=c$, which follow from $1-v=b^2/(4c)$ and $c_2=-2c/b$. Both $M_t$ and $N_t$ depend continuously on $t\in W$. Also $N_t(0)=0$, $N_t(c_2)=\infty$, $M_t(0)=\infty$ and $M_t(\infty)=v$.
+
+\section{Teichm\"uller preliminaries}\label{sec:teich}
+
+\paragraph{Conventions.} A marking of $(S^2,X)$, with $|X|\ge3$, is an orientation-preserving homeomorphism $\varphi\colon S^2\to\Ch$. $\Teich(X)$ is the set of markings modulo the relation $\varphi_1\sim\varphi_2$, which holds iff there is a M\"obius map $M$ with $M\varphi_1=\varphi_2$ on $X$ and $M\varphi_1\simeq\varphi_2$ rel $X$. The pure mapping class group $\PMod(S^2,X)$ acts by $g\cdot[\varphi]=[\varphi g^{-1}]$; for a mapping class $T$ we write $F\circ T$ for the map $\tau\mapsto F(T\cdot\tau)$. The pullback $f^*[\varphi]=[\psi]$ is defined by requiring $\varphi\circ f\circ\psi^{-1}$ to be rational. In our situation $S^2=\Ch$, and $\tau_0=[\mathrm{id}]$ denotes the base point.
+
+\paragraph{Standard facts quoted, not reproved.}
+\begin{enumerate}[label=\textbf{(F\arabic*)},leftmargin=*]
+\item \label{F1} (Modular function; classical, see e.g.\ \cite{Ahlfors,Chandra}.) Let $\lambda=(\theta_2/\theta_3)^4\colon\HH\to\mathbb C\setminus\{0,1\}$. It is a holomorphic universal covering whose fibres are the orbits of $\Gamma(2)$. Moreover $\lambda(\tau+2)=\lambda(\tau)$ and $\lambda(-1/\tau)=1-\lambda(\tau)$; $\lambda(\tau)=16e^{i\pi\tau}+O(e^{2\pi i\tau})$ as $\Img\tau\to\infty$; and $y\mapsto\lambda(iy)$ is a decreasing bijection $(0,\infty)\to(0,1)$.
+\item \label{F2} (Teichm\"uller; see e.g.\ \cite{Hubbard}.) $\Teich(X)$ is a complex manifold homeomorphic to $\mathbb R^{2(|X|-3)}$; in particular it is contractible. $\PMod(S^2,X)$ acts properly discontinuously by biholomorphisms, and the quotient is the moduli space $\M_{0,X}$.
+\item \label{F3} (Bers fibration and Birman exact sequence \cite{Bers,Birman,FM}.) The forgetful map $i_*\colon\Teich(B)\to\Teich(A)$ is surjective. Fix $p\in\Teich(A)$ and normalise $a_0,a_1,a_2,a_3$ to $0,\infty,1,t$; write $A_p=\{0,\infty,1,t\}$. Recording the position $v'$ of the fifth point identifies the fibre $i_*^{-1}(p)$ with the universal cover of $\Ch\setminus A_p$. The point-push subgroup $\ker\bigl(\PMod(S^2,B)\to\PMod(S^2,A)\bigr)\cong\pi_1(S^2\setminus A,v)$, $[\ell]\mapsto\Push(\ell)$, acts on each fibre as the deck group: for the fibre through $\tau_0$, $\Push(\ell)^{\pm1}\cdot\tau_0$ is the endpoint of the lift through $v'$ of $\ell$ starting at $\tau_0$, the sign depending only on conventions.
+\item \label{F4} (Push formula, see \cite{FM}.) The push of $v$ along a simple loop $\delta$ is $T_{\delta_L}T_{\delta_R}^{-1}$, where $\delta_L,\delta_R$ are the two boundary curves of a regular neighbourhood of $\delta$.
+\item \label{F5} (Douady--Hubbard \cite{DH}.) $f^*$ is well defined and continuous; indeed it is holomorphic. (In \cite{DH} this is proved for Thurston's pullback map; the proof applies verbatim to $f^*\colon\Teich(B)\to\Teich(A)$.)
+\end{enumerate}
+The push formula is used only up to sign, and every argument below is symmetric under $m\mapsto-m$.
+
+\begin{lemma}[free action]\label{lem:free}
+$\PMod(S^2,X)$ acts freely on $\Teich(X)$.
+\end{lemma}
+
+\begin{proof}
+Suppose $[\varphi g^{-1}]=[\varphi]$. Then $M\varphi=\varphi g^{-1}$ on $X$ for some M\"obius $M$. Since $g$ fixes $X$ pointwise, $M$ fixes the at least three points of $\varphi(X)$, so $M=\mathrm{id}$. Then $\varphi g^{-1}\simeq\varphi$ rel $X$, so $g=1$ in $\PMod(S^2,X)$.
+\end{proof}
+
+By \ref{F2} and Lemma~\ref{lem:free}, the modulus map $\mathrm{mod}\colon\Teich(A)\to\mathbb C\setminus\{0,1\}$ is a covering, and since $\Teich(A)$ is simply connected it is a universal covering. It sends $[\varphi]$ to the $t$ for which some M\"obius map takes $\varphi(a_0,a_1,a_2,a_3)$ to $(0,\infty,1,t)$. By \ref{F1} there is a biholomorphism $\Theta\colon\Teich(A)\to\HH$ with $\lambda\circ\Theta=\mathrm{mod}$, and we use it to identify $\Teich(A)$ with $\HH$. For $f=f_{1/4}$ the base point $\tau_0=[\mathrm{id}]\in\Teich(B)$ lies in $\D_f$, because $f^*[\mathrm{id}]=[\mathrm{id}]$, $f$ being rational. Composing $\Theta$ with an element of $\Gamma(2)$ we normalise it so that $i_*\tau_0=p_0:=iy_0$, where $\lambda(iy_0)=\tfrac14$ (numerically $y_0\approx1.2793$).
+
+Put $\Psi=(i_*,f^*)\colon\Teich(B)\to\HH\times\HH$. Then $\D_f=\Psi^{-1}(\Delta)$, where $\Delta$ is the diagonal.
+
+\begin{lemma}[equivariance for a lift fixing $A$]\label{lem:equiv}
+Let $\varphi$ be a homeomorphism fixing $B$ pointwise, and $\tilde\varphi$ a homeomorphism fixing $A$ pointwise with $f\tilde\varphi=\varphi f$. Then $f^*(\varphi\cdot\tau)=\tilde\varphi\cdot f^*(\tau)$.
+\end{lemma}
+
+\begin{proof}
+Let $\tau=[\psi_0]$ and suppose $\psi_0 f=F\psi$ with $F$ rational. Then $\psi_0\varphi^{-1}f=\psi_0 f\tilde\varphi^{-1}=F(\psi\tilde\varphi^{-1})$, so $f^*[\psi_0\varphi^{-1}]=[\psi\tilde\varphi^{-1}]$.
+\end{proof}
+
+A lift of an element of $\PMod(S^2,B)$ need not fix $A$ pointwise: it may exchange $a_i$ with the other preimage of $a_{i+1}$. So Lemma~\ref{lem:equiv} has to be applied to an explicitly constructed lift, as in the next lemma.
+
+\begin{lemma}[lift of $T_\gamma$]\label{lem:lift}
+Let $\alpha$ be a simple arc from $v$ to $a_1$ with interior in $S^2\setminus B$. Let $\gamma=\partial N(\alpha)$, and realise $T_\gamma$ in a collar $R\subset S^2\setminus N(\alpha)$ disjoint from $B$. Then:
+\begin{enumerate}[label=\textup{(\roman*)},nosep]
+\item $f^{-1}(R)=R_1\sqcup R_2$, with each $R_j$ mapped homeomorphically onto $R$;
+\item the map $\tilde T$ defined as $(f|_{R_j})^{-1}\,T_\gamma\, f$ on $R_j$ and the identity elsewhere is a homeomorphism with $f\tilde T=T_\gamma f$;
+\item $\tilde T$ fixes $f^{-1}(B)\supset A$ pointwise.
+\end{enumerate}
+Hence $f^*\circ T_\gamma=[\tilde T]\cdot f^*$ with $[\tilde T]\in\PMod(S^2,A)$.
+\end{lemma}
+
+\begin{proof}
+$R$ contains no critical value, so $f^{-1}(R)\to R$ is a $2$-sheeted covering. Its monodromy around the core of $R$ is the product of the monodromies around the two critical values $v,a_1$ inside $\gamma$. Each of these is the transposition of the two sheets, so the product is trivial. Hence the covering splits into two annuli, each mapped homeomorphically. Since $T_\gamma=\mathrm{id}$ on $\partial R$, $\tilde T$ is continuous and bijective, hence a homeomorphism of $S^2$, and $f\tilde T=T_\gamma f$ holds on each $R_j$ and trivially elsewhere. The set $f^{-1}(B)$ is disjoint from $f^{-1}(R)$, so $\tilde T$ fixes it; it contains $A$ because $f(A)=A\subset B$. Lemma~\ref{lem:equiv} gives the last statement.
+\end{proof}
+
+\section{The fibre formula and the obstruction \texorpdfstring{$(\star)$}{(*)}}
+
+\begin{lemma}\label{lem:fibreformula}
+Let $\tau'\in\Teich(B)$ be represented, after normalising, by
+\[(\Ch;a_0,a_1,a_2,a_3,v)=(0,\infty,1,t,v').\] Then $w:=\lambda(f^*\tau')$ satisfies
+\[V_t(w)=v',\qquad\text{where}\quad V_t(w)=-\frac{\bigl((w-1)^2-t\bigr)^2}{4w(w-1)(w+t-1)} .\]
+\end{lemma}
+
+\begin{proof}
+The pulled-back structure carries a degree-$2$ rational map $F$ whose critical values are the images $\infty$ and $v'$ of the critical values $a_1$ and $v$. Up to a M\"obius change in the source, $F(z)=v'+z^2$. Since $a_0=c_1$ is the critical point over $a_1$, its marked image is $a_0'=\infty$. The other points satisfy $F(a_i')=$ (image of $a_{i+1}$), so $a_1'=s_2$, $a_2'=s_3$, $a_3'=s_0$ with
+\[s_2^2=1-v',\qquad s_3^2=t-v',\qquad s_0^2=-v';\]
+the marking determines the signs. The map $z\mapsto(s_3-s_2)/(z-s_2)$ sends $(\infty,s_2,s_3,s_0)$ to $(0,\infty,1,w)$, so $w=(s_3-s_2)/(s_0-s_2)$.
+
+Put $u=s_2-s_0$ and $U=u^2$. From $s_2^2-s_0^2=1$ we get $s_2+s_0=u^{-1}$, so $s_2=(u+u^{-1})/2$ and $s_0=(u^{-1}-u)/2$. Also $s_3=s_2-wu$. The relation $s_3^2-s_0^2=t$ becomes $1-w(U+1)+w^2U=t$, so
+\[U=\frac{w+t-1}{w(w-1)},\qquad 1-U=\frac{(w-1)^2-t}{w(w-1)}.\]
+Then $v'=-s_0^2=-(1-U)^2/(4U)$, which is the stated formula.
+\end{proof}
+
+Note that $V_t(t)=-\dfrac{(t^2-3t+1)^2}{4t(t-1)(2t-1)}=v(t)$.
+
+\begin{corollary}[the obstruction $(\star)$]\label{cor:star}
+$V_t^{-1}(\infty)=\{0,1,\infty,1-t\}$, and at $w=1-t$ the numerator of $V_t$ equals $(t^2-t)^2\ne0$. Since $v'\ne a_1=\infty$, we get $w\ne1-t$. Thus
+\[\lambda(f^*\tau')\ne1-\lambda(i_*\tau')\qquad\text{for all }\tau'\in\Teich(B). \tag{$\star$}\]
+By \ref{F1}, $\lambda(q)=1-\lambda(p)=\lambda(-1/p)$ holds iff $q=g(p)$ for some $g\in\Gamma(2)S$, where $S(\tau)=-1/\tau$. So $\Psi(\Teich(B))$ avoids every graph $\Gamma_g=\{(p,g(p)):p\in\HH\}$ with $g\in\Gamma(2)S$.
+\end{corollary}
+
+\begin{proof}
+The denominator vanishes at $0,1,1-t$, which are distinct since $t\ne0,1$, and the numerator is $(1-t)^2$, $t^2$, $(t^2-t)^2$ there, all nonzero. Since the numerator has degree $4$ and the denominator degree $3$, also $V_t(\infty)=\infty$. The rest was explained in the statement, using $\lambda(i_*\tau')=t$.
+\end{proof}
+
+\begin{lemma}[branching of $V_t$]\label{lem:branch}
+For $t\in W$, $V_t$ has degree $4$ and is unbranched over $\Ch\setminus\{0,1,t\}$.
+\end{lemma}
+
+\begin{proof}
+By the proof of Corollary~\ref{cor:star}, numerator and denominator are coprime, so $\deg V_t=4$. Fix $v'\notin\{0,1,t,\infty\}$. If $V_t(w)=v'$, then $w\notin\{0,1,1-t,\infty\}$; reversing the computation in the proof of Lemma~\ref{lem:fibreformula} (choose $u$ with $u^2=U$ and define $s_2,s_0,s_3$ by the formulas there) shows that $w=(s_3-s_2)/(s_0-s_2)$ for some choice of square roots $s_2,s_3,s_0$ of $1-v',t-v',-v'$. So the solutions $w$ come from the sign choices of $(s_2,s_3,s_0)$ modulo a global sign, and there are at most $4$ of them.
+
+They are distinct. If two sign classes gave the same $w$, the M\"obius map carrying one quadruple $(\infty,s_2,s_3,s_0)$ to the other would be an affine map $L$ with $L(s_j)=\pm s_j$, with a sign pattern that is not constant. Then $L(z)^2-z^2$, of degree at most $2$, would vanish at the three distinct points $s_2,s_3,s_0$, forcing $L=\pm\mathrm{id}$, a contradiction. Over $\infty$ there are $4$ simple preimages $0,1,1-t,\infty$. Hence every point outside $\{0,1,t\}$ has $4$ distinct preimages.
+\end{proof}
+
+\begin{lemma}[fibre lemma]\label{lem:fibre}
+Fix $p\in\Teich(A)$ with $\lambda(p)=t$, and let $\tilde U=i_*^{-1}(p)$. By \ref{F3}, $\tilde U$ is the universal cover of $\Ch\setminus A_p$ via $\tau'\mapsto v'(\tau')$. Then $w=\lambda\circ f^*$ is the lift of $v'$ through the covering $V_t\colon\Ch\setminus V_t^{-1}(A_p)\to\Ch\setminus A_p$, and $f^*|_{\tilde U}$ is the lift of $w$ through $\lambda$. Both lifts are determined by their value at one point.
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:branch}, $V_t$ restricted as stated is a covering, since all its critical values lie in $A_p$. By \ref{F5} and Lemma~\ref{lem:fibreformula}, $w=\lambda\circ f^*$ is continuous on $\tilde U$ and satisfies $V_t\circ w=v'$; as $v'\notin A_p$, $w$ takes values in $\Ch\setminus V_t^{-1}(A_p)$. So $w$ is a lift of $v'$, and $f^*|_{\tilde U}$ is a lift of $w$ through $\lambda$ by definition. Since $\tilde U$ is connected, lifts are determined by their value at one point.
+\end{proof}
+
+\section{\texorpdfstring{$\D_f$}{D\_f} is a smooth curve}
+
+\begin{lemma}\label{lem:smooth}
+$\D_f$ is a one-dimensional complex submanifold of $\Teich(B)$. Hence its connected components are path components.
+\end{lemma}
+
+\begin{proof}
+The map $\Teich(B)\to\M_{0,5}$, $\tau'\mapsto(t',v')$, is a covering by \ref{F2} and Lemma~\ref{lem:free}, so $(t',v')$ are local coordinates. Let $\tau_1\in\D_f$ have coordinates $(t_1,v_1)$. Then $w(\tau_1)=\lambda(f^*\tau_1)=\lambda(i_*\tau_1)=t_1$, so $v_1=V_{t_1}(t_1)=v(t_1)$. Since $v_1\notin\{0,1,t_1,\infty\}$, Lemma~\ref{lem:branch} makes $V_{t_1}$ a local biholomorphism at $w=t_1$. By the implicit function theorem and continuity of $w$, near $\tau_1$ the function $w(t',v')$ is the holomorphic branch of $V_{t'}^{-1}(v')$ through $t_1$. Moreover $\lambda$ is injective near $i_*\tau_1=f^*\tau_1$. So near $\tau_1$ the condition $f^*\tau'=i_*\tau'$ is equivalent to $w(t',v')=t'$, i.e.\ to $v'=V_{t'}(t')=v(t')$, which defines a holomorphic graph.
+\end{proof}
+
+\section{The linking criterion}
+
+\begin{proposition}\label{prop:linking}
+Let $T\in\PMod(S^2,B)$ satisfy $\Psi\circ T=\Psi$, so that $T^{\pm1}(\D_f)=\D_f$. Let $g\in\Gamma(2)S$ have no fixed point in $\HH$. Let $\tau\in\D_f$ with $p_0=i_*\tau$, and let $D_0$ be its component. Suppose that for each $m\ne0$ there is a path $\sigma'_m$ in the fibre $i_*^{-1}(p_0)$ from $\tau$ to $T^m\tau$ such that the loop $f^*\circ\sigma'_m$ has nonzero winding number about $g(p_0)$. Then $T^m D_0\ne D_0$ for every $m\ne0$.
+\end{proposition}
+
+\begin{proof}
+Let $X_g=\HH\times\HH\setminus\Gamma_g$. The map $(p,q)\mapsto\bigl(p,(q-\Rea g(p))/\Img g(p)\bigr)$ identifies $X_g$ with $\HH\times(\HH\setminus\{i\})$, and is an orientation-preserving affine map on each fibre $\{p\}\times\HH$. So $H_1(X_g)\cong\mathbb Z$, and the class of a loop in $\{p\}\times\HH$ is its winding number about $g(p)$. By $(\star)$, $\Psi(\Teich(B))\subset X_g$, and since $g$ has no fixed point, $\Delta\subset X_g$.
+
+Suppose $T^mD_0=D_0$. By Lemma~\ref{lem:smooth} there is a path $\sigma\subset D_0$ from $\tau$ to $T^m\tau$. Since $\Teich(B)$ is contractible \ref{F2}, $\sigma\simeq\sigma'_m$ rel endpoints. Applying $\Psi$, the loops $\Psi\sigma$ and $\Psi\sigma'_m$ (they are loops because $\Psi(T^m\tau)=\Psi(\tau)$) are homotopic in $X_g$. But $\Psi\sigma\subset\Delta$, which is contractible, so $\Psi\sigma$ is null-homologous in $X_g$, whereas $\Psi\sigma'_m=(p_0,f^*\sigma'_m)$ has nonzero class. This is a contradiction.
+\end{proof}
+
+\section{The computation at \texorpdfstring{$t_0=\tfrac14$}{t0=1/4}}\label{sec:comp}
+
+From now on $f=f_{1/4}$ and $V=V_{1/4}$. Since $(w-1)^2-\tfrac14=(w-\tfrac12)(w-\tfrac32)$,
+\[V(w)=-\frac{(w-\frac12)^2(w-\frac32)^2}{4w(w-1)(w-\frac34)} .\]
+
+\paragraph{Deck group.} Put $g_0(w)=\dfrac{w-3/4}{w-1}$, $g_2(w)=\dfrac3{4w}$ and $g_3=g_0g_2=g_2g_0=\dfrac{3(w-1)}{4(w-3/4)}$; $g_0$ and $g_2$ are commuting involutions. Direct substitution gives $V\circ g_0=V\circ g_2=V$:
+\begin{itemize}[nosep]
+\item under $g_2$: $w-\tfrac12\mapsto-(w-\tfrac32)/(2w)$, $w-\tfrac32\mapsto-3(w-\tfrac12)/(2w)$, and $4w(w-1)(w-\tfrac34)\mapsto 9(w-\tfrac34)(w-1)/(4w^3)$;
+\item under $g_0$: $w-\tfrac12\mapsto(w-\tfrac12)/(2(w-1))$, $w-\tfrac32\mapsto-(w-\tfrac32)/(2(w-1))$, and the denominator becomes $w(w-\tfrac34)/(4(w-1)^3)$.
+\end{itemize}
+So $V$ is Galois with Klein four deck group $\{\mathrm{id},g_0,g_2,g_3\}$. Its $6$ critical points are the fixed points of $g_0,g_2,g_3$:
+$\tfrac12,\tfrac32$, which lie over $0$; $\pm\tfrac{\sqrt3}2$, which lie over $1$; and $P,\bar P=\tfrac34\pm\tfrac{\sqrt3}4 i$, which lie over $\tfrac14$. The critical values are therefore $0,1,\tfrac14\in A$.
+
+\paragraph{Real locus.} $V$ has real coefficients, so $V(w)\in\Rh$ iff $V(\bar w)=V(w)$ iff $\bar w=h(w)$ for some deck map $h$:
+$h=\mathrm{id}$ gives $\Rh$; $h=g_0$ gives the circle $C_1\colon|w-1|=\tfrac12$; $h=g_2$ gives $C_2\colon|w|=\tfrac{\sqrt3}2$; and $h=g_3$ gives $|w-\tfrac34|^2=-\tfrac3{16}$, which is empty. Moreover $C_1\cap C_2=\{P,\bar P\}$.
+
+\paragraph{Faces.} All critical values of $V$ are real. So $V$ restricted to $\Ch\setminus V^{-1}(\Rh)$ is a covering of the two open half-planes, and each complementary component (face) maps homeomorphically onto one half-plane. Adjacent faces map to opposite half-planes, because $V$ is a local homeomorphism along each edge. We need four faces, all inside $C_2$ and hence avoiding $w=1$:
+\begin{gather*}
+L_2=\{\Img w<0,\ |w|<\tfrac{\sqrt3}2,\ |w-1|>\tfrac12\},\qquad U_2=\overline{L_2}\ \text{(complex conjugate)},\\
+U_{12}=\{\Img w>0,\ |w|<\tfrac{\sqrt3}2,\ |w-1|<\tfrac12\},\qquad L_{12}=\overline{U_{12}}.
+\end{gather*}
+
+\paragraph{Boundary values.} The vertices of the graph $V^{-1}(\Rh)$ are the points of $V^{-1}(\{0,1,\tfrac14,\infty\})=\{\tfrac12,\tfrac32,\pm\tfrac{\sqrt3}2,P,\bar P,0,1,\tfrac34,\infty\}$. Each edge contains no vertex except at its ends, so it maps homeomorphically onto the arc of $\Rh$ between the images of its ends that avoids the other marked values.
+\begin{itemize}[nosep]
+\item On $(-\tfrac{\sqrt3}2,0)$, $V$ increases from $1$ to $+\infty$: here $V\approx-3/(16w)$ near $0$, and $V(-\tfrac{\sqrt3}2)=1$.
+\item On $(0,\tfrac12)$, $V$ increases from $-\infty$ to $0$, with $V(\tfrac14)=v$.
+\item On $(\tfrac12,\tfrac34)$, $V$ decreases from $0$ to $-\infty$, with $V(\tfrac23)=v$, since $\tfrac23=g_0(\tfrac14)$.
+\item The $C_1$-arcs from $\tfrac12$ to $P$ and from $\tfrac12$ to $\bar P$ map onto $(0,\tfrac14)$: the alternative arc of $\Rh$ from $0$ to $\tfrac14$ would pass through $\infty$ and $1$, whose preimages $0,1,\tfrac34,\pm\tfrac{\sqrt3}2$ are not on these arcs.
+\item The $C_2$-arcs from $P$ to $-\tfrac{\sqrt3}2$ (outside $C_1$) and from $P$ to $\tfrac{\sqrt3}2$ (inside $C_1$), and their conjugates, map onto $(\tfrac14,1)$; the segment $(\tfrac34,\tfrac{\sqrt3}2)$ maps onto $(1,\infty)$.
+\item $V'(\tfrac14)>0$ and $V$ is real on $\mathbb R$, so $U_2$, which lies just above $\tfrac14$, maps to the upper half-plane.
+\end{itemize}
+Since $U_2$ is adjacent to $L_2$ across $(-\tfrac{\sqrt3}2,0)$ and to $U_{12}$ across the $C_1$-arc from $\tfrac12$ to $P$, and $U_{12}$ is adjacent to $L_{12}$ across $(\tfrac12,\tfrac34)$, it follows that $U_2$ and $L_{12}$ map to the upper half-plane, and $L_2$ and $U_{12}$ to the lower.
+
+\paragraph{Lift of $\alpha$.} Let $\beta$ be the lift of $\alpha$ through $V$ starting at $w=\tfrac14$, which lies over $v$. The four sub-arcs of $\alpha$ between consecutive points of $\alpha\cap\Rh$ each lie in one open half-plane, and on each face the inverse of $V$ is a homeomorphism onto the closure of that face; at the crossing points $V$ is a local biholomorphism, real on $\mathbb R$.
+\begin{enumerate}[label=\textup{\arabic*.},nosep]
+\item $\alpha$ leaves $v$ downward. Since $V'(\tfrac14)>0$, $\beta$ enters $L_2$. On $\partial L_2$ the preimage of $(1,\infty)$ is $(-\tfrac{\sqrt3}2,0)$, where $V$ is increasing, so $\beta$ crosses $\mathbb R$ there, upward, into $U_2$.
+\item On $\partial U_2$ the preimage of $(0,\tfrac14)$ is the $C_1$-arc from $\tfrac12$ to $P$. $\beta$ crosses it into $U_{12}$.
+\item On $\partial U_{12}$ the preimage of $(v,0)$ is $(\tfrac12,\tfrac23)$, where $V$ is decreasing. $\beta$ crosses it downward into $L_{12}$.
+\item The only preimage of $\infty$ in $\overline{L_{12}}$ is $\tfrac34$ (the poles $0$ and $1$ lie outside $C_1$ and $C_2$ respectively). So $\beta$ ends at $w=\tfrac34=1-t_0$.
+\end{enumerate}
+In particular only the crossing pattern of $\alpha$ was used, not the concrete realisation. The arc $\beta$ lies in the disc $|w|<\tfrac{\sqrt3}2$, which avoids $1$, and avoids $0$. It meets $\mathbb R$ only at $\tfrac14$, at one point of the negative real axis (crossed upward), at one point of $(\tfrac12,\tfrac23)$ (crossed downward), and at $\tfrac34$, which it reaches from below. Following the argument of $w$ along $\beta$ followed by the segment $[\tfrac34,\tfrac14]$, it decreases by $2\pi$. So this closed loop has winding number $-1$ about $0$, and since the homotopy class of a loop in a punctured disc is determined by its winding number, in $\mathbb C\setminus\{0,1\}$
+\begin{equation}\label{eq:beta}
+\beta\simeq(\text{clockwise loop about }0\text{ based at }\tfrac14)\cdot[\tfrac14,\tfrac34]\qquad\text{rel endpoints}.
+\end{equation}
+
+\paragraph{Lift through $\lambda$.} The clockwise loop about $0$ is homotopic to: go from $\tfrac14$ to $\varepsilon$ along $\mathbb R$, around the small clockwise circle $|w|=\varepsilon$, and back. By \ref{F1} its $\lambda$-lift from $p_0=iy_0$ goes up the imaginary axis, then decreases $\Rea\tau$ by $2$ (as $\lambda\approx16e^{i\pi\tau}$ for large $\Img\tau$), and comes back down; it ends at $p_0-2$. By $\lambda(-1/\tau)=1-\lambda(\tau)$ and $\lambda(\tau-2)=\lambda(\tau)$, the segment $[\tfrac14,\tfrac34]$ then lifts to the vertical segment from $p_0-2$ to $-2+i/y_0$. So the endpoint of the $\lambda$-lift of $\beta$ from $p_0$ is
+\[q^*=g(p_0),\qquad g=T^{-2}S=\begin{pmatrix}-2&-1\\1&0\end{pmatrix}\in\Gamma(2)S,\qquad \operatorname{tr}g=-2,\]
+where $T$ here denotes $\tau\mapsto\tau+1$. So $g$ is parabolic and has no fixed point in $\HH$.
+
+\begin{remark}[orientation conventions]
+Had the winding of $\beta$ about $0$ been $+1$ instead of $-1$ (e.g.\ under the opposite orientation convention), the same computation would give $g=T^{2}S=\begin{pmatrix}2&-1\\1&0\end{pmatrix}$, of trace $2$, again parabolic. More generally $T^{2k}S$ has trace $2k$ and is fixed-point-free on $\HH$ for every $k\ne0$; only the fact that the winding is nonzero matters.
+\end{remark}
+
+\section{Proof of Theorem~\ref{thm:main}(a)}\label{sec:proofa}
+
+\paragraph{$\alpha$ is simple and $\gamma$ is as claimed.} In the concrete realisation, the lower semicircle from $v$ to $2$ has centre $\approx0.870$ and radius $\approx1.130$; the small lower semicircle over $[-\tfrac18,\tfrac18]$ lies within distance $0.995$ of that centre, so strictly inside it. The upper semicircle over $[\tfrac18,2]$ has real parts in $[\tfrac18,2]$, so it misses the vertical ray at $\Rea z=-\tfrac18$. The arc meets $\Rh$ only at $v,2,\tfrac18,-\tfrac18,\infty$, with $2\in(1,\infty)$, $\tfrac18\in(0,\tfrac14)$ and $-\tfrac18\in(v,0)$, crossing transversally in the required directions. So $\alpha$ is simple, has the crossing pattern, and meets $B$ only at its ends. For any simple arc $\alpha$ with the crossing pattern, $\gamma=\partial N(\alpha)$ bounds a disc containing exactly $v,a_1$, because $\alpha$ is simple with interior in $S^2\setminus B$; and the lifting argument of \S\ref{sec:comp} used only the crossing pattern. Everything below therefore applies to any such arc.
+
+\paragraph{$T_\gamma$ is a point push.} Let $\ell$ be the lasso: follow $\alpha$ to near $a_1$, go once around $a_1$, and return. A regular neighbourhood of $\ell$ is an annulus. One of its boundary curves bounds a disc containing only $a_1$ (so the twist about it is trivial), and the other is $\gamma$. So by \ref{F4}, $\Push(\ell)=T_\gamma^{\pm1}$. In particular $T_\gamma$ maps to $1$ in $\PMod(S^2,A)$, so $i_*\circ T_\gamma=i_*$.
+
+\paragraph{$T_\gamma$ preserves $\D_f$.} Work in the fibre $i_*^{-1}(p_0)$ through $\tau_0$; here $A_{p_0}=\{0,\infty,1,\tfrac14\}$, $v'(\tau_0)=v$, $w(\tau_0)=\lambda(f^*\tau_0)=\tfrac14$ and $f^*\tau_0=p_0$, because $\tau_0\in\D_f$.
+\begin{itemize}[nosep]
+\item By \ref{F3}, there is a path $\sigma'$ from $\tau_0$ to $T_\gamma^{\pm1}\tau_0$ which projects to $\ell$ under $v'$.
+\item Truncate $\alpha$ to $\alpha'$, stopping just before $a_1$. By the fibre lemma~\ref{lem:fibre}, $w\circ\sigma'$ is the $V$-lift of $\ell$ starting at $\tfrac14$, which is $\beta'\cdot c\cdot\beta'^{-1}$. Here $\beta'$ is the corresponding truncation of $\beta$, and $c$ is a small loop about $\tfrac34$; this uses that $\tfrac34$ is a simple preimage of $\infty$.
+\item Since $\tfrac34\notin\{0,1\}$, $c$ is null-homotopic in $\mathbb C\setminus\{0,1\}$. So its $\lambda$-lift is a small closed loop $\tilde c$ about $q^*$ (recall $\lambda(q^*)=\tfrac34$ and $\lambda$ is a local biholomorphism), and $f^*\sigma'=\tilde\beta'\cdot\tilde c\cdot\tilde\beta'^{-1}$ is closed, where $\tilde\beta'$ is the $\lambda$-lift of $\beta'$ from $p_0$.
+\item Hence $f^*(T_\gamma^{\pm1}\tau_0)=f^*(\tau_0)$. By Lemma~\ref{lem:lift}, $[\tilde T]^{\pm1}$ fixes the point $f^*\tau_0$, so $[\tilde T]=1$ by Lemma~\ref{lem:free}.
+\item Therefore $f^*\circ T_\gamma=f^*$ on all of $\Teich(B)$. Together with $i_*\circ T_\gamma=i_*$ this gives $\Psi\circ T_\gamma=\Psi$, and so $T_\gamma^{\pm1}(\D_f)=\D_f$.
+\end{itemize}
+
+\paragraph{Infinite orbits.} Fix $m\ne0$, and let $\sigma'_m$ be the path in the fibre from $\tau_0$ to $T_\gamma^m\tau_0$ lying over the loop $\ell^{\pm m}$ (\ref{F3}). As above, $f^*\sigma'_m=\tilde\beta'\,\tilde c^{\,\pm m}\,\tilde\beta'^{-1}$. This loop lies in $\HH\setminus\{g(p_0)\}$ by $(\star)$, and its winding number about $q^*=g(p_0)$ is $\pm m\ne0$, because $\tilde c$ winds once about $q^*$ (it is the image of a small circle about $\tfrac34$ under a local inverse of $\lambda$). So the class of $\Psi\circ\sigma'_m$ in $H_1(X_g)\cong\mathbb Z$ is $\pm m$, and Proposition~\ref{prop:linking} (with $T=T_\gamma$, $\tau=\tau_0$) gives $T_\gamma^mD_0\ne D_0$ for the component $D_0$ of $\tau_0$.
+
+Now let $\tau_1\in\D_f$ be arbitrary and $D_1$ its component. Choose a path $\rho$ from $\tau_0$ to $\tau_1$. Then $\rho^{-1}\cdot\sigma'_m\cdot T_\gamma^m\rho$ is a path from $\tau_1$ to $T_\gamma^m\tau_1$. Since $\Psi\circ T_\gamma^m=\Psi$, its $\Psi$-image is the conjugate loop $(\Psi\rho)^{-1}(\Psi\sigma'_m)(\Psi\rho)$, which lies in $X_g$ and has class $\pm m$. Suppose $T_\gamma^mD_1=D_1$, and let $\sigma\subset D_1$ be a path from $\tau_1$ to $T_\gamma^m\tau_1$ (Lemma~\ref{lem:smooth}). Contractibility of $\Teich(B)$ makes the two paths homotopic rel endpoints, so their $\Psi$-images are homotopic in $X_g$. But $\Psi\sigma\subset\Delta$, which is contractible, so its class is $0$, a contradiction. This is the argument of Proposition~\ref{prop:linking} with the base point moved to $\tau_1$. Hence $T_\gamma^mD_1\ne D_1$ for every component $D_1$ and every $m\ne0$: every orbit of $\langle T_\gamma\rangle$ on $\pi_0(\D_f)$ is infinite. This proves Theorem~\ref{thm:main}(a). \qed
+
+\begin{remark}[a direct topological proof that the lift is trivial]
+The identity $f^*\circ T_\gamma=f^*$ can also be seen without the fibre computation. Put $s=1/z-\tfrac{11}4$. Then $f=v+s^2/6$, since $v+\tfrac16(1/z-\tfrac{11}4)^2=v+\tfrac{121}{96}-\tfrac{11}{12z}+\tfrac1{6z^2}$ and $v+\tfrac{121}{96}=1$. The critical points are $s=0$ ($z=c_2$, over $v$) and $s=\infty$ ($z=0=a_0$, over $a_1=\infty$). In this coordinate $s(a_0)=\infty$, $s(a_1)=-\tfrac{11}4$, $s(a_2)=-\tfrac74$, $s(a_3)=\tfrac54$, and the positive numbers $\tfrac54<\tfrac74<\tfrac{11}4$ satisfy $v+s^2/6=0,\tfrac14,1$ respectively.
+
+Put $Y=f-v=s^2/6$. The arc $\alpha$ meets $\Rh$, apart from its endpoints, only at $x_1,x_2,x_3>v$, i.e.\ at positive $Y$. So the interior of $\alpha$ lies in $\mathbb C\setminus(-\infty,0]$ in the $Y$-coordinate, where $s=\sqrt{6Y}$ has a branch with $\Rea s>0$. Hence $f^{-1}(\alpha)=\alpha_+\cup(-\alpha_+)$ with $\alpha_+\subset\{\Rea s>0\}$ a simple arc from $s=0$ to $s=\infty$, and $J=f^{-1}(\alpha)$ is a Jordan curve through $0$ and $\infty$. The involution $s\mapsto-s$ preserves $J$ and exchanges its two complementary discs $\Omega,\Omega'$: near its fixed point $0\in J$ it is a rotation by $\pi$ which exchanges the two local sides of $J$.
+
+$J$ meets the positive real $s$-axis only in $\alpha_+$, at the three transversal crossings $s_i=\sqrt{6(x_i-v)}$, and $x_3<0<x_2<\tfrac14<1<x_1$ gives $s_3<\tfrac54<s_2<\tfrac74<\tfrac{11}4<s_1$. So $\tfrac54$ and $\tfrac74$ lie on opposite sides of $J$, and $\tfrac74,\tfrac{11}4$ on the same side. Say $\tfrac54\in\Omega$; then $\tfrac74,\tfrac{11}4\in\Omega'$, so $-\tfrac74,-\tfrac{11}4\in\Omega$. Hence $a_1,a_2,a_3\in\Omega$ and $a_0\in J$. Now $f^{-1}(N(\alpha))$ is a regular neighbourhood of $J$, and the collars $R_1,R_2$ of Lemma~\ref{lem:lift} are parallel to its two boundary curves $\gamma_1\subset\Omega$, $\gamma_2\subset\Omega'$. The curve $\gamma_1$ separates $\{a_1,a_2,a_3\}$ from $\{a_0\}$, so it is peripheral in $(S^2,A)$, and $\gamma_2$ bounds a disc in $\Omega'$ containing no point of $A$. Twists about such curves are trivial in $\PMod(S^2,A)$, so $[\tilde T]=1$, i.e.\ $f^*\circ T_\gamma=f^*$.
+\end{remark}
+
+\section{Transport to an arbitrary \texorpdfstring{$f$}{f}: proof of Theorem~\ref{thm:main}(b)}
+
+\review{All statements in this section are quite straightforward; this can be shortened substantially.}
+
+Fix $t\in W$ and a path $t_s$ ($s\in[0,1]$) in $W$ from $t_0=\tfrac14$ to $t$. Write $f_s=f_{t_s}$, $B_s=\{0,\infty,1,t_s,v_s\}$ with $v_s=v(t_s)$, and $A_s=B_s\setminus\{v_s\}$.
+
+\begin{lemma}[isotopy]\label{lem:isotopy}
+There is a jointly continuous isotopy $h_s$ of $\Ch$ with $h_0=\mathrm{id}$, fixing $0,1,\infty$, with $h_s(t_0)=t_s$ and $h_s(v_0)=v_s$.
+\end{lemma}
+
+\begin{proof}
+For $|q|\le\tfrac12$ the map $P_q(z)=z+(1-|z|)q$ is a homeomorphism of the closed unit disc that is the identity on the boundary and sends $0\mapsto q$. It maps the disc into itself, since $|P_q(z)|\le|z|+(1-|z|)|q|$. It is injective, since $P_q(z)=P_q(z')$ gives $|z-z'|=\bigl||z|-|z'|\bigr|\,|q|\le|z-z'||q|$. It is surjective by invariance of domain, the boundary being fixed. Finally $(q,z)\mapsto(q,P_q(z))$ is a continuous bijection of a compact Hausdorff space, hence a homeomorphism.
+
+Let $\delta>0$ be less than one third of the minimum, over $s\in[0,1]$, of the mutual distances among $0,1,t_s,v_s$ (positive by compactness, since $t_s\in W$ keeps these four points distinct and finite). By uniform continuity choose $0=s_0<s_1<\dots<s_n=1$ with $|t_s-t_{s_k}|<\delta/2$ and $|v_s-v_{s_k}|<\delta/2$ for $s\in[s_k,s_{k+1}]$. On $[s_k,s_{k+1}]$ let $D_t,D_v$ be the closed discs of radius $\delta$ about $t_{s_k},v_{s_k}$; they are disjoint and avoid $0,1,\infty$. Let $\Pi^t_s$ be the affine conjugate of $P_q$ to $D_t$ with $q=(t_s-t_{s_k})/\delta$, extended by the identity off $D_t$ (so it moves $t_{s_k}$ to $t_s$), and similarly $\Pi^v_s$ on $D_v$. Set $h_s=\Pi^t_s\Pi^v_s h_{s_k}$. At $s=s_k$ we have $q=0$ and $P_0=\mathrm{id}$, so the definitions agree at the junctions; joint continuity follows from that of $(q,z)\mapsto P_q(z)$.
+\end{proof}
+
+\begin{lemma}[lift]\label{lem:liftiso}
+There is a continuous family of homeomorphisms $\tilde h_s$ with $f_s\tilde h_s=h_sf_0$, $\tilde h_0=\mathrm{id}$, and $\tilde h_s=h_s$ on $A_0$.
+\end{lemma}
+
+\begin{proof}
+Write $f_s=M_sQN_s$ with $Q(z)=z^2$, $M_s=M_{t_s}$, $N_s=N_{t_s}$, by \eqref{eq:factor}. Put $k_s=M_s^{-1}h_sM_0$. Then $k_s$ fixes $0$ and $\infty$, since $M_0(0)=\infty$, $M_0(\infty)=v_0$, $h_s(v_0)=v_s$ and $M_s(\infty)=v_s$. The map $K(s,z)=k_s(z^2)$ on $[0,1]\times\mathbb C^*$ lifts through the covering $Q\colon\mathbb C^*\to\mathbb C^*$, because the domain retracts to $s=0$, where $K=Q$. This gives $\tilde k_s$ with $Q\tilde k_s=k_sQ$ and $\tilde k_0=\mathrm{id}$. By uniqueness of lifts $\tilde k_s$ is odd ($z\mapsto-\tilde k_s(-z)$ is a lift agreeing with $\tilde k_s$ at $s=0$), hence injective: $\tilde k_s(z)=\tilde k_s(z')$ forces $z'=\pm z$, and $z'=-z$ would give $\tilde k_s(z)=0$. It is surjective, again by oddness, and it extends by $0\mapsto0$, $\infty\mapsto\infty$ to a homeomorphism of $\Ch$. Put $\tilde h_s=N_s^{-1}\tilde k_sN_0$. Then $f_s\tilde h_s=M_sQ\tilde k_sN_0=M_sk_sQN_0=h_sf_0$.
+
+On $A_0$: $\tilde h_s(0)$ is a preimage under $f_s$ of $h_s(a_1)=\infty$, whose unique preimage is $0$. For $i=1,2,3$, $\tilde h_s(a_i)$ is a continuous selection from the two distinct preimages under $f_s$ of $a_{i+1}(s)=h_s(a_{i+1})$, which is not a critical value. These preimages move continuously, one of them is $a_i(s)$, and the selection starts at $a_i$. So it equals $a_i(s)=h_s(a_i)$ for all $s$.
+\end{proof}
+
+Therefore $\kappa_s=h_s^{-1}\tilde h_s$ is an isotopy rel $A_0$ starting at the identity, so $\tilde h_1\simeq h_1$ rel $A_0$.
+
+\begin{proposition}\label{prop:transport}
+Let $h=h_1$ and $\tilde h=\tilde h_1$, and define $h^*[\varphi]=[\varphi h]$ from $\Teich(B_1)$ to $\Teich(B_0)$, and likewise from $\Teich(A_1)$ to $\Teich(A_0)$. Then:
+\begin{enumerate}[label=\textup{(\roman*)},nosep]
+\item $i_*h^*=h^*i_*$ and $f_0^*h^*=h^*f_t^*$;
+\item hence $h^*(\D_{f_t})=\D_{f_0}$, with components mapping to components;
+\item $h^*\circ T_{h(\gamma)}=T_\gamma\circ h^*$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+The first identity in (i) is clear. If $\varphi f_t=F\psi$, then $\varphi hf_0=\varphi f_t\tilde h=F\psi\tilde h$, so $f_0^*[\varphi h]=[\psi\tilde h]=[\psi h]$ because $\tilde h\simeq h$ rel $A_0$. For (ii), $h^*$ is a homeomorphism with inverse $(h^{-1})^*$. For (iii), $h^*(hgh^{-1}\cdot[\varphi])=[\varphi hg^{-1}]=g\cdot h^*[\varphi]$, and $hT_\gamma h^{-1}=T_{h(\gamma)}$.
+\end{proof}
+
+Hence $T_{h_1(\gamma)}$ preserves $\D_{f_t}$, and every orbit of $\langle T_{h_1(\gamma)}\rangle$ on its components is infinite, by Theorem~\ref{thm:main}(a).
+
+For an abstract $f$, take $M$ from Proposition~\ref{prop:normal}; it maps $B$ to $B_t$, since $M(v)=M(f(c_2))=f_t(M(c_2))=v(t)$. The map $M^*\colon[\varphi]\mapsto[\varphi M]$ satisfies the same identities as in Proposition~\ref{prop:transport}, with $h=\tilde h=M$, because $f_tM=Mf$. So $\gamma_f=M^{-1}h_1(\gamma)$ has the properties stated in Theorem~\ref{thm:main}(b).
+
+\paragraph{Real $t\in I=\bigl(0,\tfrac{3-\sqrt5}2\bigr)$.} The interval $I$ lies in $W$, and on $I$ we have $v(t)<0$ (the numerator of $-v$ is a nonzero square and $4t(1-t)(1-2t)>0$). So the order $v_s<0<t_s<1<\infty$ persists along the segment from $\tfrac14$ to $t$. Instead of the isotopy of Lemma~\ref{lem:isotopy} take $h_s(x+iy)=\phi_s(x)+iy$, where $\phi_s$ is the increasing piecewise-linear map of $\mathbb R$ fixing $0$, $1$ and everything outside a large interval, with $t_0\mapsto t_s$ and $v_0\mapsto v_s$; it is jointly continuous and has all the properties used in Lemma~\ref{lem:liftiso} and Proposition~\ref{prop:transport}. It preserves $\mathbb R$, both half-planes, and the intervals between marked points. So $h_1(\alpha)$ has the same crossing pattern, with $\tfrac14$ replaced by $t$ and $v$ by $v(t)$. Pulling back by $M$ gives the description in Theorem~\ref{thm:main}(b). For non-real $t$ the curve is given as $M^{-1}h_1(\gamma)$ with $h_1$ the explicit isotopy of Lemma~\ref{lem:isotopy} along a chosen path in $W$; every choice of path works. \qed
+
+\begin{thebibliography}{99}
+
+\bibitem{Ahlfors} L.~V.~Ahlfors, \emph{Complex Analysis}, 3rd ed., McGraw-Hill, New York, 1979.
+
+\bibitem{Bers} L.~Bers, Fiber spaces over Teichm\"uller spaces, \emph{Acta Math.} \textbf{130} (1973), 89--126.
+
+\bibitem{Birman} J.~S.~Birman, Mapping class groups and their relationship to braid groups, \emph{Comm. Pure Appl. Math.} \textbf{22} (1969), 213--238.
+
+\bibitem{BEKP} X.~Buff, A.~Epstein, S.~Koch and K.~Pilgrim, On Thurston's pullback map, in: \emph{Complex Dynamics: Families and Friends} (D.~Schleicher, ed.), A K Peters, Wellesley, MA, 2009.
+
+\bibitem{Chandra} K.~Chandrasekharan, \emph{Elliptic Functions}, Grundlehren der mathematischen Wissenschaften 281, Springer, Berlin, 1985.
+
+\bibitem{DH} A.~Douady and J.~H.~Hubbard, A proof of Thurston's topological characterization of rational functions, \emph{Acta Math.} \textbf{171} (1993), 263--297.
+
+\bibitem{FM} B.~Farb and D.~Margalit, \emph{A Primer on Mapping Class Groups}, Princeton University Press, Princeton, NJ, 2012.
+
+\bibitem{HK} E.~Hironaka and S.~Koch, A disconnected deformation space of rational maps, \emph{J. Mod. Dyn.} (2017).
+
+\bibitem{Hubbard} J.~H.~Hubbard, \emph{Teichm\"uller Theory and Applications to Geometry, Topology, and Dynamics, Vol.~1: Teichm\"uller Theory}, Matrix Editions, Ithaca, NY, 2006.
+
+\end{thebibliography}
+
+\end{document}

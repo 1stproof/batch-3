@@ -1,0 +1,6 @@
+PROVED: Every finitely presented P -> Q is birhizomic at the zero map, and P -> P[-x]^sharp is birhizomic at every map (supersedes #6; re-checked by a worker) — round2_q4
+PROVED: Lemma A: for fine P subset Q subset P^gp and a valuation v nonzero on P \ {0}, if P -> Q is birhizomic at g then g > 0 on Q \ {0}; in particular closed subdivision charts are not birhizomic at wall valuations (supersedes #7) — round2_q1
+PROVED: Proposition B: for fine P subset Q subset P^gp and an archimedean (rank-one) valuation v injective on P, P -> Q is birhizomic at g iff g^{-1}(0) = {0} — round2_q1
+PROVED: For fine P, B_P is equivalent to the finite poset of faces, and the headline claim reduces (filtration + five lemma) to presheaves F concentrated at a single face — round2_q2
+OPEN: Director's outline for fine P (Lan F = F o b with (F o b)(Q) = F(ker face); Cech complexes of I_{tau,A} o b are nerves of real dual cones T_i cap C; nerves contractible via a finite real subcover and the convex nerve theorem; Cartan's criterion) proves the headline claim for every finitely generated P — round3_plan
+OPEN: For arbitrary (non-finitely-generated) P: kernel faces of f.p. maps are principal and the kernel nerves N_tau of birhizomic coverings are contractible (real valuations no longer detect faces; higher-rank E_i sets are not closed) — round3_plan

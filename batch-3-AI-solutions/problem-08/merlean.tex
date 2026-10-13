@@ -1,0 +1,599 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\T}{\mathbb T}
+\newcommand{\D}{\mathcal D'}
+\newcommand{\calR}{\mathcal R}
+\newcommand{\calK}{\mathcal K}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\htop}{h_{\mathrm{top}}}
+\DeclareMathOperator{\diver}{div}
+\DeclareMathOperator{\Lip}{Lip}
+\DeclareMathOperator{\Hess}{Hess}
+\DeclareMathOperator{\Ric}{Ric}
+\title{Problem 8 -- MerLean}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $X$ be a smooth vector field on a compact connected manifold without boundary, and suppose that every scalar distribution $u$ is smooth whenever $Xu$ is smooth. The question is whether the generated flow has zero topological entropy. We prove that the scalar kernel consists of constants, the smooth range of $X$ is closed, and the flow is nonwandering. We give two approximation criteria for a positive smooth invariant density. Fix a normalized Riemannian density $\rho$ and its Laplacian $\Delta$. For the stationary probability densities $a_\eps\rho$ of $X+\eps\Delta$, we prove $\eps\|\log a_\eps\|_\infty\to0$; boundedness of $-\int_M\log a_\eps\,\rho$ along a sequence $\eps\downarrow0$ is a stronger condition, equivalent here to existence of a positive smooth invariant density. We also prove a conditional entropy criterion and an exact suspension reduction. These results do not establish zero entropy in general: construction of an invariant density and the subsequent entropy implication remain unresolved by the arguments given here.
+\end{abstract}
+
+\section{The question and the scope of the results}
+
+Let $M$ be a nonempty compact connected smooth manifold without boundary, let $X$ be a smooth vector field, and let $g_t$ be its flow. Compactness makes the flow defined for every $t\in\R$. The problem asks whether
+\begin{equation}\label{eq:question}
+ \left[\text{for every }u\in\D(M),\quad
+ Xu\in C^\infty(M)\Longrightarrow u\in C^\infty(M)\right]
+ \quad\stackrel{?}{\Longrightarrow}\quad \htop(g_1)=0.
+\end{equation}
+Here $\D(M)$ denotes \emph{scalar distributions}, the continuous dual of smooth test densities. A function $u$ acts by integration against a test density. The operator $X$ extends directional differentiation on functions by
+\[
+ (Xu)(\eta)=-u(\mathcal L_X\eta).
+\]
+We call the bracketed regularity condition in \eqref{eq:question} \emph{scalar global hypoellipticity}, abbreviated (GH). Real scalars suffice throughout; real and imaginary parts give the same statements over $\mathbb C$. No orientability assumption is imposed. The entropy of a flow is understood as the topological entropy of its time-one map.
+
+The cohomological equation $Xu=f$ connects this regularity hypothesis with dynamics. Its range describes which observables are derivatives along orbits. However, knowing its scalar kernel does not by itself describe the invariant measures, which act on functions rather than on test densities. Keeping these two dual spaces separate is essential to the partial results below.
+
+Forni's account of the Greenfield--Wallach and Katok conjectures \cite{Forni} gives both the central context and the closed-graph method used here. His Definition 3.1 concerns top-degree currents, namely continuous linear functionals on smooth functions. The identification with scalar distributions preceding Lemma 3.5 commutes with Lie differentiation when an invariant volume is available. Accordingly, we do not apply that source's invariant-volume conclusion to \eqref{eq:question}. Our closed-range proof follows the method of its Theorem 3.9, with an arbitrary reference density and a separate scalar-kernel argument. Elliptic perturbations of flows and their stationary densities are discussed by Aizicovici and Young \cite{AY}. We use the fixed-noise setup, and prove the estimates needed here explicitly. The suspension construction in Section~\ref{sec:entropy} relates the question to cohomological rigidity of diffeomorphisms, in the terminology of Karaliolios \cite[\S1.1]{Kar}.
+
+Fix a Riemannian metric and its normalized positive density $\rho$, with $\int_M\rho=1$. Write
+\[
+ \rho(f)=\int_M f\,\rho,\qquad
+ q=\diver_\rho X,\qquad \mathcal L_X\rho=q\rho.
+\]
+Neither the metric nor $\rho$ is assumed invariant. The spaces $H^s(M)$ are the scalar Sobolev spaces for these choices, with $H^0=L^2(\rho)$ and negative orders defined by duality using $\rho$. In particular,
+\begin{equation}\label{eq:scalar}
+ (Xu)(\varphi\rho)=-u((X\varphi+q\varphi)\rho).
+\end{equation}
+We use the usual compact-manifold Sobolev embeddings and the Fr\'echet topology of $C^\infty(M)=\bigcap_{m\ge0}H^m(M)$.
+
+The main unconditional conclusions are that $\ker X=\R$, the range $X(C^\infty(M))$ is closed, and the flow is nonwandering. A further conclusion concerns the uniquely normalized positive solution of
+\begin{equation}\label{eq:stationary-intro}
+ -Xa_\eps-qa_\eps+\eps\Delta a_\eps=0,
+ \qquad \rho(a_\eps)=1,\qquad \eps>0,
+\end{equation}
+where $\Delta=\diver_\rho\nabla$ has nonpositive spectrum. We prove that $-\eps\log a_\eps$ tends to zero uniformly and in $H^1$. All these statements hold without an invariant smooth density for $X$. Sections~\ref{sec:density}--\ref{sec:noise} distinguish them from criteria whose additional hypotheses have not been established. If $\dim M=0$, then $M$ is a singleton and the entropy question is immediate. The substantive arguments below concern $d=\dim M\ge1$.
+
+\section{The scalar kernel, closed range, and nonwandering}
+\label{sec:regularity}
+
+\begin{lemma}\label{lem:kernel}
+Under (GH), every scalar distribution $u$ with $Xu=0$ is a constant function.
+\end{lemma}
+\begin{proof}
+First suppose $h$ is a real smooth function with $Xh=0$. If $h$ were nonconstant, connectedness would give a point $p$ with $dh(p)\ne0$. Set $c=h(p)$. For $\delta>0$ the smooth functions
+\[
+ h_\delta=\big((h-c)^2+\delta^2\big)^{1/2}
+\]
+satisfy $Xh_\delta=0$ and converge uniformly to $|h-c|$. Differentiation is continuous on distributions, so $X|h-c|=0$. By (GH), $|h-c|$ is smooth. But $h-c$ is a local coordinate near $p$, where its absolute value is not differentiable. This is a contradiction. Finally (GH) makes any distributional kernel element smooth, and the preceding argument applies.
+\end{proof}
+
+\begin{proposition}\label{prop:range}
+Assume (GH), and put
+\[
+ E_0=\{u\in C^\infty(M):\rho(u)=0\},\qquad
+ \calR=X(C^\infty(M)).
+\]
+For every integer $m\ge0$ there are an integer $R_m\ge0$ and $B_m>0$ such that
+\begin{equation}\label{eq:inverse}
+ \|u\|_{H^m}\le B_m\|Xu\|_{H^{R_m}}
+ \qquad (u\in E_0).
+\end{equation}
+The space $\calR$ is closed in $C^\infty(M)$, and $X:E_0\to\calR$ has a continuous inverse. No uniform loss of derivatives as $m$ varies is asserted.
+\end{proposition}
+\begin{proof}
+Consider the graph
+\[
+ G=\{(u,f)\in H^{-1}(M)\times C^\infty(M):Xu=f\}.
+\]
+Since $X:H^{-1}\to H^{-2}$ is continuous, $G$ is a closed Fr\'echet subspace. By (GH), every first component of an element of $G$ is smooth. For each $m\ge0$, the map $G\to H^m$, $(u,f)\mapsto u$, has closed graph: limits in its domain and codomain give the same distributional limit. The closed graph theorem therefore gives $r_m\ge0$ and $C_m>0$ with
+\begin{equation}\label{eq:weak-estimate}
+ \|u\|_{H^m}\le C_m\big(\|u\|_{H^{-1}}+\|Xu\|_{H^{r_m}}\big),
+ \qquad u\in C^\infty(M).
+\end{equation}
+Finitely many seminorms on the second factor can be dominated by one Sobolev norm.
+
+We next remove the weak norm when $\rho(u)=0$. If no estimate
+\begin{equation}\label{eq:L2-inverse}
+ \|u\|_2\le A\|Xu\|_{H^{r_0}},\qquad u\in E_0,
+\end{equation}
+held, there would be $u_j\in E_0$ with $\|u_j\|_2=1$ and $Xu_j\to0$ in $H^{r_0}$. Compactness of $L^2\hookrightarrow H^{-1}$ gives a subsequence converging in $H^{-1}$ to $u$. Continuity gives $Xu=0$, and the mean, being continuous on $H^{-1}$, remains zero. Lemma~\ref{lem:kernel} implies $u=0$. Applying \eqref{eq:weak-estimate} with $m=0$ contradicts $\|u_j\|_2=1$. Combining \eqref{eq:L2-inverse} with \eqref{eq:weak-estimate} proves \eqref{eq:inverse}, with $R_m=\max(r_m,r_0)$.
+
+If $Xv_j\to f$ in $C^\infty$, set $u_j=v_j-\rho(v_j)$. Estimate \eqref{eq:inverse} applied to differences shows that $u_j$ is Cauchy in every $H^m$. The limits agree as distributions and define a smooth $u$ with $Xu=f$ and $\rho(u)=0$. This proves closedness, since the topology is metrizable. The kernel lemma gives uniqueness, and \eqref{eq:inverse} gives continuity of the inverse.
+\end{proof}
+
+\begin{definition}
+A flow is \emph{nonwandering} if for every nonempty open set $U\subset M$ and every $T>0$ there is $t\ge T$ with $g_t(U)\cap U\ne\varnothing$.
+\end{definition}
+
+\begin{proposition}\label{prop:nonwandering}
+Every flow satisfying (GH) is nonwandering.
+\end{proposition}
+\begin{proof}
+There cannot be two disjoint nonempty open sets invariant under all $g_t$. Indeed, the indicator of one is a bounded measurable invariant function, hence a scalar distribution in $\ker X$. It equals one on one open set and zero on the other, so is not a constant distribution, contrary to Lemma~\ref{lem:kernel}.
+
+Suppose first $d\ge2$ and nonwandering fails. Choose nonempty open $U$ and $T>0$ such that $g_t(U)\cap U=\varnothing$ for $t\ge T$. The same holds for $t\le-T$. Every point of $U$ is regular and aperiodic, since a fixed point or a periodic orbit meeting $U$ would give arbitrarily large return times.
+
+Fix $x\in U$ and a transverse open disk $S$ through $x$ in a flow box contained in $U$. After shrinking $S$, flow-box coordinates exclude $g_t(S)\cap S$ for $0<|t|<\delta$, for some $\delta>0$. On the compact set $\delta\le|t|\le T$, the distance between $g_t(x)$ and $x$ has a positive minimum. Uniform continuity allows a further shrink of $S$ so that no return occurs in this time range either. Large returns are excluded by $S\subset U$. Thus $g_t(S)\cap S=\varnothing$ for all $t\ne0$.
+
+The map $\R\times S\to M$, $(t,y)\mapsto g_t(y)$, is injective and a local diffeomorphism. Choose two disjoint nonempty relatively open subdisks of $S$, possible since $d-1\ge1$. Their full flow saturations are disjoint nonempty invariant open sets, a contradiction.
+
+For $d=1$, write $M=\R/\mathbb Z$ and $X=v(\theta)\partial_\theta$. If $v(p)=v'(p)=0$, the scalar point distribution $A_p(\varphi\rho)=\varphi(p)$ satisfies
+\[
+ XA_p=-v'(p)A_p=0,
+\]
+by \eqref{eq:scalar}, because $q(p)=v'(p)$ at a zero of $v$. This contradicts (GH). If instead $v(p)=0$ and $v'(p)\ne0$, the disjoint invariant open sets $\{v>0\}$ and $\{v<0\}$ are both nonempty, again a contradiction. Hence $v$ has no zeros. Every orbit runs periodically around the circle, so the flow is nonwandering.
+\end{proof}
+
+\section{The invariant-density obstruction}
+\label{sec:density}
+
+The range in Proposition~\ref{prop:range} has a dual description. Define
+\[
+ \calK=\{T\in(C^\infty(M))':T(Xv)=0\text{ for all }v\in C^\infty(M)\}.
+\]
+These functionals are distributional densities, acting on functions. Closed range and the Hahn--Banach theorem give
+\begin{equation}\label{eq:annihilator}
+ f\in\calR\quad\Longleftrightarrow\quad T(f)=0\text{ for every }T\in\calK.
+\end{equation}
+The set $\calK$ contains an invariant probability. To see this, take a weak limit of $T^{-1}\int_0^T\delta_{g_t x}\,dt$ as $T\to\infty$. Its integral of $Xv$ vanishes because the corresponding averages are $(v(g_Tx)-v(x))/T$. Vanishing on all $Xv$ implies flow invariance by differentiating the integral of $v\circ g_t$.
+
+For a scalar distribution $A$, set $T_A(v)=A(v\rho)$. If the transpose is defined by $(X^tT)(v)=T(Xv)$, then \eqref{eq:scalar} gives
+\begin{equation}\label{eq:transpose}
+ X^tT_A=-T_{XA+qA}.
+\end{equation}
+Thus $\calK$ corresponds to $\ker(X+q)$, not to the scalar kernel in Lemma~\ref{lem:kernel}. In particular, $XA=-qA$ has no known smooth right-hand side for a general $A\in\ker(X+q)$.
+
+\begin{proposition}\label{prop:density}
+Under (GH), the following conditions are equivalent:
+\begin{enumerate}
+\item $q\in\calR$;
+\item $q\in\calR+\R1$;
+\item there is a strictly positive smooth invariant density on $M$;
+\item $\dim\calK=1$.
+\end{enumerate}
+If they hold and $\mu=a\rho$ is the invariant density normalized to a probability, then
+\begin{equation}\label{eq:cohomology}
+ \calR=\{f\in C^\infty(M):\mu(f)=0\}.
+\end{equation}
+Moreover, $\mu$ is the unique probability invariant under the whole flow.
+\end{proposition}
+\begin{proof}
+If $Xb=q-c$, set $\omega=e^{-b}\rho$. Then $\mathcal L_X\omega=c\omega$. The integral of $g_t^*\omega$ is independent of $t$, so $\int_M\mathcal L_X\omega=0$ and hence $c=0$. This proves (2)$\Rightarrow$(1)$\Rightarrow$(3); (1)$\Rightarrow$(2) is immediate.
+
+If $a\rho$ is positive and invariant, then $Xa+qa=0$, and the product rule on scalar distributions gives
+\[
+ (X+q)(au)=aXu.
+\]
+Division by $a$ and Lemma~\ref{lem:kernel} show that $\calK=\R(a\rho)$, proving (3)$\Rightarrow$(4). Conversely, if $\dim\calK=1$, an invariant probability $\nu$ spans $\calK$. Formula \eqref{eq:annihilator} gives $q-\nu(q)\in\calR$, proving (4)$\Rightarrow$(2). Finally \eqref{eq:annihilator} gives \eqref{eq:cohomology}, and every invariant probability lies in the one-dimensional space $\calK$.
+\end{proof}
+
+This proposition does not establish any of its four conditions from (GH). Equivalently, the missing density step is to construct a distributional solution of $Xb=q$: (GH) would make such a solution smooth, and then $e^{-b}\rho$ would be invariant. The next two sections quantify two possible constructions and their remaining limitations.
+
+\section{Averages of Jacobians}
+\label{sec:jacobians}
+
+Write $g_t^*\rho=J_t\rho$, so $J_t$ is smooth, positive, and $\rho(J_t)=1$. Differentiating the Jacobian cocycle gives
+\[
+ \partial_tJ_t=(q\circ g_t)J_t,\qquad
+ XJ_t=(q\circ g_t-q)J_t,\qquad
+ (X+q)J_t=\partial_tJ_t.
+\]
+To approximate a primitive of $q$, average these densities and take a logarithm. For $T\ge1$ define
+\begin{equation}\label{eq:B}
+ H_T=\int_{-T}^T J_s\,ds,\quad
+ \alpha(T)=\rho(\log H_T),\quad
+ B_T=\alpha(T)-\log H_T,\quad
+ r_T=\frac{J_T-J_{-T}}{H_T}.
+\end{equation}
+The subtraction makes $B_T$ have reference mean zero, while the logarithm converts $(X+q)H_T=J_T-J_{-T}$ into
+\begin{equation}\label{eq:B-eqn}
+ XB_T=q-r_T.
+\end{equation}
+
+\begin{proposition}\label{prop:jacobians}
+Assume (GH). There are times $T_j\to\infty$ such that $r_{T_j}\to0$ in every finite $L^p(\rho)$, $1\le p<\infty$. For every $s>d/2$,
+\begin{equation}\label{eq:log-small}
+ \|B_T\|_{H^{-s}}=o(\log T).
+\end{equation}
+If, for some finite $N\ge0$, a subsequence of these $B_{T_j}$ is bounded in $H^{-N}$, then a positive smooth invariant density exists. Conversely, existence of such a density implies that the entire family $B_T$, $T\ge1$, is bounded in $C^0$.
+\end{proposition}
+\begin{proof}
+Let $c=\min_M H_1>0$. Since $H_T\ge c$ and $\rho(H_T)=2T$, Jensen's inequality gives
+\[
+ \log c\le\alpha(T)\le\log(2T),\qquad
+ \alpha'(T)=\rho\left(\frac{J_T+J_{-T}}{H_T}\right)
+ \ge\|r_T\|_1.
+\]
+Integrating over $[R,2R]$ gives a time $T_R\in[R,2R]$ such that
+\[
+ \|r_{T_R}\|_1\le\frac{\log(4R)-\log c}{R}.
+\]
+Let $Q=\|q\|_\infty$. The bound $|\partial_s\log J_s|\le Q$, applied to the unit intervals next to $T$ and $-T$, yields $J_{\pm T}/H_T\le e^Q$. Thus $\|r_T\|_\infty\le2e^Q$. Taking $R=2^j$ proves convergence in each finite $L^p$, by
+\[
+ \rho(|r|^p)\le(2e^Q)^{p-1}\rho(|r|).
+\]
+
+Since $\rho(B_T)=0$ and $B_T\le\log(2T/c)$,
+\[
+ \|B_T\|_1\le2\log(2T/c).
+\]
+The signed measures $(B_T/\log T)\rho$, $T\ge2$, therefore have bounded total variation. Every sequence tending to infinity has a weakly convergent subsequence. By \eqref{eq:B-eqn} and the uniform bound on $r_T$, its scalar distributional limit $b$ satisfies $Xb=0$ and $b(\rho)=0$. Hence $b=0$ by Lemma~\ref{lem:kernel}. For $s>d/2$, the compact embedding $H^s\hookrightarrow C^0$ has compact adjoint from finite measures into $H^{-s}$. Consequently every such subsequence converges strongly to zero in $H^{-s}$. This proves \eqref{eq:log-small} for the full family.
+
+If $B_{T_j}$ has a bounded subsequence in $H^{-N}$, weak compactness and \eqref{eq:B-eqn} give a distribution $b$ with $Xb=q$. Applying (GH) and Proposition~\ref{prop:density} gives the invariant density.
+
+Conversely, suppose $a\rho$ is positive, smooth, and invariant. Then
+\[
+ J_t(x)=\frac{a(x)}{a(g_tx)}.
+\]
+Writing $m=\min a$ and $A=\max a$ gives $m/A\le H_T/(2T)\le A/m$. After centering the logarithm, this yields $\|B_T\|_\infty\le2\log(A/m)$.
+\end{proof}
+
+The convergence $XB_{T_j}\to q$ is only distributional (indeed in each finite $L^p$). Proposition~\ref{prop:range} requires convergence in $C^\infty$ to conclude that $q\in\calR$. Likewise, \eqref{eq:log-small} allows unbounded negative Sobolev norms and cannot replace the unnormalized boundedness hypothesis of Proposition~\ref{prop:jacobians}.
+
+\section{Elliptic stationary densities}
+\label{sec:noise}
+
+For $\eps>0$ consider $L_\eps=X+\eps\Delta$, where
+\[
+ \rho(v\Delta v)=-\rho(|\nabla v|^2).
+\]
+The standard heat-kernel theorem for smooth uniformly elliptic operators on a compact connected manifold without boundary gives a smooth strictly positive transition kernel for $L_\eps$ at every positive time. The maximum principle gives a positive semigroup preserving constants. Averaging any initial probability in time yields a stationary probability. Application of the positive-time kernel makes its density smooth and strictly positive. At a fixed positive time, the kernel has a lower bound $c\rho$, with $0<c<1$. Subtracting this common part leaves a kernel of mass $1-c$, which contracts differences of probabilities in total variation by at most $1-c$. This proves uniqueness. Thus \eqref{eq:stationary-intro} has exactly one positive normalized solution $a_\eps$. This fixed-$\eps$ fact is also recorded in \cite[\S1, after (1.7)]{AY}; our diffusion coefficient is $\eps$ rather than that source's $\eps/2$. None of these observations gives a bound uniform as $\eps\downarrow0$.
+
+We first identify the unscaled quantity that would produce an invariant density, and then prove a weaker estimate directly from nonwandering. Put
+\begin{equation}\label{eq:entropy-densities}
+ \ell_\eps=\log a_\eps,\qquad
+ D_\eps=-\rho(\ell_\eps)\ge0,\qquad
+ b_\eps=-\ell_\eps-D_\eps.
+\end{equation}
+The inequality is Jensen's inequality, and $\rho(b_\eps)=0$. Dividing the stationary equation by $a_\eps$ gives
+\begin{align}
+ X\ell_\eps&=-q+\eps\Delta\ell_\eps+\eps|\nabla\ell_\eps|^2,\label{eq:log-eq}\\
+ Xb_\eps&=q+\eps\Delta b_\eps-\eps|\nabla b_\eps|^2.\label{eq:centered-log}
+\end{align}
+Integrating \eqref{eq:centered-log} and using $\rho(q)=0$ gives
+\begin{equation}\label{eq:unweighted-energy}
+ \eps\rho(|\nabla b_\eps|^2)=\rho(qb_\eps).
+\end{equation}
+Stationarity tested against $\ell_\eps$ gives another, weighted identity:
+\begin{equation}\label{eq:weighted-energy}
+ \eps\rho(a_\eps|\nabla\ell_\eps|^2)=-\rho(qa_\eps).
+\end{equation}
+Indeed $a_\eps X\ell_\eps=Xa_\eps$ and integration by parts handles the Laplacian. These two energies have different weights and must not be interchanged.
+
+\subsection{A bounded relative-entropy criterion}
+
+For probability measures $\sigma,\nu$, their relative entropy is
+\[
+ D(\sigma\Vert\nu)=
+ \begin{cases}
+ \displaystyle\int\log\!\left(\frac{d\sigma}{d\nu}\right)d\sigma,
+     &\sigma\ll\nu,\\
+ +\infty,&\text{otherwise}.
+ \end{cases}
+\]
+Thus $D_\eps=D(\rho\Vert a_\eps\rho)$. This relative entropy of measures is distinct from the topological entropy of a flow.
+
+\begin{proposition}\label{prop:relative}
+Assume (GH). A positive smooth invariant density exists if and only if
+\begin{equation}\label{eq:bounded-D}
+ \liminf_{\eps\downarrow0}D_\eps<\infty.
+\end{equation}
+If such a density $a\rho$ is normalized to a probability, then in fact
+\begin{equation}\label{eq:noise-convergence}
+ \sup_{\eps>0}D_\eps<\infty,\qquad
+ a_\eps\longrightarrow a\text{ in }L^1,\qquad
+ \log a_\eps\longrightarrow\log a\text{ in }L^2
+ \quad(\eps\downarrow0).
+\end{equation}
+\end{proposition}
+\begin{proof}
+Suppose $D_{\eps_j}\le C$ with $\eps_j\downarrow0$. Pass to a weak limit $\mu$ of $a_{\eps_j}\rho$. For smooth $\varphi$, stationarity gives
+\[
+ \int X\varphi\,d\mu
+ =\lim_j-\eps_j\rho(a_{\eps_j}\Delta\varphi)=0.
+\]
+Applying this to $\varphi\circ g_t$ and differentiating proves that $\mu$ is invariant.
+
+On a compact metric space, the elementary variational formula
+\begin{equation}\label{eq:RE-variational}
+ D(\sigma\Vert\nu)=\sup_{\varphi\in C(M)}
+ \left(\int\varphi\,d\sigma-\log\int e^\varphi\,d\nu\right)
+\end{equation}
+shows lower semicontinuity in $\nu$. Here is a proof of the formula to specify its extended-value cases. If $\sigma\ll\nu$ and $h=d\sigma/d\nu$, Jensen's inequality bounds every test expression by $\int\log h\,d\sigma$. Truncating $\log h$ at $\pm n$ gives bounded measurable tests attaining this bound in the limit: $e^{\max(-n,\min(n,\log h))}\to h$ in $L^1(\nu)$, and the negative part of $\log h$ is integrable against $\sigma$, since $h|\log h|\le1/e$ when $h\le1$. The positive part converges monotonically, possibly to infinity. If $\sigma\not\ll\nu$, multiples of the indicator of a $\nu$-null set of positive $\sigma$ measure make the supremum infinite. Finally, bounded measurable tests can be approximated in $L^1(\sigma+\nu)$ by continuous tests with the same uniform bound; their exponentials converge in $L^1(\nu)$ as well. This proves \eqref{eq:RE-variational}. Each continuous test expression is continuous in $\nu$, giving the asserted lower semicontinuity.
+
+It follows that $D(\rho\Vert\mu)\le C$. Write the Lebesgue decomposition as $\mu=a\rho+\mu_s$. Finiteness implies $a>0$ $\rho$-almost everywhere and
+\[
+ -\rho(\log a)=D(\rho\Vert\mu)<\infty.
+\]
+Since $\log^+a\le a$ and $\rho(a)\le1$, we have $\log a\in L^1(\rho)$. Smooth diffeomorphisms preserve the distinction between absolutely continuous and singular measures relative to $\rho$. Uniqueness of the Lebesgue decomposition therefore makes $a\rho$ invariant. With $g_t^*\rho=J_t\rho$, this says
+\[
+ a(g_tx)J_t(x)=a(x)\quad\text{almost everywhere, for every fixed }t.
+\]
+Taking logarithms and differentiating in distributions is legitimate for the $L^1$ function $\log a$. It gives $X\log a=-q$. By (GH), $\log a$ has a smooth representative. Its exponential is an everywhere positive smooth invariant density, after normalization.
+
+Conversely, suppose $a>0$ is smooth, $\rho(a)=1$, and $Xa+qa=0$. This part of the bound does not require (GH). Testing stationarity against $\log a$, for which $X\log a=-q$, and using \eqref{eq:weighted-energy} gives
+\begin{equation}\label{eq:fisher}
+ \rho(a_\eps|\nabla\ell_\eps|^2)
+ =-\rho(a_\eps\Delta\log a)\le\|\Delta\log a\|_\infty.
+\end{equation}
+Thus $\sqrt{a_\eps}$ is bounded in $H^1$. Sobolev embedding gives $\|a_\eps\|_{L^p}\le K$ for a fixed $p>1$: take $p=d/(d-2)$ for $d>2$, and any suitable fixed finite $p>1$ for $d\le2$.
+
+Integrate \eqref{eq:log-eq} against $a\rho$. Invariance gives $\rho(aX\ell_\eps)=0$ and $\rho(aq)=-\rho(aX\log a)=0$. After division by $\eps$ and integration by parts,
+\[
+ \rho(a|\nabla\ell_\eps|^2)=\rho(\langle\nabla a,\nabla\ell_\eps\rangle)
+ \le\rho(a|\nabla\ell_\eps|^2)^{1/2}
+       \rho(|\nabla a|^2/a)^{1/2}.
+\]
+Since $\min a>0$, the unweighted gradients are uniformly bounded. Poincar\'e's inequality yields
+\[
+ \|\ell_\eps+D_\eps\|_2\le C_0.
+\]
+Let $A_\eps=\{a_\eps\ge1/2\}$. Normalization and H\"older's inequality imply
+\[
+ \tfrac12\le\int_{A_\eps}a_\eps\rho
+ \le K\rho(A_\eps)^{1-1/p},
+\]
+so $\rho(A_\eps)\ge\delta>0$. If $D_\eps\ge\log2$, then on $A_\eps$ we have $\ell_\eps+D_\eps\ge D_\eps-\log2\ge0$. Hence
+\[
+ \delta(D_\eps-\log2)^2\le C_0^2.
+\]
+Together with the case $D_\eps<\log2$, this proves a bound for all $\eps>0$.
+
+For completeness, \eqref{eq:fisher} and Rellich compactness make $\sqrt{a_\eps}$ relatively compact in $L^2$, hence $a_\eps$ relatively compact in $L^1$ by
+\[
+ \|u^2-v^2\|_1\le\|u-v\|_2(\|u\|_2+\|v\|_2).
+\]
+Every limit as $\eps\downarrow0$ is an invariant probability. Proposition~\ref{prop:density} identifies it with $a\rho$, so the entire family converges to $a$ in $L^1$. The gradient and mean bounds also bound $\ell_\eps$ in $H^1$. Any $L^2$ subsequential limit $\ell$ satisfies $e^\ell=a$, by passing further to almost-everywhere convergence of both $\ell_\eps$ and $a_\eps$. Thus $\ell=\log a$ and the full logarithmic convergence follows.
+\end{proof}
+
+\subsection{What nonwandering proves without a density}
+
+We now scale the logarithms by the noise size. The resulting estimate is unconditional under (GH), but is weaker than \eqref{eq:bounded-D}.
+
+\begin{lemma}\label{lem:Lyapunov}
+For a nonwandering flow, a continuous function that is nonincreasing along every forward orbit is invariant under the whole flow.
+\end{lemma}
+\begin{proof}
+If $V(g_{t_0}x)<V(x)$, continuity gives a neighborhood $U$ of $x$ with
+\[
+ \sup_{y\in U}V(g_{t_0}y)<\inf_{z\in U}V(z).
+\]
+Monotonicity implies $g_t(U)\cap U=\varnothing$ for every $t\ge t_0$, contradicting nonwandering. Equality for positive times implies equality for negative times by invertibility.
+\end{proof}
+
+\begin{theorem}\label{thm:scaled}
+Let $X$ be any smooth vector field whose flow on $M$ is nonwandering. For the stationary densities in \eqref{eq:stationary-intro},
+\begin{equation}\label{eq:scaled-limit}
+ V_\eps=-\eps\log a_\eps\longrightarrow0
+ \quad\text{uniformly and in }H^1(M)\quad(\eps\downarrow0).
+\end{equation}
+In particular, (GH) implies \eqref{eq:scaled-limit} and $D_\eps=o(\eps^{-1})$.
+\end{theorem}
+\begin{proof}
+The logarithmic stationary equation becomes
+\begin{equation}\label{eq:HJ}
+ XV_\eps+|\nabla V_\eps|^2=\eps\Delta V_\eps+\eps q.
+\end{equation}
+We first obtain a uniform Lipschitz bound, without using nonwandering. Set
+\[
+ B=\|X\|_\infty,\quad Q=\|q\|_\infty,\quad
+ C_X=\|\nabla X\|_\infty,\quad C_q=\|\nabla q\|_\infty,
+\]
+and choose $C_R\ge0$ with $\Ric\ge-C_Rg$. Fix $0<\eps\le1$, put $w=|\nabla V_\eps|^2$, and take a maximum point $p$ of $w$. At $p$, $\nabla w=0$ and $\Delta w\le0$. The Bochner identity and \eqref{eq:HJ} give
+\begin{align*}
+ \frac\eps2\Delta w
+ &=\eps|\Hess V_\eps|^2+\eps\Ric(\nabla V_\eps,\nabla V_\eps)\\
+ &\quad+\langle\nabla V_\eps,\nabla(XV_\eps+w-\eps q)\rangle.
+\end{align*}
+The term containing $\nabla w$ vanishes at $p$. Also
+\[
+ \langle\nabla V_\eps,\nabla(XV_\eps)\rangle
+ =\langle\nabla_{\nabla V_\eps}X,\nabla V_\eps\rangle
+   +\Hess V_\eps(\nabla V_\eps,X),
+\]
+and the last summand equals $Xw/2=0$ there. Consequently
+\begin{equation}\label{eq:Bochner}
+ \eps|\Hess V_\eps|^2\le(C_X+\eps C_R)w+\eps C_q\sqrt w
+ \quad\text{at }p.
+\end{equation}
+If $w(p)\ge\max\{1,16B^2,4Q\}$, then $B\sqrt w\le w/4$ and $\eps Q\le w/4$. Equation \eqref{eq:HJ} gives $\eps\Delta V_\eps\ge w/2$ at $p$. Using $|\Hess V_\eps|^2\ge(\Delta V_\eps)^2/d$ in \eqref{eq:Bochner}, we obtain
+\[
+ \frac{w^2}{4d\eps}\le(C_X+C_R+C_q)w.
+\]
+The complementary case already bounds $w(p)$. Thus, for a constant $K$ independent of $0<\eps\le1$,
+\begin{equation}\label{eq:Lipschitz}
+ \|\nabla V_\eps\|_\infty\le K.
+\end{equation}
+Normalization $\rho(e^{-V_\eps/\eps})=1$ implies
+$\min V_\eps\le0\le\max V_\eps$. Hence
+$\|V_\eps\|_\infty\le K\operatorname{diam}(M)$.
+
+Given any sequence $\eps_j\downarrow0$, Arzel\`a--Ascoli gives a subsequence converging uniformly to a Lipschitz function $V$. The gradients converge weakly in $L^2$, after a further subsequence, to $\nabla V$; integration by parts identifies this limit. Multiply \eqref{eq:HJ} by a smooth nonnegative $\varphi$ and integrate. The diffusion term is $\eps_j\rho(V_{\eps_j}\Delta\varphi)$ and tends to zero. The transport term converges by \eqref{eq:scalar}. Weighted weak lower semicontinuity of the gradient norm gives
+\[
+ \rho\big(\varphi(XV+|\nabla V|^2)\big)\le0.
+\]
+Thus $XV\le-|\nabla V|^2\le0$ almost everywhere.
+
+This inequality makes $V$ nonincreasing along every orbit, not just almost every orbit. To justify the passage, combine Rademacher's theorem with preservation of reference null sets by smooth flow diffeomorphisms. Fubini's theorem shows that, for almost every starting point, the orbit meets the exceptional set for a null set of times in each bounded interval. The function $t\mapsto V(g_tx)$ is Lipschitz on such intervals, and the chain rule makes its derivative nonpositive almost everywhere. It is therefore nonincreasing. One common full-measure set of starting points suffices by taking the countable intersection for intervals $[-n,n]$. For any fixed $t\ge0$, continuity of $V$ and $g_t$ extends the inequality $V(g_tx)\le V(x)$ to all $x$.
+
+Lemma~\ref{lem:Lyapunov} now gives $XV=0$. The preceding gradient inequality forces $\nabla V=0$ almost everywhere, so $V$ is constant on connected $M$. The inequalities for the minimum and maximum of $V_{\eps_j}$ pass to the uniform limit and force this constant to be zero. Relative compactness and uniqueness of every subsequential limit prove uniform convergence of the full family.
+
+Finally integrate \eqref{eq:HJ} over $\rho$. Since $\rho(q)=0$,
+\begin{equation}\label{eq:scaled-energy}
+ \rho(|\nabla V_\eps|^2)=\rho(qV_\eps)\longrightarrow0.
+\end{equation}
+This gives strong $H^1$ convergence. Proposition~\ref{prop:nonwandering} supplies nonwandering under (GH), and $\eps D_\eps=\rho(V_\eps)\to0$ gives the last assertion.
+\end{proof}
+
+Uniform convergence of $V_\eps$ does not bound $b_\eps$ or $D_\eps$. For example, growth of $D_\eps$ like $\log(1/\eps)$ is compatible with $D_\eps=o(\eps^{-1})$; this is a comparison of estimates, not an asserted example of a (GH) flow. Even strong $H^1$ convergence does not remove this loss of scale. If $D_\eps>0$ and $c_\eps=-\log a_\eps/D_\eps$, then
+\begin{equation}\label{eq:defect}
+ \rho(\eps D_\eps|\nabla c_\eps|^2)
+ =\frac{\rho(|\nabla V_\eps|^2)}{\eps D_\eps}.
+\end{equation}
+Both numerator and denominator can tend to zero; their quotient is not controlled by \eqref{eq:scaled-limit}. Thus Theorem~\ref{thm:scaled} does not establish the condition in Proposition~\ref{prop:relative}.
+
+\section{Entropy criteria and a suspension test}
+\label{sec:entropy}
+
+We now make the remaining dynamical issue explicit. For a continuous map $F$ of a compact metric space $(M,d_M)$, put
+\[
+ d_n(x,y)=\max_{0\le k<n}d_M(F^kx,F^ky).
+\]
+Let $s(n,\delta)$ be the maximal cardinality of a set whose distinct points have $d_n$-distance at least $\delta$. We use
+\[
+ \htop(F)=\lim_{\delta\downarrow0}\limsup_{n\to\infty}
+          \frac1n\log s(n,\delta).
+\]
+Equivalent compatible metrics give the same value. An $(n,\delta)$-\emph{spanning set} is one such that every point has $d_n$-distance less than $\delta$ from the set. Its minimum cardinality gives the same entropy: a maximal separated set is spanning, while a ball of radius $\delta/2$ contains at most one point of a $\delta$-separated set.
+
+\begin{proposition}\label{prop:entropy}
+Suppose, in addition to smoothness and compactness, that for every $\eta>0$ there is $B_\eta\ge1$ such that
+\begin{equation}\label{eq:derivative}
+ \sup_{x\in M}\|Dg_t(x)\|\le B_\eta e^{\eta t}\qquad(t\ge0).
+\end{equation}
+Then $\htop(g_1)=0$.
+\end{proposition}
+\begin{proof}
+A compact $d$-dimensional Riemannian manifold can be covered by at most $Ar^{-d}$ balls of radius $r$ for sufficiently small $r$, by finite coordinate charts and Euclidean grids. Integrating the derivative along minimizing paths gives
+$\Lip(g_k)\le B_\eta e^{\eta n}$ for $0\le k<n$. Take
+\[
+ r=\frac{\delta e^{-\eta n}}{3B_\eta}.
+\]
+Two points in one such ball have $d_n$-distance at most $2\delta/3$. Therefore
+\[
+ s(n,\delta)\le A(3B_\eta/\delta)^d e^{d\eta n}
+\]
+for all sufficiently large $n$. Passing to the entropy limits gives $\htop(g_1)\le d\eta$. Letting $\eta\downarrow0$ proves the claim.
+\end{proof}
+
+No estimate \eqref{eq:derivative} has been derived from (GH) here. Applying \eqref{eq:inverse} to a centered $f\circ g_t$ does not supply it: the right-hand side contains $\|(Xf)\circ g_t\|_{H^{R_m}}$, which already involves unknown spatial derivatives of $g_t$. Also, controlling a Jacobian determinant does not control every expanding direction, as the matrix $\operatorname{diag}(2,1/2)$ shows.
+
+If the density condition of Proposition~\ref{prop:density} holds, every smooth $f$ has a smooth solution $Xv=f-\mu(f)$. The chain rule then gives
+\begin{equation}\label{eq:bounded-integrals}
+ \int_0^T(f(g_tx)-\mu(f))\,dt=v(g_Tx)-v(x).
+\end{equation}
+The integral is bounded by $2\|v\|_\infty$, uniformly in $T$ and $x$. This is a useful consequence of solvability, but an entropy implication from it has not been proved here. In particular, unique ergodicity of the whole flow, meaning uniqueness of the probability invariant under all times, must not be confused with unique ergodicity of $g_1$: the unit-speed flow on $\R/\mathbb Z$ has identity time-one map.
+
+\subsection{Why approximation in \texorpdfstring{$L^2$}{L2} is insufficient}
+
+A possible use of \eqref{eq:bounded-integrals} would require a theorem producing a \emph{smooth} centered observable with unbounded $L^2$ orbit integrals from positive entropy. Mere density of smooth functions in $L^2(\mu)$ does not give this step. In fact, writing $I_TF=\int_0^T F\circ g_t\,dt$ and using invariance,
+\[
+ \|I_T(F-f)\|_2\le T\|F-f\|_2.
+\]
+A lower bound of order $\sqrt T$ for $\|I_TF\|_2$ therefore requires approximations with error of order $T^{-1/2}$. They may change with $T$, while their smooth norms and the associated transfer functions grow.
+
+The following explicit example shows why bounded sums need not persist under this limiting argument. On the probability torus $\T^2$, let
+\[
+ A=\begin{pmatrix}2&1\\1&1\end{pmatrix},\qquad
+ U\varphi=\varphi\circ A,\qquad \phi(x)=\cos(2\pi x_1).
+\]
+The frequencies $(A^{\mathsf T})^j(1,0)$ are distinct up to sign. Thus $U^j\phi$, $j\ge0$, are orthogonal with squared norm $1/2$. For $N\ge1$ set
+\[
+ v_N=\sum_{j=0}^{N-1}(1-j/N)U^j\phi,\qquad
+ \phi_N=(I-U)v_N=\phi-\frac1N\sum_{j=1}^NU^j\phi.
+\]
+Functions of the form $v-v\circ A$ are called coboundaries. These examples are smooth and satisfy
+\[
+ \|\phi_N-\phi\|_2^2=\frac1{2N},\qquad
+ \left\|\sum_{j=0}^{n-1}U^j\phi\right\|_2^2=\frac n2.
+\]
+For fixed $N$ and $n\ge N$, the sum for $\phi_N$ is $v_N-U^nv_N$. Its two terms have disjoint frequencies, so
+\[
+ \left\|\sum_{j=0}^{n-1}U^j\phi_N\right\|_2^2
+ =\sum_{k=1}^N(k/N)^2
+ =\frac{(N+1)(2N+1)}{6N},
+\]
+independent of $n$. Smooth coboundaries with bounded sums can thus converge in $L^2$ to a smooth observable with linearly growing squared norms of sums. This example only invalidates the approximation step; it is not a counterexample to \eqref{eq:question}.
+
+\subsection{An exact smooth suspension reduction}
+
+Let $N$ be a compact connected smooth manifold without boundary, let $T:N\to N$ be a smooth diffeomorphism, and let $\nu$ be a strictly positive smooth $T$-invariant probability density. We say that $T$ is \emph{cohomologically rigid} if every smooth $F$ with $\nu(F)=0$ can be written
+\begin{equation}\label{eq:discrete-cohomology}
+ F=v\circ T-v\qquad\text{with }v\in C^\infty(N).
+\end{equation}
+This is the centered cohomological equation in \cite[\S1.1, p.~2]{Kar}; the sign convention does not change the space of coboundaries. Using densities allows us to avoid an orientability restriction.
+
+Form the smooth mapping torus
+\[
+ M_T=(N\times[0,1])/((x,1)\sim(Tx,0)),
+\]
+with the flow translating the height coordinate. Its generator is $X_T=\partial_s$, and $\mu=\nu\,ds$ is a smooth invariant probability density.
+
+\begin{proposition}\label{prop:suspension}
+The generator $X_T$ satisfies scalar (GH) if and only if $T$ satisfies \eqref{eq:discrete-cohomology} for every smooth $\nu$-centered $F$. Moreover,
+\begin{equation}\label{eq:suspension-entropy}
+ \htop(g_1\text{ on }M_T)=\htop(T\text{ on }N).
+\end{equation}
+\end{proposition}
+\begin{proof}
+Assume first cohomological rigidity. For smooth $f$ on $M_T$, put
+\[
+ F(x)=\int_0^1 f([x,s])\,ds,\qquad c=\mu(f),
+\]
+and solve $v\circ T-v=F-c$. Define
+\begin{equation}\label{eq:suspension-solution}
+ u([x,s])=v(x)+\int_0^s(f([x,r])-c)\,dr.
+\end{equation}
+The discrete equation gives $u(x,1)=u(Tx,0)$. All tangential derivatives of this equality match. Every positive normal derivative is a derivative of $f$, whose seam identities already hold. Hence $u$ is smooth on the quotient and $X_Tu=f-c$.
+
+If $X_Tw=f$ for a scalar distribution $w$ and smooth $f$, testing on the invariant density $\mu$ gives $\mu(f)=0$. Formula \eqref{eq:suspension-solution} supplies smooth $u$ with $X_Tu=f$. Set $z=w-u$. Every smooth $\mu$-centered $\psi$ equals $X_Ta$ for a smooth $a$, so
+\[
+ z(\psi\mu)=z((X_Ta)\mu)=-(X_Tz)(a\mu)=0.
+\]
+Every smooth test density is $\psi\mu$ for a smooth $\psi$. Subtracting its mean shows $z(\psi\mu)=z(\mu)\mu(\psi)$, so $z$ is a constant scalar distribution. Thus $w$ is smooth.
+
+Conversely, assume scalar (GH) for $X_T$. Its invariant density is already available, so Proposition~\ref{prop:density} gives smooth solvability for every centered smooth function on $M_T$. Given a smooth centered $F$ on $N$, choose $\beta\in C_c^\infty((0,1))$ with $\int_0^1\beta=1$. The function $f([x,s])=\beta(s)F(x)$ is smooth on $M_T$ and centered. If $X_Tu=f$, integration over the height interval gives
+\[
+ u([Tx,0])-u([x,0])=F(x),
+\]
+which is \eqref{eq:discrete-cohomology}.
+
+For entropy, the cylinder quotient map intertwines $T\times\mathrm{Id}_{[0,1]}$ with $g_1$. Entropy cannot increase under a continuous factor map: uniform continuity sends sufficiently fine orbit-spanning sets onto orbit-spanning sets of the factor. In a product metric, a fixed finite interval net, independent of orbit length, together with an orbit-spanning set for $T$ shows
+$\htop(T\times\mathrm{Id})\le\htop(T)$. Restricting to one height gives the reverse inequality. It follows that $\htop(g_1)\le\htop(T)$. Finally the zero-height section in $M_T$ is closed and $g_1$-invariant, and its restriction is conjugate to $T$. Monotonicity under restriction gives the opposite inequality, proving \eqref{eq:suspension-entropy}.
+\end{proof}
+
+Consequently, a proof of \eqref{eq:question} would in particular give zero entropy for every smooth volume-preserving cohomologically rigid diffeomorphism through this suspension. The construction is a test family with an explicitly given invariant density. It does not assert that an arbitrary flow in the original question admits a global cross-section.
+
+\section{The unresolved implications}
+
+The original question is settled here only in the immediate zero-dimensional case and in dimension one: the proof of Proposition~\ref{prop:nonwandering} makes $X$ nowhere zero on a circle, and integrating $d\theta/v(\theta)$ gives a smooth coordinate conjugating its flow to a constant-speed circle translation, whose maps are isometries and have zero entropy.
+
+In general dimension, the first missing implication is the existence of a distributional primitive of $q$. Proposition~\ref{prop:jacobians} identifies an unnormalized compactness condition sufficient for this, and Proposition~\ref{prop:relative} gives an equivalent bounded relative-entropy condition. The proved estimates $\|B_T\|_{H^{-s}}=o(\log T)$ and $D_\eps=o(\eps^{-1})$ do not supply either boundedness condition.
+
+Even if the density condition is supplied, a further argument is needed to deduce zero topological entropy from smooth solvability of the centered cohomological equation. Proposition~\ref{prop:entropy} states a stronger sufficient estimate, but its derivative bound remains unproved under (GH). Neither nonwandering nor the stationary-density estimates replace that estimate in the present argument. Thus no general proof or counterexample to \eqref{eq:question} is claimed.
+
+\begin{thebibliography}{9}
+\bibitem{AY}
+S. Aizicovici and T. Young,
+\emph{Stochastic Stability for Flows with Smooth Invariant Measures},
+Libertas Mathematica \textbf{30} (2010), 71--79.
+\href{https://arxiv.org/abs/1112.0177v1}{arXiv:1112.0177v1} (2011).
+
+\bibitem{Forni}
+G. Forni,
+\emph{On the Greenfield--Wallach and Katok conjectures in dimension three},
+\href{https://arxiv.org/abs/0706.3981v1}{arXiv:0706.3981v1} (2007).
+
+\bibitem{Kar}
+N. Karaliolios,
+\emph{Cohomological rigidity and the Anosov--Katok construction},
+\href{https://arxiv.org/abs/1711.02732v2}{arXiv:1711.02732v2} (2018).
+\end{thebibliography}
+\end{document}

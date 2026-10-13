@@ -1,0 +1,1 @@
+OPEN: [GOAL] For the quadratic map f with c_1 in a 4-cycle A and B = A ∪ {v}, there is an explicitly described simple closed curve γ ⊂ S^2∖B and k ≥ 1 such that T_γ^k preserves D_f and ⟨T_γ^k⟩ has an infinite orbit on the set of connected components of D_f — round1_plan

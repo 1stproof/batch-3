@@ -1,0 +1,4 @@
+10. PROVED: In hyperfields with a⊞-a = H for all a ≠ 0, any multi-sum having two opposite nonzero summands equals H (so the goal holds in all coincidence cases), and the union-type hyperfields (a⊞b = {a,b} for b ≠ -a, a⊞-a = H, any G with -1 ≠ 1) are hyperfields satisfying the goal — round3_q4
+11. PROVED: When -1 = 1, chains of 4-point exchanges reduce to compositions of scaled hypothesis triangles, and no such linear derivation yields (C) or 1 ∈ x^3⊞y^3⊞xy⊞xy⊞xy — round3_q2
+12. PROVED: Hyperfields with -1 = 1 and G = F_3^k are exactly translation-invariant symmetric triangle systems on F_3^k with the 4-point condition, and in the generic case no linear derivation gives 0 ∈ 1⊞1⊞1⊞w⊞w⊞w — round3_q1
+13. OPEN: Missing statement N: in every hyperfield, for all nonzero x, y with 1 ∈ x⊞y one has 1 ∈ x^3⊞y^3⊞xy⊞xy⊞xy (equivalent to the goal by normalization; prove it, or refute it by an explicit hyperfield) — round4_plan

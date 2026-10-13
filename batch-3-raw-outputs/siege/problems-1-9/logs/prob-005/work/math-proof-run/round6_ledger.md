@@ -1,0 +1,2 @@
+22. PROVED: [AUDIT] Independent step-by-step referee check certifies the round4_q2 counterexample chain (Proposition 1, Lemmas 2-4, instance x = t, y = t^4, z = 1), verdict CORRECT, certifying entry 14 — round5_q1
+23. PROVED: [AUDIT] Second independent adversarial recheck (including Krasner, Viro and Baker–Bowler definitions) certifies the round4_q2 counterexample chain, verdict CORRECT, certifying entry 14 — round5_q2

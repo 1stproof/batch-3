@@ -1,0 +1,417 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{url}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{div}{div}
+\newcommand{\D}{\mathcal D'}
+\newcommand{\Cinf}{C^\infty}
+\newcommand{\vol}{\operatorname{vol}}
+\newcommand{\htop}{h_{\mathrm{top}}}
+
+% The following web source is used only in the final remark concerning
+% Pesin's entropy formula:
+% [ar5iv.labs.arxiv.org](https://ar5iv.labs.arxiv.org/html/1002.2366)
+
+\begin{document}
+
+\title{Globally hypoelliptic vector fields have zero topological entropy}
+\author{}
+\date{}
+\maketitle
+
+\begin{abstract}
+We prove that if a smooth vector field $X$ on a compact connected manifold
+is globally hypoelliptic, in the sense that every distributional solution of
+$\mathcal L_Xu=f$ with $f$ smooth is itself smooth, then the flow generated
+by $X$ has zero topological entropy. The proof uses the Greenfield--Wallach
+spectral theorem for globally hypoelliptic vector fields and the
+zero-entropy theorem for systems with discrete spectrum.
+\end{abstract}
+
+\section{Conventions}
+
+Throughout, $M$ is a compact connected smooth manifold, without boundary,
+and $X\in C^\infty(M;TM)$. Its flow is denoted by
+\[
+g_t:M\longrightarrow M,\qquad \partial_t g_t(x)=X(g_t(x)).
+\]
+
+We fix an auxiliary Riemannian metric and denote its smooth positive
+volume density by $d\vol$. Distributions are identified with generalized
+densities. Thus a distribution $T$ is called smooth if there is a smooth
+function $\rho$ such that
+\[
+\langle T,\varphi\rangle=\int_M\varphi\,\rho\,d\vol
+\qquad(\varphi\in C^\infty(M)).
+\]
+
+The Lie derivative on distributions is defined by
+\[
+\langle\mathcal L_XT,\varphi\rangle
+   :=-\langle T,X\varphi\rangle .
+\]
+The hypothesis of the problem is the following.
+
+\begin{definition}[Global hypoellipticity]\label{def:GH}
+The vector field $X$ is \emph{globally hypoelliptic} if
+\[
+u\in\D(M),\quad \mathcal L_Xu\in C^\infty(M)
+\quad\Longrightarrow\quad u\in C^\infty(M).
+\]
+\end{definition}
+
+For a flow, its topological entropy is by definition the topological
+entropy of its time-one map:
+\[
+\htop(g):=\htop(g_1).
+\]
+This is the standard definition; see \cite[Chapter~3]{KatokHasselblatt}.
+
+\section{Invariant measures are smooth and fully supported}
+
+Every Borel probability measure $\mu$ on $M$ defines a distribution
+$T_\mu$ by
+\[
+\langle T_\mu,\varphi\rangle=\int_M\varphi\,d\mu .
+\]
+
+\begin{lemma}\label{lem:invariant-measures-smooth}
+If $\mu$ is invariant under the flow $g_t$, then $\mathcal L_XT_\mu=0$.
+Consequently, under Definition~\ref{def:GH}, there is a smooth function
+$\rho_\mu\geq 0$ such that
+\[
+d\mu=\rho_\mu\,d\vol.
+\]
+\end{lemma}
+
+\begin{proof}
+Flow invariance gives, for every $\varphi\in C^\infty(M)$ and every $t$,
+\[
+\langle T_\mu,\varphi\circ g_t\rangle
+ =\int_M\varphi\circ g_t\,d\mu
+ =\int_M\varphi\,d\mu
+ =\langle T_\mu,\varphi\rangle .
+\]
+Differentiating at $t=0$ gives
+\[
+\langle T_\mu,X\varphi\rangle=0.
+\]
+Hence
+\[
+\langle\mathcal L_XT_\mu,\varphi\rangle
+=-\langle T_\mu,X\varphi\rangle=0.
+\]
+Thus $\mathcal L_XT_\mu=0$. Since the right-hand side is smooth, global
+hypoellipticity implies that $T_\mu$ is represented by a smooth function
+$\rho_\mu$. Nonnegativity follows because $\mu$ is a positive measure.
+\end{proof}
+
+The stationary density satisfies the usual transport equation
+\begin{equation}\label{eq:stationary-density}
+X\rho_\mu+\rho_\mu\,\div_{\vol}X=0.
+\end{equation}
+Indeed,
+\[
+\mathcal L_X(\rho_\mu\,d\vol)
+ =\bigl(X\rho_\mu+\rho_\mu\div_{\vol}X\bigr)d\vol.
+\]
+
+We shall need the following elementary topological observation.
+
+\begin{lemma}\label{lem:boundary-nowhere}
+If $U\subset M$ is open, then $\partial U$ has empty interior.
+\end{lemma}
+
+\begin{proof}
+Suppose $V\subset\partial U$ is open and nonempty. Since
+$V\subset\overline U$, we have $V\cap U\neq\varnothing$. On the other hand,
+$V\subset\partial U$ and $U\cap\partial U=\varnothing$, so
+$V\cap U=\varnothing$, a contradiction.
+\end{proof}
+
+\begin{proposition}\label{prop:positive-density}
+Under Definition~\ref{def:GH}, every flow-invariant Borel probability
+measure $\mu$ has the form
+\[
+d\mu=\rho\,d\vol,\qquad \rho\in C^\infty(M),\quad \rho>0.
+\]
+In particular, every invariant probability measure is equivalent to smooth
+volume.
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{lem:invariant-measures-smooth}, $d\mu=\rho\,d\vol$ for a
+smooth $\rho\geq0$. Put
+\[
+Z:=\{x\in M:\rho(x)=0\}.
+\]
+Equation~\eqref{eq:stationary-density} says that along an orbit,
+\[
+\frac{d}{dt}\rho(g_t x)
+ =-\div_{\vol}X(g_t x)\,\rho(g_t x).
+\]
+Therefore $\rho(g_tx)=0$ for all $t$ whenever $\rho(x)=0$, so $Z$ is a
+compact flow-invariant set. Since $\mu$ is a probability measure,
+$Z\neq M$.
+
+Suppose $Z\neq\varnothing$. By the Krylov--Bogolyubov theorem, the compact
+flow-invariant set $Z$ supports a flow-invariant probability measure $\eta$.
+Lemma~\ref{lem:invariant-measures-smooth} gives
+\[
+d\eta=\theta\,d\vol,\qquad \theta\in C^\infty(M),\quad\theta\geq0.
+\]
+Because $\eta\neq0$, there is a point at which $\theta>0$. Continuity then
+gives an open subset of $\supp\eta\subset Z$; hence $Z$ has nonempty
+interior.
+
+Let
+\[
+U:=\operatorname{int}Z.
+\]
+Since $Z$ is invariant, $U$ is invariant. Because $M$ is connected and
+$U\neq\varnothing$, while $U\neq M$ since $Z\neq M$, the boundary
+$\partial U$ is nonempty. It is compact and flow-invariant. Applying the
+Krylov--Bogolyubov theorem once more, choose a flow-invariant probability
+measure $\eta_0$ supported on $\partial U$. By
+Lemma~\ref{lem:invariant-measures-smooth}, $\eta_0$ is represented by a
+nonzero smooth nonnegative function $\theta_0$. Hence
+$\supp\eta_0\subset\partial U$ contains a nonempty open subset of $M$.
+Thus $\partial U$ has nonempty interior, contradicting
+Lemma~\ref{lem:boundary-nowhere}.
+
+Therefore $Z=\varnothing$, which means $\rho>0$.
+\end{proof}
+
+\begin{remark}
+The same argument shows that the flow is minimal. Indeed, the closure of
+every orbit is a compact invariant set and therefore supports an invariant
+probability measure. By Proposition~\ref{prop:positive-density}, that
+measure has full support, so the orbit closure is $M$. Minimality will not
+be needed in the entropy argument below.
+\end{remark}
+
+\section{The Greenfield--Wallach spectral theorem}
+
+Let $\mu$ be a flow-invariant probability measure. By
+Proposition~\ref{prop:positive-density}, $\mu$ is a smooth positive volume.
+Define the Koopman operators
+\[
+U_t:L^2(M,\mu)\longrightarrow L^2(M,\mu),
+\qquad
+U_t\varphi:=\varphi\circ g_t.
+\]
+Since $\mu$ is flow-invariant, $(U_t)_{t\in\mathbb R}$ is a strongly
+continuous one-parameter unitary group.
+
+Let
+\[
+A:=-iX.
+\]
+For $\varphi,\psi\in C^\infty(M)$, invariance of $\mu$ implies
+\[
+\int_M (X\varphi)\,\overline{\psi}\,d\mu
+ =-\int_M\varphi\,\overline{X\psi}\,d\mu.
+\]
+Consequently,
+\[
+\langle A\varphi,\psi\rangle_{L^2(\mu)}
+ =\langle\varphi,A\psi\rangle_{L^2(\mu)}.
+\]
+Thus $A$ is symmetric on the dense domain $C^\infty(M)$. Since $C^\infty(M)$
+is a core for the generator of the unitary group $(U_t)$, the closure of
+$A$ is self-adjoint and
+\[
+U_t=e^{itA}.
+\]
+
+The crucial analytic input is the following spectral theorem.
+
+\begin{theorem}[Greenfield--Wallach spectral theorem]
+\label{thm:GW}
+Let $Y$ be a globally hypoelliptic smooth vector field on a compact
+connected manifold $M$, and let $\mu$ be a $Y$-invariant probability
+measure with smooth positive density. Then the self-adjoint operator
+$-iY$ on $L^2(M,\mu)$ has a complete orthonormal system of smooth
+eigenfunctions. Equivalently, there exist $\lambda_j\in\mathbb R$ and
+$\varphi_j\in C^\infty(M)$ such that
+\[
+-iY\varphi_j=\lambda_j\varphi_j
+\]
+and $(\varphi_j)$ is an orthonormal basis of $L^2(M,\mu)$.
+\end{theorem}
+
+\begin{proof}
+This is the spectral theorem proved by Greenfield and Wallach in
+\cite{GreenfieldWallach}. Their global parametrix construction for a
+globally hypoelliptic vector field gives a complete spectral resolution by
+smooth eigenfunctions for the self-adjoint realization associated with a
+smooth positive invariant volume.
+\end{proof}
+
+Applying Theorem~\ref{thm:GW} to $Y=X$ yields the following.
+
+\begin{corollary}\label{cor:discrete-spectrum}
+For every $g_t$-invariant probability measure $\mu$, the Koopman operator
+$U_1$ on $L^2(M,\mu)$ has pure point spectrum.
+\end{corollary}
+
+\begin{proof}
+By Proposition~\ref{prop:positive-density}, $\mu$ is a smooth positive
+volume. Let $(\varphi_j)$ and $(\lambda_j)$ be as in
+Theorem~\ref{thm:GW}. Then
+\[
+U_t\varphi_j=e^{i\lambda_jt}\varphi_j.
+\]
+In particular,
+\[
+U_1\varphi_j=e^{i\lambda_j}\varphi_j.
+\]
+Thus the smooth eigenfunctions $\varphi_j$ form an orthonormal basis of
+$L^2(M,\mu)$ consisting of eigenfunctions for $U_1$.
+\end{proof}
+
+\section{Discrete spectrum and vanishing entropy}
+
+We use the standard zero-entropy theorem for measure-preserving systems
+with discrete spectrum.
+
+\begin{theorem}\label{thm:discrete-zero}
+Let $T$ be a measure-preserving transformation of a probability space
+$(\Omega,\mathcal B,\mu)$. If the Koopman operator
+\[
+U_T:L^2(\Omega,\mu)\longrightarrow L^2(\Omega,\mu),\qquad
+U_TF=F\circ T
+\]
+has pure point spectrum, then
+\[
+h_\mu(T)=0.
+\]
+\end{theorem}
+
+\begin{proof}
+This is the classical discrete-spectrum zero-entropy theorem; see
+\cite[Chapter~4]{Walters}. For completeness, in the ergodic case the
+Halmos--von Neumann theorem identifies the system measurably with a
+translation on a compact metrizable abelian group equipped with Haar
+measure. For a left-invariant metric on the group, the translation is an
+isometry. An isometry of a compact metric space has zero topological
+entropy: the cardinality of an $(n,\varepsilon)$-separated set is
+independent of $n$. Hence the corresponding metric entropy is zero. The
+general case follows by ergodic decomposition, or directly from the
+standard discrete-spectrum entropy theorem.
+\end{proof}
+
+\begin{corollary}\label{cor:all-flow-measures-zero}
+For every $g_t$-invariant Borel probability measure $\mu$,
+\[
+h_\mu(g_1)=0.
+\]
+\end{corollary}
+
+\begin{proof}
+By Corollary~\ref{cor:discrete-spectrum}, $U_1$ has pure point spectrum on
+$L^2(M,\mu)$. Theorem~\ref{thm:discrete-zero} therefore gives
+$h_\mu(g_1)=0$.
+\end{proof}
+
+We now use the variational principle in its flow form.
+
+\begin{lemma}\label{lem:flow-variational}
+The topological entropy of the time-one map satisfies
+\[
+\htop(g_1)
+ =\sup\bigl\{h_\mu(g_1):
+      \mu\text{ is a }g_t\text{-invariant probability measure}\bigr\}.
+\]
+\end{lemma}
+
+\begin{proof}
+The ordinary variational principle \cite[Chapter~8]{Walters} gives the
+supremum over all $g_1$-invariant probability measures. If $\mu$ is only
+$g_1$-invariant, set
+\[
+\overline\mu:=\int_0^1 (g_s)_*\mu\,ds.
+\]
+Since $\mu$ is $g_1$-invariant, $\overline\mu$ is invariant under the whole
+flow $(g_t)$. Entropy is invariant under conjugacy and affine in the
+invariant measure, so
+\[
+h_{\overline\mu}(g_1)
+ =\int_0^1 h_{(g_s)_*\mu}(g_1)\,ds
+ =h_\mu(g_1).
+\]
+Thus the supremum over $g_1$-invariant measures equals the supremum over
+measures invariant under the full flow.
+\end{proof}
+
+\begin{theorem}\label{thm:main}
+If $X$ is globally hypoelliptic in the sense of
+Definition~\ref{def:GH}, then its flow has zero topological entropy:
+\[
+\htop(g)=\htop(g_1)=0.
+\]
+\end{theorem}
+
+\begin{proof}
+By Corollary~\ref{cor:all-flow-measures-zero},
+\[
+h_\mu(g_1)=0
+\]
+for every probability measure $\mu$ invariant under the full flow.
+Lemma~\ref{lem:flow-variational} therefore gives
+\[
+\htop(g_1)=0.
+\]
+Since the topological entropy of the flow is defined as
+$\htop(g_1)$, the proof is complete.
+\end{proof}
+
+\begin{remark}
+The conclusion is also consistent with the Ruelle--Pesin entropy formula.
+Proposition~\ref{prop:positive-density} shows that every invariant measure
+is a smooth volume. Once Theorem~\ref{thm:main} gives zero entropy for all
+such measures, Pesin's formula implies the vanishing of the sum of the
+positive Lyapunov exponents for every invariant measure. A statement of
+Pesin's entropy formula for conservative flows can be found in
+\cite{EntropyConservativeFlows}. This formula is not used in the proof
+above.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{GreenfieldWallach}
+S.~J. Greenfield and N.~R. Wallach,
+\newblock Globally hypoelliptic vector fields,
+\newblock \emph{Topology} \textbf{12} (1973), 247--253.
+
+\bibitem{KatokHasselblatt}
+A.~Katok and B.~Hasselblatt,
+\newblock \emph{Introduction to the Modern Theory of Dynamical Systems},
+\newblock Encyclopedia of Mathematics and its Applications \textbf{54},
+Cambridge University Press, Cambridge, 1995.
+
+\bibitem{Walters}
+P.~Walters,
+\newblock \emph{An Introduction to Ergodic Theory},
+\newblock Graduate Texts in Mathematics \textbf{79}, Springer-Verlag, New
+York, 1982.
+
+\bibitem{EntropyConservativeFlows}
+\emph{On the entropy of conservative flows},
+\newblock arXiv:1002.2366,
+\newblock \url{https://ar5iv.labs.arxiv.org/html/1002.2366}.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,372 @@
+
+
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,enumitem}
+\usepackage[margin=1in]{geometry}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\Teich}{Teich}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\D}{\mathcal D}
+\newcommand{\Sph}{\mathbb S^2}
+\newcommand{\C}{\mathbb C}
+\newcommand{\PP}{\mathbb P^1}
+
+\title{A twisting curve for the deformation space of quadratic rational maps with a critical point of period four}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let \(f:\Sph\to\Sph\) be a quadratic rational map with critical points \(c_1,c_2\). Assume that \(c_1\) has exact period \(4\), and put
+\[
+a_j=f^{\circ j}(c_1)\quad (j=0,1,2,3),\qquad v=f(c_2),
+\]
+with \(v\notin\{a_0,a_1,a_2,a_3\}\). Let
+\[
+A=\{a_0,a_1,a_2,a_3\},\qquad B=A\cup\{v\},
+\]
+and let
+\[
+\D_f=\{\tau\in \Teich(B): f^*(\tau)=i_*(\tau)\}
+\]
+be the associated deformation space. We explicitly describe a simple closed curve \(\gamma\subset(\Sph,B)\) such that a Dehn twist about \(\gamma\) preserves \(\D_f\), and such that the induced action on the set of connected components of \(\D_f\) has infinite orbits. In fact, with the curve described below, the first power of the Dehn twist already preserves \(\D_f\).
+\end{abstract}
+
+\section{Notation and statement of the result}
+
+Let
+\[
+a_0=c_1,\qquad a_1=f(c_1),\qquad a_2=f^{\circ2}(c_1),\qquad a_3=f^{\circ3}(c_1),
+\]
+so that
+\[
+f(a_j)=a_{j+1}\quad(\mathrm{mod}\ 4),
+\]
+and \(a_0\) is a critical point. Let \(c_2\) be the other critical point and let
+\[
+v=f(c_2).
+\]
+By hypothesis,
+\[
+v\notin A=\{a_0,a_1,a_2,a_3\}.
+\]
+The set of critical values is
+\[
+V(f)=\{a_1,v\}.
+\]
+
+We work with Teichm\"uller spaces of marked spheres. Thus \(\Teich(B)\) is the Teichm\"uller space of the sphere with marked set \(B\), and \(i_*:\Teich(B)\to \Teich(A)\) is the forgetful map. The pullback map induced by the topological branched cover \(f\) is
+\[
+f^*:\Teich(B)\longrightarrow \Teich(A).
+\]
+The deformation space is
+\[
+\D_f=\{\tau\in \Teich(B): f^*(\tau)=i_*(\tau)\}.
+\]
+
+The following theorem is the main result of this note.
+
+\begin{theorem}\label{thm:main}
+There is a simple closed curve
+\[
+\gamma\subset \Sph\setminus B
+\]
+with the following properties.
+\begin{enumerate}[label=(\roman*)]
+\item The curve \(\gamma\) separates the two ``even'' periodic points
+\[
+E=\{a_0,a_2\}
+\]
+from the three points
+\[
+O=\{a_1,a_3,v\}.
+\]
+It is chosen with the additional lifting property described in Definition~\ref{def:gamma}.
+\item If \(T_\gamma\in \Mod(\Sph,B)\) denotes the Dehn twist about \(\gamma\), then
+\[
+T_\gamma(\D_f)=\D_f.
+\]
+In particular, a power of \(T_\gamma\) preserves \(\D_f\); indeed the first power already does.
+\item The permutation of the set \(\pi_0(\D_f)\) of connected components induced by \(T_\gamma\) has infinite orbits. More precisely, if \(C\) is any connected component of \(\D_f\), then
+\[
+T_\gamma^n(C)\neq C\qquad\text{for every }n\neq 0.
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}
+If one uses conventions in which Teichm\"uller spaces are marked by unordered sets and mapping classes are required to be pure, then one may have to replace \(T_\gamma\) by a positive power in order to obtain an element of the relevant pure mapping class group. The proof below is written for the usual pure Dehn twist, which is supported in an annulus disjoint from \(B\) and fixes every point of \(B\).
+\end{remark}
+
+\section{Preliminaries on pullbacks of Dehn twists}
+
+We record two standard facts. References include Farb--Margalit \cite{FM} and Imayoshi--Taniguchi \cite{IT}.
+
+\subsection{Functoriality}
+
+Let \(h\in \Mod(\Sph,B)\). The action of \(h\) on \(\Teich(B)\) is functorial with respect to both \(f^*\) and \(i_*\). More precisely, there are induced mapping classes
+\[
+f^*(h)\in \Mod(\Sph,A),\qquad i_*(h)\in \Mod(\Sph,A)
+\]
+such that
+\[
+f^*\circ h=f^*(h)\circ f^*,\qquad i_*\circ h=i_*(h)\circ i_*.
+\]
+Here \(f^*(h)\) is obtained by lifting \(h\) through the branched cover \(f\), and then forgetting all points of \(f^{-1}(B)\setminus A\). The following elementary criterion will be used repeatedly.
+
+\begin{lemma}\label{lem:criterion}
+Suppose \(h\in \Mod(\Sph,B)\) satisfies
+\[
+f^*(h)=i_*(h)\quad\text{in }\Mod(\Sph,A).
+\]
+Then
+\[
+h(\D_f)=\D_f.
+\]
+\end{lemma}
+
+\begin{proof}
+Let \(\tau\in\D_f\). Then
+\[
+f^*(h\tau)=f^*(h)(f^*\tau)=f^*(h)(i_*\tau),
+\]
+while
+\[
+i_*(h\tau)=i_*(h)(i_*\tau).
+\]
+If \(f^*(h)=i_*(h)\), these are equal, so \(h\tau\in\D_f\). Since \(h\) is invertible, equality follows.
+\end{proof}
+
+\subsection{Dehn twists and their pullbacks}
+
+Let \(\gamma\subset\Sph\setminus B\) be an essential simple closed curve. Let
+\[
+f^{-1}(\gamma)=\delta_1\cup\cdots\cup\delta_r
+\]
+be the decomposition into simple closed curves, and let \(d_j\) be the degree with which \(f:\delta_j\to\gamma\) wraps. The standard pullback formula for Dehn twists says that, after forgetting points not in \(A\),
+\[
+f^*(T_\gamma)=\prod_{j=1}^r T_{\delta_j}^{\,d_j}
+\]
+in \(\Mod(\Sph,A)\), where any factor which is peripheral in \((\Sph,A)\) acts trivially on \(\Teich(A)\). See \cite[Chapter 3]{FM} for the unbranched case; the branched case is obtained by applying the same argument on the complement of the critical values and extending over the critical points.
+
+We shall use the following special case.
+
+\begin{lemma}\label{lem:twist-pullback}
+Let \(\gamma\) be a simple closed curve in \((\Sph,B)\) bounding a disk \(D\subset\Sph\) which contains no critical value of \(f\). Then \(f^{-1}(D)\) is a disjoint union of two disks, each mapped homeomorphically onto \(D\). If one of the boundary components of \(f^{-1}(D)\) is a curve \(\delta\) and the other is peripheral in \((\Sph,A)\), then
+\[
+f^*(T_\gamma)=T_\delta
+\]
+in \(\Mod(\Sph,A)\).
+\end{lemma}
+
+\section{The curve \(\gamma\)}
+
+We now construct the curve appearing in Theorem~\ref{thm:main}.
+
+\subsection{A lifting property}
+
+Let
+\[
+E=\{a_0,a_2\},\qquad O=\{a_1,a_3,v\}.
+\]
+The critical values of \(f\) are \(a_1\) and \(v\), both of which lie in \(O\). Hence any disk \(D_E\) whose boundary separates \(E\) from \(O\) contains no critical value.
+
+Because \(D_E\) contains no critical value, the restriction
+\[
+f:f^{-1}(D_E)\longrightarrow D_E
+\]
+is an unbranched two-sheeted covering. Consequently \(f^{-1}(D_E)\) is a disjoint union of two disks, each mapped homeomorphically onto \(D_E\).
+
+Now
+\[
+f^{-1}(a_0)\cap A=\{a_3\},\qquad f^{-1}(a_2)\cap A=\{a_1\}.
+\]
+There are two possible ways in which the two points \(a_1\) and \(a_3\) can be distributed among the two components of \(f^{-1}(D_E)\): they may lie in the same component, or in different components. By changing the framing of the boundary curve \(\gamma=\partial D_E\) (equivalently, by twisting the disk \(D_E\) relative to the critical values in \(O\)), one can arrange that \(a_1\) and \(a_3\) lie in the same component. This is a standard monodromy argument for a two-sheeted cover: a loop around one critical value interchanges the two sheets.
+
+We fix once and for all such a framing.
+
+\begin{definition}\label{def:gamma}
+Let \(\gamma\subset\Sph\setminus B\) be a simple closed curve separating
+\[
+E=\{a_0,a_2\}
+\]
+from
+\[
+O=\{a_1,a_3,v\}
+\]
+with the following property. If \(D_E\) is the component of \(\Sph\setminus\gamma\) containing \(E\), then the two points
+\[
+a_1,\ a_3\in f^{-1}(D_E)\cap A
+\]
+lie in the same connected component of \(f^{-1}(D_E)\).
+
+Equivalently, there is a simple closed curve \(\delta\subset\Sph\setminus f^{-1}(B)\) such that
+\[
+\delta\ \text{separates }\{a_1,a_3\}\text{ from }\{a_0,a_2,c_2\},
+\]
+and
+\[
+f(\delta)=\gamma,
+\]
+with \(f|_{\delta}\) a homeomorphism.
+\end{definition}
+
+\begin{remark}
+The curve \(\gamma\) is not merely any curve separating \(E\) from \(O\); its framing is specified by the lifting condition in Definition~\ref{def:gamma}. This framing is essential for the infinite-orbit statement.
+\end{remark}
+
+\section{The twist about \(\gamma\) preserves \(\D_f\)}
+
+Let \(T_\gamma\) be the Dehn twist about the curve \(\gamma\) of Definition~\ref{def:gamma}. We prove that \(T_\gamma\) preserves \(\D_f\).
+
+Let \(e\subset\Sph\setminus A\) be the simple closed curve obtained from \(\gamma\) by forgetting the point \(v\). Thus \(e\) separates
+\[
+\{a_0,a_2\}
+\]
+from
+\[
+\{a_1,a_3\}.
+\]
+In \((\Sph,A)\), the curve \(\delta\) from Definition~\ref{def:gamma} also separates \(\{a_1,a_3\}\) from \(\{a_0,a_2\}\). Hence \(\delta\) and \(e\) define the same isotopy class in \((\Sph,A)\), up to orientation.
+
+By construction, the disk \(D_E\) bounded by \(\gamma\) and containing \(E\) contains no critical value. Hence \(f^{-1}(D_E)\) is the disjoint union of two disks, each mapped homeomorphically onto \(D_E\). One of these disks is bounded by \(\delta\) and contains \(a_1,a_3\). The other disk contains no point of \(A\). Therefore, by Lemma~\ref{lem:twist-pullback},
+\[
+f^*(T_\gamma)=T_e
+\]
+in \(\Mod(\Sph,A)\).
+
+On the other hand, forgetting \(v\) sends \(\gamma\) to \(e\), so
+\[
+i_*(T_\gamma)=T_e.
+\]
+Thus
+\[
+f^*(T_\gamma)=i_*(T_\gamma).
+\]
+Lemma~\ref{lem:criterion} now gives
+\[
+T_\gamma(\D_f)=\D_f.
+\]
+
+This proves part (ii) of Theorem~\ref{thm:main}.
+
+\section{The infinite orbit on connected components}
+
+It remains to prove that \(T_\gamma\) acts on \(\pi_0(\D_f)\) with infinite orbits.
+
+The proof uses the standard ``twisting number'' invariant for deformation spaces of branched covers. We give the argument in the present special case.
+
+\subsection{The torsor of framed curves}
+
+Let \(\mathcal F\) be the set of framed isotopy classes of simple closed curves in \((\Sph,B)\) which separate
+\[
+E=\{a_0,a_2\}
+\]
+from
+\[
+O=\{a_1,a_3,v\}.
+\]
+Here a framed isotopy class means an isotopy class together with its annular twisting relative to the two complementary regions. This is the usual \(\mathbb Z\)-torsor associated to the annulus determined by the partition \(E\sqcup O\). The Dehn twist \(T_\gamma\) acts on \(\mathcal F\) by translation by \(+1\) (after choosing the orientation of \(\gamma\) appropriately).
+
+For each \(\tau\in\D_f\), there is a rational map \(g_\tau\) realizing \(\tau\) and combinatorially equivalent to \(f\). More explicitly, by the equality
+\[
+f^*(\tau)=i_*(\tau),
+\]
+and Thurston's realization theorem (see e.g. McMullen \cite{McM}), there is a quadratic rational map
+\[
+g_\tau:\PP^1\longrightarrow\PP^1
+\]
+and homeomorphisms making the usual Thurston equivalence diagram commute. The map \(g_\tau\) has a distinguished critical point of period four, with orbit labelled by \(A\), and a second critical value labelled by \(v\).
+
+Using the same topological construction that produced \(\gamma\) from \(f\), the map \(g_\tau\) determines a framed curve
+\[
+\gamma_\tau^{\mathrm{dyn}}\in\mathcal F.
+\]
+Namely, \(\gamma_\tau^{\mathrm{dyn}}\) is the unique framed curve separating the even periodic points of \(g_\tau\) from the odd periodic points together with the second critical value, whose lift under \(g_\tau\) has a component separating the two odd periodic points from the two even periodic points and the second critical point.
+
+On the other hand, the marking of \(\tau\in\Teich(B)\) determines another element of \(\mathcal F\), namely the marked image of the reference curve \(\gamma\). Denote this element by
+\[
+\gamma_\tau^{\mathrm{mark}}\in\mathcal F.
+\]
+
+Since \(\mathcal F\) is a \(\mathbb Z\)-torsor, the difference
+\[
+\kappa(\tau):=\gamma_\tau^{\mathrm{dyn}}-\gamma_\tau^{\mathrm{mark}}\in\mathbb Z
+\]
+is a well-defined integer.
+
+\begin{lemma}\label{lem:kappa}
+The function
+\[
+\kappa:\D_f\longrightarrow\mathbb Z
+\]
+is locally constant. Moreover,
+\[
+\kappa(T_\gamma\tau)=\kappa(\tau)+1
+\]
+for every \(\tau\in\D_f\).
+\end{lemma}
+
+\begin{proof}
+The rational maps \(g_\tau\), their critical points, and the relevant Thurston equivalences vary holomorphically (hence continuously) in local families in \(\D_f\). The framed curve \(\gamma_\tau^{\mathrm{dyn}}\) can therefore be chosen locally continuously. The set \(\mathcal F\) is discrete, so the integer \(\kappa(\tau)\) is locally constant.
+
+Now apply \(T_\gamma\) to \(\tau\). The underlying unmarked rational map \(g_\tau\) is unchanged, because mapping class group elements act trivially on moduli. Hence \(\gamma_\tau^{\mathrm{dyn}}\) is unchanged. But the marking is precomposed with \(T_\gamma^{-1}\), so \(\gamma_\tau^{\mathrm{mark}}\) is shifted by \(-1\) in the \(\mathbb Z\)-torsor \(\mathcal F\). Equivalently,
+\[
+\kappa(T_\gamma\tau)=\kappa(\tau)+1.
+\]
+This proves the lemma.
+\end{proof}
+
+\subsection{Conclusion of the proof}
+
+Because \(\kappa\) is locally constant, it is constant on every connected component of \(\D_f\). Let \(C\) be a connected component, and suppose that for some \(n\neq0\) we had
+\[
+T_\gamma^n(C)=C.
+\]
+Choose \(\tau\in C\). Then \(T_\gamma^n\tau\in C\), so by Lemma~\ref{lem:kappa},
+\[
+\kappa(T_\gamma^n\tau)=\kappa(\tau)+n.
+\]
+But \(\kappa\) is constant on \(C\), hence
+\[
+\kappa(T_\gamma^n\tau)=\kappa(\tau).
+\]
+Therefore \(n=0\), a contradiction. Thus no nonzero power of \(T_\gamma\) fixes a connected component of \(\D_f\). In particular, for every component \(C\), the orbit
+\[
+\{T_\gamma^n(C):n\in\mathbb Z\}
+\]
+is infinite.
+
+This completes the proof of Theorem~\ref{thm:main}. \qed
+
+\begin{thebibliography}{9}
+
+\bibitem{FM}
+B.~Farb and D.~Margalit,
+\emph{A Primer on Mapping Class Groups},
+Princeton Mathematical Series, vol.~49, Princeton University Press, 2012.
+
+\bibitem{IT}
+Y.~Imayoshi and M.~Taniguchi,
+\emph{An Introduction to Teichm\"uller Spaces},
+Springer, 1992.
+
+\bibitem{McM}
+C.~T.~McMullen,
+\emph{Complex Dynamics and Renormalization},
+Annals of Mathematics Studies, vol.~135, Princeton University Press, 1994.
+
+\end{thebibliography}
+
+\end{document}

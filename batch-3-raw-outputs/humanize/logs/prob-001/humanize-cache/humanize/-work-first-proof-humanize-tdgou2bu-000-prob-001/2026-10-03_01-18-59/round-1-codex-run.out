@@ -1,0 +1,13 @@
+The review result is written and the goal tracker reconciled. Final assessment:
+
+## Review summary
+
+**Round 1 claims vs. reality** — I verified the worker's six repair items (B-1..B-6) line by line against the R0 directive, recompiled myself (0 errors, 0 undefined references, 14/16 pages), and grepped for every forbidden artifact (all clean).
+
+**Verified sound.** Sections 2–3 were fully re-verified at proof level after the repairs — valuative collapse (incl. the rewritten Step 2 of Lemma `lem:N`), f.p. subsection, surjective-cover w.l.o.g., atomicity, normal form, kernel criterion, probes, and the descent theorem including its endgame. Notably, the B-2 repair is *stronger* than the R0 directive's prescription (the `w := δ − s`, `0 ≤ nγ ≤ w` argument works even when H₁ is discrete or non-archimedean — sharpness of V is the essential ingredient), and I ratified it explicitly with a one-step abstention check. No "same class" reasoning remains anywhere.
+
+**New findings (Section 4).** `lem:sieve(i)/(ii)` overclaim — the terrace induction does not restrict to level-exactness, and equality of K-exact values needs a depth-order support criterion (B-8). `lem:sandwich`'s coverage and refusal-preservation clauses rest on unsupported sub-claims (B-9). Section 4's filtration/sieve/simplicial machinery is never spelled out (B-7; no mathematical error found, but the section is not yet line-by-line auditable under AC-1).
+
+**Goal tracker** — I reconciled it myself: B-7/B-8/B-9 added to Blocking, Q-1 replaced by the structured SPINE (Steps 0–4: nerve-complex foundations → generic filter lemma by depth → sandwich/refinement isolation → prop:vanish rewrite as references), Q-2 closed, queued items (q-complex-foundations, q-d-lemma, q-restriction-lemma, q-accounting, q0-*, q-b2-microtypo, Q-3) recorded, and a Plan Evolution Log entry added. ACs: 3.5/5 addressed | Forgotten items: 0 | Unjustified deferrals: 0.
+
+**Mainline Progress Verdict: ADVANCED** — the R0 blocking findings were all correctly resolved and Sections 2–3 now verify; the remaining work (the Round-2 SPINE) converges the Section-4 endgame onto one genuinely new support lemma plus controllable bookkeeping. COMPLETE was not output; the review was written to `.humanize/rlcr/2026-10-03_01-18-59/round-1-review-result.md`.

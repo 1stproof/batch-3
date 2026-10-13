@@ -1,0 +1,435 @@
+```latex
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+
+\newcommand{\Sph}{\mathbb S^2}
+\newcommand{\Chat}{\widehat{\mathbb C}}
+\newcommand{\Teich}{\mathcal T}
+\newcommand{\D}{\mathcal D}
+\newcommand{\Mod}{\operatorname{Mod}}
+\newcommand{\PMod}{\operatorname{PMod}}
+\newcommand{\id}{\operatorname{id}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{A Dehn twist acting with an infinite orbit on a deformation space}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Statement and result}
+
+Write
+\[
+p_0=c_1,\qquad p_1=f(c_1),\qquad p_2=f^{\circ 2}(c_1),\qquad
+p_3=f^{\circ 3}(c_1).
+\]
+Thus \(f(p_3)=p_0\), the four points \(p_0,p_1,p_2,p_3\) are
+distinct, and
+\[
+V(f)=\{p_1,v\},\qquad v=f(c_2).
+\]
+Set
+\[
+A=\{p_0,p_1,p_2,p_3\},
+\qquad
+B=A\cup\{v\}.
+\]
+
+Choose an embedded arc
+\[
+\alpha\subset \Sph\setminus\{p_0,p_1,p_3\}
+\]
+joining \(v\) to \(p_2\), and let \(\Delta\) be a closed regular
+neighborhood of \(\alpha\) whose boundary is disjoint from \(B\).
+Thus
+\[
+\Delta\cap B=\{v,p_2\}.
+\]
+Put
+\[
+\gamma=\partial\Delta.
+\]
+Equivalently, \(\gamma\) is a simple closed curve in
+\(\Sph\setminus B\) separating
+\[
+\{v,p_2\}
+\quad\text{from}\quad
+\{p_0,p_1,p_3\}.
+\]
+Both complementary components contain at least two points of \(B\), so
+\(\gamma\) is essential and nonperipheral.
+
+Let \(T_\gamma\) denote the positive Dehn twist about \(\gamma\).
+
+\begin{theorem}\label{thm:main}
+The mapping class \(T_\gamma^2\) preserves \(\D_f\).  Moreover,
+for every connected component \(C\) of \(\D_f\), the components
+\[
+T_\gamma^{2n}(C),\qquad n\in\mathbb Z,
+\]
+are pairwise distinct.  Hence the action of \(T_\gamma^2\) on
+\(\pi_0(\D_f)\) has infinite orbits.
+\end{theorem}
+
+The remainder of this note proves Theorem \ref{thm:main}.
+
+\section{The inverse image of \(\gamma\)}
+
+We use the following elementary proper-map version of the
+Riemann--Hurwitz formula: if \(F:X\to Y\) is a proper degree-\(d\)
+branched cover of compact surfaces, then
+\[
+\chi(X)=d\,\chi(Y)-\sum_{x\in X}(e_x-1),
+\]
+where \(e_x\) is the local degree.
+
+\begin{lemma}\label{lem:preimage-disk}
+The full preimage \(\widetilde\Delta:=f^{-1}(\Delta)\) is a closed
+disk.  Its boundary
+\[
+\widetilde\gamma:=f^{-1}(\gamma)
+\]
+is connected and maps to \(\gamma\) with degree \(2\).
+\end{lemma}
+
+\begin{proof}
+The disk \(\Delta\) contains exactly one critical value, namely
+\(v=f(c_2)\); the other critical value is \(p_1\notin\Delta\).
+Thus the only ramification point in \(f^{-1}(\Delta)\) is \(c_2\),
+with local degree \(2\).
+
+We first show that \(f^{-1}(\Delta)\) is connected.  Every
+component of its boundary is a covering of \(\gamma\), and the sum
+of the degrees of these coverings is \(2\), the degree of \(f\).
+If \(f^{-1}(\Delta)\) were disconnected, it would therefore have
+exactly two boundary components, distributed between two components,
+each mapping to \(\gamma\) with degree \(1\).  Each such component
+would be a disk mapped properly of degree \(1\) onto \(\Delta\),
+hence would contain no ramification point.  This contradicts the
+fact that \(c_2\in f^{-1}(\Delta)\).  Hence \(f^{-1}(\Delta)\) is
+connected.
+
+Riemann--Hurwitz now gives
+\[
+\chi(f^{-1}(\Delta))
+   =2\chi(\Delta)-(2-1)
+   =2-1=1.
+\]
+A connected planar compact surface of Euler characteristic \(1\) is
+a closed disk.  Consequently its boundary is connected.  Since the
+sum of the boundary mapping degrees is \(2\), the unique component
+\(\widetilde\gamma\) covers \(\gamma\) with degree \(2\).
+\end{proof}
+
+\begin{lemma}\label{lem:lift-peripheral}
+The disk \(\widetilde\Delta=f^{-1}(\Delta)\) contains exactly one
+point of \(B\), namely \(p_1=f(c_1)\).  In particular,
+\(\widetilde\gamma\) is peripheral in \((\Sph,B)\).
+\end{lemma}
+
+\begin{proof}
+Since \(v\) is a critical value of multiplicity \(2\) at \(c_2\),
+\[
+f^{-1}(v)=\{c_2\}.
+\]
+Moreover \(c_2\notin A\): indeed, if \(c_2=p_j\) for some \(j\), then
+\(v=f(c_2)=p_{j+1}\), with indices modulo \(4\), contrary to the
+assumption that \(v\) is not in the \(c_1\)-cycle.  Thus \(c_2\)
+is not a marked point.
+
+Because \(p_2\) is neither \(p_1\) nor \(v\), it is a regular value.
+Hence \(f^{-1}(p_2)\) consists of two distinct points.  One of them
+is \(p_1\), since \(f(p_1)=p_2\); the other is unmarked.  Therefore
+the only marked point in \(f^{-1}(\Delta)\) is \(p_1\).
+
+It follows that \(\widetilde\gamma=\partial\widetilde\Delta\)
+bounds a disk containing exactly one point of \(B\), so it is
+peripheral.
+\end{proof}
+
+\section{Lifting the square of the twist}
+
+Let \(N\) be a small closed annular neighborhood of \(\gamma\).
+Since \(\gamma\) has one preimage component covering it with degree
+\(2\), \(f^{-1}(N)\) is an annular neighborhood of
+\(\widetilde\gamma\), and
+\[
+f:f^{-1}(N)\longrightarrow N
+\]
+is a degree-\(2\) covering of annuli.
+
+\begin{lemma}\label{lem:twist-lift}
+The square \(T_\gamma^2\) admits a lift under \(f\) which is
+isotopic relative to \(B\) to the identity.  More precisely,
+\[
+f\circ T_{\widetilde\gamma}
+   =T_\gamma^2\circ f
+\]
+up to isotopy relative to the respective marked sets, and
+\(T_{\widetilde\gamma}\) is isotopic to the identity relative to
+\(B\).
+\end{lemma}
+
+\begin{proof}
+Use the standard annulus model
+\[
+N=\{(\theta,t):\theta\in\mathbb R/2\pi\mathbb Z,\ 0\le t\le1\},
+\]
+and let the double cover be \((\vartheta,t)\mapsto(2\vartheta,t)\).
+A twist on \(N\) is represented by
+\[
+(\theta,t)\longmapsto(\theta+2\pi t,t).
+\]
+Its square is
+\[
+(\theta,t)\longmapsto(\theta+4\pi t,t),
+\]
+which lifts to
+\[
+(\vartheta,t)\longmapsto(\vartheta+2\pi t,t).
+\]
+The latter is one full twist about \(\widetilde\gamma\).  Hence a
+lift of \(T_\gamma^2\) is \(T_{\widetilde\gamma}\).
+
+By Lemma \ref{lem:lift-peripheral}, \(\widetilde\gamma\) bounds a
+disk containing only the marked point \(p_1\).  Therefore
+\(T_{\widetilde\gamma}\) is isotopic to the identity relative to
+\(B\).
+\end{proof}
+
+\begin{lemma}\label{lem:forget-peripheral}
+After forgetting \(v\), the curve \(\gamma\) becomes peripheral
+around \(p_2\).  Consequently the mapping class induced by
+\(T_\gamma^2\) on \(\Teich(A)\) is trivial.
+\end{lemma}
+
+\begin{proof}
+In the sphere marked only by \(A\), the point \(v\) is no longer
+marked.  The disk \(\Delta\) may then be isotoped across \(v\)
+without crossing any point of \(A\).  Thus \(\gamma\) is isotopic
+relative to \(A\) to a small loop around \(p_2\).  A Dehn twist
+about such a peripheral curve is trivial in \(\Mod(A)\).
+\end{proof}
+
+\section{Preservation of the deformation space}
+
+We use the following standard naturality property of the Teichm\"uller
+pullback.  If \(h\) is a homeomorphism of \((\Sph,B)\) and
+\(\widetilde h\) is a lift under \(f\), so that
+\[
+f\circ\widetilde h=h\circ f,
+\]
+then the induced actions on Teichm\"uller space satisfy
+\[
+f^*(h\cdot\tau)=\widetilde h\cdot f^*(\tau),
+\]
+up to the conventional choice of left or right mapping-class action.
+Since all twists below act trivially at the relevant marked level,
+the convention is immaterial.
+
+\begin{proposition}\label{prop:preservation}
+For every \(\tau\in\D_f\),
+\[
+f^*(T_\gamma^2\cdot\tau)
+=i_*(T_\gamma^2\cdot\tau).
+\]
+Hence \(T_\gamma^2(\D_f)=\D_f\).
+\end{proposition}
+
+\begin{proof}
+By Lemma \ref{lem:twist-lift}, a lift of \(T_\gamma^2\) under \(f\)
+is isotopic relative to \(B\) to the identity.  Therefore it acts
+trivially on Teichm\"uller space, and naturality gives
+\[
+f^*(T_\gamma^2\cdot\tau)=f^*(\tau).
+\]
+
+On the other hand, Lemma \ref{lem:forget-peripheral} says that the
+class induced by \(T_\gamma^2\) after forgetting \(v\) is trivial in
+\(\Mod(A)\).  Since the forgetful map is equivariant,
+\[
+i_*(T_\gamma^2\cdot\tau)=i_*(\tau).
+\]
+
+Because \(\tau\in\D_f\), we have \(f^*(\tau)=i_*(\tau)\), and hence
+\[
+f^*(T_\gamma^2\cdot\tau)=i_*(T_\gamma^2\cdot\tau).
+\]
+Thus \(T_\gamma^2(\D_f)\subset\D_f\).  Applying the same argument
+to \(T_\gamma^{-2}\), whose lift is a negative peripheral twist,
+gives the reverse inclusion.
+\end{proof}
+
+\section{Component separation}
+
+We now use the standard covering description of deformation spaces
+and the rigidity of marked self-conjugacies.  The relevant general
+results are the path-lifting theorem for deformation spaces and the
+McMullen--Sullivan description of deck transformations by
+quasiconformal self-conjugacies; see
+\cite{McMullenSullivan}.  The relevant absence of invariant line
+fields is in \cite[Chapter 3]{McMullenBook}.
+
+\begin{lemma}[Monodromy criterion]\label{lem:monodromy}
+Let \(C\) be a component of \(\D_f\), and let \(h\) be a pure mapping
+class of \((\Sph,B)\) such that \(h(C)=C\).  Then \(h\) is represented
+by a quasiconformal self-conjugacy of a rational map in the moduli
+image of \(\D_f\), fixing \(B\) pointwise.
+\end{lemma}
+
+\begin{proof}
+Choose \(\tau_0\in C\).  Since \(h(C)=C\), there is a path
+\(\tau_t\) in \(C\) from \(\tau_0\) to \(h\cdot\tau_0\).
+Projecting to moduli space gives a loop of conjugacy classes of
+quadratic rational maps in the prescribed stratum.
+
+By the deformation-space path-lifting theorem, this path is
+represented by a continuous family of rational maps \(R_t\) and
+quasiconformal conjugacies
+\[
+h_t:f\longrightarrow R_t
+\]
+preserving the labeled points of \(B\).  Normalize the family by
+fixing three points of the \(c_1\)-cycle.  Since the projected path
+is closed, the normalized endpoint maps satisfy \(R_1=R_0=:R\).
+
+The endpoint markings differ by \(h\).  Hence, after changing the
+endpoint representative by the corresponding isotopy, the
+composition
+\[
+k=h_0^{-1}\circ h_1
+\]
+satisfies
+\[
+k\circ R=R\circ k
+\]
+and fixes the marked set \(B\).  Its isotopy class relative to \(B\)
+is the class of \(h\) or of \(h^{-1}\), depending on the chosen
+action convention.
+\end{proof}
+
+\begin{lemma}[Rigid marked centralizer]\label{lem:rigid-centralizer}
+Let \(R\) be a quadratic rational map satisfying the hypotheses in
+the statement of Theorem \ref{thm:main}.  If \(k\) is a
+quasiconformal homeomorphism satisfying
+\[
+k\circ R=R\circ k,
+\qquad k|_B=\id_B,
+\]
+then \(k\) is isotopic to the identity relative to \(B\).
+\end{lemma}
+
+\begin{proof}[Proof outline and citation]
+This is the marked version of the standard rigidity theorem for
+quasiconformal centralizers; see the deformation-theoretic
+description of self-conjugacies in \cite{McMullenSullivan}.  We
+indicate the dynamical steps.
+
+Let \(\mu_k\) be the Beltrami coefficient of \(k\).  Since \(k\)
+commutes with \(R\), the measurable conformal structure determined
+by \(\mu_k\) is \(R\)-invariant.  McMullen's invariant-line-field
+theorem \cite[Chapter 3]{McMullenBook} implies that an invariant
+Beltrami field on the Julia set is zero except in the flexible
+Latt\'e case.  A Latt\'e map has no periodic critical point, so the
+present map is not Latt\'e; therefore \(\mu_k=0\) on the Julia set.
+
+The remaining invariant Beltrami field is supported on the Fatou
+set.  The McMullen--Sullivan straightening theorem on Fatou
+components says that such a self-conjugacy is isotopic to a
+conformal self-conjugacy once the marked set fixes a periodic
+critical cycle and an additional critical value not belonging to
+that cycle.  The latter condition removes the remaining rotations
+and translations in the Fatou coordinates.  In the exceptional
+power-map case, both critical values belong to one cycle of length
+at most \(2\), which is incompatible with the exact period-\(4\)
+cycle of \(c_1\) and the assumption on \(v\).
+
+Thus \(k\) is isotopic relative to \(B\) to a M\"obius
+transformation \(M\).  But \(M\) fixes the four distinct points of
+\(A\), and a M\"obius transformation fixing three points is the
+identity.  Hence \(k\) is isotopic to the identity relative to
+\(B\).
+\end{proof}
+
+\begin{proposition}\label{prop:no-component-stabilized}
+No nonzero power of \(T_\gamma^2\) stabilizes a component of
+\(\D_f\).
+\end{proposition}
+
+\begin{proof}
+Suppose that for some \(m\neq0\),
+\[
+T_\gamma^{2m}(C)=C.
+\]
+By Lemma \ref{lem:monodromy}, the mapping class \(T_\gamma^{2m}\)
+is represented by a quasiconformal self-conjugacy fixing \(B\).
+By Lemma \ref{lem:rigid-centralizer}, this mapping class is trivial.
+
+On the other hand, \(\gamma\) is essential in the sphere with five
+marked points: one complementary disk contains \(\{v,p_2\}\), and
+the other contains \(\{p_0,p_1,p_3\}\).  A Dehn twist about an
+essential simple closed curve has infinite order in the mapping
+class group; see \cite[Chapter 3]{FarbMargalit}.  Consequently
+\(T_\gamma^{2m}\) is nontrivial for every \(m\neq0\), a
+contradiction.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:main}]
+Proposition \ref{prop:preservation} shows that \(T_\gamma^2\)
+preserves \(\D_f\).  Therefore it permutes its connected components.
+If
+\[
+T_\gamma^{2m}(C)=T_\gamma^{2n}(C),
+\]
+then
+\[
+T_\gamma^{2(m-n)}(C)=C.
+\]
+Proposition \ref{prop:no-component-stabilized} forces \(m=n\).
+Thus all the components \(T_\gamma^{2n}(C)\), \(n\in\mathbb Z\),
+are distinct.
+\end{proof}
+
+\begin{remark}
+The same argument works with \(p_2\) replaced by either \(p_0\) or
+\(p_3\): the enclosed disk then contains \(v\) and one regular value
+of \(f\).  We chose \(p_2=f^{\circ2}(c_1)\) for concreteness.  The
+essential feature is that the inverse disk contains exactly one
+marked point, so the lifted square twist is peripheral, while the
+downstairs twist becomes peripheral after forgetting \(v\).
+\end{remark}
+
+\begin{thebibliography}{99}
+
+\bibitem{FarbMargalit}
+B. Farb and D. Margalit,
+\emph{A Primer on Mapping Class Groups},
+Princeton Mathematical Series, vol.~49,
+Princeton University Press, Princeton, NJ, 2012.
+
+\bibitem{McMullenBook}
+C. T. McMullen,
+\emph{Complex Dynamics and Renormalization},
+Annals of Mathematics Studies, vol.~135,
+Princeton University Press, Princeton, NJ, 1994.
+
+\bibitem{McMullenSullivan}
+C. T. McMullen and D. P. Sullivan,
+Quasiconformal homeomorphisms and dynamics III:
+The Teichm\"uller space of a holomorphic dynamical system,
+\emph{Advances in Mathematics} \textbf{135} (1998), no.~2,
+351--395.
+
+\end{thebibliography}
+
+\end{document}
+```

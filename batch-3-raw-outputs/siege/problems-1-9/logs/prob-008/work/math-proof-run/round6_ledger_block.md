@@ -1,0 +1,16 @@
+PROVED: (N) For any smooth vector field with lambda* > 0 (no GH needed) there is a nonzero u in D'(M) with Xu = kappa u for some real kappa != 0, built from a tilted conformal measure or from a backward exponentially asymptotic pair (Pesin-Ruelle cited) — round5_q6
+PROVED: Under GH there is no nonzero L^1 function W with XW = kappa W (Re kappa != 0), measure solutions are nu-singular, and no nonzero finite-mass closed (n-1)-current satisfies C(L_X beta) = s C(beta) with s real nonzero — round5_q5
+PROVED: Under GH (dim >= 2) there is no Borel V with V o g_t = V - int_0^t b o g_r dr a.e. for each t when b is continuous with mu(b) != 0 for every invariant probability mu — round5_q8
+PROVED: Under GH (dim >= 2), (Lambda) for X and -X implies mu(div_nu X) = 0 for every invariant mu, no zeros, no periodic orbits and minimality, so (Lambda) is strictly stronger than the goal — round5_q1
+PROVED: Under GH, no orbit is heteroclinic from a volume-expanding to a volume-contracting hyperbolic periodic orbit, and every hyperbolic ergodic measure of positive entropy yields (for X or -X) a non-attracting uniformly volume-contracting horseshoe Lambda != M with nu-null stable set, so in dim 3 GH plus positive entropy forces this configuration (cites Ruelle, Katok/Lian-Young, hyperbolic theory) — round5_q7
+PROVED: Under GH every proper hyperbolic basic set is uniformly volume-contracting or uniformly volume-expanding, and Anosov flows are not GH (both modulo cited hyperbolic theory) — round5_q10
+PROVED: Under GH, approximate solutions of Xa = -d + c with L^1-bounded positive parts either give (V) or have negative parts equidistributing to nu-hat (Lemma H), and (V) holds iff sup_t D((g_t)_* nu || nu) < infinity iff its Cesaro means stay bounded (Theorem K) — round5_q9
+PROVED: Under GH (dim >= 2), X has no hyperbolic attracting or repelling zero or periodic orbit — round5_q9
+PROVED: Under GH, bounded flow-invariant Borel functions are nu-a.e. constant, so the pointwise top Lyapunov exponent is nu-a.e. constant — round5_q10
+PROVED: Under GH, a smooth f whose forward correlations against smooth densities are improperly integrable equals -Xu with u smooth, so integrable decay of nu-correlations towards a measure forces unique ergodicity and minimality — round5_q1
+PROVED: GH passes to smooth factors, nilmanifold flows have lambda* = 0, GH flows on compact Gamma\Sol and Gamma\PSL(2,R) have lambda* = 0, and GH on S^1 excludes zeros — round5_q4
+REFUTED: (round-5 sketch step (c)) for dim M >= 3 a closed 1-current vanishing on closed 1-forms is dW for a generalized function W — round5_q7
+RETRACT 39: (Lambda) is no longer the chain's missing statement, being strictly stronger than the goal (round5_q1), and is replaced by (PE); the claim itself is set aside, not refuted
+OPEN: (PE) Under GH every ergodic flow-invariant Borel probability mu has h_mu(g_1) = 0, which with the variational principle gives the [GOAL] — round6_plan
+OPEN: (DH) Under GH the flow has no hyperbolic basic set of positive entropy (equivalently, by entry 44, no non-attracting uniformly volume-contracting horseshoe for X or -X) — round6_plan
+OPEN: (Z0-lin) Under GH every invariant probability mu satisfies mu(div_nu X) = 0 (implies DH via entry 44) — round6_plan

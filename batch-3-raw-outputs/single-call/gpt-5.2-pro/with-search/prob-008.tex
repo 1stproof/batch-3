@@ -1,0 +1,349 @@
+```latex
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Lie}{\mathcal{L}}
+\newcommand{\D}{\mathscr{D}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\htop}{h_{\mathrm{top}}}
+
+\begin{document}
+
+\title{Globally hypoelliptic vector fields have zero topological entropy}
+\author{}
+\date{}
+\maketitle
+
+\begin{abstract}
+Let $X$ be a $C^\infty$ vector field on a compact connected smooth manifold $M$ and $g_t$ its flow.
+Assume that the cohomological operator $\Lie_X$ is globally hypoelliptic on scalar distributions: whenever $u\in\D'(M)$ satisfies $\Lie_X u=f$ with $f\in C^\infty(M)$, then $u$ is a smooth function.
+We prove that the flow $(g_t)$ has zero topological entropy.
+The proof has two ingredients: global hypoellipticity excludes periodic orbits in dimension $\ge 2$, and a theorem of Katok implies that any $C^{1+\alpha}$ diffeomorphism with positive entropy must have periodic points.
+\end{abstract}
+
+\section{Setting}
+
+Let $M$ be a compact connected $C^\infty$ manifold of dimension $n:=\dim M$, and let
+$X\in\mathfrak{X}^\infty(M)$ be a smooth vector field.
+
+\subsection{Completeness of the flow}
+
+\begin{lemma}[Completeness]\label{lem:complete}
+The vector field $X$ is complete: it generates a global $C^\infty$ flow $(g_t)_{t\in\R}$.
+\end{lemma}
+
+\begin{proof}
+By the standard local existence and uniqueness theorem for ODEs on manifolds, through each $p\in M$
+there is a unique maximal integral curve $\gamma_p:(a_p,b_p)\to M$ with $\gamma_p(0)=p$ and
+$\dot{\gamma}_p(t)=X(\gamma_p(t))$.
+
+We show $b_p=+\infty$; the argument for $a_p=-\infty$ is analogous.
+Assume for contradiction that $b_p<+\infty$.
+Choose a sequence $t_k\uparrow b_p$.
+By compactness of $M$, the sequence $\gamma_p(t_k)$ has a convergent subsequence
+(still denoted $\gamma_p(t_k)$) with $\gamma_p(t_k)\to q\in M$.
+
+Fix a chart $(U,\psi)$ about $q$.
+For $k$ large, $\gamma_p(t_k)\in U$.
+In local coordinates, the ODE becomes $\dot{x}=F(x)$ where $F$ is smooth on the open set $\psi(U)\subset\R^n$.
+Choose a compact set $K\Subset \psi(U)$ containing $\psi(q)$.
+For $k$ large enough, $\psi(\gamma_p(t_k))\in K$.
+Since $F$ is smooth, it is Lipschitz on $K$, hence solutions starting in $K$ exist on a uniform time interval
+$[-\varepsilon,\varepsilon]$ (depending only on $K$ and $F$).
+Thus the integral curve through $\gamma_p(t_k)$ extends at least up to time $t_k+\varepsilon$.
+Choosing $k$ so large that $t_k+\varepsilon>b_p$ contradicts maximality of $\gamma_p$.
+Hence $b_p=+\infty$.
+\end{proof}
+
+We denote by $(g_t)_{t\in\R}$ the resulting global flow.
+
+\subsection{Distributions and Lie derivative}
+
+Let $\D'(M)$ denote the space of scalar distributions on $M$, i.e.\ the continuous dual of $C^\infty(M)$
+(with its usual Fr\'echet topology).
+Fix a smooth positive density $\Omega$ on $M$.
+We identify $C^\infty(M)$ with a subspace of $\D'(M)$ via
+\[
+f\in C^\infty(M)\ \longmapsto\ f\Omega\in\D'(M),\qquad
+(f\Omega)(\varphi):=\int_M f\varphi\,\Omega,\quad \varphi\in C^\infty(M).
+\]
+A distribution $u$ is called \emph{smooth} if $u=f\Omega$ for some $f\in C^\infty(M)$.
+
+The Lie derivative $\Lie_X$ acts on test functions by $\Lie_X\varphi=X(\varphi)$.
+On distributions it is defined by duality:
+\begin{equation}\label{eq:LieDist}
+(\Lie_X u)(\varphi):=-u(\Lie_X\varphi),\qquad u\in\D'(M),\ \varphi\in C^\infty(M).
+\end{equation}
+
+\begin{definition}[Global hypoellipticity]\label{def:GH}
+We say that $X$ is \emph{globally hypoelliptic} if for every $u\in\D'(M)$ and $f\in C^\infty(M)$,
+\[
+\Lie_X u = f\Omega \quad\Longrightarrow\quad u \text{ is smooth}.
+\]
+\end{definition}
+
+This is exactly the hypothesis in the problem statement (after the identification of $f$ with $f\Omega$).
+
+\subsection{Topological entropy}
+We use the Bowen--Dinaburg definition of entropy for continuous maps on compact metric spaces.
+If $F:(Y,d)\to(Y,d)$ is continuous and $n\ge 1$, define
+\[
+d_n(x,y):=\max_{0\le k<n} d(F^k x, F^k y).
+\]
+A set $E\subset Y$ is \emph{$(n,\varepsilon)$-separated} if $d_n(x,y)\ge\varepsilon$ for all distinct $x,y\in E$.
+Let $s_n(\varepsilon)$ be the maximum cardinality of an $(n,\varepsilon)$-separated set.
+Then
+\[
+\htop(F):=\lim_{\varepsilon\downarrow 0}\ \limsup_{n\to\infty}\ \frac1n\log s_n(\varepsilon).
+\]
+
+For a continuous flow $(g_t)_{t\in\R}$ on a compact metric space, one sets $\htop(g_t):=\htop(g_1)$.
+This agrees with the intrinsic definition of entropy for flows and satisfies the scaling law
+$\htop(g_t)=|t|\htop(g_1)$; see Bowen--Walters \cite{BW}.
+Thus it suffices to prove $\htop(g_1)=0$.
+
+\section{Two support lemmas}
+
+\begin{lemma}\label{lem:smoothsupport}
+Let $f\in C^\infty(M)$ with $f\not\equiv 0$.
+Then the support of the distribution $f\Omega$ has nonempty interior.
+\end{lemma}
+
+\begin{proof}
+Choose $x_0\in M$ with $f(x_0)\neq 0$.
+By continuity, there exists an open neighborhood $U$ of $x_0$ such that $f|_U$ is nowhere zero.
+Pick any $\varphi\in C^\infty(M)$ supported in $U$ with $\varphi\ge 0$ and $\varphi\not\equiv 0$.
+Then $\int_M f\varphi\,\Omega=\int_U f\varphi\,\Omega\neq 0$, so $f\Omega$ does not vanish on $U$.
+Hence $U\subset\supp(f\Omega)$.
+\end{proof}
+
+\begin{lemma}\label{lem:submanifoldempty}
+If $N\subset M$ is an embedded $C^1$ submanifold with $\dim N<\dim M$, then $N$ has empty interior in $M$.
+\end{lemma}
+
+\begin{proof}
+Let $x\in N$.
+By the definition of embedded submanifold there exists a chart $(U,\psi)$ about $x$ such that $\psi(U)\subset\R^n$ is open and
+\[
+\psi(N\cap U)=\psi(U)\cap (\R^k\times\{0\})
+\]
+for some $k<n$.
+The set $\R^k\times\{0\}$ has empty interior in $\R^n$, hence $N\cap U$ has empty interior in $U$.
+Since $x$ was arbitrary, $N$ has empty interior in $M$.
+\end{proof}
+
+\section{Periodic orbit distributions}
+
+\subsection{Periodic orbit measures}
+
+Suppose that for some $p\in M$ and $T>0$ one has $g_T(p)=p$.
+Let $\gamma:=\{g_t(p):t\in\R\}$ be the corresponding orbit.
+
+Define the distribution $\mu_\gamma\in\D'(M)$ by the orbit average
+\begin{equation}\label{eq:orbitmeasure}
+\mu_\gamma(\varphi):=\frac1T\int_0^T \varphi(g_t(p))\,dt,\qquad \varphi\in C^\infty(M).
+\end{equation}
+This is an invariant probability measure supported on $\gamma$.
+
+\begin{lemma}\label{lem:orbit_Lie_zero}
+One has $\Lie_X \mu_\gamma=0$.
+\end{lemma}
+
+\begin{proof}
+For $\varphi\in C^\infty(M)$,
+\[
+(\Lie_X\mu_\gamma)(\varphi)=-\mu_\gamma(X\varphi)
+=-\frac1T\int_0^T X\varphi(g_t(p))\,dt.
+\]
+But $\frac{d}{dt}\bigl(\varphi(g_t(p))\bigr)=X\varphi(g_t(p))$.
+Therefore
+\[
+(\Lie_X\mu_\gamma)(\varphi)
+=-\frac1T\int_0^T \frac{d}{dt}\bigl(\varphi(g_t(p))\bigr)\,dt
+=-\frac1T\bigl(\varphi(g_T(p))-\varphi(p)\bigr)=0.
+\]
+\end{proof}
+
+\begin{lemma}\label{lem:orbit_support}
+$\supp(\mu_\gamma)=\gamma$.
+\end{lemma}
+
+\begin{proof}
+If $U$ is open and $U\cap\gamma=\varnothing$, then any test function $\varphi$ supported in $U$ vanishes on $\gamma$,
+so $\mu_\gamma(\varphi)=0$.
+Hence $\supp(\mu_\gamma)\subset\gamma$.
+
+Conversely, let $x\in\gamma$ and let $U$ be an open neighborhood of $x$.
+Choose $t_0\in[0,T)$ with $x=g_{t_0}(p)$.
+By continuity there exists $\delta>0$ such that $g_t(p)\in U$ for all $t$ in a small interval around $t_0$ (mod $T$).
+Pick $\varphi\in C^\infty(M)$ with $\varphi\ge 0$, $\supp(\varphi)\subset U$, and $\varphi(x)>0$.
+Then $\mu_\gamma(\varphi)>0$, so $x\in\supp(\mu_\gamma)$.
+\end{proof}
+
+\subsection{No periodic orbits in dimension $\ge 2$}
+
+\begin{proposition}\label{prop:no_periodic_dimge2}
+Assume $\dim M\ge 2$ and $X$ is globally hypoelliptic in the sense of Definition~\ref{def:GH}.
+Then the flow $(g_t)$ has no periodic orbits (and in particular no fixed points).
+\end{proposition}
+
+\begin{proof}
+Assume for contradiction that $g_T(p)=p$ for some $p\in M$ and $T>0$, and let $\gamma$ be the corresponding orbit.
+By Lemma~\ref{lem:orbit_Lie_zero}, $\Lie_X\mu_\gamma=0$.
+Since $0$ is smooth, global hypoellipticity forces $\mu_\gamma$ to be smooth, i.e.\ $\mu_\gamma=f\Omega$ for some $f\in C^\infty(M)$.
+
+Now $\mu_\gamma\neq 0$, hence $f\not\equiv 0$.
+Lemma~\ref{lem:smoothsupport} implies that $\supp(\mu_\gamma)$ has nonempty interior.
+But by Lemma~\ref{lem:orbit_support} one has $\supp(\mu_\gamma)=\gamma$.
+
+The set $\gamma$ is the image of a $C^\infty$ map $t\mapsto g_t(p)$ from $\R$ to $M$ with everywhere rank $\le 1$.
+If $p$ is fixed then $\gamma$ is a $0$-dimensional embedded submanifold; otherwise $\gamma$ is a periodic orbit and hence an embedded $1$-dimensional submanifold (a closed integral curve).
+In either case $\dim\gamma<\dim M$ (since $\dim M\ge 2$), so Lemma~\ref{lem:submanifoldempty} gives that $\gamma$ has empty interior.
+This contradicts the previous paragraph.
+\end{proof}
+
+\section{The one-dimensional case}
+
+When $\dim M=1$, a periodic orbit may coincide with the whole manifold and the previous argument does not apply.
+We treat this case separately.
+
+\begin{proposition}\label{prop:dim1}
+Assume $\dim M=1$ and $X$ is globally hypoelliptic.
+Then $M\cong S^1$ and the flow $(g_t)$ is $C^\infty$ conjugate to a rigid rotation flow on $S^1$.
+In particular $\htop(g_t)=0$ for all $t\in\R$.
+\end{proposition}
+
+\begin{proof}
+A compact connected $1$-manifold without boundary is diffeomorphic to $S^1$ \cite[Thm.~8.1]{LeeSM}; we identify $M$ with $S^1=\R/\Z$.
+
+\emph{Step 1: $X$ has no zeros.}
+If $x_0\in S^1$ satisfies $X(x_0)=0$, then $x_0$ is a fixed point and the Dirac distribution $\delta_{x_0}$ satisfies
+$\Lie_X\delta_{x_0}=0$ because
+\[
+(\Lie_X\delta_{x_0})(\varphi)=-\delta_{x_0}(X\varphi)=-(X\varphi)(x_0)=0.
+\]
+Global hypoellipticity would force $\delta_{x_0}$ to be smooth, contradicting Lemma~\ref{lem:smoothsupport} since $\supp(\delta_{x_0})=\{x_0\}$ has empty interior.
+Thus $X$ is nowhere vanishing.
+
+After possibly reversing orientation, write $X=a(\theta)\,\partial_\theta$ with $a\in C^\infty(S^1)$ strictly positive.
+
+\emph{Step 2: Conjugacy to constant speed rotation.}
+Define
+\[
+T:=\int_0^1 \frac{1}{a(s)}\,ds>0,\qquad
+H(\theta):=\frac{1}{T}\int_0^\theta \frac{1}{a(s)}\,ds\quad(\theta\in\R).
+\]
+Because $a$ is $1$-periodic, $H(\theta+1)=H(\theta)+1$, so $H$ descends to a $C^\infty$ diffeomorphism $h:S^1\to S^1$.
+Since $H'(\theta)=\frac{1}{Ta(\theta)}>0$, $H$ is strictly increasing.
+A direct computation yields
+\[
+h_*X = a(\theta)H'(\theta)\,\partial_\vartheta = \frac{1}{T}\,\partial_\vartheta,
+\qquad \vartheta=h(\theta).
+\]
+Therefore $h\circ g_t = R_t\circ h$ for all $t$, where $R_t(\vartheta)=\vartheta+t/T$ is the rigid rotation flow.
+
+\emph{Step 3: Entropy.}
+The time--one map $R_1$ is an isometry of $S^1$ for the standard metric, hence has zero topological entropy:
+for an isometry $F$ one has $d_n=d$ for all $n$, so $s_n(\varepsilon)$ does not depend on $n$ and $\htop(F)=0$.
+Entropy is invariant under topological conjugacy (see e.g.\ \cite[\S7]{Walters}), hence $\htop(g_1)=\htop(R_1)=0$.
+The scaling law for flows \cite{BW} then gives $\htop(g_t)=0$ for all $t$.
+\end{proof}
+
+\section{Positive entropy forces periodic points}
+
+We now recall two standard results.
+
+\begin{lemma}\label{lem:positive_entropy_measure}
+Let $F$ be a continuous map of a compact metric space.
+If $\htop(F)>0$, then there exists an ergodic $F$-invariant Borel probability measure $\mu$ with $h_\mu(F)>0$.
+\end{lemma}
+
+\begin{proof}[Citation]
+By the variational principle (Walters \cite[\S8.2]{Walters}), there exists an $F$-invariant Borel probability measure $\nu$
+with $h_\nu(F)>0$.
+By the ergodic decomposition theorem and affinity of metric entropy (Walters \cite[\S8.3]{Walters}),
+some ergodic component $\mu$ of $\nu$ satisfies $h_\mu(F)>0$.
+\end{proof}
+
+\begin{theorem}[Katok]\label{thm:katok}
+Let $F$ be a $C^{1+\alpha}$ diffeomorphism of a compact smooth manifold, $\alpha>0$.
+If there exists an ergodic $F$-invariant probability measure $\mu$ with $h_\mu(F)>0$, then $F$ has a periodic point.
+\end{theorem}
+
+\begin{proof}[Citation]
+This follows from Katok's theorem that positive-entropy measures can be approximated by hyperbolic horseshoes,
+and horseshoes contain periodic points; see Katok \cite{Katok80}.
+\end{proof}
+
+\begin{corollary}\label{cor:positive_entropy_periodic}
+Let $F$ be a $C^{1+\alpha}$ diffeomorphism of a compact manifold.
+If $\htop(F)>0$, then $F$ has a periodic point.
+\end{corollary}
+
+\begin{proof}
+If $\htop(F)>0$, Lemma~\ref{lem:positive_entropy_measure} produces an ergodic invariant measure with positive metric entropy,
+and Theorem~\ref{thm:katok} yields a periodic point.
+\end{proof}
+
+\section{Main theorem}
+
+\begin{theorem}\label{thm:main}
+Let $M$ be a compact connected smooth manifold and $X$ a smooth vector field on $M$.
+Assume that $X$ is globally hypoelliptic in the sense of Definition~\ref{def:GH}.
+Then the flow $(g_t)$ generated by $X$ has zero topological entropy:
+\[
+\htop(g_t)=0\qquad\text{for all }t\in\R.
+\]
+\end{theorem}
+
+\begin{proof}
+By Bowen--Walters \cite{BW}, it suffices to show $\htop(g_1)=0$.
+
+If $\dim M=1$, Proposition~\ref{prop:dim1} gives $\htop(g_1)=0$.
+
+Assume $\dim M\ge 2$.
+By Proposition~\ref{prop:no_periodic_dimge2}, the flow $(g_t)$ has no periodic orbits.
+In particular, the time--one map $g_1$ has no periodic points: if $g_1^k(p)=p$ for some $k\ge 1$, then $g_k(p)=p$, so the orbit of $p$ under the flow is periodic.
+
+If $\htop(g_1)>0$, then Corollary~\ref{cor:positive_entropy_periodic} (applied to the $C^\infty$ diffeomorphism $g_1$)
+would imply that $g_1$ has a periodic point, contradicting the previous paragraph.
+Therefore $\htop(g_1)=0$, hence $\htop(g_t)=0$ for all $t$.
+\end{proof}
+
+\begin{thebibliography}{99}
+
+\bibitem{BW}
+R.~Bowen and P.~Walters,
+\newblock \emph{Expansive one-parameter flows},
+\newblock J.\ Differential Equations \textbf{12} (1972), 180--193.
+
+\bibitem{Katok80}
+A.~Katok,
+\newblock \emph{Lyapunov exponents, entropy and periodic orbits for diffeomorphisms},
+\newblock Publ.\ Math.\ Inst.\ Hautes \'Etudes Sci.\ \textbf{51} (1980), 137--173.
+
+\bibitem{LeeSM}
+J.~M.~Lee,
+\newblock \emph{Introduction to Smooth Manifolds},
+\newblock 2nd ed., Graduate Texts in Mathematics, vol.~218, Springer, 2013.
+
+\bibitem{Walters}
+P.~Walters,
+\newblock \emph{An Introduction to Ergodic Theory},
+\newblock Graduate Texts in Mathematics, vol.~79, Springer, 1982.
+
+\end{thebibliography}
+
+\end{document}
+```

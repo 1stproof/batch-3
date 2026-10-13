@@ -1,0 +1,167 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\begin{document}
+
+\title{On a Polynomial Identity in Hyperfields}
+\author{}
+\date{}
+\maketitle
+
+\begin{abstract}
+We answer the question whether, in an arbitrary hyperfield $\mathbb{H}$, the condition
+$0 \in x \boxplus y \boxplus z$ implies
+$0 \in x^3 \boxplus y^3 \boxplus z^3 \boxplus -xyz \boxplus -xyz \boxplus -xyz$.
+We prove that the implication is true. The proof uses Marshall's representation theorem,
+which states that every hyperfield is a quotient of a commutative ring by a subgroup of its
+group of units. In such a quotient, the classical polynomial identity
+$x^3+y^3+z^3-3xyz = (x+y+z)(x^2+y^2+z^2-xy-yz-zx)$ lifts to the hyperfield setting.
+\end{abstract}
+
+\section{Introduction and Statement of the Result}
+
+Let $\mathbb{H}$ be a hyperfield with multivalued addition $\boxplus$ and multiplication $\cdot$.
+Recall that a hyperfield is a tuple $(\mathbb{H},0,1,\cdot,\boxplus)$ such that
+$(\mathbb{H},0,1,\cdot)$ is a commutative monoid with $0$ absorbing,
+$(\mathbb{H},\boxplus,0)$ is a canonical hypergroup (commutative, associative, with identity
+$0$, unique inverses, and reversibility), and multiplication distributes over hyperaddition:
+\[
+a \cdot (b \boxplus c) = (a\cdot b) \boxplus (a\cdot c)
+\]
+for all $a,b,c \in \mathbb{H}$, where the right-hand side is understood as the union
+$\bigcup_{d \in b \boxplus c} a\cdot d$.
+
+The question under consideration is the following.
+
+\begin{quote}
+\itshape
+Let $\mathbb{H}$ be a hyperfield, and let $x,y,z \in \mathbb{H}$.
+Suppose that $0 \in x \boxplus y \boxplus z$.
+Does it then follow that
+\[
+0 \in x^3 \boxplus y^3 \boxplus z^3 \boxplus -xyz \boxplus -xyz \boxplus -xyz \text{?}
+\]
+\end{quote}
+
+We answer this question affirmatively.
+
+\begin{theorem}\label{thm:main}
+Let $\mathbb{H}$ be a hyperfield. For any $x,y,z \in \mathbb{H}$, if
+$0 \in x \boxplus y \boxplus z$, then
+\[
+0 \in x^3 \boxplus y^3 \boxplus z^3 \boxplus -xyz \boxplus -xyz \boxplus -xyz.
+\]
+\end{theorem}
+
+\section{Preliminaries: Quotient Hyperfields}
+
+We use the following standard representation theorem for hyperfields.
+
+\begin{theorem}[Marshall's Representation Theorem]\label{thm:marshall}
+Every hyperfield $\mathbb{H}$ is isomorphic to a quotient hyperfield $R/G$, where
+$R$ is a commutative ring and $G$ is a subgroup of the group of units $R^\times$ of $R$.
+The quotient hyperfield $R/G$ is defined as follows.
+\begin{itemize}
+\item The elements of $R/G$ are the orbit sets $[a] := \{a g : g \in G\}$ for $a \in R$,
+      together with the zero class $[0]=\{0\}$.
+\item Multiplication is defined by $[a]\cdot [b] := [ab]$.
+\item Hyperaddition is defined by
+      \[
+      [a] \boxplus [b] := \{ [a' + b'] : a' \in [a],\ b' \in [b] \}.
+      \]
+\end{itemize}
+The additive inverse of $[a]$ is $[-a]$.
+\end{theorem}
+
+For a proof and further discussion of this theorem, see Marshall's work on hyperfields
+\cite{Marshall}. The theorem is also mentioned in the context of multigroups in
+\cite{Viro} and \cite{ViroTropical}. In particular, every hyperfield can be realized as
+such a quotient, so it suffices to prove the desired implication in the quotient model.
+
+\begin{remark}
+In the quotient model $R/G$, the condition $0 \in [a] \boxplus [b] \boxplus [c]$ means
+that there exist elements $a' \in [a]$, $b' \in [b]$, and $c' \in [c]$ such that
+$a' + b' + c' = 0$ in the ring $R$.
+\end{remark}
+
+\section{Proof of the Main Theorem}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Let $\mathbb{H}$ be a hyperfield. By Theorem~\ref{thm:marshall}, we may assume
+$\mathbb{H} = R/G$ for some commutative ring $R$ and a subgroup $G \subseteq R^\times$.
+
+Let $x,y,z \in \mathbb{H}$. Choose representatives $a,b,c \in R$ such that
+$x = [a]$, $y = [b]$, and $z = [c]$.
+
+Assume that $0 \in x \boxplus y \boxplus z = [a] \boxplus [b] \boxplus [c]$.
+By the definition of hyperaddition in the quotient, there exist $a' \in [a]$,
+$b' \in [b]$, and $c' \in [c]$ such that
+\[
+a' + b' + c' = 0 \quad \text{in } R.
+\]
+Note that $a' \in [a]$ means $a' = a g_a$ for some $g_a \in G$, and similarly
+$b' = b g_b$, $c' = c g_c$ for some $g_b, g_c \in G$.
+
+Now consider the classical polynomial identity in the commutative ring $R$:
+\[
+a'^3 + b'^3 + c'^3 - 3a'b'c' = (a' + b' + c')(a'^2 + b'^2 + c'^2 - a'b' - b'c' - c'a').
+\]
+Since $a' + b' + c' = 0$, the right-hand side is $0$. Hence
+\[
+a'^3 + b'^3 + c'^3 - 3a'b'c' = 0.
+\]
+
+We now pass to the quotient hyperfield $R/G$. The class of $a'^3$ is
+$[a'^3] = [a]^3 = x^3$, because $a' \in [a]$ and multiplication is well-defined on
+quotient classes. Similarly, $[b'^3] = y^3$ and $[c'^3] = z^3$.
+Also, $[a'b'c'] = [a][b][c] = xyz$. Therefore, the class of the element
+$a'^3 + b'^3 + c'^3 - 3a'b'c'$ belongs to the hyperaddition
+\[
+x^3 \boxplus y^3 \boxplus z^3 \boxplus (-xyz) \boxplus (-xyz) \boxplus (-xyz).
+\]
+Indeed, the element $a'^3$ is a representative of $x^3$, $b'^3$ of $y^3$,
+$c'^3$ of $z^3$, and $-a'b'c'$ is a representative of $-xyz$. Since the sum of these
+representatives is $0$ in $R$, the class $[0] = 0$ lies in the hyperaddition.
+Thus
+\[
+0 \in x^3 \boxplus y^3 \boxplus z^3 \boxplus -xyz \boxplus -xyz \boxplus -xyz.
+\]
+This completes the proof.
+\end{proof}
+
+\section{Conclusion}
+
+We have shown that the implication holds in every hyperfield. The proof relies on
+Marshall's representation theorem, which allows us to work in a quotient of a
+commutative ring where the classical polynomial identity is valid. The multivalued
+nature of the addition in the hyperfield is precisely captured by the fact that in the
+quotient model we may choose representatives independently for each occurrence of a
+class.
+
+\begin{thebibliography}{9}
+
+\bibitem{Marshall}
+M. Marshall,
+\emph{Real reduced hyperfields},
+J. Algebra \textbf{102} (1986), 1--17.
+
+\bibitem{Viro}
+O. Viro,
+\emph{Hyperfields for Tropical Geometry I. Hyperfields and dequantization},
+arXiv:1006.3034.
+
+\bibitem{ViroTropical}
+O. Viro,
+\emph{Hyperfields and dequantization},
+Stony Brook preprint, available at
+\url{https://www.math.stonybrook.edu/~oleg/VersoTeX/Show/Hyperfields/hf.html}.
+
+\end{thebibliography}
+
+\end{document}

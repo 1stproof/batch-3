@@ -1,0 +1,243 @@
+```latex
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+
+\newcommand{\M}{\mathcal M}
+\newcommand{\C}{\mathbb C}
+\newcommand{\D}{\Delta}
+\newcommand{\barM}{\overline{\M}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+
+\title{On the proposed non-variation of a point factor}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{The obstruction}
+
+The stated conclusion does not follow from the listed hypotheses in the
+local-submanifold sense allowed by the footnote.  The boundary theorems for
+totally geodesic subvarieties control the central fibre \(V_0\), but the
+hypotheses for \(t\neq 0\) are only smooth and combinatorial.  In particular,
+they do not prevent a point factor from moving holomorphically.
+
+More precisely, the boundary theorem for totally geodesic subvarieties says
+that an irreducible component of the intersection of the closure of a totally
+geodesic subvariety with a Deligne--Mumford stratum is again totally geodesic
+and has a prime decomposition whose projections are locally isometric
+\cite[Theorems~1.4 and~1.7]{BW}.  A semisimple formulation is given in
+\cite[Theorem~1.3]{AW}.  These theorems apply to \(V_0\), but they say nothing
+about the arbitrary deformations \(V_t\), which are not assumed to be totally
+geodesic.
+
+We first record the relevant boundary theorem.
+
+\begin{theorem}[Boundary semisimplicity]
+Let \(N\subset \M_{g,n}\) be totally geodesic, and let
+\(\mathring{\partial}N\) be an irreducible component of
+\(\partial N\cap \Delta_G\).  Then \(\mathring{\partial}N\) is totally
+geodesic in \(\Delta_G\).  Moreover, its product cover decomposes into prime
+factors, and the projection from each positive-dimensional prime factor to
+every moduli-space factor occurring in it is locally injective, in the orbifold
+sense.
+\end{theorem}
+
+\begin{proof}
+This is Theorems~1.4 and~1.7 in \cite{BW}; equivalently, it is the semisimple
+boundary theorem in \cite{AW}.
+\end{proof}
+
+Applying this to \(V_0\), the hypothesis
+\(\pi_i(\partial V_0)=\{Y_0\}\) says that the \(i\)-th factor occurs as a
+split constant factor in the semisimple decomposition.  Thus, locally in the
+product cover, one has a model of the form
+\[
+\partial V_0 \simeq C_0\times \{Y_0\},
+\]
+possibly with further singleton factors.  The theorem does not give a discrete
+characterization of \(Y_0\), and it gives no information about \(Y_t\) for
+\(t\neq 0\).
+
+\section{A local deformation moving the point factor}
+
+We now give the standard boundary-coordinate model showing that the remaining
+hypotheses allow \(Y_t\) to move.
+
+Choose a regular boundary point
+\[
+p\in \partial V_0
+\]
+at which the closure of \(V_0\) is smooth and transverse to the relevant node
+directions.  Let \(r\) be the number of edges of \(\Gamma\).  An orbifold
+plumbing chart of \(\barM_g\) near \(p\) has coordinates
+\[
+(s_1,\ldots,s_r,x,y,z),
+\]
+where
+\[
+\Delta_\Gamma=\{s_1=\cdots=s_r=0\},
+\]
+\(x\) is a coordinate along the one-dimensional varying part of
+\(\partial V_0\), \(y\) denotes coordinates on the factor
+\(\M_{g_i,n_i}\), and \(z\) denotes the remaining factor coordinates.
+
+After shrinking the chart and making a holomorphic change of coordinates, the
+germ of \(V_0\) may be written as
+\[
+V_{0,\mathrm{loc}}
+=
+\left\{
+(x,u):
+s_j=u^{m_j}\quad(1\leq j\leq r),\quad
+y=0,\quad z=0
+\right\},
+\qquad u\neq 0,
+\]
+for suitable positive integers \(m_j\).  Here \(u\) is the common smoothing
+parameter and \(y=0\) corresponds to the point \(Y_0\).  This is simply the
+holomorphic implicit function theorem applied to the smooth germ of
+\(\overline V_0\) along the smooth curve \(\partial V_0\).
+
+Fix a nonzero tangent vector \(a\in T_{Y_0}\M_{g_i,n_i}\).  In a local affine
+coordinate on that factor, define, for sufficiently small \(t\),
+\[
+V_{t,\mathrm{loc}}
+=
+\left\{
+(x,u):
+s_j=u^{m_j}\quad(1\leq j\leq r),\quad
+y=t a,\quad z=0
+\right\},
+\qquad u\neq 0.
+\]
+Then:
+
+\begin{enumerate}
+\item each \(V_{t,\mathrm{loc}}\) is a smooth complex surface;
+\item the total space
+\[
+\mathcal V_{\mathrm{loc}}
+=
+\{(x,u,t):s_j=u^{m_j},\ y=ta,\ z=0,\ u\neq 0\}
+\]
+is a complex submanifold of \((\M_g\cap U)\times \D\);
+\item the family is smoothly trivial, since \((x,u,t)\) are global coordinates
+on it;
+\item
+\[
+\overline{V_{t,\mathrm{loc}}}\cap \Delta_\Gamma
+=
+\{(x,0):s_j=0,\ y=ta,\ z=0\};
+\]
+hence
+\[
+\pi_i\bigl(\partial V_{t,\mathrm{loc}}\bigr)=\{Y(t)\},
+\qquad
+Y(t)=Y_0+t\,a.
+\]
+\end{enumerate}
+
+By choosing the \(x\)- and \(u\)-coordinate domains relatively compact in the
+chart, no other Deligne--Mumford strata are encountered in the local closure.
+Thus the local versions of hypotheses (i) and (ii) hold.  Nevertheless
+\(Y(t)\) is nonconstant whenever \(a\neq 0\).
+
+\begin{remark}
+At \(t=0\), the germ is the germ of the totally geodesic surface \(V_0\); in
+particular its second fundamental form vanishes.  The construction changes
+only the extrinsic location of a split point factor.  No hypothesis in the
+question rules this out for \(t\neq0\).
+\end{remark}
+
+This shows that, under the complex-submanifold formulation in the footnote,
+the proposed assertion is false as stated.
+
+\section{What additional hypothesis would give the conclusion}
+
+The following is a correct rigidity statement under a substantially stronger
+assumption.
+
+\begin{proposition}
+Suppose that \(V_t\) is totally geodesic for every \(t\in\D\).  Then
+\(V_t=V_0\) for all \(t\).  In particular,
+\[
+\pi_i(\partial V_t)=\{Y_0\}
+\]
+for every \(t\).
+\end{proposition}
+
+\begin{proof}
+Every higher-dimensional totally geodesic submanifold of Teichm\"uller space
+has algebraic image in moduli space, and there are only finitely many
+higher-dimensional totally geodesic subvarieties in a fixed moduli space
+\(\M_g\); see \cite{AW}.  Let
+\[
+\mathscr F_g
+=
+\{W\subset\M_g:\dim_{\C}W=2,\ W\text{ is totally geodesic}\}.
+\]
+This set is finite.
+
+A holomorphic, smoothly trivial family gives a continuous assignment
+\[
+t\longmapsto V_t
+\]
+in the space of compactified cycles, or equivalently in the relevant Chow or
+Douady space.  Since every \(V_t\) lies in the finite, hence discrete, set
+\(\mathscr F_g\), and since \(\D\) is connected, this map is constant.
+Therefore \(V_t=V_0\) for every \(t\).  Taking closures and intersecting with
+\(\Delta_\Gamma\) gives
+\[
+\partial V_t=\partial V_0,
+\]
+and hence
+\[
+\pi_i(\partial V_t)=\pi_i(\partial V_0)=\{Y_0\}.
+\]
+\end{proof}
+
+\section{Conclusion}
+
+The boundary semisimplicity theorem for \(V_0\) permits a decomposition
+\[
+\partial V_0=C_0\times\{Y_0\},
+\]
+but it does not impose discreteness on the point \(Y_0\).  A deformation of
+the form
+\[
+C_t\times\{Y(t)\}
+\]
+is compatible with the stated smooth-triviality and incidence conditions.
+Consequently, the proposed conclusion requires an additional rigidity
+hypothesis---for example, that every \(V_t\) is totally geodesic, or more
+generally that the family lies in a discrete set of admissible subvarieties.
+
+\begin{thebibliography}{9}
+
+\bibitem{BW}
+B.~Wright,
+\emph{The boundary of a totally geodesic subvariety of moduli space},
+available at
+\href{https://arxiv.org/html/2412.06765v1}{\texttt{arxiv.org/html/2412.06765v1}}.
+
+\bibitem{AW}
+F.~Arana-Herrera and A.~Wright,
+\emph{The geometry of totally geodesic subvarieties of moduli spaces of
+Riemann surfaces},
+available at
+\href{https://arxiv.org/html/2412.16330v2}{\texttt{arxiv.org/html/2412.16330v2}}.
+
+\end{thebibliography}
+
+\end{document}
+```

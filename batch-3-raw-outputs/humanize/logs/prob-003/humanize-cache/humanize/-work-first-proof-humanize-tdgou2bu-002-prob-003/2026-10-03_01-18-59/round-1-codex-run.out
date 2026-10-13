@@ -1,0 +1,30 @@
+The review file is clean. Now, per the loop protocol, the last line of my output determines whether the loop stops. Since the work is NOT complete (fatal mainline findings A1R–A3R), I must NOT output COMPLETE. Here is my consolidated review:
+
+---
+
+# Round 1 Code Review — prob-003
+
+I read `plan.md`, `problem.tex`, the round-1 prompt/contract, the goal tracker, the full `solution.tex`, and the worker scratch. I verified compilation myself (12 pages, 0 errors, 0 undefined refs). Critically, I did **not** trust the worker's verification scripts: I built two independent exact engines deriving everything directly from the printed axioms (PA),(P),(C),(S),(SK) over rational functions in $t$ ($q=t^{12}$), and hand-checked every channel computation.
+
+**Mainline Progress Verdict: STALLED**
+
+```
+ACs: 1/5 fully met (AC-5 only) | Forgotten items: 0 | Unjustified deferrals: 0
+Capability anchor: N/A | Dependency gaps: 0 | Scope drift: no
+```
+
+## What is genuinely fixed (verified by me from the axioms)
+- lem:T (pairing table), lem:compat (H1-compatibility): **correct**; pair2.py (83 PASS) is a sound derived-from-axioms engine.
+- prop:EF cross commutator $F_sE_r-E_rF_s=\delta_{rs}\theta(\mathcal K_r^{(+)}-\mathcal K_s^{(-)-1})$: **correct** (two engines + hand).
+- (M2), thm:mixed(b),(c),(d), prop:t minor images: **correct as printed**.
+- External inputs now honestly stated (fixes round-0 A3's deferral complaint).
+
+## Mainline gaps / blocking side issues (fatal)
+- **A1R (fatal): lem:cross(a),(b) are false as stated.** Both engines + hand channels agree the true SK values are $E_r\hat K^{u(-)}=q^{+\alpha_r(u)}\hat K^{u(-)}E_r$ and cross-conjugation by $\hat K_i^{(+)}$ on $F_s$ = $q^{+\alpha_s(i)}$ — the paper's (a),(b) carry the **inverse** scalars (two cancelling sign slips in the proofs: $q^{u\cdot\kappa_r}$ displayed as $q^{u\cdot\alpha_r}$, then $(\ast)$ misapplied).
+- Convoy consequences: **lem:diag collapses mathematically** (true rules make $D/J$ force $E_r=F_s=0$: torus, not $H$); **the presented $D$ is non-associative under the paper's rules** (the wrong-signed (a),(b) make $\Omega$-centrality imply exponent $2\alpha$ defect colliding with internal (H1)); **vtest.py's om-centrality checks fail at n=2,3,4 and were dismissed as "stale"** — they were the canary; **both verification engines (vtest, eng2) hard-code the paper's rule table**, so the summary's "machine-verified lem:cross / Omega-centrality PASS" claims are void.
+- **A2R/A3R**: round-2 directive written — rebuild the target around the anti-podal loop family $\hat K_i^{(+)}\hat K_i^{(-)}$ (one sign convention, associativity proved before use), re-derive (M0)b/(M1) mechanically ((M2)/(M3) survive), red o Part 2 with honest adjoint-vs-simply-connected Cartan bookkeeping, and rebuild the battery so every claim is derived from axioms, not asserted into a rule table.
+
+## Goal tracker
+Updated by me: A1/A2 reopened with precise defects; the five falsely-DONE mainline tasks reset to Active with round-2 directives; Plan Evolution correction row added; false Completed-and-Verified rows replaced by the reviewer-verified partial list; queued Q-items retained.
+
+Full details (derivations, numeric evidence, repair plan D1–D5) are in `.humanize/rlcr/2026-10-03_01-18-59/round-1-review-result.md`.

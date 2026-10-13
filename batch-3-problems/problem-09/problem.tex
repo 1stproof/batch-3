@@ -1,0 +1,175 @@
+\documentclass[11pt]{article}
+%
+
+\usepackage{amsmath, amssymb, amsthm, enumerate}
+\usepackage{graphicx, caption, subcaption}
+\usepackage{xcolor}
+\usepackage{cancel} %
+\usepackage[pagebackref]{hyperref}
+
+\usepackage{xspace}
+
+
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+%
+\definecolor{diagramred}{RGB}{178,32,45}
+\definecolor{diagramgreen}{RGB}{0,108,72}
+\definecolor{diagramblue}{RGB}{166,206,227}
+
+
+
+
+%
+%
+
+%
+\usepackage[margin=1.5in, marginparwidth=1.3in]{geometry}
+
+%
+\usepackage{titlesec}
+\setcounter{secnumdepth}{3}
+
+%
+
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{sublemma}[thm]{Sublemma}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{conj}[thm]{Conjecture}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{assumption}[thm]{Assumption}
+\newtheorem{operation}[thm]{Operation}
+\newtheorem{construction}[thm]{Construction}
+\newtheorem{question}[thm]{Question}
+\newtheorem{problem}[thm]{Problem}
+
+
+%
+\newtheorem{rmkx}[thm]{Remark}
+\newenvironment{rmk}
+{\pushQED{\qed}\renewcommand{\qedsymbol}{$\triangle$}\rmkx}
+{\popQED\endrmkx}
+
+\newtheorem{examplex}[thm]{Example}
+\newenvironment{example}
+{\pushQED{\qed}\renewcommand{\qedsymbol}{$\triangle$}\examplex}
+{\popQED\endexamplex}
+
+%
+%
+%
+\newenvironment{proofclaim}[1][Proof]{\begin{proof}[#1]\renewcommand*{\qedsymbol}{\(\square\)}}{\end{proof}}
+
+
+%
+\renewcommand\qedsymbol{$\blacksquare$} 
+
+\newcommand{\barH}{\overline{\mathcal{H}}}
+\newcommand{\barPH}{\overline{\mathbb{P}\mathcal{H}}}
+\newcommand{\barMg}{\overline{\mathcal{M}}_g}
+\newcommand{\barMgn}{\overline{\mathcal{M}}_{g,n}}
+\newcommand{\barM}{\overline{\mathcal{M}}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand\supp{\operatorname{supp}}
+
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\calM}{\mathcal{M}}
+\newcommand{\calN}{\mathcal{N}}
+\newcommand{\K}{\mathcal{K}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\calT}{\mathcal{T}}
+\newcommand{\calQ}{\mathcal{Q}}
+
+\newcommand\ninf{n \to \infty}
+
+\renewcommand{\H}{\mathcal{H}}
+\renewcommand{\P}{\mathbb{P}}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\tr}{\operatorname{Trace}}
+\newcommand{\area}{\operatorname{area}}
+\newcommand{\vol}{\operatorname{vol}}
+%
+
+\newcommand\RR{\mathbb{R}}
+\newcommand\QQ{\mathbb{Q}}
+\newcommand\CC{\mathbb{C}}
+
+\newcommand{\Mgn}{\overline{\mathcal{M}}_{g,n}}
+\newcommand\St[1][(\mu)]{\mathcal{H}#1}
+%
+
+\newcommand{\TM}{Teichm\"uller\xspace}
+\newcommand{\osc}{\operatorname{osc}}
+
+
+
+%
+
+\newcounter{bencomments}
+\newcommand{\ben}[1]{\textbf{\color{purple}(B\arabic{bencomments})}\marginpar{\textbf{\color{purple}(B\arabic{bencomments})Ben:}
+#1}\addtocounter{bencomments}{1}}
+
+ \newcommand{\fred}[1]{\textbf{\color{red} Fred: #1}}
+
+ \newcommand{\john}[1]{\textbf{\color{red} John: #1}}
+
+
+ 
+%
+%
+%
+%
+%
+
+
+%
+\begin{document}
+\begin{problem} 
+  Let $\M_g$ be the moduli space of genus $g$ Riemann surfaces.  We consider the Deligne-Mumford compactification $\overline\M_g = \M_g \sqcup \partial \M_g$. 
+ The boundary $\partial \M_g$ admits a partition into strata  $\Delta_{G}$ parametrizing stable curves with dual graph $G$.   
+
+ Let $V_0 \subset \M_g$ be a (complex) smooth subvariety of (complex) dimension $2$ that is totally geodesic with respect to the Teichm\"uller metric.  Let $V_t$ be a holomorphic family of subvarieties of $\M_g$ deforming $V_0$, for $t$ in the unit disc $\Delta \subset \C$ 
+ \footnote{i.e. a complex submanifold $\mathcal V \subset \M_g \times \Delta$, with $V_t = \psi(\phi^{-1}(t))$, where $\phi: \mathcal V \to \Delta, \psi: \mathcal V \to \M_g$ are the natural projections; we will further assume that this gives a smoothly trivial family of submanifolds. }.
+ We impose several technical assumptions on this family, namely (all closures below, e.g. $\overline V_t$, are taken in $\overline \M_g$):
+ \begin{enumerate}[(i)]
+ \item \label{item:smooth} for every boundary stratum $\Delta_{G}$, we have that $\overline V_t \cap \Delta_{G}$ is a (smoothly trivial) family, and %
+   
+ \item \label{item:compatible} the families so produced are compatible with $V_0$ in the sense that if the boundary of $V_0$ in a smaller stratum arises from its boundary in a larger stratum, then the same holds for $V_t$.  That is, if $\Delta_G, \Delta_{G'}$ are strata with $\Delta_{G'}$ on the boundary of $\Delta_G$, and $U$ is an open set in $\overline \M_g$ with 
+   \begin{align*}
+        \overline{\overline V_0 \cap \Delta_{G}} \cap \Delta_{G'} \cap U  = \overline V_0 \cap \Delta_{G'} \cap U , 
+   \end{align*}
+   %
+   then, for all $t$,
+      \begin{align*}
+        \overline{\overline V_t \cap \Delta_{G}} \cap \Delta_{G'} \cap U= \overline V_t \cap \Delta_{G'} \cap U.
+      \end{align*}
+
+ \end{enumerate}
+%
+ Note that we do \emph{not} assume that $V_t$ is totally geodesic for $t\ne 0$.  
+
+Now fix $\Gamma$ a dual graph; we will assume for ease of notation that $\Delta_\Gamma$ is a product of lower complexity moduli spaces $\M_{g_1,n_1} \times \cdots \times \M_{g_k,n_k}$ \footnote{for some boundary strata, we would need to quotient this by a finite group; we exclude those here}.  For each $i$, let $\pi_i: \Delta_\Gamma \to \M_{g_i,n_i}$ be the natural projection map.
+
+Denote by $\partial V_t$ the closure of $V_t$ in $\overline{\M} _g$ intersected with $\Delta_\Gamma$.  Suppose that $\dim \partial V_t=1$ and that each $\partial V_t$ is constant on some factor $\M_{g_i,n_i}$ of $\Delta_\Gamma$, i.e. for some $i$, $\pi_i(\partial V_t)=\{Y_t\}$ for all $t$.   Prove that the family $\partial V_t$ is non-varying on that factor, i.e. $\pi_i(\partial V_t) = \{Y_0\}$ for all $t$.   
+
+   %
+  
+  %
+\end{problem}
+\end{document}

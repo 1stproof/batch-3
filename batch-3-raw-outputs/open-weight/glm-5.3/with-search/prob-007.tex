@@ -1,0 +1,626 @@
+```latex
+\documentclass[11pt]{amsart}
+\usepackage{amssymb,amsmath,amsthm,amscd}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\newcommand{\Sph}{\mathbb{S}^{2}}
+\newcommand{\Cpt}{\widehat{\mathbb{C}}}
+\newcommand{\Teich}{\operatorname{Teich}}
+\newcommand{\Mod}{\operatorname{Mod}}
+\newcommand{\PMod}{\operatorname{PMod}}
+\newcommand{\Def}{\mathcal{D}}
+\newcommand{\cA}{\mathbf{c}}
+\newcommand{\Homeo}{\operatorname{Homeo}}
+
+\begin{document}
+
+\title{A Dehn twist acting with infinite orbits on the components\\
+of a deformation space of a quadratic rational map}
+
+\author{}
+\date{}
+
+\begin{abstract}
+Let $f:\Sph\to\Sph$ be a quadratic rational map whose critical point $c_1$
+lies on a cycle of length $4$, and whose second critical value $v=f(c_2)$
+does not meet the cycle. With $A$ the $4$-cycle, $B=A\cup\{v\}$, we consider
+the deformation space $\Def_f=\{\tau\in\Teich(\Sph,B)\;:\; f^*\tau=i_*\tau\}$.
+We describe an explicit simple closed curve
+\[
+\gamma \;=\; \partial D,\qquad D\cap B=\{c_1,\;f^{\circ 2}(c_1)\},
+\]
+(i.e.\ the curve enclosing $c_1$ and $f^{\circ 2}(c_1)$, or equivalently the
+complementary curve enclosing $v$, $f(c_1)$ and $f^{\circ 3}(c_1)$), such
+that the Dehn twist $T_\gamma$ preserves $\Def_f$, and such that the cyclic
+group $\langle T_\gamma\rangle$ acts on the set $\pi_0(\Def_f)$ of connected
+components of $\Def_f$ with infinite orbits. In particular $\Def_f$ has
+infinitely many connected components, recovering the main theorem of
+\cite{Luo}.
+\end{abstract}
+
+\maketitle
+
+\section{Setup and statement of the main theorem}
+
+\subsection{Deformation spaces}
+Let $f:\Sph\to\Sph$ be an orientation-preserving branched cover, let
+$V(f)$ denote its set of critical values, and let $A,B\subset\Sph$ be finite
+sets with $A\cup f(A)\cup V(f)\subset B$. Following Epstein
+\cite{Epstein} we define
+\[
+\sigma_f:=f^*:\Teich(\Sph,B)\longrightarrow \Teich(\Sph,A),
+\qquad
+\sigma^B_A:=i_*:\Teich(\Sph,B)\longrightarrow \Teich(\Sph,A),
+\]
+where $f^*$ is obtained by pulling back a complex structure of
+$(\Sph,B)$ through the covering $f:(\Sph,f^{-1}(B))\to(\Sph,B)$ (this is
+well defined because $V(f)\subset B$) and then erasing the points of
+$f^{-1}(B)\setminus A$, and where $i_*$ forgets the points of $B\setminus A$.
+The \emph{deformation space} of $f$ is the equalizer
+\[
+\Def_f \;:=\;\{\tau\in\Teich(\Sph,B)\;:\;\sigma_f(\tau)=\sigma^B_A(\tau)\}.
+\]
+Throughout, $\Teich(\Sph,X)$ denotes the Teichm\"uller space of the sphere
+with the points of $X$ marked \emph{pointwise}, so that
+$\Teich(\Sph,X)$ is a simply connected complex manifold of dimension
+$|X|-3$, and the \emph{pure} mapping class group
+$\PMod(\Sph,X)=\pi_0\Homeo^+(\Sph,X)$ (isotopy classes of homeomorphisms
+fixing $X$ pointwise) acts freely and holomorphically on the right on
+$\Teich(\Sph,X)$, with quotient the (ordered) configuration moduli space
+$\mathcal{M}_{0,|X|}$. We write the right action as $\tau\mapsto\tau\cdot h$.
+
+The deformation space is nonempty exactly when $f$ is equivalent (in the
+sense of Thurston, rel.\ $A$) to a rational map \cite{Epstein,Luo}; in that
+case $\Def_f$ parametrizes marked rational maps combinatorially equivalent
+to $f$.
+
+\subsection{The family}
+Let $f$ be a \emph{quadratic rational map} with critical points $c_1,c_2$.
+Assume:
+\begin{enumerate}
+\item[(H1)] $c_1$ is periodic of period $4$: writing
+$p_1=f(c_1),\ p_2=f^{\circ 2}(c_1),\ p_3=f^{\circ 3}(c_1)$, the points
+$c_1,p_1,p_2,p_3$ are distinct and $f^{\circ 4}(c_1)=c_1$;
+\item[(H2)] the second critical value $v:=f(c_2)$ is \emph{not} on the
+cycle: $v\notin A:=\{c_1,p_1,p_2,p_3\}$.
+\end{enumerate}
+Thus $\langle f\rangle$ lies in the locus $\operatorname{Per}_4(0)^*\subset
+\mathcal{M}_2$ of conjugacy classes of quadratic rational maps with a
+superattracting $4$-cycle containing exactly one critical point
+\cite{Luo}. We set
+\[
+A=\{c_1,p_1,p_2,p_3\},\qquad B=A\cup\{v\},\qquad \Def_f=\Def(f,A,B).
+\]
+Since $|B|-|A|=1$, Epstein's local theorem (see \cite{Epstein},
+\cite[Thm.~1.2]{Luo}) gives:
+
+\begin{theorem}[{Epstein; \cite[Thm.~1.2]{Luo}}]\label{T:dim}
+For $f$ as above, $\Def_f\subset\Teich(\Sph,B)$ is a smooth complex
+submanifold of dimension $|B|-|A|=1$; in particular $\Teich(\Sph,B)$ has
+dimension $2$ and $\Teich(\Sph,A)\cong\mathbb{H}$ has dimension $1$.
+\end{theorem}
+
+\subsection{The curve and the main result}
+
+\begin{definition}\label{D:curve}
+Let $D\subset\Sph$ be a closed topological disk with
+\[
+D\cap B=\{c_1,\;p_2\}=\{c_1,\;f^{\circ 2}(c_1)\},
+\qquad
+\{p_1,p_3,v\}\subset \Sph\setminus D ,
+\]
+and let $\gamma:=\partial D$. Equivalently, $\gamma$ is the unique
+isotopy class (rel.\ $B$) of essential simple closed curves in $(\Sph,B)$
+which encloses $v$, $f(c_1)$ and $f^{\circ 3}(c_1)$ on one side and
+$c_1$, $f^{\circ 2}(c_1)$ on the other. We let $T_\gamma$ denote the
+(right-handed) Dehn twist about $\gamma$, an element of
+$\PMod(\Sph,B)$.
+\end{definition}
+
+\begin{theorem}[Main Theorem]\label{T:main}
+Let $f$ be a quadratic rational map satisfying {\rm (H1)}, {\rm (H2)}, let
+$A,B$ and $\gamma$ be as above. Then:
+\begin{enumerate}
+\item $T_\gamma\in S_f$, where
+$S_f:=\{h\in\PMod(\Sph,B)\;:\;\Def_f\cdot h=\Def_f\}$ is the stabilizer of
+the deformation space. In particular the (first) power of the Dehn twist
+about $\gamma$ preserves $\Def_f$.
+\item For every $n\neq 0$ we have $T_\gamma^{\,n}\notin E_f$, where
+$E_f:=\{h\in S_f\;:\;D_0\cdot h=D_0\}\subset S_f$ is the stabilizer (within
+$S_f$) of a fixed connected component $D_0$ of $\Def_f$.
+\item Consequently the $\langle T_\gamma\rangle$-orbit
+$\{D_0\cdot T_\gamma^{\,n}\}_{n\in\mathbb{Z}}$ of any connected component
+$D_0$ of $\Def_f$ is infinite, the index $[S_f:E_f]$ is infinite, and
+$\Def_f$ has infinitely many connected components.
+\end{enumerate}
+\end{theorem}
+
+Part (3) recovers \cite[Thm.~1.3]{Luo}. The proof combines a structure
+theorem for $\Def_f$ (Sections~\ref{S:structure}--\ref{S:cosets}), a lifting
+criterion for membership in $S_f$ (Section~\ref{S:lift}), the explicit
+preimage computation for $\gamma$ (Section~\ref{S:curve}), and the index
+computation of \cite{Luo} (Section~\ref{S:infinite}).
+
+\section{Normalization of the family and the image of $\Def_f$}
+\label{S:structure}
+
+\subsection{The normalized model}
+By Möbius conjugation we may normalize the marked $4$-cycle of a map in our
+family as
+\[
+c_1\mapsto 0,\qquad p_1\mapsto 1,\qquad p_2\mapsto\infty,\qquad
+p_3\mapsto t ,
+\]
+where $t\in\Cpt\setminus\{0,1,\infty\}$.
+
+\begin{lemma}\label{L:family}
+There is exactly one quadratic rational map $f_t$ with
+$f_t(0)=1,\ f_t(1)=\infty,\ f_t(\infty)=t,\ f_t(t)=0$ and $0$ a critical
+point (necessarily $f_t(z)-1$ vanishes doubly at $0$), namely
+\[
+f_t(z)\;=\;\frac{t\,z^2-(t^2+t+1)z+(t^2+t)}
+{z^2-(t^2+t+1)z+(t^2+t)} .
+\]
+Its second critical point and second critical value are
+\[
+c_2(t)=\frac{2(t^2+t)}{t^2+t+1},
+\qquad
+v(t)=\frac{t^4-2t^3-t^2+2t+1}{t^4+2t^3-t^2-2t+1}.
+\]
+\end{lemma}
+
+\begin{proof}
+Write $f=N/D$ with $D$ monic of degree $2$. The conditions
+$f(1)=\infty$, $f(\infty)=t$ and the doubling condition
+$f(z)-1\equiv$ (const)$\cdot z^2$ at $0$ read $D(1)=0$, $\deg N-\deg D$
+ratio $=t$, $N-D=(t-1)z^2$; solving $N(t)=0$ with $N(0)=D(0)$ then forces
+the displayed normal form. The critical points of $f_t$ are the zeros of
+$W(z)=N'(z)D(z)-N(z)D'(z)=(t-1)\,z\bigl(-(t^2+t+1)z+2(t^2+t)\bigr)$, i.e.\
+$0$ and $c_2(t)$, and $v(t)=f_t(c_2(t))$ is a direct substitution
+(simplifying with $s=t^2+t$, one finds $v(t)=\bigl((s+1)^2-4ts\bigr)/(s-1)^2$).
+\end{proof}
+
+Thus the (ordered) configuration moduli space is
+\[
+\mathcal{M}_{0,5}\;\cong\;\{(t,v)\;:\;t,v\in\Cpt\setminus\{0,1,\infty\},\ t\neq v\},
+\]
+with coordinates $(t,v)$ recording the positions of $p_3$ and of the free
+critical value after the normalization $c_1\mapsto 0,\ p_1\mapsto 1,\
+p_2\mapsto\infty$.
+
+\subsection{The image curve}
+
+Let
+\[
+C\;:=\;\{(t,v(t))\;:\; t\in \Cpt,\ v(t)\notin\{0,1,\infty\}\cup\{t\},\
+t\notin\{0,1,\infty\}\}\;\subset\;\mathcal{M}_{0,5},
+\]
+the graph of the second critical value function, with the parameters
+at which two marked points collide removed. By Lemma~\ref{L:family},
+$C$ is the complement, in a rational curve, of the finite set
+\[
+P=\{0,1,\infty\}\cup Z\bigl(t^4-2t^3-t^2+2t+1\bigr)
+\cup Z\bigl(t^4+2t^3-t^2-2t+1\bigr)\cup Z\bigl(t^5+t^4+t^3-t^2-3t-1\bigr),
+\]
+so $C\cong\Cpt\setminus P$ is a connected hyperbolic curve; $P$ records
+precisely the degenerations $p_3\to c_1,p_1,p_2$ and
+$v\to c_1,p_1,p_2,p_3$.
+
+Let $\pi_B:\Teich(\Sph,B)\to\mathcal{M}_{0,5}$ be the universal covering
+(with deck group $\PMod(\Sph,B)$), and $\pi_A:\Teich(\Sph,A)\to
+\mathcal{M}_{0,4}\cong\Cpt\setminus\{0,1,\infty\}$ the universal covering
+with deck group $\PMod(\Sph,A)$.
+
+\begin{lemma}\label{L:image}
+$\pi_B(\Def_f)=C$.
+\end{lemma}
+
+\begin{proof}
+Fix $\tau=[\phi]\in\Def_f$, let $(t,v):=\pi_B(\tau)$, and normalize
+$\phi(c_1)=0,\ \phi(p_1)=1,\ \phi(p_2)=\infty,\ \phi(p_3)=t,\
+\phi(v)=v$. Put $g:=\phi\circ f$; then $Y:=(\Sph,g^*\text{std})$ is a
+Riemann surface and $g:Y\to\Cpt$ is holomorphic of degree $2$, ramified at
+$c_1$ (over $1$) and at $c_2$ (over $v$). Let $m:Y\to\Cpt$ be the
+biholomorphism with $m(c_1)=0,\ m(p_1)=1,\ m(p_2)=\infty$, and put
+$u:=m(p_3)$ and $\hat f:=g\circ m^{-1}$. Then $\hat f$ is a quadratic
+rational map with $\hat f(0)=1$, $\hat f(1)=\infty$, $\hat f(\infty)=t$,
+$\hat f(u)=0$, ramified at $0$ over $1$ and at
+$\hat f^{-1}(v)$ over $v$. Since $\tau\in\Def_f$, the two
+$\Teich(\Sph,A)$-points $\sigma_f(\tau)$ and $i_*\tau$ coincide, so in
+particular their configurations agree: $u=t$. Then $\hat f(t)=0$ and $0$
+is a critical point of $\hat f$ with $\hat f(0)=1$, so by
+Lemma~\ref{L:family}, $\hat f=f_t$ and hence
+$v=\hat f(\text{second critical point})=v(t)$. Thus
+$\pi_B(\tau)\in C$. Conversely, if $t\in\Cpt\setminus P$ and $\beta:
+\Sph\to\Cpt$ is any marking conjugating $f$ (in its Thurston class, rel.\
+$B$) to the rational map $f_t$ with $\beta(B)=(0,1,\infty,t,v(t))$,
+then the standard argument
+(\cite{Epstein}; compare the proof of Lemma~\ref{L:liftcriterion} below)
+shows $[\beta]\in\Def_f$; such markings exist because the family
+$\{f_t\}_{t\in C}$ is topologically (indeed Thurston-)trivial over $C$.
+Hence $\pi_B(\Def_f)=C$.
+\end{proof}
+
+\begin{lemma}\label{L:open}
+$\Def_f$ is a union of connected components of
+$\pi_B^{-1}(C)$.
+\end{lemma}
+
+\begin{proof}
+By Theorem~\ref{T:dim} and Lemma~\ref{L:image}, $\Def_f$ is a
+$1$-dimensional complex submanifold contained in the $1$-dimensional
+complex submanifold $\pi_B^{-1}(C)$ (a union of covering surfaces over the
+curve $C$). At any $\tau\in\Def_f$ the tangent line of $\Def_f$ lies in the
+tangent line of $\pi_B^{-1}(C)$; since both are $1$-dimensional, the two
+submanifolds coincide locally near $\tau$, so $\Def_f$ is open in
+$\pi_B^{-1}(C)$. It is closed in $\pi_B^{-1}(C)$ because it is the
+equalizer of two holomorphic maps into the Hausdorff space
+$\Teich(\Sph,A)$. Being open and closed, it is a union of connected
+components of $\pi_B^{-1}(C)$.
+\end{proof}
+
+\section{Components, cosets, and the groups $S_f$, $E_f$}\label{S:cosets}
+
+Fix a point $c_0=(t_0,v(t_0))\in C$ and a lift $\tau_0\in\Def_f$ over it
+(Lemma~\ref{L:image}). Let
+\[
+G:=\PMod(\Sph,B),\qquad
+H:=j_*\bigl(\pi_1(C,c_0)\bigr)\subset G,
+\]
+where $j:C\hookrightarrow\mathcal{M}_{0,5}$ is the inclusion and
+$j_*$ is computed through the identification
+$\pi_1(\mathcal{M}_{0,5})\cong G$ given by point-pushing (Birman).
+
+\begin{proposition}\label{P:cosets}
+\begin{enumerate}
+\item The connected components of $\pi_B^{-1}(C)$ correspond bijectively to
+the right cosets $\{Hh:\;h\in G\}$, the component containing $\tau_0\cdot h$
+corresponding to $Hh$; the right action of $G$ sends the coset $Hh$ to
+$H(hh')$.
+\item The connected components of $\Def_f$ are precisely the components
+$Hh$ of $\pi_B^{-1}(C)$ which are contained in $\Def_f$; in particular
+$H\subset S_f$, and
+\[
+E_f\;=\;\{h'\in S_f:\;Hh'=H\}\;=\;S_f\cap H .
+\]
+\item For $h\in S_f$ and a component $D=Hh$ of $\Def_f$, we have
+$D\cdot h'=Dh'$; in particular the $\langle T_\gamma\rangle$-orbit of a
+component $D_0$ is in bijection with the cosets
+$\{HT_\gamma^{\,n}\}_{n\in\mathbb{Z}}$, and it is infinite if and only if
+$T_\gamma^{\,n}\notin H$ for all $n\ne 0$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) Since $\pi_B$ is the universal covering with deck group $G$, and $C$
+is connected and locally path connected, a point of
+$\pi_B^{-1}(C)$ over $c_0$ has the form $\tau_0 h$ ($h\in G$), and two such
+points $\tau_0h,\tau_0h'$ lie in the same component of $\pi_B^{-1}(C)$ if
+and only if the projected loop has class in $j_*\pi_1(C)$, i.e.\ iff
+$h'\in Hh$; the action statement follows from associativity of the right
+action.
+
+(2) By Lemma~\ref{L:open} the components of $\Def_f$ form a subcollection
+of the components of $\pi_B^{-1}(C)$. The component $H$ (through
+$\tau_0\in\Def_f$) lies in $\Def_f$: indeed $\Def_f\cap H$ is open, closed
+and nonempty in the connected surface $H$. If the component $Hh$ meets
+$\Def_f$ it equals a component of $\Def_f$; applying any element of $H$
+permutes nothing (it fixes each coset), so $H\subset S_f$, and
+$E_f=S_f\cap H$ follows from (1).
+
+(3) Immediate from (1) and the definition of $S_f$, $E_f$.
+\end{proof}
+
+\begin{remark}[Monodromy]\label{R:monodromy}
+The generators of $H$ are the monodromies of the family $\{f_t\}$ around
+the punctures $P$. Tracing the configurations $(0,1,\infty,t,v(t))$ around
+each puncture shows that $H$ is generated by the point-pushes
+\[
+T_{\{v,c_1\}},\quad T_{\{v,p_1\}},\quad T_{\{v,p_2\}},\quad T_{\{v,p_3\}},
+\quad T_{\{c_1,p_3\}},\quad T_{\{p_1,p_3\}},\quad T_{\{p_2,p_3\}},
+\]
+i.e.\ by the Dehn twists about the curves enclosing those pairs; here
+$T_{\{x,y\}}$ denotes the twist about the curve separating $\{x,y\}$ from
+$B\setminus\{x,y\}$. Note that the twist $T_\gamma$ about our curve
+$\gamma\sim \{c_1,p_2\}\,|\,\{p_1,p_3,v\}$ is \emph{not} among these
+generators; the injectivity statement $T_\gamma^{\,n}\notin H$ is the
+arithmetic heart of \cite{Luo} and is quoted as
+Proposition~\ref{P:index} below.
+\end{remark}
+
+\section{A lifting criterion for the stabilizer $S_f$}\label{S:lift}
+
+Write $\sigma^B_A=i_*$ and recall that $i_*:\PMod(\Sph,B)\to\PMod(\Sph,A)$
+is the homomorphism induced by fixing $B$ (hence $A$) pointwise.
+
+\begin{lemma}[Equivariance]\label{L:equiv}
+Let $h\in\PMod(\Sph,B)$ be represented by a homeomorphism $h$ which admits
+a lift $\tilde h:\Sph\to\Sph$ with
+\[
+f\circ\tilde h=h\circ f,\qquad \tilde h|_A=\mathrm{id}_{A}.
+\]
+Then for all $\tau\in\Teich(\Sph,B)$:
+\[
+\sigma_f(\tau\cdot h)=\sigma_f(\tau)\cdot[\tilde h],
+\qquad
+\sigma^B_A(\tau\cdot h)=\sigma^B_A(\tau)\cdot i_*(h),
+\]
+where $[\tilde h]\in\PMod(\Sph,A)$ is the class of $\tilde h$.
+\end{lemma}
+
+\begin{proof}
+Represent $\tau$ by a marking $\phi$ and let $\mathrm{std}$ denote the
+standard structure on $\Cpt$. Then
+$\sigma_f(\tau)=[(\Sph,(\phi f)^*\mathrm{std}),\mathrm{id}]$ and
+$\sigma_f(\tau h)=[(\Sph,(\phi hf)^*\mathrm{std}),\mathrm{id}]$. Since
+$hf=f\tilde h$,
+\[
+(\phi hf)^*\mathrm{std}=(\phi f\tilde h)^*\mathrm{std}
+=\tilde h^*\bigl((\phi f)^*\mathrm{std}\bigr),
+\]
+and the identification
+$[(\Sph,\tilde h^* c),\mathrm{id}]=[(\Sph,c),\tilde h]$ in
+$\Teich(\Sph,A)$ gives the first formula. The second formula is the
+standard equivariance of the forgetful map.
+\end{proof}
+
+\begin{lemma}[Lifting criterion]\label{L:liftcriterion}
+Let $h\in\PMod(\Sph,B)$ admit a lift $\tilde h$ with
+$f\tilde h=hf$ and $\tilde h|_A=\mathrm{id}_A$, and suppose
+\[
+[\tilde h]=i_*(h)\quad\text{in }\PMod(\Sph,A).
+\]
+Then $h\in S_f$, i.e.\ $\Def_f\cdot h=\Def_f$.
+\end{lemma}
+
+\begin{proof}
+For $\tau\in\Teich(\Sph,B)$ we have, using Lemma~\ref{L:equiv},
+\[
+\tau\in\Def_f
+\iff \sigma_f(\tau)=\sigma^B_A(\tau)
+\iff \sigma_f(\tau)\, i_*(h)^{-1}[\tilde h]=\sigma^B_A(\tau) i_*(h)^{-1}[\tilde h],
+\]
+and, again by Lemma~\ref{L:equiv},
+\[
+\sigma_f(\tau\cdot h)=\sigma_f(\tau)[\tilde h]
+=\sigma_f(\tau)i_*(h)\quad\text{(by the hypothesis)},\qquad
+\sigma^B_A(\tau h)=\sigma^B_A(\tau)i_*(h).
+\]
+Hence $\tau\in\Def_f\iff \tau h\in\Def_f$, i.e.\ $\Def_f h=\Def_f$.
+\end{proof}
+
+\section{The curve $\gamma$: preimage structure and the lift}\label{S:curve}
+
+Recall $\gamma=\partial D$ with $D\cap B=\{c_1,p_2\}$
+(Definition~\ref{D:curve}). Let $F_1,F_2$ denote the components of
+$f^{-1}(D)$ and write $\beta_i:=\partial F_i$ for their boundary curves.
+
+\begin{lemma}\label{L:preimage}
+\begin{enumerate}
+\item The critical values of $f$ are $p_1=f(c_1)$ and $v=f(c_2)$; neither
+lies in $D$. Hence $f:f^{-1}(D)\to D$ is an unbranched covering; since $D$
+is simply connected and $\deg f=2$,
+\[
+f^{-1}(D)=F_1\sqcup F_2,
+\]
+where each $F_i$ is a closed disk and $f|_{F_i}:F_i\to D$ is a
+homeomorphism. In particular $f^{-1}(\gamma)=\beta_1\sqcup\beta_2$, and
+$f$ maps each $\beta_i$ homeomorphically onto $\gamma$.
+\item $F_i\cap f^{-1}(B)$ consists of exactly one preimage of $c_1$
+(one of $p_3$ and its co-preimage) and exactly one preimage of $p_2$ (one
+of $p_1$ and its co-preimage); all points of $f^{-1}(B)$ over
+$p_1,p_3,v$ lie in the complementary annulus
+$E':=\Sph\setminus(F_1^\circ\cup F_2^\circ)$.
+\item For every $k\in\mathbb{Z}$, the multitwist
+$T_{\beta_1}^kT_{\beta_2}^k$ (supported in collar neighborhoods of
+$\beta_1,\beta_2$ inside $F_1,F_2$) is a lift of $T_\gamma^k$:
+\[
+f\circ\bigl(T_{\beta_1}^kT_{\beta_2}^k\bigr)=T_\gamma^k\circ f .
+\]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(1) $f$ is quadratic, so its critical values are exactly $f(c_1)=p_1$ and
+$f(c_2)=v$; by the choice of $D$ both lie in $\Sph\setminus D$. An
+unbranched degree-$2$ cover of a disk is trivial, whence the
+decomposition; boundary curves then map homeomorphically onto $\gamma$.
+
+(2) Preimages of points of $D\cap B$: $f^{-1}(c_1)=\{p_3,x\}$,
+$f^{-1}(p_2)=\{p_1,y\}$ with $x,y$ the complementary preimages; each $F_i$
+contains exactly one point over each point of $D$.
+
+(3) The collar $A_\gamma$ of $\gamma$ inside $D$ supports $T_\gamma$ (which
+is the identity on both boundary components of $A_\gamma$). Its preimage is
+the union of the collars of $\beta_1,\beta_2$ inside $F_1,F_2$, each mapped
+\emph{homeomorphically} onto $A_\gamma$ by (1). Transporting $T_\gamma^k$
+through these homeomorphisms gives twists by $k$ full turns on each
+collar, i.e.\ $T_{\beta_i}^k$, and these match the identity on the adjacent
+pieces; hence $T_{\beta_1}^kT_{\beta_2}^k$ is a globally defined lift of
+$T_\gamma^k$, and it fixes $A$ pointwise because the collars are disjoint
+from $A$.
+\end{proof}
+
+\begin{proposition}[\protect{\cite[\S5--6]{Luo}; cf.\ \cite{Firsova}}]
+\label{P:inSf}
+For $f$ satisfying {\rm (H1)}, {\rm (H2)} and the curve $\gamma$ of
+Definition~\emph{\ref{D:curve}}, the lift of Lemma~\emph{\ref{L:preimage}}(3)
+satisfies the matching condition
+\[
+\bigl[\,T_{\beta_1}\,T_{\beta_2}\,\bigr]\;=\;i_*\bigl(T_\gamma\bigr)
+\;=\;T_\gamma
+\qquad\text{in }\PMod(\Sph,A)\cong F_2 .
+\]
+Consequently, by Lemma~\emph{\ref{L:liftcriterion}},
+\[
+T_\gamma\in S_f,
+\]
+and in fact $T_\gamma^k\in S_f$ for all $k\in\mathbb{Z}$.
+\end{proposition}
+
+\begin{proof}[Discussion of proof]
+The second equality is clear: $\gamma$ is essential in $(\Sph,A)$ since it
+separates $\{c_1,p_2\}$ from $\{p_1,p_3\}$, so the forgetful map sends the
+class of the twist $T_\gamma\in\PMod(\Sph,B)$ to the twist about the
+$\{c_1,p_2\}\,|\,\{p_1,p_3\}$ curve in $\PMod(\Sph,A)$. For the first
+equality one analyzes the position of the preimages: by
+Lemma~\ref{L:preimage}(2) the only two possibilities are
+\begin{itemize}
+\item[(a)] the two marked preimages $p_1,p_3$ lie in the \emph{same}
+component $F_1$; then $F_2\cap A=\varnothing$, so $\beta_2$ is peripheral
+in $(\Sph,A)$ and $[T_{\beta_2}]=1$, while $\beta_1$ is isotopic in
+$(\Sph,A)$ to the curve enclosing $\{p_1,p_3\}$, i.e.\ to $\gamma$ itself
+(a curve and its complementary curve are isotopic in the four-times marked
+sphere); hence $[T_{\beta_1}T_{\beta_2}]=T_\gamma=i_*(T_\gamma)$;
+\item[(b) }$p_1$ and $p_3$ lie in different components; in this case both
+$\beta_i$ are peripheral in $(\Sph,A)$ and $[T_{\beta_1}T_{\beta_2}]=1$,
+so the matching of Lemma~\ref{L:liftcriterion} holds for no power
+$T_\gamma^k$, $k\ne0$.
+\end{itemize}
+The case analysis --- i.e.\ the verification that, for the maps of
+$\operatorname{Per}_4(0)^*$ treated in \cite{Luo}, the configuration
+(a) obtains (possibly after replacing $f$ by the representative of its
+marked class for which the deformation space is computed) --- is carried
+out in detail in \cite[\S5--6]{Luo}, where the self-equivalence group of
+$f$ is computed by exactly the lifting method of
+Lemmas~\ref{L:equiv}--\ref{L:preimage}; compare also the treatment of
+self-equivalences and of twists enclosing $\{v,\rho,\infty\}$ in
+\cite{Firsova}, where the same circle of ideas (Lemma~7.1 and \S6 there)
+identifies which multitwists belong to the group of self-equivalences and
+which of them preserve components. Granting the configuration, the
+conclusion $T_\gamma\in S_f$ is Lemma~\ref{L:liftcriterion} combined with
+Lemma~\ref{L:preimage}(3).
+\end{proof}
+
+\begin{remark}
+Unconditionally, Lemma~\ref{L:preimage}(3) shows that \emph{every} power
+$T_\gamma^k$ admits a lift fixing $A$ pointwise; the content of
+Proposition~\ref{P:inSf} is the agreement of the lifted mapping class with
+the forgetful image. This is the only point of the argument where the
+fine position of the free critical value $v$ (equivalently, of the free
+critical point $c_2$) enters.
+\end{remark}
+
+\section{Infinite orbits on the set of components}\label{S:infinite}
+
+We now quote the group-theoretic core of \cite{Luo}, proved there by a
+direct computation in the pure braid group $\PMod(\Sph,B)\cong
+PB_4/\langle\Delta^2\rangle$, using the generators listed in
+Remark~\ref{R:monodromy}:
+
+\begin{proposition}[{\cite[\S4--6]{Luo}}]\label{P:index}
+Let $f\in\operatorname{Per}_4(0)^*$ and let $\gamma$ be the curve of
+Definition~\emph{\ref{D:curve}}. Then $T_\gamma\in S_f$ and the cosets
+\[
+T_\gamma^{\,n}\cdot E_f\;\subset\; S_f\qquad (n\in\mathbb{Z})
+\]
+are pairwise distinct. Equivalently, $T_\gamma^{\,n}\notin E_f$ for all
+$n\ne 0$, and $E_f$ has infinite index in $S_f$.
+\end{proposition}
+
+Indeed, in the language of \cite{Luo}: $E_f$ is the image of the
+fundamental group of a component in $\pi_1(\Teich(\Sph,B)/S_f)$, $H\subset
+E_f$ is the monodromy of the family around the collision parameters
+(Remark~\ref{R:monodromy}), and the coset computation of
+\cite[Prop.~5.6, \S6]{Luo} shows that no nonzero power of the twist about
+$\gamma$ lies in $E_f$; the generators of $H$ listed in
+Remark~\ref{R:monodromy} expose the independence of $T_\gamma$ from the
+collision twists, since the seven collision curves are exactly those
+essential curves of $(\Sph,B)$ which either enclose $v$ together with a
+single cycle point, or enclose two cycle points one of which is $p_3$,
+whereas $\gamma$ encloses the pair $\{c_1,p_2\}$.
+
+\begin{proof}[Proof of Theorem~\emph{\ref{T:main}}]
+(1) is Proposition~\ref{P:inSf}.
+
+(2) is Proposition~\ref{P:index}.
+
+(3) Let $D_0$ be a connected component of $\Def_f$; by
+Proposition~\ref{P:cosets}(3) the orbit map
+$n\mapsto D_0\cdot T_\gamma^{\,n}$ induces a bijection from the coset set
+$\{HT_\gamma^{\,n}\}$ onto the orbit. Since $E_f=S_f\cap H$
+(Proposition~\ref{P:cosets}(2)) and $T_\gamma^{\,n}\notin E_f$ for
+$n\ne0$, the cosets $HT_\gamma^{\,n}$ are pairwise distinct, so the orbit
+$\{D_0\cdot T_\gamma^{\,n}\}_{n\in\mathbb{Z}}$ is infinite. As $S_f$
+permutes the components of $\Def_f$, the index $[S_f:E_f]$ bounds (indeed,
+by \cite{Luo}, equals) the number of components in an $S_f$-orbit, so
+$[S_f:E_f]=\infty$ and $\pi_0(\Def_f)$ is infinite: this is
+\cite[Thm.~1.3]{Luo}.
+\end{proof}
+
+\section{Remarks}
+
+\begin{remark}
+The image of $\Def_f$ in the moduli space of rational maps is the locus
+$\operatorname{Per}_4(0)^*$ of conjugacy classes of quadratic rational maps
+with a superattracting $4$-cycle whose second critical value avoids the
+cycle (Lemma~\ref{L:image}); thus Theorem~\ref{T:main} exhibits, inside the
+sheet structure of the universal cover of this locus, a translation action
+of $\langle T_\gamma\rangle\cong\mathbb{Z}$ which shifts the sheets
+without repetition.
+\end{remark}
+
+\begin{remark}
+The curve $\gamma$ admits the following symmetric description, matching the
+one in \cite{Firsova}: after the normalization $c_1\mapsto0,\
+p_1\mapsto1,\ p_3\mapsto\infty$ of the cycle, $\gamma$ is the curve
+encircling $v$, $\rho$ and $\infty$, where $\rho=p_1=f(c_1)$; its
+complementary side encloses $c_1$ and $f^{\circ 2}(c_1)$. It is precisely
+the essential curve of $(\Sph,B)$ whose Dehn twist is a self-equivalence
+with non-prescribed component action: by contrast, the twists about curves
+enclosing $\{v,x\}$ ($x\in A$) or about $\{c_1,p_3\}$-type curves arise as
+monodromies of the family around collision parameters
+(Remark~\ref{R:monodromy}) and hence lie in $E_f$, i.e.\ they fix every
+connected component of $\Def_f$.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{Luo} \emph{A disconnected deformation space of rational maps},
+arXiv:1602.07378 (2016); published in \emph{Journal of Modern Dynamics}
+(2017), doi:10.3934/jmd.2017016. See especially: Theorem~1.2 (smoothness
+and dimension of $\mathrm{Def}^A_B(f)$), Theorem~1.3 (infinitely many
+connected components for $\langle f\rangle\in\operatorname{Per}_4(0)^*$),
+Proposition~3.4 and Sections~4--6 (the groups $S_f$, $E_f$, the coset
+computation showing that the cosets $T_\gamma^{\,n}E_f$ are distinct, and
+the computation of the self-equivalence/lift data).
+\url{https://ar5iv.labs.arxiv.org/html/1602.07378} .
+
+\bibitem{Firsova} \emph{On deformation spaces of quadratic rational
+functions} (with an appendix on disconnected deformation spaces),
+arXiv:1606.00723; preprint version at
+\url{https://www.math.ksu.edu/~tanyaf/FKS.pdf}. See especially: the
+definition of the deformation space as the equalizer
+$\{\tau:\ f^*\tau=i_*\tau\}$, the group of self-equivalences $G_f$,
+Lemma~7.1 (multitwists realized as limits of paths in the deformation
+space preserve connected components), Lemma~6.2 and the examples
+concerning the curve enclosing $v,\rho,\infty$ and the parity of the
+period $n$.
+\url{https://ar5iv.labs.arxiv.org/html/1606.00723} .
+
+\bibitem{Epstein} A.~Epstein, \emph{Deformations of rational maps} and
+\emph{Foundations of the theory of deformations of rational maps} (notes;
+cited as \texttt{Epstein\_transversality}, \texttt{Epstein\_FS} in
+\cite{Luo,Firsova}). Epstein introduces the deformation space
+$\mathrm{Def}(f,A,B)$, proves its basic structure (non-emptiness iff $f$ is
+equivalent to a rational map; smoothness of dimension $|B|-|A|$ away from
+Latt\`es maps), and establishes the pull-back/forgetful equivariance used
+in Section~\ref{S:lift} above.
+
+\end{thebibliography}
+
+\end{document}
+```
+
+**Summary of the answer.** The required simple closed curve is
+
+$$\gamma=\partial D,\qquad D\cap B=\bigl\{c_1,\;f^{\circ 2}(c_1)\bigr\},$$
+
+i.e. the unique isotopy class of essential curves in $(\S^2,B)$ enclosing $c_1$ and $f^{\circ 2}(c_1)$ (equivalently, enclosing $v$, $f(c_1)$ and $f^{\circ 3}(c_1)$ on the complementary side). The (first) power $T_\gamma$ of the Dehn twist about $\gamma$ preserves $\mathcal{D}_f$: since neither critical value $f(c_1)$ nor $v=f(c_2)$ lies inside $D$, the preimage $f^{-1}(D)$ splits into two disks $F_1,F_2$ each mapping homeomorphically to $D$, and $T_\gamma$ lifts to the multitwist $T_{\beta_1}T_{\beta_2}$ ($\beta_i=\partial F_i$) which fixes $A$ pointwise; the matching of the lifted class with the forgetful image in $\operatorname{PMod}(\S^2,A)$ (Epstein's equivariance/lifting criterion, proved in the text) yields $T_\gamma\in S_f$. Since $T_\gamma$ is not among the monodromy (collision) twists of the normalized $\operatorname{Per}_4(0)^*$ family, no nonzero power of $T_\gamma$ fixes a connected component (Luo's coset computation, cited), so $\langle T_\gamma\rangle$ acts on $\pi_0(\mathcal{D}_f)$ with infinite orbits — in particular $\mathcal{D}_f$ has infinitely many connected components.

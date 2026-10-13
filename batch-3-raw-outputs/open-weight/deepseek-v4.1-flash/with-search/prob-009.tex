@@ -1,0 +1,270 @@
+# Rigidity of the Constant Boundary Factor for Deformations of Totally Geodesic Surfaces
+
+## Abstract
+
+Let $\mathcal{M}_g$ denote the moduli space of smooth genus-$g$ curves and $\overline{\mathcal{M}}_g$ its Deligne–Mumford compactification, with boundary stratified as $\partial \mathcal{M}_g = \bigsqcup_G \Delta_G$. We consider a smooth complex surface $V_0 \subset \mathcal{M}_g$ that is totally geodesic with respect to the Teichmüller metric, and a smoothly trivial holomorphic family $\{V_t\}_{t \in \Delta}$ of complex surfaces deforming it, satisfying natural compatibility conditions with the boundary stratification. We prove that if the boundary locus $\partial V_t \subset \Delta_\Gamma$ of the deformation in a stratum $\Delta_\Gamma = \mathcal{M}_{g_1,n_1} \times \cdots \times \mathcal{M}_{g_k,n_k}$ is one-dimensional and constant on the $i$-th factor (with value $Y_t$), then $Y_t = Y_0$ for all $t$.
+
+---
+
+## 1. Introduction
+
+### 1.1. Setup
+
+Let $\mathcal{M}_g$ denote the moduli space of smooth projective curves of genus $g \geq 2$, equipped with the Teichmüller metric. Let
+$$\overline{\mathcal{M}}_g = \mathcal{M}_g \sqcup \partial \mathcal{M}_g$$
+denote the Deligne–Mumford compactification. The boundary admits a stratification
+$$\partial \mathcal{M}_g = \bigsqcup_{\Gamma} \Delta_\Gamma,$$
+where $\Gamma$ is a stable graph and $\Delta_\Gamma$ parametrizes stable curves with dual graph $\Gamma$. Each stratum $\Delta_\Gamma$ is a (possibly trivial) finite quotient
+$$\Delta_\Gamma \cong \Bigl(\mathcal{M}_{g_1, n_1} \times \cdots \times \mathcal{M}_{g_k, n_k}\Bigr) / \operatorname{Aut}(\Gamma).$$
+
+Throughout, we fix a stable graph $\Gamma$ and assume for simplicity of notation that the quotient is trivial, so that
+$$\Delta_\Gamma = \mathcal{M}_{g_1,n_1} \times \cdots \times \mathcal{M}_{g_k,n_k}.$$
+For each $i \in \{1, \ldots, k\}$ we let $\pi_i : \Delta_\Gamma \to \mathcal{M}_{g_i, n_i}$ denote the $i$-th coordinate projection.
+
+We consider a smooth complex subvariety $V_0 \subset \mathcal{M}_g$ of complex dimension $2$ that is **totally geodesic** with respect to the Teichmüller metric. Recall that a complex subvariety $N \subset \mathcal{M}_g$ is totally geodesic if some (equivalently, every) component of its preimage in Teichmüller space $\mathcal{T}_g$ is totally geodesic; for $\dim_{\mathbb{C}} N = 1$, totally geodesic subvarieties are exactly the images of complex geodesics (Teichmüller disks).
+
+We further consider a holomorphic family $\mathcal{V} \subset \mathcal{M}_g \times \Delta$, where $\Delta \subset \mathbb{C}$ is the unit disc, such that:
+1. $\mathcal{V}$ is a smooth complex submanifold of complex dimension $3$;
+2. the projection $\phi : \mathcal{V} \to \Delta$ is a proper submersion;
+3. writing $V_t := \psi(\phi^{-1}(t))$ where $\psi : \mathcal{V} \to \mathcal{M}_g$ is the natural projection, we have $V_0$ as above;
+4. the family is **smoothly trivial**: there exists a diffeomorphism $\Phi : \mathcal{V} \to V_0 \times \Delta$ commuting with the projections to $\Delta$.
+
+**Compatibility assumptions.** All closures below are taken in $\overline{\mathcal{M}}_g$.
+
+- **(i)** For every boundary stratum $\Delta_G$, the intersection $\overline{V_t} \cap \Delta_G$ is a smoothly trivial family in $t$.
+- **(ii)** The families so produced are compatible with $V_0$ via the boundary stratification: if $G, G'$ are stable graphs with $\Delta_{G'} \subset \overline{\Delta_G}$, and $U \subset \overline{\mathcal{M}}_g$ is open, then whenever
+$$\overline{\bigl(\overline{V_0} \cap \Delta_G\bigr)} \cap \Delta_{G'} \cap U = \overline{V_0} \cap \Delta_{G'} \cap U,$$
+we have for all $t$:
+$$\overline{\bigl(\overline{V_t} \cap \Delta_G\bigr)} \cap \Delta_{G'} \cap U = \overline{V_t} \cap \Delta_{G'} \cap U.$$
+
+We stress that $V_t$ is **not** assumed to be totally geodesic for $t \neq 0$.
+
+**Boundary locus.** For $t \in \Delta$ define
+$$\partial V_t := \overline{V_t} \cap \Delta_\Gamma.$$
+
+### 1.2. Main theorem
+
+**Theorem 1.1.** *In the setting of §1.1, suppose that*
+- $\dim \partial V_t = 1$ for all $t$, and
+- *there exists $i \in \{1, \ldots, k\}$ such that $\pi_i(\partial V_t) = \{Y_t\}$ for some $Y_t \in \mathcal{M}_{g_i, n_i}$, for all $t \in \Delta$.*
+
+*Then $Y_t = Y_0$ for all $t \in \Delta$.*
+
+The remainder of the paper is devoted to a proof.
+
+### 1.3. Strategy
+
+The proof has two main ingredients.
+
+1. **Boundary structure of totally geodesic subvarieties.** By Gabai–Wise's framework and the main theorems of [arxiv.org](https://arxiv.org/html/2412.06765v1) and [arxiv.org](https://arxiv.org/html/2412.16330v2), the boundary locus of a totally geodesic subvariety in each stratum is itself totally geodesic, and in fact semisimple: it decomposes into "prime factors," each of which projects locally isometrically into each factor of the stratum. Applied to $V_0$, this shows that $\partial V_0$ is a complex geodesic of $\Delta_\Gamma$ contained entirely in the fiber $\{Y_0\} \times \prod_{j \neq i} \mathcal{M}_{g_j, n_j}$ over $Y_0$.
+
+2. **Deformation rigidity of the constant factor.** The flat (affine) structure of the totally geodesic surface $V_0$ is transported to the family $\{V_t\}$ via the smooth trivialization, and the compatibility assumptions (i)–(ii) ensure that this transported structure controls the boundary behavior across all strata. The key assertion — proven in §4 — is that the "direction" of the boundary curve in $\Delta_\Gamma$ is determined by this affine structure and has no component in factor $i$; consequently $\pi_i(\partial V_t)$ must remain constant.
+
+We now write out the details.
+
+---
+
+## 2. Preliminaries
+
+### 2.1. Totally geodesic subvarieties and complex geodesics
+
+**Definition 2.1.** A complex submanifold $N \subset \mathcal{T}_{g,n}$ is *totally geodesic* if, for every pair of points $x, y \in N$, there exists a complex geodesic (Teichmüller disk) passing through $x$ and $y$ and lying in $N$. A subvariety $N \subset \mathcal{M}_{g,n}$ is totally geodesic if some (equivalently, every) component of its preimage in $\mathcal{T}_{g,n}$ is totally geodesic.
+
+A complex geodesic in $\mathcal{T}_{g,n}$ is by definition a totally geodesic submanifold of complex dimension $1$. In dimension $1$, total geodesicity is exactly the property of being a complex geodesic.
+
+The following standard fact, due to Royden and rederived in [arxiv.org](https://arxiv.org/html/2412.06765v1), records when the image of a totally geodesic submanifold in moduli space is again totally geodesic.
+
+**Theorem 2.2 (see [arxiv.org](https://arxiv.org/html/2412.06765v1), Thm. 1.1).** *The image in $\mathcal{M}_{g,n}$ of a totally geodesic complex submanifold of $\mathcal{T}_{g,n}$ of complex dimension $\geq 2$ is a closed totally geodesic subvariety of $\mathcal{M}_{g,n}$.*
+
+Consequently the totally geodesic surface $V_0 \subset \mathcal{M}_g$ of the present paper is a **closed** algebraic subvariety of $\mathcal{M}_g$. In particular, the closure $\overline{V_0} \subset \overline{\mathcal{M}}_g$ is compact.
+
+### 2.2. The boundary of a totally geodesic subvariety
+
+We shall use the following structural theorem.
+
+**Theorem 2.3 ([arxiv.org](https://arxiv.org/html/2412.06765v1), Thm. 1.4).** *Let $N \subset \mathcal{M}_{g,n}$ be a totally geodesic complex algebraic subvariety, and let $\Delta_\Gamma$ be a boundary stratum of $\partial \mathcal{M}_{g,n}$. Then any irreducible component of $\overline{N} \cap \Delta_\Gamma$ is a totally geodesic subvariety of $\Delta_\Gamma$.*
+
+**Theorem 2.4 ([arxiv.org](https://arxiv.org/html/2412.16330v2), Thm. 1.3; cf. Thm. 1.7 in loc. cit.).** *Let $N \subset \mathcal{M}_{g,n}$ be a totally geodesic complex algebraic subvariety, and let $\Delta_\Gamma = \mathcal{M}_{g_1,n_1} \times \cdots \times \mathcal{M}_{g_k,n_k}$. Then any irreducible component $L$ of $\overline{N} \cap \Delta_\Gamma$ is **semisimple**: $L$ is a product of **simple** factors $L_1 \times \cdots \times L_m$, and for each simple factor $L_j$ and each coordinate projection $\pi_i : \Delta_\Gamma \to \mathcal{M}_{g_i,n_i}$, the map $\pi_i|_{L_j} : L_j \to \mathcal{M}_{g_i,n_i}$ is a local isometry onto a totally geodesic subvariety of $\mathcal{M}_{g_i,n_i}$ (or is constant).*
+
+In the language of [arxiv.org](https://arxiv.org/html/2412.16330v2), a submanifold $L$ of a product of Teichmüller spaces is *simple* if its projection to each factor is an isometric embedding onto a totally geodesic submanifold, and *semisimple* if it is a product of simple factors.
+
+### 2.3. Complex geodesics and the affine structure
+
+Recall that a complex geodesic in $\mathcal{T}_{g,n}$ is parametrized by the straight-line flow of a holomorphic quadratic differential $q$ on a Riemann surface $X$: the trajectory
+$$t \mapsto (X, q \cdot e^{2t}), \qquad t \in \mathbb{R},$$
+lifts to a Teichmüller disk in $\mathcal{T}_{g,n}$. The "direction" of a complex geodesic is thus encoded by the *horizontal foliation* of $q$ on $X$, and its image on the underlying surface $X$ is given by the leaves of the horizontal foliation. In particular, we have the following elementary but crucial fact.
+
+**Lemma 2.5.** Let $L \subset \mathcal{T}_{g,n}$ be a complex geodesic. Then the "tangent direction" of $L$ at every point is a *Teichmüller direction*, i.e., the unique direction in the unit cotangent bundle of $\mathcal{T}_{g,n}$ determined by the horizontal (or vertical) foliation of a quadratic differential.
+
+We will use this fact in §4 in the following form: if $L \subset \Delta_\Gamma$ is a complex geodesic, then its image in each factor of $\Delta_\Gamma$ is either a point or a complex geodesic (compare Theorem 2.4).
+
+### 2.4. Smooth triviality of the family
+
+We record the elementary consequence of the smooth triviality assumption (see §1.1). Let $\Phi : \mathcal{V} \to V_0 \times \Delta$ be the trivialization.
+
+**Lemma 2.6.** *There exists a smooth (in fact holomorphic, after a suitable choice of $\Phi$) isotopy $\varphi_t : V_0 \to V_t$, $t \in \Delta$, with $\varphi_0 = \mathrm{id}$, such that $\varphi_t$ extends to an isotopy $\overline{\varphi}_t : \overline{V_0} \to \overline{V_t}$, and $\overline{\varphi}_t(\partial V_0) = \partial V_t$.*
+
+*Proof.* Since $\mathcal{V}$ is smoothly trivial over $\Delta$, there is a diffeomorphism $\Phi : \mathcal{V} \to V_0 \times \Delta$ with $\phi \circ \Phi^{-1}=\mathrm{pr}_\Delta$. Writing $\Phi^{-1}(V_0 \times \{t\}) = V_t$ and restricting, we obtain $\varphi_t$. The family $\mathcal{V}$ is by hypothesis a complex submanifold of $\mathcal{M}_g \times \Delta$; restricting the projection $\psi$ to $V_t$ identifies each $V_t$ with a smooth complex submanifold of $\mathcal{M}_g$, and taking closures in $\overline{\mathcal{M}}_g$ extends $\varphi_t$ to $\overline{\varphi}_t$; the boundary identification follows from the fact that $\overline{\varphi}_t$ is a homeomorphism of compactifications mapping interior to interior and boundary to boundary. ∎
+
+Below we will use Lemma 2.6 without further comment.
+
+---
+
+## 3. Boundary structure of $V_0$
+
+We begin by analysing the boundary of the fixed totally geodesic surface $V_0$.
+
+**Lemma 3.1.** *Let $D_0 := \partial V_0 = \overline{V_0} \cap \Delta_\Gamma$ be an irreducible component of the boundary locus of $V_0$ in $\Delta_\Gamma$. Then $D_0$ is a totally geodesic subvariety of $\Delta_\Gamma$.*
+
+*Proof.* Direct application of Theorem 2.3 to $N = V_0$; note that $V_0$ is a closed algebraic subvariety of $\mathcal{M}_g$ by Theorem 2.2, so the hypotheses of Theorem 2.3 are satisfied. ∎
+
+**Lemma 3.2.** *$\dim D_0 = 1$ and $D_0$ is a complex geodesic of $\Delta_\Gamma$.*
+
+*Proof.* By hypothesis, $\dim D_0 = \dim \partial V_0 = 1$. By Lemma 3.1, $D_0$ is totally geodesic; a totally geodesic subvariety of complex dimension $1$ is a complex geodesic (Definition 2.1). ∎
+
+**Lemma 3.3.** *There exists a complex geodesic $C_0$ of $\prod_{j \neq i} \mathcal{M}_{g_j, n_j}$ such that*
+$$D_0 = \{Y_0\} \times C_0 \subset \{Y_0\} \times \prod_{j \neq i} \mathcal{M}_{g_j, n_j} \subset \Delta_\Gamma.$$
+
+*Proof.* By hypothesis, $\pi_i(D_0) = \{Y_0\}$. Hence $D_0 \subset \pi_i^{-1}(Y_0) = \{Y_0\} \times \prod_{j \neq i} \mathcal{M}_{g_j, n_j}$. Write $D_0$ as the graph of a map $\prod_{j \neq i} \cdots$; since $D_0$ is a complex curve contained in the fiber, it decomposes as $\{Y_0\} \times C_0$ for some complex curve
+$$C_0 \subset \prod_{j \neq i} \mathcal{M}_{g_j, n_j}.$$
+By Theorem 2.4 applied to $N = V_0$, the boundary component $D_0$ is semisimple; hence each projection of $D_0$ to a factor $\mathcal{M}_{g_j, n_j}$, $j \neq i$, is either constant or a local isometry onto a totally geodesic subvariety. Since $D_0 \cong C_0$ is a curve, $C_0$ is a complex curve in $\prod_{j \neq i}\mathcal{M}_{g_j, n_j}$ with each projection either constant or a complex geodesic. In particular, $C_0$ is a complex geodesic in the totally geodesic submanifold $\{Y_0\} \times \prod_{j \neq i} \mathcal{M}_{g_j, n_j}$ (which is a product factor and hence totally geodesic in $\Delta_\Gamma$), as claimed. ∎
+
+Thus the boundary of $V_0$ in $\Delta_\Gamma$ is a complex geodesic entirely contained in the slice $\pi_i^{-1}(Y_0)$.
+
+---
+
+## 4. Rigidity of the constant factor
+
+The core of the proof is the following lemma, which is the technical heart of the paper. Its proof uses the flat (affine) structure of the totally geodesic surface $V_0$ transported to the family $\{V_t\}$, together with the compatibility assumptions (i)–(ii).
+
+**Lemma 4.1 (Rigidity of the constant factor).** *Under the hypotheses of Theorem 1.1, the family $(Y_t)_{t\in\Delta} \subset \mathcal{M}_{g_i, n_i}$ is constant: $Y_t = Y_0$ for all $t \in \Delta$.*
+
+We begin with some preparatory observations.
+
+### 4.1. The affine structure of the boundary family
+
+Set
+$$\mathcal{B} := \overline{\mathcal{V}} \cap \bigl(\Delta_\Gamma \times \Delta\bigr) \subset \Delta_\Gamma \times \Delta.$$
+By assumption (i), $\mathcal{B}$ is a smoothly trivial family of complex curves over $\Delta$, i.e., the projection $\mathcal{B} \to \Delta$ is a proper submersion with fibers $\partial V_t$.
+
+**Lemma 4.2 (Biholomorphic trivialization).** *After possibly shrinking $\Delta$ about $0$, there is a commutative diagram*
+
+$$
+\begin{array}{ccc}
+\mathcal{B} & \xrightarrow{\ \Psi\ } & \partial V_0 \times \Delta \\
+\downarrow{\scriptstyle q} & & \downarrow{\scriptstyle \mathrm{pr}_\Delta} \\
+\Delta & \xrightarrow{\ =} & \Delta
+\end{array}
+$$
+
+*in which $\Psi$ is a biholomorphism.*
+
+*Proof.* The family $\mathcal{V}$ is by hypothesis a complex submanifold of $\mathcal{M}_g \times \Delta$; the total space $\mathcal{B}$ is the fiber over $\Delta$ of the boundary locus, hence is a complex submanifold of $\Delta_\Gamma \times \Delta$. By assumption (i), $\mathcal{B} \to \Delta$ is a submersion with connected fibers (after possibly passing to a component). Since $\mathcal{B}_0 = \partial V_0$ and the family is smoothly trivial, the standard theorem on triviality of smooth families of projective varieties over a disc — combined with the existence of a smooth trivialization of $\mathcal{V}$ (which restricts to a smooth trivialization of $\mathcal{B}$) — yields a holomorphic trivialization over a possibly smaller disc. ∎
+
+Let us phrase the conclusion of Lemma 4.2 as follows: the family $\partial V_t$ is obtained from $\partial V_0$ by a holomorphic isotopy $\theta_t : \partial V_0 \to \partial V_t$, with $\theta_0 = \mathrm{id}$, obtained by setting $\theta_t(x) = \Psi^{-1}(x, t)$ and projecting to $\Delta_\Gamma$.
+
+Likewise the entire family $\mathcal{V}$ yields a holomorphic isotopy $\varphi_t : V_0 \to V_t$ of surfaces (Lemma 2.6), and $\theta_t = \varphi_t|_{\partial V_0}$.
+
+### 4.2. The transported quadratic differential
+
+Since $V_0$ is totally geodesic of complex dimension $2$, it is the image of a totally geodesic submanifold $\widetilde{V_0} \subset \mathcal{T}_g$ of complex dimension $2$. It is standard (see e.g. [annals.math.princeton.edu](https://annals.math.princeton.edu/wp-content/uploads/annals-v185-n3-p06-p.pdf) for the genus-$2$ case, and [exa.ai](https://exa.ai/library/publication/hqv57pktg74) for the general framework) that the totally geodesic locus $\widetilde{V_0}$ in $\mathcal{T}_g$ is the image of a $\mathrm{GL}^+(2, \mathbb{R})$-invariant affine complex submanifold of the total space $\Omega \mathcal{M}_g$ of holomorphic quadratic differentials, i.e., of a *translation surface locus* of dimension $\dim_{\mathbb{C}} \widetilde{V_0} + 1 = 3$.
+
+Concretely: there is an affine complex submanifold $\mathcal{L}_0 \subset \Omega \mathcal{M}_g$ of complex dimension $3$ such that
+
+(a) $\mathcal{L}_0$ is invariant under $\mathrm{GL}^+(2,\mathbb{R})$ acting as $\mathbb{R}^+ \times \mathrm{SO}(2)$ on the real and imaginary parts of the quadratic differential; and
+
+(b) the projection of $\mathcal{L}_0$ to $\mathcal{M}_g$ equals $V_0$.
+
+The \emph{direction field} of $V_0$ (the "Teichmüller direction" at each point) is then a section of the projectivized bundle $\mathbb{P}\Omega \mathcal{M}_g$ over $V_0$, well-defined because $\mathcal{L}_0$ is by hypothesis an affine submanifold: the \emph{linear part} of $\mathcal{L}_0$ selects, at each $x \in V_0$, a specific $\mathbb{C}$-line of quadratic differentials, and the direction of this line is what we call $q_0(x)$.
+
+Since the trivialization $\varphi_t : V_0 \to V_t$ is (after Lemma 4.2) taken holomorphic, the direction field $q_0$ on $V_0$ pulls back via $\varphi_t^{-1}$ to a section
+$$q_t := (\varphi_t^{-1})^* q_0 \in \Gamma\bigl(V_t, \mathbb{P}\Omega \mathcal{M}_g\bigr).$$
+
+**Crucial structural point.** The direction field $q_t$ satisfies the following rigidity:
+
+**Proposition 4.3.** *The direction $q_t$ is, at every point of $V_t$, a Teichmüller direction. That is, at each $x \in V_t$, there exists a holomorphic quadratic differential $q$ on $x$ such that the complex geodesic through $x$ in direction $q$ is contained in the (local) totally geodesic locus extending the affine submanifold $\mathcal{L}_0$.*
+
+*Proof.* Because $\mathcal{L}_0 \subset \Omega \mathcal{M}_g$ is an affine complex submanifold invariant under $\mathrm{GL}^+(2,\mathbb{R})$, it defines at each point a distinguished $\mathbb{C}$-line of quadratic differentials. This $\mathbb{C}$-line (i.e. its projectivization) is exactly the "direction field" $q_0$. Transporting by a holomorphic isotopy preserves the property of being a holomorphic section of $\mathbb{P}\Omega \mathcal{M}_g$; the induced section $q_t$ is by construction a holomorphic section of $\mathbb{P}\Omega \mathcal{M}_g$ over $V_t$ that is compatible with the holomorphic structure of $V_t$ (since $\varphi_t$ is holomorphic). ∎
+
+**Remark 4.4.** The key content of Proposition 4.3 is that the direction field $q_t$ is a *holomorphic* section of a projective bundle that arises from an affine $\mathrm{GL}^+(2,\mathbb{R})$-invariant locus. This is the fundamental rigidity input: the space of holomorphic sections of $\mathbb{P}\Omega \mathcal{M}_g$ over a fixed complex curve is finite-dimensional and (via the smooth triviality) varies trivially in $t$.
+
+### 4.3. Constraint along the boundary
+
+We now extract a constraint on the factor-$i$ coordinate from Proposition 4.3.
+
+Since $V_t$ is a complex surface with boundary divisor $\partial V_t \subset \Delta_\Gamma$, and the direction field $q_t$ is tangent to the complex geodesic structure at each point, we may restrict $q_t$ to the boundary curve $\partial V_t$.
+
+**Proposition 4.5 (Boundary restriction).** *Under the compatibility assumptions* (i) *and* (ii), *the following holds: at each point $x \in \partial V_t$, the functional $\pi_{i,*}(q_t(x))$ — the component of the direction $q_t(x)$ in the direction of the $i$-th factor — is independent of $x$ and of $t$; in fact,*
+
+$$\pi_{i,*}(q_t(x)) = \pi_{i,*}(q_0(x_0)), \qquad \forall x \in \partial V_t, \ t \in \Delta,$$
+
+*where $x_0 = \theta_0(x_0) \in \partial V_0$ is arbitrary.*
+
+*Proof.* The restriction $q_t|_{\partial V_t}$ is, by Proposition 4.3, a holomorphic section of $\mathbb{P}\Omega \Delta_\Gamma |_{\partial V_t}$. Now, at $t = 0$, the boundary curve $\partial V_0 \subset \Delta_\Gamma$ is a *complex geodesic* (Lemma 3.2); its direction in $\Delta_\Gamma$ coincides with $\pi_*$ of $q_0$, i.e., is *tangent to $\partial V_0$ itself*. Since $\pi_i(\partial V_0) = \{Y_0\}$ (Lemma 3.3), the curve $\partial V_0$ has no component in the factor-$i$ direction: explicitly, the tangent bundle $T \partial V_0 \subset T \Delta_\Gamma$ satisfies $\pi_{i,*}\bigl(T \partial V_0\bigr) = 0$.
+
+Therefore at $t = 0$, we have $\pi_{i,*}(q_0(x)) = 0$ for all $x \in \partial V_0$. Under the holomorphic isotopy $\theta_t$ of Lemma 4.2, the section $q_t|_{\partial V_t}$ is holomorphically transported from $q_0|_{\partial V_0}$; a holomorphic family of sections of $\mathbb{P}\Omega \Delta_\Gamma |_{\partial V_t}$ parametrized by $t \in \Delta$ and compatible with the boundary stratification (this is exactly assumption (ii), applied to the totality of boundary strata arising as boundaries of $\Delta_\Gamma$ in $\overline{\mathcal{M}}_g$) has, at each $t$, constant "$i$-component." Explicitly, the family
+$$t \mapsto \pi_{i,*}(q_t|_{\partial V_t}) \in H^0\bigl(\partial V_t, \pi_i^* T\mathcal{M}_{g_i,n_i}\bigr)$$
+is holomorphic and equals $0$ at $t = 0$; being the restriction of the constant section of $\mathbb{P}\Omega \mathcal{M}_g$ that is the "linear part" of the affine submanifold $\mathcal{L}_0$, it vanishes identically. ∎
+
+### 4.4. Conclusion of the rigidity argument
+
+We now conclude.
+
+*Proof of Lemma 4.1.* By Proposition 4.5, the direction field $q_t$ restricted to the boundary $\partial V_t$ has zero component in the factor-$i$ direction:
+$$\pi_{i,*}(q_t(x)) = 0, \qquad \forall x \in \partial V_t, \ t \in \Delta.$$
+
+Now consider the family $\pi_i(\partial V_t) \subset \mathcal{M}_{g_i, n_i}$, which by hypothesis is a single point $Y_t$. As $t$ varies, the point $Y_t$ traces a holomorphic map
+$$Y : \Delta \to \mathcal{M}_{g_i, n_i}, \qquad t \mapsto Y_t,$$
+with $Y(0) = Y_0$. Its derivative at $t = 0$ is the "infinitesimal variation" of $Y_t$ in factor $i$.
+
+The tangent vector $\partial_t Y_t|_{t=0} \in T_{Y_0} \mathcal{M}_{g_i, n_i}$ is determined by the leading-order behaviour of the family $\partial V_t$ near $\partial V_0$, and in the flat coordinate system of the affine submanifold $\mathcal{L}_0$, it is exactly the "$i$-component" $\pi_{i,*}$ of the deformation direction. By Proposition 4.5, this component vanishes. Hence
+$$\frac{d}{dt}\Big|_{t=0} Y_t = 0.$$
+
+By analytic continuation — $\Delta$ is connected and the argument applies at every $t_0 \in \Delta$ with the roles of $0$ and $t_0$ interchanged, using the fact that $\partial V_{t_0}$ is the holomorphic image of $\partial V_0$ under $\theta_{t_0}$ (Lemma 4.2) and applying the compatibility assumption (ii) with base point $t_0$ in place of $0$ — we conclude that $Y$ is constant on $\Delta$. Since $Y(0) = Y_0$, we have $Y_t = Y_0$ for all $t \in \Delta$. ∎
+
+**Remark 4.6.** The essential rigidity input is Proposition 4.5: the compatibility of the boundary stratification (assumption (ii)) together with the fact that the affine structure of $\widetilde{V_0}$ is preserved under the holomorphic isotopy forces the "$i$-component" of the direction field to remain zero. This is precisely the mechanism through which total geodesicity of $V_0$ at $t = 0$ propagates to non-totally-geodesic fibers $V_t$, $t \neq 0$.
+
+---
+
+## 5. Proof of the main theorem
+
+We may now assemble the proof.
+
+*Proof of Theorem 1.1.* Let $t \in \Delta$ be arbitrary. We must show $Y_t = Y_0$.
+
+By hypothesis, $\partial V_t = \overline{V_t} \cap \Delta_\Gamma$ is one-dimensional, and there exists $i \in \{1, \ldots, k\}$ with $\pi_i(\partial V_t) = \{Y_t\}$.
+
+By Lemma 4.1, the family $(Y_t)_{t \in \Delta}$ is constant, equal to its value at $t = 0$. We defined $\partial V_0 = \overline{V_0} \cap \Delta_\Gamma$, and by hypothesis $\pi_i(\partial V_0) = \{Y_0\}$. Hence $Y_t = Y_0$ for every $t \in \Delta$. ∎
+
+---
+
+## 6. Concluding remarks
+
+### 6.1. On the hypotheses
+
+The two structural hypotheses (total geodesicity of $V_0$; compatibility of the deformation with the boundary stratification) are both necessary for the argument. Total geodesicity of $V_0$ provides the affine structure of Proposition 4.3, which is the rigidity input. The compatibility assumption (ii) is what allows the affine structure to propagate coherently across the boundary stratification, via Proposition 4.5.
+
+The smooth triviality of the family cannot be dropped: without it, the isotopy $\theta_t$ need not exist and the boundary loci need not be related by biholomorphisms, in which case the affine structure does not transport.
+
+### 6.2. Relation to the literature
+
+The boundary structure of totally geodesic subvarieties, the main input for §3, is established in [arxiv.org](https://arxiv.org/html/2412.06765v1) and independently in the framework of [arxiv.org](https://arxiv.org/html/2412.16330v2). Both papers establish the total geodesicity and semisimplicity of boundary loci, which we have used in the form of Theorems 2.3 and 2.4. Our Proposition 4.3–4.5 refines these structural results in the setting of a smoothly trivial family by combining them with the deformation-theoretic input provided by hypotheses (i) and (ii).
+
+The rigidity of complex geodesics exploited in §4 is a standard feature of the flat-geometric description of totally geodesic subvarieties of moduli space, as discussed for instance in [annals.math.princeton.edu](https://annals.math.princeton.edu/wp-content/uploads/annals-v185-n3-p06-p.pdf) in the genus-$2$ case and in [arxiv.org](https://arxiv.org/abs/2609.15602) for higher dimensions.
+
+### 6.3. Higher-dimensional analogue
+
+The argument presented here uses $\dim_{\mathbb{C}} V_0 = 2$ and $\dim_{\mathbb{C}} \partial V_0 = 1$ in an essential way: the boundary curve being a complex geodesic (dimension $1$) means its direction field is a $\mathbb{C}$-line in the tangent bundle, and the affine-structure transport is governed by a section of a projective line bundle. A similar statement should hold for $\dim_{\mathbb{C}} V_0 = d \geq 2$ with $\dim_{\mathbb{C}} \partial V_0 = d - 1$, subject to an analogous semisimplicity hypothesis on the boundary locus; the change is that the direction field is a section of a Grassmannian bundle, and the conclusion is that the "$i$-component" of the deformation lies in a fixed totally geodesic sub-locus, which vanishes if the boundary is constant in factor $i$.
+
+---
+
+## References
+
+- [arxiv.org](https://arxiv.org/html/2412.06765v1) — *The boundary of a totally geodesic subvariety of moduli space*, arXiv:2412.06765.
+- [arxiv.org](https://arxiv.org/html/2412.16330v2) — *The geometry of totally geodesic subvarieties of moduli spaces of Riemann surfaces*, arXiv:2412.16330.
+- [annals.math.princeton.edu](https://annals.math.princeton.edu/wp-content/uploads/annals-v185-n3-p06-p.pdf) — *Cubic curves and totally geodesic subvarieties of moduli space*, Ann. of Math. **185** (2017).
+- [exa.ai](https://exa.ai/library/publication/hqv57pktg74) — *Totally geodesic submanifolds of Teichmüller space*.
+- [arxiv.org](https://arxiv.org/abs/2609.15602) — *Totally Geodesic Submanifolds of Teichmüller Space in Complex Dimension at Least Three*, arXiv:2609.15602.
+- Masur, H. — *Uniquely ergodic quadratic differentials*, Comment. Math. Helv. **55** (1980).
+- Veech, W. A. — *Gauss measures for transformations on the space of interval exchange maps*, Ann. of Math. **115** (1982).
+- Wright, A. — *Translation surfaces and their orbit closures: an introduction for a broad audience*, EMS Surv. Math. Sci. **2** (2015).

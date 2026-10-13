@@ -1,0 +1,811 @@
+{
+  "stages": [
+    {
+      "stage": "prob-010/002-assumption-review",
+      "session": "01a1099b-17df-7581-9751-35e2c639b9e8",
+      "status": "invalid_tool_attempt",
+      "metadata": "run-01/host/runtime/prob-010/002-assumption-review/stage.meta.json",
+      "usage_evidence": "run-01/host/runtime/prob-010/002-assumption-review/stage.response-usage.json",
+      "metering": "unknown"
+    },
+    {
+      "stage": "prob-010/001-main-dossier",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-01/host/runtime/prob-010/001-main-dossier/stage.meta.json",
+      "usage_evidence": "run-01/host/runtime/prob-010/001-main-dossier/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/054-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/054-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/054-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/062-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/062-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/062-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/045-sol-execution",
+      "session": "01a10af0-fe78-7c40-90b3-74d19eee37be",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/045-sol-execution/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/045-sol-execution/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/002-assumption-review",
+      "session": "01a1099b-17df-7581-9751-35e2c639b9e8",
+      "status": "invalid_tool_attempt",
+      "metadata": "run-02/host/runtime/prob-010/002-assumption-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/002-assumption-review/stage.response-usage.json",
+      "metering": "unknown"
+    },
+    {
+      "stage": "prob-010/077-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/077-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/077-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/071-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/071-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/071-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/007-proof-review",
+      "session": "01a109c0-42a1-7b03-9b59-d45550d3311f",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/007-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/007-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/004-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/004-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/004-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/082-scope-review",
+      "session": "01a10c90-3620-7e30-ab1b-868f5abb3d19",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/082-scope-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/082-scope-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/025-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/025-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/025-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/027-sol-execution",
+      "session": "01a10a48-3ce8-7b00-a426-05550577906b",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/027-sol-execution/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/027-sol-execution/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/024-sol-execution",
+      "session": "01a10a34-3ffc-7503-b00e-bdf0bc5832a8",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/024-sol-execution/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/024-sol-execution/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/076-proof-review",
+      "session": "01a10c5c-a3b8-7681-a65f-a5390c39af05",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/076-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/076-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/065-sol-execution",
+      "session": "01a10bf0-1cde-7743-8ddb-5de5d77acb4d",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/065-sol-execution/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/065-sol-execution/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/023-proof-review",
+      "session": "01a10a2f-32f1-7453-982b-af449f39a86b",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/023-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/023-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/012-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/012-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/012-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/015-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/015-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/015-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/030-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/030-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/030-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/086-preacceptance-scope-review",
+      "session": "01a10ca8-e8bf-70f3-835f-f3528328d2e9",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/086-preacceptance-scope-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/086-preacceptance-scope-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/061-proof-review",
+      "session": "01a10bcd-5a81-7313-92c4-8a05eda5446d",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/061-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/061-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/paper-001-light-draft",
+      "session": "01a10cc2-993b-7750-90b8-bbe03c57783a",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/paper-001-light-draft/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/paper-001-light-draft/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/020-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/020-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/020-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/010-proof-review",
+      "session": "01a109d1-f4e9-72b0-94d1-1aa07581f940",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/010-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/010-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/064-proof-review",
+      "session": "01a10be8-98b4-7512-aabf-9114a350877a",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/064-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/064-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/046-sol-execution",
+      "session": "01a10af7-840e-7733-894a-6a5b526e7fae",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/046-sol-execution/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/046-sol-execution/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/031-proof-review",
+      "session": "01a10a6c-469c-75b1-b440-3dc4e6d5ee42",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/031-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/031-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/073-proof-review",
+      "session": "01a10c3e-4a60-73f0-8fe8-97cba3b7ae96",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/073-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/073-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/022-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/022-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/022-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/035-proof-review",
+      "session": "01a10a90-e19a-7e02-8f23-6a1cff2f6e67",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/035-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/035-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/085-proof-review",
+      "session": "01a10ca1-0e05-7af0-94a2-3610e4525a63",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/085-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/085-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/055-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/055-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/055-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/013-proof-review",
+      "session": "01a109ea-fed2-7e00-9382-cc2e107b46a8",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/013-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/013-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/090-silver-review",
+      "session": "01a10cba-4147-7c31-9c9f-cd880ce7790f",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/090-silver-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/090-silver-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/014-sol-execution",
+      "session": "01a109ef-5645-7612-9976-fe709030e26e",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/014-sol-execution/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/014-sol-execution/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/034-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/034-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/034-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/018-sol-execution",
+      "session": "01a10a0c-ba98-7ca2-8bc9-3a9b36e1f395",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/018-sol-execution/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/018-sol-execution/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/026-proof-review",
+      "session": "01a10a43-adb1-7123-99a6-0fc9aaa7c931",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/026-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/026-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/048-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/048-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/048-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/066-sol-execution",
+      "session": "01a10bf7-e6ba-7ae1-8d03-5624b9c4ef31",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/066-sol-execution/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/066-sol-execution/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/036-sol-execution",
+      "session": "01a10a97-5bc3-7e22-bbce-18070e25a2e6",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/036-sol-execution/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/036-sol-execution/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/009-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/009-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/009-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/053-proof-review",
+      "session": "01a10b46-ad9b-7353-bbcf-af27be3da2f4",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/053-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/053-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/072-proof-review",
+      "session": "01a10c33-097e-7fc2-9827-a2ebea0bb4c1",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/072-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/072-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/059-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/059-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/059-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/083-silver-review",
+      "session": "01a10c92-6415-7c00-b90e-98ba51db4c17",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/083-silver-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/083-silver-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/052-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/052-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/052-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/006-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/006-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/006-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/038-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/038-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/038-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/041-sol-execution",
+      "session": "01a10aca-5c78-7870-bc90-e23c26a70f7f",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/041-sol-execution/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/041-sol-execution/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/paper-004-light-reader-2",
+      "session": "01a10cd4-834d-7772-8d4f-b5e927681a5b",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/paper-004-light-reader-2/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/paper-004-light-reader-2/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/033-sol-execution",
+      "session": "01a10a7a-3bff-7b81-9f41-c05ca019c144",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/033-sol-execution/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/033-sol-execution/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/005-proof-review",
+      "session": "01a109b5-9ed1-7310-ad38-97c2204d1c3b",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/005-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/005-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/029-proof-review",
+      "session": "01a10a5e-2b83-7912-8e90-c9b96420e350",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/029-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/029-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/047-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/047-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/047-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/040-sol-execution",
+      "session": "01a10ac1-4042-7b61-ac59-25b096b5bd4a",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/040-sol-execution/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/040-sol-execution/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/088-scope-review",
+      "session": "01a10cb5-f888-79b2-a8b1-60bdc92b5dd5",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/088-scope-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/088-scope-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/017-proof-review",
+      "session": "01a10a07-18e8-7f21-bc38-2ad26362ca06",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/017-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/017-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/080-proof-review",
+      "session": "01a10c84-2ec1-71d0-9b04-8a12781ac192",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/080-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/080-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/069-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/069-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/069-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/021-proof-review",
+      "session": "01a10a22-66e6-78b3-b4c5-25916293d8fd",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/021-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/021-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/042-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/042-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/042-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/084-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/084-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/084-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/028-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/028-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/028-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/068-proof-review",
+      "session": "01a10c06-aead-7ac1-bf92-f04646639e8d",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/068-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/068-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/039-proof-review",
+      "session": "01a10ab3-5fac-7281-83b9-468eb1653806",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/039-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/039-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/087-proof-review",
+      "session": "01a10cac-1a5b-72f3-9071-8743f307245f",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/087-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/087-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/paper-006-light-verify-2",
+      "session": "01a10cd4-834d-7772-8d4f-b5e927681a5b",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/paper-006-light-verify-2/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/paper-006-light-verify-2/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/037-sol-execution",
+      "session": "01a10a9e-1f2e-7282-af10-14e697ec5c15",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/037-sol-execution/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/037-sol-execution/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/paper-002-light-reader-1",
+      "session": "01a10ccf-a2eb-79b0-a4ad-4616df649eee",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/paper-002-light-reader-1/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/paper-002-light-reader-1/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/paper-005-light-revise-2",
+      "session": "01a10cc2-993b-7750-90b8-bbe03c57783a",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/paper-005-light-revise-2/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/paper-005-light-revise-2/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/058-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/058-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/058-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/057-proof-review",
+      "session": "01a10ba4-ce60-7af0-9720-29cce6ea9467",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/057-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/057-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/078-proof-review",
+      "session": "01a10c77-db29-7723-920d-b055d1bb7cf4",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/078-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/078-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/003-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/003-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/003-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/016-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/016-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/016-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/019-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/019-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/019-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/067-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/067-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/067-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/008-sol-execution",
+      "session": "01a109c3-323b-7351-b232-fdd6389ca328",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/008-sol-execution/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/008-sol-execution/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/070-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/070-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/070-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/074-sol-execution",
+      "session": "01a10c4a-4d9c-7aa2-8390-5537cbbb6eac",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/074-sol-execution/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/074-sol-execution/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/011-sol-execution",
+      "session": "01a109d5-c12b-75c0-9f26-f1bedd69efb6",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/011-sol-execution/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/011-sol-execution/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/001-main-dossier",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/001-main-dossier/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/001-main-dossier/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/049-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/049-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/049-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/paper-003-light-revise-1",
+      "session": "01a10cc2-993b-7750-90b8-bbe03c57783a",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/paper-003-light-revise-1/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/paper-003-light-revise-1/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/056-proof-review",
+      "session": "01a10b8d-faa0-7d12-9bd4-936e24ef8b86",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/056-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/056-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/060-proof-review",
+      "session": "01a10bc5-8f96-7950-8a00-4689ccbf0b3d",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/060-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/060-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/089-scope-review",
+      "session": "01a10cb8-4b0e-7f01-8466-4a00def756d2",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/089-scope-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/089-scope-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/050-proof-review",
+      "session": "01a10b20-3b7d-7211-9f86-386b3e5386ef",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/050-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/050-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/075-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/075-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/075-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/079-preacceptance-scope-review",
+      "session": "01a10c81-3be9-7531-9e45-40cb0c4b66e7",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/079-preacceptance-scope-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/079-preacceptance-scope-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/paper-007-light-final-review",
+      "session": "01a10cd9-94bc-71e0-a0a2-918feb151d5a",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/paper-007-light-final-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/paper-007-light-final-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/051-main-repair",
+      "session": "01a10996-e2b2-75c3-8566-8397029eadd0",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/051-main-repair/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/051-main-repair/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/081-scope-review",
+      "session": "01a10c8e-606f-7d20-8b11-339949868f97",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/081-scope-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/081-scope-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/063-proof-review",
+      "session": "01a10be1-5a1b-7902-9bbc-090df798b54a",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/063-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/063-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/032-sol-execution",
+      "session": "01a10a72-1c72-7f93-9c94-35e7c1c8cb09",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/032-sol-execution/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/032-sol-execution/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/044-proof-review",
+      "session": "01a10ae9-7a3a-79b2-a3b4-133a5bd1f1f7",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/044-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/044-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    },
+    {
+      "stage": "prob-010/043-proof-review",
+      "session": "01a10ae0-eb54-7710-8f28-621662c00725",
+      "status": "completed",
+      "metadata": "run-02/host/runtime/prob-010/043-proof-review/stage.meta.json",
+      "usage_evidence": "run-02/host/runtime/prob-010/043-proof-review/stage.response-usage.json",
+      "metering": "observed"
+    }
+  ],
+  "operations_events": [
+    "operations/state/incidents/55febcc118d99cbdb5d72e285b32ab3b8ae06fd71b83d78e5cde7d8c6f47cc50/1/events.jsonl",
+    "operations/state/incidents/8c30429c576d9560dd9c7a1eb4106391bb877d3fceeae589210ac99b71505805/1/events.jsonl"
+  ],
+  "operations_usage_evidence": [
+    "operations/state/incidents/55febcc118d99cbdb5d72e285b32ab3b8ae06fd71b83d78e5cde7d8c6f47cc50/1/stage.response-usage.json",
+    "operations/state/incidents/8c30429c576d9560dd9c7a1eb4106391bb877d3fceeae589210ac99b71505805/1/stage.response-usage.json"
+  ],
+  "operations_accounting_receipts": [
+    "operations/state/incidents/55febcc118d99cbdb5d72e285b32ab3b8ae06fd71b83d78e5cde7d8c6f47cc50/1/accounting-receipt.json",
+    "operations/state/incidents/8c30429c576d9560dd9c7a1eb4106391bb877d3fceeae589210ac99b71505805/1/accounting-receipt.json"
+  ],
+  "counts": "Use exact authenticated response usage; this index does not sum inherited copies.",
+  "missing_usage": "UNKNOWN",
+  "actual_billed_usd": null
+}

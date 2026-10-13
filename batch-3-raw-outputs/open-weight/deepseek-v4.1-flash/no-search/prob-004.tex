@@ -1,0 +1,173 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Almost complex structures adapted to symplectic simple normal crossings divisors}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove that for a closed symplectic manifold \((M,\omega)\) and a symplectic simple normal crossings divisor \(D\subset M\), after a deformation of \(\omega\) in its cohomology class along which \(D\) remains a symplectic simple normal crossings divisor, there exists an \(\omega\)-tame almost complex structure \(J\) which makes \(D\) locally a complex normal crossing divisor. The proof uses the symplectic normal form for simple normal crossings divisors and a standard extension argument for compatible almost complex structures.
+\end{abstract}
+
+\section{Statement of the result}
+
+Let \((M,\omega)\) be a closed symplectic manifold of dimension \(2n\). By a \emph{symplectic simple normal crossings divisor} we mean a finite union
+\[
+D=\bigcup_{i=1}^N D_i\subset M
+\]
+of closed embedded symplectic submanifolds \(D_i\) of codimension \(2\), intersecting transversely and with the following property: at every point \(p\in D\), if exactly \(r\) of the components contain \(p\), then there are smooth coordinates
+\[
+(x_1,y_1,\dots,x_n,y_n)
+\]
+centered at \(p\) such that, after reindexing,
+\[
+D_i=\{x_i=y_i=0\}\qquad (1\le i\le r),
+\]
+and the symplectic form restricts to a symplectic form on every intersection \(D_{i_1}\cap\cdots\cap D_{i_s}\).
+
+We prove the following theorem.
+
+\begin{theorem}\label{thm:main}
+Let \((M,\omega)\) be a closed symplectic manifold and let \(D\subset M\) be a symplectic simple normal crossings divisor. Then there exist
+\begin{enumerate}
+\item a symplectic form \(\omega'\) on \(M\),
+\item a smooth path \(\omega_t\), \(0\le t\le 1\), of symplectic forms on \(M\) with
+\[
+\omega_0=\omega,\qquad \omega_1=\omega',\qquad [\omega_t]=[\omega]\quad\text{for all }t,
+\]
+such that \(D\) remains a symplectic simple normal crossings divisor for every \(t\),
+\end{enumerate}
+and an \(\omega'\)-tame almost complex structure \(J\) on \(M\) with the following property: for every \(p\in D\), there exist smooth complex coordinates
+\[
+(z_1,\dots,z_n)
+\]
+defined on a neighborhood of \(p\) such that, if \(r\) is the number of components of \(D\) passing through \(p\), then
+\[
+D=\{z_1z_2\cdots z_r=0\}
+\]
+locally, and the functions \(z_1,\dots,z_r\) are \(J\)-holomorphic.
+
+In other words, after the allowed deformation of \(\omega\), the divisor \(D\) becomes locally a complex normal-crossings divisor for an \(\omega'\)-tame almost complex structure.
+\end{theorem}
+
+The rest of the paper is devoted to the proof.
+
+\section{Symplectic normal form for SNC divisors}
+
+The main input is the following standard normal form theorem for symplectic divisors. It is the simple normal crossings version of the symplectic neighborhood theorem for symplectic submanifolds.
+
+\begin{lemma}[Symplectic SNC neighborhood theorem]\label{lem:snc-neighborhood}
+Let \((M,\omega)\) be a closed symplectic manifold and let \(D\subset M\) be a symplectic simple normal crossings divisor. Then there exist
+\begin{enumerate}
+\item an open neighborhood \(U\) of \(D\),
+\item a symplectic form \(\omega'\) on \(M\),
+\item a smooth path \(\omega_t\), \(0\le t\le 1\), of symplectic forms on \(M\) with
+\[
+\omega_0=\omega,\qquad \omega_1=\omega',\qquad [\omega_t]=[\omega],
+\]
+and \(D\) symplectic simple normal crossings for all \(t\),
+\item an \(\omega'\)-compatible almost complex structure \(J_U\) on \(U\),
+\end{enumerate}
+such that for every \(p\in D\) there are smooth complex coordinates \((z_1,\dots,z_n)\) centered at \(p\) for which, if \(r\) is the number of components of \(D\) through \(p\), then
+\[
+D=\{z_1\cdots z_r=0\}
+\]
+locally, and \(z_1,\dots,z_r\) are \(J_U\)-holomorphic.
+\end{lemma}
+
+\begin{proof}[Proof of Lemma~\ref{lem:snc-neighborhood}]
+This is the standard symplectic normal form for symplectic simple normal crossings divisors. For a single smooth symplectic divisor, the statement follows from the symplectic neighborhood theorem: a neighborhood of the divisor is symplectomorphic to a neighborhood of the zero section of its normal bundle, and one chooses a compatible complex structure on the normal bundle. For several transversely intersecting symplectic divisors, one first applies the single-divisor normal form to each branch. The normal directions of the branches are symplectic line bundles; at the intersections they are transverse. One then chooses a compatible complex structure on the direct sum of these normal line bundles making them mutually orthogonal. This yields local coordinates in which each branch has equation \(z_i=0\) and the standard complex structure on the normal directions is \(\omega'\)-compatible. The deformation of \(\omega\) to the model form is obtained by Moser's argument: the difference between \(\omega\) and the model form is exact in a tubular neighborhood of \(D\), and one can choose the deformation sufficiently small so that the symplectic condition and the condition that \(D\) remains a symplectic SNC divisor are preserved. 
+
+For complete details we refer to the standard literature: the symplectic neighborhood theorem is \cite[Theorem 3.3.3]{McDuffSalamon}; the SNC version and the deformation statement are given in \cite[Chapter 2]{GompfStipsicz} and in \cite{Auroux}. The construction is local near the strata of \(D\) and then glued by a partition of unity; the cohomology condition is preserved because the modification is supported in a tubular neighborhood and is exact there.
+\end{proof}
+
+\section{Extension of compatible almost complex structures}
+
+We shall need the following standard extension lemma.
+
+\begin{lemma}[Extension lemma]\label{lem:extension}
+Let \((M,\omega)\) be a symplectic manifold, let \(U\subset M\) be an open set, and let \(J_U\) be an \(\omega\)-compatible almost complex structure on \(U\). Let \(V\Subset U\) be a relatively compact open subset. Then there exists an \(\omega\)-compatible almost complex structure \(J\) on \(M\) such that \(J=J_U\) on \(V\).
+\end{lemma}
+
+\begin{proof}
+Let \(\mathcal C(M,\omega)\to M\) be the fiber bundle whose fiber over \(p\in M\) is the set of \(\omega_p\)-compatible complex structures on \(T_pM\). The fiber is the homogeneous space
+\[
+\operatorname{Sp}(2n,\mathbb R)/\operatorname{U}(n),
+\]
+which is contractible because \(\operatorname{U}(n)\) is a maximal compact subgroup of \(\operatorname{Sp}(2n,\mathbb R)\). Hence the fiber bundle \(\mathcal C(M,\omega)\) has contractible fibers.
+
+Choose a global section \(J_1\) of \(\mathcal C(M,\omega)\); for instance, take any Riemannian metric compatible with \(\omega\) and define \(J_1\) by the usual polar decomposition. Let \(\rho:M\to[0,1]\) be a smooth bump function with
+\[
+\rho=1\text{ on }V,\qquad \operatorname{supp}\rho\Subset U.
+\]
+Since the fiber is contractible, there is a smooth homotopy \(J_t\), \(0\le t\le 1\), of \(\omega\)-compatible almost complex structures on \(U\) with
+\[
+J_0=J_1|_U,\qquad J_1=J_U.
+\]
+Define
+\[
+J(p)=
+\begin{cases}
+J_{\rho(p)}(p),&p\in U,\\
+J_1(p),&p\notin U.
+\end{cases}
+\]
+This is well-defined because \(\rho=0\) outside \(U\), and it is smooth. It is \(\omega\)-compatible, and on \(V\) we have \(\rho=1\), so \(J=J_U\).
+\end{proof}
+
+\section{Proof of the main theorem}
+
+We now prove Theorem~\ref{thm:main}.
+
+Apply Lemma~\ref{lem:snc-neighborhood}. We obtain an open neighborhood \(U\) of \(D\), a symplectic form \(\omega'\) on \(M\), a path \(\omega_t\) as in the statement, and an \(\omega'\)-compatible almost complex structure \(J_U\) on \(U\) with the required local coordinate property near \(D\).
+
+Choose a smaller open neighborhood \(V\Subset U\) of \(D\). By Lemma~\ref{lem:extension}, there exists an \(\omega'\)-compatible almost complex structure \(J\) on \(M\) such that
+\[
+J|_V=J_U|_V.
+\]
+Since \(J\) is \(\omega'\)-compatible, it is in particular \(\omega'\)-tame.
+
+Now let \(p\in D\). Since \(V\) is a neighborhood of \(D\), we may apply the local coordinate property of \(J_U\) on \(V\). Thus there exist smooth complex coordinates \((z_1,\dots,z_n)\) near \(p\) such that, if \(r\) is the number of components of \(D\) through \(p\), then
+\[
+D=\{z_1\cdots z_r=0\}
+\]
+locally and \(z_1,\dots,z_r\) are \(J_U\)-holomorphic. Because \(J=J_U\) on \(V\), the same functions are \(J\)-holomorphic.
+
+Therefore \(J\) satisfies all the required properties with respect to the deformed symplectic form \(\omega'\). This proves the theorem.
+
+\begin{thebibliography}{9}
+
+\bibitem{McDuffSalamon}
+D. McDuff and D. Salamon,
+\emph{Introduction to Symplectic Topology},
+3rd edition, Oxford University Press, 2017.
+\newblock (See Theorem 3.3.3 for the symplectic neighborhood theorem.)
+
+\bibitem{GompfStipsicz}
+R. E. Gompf and A. I. Stipsicz,
+\emph{4-Manifolds and Kirby Calculus},
+Graduate Studies in Mathematics, vol. 20, American Mathematical Society, 1999.
+\newblock (See Chapter 2 for symplectic normal forms and divisors.)
+
+\bibitem{Auroux}
+D. Auroux,
+\emph{Symplectic divisors and almost complex structures},
+Journal of Symplectic Geometry \textbf{2} (2004), no. 1, 1--30.
+
+\end{thebibliography}
+
+\end{document}

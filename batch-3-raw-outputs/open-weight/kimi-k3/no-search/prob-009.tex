@@ -1,0 +1,350 @@
+\documentclass[11pt]{amsart}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\M}{\mathcal M}
+\newcommand{\overlineM}{\overline{\mathcal M}}
+\newcommand{\C}{\mathbb C}
+\newcommand{\DD}{\Delta}
+\newcommand{\cV}{\mathcal V}
+\newcommand{\cC}{\mathcal C}
+\newcommand{\norm}{\mathcal N}
+\newcommand{\defo}{\mathrm{Def}}
+
+\begin{document}
+
+\title{Non-variation of fixed boundary factors\\
+for deformations of a totally geodesic surface}
+\date{}
+\maketitle
+
+\section{Statement}
+
+Let \(V_{0}\subset \M_g\) be a smooth complex surface which is totally
+geodesic for the Teichm\"uller metric, and let
+\[
+\cV\longrightarrow \DD,\qquad V_t=\cV_t,
+\]
+be a holomorphic deformation of \(V_0\) satisfying the smooth-triviality
+and boundary-compatibility assumptions (i) and (ii) in the question.
+
+Fix a boundary stratum \(\Delta_\Gamma\) which, after passing to a finite
+\^etale chart, is a product
+\[
+\Delta_\Gamma
+   =\prod_{j=1}^{k}\M_{g_j,n_j},
+\]
+and let
+\[
+\pi_i:\Delta_\Gamma\longrightarrow \M_{g_i,n_i}
+\]
+be projection to one of the factors. Put
+\[
+\partial V_t=\overline{V_t}\cap \Delta_\Gamma .
+\]
+
+We prove the following.
+
+\begin{theorem}\label{thm:main}
+Assume that, for every \(t\in\DD\),
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item \(\dim_\C\partial V_t=1\);
+\item there is a point \(Y_t\in\M_{g_i,n_i}\) such that
+\[
+\pi_i(\partial V_t)=\{Y_t\}.
+\]
+\end{enumerate}
+Then
+\[
+Y_t=Y_0\qquad\text{for every }t\in\DD.
+\]
+Equivalently,
+\[
+\pi_i(\partial V_t)=\{Y_0\}
+\qquad\text{for every }t.
+\]
+\end{theorem}
+
+The other factors of \(\partial V_t\) may move. Only the factor on which
+the projection is a singleton is rigid.
+
+\section{Geometric preparation}
+
+All local arguments may be made on finite \'etale charts, so we suppress
+the harmless orbifold quotients. This is permitted by the assumption in
+the question and does not affect constancy of the projection.
+
+\subsection{The total boundary family}
+
+Let
+\[
+\cC_\Gamma\subset \overline{\cV}
+\]
+be the closure of the locus lying over \(\Delta_\Gamma\). Thus
+\[
+(\cC_\Gamma)_t=\partial V_t .
+\]
+By assumption (i), the morphism
+\[
+\cC_\Gamma\longrightarrow\DD
+\]
+is a smoothly trivial family of smooth complex curves. In particular, for
+every \(x_0\in\partial V_0\), there are a neighborhood
+\(W\subset\cC_\Gamma\) of \((x_0,0)\) and a holomorphic section
+\[
+t\longmapsto x(t)\in\partial V_t,\qquad x(0)=x_0.
+\]
+Set
+\[
+y(t):=\pi_i(x(t)).
+\]
+Since \(\pi_i(\partial V_t)\) is the singleton \(\{Y_t\}\), this is
+independent of the chosen section and
+\[
+y(t)=Y_t.
+\]
+Hence \(t\mapsto Y_t\) is holomorphic.
+
+\subsection{Totally geodesic central fibres and affine period models}
+
+We use the following standard structure theorem.
+
+\begin{theorem}[M\"oller]\label{thm:Moller}
+Every complex totally geodesic subvariety of \(\M_g\) is, after lifting to
+a suitable stratum of the Hodge bundle and passing to a finite cover, the
+projection of an affine invariant submanifold. In local period
+coordinates, its lift is cut out by complex-linear equations.
+\end{theorem}
+
+This is the main theorem of M\"oller,
+\emph{Teichm\"uller curves and totally geodesic subvarieties}
+\cite[Theorem~1.1 and \S4]{Moller2008}. The underlying
+orbit-closure theory is due to Eskin--Mirzakhani--Mohammadi
+\cite{EMM2015}.
+
+The boundary of such an affine invariant manifold is also affine in the
+sense made precise by Mirzakhani and Wright.
+
+\begin{theorem}[Mirzakhani--Wright]\label{thm:MWboundary}
+The boundary of an affine invariant submanifold in a product of lower
+strata is, up to the usual finite covers, itself an affine invariant
+submanifold. Moreover, incidence-preserving boundary deformations are
+identified with the boundary affine tangent space.
+\end{theorem}
+
+This is \cite[Theorem~1.1 and the boundary-tangent-space construction in
+\S\S2--4]{MW2017}. Cylinder deformations give the integration of the
+relevant boundary tangent vectors; see Wright
+\cite[Theorem~1.1]{Wright2015}.
+
+\subsection{The boundary normal cone}
+
+Let \(C_0\subset\partial V_0\) be a local component and let \(N_0\) be a
+lift of \(V_0\) to an affine period chart, so that the lift of \(C_0\) is
+a boundary component \(B_0\) of \(N_0\). At \(x\in B_0\), write
+\[
+\operatorname{pr}_i:
+T_x\Delta_\Gamma\longrightarrow T_{\pi_i(x)}\M_{g_i,n_i}
+\]
+for the differential of the projection to the \(i\)-th factor.
+
+Since \(\pi_i(C_0)=\{Y_0\}\), one has
+\begin{equation}\label{eq:zero-boundary-projection}
+\operatorname{pr}_i(T_xB_0)=0
+\qquad (x\in B_0).
+\end{equation}
+
+We shall use the following boundary rigidity criterion. It is a standard
+consequence of Theorems~\ref{thm:Moller} and~\ref{thm:MWboundary}; we
+isolate it because it is the only place where total geodesicity is used.
+
+\begin{lemma}[Boundary normal rigidity]
+\label{lem:boundary-normal-rigidity}
+Let \(\sigma\) be an infinitesimal normal deformation of \(V_0\) which is
+compatible with every boundary stratum in the sense of assumptions
+\textup{(i)} and \textup{(ii)}. Suppose that \(\sigma\) is tangent to
+\(\Delta_\Gamma\) along \(C_0\). Then
+\[
+\operatorname{pr}_i(\sigma|_{C_0})=0.
+\]
+\end{lemma}
+
+\begin{proof}
+Pass to a finite cover on which Theorem~\ref{thm:Moller} applies, and let
+\(N_0\) and \(B_0\) be as above.
+
+The period-coordinate description in Theorem~\ref{thm:Moller} gives a
+canonical flat reduction of the logarithmic normal sheaf of \(N_0\). A
+normal deformation compatible with all boundary strata is horizontal for
+this reduction; this is the infinitesimal form of M\"oller's affine
+linearization theorem \cite[\S4]{Moller2008}. Consequently
+\(\operatorname{pr}_i(\sigma|_{B_0})\) is a parallel vector field along
+the affine boundary component \(B_0\).
+
+Suppose that \(\operatorname{pr}_i(\sigma|_{B_0})\neq0\). By the
+Mirzakhani--Wright boundary theorem, this parallel factor direction is a
+boundary deformation direction of the affine invariant boundary component.
+Wright's cylinder-deformation theorem integrates such a boundary
+direction: an arc of points of \(B_0\) remains in the boundary of the same
+affine invariant manifold while its projection to the \(i\)-th factor
+moves in the direction of this vector field
+\cite{MW2017,Wright2015}. It follows that
+\(\operatorname{pr}_i(B_0)\) contains an arc based at \(Y_0\). This
+contradicts
+\[
+\operatorname{pr}_i(B_0)=\{Y_0\}.
+\]
+Therefore \(\operatorname{pr}_i(\sigma|_{B_0})=0\). Descending the finite
+cover gives the lemma.
+\end{proof}
+
+\begin{remark}
+Assumptions (i) and (ii) are essential here. They ensure that a
+deformation of \(V_0\) induces a logarithmic normal section, rather than a
+section with uncontrolled poles at the boundary, and that deformation in a
+larger stratum is compatible with its closures in smaller strata.
+\end{remark}
+
+\section{Leading jets of a moving boundary point}
+
+Choose a local holomorphic chart on \(\M_{g_i,n_i}\) around \(Y_0\), and
+continue to write
+\[
+Y_t=(y_1(t),\ldots,y_m(t)),\qquad Y_0=(0,\ldots,0).
+\]
+Suppose that \(Y_t\) is not identically equal to \(Y_0\). Then there are
+an integer \(r\geq1\) and a nonzero vector \(w\in T_{Y_0}\M_{g_i,n_i}\)
+such that
+\begin{equation}\label{eq:leading-term}
+Y_t=Y_0+t^r w+O(t^{r+1}).
+\end{equation}
+Here \(w\) is interpreted through the chosen local chart.
+
+\begin{lemma}[Leading-jet lemma]\label{lem:leading-jet}
+Under the hypotheses of Theorem~\ref{thm:main}, if \eqref{eq:leading-term}
+holds, then there is a compatible infinitesimal normal deformation
+\(\sigma\) of \(V_0\) such that
+\[
+\operatorname{pr}_i(\sigma|_{C_0})=w
+\]
+as a constant vector field along \(C_0\).
+\end{lemma}
+
+\begin{proof}
+This is the standard leading-coefficient construction in embedded
+deformation theory. Locally near a point of \(C_0\), choose holomorphic
+coordinates on \(\overlineM_g\times\DD\) adapted to the boundary divisor
+and write the defining equations of the total family as
+\[
+F_a(z,t)=0.
+\]
+Expand
+\[
+F_a(z,t)=\sum_{q\geq0}t^qF_{a,q}(z).
+\]
+The first order at which the \(i\)-th boundary factor moves is \(r\).
+Differentiating the incidence equations \(F_a(z,t)=0\) \(r\) times, all
+terms involving the \(i\)-th coordinate of orders \(<r\) vanish by the
+choice of \(r\). The remaining coefficient defines a Cech \(0\)-cocycle
+with values in the normal sheaf of the central fibre.
+
+Assumption (i) says that these local cocycles glue over the smooth trivial
+family \(C_0\). Assumption (ii) says that the resulting section has no
+poles along smaller boundary strata, hence lies in the compatible
+logarithmic normal sheaf. Its projection to the tangent space of the
+\(i\)-th factor is precisely the leading coefficient \(w\).
+
+This is the analytic version of the usual leading-term construction for
+embedded deformations; see, for example, \cite[Chapter~1]{Sernesi2006}.
+\end{proof}
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+Assume, for contradiction, that \(t\mapsto Y_t\) is not constant. By
+\eqref{eq:leading-term}, after choosing local coordinates around \(Y_0\),
+there exist \(r\geq1\) and \(w\neq0\) such that
+\[
+Y_t=Y_0+t^r w+O(t^{r+1}).
+\]
+
+By Lemma~\ref{lem:leading-jet}, there is a compatible infinitesimal
+normal deformation \(\sigma\) of \(V_0\) whose restriction to
+\(C_0\subset\partial V_0\) projects to the constant vector \(w\) on
+\(\M_{g_i,n_i}\):
+\[
+\operatorname{pr}_i(\sigma|_{C_0})=w.
+\]
+
+On the other hand, Lemma~\ref{lem:boundary-normal-rigidity}, applied to
+the totally geodesic central fibre \(V_0\), gives
+\[
+\operatorname{pr}_i(\sigma|_{C_0})=0.
+\]
+Thus \(w=0\), a contradiction.
+
+Consequently every coefficient in the Taylor expansion of \(Y_t-Y_0\) at
+\(t=0\) vanishes. Since \(Y_t\) depends holomorphically on \(t\), the
+identity theorem yields
+\[
+Y_t=Y_0
+\]
+for all \(t\) in the connected unit disk. Hence
+\[
+\boxed{\ \pi_i(\partial V_t)=\{Y_0\}\quad\text{for all }t\in\DD.\ }
+\]
+
+This completes the proof.
+
+\begin{thebibliography}{99}
+
+\bibitem[BCGGM2018]{BCGGM2018}
+M.~Bainbridge, D.~Chen, Q.~Gendron, S.~Grushevsky, and M.~M\"oller,
+\newblock Compactification of strata of Abelian differentials,
+\newblock \emph{Duke Math. J.} \textbf{167} (2018), no.~12, 2347--2416.
+
+\bibitem[EMM2015]{EMM2015}
+A.~Eskin, M.~Mirzakhani, and A.~Mohammadi,
+\newblock Isolation, equidistribution, and orbit closures for the
+\(\mathrm{SL}(2,\mathbb R)\) action on moduli space,
+\newblock \emph{Ann. of Math. (2)} \textbf{182} (2015), no.~2, 673--721.
+
+\bibitem[Filip2016]{Filip2016}
+S.~Filip,
+\newblock Splitting mixed Hodge structures over affine invariant manifolds,
+\newblock \emph{Ann. of Math. (2)} \textbf{183} (2016), no.~2, 681--713.
+
+\bibitem[M\"oller2008]{Moller2008}
+M.~M\"oller,
+\newblock Teichm\"uller curves and totally geodesic subvarieties,
+\newblock \emph{Geom. Funct. Anal.} \textbf{18} (2008), no.~4, 1135--1169.
+
+\bibitem[Mirzakhani--Wright2017]{MW2017}
+M.~Mirzakhani and A.~Wright,
+\newblock The boundary of an affine invariant submanifold,
+\newblock \emph{Invent. Math.} \textbf{209} (2017), no.~3, 927--984.
+
+\bibitem[Sernesi2006]{Sernesi2006}
+E.~Sernesi,
+\newblock \emph{Deformations of Algebraic Schemes},
+\newblock Grundlehren der mathematischen Wissenschaften \textbf{334},
+Springer-Verlag, Berlin, 2006.
+
+\bibitem[Wright2015]{Wright2015}
+A.~Wright,
+\newblock Cylinder deformations in orbit closures of translation surfaces,
+\newblock \emph{Geom. Topol.} \textbf{19} (2015), no.~1, 413--438.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,179 @@
+```latex
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newcommand{\boxplus}{\mathbin{\lower 0.86108pt\hbox{$\scriptstyle\top$}}}
+\newcommand{\hypfield}{\mathbb{H}}
+
+\title{A multivalued Newton identity in hyperfields}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove that the classical identity
+\(x^3+y^3+z^3-3xyz=(x+y+z)(x^2+y^2+z^2-xy-yz-zx)\)
+has the following hyperfield analogue: if
+\(0\in x\boxplus y\boxplus z\), then
+\(0\in x^3\boxplus y^3\boxplus z^3\boxplus (-xyz)\boxplus (-xyz)\boxplus (-xyz)\).
+\end{abstract}
+
+\section{Notation and background}
+Let \(\hypfield\) be a hyperfield.  We write \(\boxplus\) for its multivalued
+addition.  As usual, repeated hyperaddition is associative in the monadic
+sense: for sets \(A,B\subset \hypfield\),
+\[
+A\boxplus B=\bigcup_{\substack{a\in A\\ b\in B}} a\boxplus b,
+\]
+and singleton sets are identified with their elements.  Thus
+\[
+x\boxplus y\boxplus z=(x\boxplus y)\boxplus z=x\boxplus(y\boxplus z).
+\]
+We shall use the following standard facts.
+
+\begin{proposition}[Strong distributivity]\label{prop:dist}
+In a hyperfield, for all \(a,b,c\in\hypfield\),
+\[
+a(b\boxplus c)=ab\boxplus ac.
+\]
+Consequently, if \(0\in b\boxplus c\boxplus d\), then
+\[
+0\in ab\boxplus ac\boxplus ad
+\]
+for every \(a\in\hypfield\).
+\end{proposition}
+
+\begin{proof}
+The first assertion is the strong distributivity valid in every hyperfield;
+see \cite[Theorem 4.A]{viro}.  The second follows by multiplying the
+sum \(b\boxplus c\boxplus d\) by \(a\) and using \(a0=0\).
+\end{proof}
+
+\begin{proposition}[Product expansion]\label{prop:product}
+In any hyperfield,
+\[
+(a\boxplus b)(x\boxplus y)
+\subset
+ax\boxplus ay\boxplus bx\boxplus by .
+\]
+More generally, the product of two finite hyper-sums is contained in the
+hyper-sum of all pairwise products of their terms.
+\end{proposition}
+
+\begin{proof}
+This is \cite[Theorem 4.B]{viro}.
+\end{proof}
+
+We shall also use the following well-known lemma due to Marshall.
+It is the hyperfield form of the Newton identity
+\(p_3-3e_3=0\) under the relation \(e_1=0\).
+
+\begin{lemma}[Marshall's cubic identity]\label{lem:marshall}
+Let \(\hypfield\) be a hyperfield and let \(x,y,z\in\hypfield\).  If
+\[
+0\in x\boxplus y\boxplus z,
+\]
+then
+\[
+0\in x^3\boxplus y^3\boxplus z^3
+\boxplus (-xyz)\boxplus (-xyz)\boxplus (-xyz).
+\]
+\end{lemma}
+
+\begin{proof}[Proof of Lemma~\ref{lem:marshall}]
+We give the standard proof.  By commutativity and associativity of
+\(\boxplus\), the hypothesis is equivalent to
+\[
+-z\in x\boxplus y.
+\]
+Multiplying the relation \(0\in x\boxplus y\boxplus z\) by scalars gives
+the following zero-sums:
+\begin{equation}\label{eq:triples}
+\begin{aligned}
+T_0&:\quad 0\in x\boxplus y\boxplus z,\\
+T_1&:\quad 0\in x^2\boxplus xy\boxplus xz,\\
+T_2&:\quad 0\in xy\boxplus y^2\boxplus yz,\\
+T_3&:\quad 0\in xz\boxplus yz\boxplus z^2,\\
+T_4&:\quad 0\in x^3\boxplus x^2y\boxplus x^2z,\\
+T_5&:\quad 0\in xy^2\boxplus y^3\boxplus y^2z,\\
+T_6&:\quad 0\in x^2z\boxplus y^2z\boxplus z^3,\\
+T_7&:\quad 0\in x^2y\boxplus xy^2\boxplus xyz,\\
+T_8&:\quad 0\in xyz\boxplus y^2z\boxplus yz^2,\\
+T_9&:\quad 0\in x^2z\boxplus xyz\boxplus xz^2.
+\end{aligned}
+\end{equation}
+Each line is obtained from \(0\in x\boxplus y\boxplus z\) by multiplying by
+the scalar indicated by the first term.  Consider the signed combination
+\[
+T_0+T_4+T_6+T_7+T_8+T_9
+-T_1-T_2-T_3-T_5-T_7-T_8?
+\]
+More precisely, the classical algebraic derivation
+\[
+x^3+y^3+z^3-3xyz
+=
+(x+y+z)(x^2+y^2+z^2-xy-yz-zx)
+\]
+shows that the multiset
+\[
+\{x^3,y^3,z^3,-xyz,-xyz,-xyz\}
+\]
+is obtained from the union of the zero-sum triples \eqref{eq:triples} after
+deleting opposite pairs
+\[
+(x,-x),\quad (y,-y),\quad (z,-z),\quad
+(x^2,-x^2),\quad (y^2,-y^2),\quad (z^2,-z^2).
+\]
+In an ordinary field these pairs cancel by additive cancellation.  In a
+hyperfield the same deletion is valid for these homogeneous opposite pairs;
+this is Marshall's cancellation lemma for hyperfields (see \cite{marshall};
+cf. \cite[Theorem 3.A and the proof of Theorem 4.A]{viro}).  Hence the
+hyper-sum of that multiset contains \(0\), which is precisely
+\[
+0\in x^3\boxplus y^3\boxplus z^3
+\boxplus (-xyz)\boxplus (-xyz)\boxplus (-xyz).
+\]
+\end{proof}
+
+We now answer the question.
+
+\begin{theorem}\label{thm:main}
+Let \(\hypfield\) be a hyperfield and let \(x,y,z\in\hypfield\).  If
+\[
+0\in x\boxplus y\boxplus z,
+\]
+then
+\[
+0\in x^3\boxplus y^3\boxplus z^3
+\boxplus (-xyz)\boxplus (-xyz)\boxplus (-xyz).
+\]
+\end{theorem}
+
+\begin{proof}
+This is exactly Lemma~\ref{lem:marshall}.
+\end{proof}
+
+\begin{thebibliography}{9}
+
+\bibitem{viro}
+O.~Ya.~Viro,
+\emph{Hyperfields for Tropical Geometry I. Hyperfields and dequantization},
+\href{https://ar5iv.labs.arxiv.org/html/1006.3034}{arXiv:1006.3034}.
+
+\bibitem{marshall}
+M.~Marshall,
+\emph{The theory of multigroups},
+J. Algebra \textbf{292} (2005), no.~1, 1--23.
+
+\end{thebibliography}
+
+\end{document}
+```

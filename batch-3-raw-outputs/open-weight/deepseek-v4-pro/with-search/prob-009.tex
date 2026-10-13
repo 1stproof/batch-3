@@ -1,0 +1,119 @@
+```tex
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Mbar}{\overline{\mathcal M}}
+\newcommand{\M}{\mathcal M}
+\newcommand{\C}{\mathbb C}
+\newcommand{\G}{\Gamma}
+\newcommand{\p}{\partial}
+
+\title{A counterexample to the asserted non-varying statement}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The assertion stated in the question is false as written. We construct a holomorphic family \(V_t\) of smooth two-dimensional subvarieties of a moduli space \(\M_g\), with \(V_0\) totally geodesic, satisfying all the stated boundary hypotheses, for which a boundary factor on which each \(\p V_t\) is constant nevertheless varies nontrivially with \(t\).
+\end{abstract}
+
+\section{Background}
+
+Recent work on totally geodesic subvarieties of moduli spaces shows that the boundary of a totally geodesic subvariety is itself totally geodesic in the corresponding boundary stratum, and that its prime pieces project locally injectively to the factors of the product cover; see \href{https://arxiv.org/html/2412.06765v1}{arxiv.org} and \href{https://arxiv.org/html/2412.16330v2}{arxiv.org}. The example below is consistent with those theorems. It shows, however, that the additional deformation-theoretic conclusion proposed in the question does not follow from them.
+
+\section{The counterexample}
+
+We take \(g=5\). Let \(\Delta_{1,4}\) be the boundary stratum of \(\Mbar_5\) whose dual graph is a separating edge with two vertices, one of genus \(1\) and one of genus \(4\). Since the two genera are different, this stratum has no nontrivial graph automorphism, and
+\[
+\Delta_{1,4}\simeq \M_{1,1}\times \M_{4,1}.
+\]
+Let
+\[
+\pi_1:\Delta_{1,4}\longrightarrow \M_{1,1}
+\]
+be the projection to the genus \(1\) factor.
+
+Let \(C\subset \M_{4,1}\) be a smooth finite cover of a Teichm\"uller curve. Thus \(C\) is a one-dimensional totally geodesic algebraic subvariety of \(\M_{4,1}\). Such curves exist; for example, they arise from square-tiled surfaces. After passing to a finite cover if necessary, we may assume that \(C\) is smooth and carries a universal family of genus \(4\) Riemann surfaces with a marked point.
+
+Let \(Y_t\) be a nonconstant holomorphic family of points of \(\M_{1,1}\), with \(t\in \Delta\subset \C\). For example, one may take \(\Delta\) to be a small disk in the \(j\)-line and let \(Y_t\) be the elliptic curve with \(j\)-invariant \(j(t)=t\).
+
+For each \(t\), we now define a two-dimensional subvariety \(V_t\subset \M_5\) by a plumbing construction. For \(p\in C\), let \(E_p\) be the corresponding genus \(4\) curve with marked point \(x_p\). Let \(y_t\) be the marked point of \(Y_t\). Form the nodal genus \(5\) curve
+\[
+E_p\sqcup Y_t\big/(x_p\sim y_t).
+\]
+This is a stable curve in \(\Delta_{1,4}\). Let \(q\in \C^{\times}\) be the plumbing parameter smoothing the node. For \(q\neq 0\), let \(X(p,q,t)\) be the resulting smooth genus \(5\) curve. The classifying map
+\[
+f_t:C\times \C^{\times}\longrightarrow \M_5,\qquad (p,q)\longmapsto X(p,q,t),
+\]
+is holomorphic. We define
+\[
+V_t:=f_t(C\times \C^{\times}).
+\]
+
+\begin{lemma}
+For every \(t\), \(V_t\) is a smooth two-dimensional closed subvariety of \(\M_5\), and the family \(\{V_t\}_{t\in\Delta}\) is a smoothly trivial family of submanifolds.
+\end{lemma}
+
+\begin{proof}
+The map \(f_t\) is injective: the stable limit as \(q\to 0\) recovers \(E_p\) and \(Y_t\), hence recovers \(p\), and the smoothing parameter \(q\) is the standard versal coordinate for the node, so nearby smooth curves with the same stable limit are distinguished by \(q\). The differential of \(f_t\) is injective because the deformation of \(E_p\) along \(C\) and the smoothing of the node are independent deformation directions.
+
+It remains only to note that \(f_t\) is proper over \(\M_5\). Indeed, if \((p_n,q_n)\) leaves every compact subset of \(C\times \C^{\times}\), then either \(q_n\to 0\) or \(p_n\) tends to a cusp of \(C\). In either case the corresponding genus \(5\) curves degenerate to the Deligne--Mumford boundary of \(\M_5\), so they have no limit point in \(\M_5\). Thus \(f_t\) is a proper injective immersion, hence a closed embedding. The smooth triviality of the family in \(t\) is clear from the product form of the parameter space \(C\times \C^{\times}\times \Delta\).
+\end{proof}
+
+\begin{lemma}
+The subvariety \(V_0\) is totally geodesic with respect to the Teichm\"uller metric.
+\end{lemma}
+
+\begin{proof}
+Lift the construction to Teichm\"uller space. At a point \(X(p,q,0)\), the tangent space to the lift of \(V_0\) is spanned by two types of quadratic differentials:
+\begin{enumerate}
+\item the quadratic differential on the genus \(4\) component giving the tangent direction to the Teichm\"uller curve \(C\);
+\item the quadratic differential supported on the plumbing annulus giving the derivative of the smoothing parameter \(q\).
+\end{enumerate}
+These directions span a \(\C\)-linear subspace of the space of quadratic differentials on \(X(p,q,0)\). In period coordinates, this subspace is linear. Moreover, any Teichm\"uller geodesic whose initial quadratic differential lies in this subspace has support contained in the genus \(4\) component and the plumbing annulus, and therefore fixes the genus \(1\) component \(Y_0\). Hence the geodesic remains inside the lift of \(V_0\). Therefore the lift of \(V_0\) is totally geodesic, and so its image \(V_0\subset \M_5\) is a totally geodesic subvariety.
+\end{proof}
+
+Now consider the Deligne--Mumford closure \(\overline V_t\) in \(\Mbar_5\). As \(q\to 0\), the curves \(X(p,q,t)\) converge to the stable curve
+\[
+E_p\cup Y_t.
+\]
+Thus
+\[
+\overline V_t\cap \Delta_{1,4}=\{Y_t\}\times C.
+\]
+In particular,
+\[
+\dim \overline V_t\cap \Delta_{1,4}=1,
+\]
+and
+\[
+\pi_1(\overline V_t\cap \Delta_{1,4})=\{Y_t\}.
+\]
+Because \(Y_t\) was chosen nonconstant, we have
+\[
+\pi_1(\overline V_t\cap \Delta_{1,4})\neq \{Y_0\}
+\]
+for general \(t\).
+
+It remains to check the two technical assumptions in the question. For any boundary stratum \(\Delta_G\) of \(\overline{\M}_5\), the intersection \(\overline V_t\cap \Delta_G\) is either empty or of the form
+\[
+\{Y_t\}\times B,
+\]
+where \(B\) is the corresponding boundary locus of \(C\) in \(\Mbar_{4,1}\). Hence these intersections are smoothly trivial in \(t\). The compatibility condition between strata is also immediate from the product structure: the boundary of \(\{Y_t\}\times C\) in a smaller stratum is exactly \(\{Y_t\}\times \p C\), and the same holds for all \(t\). Thus all hypotheses of the question are satisfied.
+
+Nevertheless, the conclusion fails because \(\pi_1(\overline V_t\cap \Delta_{1,4})=\{Y_t\}\) varies nontrivially with \(t\).
+
+\begin{remark}
+The boundary theorems of \href{https://arxiv.org/html/2412.06765v1}{arxiv.org} and \href{https://arxiv.org/html/2412.16330v2}{arxiv.org} imply that \(\overline V_0\cap \Delta_{1,4}\) is totally geodesic in \(\Delta_{1,4}\). In the present example it is \(\{Y_0\}\times C\), whose unique prime factor is the Teichm\"uller curve \(C\) in the second factor. This is exactly the sort of boundary component allowed by those theorems. The counterexample shows that such a boundary point in the omitted factor can be moved if one deforms \(V_0\) among arbitrary subvarieties, without requiring the deformed subvarieties to remain totally geodesic.
+\end{remark}
+
+\end{document}
+```

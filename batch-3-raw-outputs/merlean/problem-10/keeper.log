@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "status": "infrastructure_failed",
+  "health": [],
+  "checked_utc": "2026-10-05T01:12:36.361985+00:00",
+  "process": {
+    "alive": false,
+    "identity_match": null
+  },
+  "issues": [
+    {
+      "problem": "prob-010",
+      "kind": "research_incomplete"
+    },
+    {
+      "problem": "prob-010",
+      "kind": "paper_incomplete"
+    }
+  ],
+  "pid": 22,
+  "process_identity": "bf560cb492e92a3d83830c12372b46fad1bf467d599601f65322a46bdd42ad36",
+  "exit_code": 0,
+  "root": "/data/output/run-01",
+  "exam": {
+    "schema_version": 1,
+    "start_utc": "2026-10-05T01:04:04.888619+00:00",
+    "research_close_utc": "2026-10-05T23:49:04.888619+00:00",
+    "submission_deadline_utc": "2026-10-06T01:04:04.888619+00:00",
+    "cleanup_guard_seconds": 15,
+    "state_root": "/data/output/run-01/exam",
+    "clock_scope": "whole_campaign_including_continuations",
+    "official_rule_source": "https://1stproof.org/assets/docs/batch3-call-for-submissions.pdf",
+    "page_limit": 16,
+    "paper_engine": "lightweight-v1"
+  },
+  "evidence": [
+    {
+      "path": "host/runtime/prob-010/001-main-dossier/stage.meta.json",
+      "sha256": "6346a16ba027fb2c0104f6369008d03474a3459aa0b9524a344f334cf90bbaaa",
+      "status": "completed",
+      "exit_code": 0,
+      "problem": "prob-010",
+      "start_utc": "2026-10-05T01:04:05.544173+00:00",
+      "events_tail_sha256": "2480091c7fa790f50efb460004488890396b78b8deda690e466fe26a59597b29",
+      "failure_codes": []
+    },
+    {
+      "path": "host/runtime/prob-010/002-assumption-review/stage.meta.json",
+      "sha256": "a1c780e0afbc792a2eb535e84f0be4e77b973f8f772670e9c05483fa4d53cfb6",
+      "status": "invalid_tool_attempt",
+      "exit_code": 0,
+      "problem": "prob-010",
+      "start_utc": "2026-10-05T01:08:41.488210+00:00",
+      "events_tail_sha256": "7c730fafb1427bd00b64fc68a64c1566dce3ff2ce0b2a908193b34eb7beefa12",
+      "failure_codes": []
+    }
+  ],
+  "automatic_restart": false,
+  "scientific_authority": false,
+  "needs_attention": true,
+  "attention_event": "ec53f7ef1a85de724b46e1332ffcbf1e81acbab4553705add7c600b8b37b4b9e"
+}

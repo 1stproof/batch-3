@@ -1,0 +1,1 @@
+1. OPEN: [GOAL] If X is a smooth vector field on a compact connected manifold M such that every distribution u with L_X u smooth is itself smooth (global hypoellipticity), then the flow g_t of X has zero topological entropy — round1_plan

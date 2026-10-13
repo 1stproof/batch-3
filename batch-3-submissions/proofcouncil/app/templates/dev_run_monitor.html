@@ -1,0 +1,18 @@
+{% if monitor_summaries %}
+    <div class="monitor-list">
+        {% for item in monitor_summaries %}
+            <article class="monitor-summary">
+                <div class="monitor-summary-header">
+                    <strong>{{ item.display_label or item.agent or 'Monitor update' }}</strong>
+                    <span class="pill" data-status="{{ item.status or 'ok' }}">{{ item.status or 'ok' }}</span>
+                    {% if item.ts %}<span class="dim">{{ item.ts | display_time }}</span>{% endif %}
+                </div>
+                <div class="rendered-text latex-text">{{ item.summary }}</div>
+            </article>
+        {% endfor %}
+        <p class="dim" data-live-status></p>
+    </div>
+{% else %}
+    <p class="dim">No monitor summaries yet.</p>
+    <p class="dim" data-live-status></p>
+{% endif %}

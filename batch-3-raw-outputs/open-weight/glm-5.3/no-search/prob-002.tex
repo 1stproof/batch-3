@@ -1,0 +1,965 @@
+```latex
+\documentclass[11pt]{amsart}
+
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1.1in]{geometry}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{example}[theorem]{Example}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\W}{\mathbb{W}}
+\newcommand{\1}{\mathbf{1}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\divop}{\operatorname{div}}
+\newcommand{\KL}{\mathrm{KL}}
+\newcommand{\Lto}{\longrightarrow}
+
+\begin{document}
+
+\title{Minimax Estimation of a Conductivity in Darcy's Problem\\ from White-Noise Observations of the Pressure}
+\author{}
+\date{}
+
+\begin{abstract}
+We consider the statistical inverse problem of recovering a conductivity
+$f$ in the divergence-form elliptic equation
+$\divop(f\nabla u)=1$ on the unit ball $D\subset\R^d$, $d\ge 2$, with
+$u|_{\partial D}=0$, from a single white-noise observation
+$Y=u_f+n^{-1/2}\W$ of the solution. We show that for H\"older--Zygmund
+smoothness $\alpha>1$ and conductivities satisfying
+$\|f-\1\|_{C^\alpha(D)}\le r$ with $r>0$ small but fixed, the minimax rate
+for the squared $L^2$-risk is, up to logarithmic factors in $n$,
+\[
+n^{-\frac{2\alpha}{2\alpha+d+3}} .
+\]
+The exponent is explained by a microlocal analysis of the linearised
+forward map: the Fr\'echet derivative at $f\equiv\1$ is a pseudodifferential
+operator of order $-1$ whose symbol degenerates along the characteristic
+variety $\{x\cdot \xi=0\}$ of the associated transport equation. Perturbations
+oscillating \emph{transversally} to the radial characteristics (tangential
+perturbations) are smoothed of order two and form, at each resolution level,
+a family of dimension $d-1$; the minimax rate is therefore that of a mildly
+ill-posed linear inverse problem of degree $a=2$ in effective dimension
+$d-1$, i.e.\ $n^{-2\alpha/(2\alpha+2a+(d-1))}=n^{-2\alpha/(2\alpha+d+3)}$.
+The restriction $\alpha>1$ arises precisely because, along the degenerate
+(tangential) directions, the quadratic part of the nonlinear forward map must
+be of smaller order than the linearised signal. Both the minimax lower bound
+(based on an explicit construction of `characteristic wave packets' and a
+Fano argument) and a matching upper bound (via a two-component
+wavelet/packet deconvolution estimator) are proved.
+\end{abstract}
+
+\maketitle
+
+\tableofcontents
+
+\section{Introduction and main result}\label{sec:intro}
+
+\subsection{The statistical model}
+Let $D=B_1(0)\subset\R^d$, $d\ge2$, be the Euclidean unit ball. For a
+conductivity $f\in C^\alpha(D)$, $\alpha>1$ (H\"older--Zygmund space
+$B^\alpha_{\infty,\infty}(D)$), satisfying $f\ge 1/2$, let $u=u_f$ denote the
+unique weak (indeed classical) solution of Darcy's problem
+\begin{equation}\label{eq:pde}
+\divop(f\nabla u)=1\ \text{ in }D,\qquad u|_{\partial D}=0 .
+\end{equation}
+We observe the Gaussian white-noise model
+\begin{equation}\label{eq:model}
+Y_n \;=\; u_f+\frac1{\sqrt n}\,\W ,
+\end{equation}
+i.e., a centred Gaussian process indexed by $L^2(D)$ with covariance
+$\E[\langle \W,\varphi\rangle\langle \W,\psi\rangle]=\langle\varphi,\psi\rangle_{L^2(D)}$.
+Writing $P_f$ for the law of $Y_n$, we study the minimax squared $L^2$-risk
+\[
+\mathcal R_n\;:=\;\inf_{\hat f_n}\ \sup_{f_0\in\F(\alpha,r)}\
+\E_{f_0}\big[\|\hat f_n-f_0\|^2_{L^2(D)}\big],
+\qquad
+\F(\alpha,r):=\Big\{h\in C^\alpha(D):\ \|h-\1\|_{C^\alpha(D)}\le r\Big\},
+\]
+over the class of conductivities uniformly close to the constant $\1$.
+
+\subsection{Main theorem}
+
+\begin{theorem}[Minimax rate]\label{thm:main}
+Let $d\ge2$, $\alpha>1$, and let $0<r\le r_0$ where $r_0=r_0(d,\alpha)>0$ is
+sufficiently small. There exist constants $C_1,c_1>0$ and $C_2\ge0$, depending
+only on $d,\alpha$ and $r$, such that for all $n\ge2$,
+\[
+c_1\,(\log n)^{-C_2}\, n^{-\frac{2\alpha}{2\alpha+d+3}}
+\;\le\;
+\mathcal R_n
+\;\le\;
+C_1\,(\log n)^{C_2}\, n^{-\frac{2\alpha}{2\alpha+d+3}} .
+\]
+Consequently, up to logarithmic factors, the minimax rate of estimation of $f$
+in the squared $L^2$-loss over $\F(\alpha,r)$ is
+\begin{equation}\label{eq:rate}
+\boxed{\ n^{-\frac{2\alpha}{2\alpha+d+3}}\ }
+\end{equation}
+(equivalently, the $L^2$-error itself is of order
+$n^{-\alpha/(2\alpha+d+3)}$).
+\end{theorem}
+
+\subsection{Heuristic explanation of the rate}\label{sec:heuristic}
+It is instructive to record why the exponent takes the above form; the
+rigorous development follows in Sections~\ref{sec:prelim}--\ref{sec:upper}.
+
+With $u_0:=u_{\1}$ one computes $u_0(x)=\frac{|x|^2-1}{2d}$, so
+$\nabla u_0=x/d$ and $\Delta u_0=1$. The Fr\'echet derivative of the forward
+map $G:f\mapsto u_f$ at $f\equiv\1$ in direction $h$ is
+$\Lambda h:=w$ where
+\begin{equation}\label{eq:lin-intro}
+\Delta w=-\divop\big(h\,\tfrac{x}{d}\big)
+\quad\Longleftrightarrow\quad
+\Lambda=( -\Delta_D)^{-1}\Big[\tfrac{x}{d}\cdot\nabla+\1\Big],
+\end{equation}
+$-\Delta_D$ the Dirichlet Laplacian. The first-order operator
+$T:=\tfrac{x}{d}\cdot\nabla+\1$ is the \emph{transport operator} associated
+with the radial characteristics $t\mapsto t\omega$. Two regimes occur:
+
+\smallskip
+\noindent\emph{(i) radial (generic) directions.} For wave packets with
+$|x\cdot\xi|\asymp |\xi|$ one has $\|Th\|_{L^2}\asymp 2^{j}\|h\|_{L^2}$ at
+frequency $2^j$, so the composite $\Lambda$ smooths of order one,
+$\|\Lambda h\|\asymp 2^{-j}\|h\|$; there are $\asymp 2^{jd}$ such directions
+per level $j$.
+
+\smallskip
+\noindent\emph{(ii) tangential (characteristic) directions.} For wave packets
+localised near the variety $\{x\cdot\xi=0\}$ (oscillating transversally to the
+radial direction while remaining $2^{-j}$-thin radially), the transport part
+is trivial, $\|Th\|_{L^2}\asymp\|h\|_{L^2}$, and only the elliptic factor
+$(-\Delta_D)^{-1}$ acts: the smoothing is of order \emph{two},
+$\|\Lambda h\|\asymp 2^{-2j}\|h\|$. A Liouville (phase-space) count shows that
+these degenerate directions form, per level $j$, a family of dimension
+$\asymp 2^{j(d-1)}$ only.
+
+\smallskip
+Since the degree-$a$ ill-posed inverse problem with effective mode-dimension
+$\nu$ has minimax rate $n^{-2\alpha/(2\alpha+2a+\nu)}$ over $C^\alpha$-balls
+(the direct problem corresponds to $(a,\nu)=(0,d)$, giving
+$n^{-2\alpha/(2\alpha+d)}$), the tangential family dominates the rate with
+$(a,\nu)=(2,d-1)$:
+\[
+n^{-\frac{2\alpha}{2\alpha+4+(d-1)}}=n^{-\frac{2\alpha}{2\alpha+d+3}} .
+\]
+The role of $\alpha>1$ is as follows. Along a tangential perturbation $h$ of
+amplitude $S=\|h\|_{L^2}$ one has $\|\Lambda h\|_{L^2}\asymp S\,2^{-2j}$ while
+the quadratic remainder obeys $\|Q(h)\|_{L^2}\lesssim \|h\|_{L^\infty}
+\|\Lambda h\|_{H^1}\lesssim S^2 2^{-j}$ (Lemma~\ref{lem:expansion}); the
+nonlinearity is negligible compared to the linearised signal iff
+$S2^{j(1-\alpha)}\to0$, i.e.\ precisely when $\alpha>1$. The same condition
+guarantees that the amplified quadratic error in the upper bound is
+summable. This explains both the hypothesis $\alpha>1$ in
+Theorem~\ref{thm:main} and why the degree-one analysis of generic directions
+alone (which would suggest $n^{-2\alpha/(2\alpha+d+2)}$) does \emph{not}
+give the correct rate.
+
+\subsection{Organisation and standing assumptions}
+Section~\ref{sec:prelim} contains the functional-analytic preliminaries and
+the exact Fr\'echet expansion of the forward map. Section~\ref{sec:micro}
+develops the microlocal structure of $\Lambda$ and constructs the
+characteristic wave packets. The lower bound is proved in
+Section~\ref{sec:lower} and the upper bound in Section~\ref{sec:upper}.
+Throughout, $c,C,C_1,\dots$ denote constants depending only on $d,\alpha,r$
+(and on fixed choices of wavelet/packet profiles), possibly changing from
+line to line; $\lesssim,\gtrsim,\asymp$ are used accordingly. We freely use
+the following standard facts, with references given at first use:
+Schauder/energy estimates for divergence-form equations
+\cite[Ch.~8]{GT01}; H\"older--Zygmund (=Besov $B^\alpha_{\infty,\infty}$)
+spaces and their wavelet characterisations on domains \cite{Tri08,Tri92};
+Whitney extension \cite{Ste70}; and the Fano inequality for white-noise
+models \cite[Ch.~2]{Tsy09}.
+
+\section{Preliminaries: the forward map and its expansion}
+\label{sec:prelim}
+
+\subsection{The unperturbed solution}
+For $f\equiv \1$ the solution of \eqref{eq:pde} is
+\[
+u_0(x)=\frac{|x|^2-1}{2d},\qquad \nabla u_0(x)=\frac{x}{d},\qquad
+\Delta u_0=1 .
+\]
+
+\subsection{Function spaces}
+$C^\alpha(D)=B^\alpha_{\infty,\infty}(D)$ denotes the H\"older--Zygmund
+space. We fix once and for all a boundary-adapted orthonormal wavelet basis
+$\{\varphi_{l,k}\}$ of $L^2(D)$ of compactly supported $C^\infty$ wavelets
+with $S$ vanishing moments, $S\ge 2\alpha+d+4$, whose existence and the
+norm equivalence
+\begin{equation}\label{eq:wav}
+\|g\|_{C^\alpha(D)}\;\asymp\;\sup_{l\ge0,\,k}
+2^{l(\alpha+d/2)}\,|\langle g,\varphi_{l,k}\rangle|
+\end{equation}
+are standard; see \cite[Ch.~2--4]{Tri08}. The index $l$ is the dyadic scale
+(a wavelet $\varphi_{l,k}$ is localised in a ball of radius $\asymp 2^{-l}$
+and oscillates at frequency $\asymp 2^l$), and $k$ runs over
+$\asymp 2^{ld}$ indices at level $l$.
+
+\subsection{An exact Fr\'echet expansion}
+Define, for $h\in L^2(D)$, the linearised solution
+\begin{equation}\label{eq:Lambda}
+\Lambda h:=w,\qquad \Delta w=-\divop\Big(h\,\frac{x}{d}\Big)\ \text{ in }D,
+\quad w|_{\partial D}=0,
+\end{equation}
+so that, since $\divop(h\,x/d)=\frac{x}{d}\cdot\nabla h+h$,
+\[
+\Lambda=(-\Delta_D)^{-1}\Big[\tfrac{x}{d}\cdot\nabla+\1\Big].
+\]
+
+\begin{lemma}[Expansion and quadratic remainder]\label{lem:expansion}
+Let $\alpha>1$ and $0<r\le1/4$. For every $h\in C^\alpha(D)$ with
+$\|h\|_{C^\alpha}\le r$, writing $f=\1+h$, there exists a unique
+$Q(h)\in H^1_0(D)$ such that
+\begin{equation}\label{eq:expansion}
+u_f=u_0+\Lambda h+Q(h),
+\end{equation}
+and the following hold:
+\begin{align}
+\|\Lambda h\|_{H^1(D)}&\le C\|h\|_{L^2(D)},\label{eq:linH1}\\
+\|Q(h)\|_{L^2(D)}&\le C\,r\,\|h\|_{L^2(D)},\label{eq:quad1}\\
+\|Q(h)\|_{L^2(D)}&\le C\,\|h\|_{L^\infty(D)}\,\|\Lambda h\|_{H^1(D)}.
+\label{eq:quad2}
+\end{align}
+\end{lemma}
+
+\begin{proof}
+Regularity $u_f\in C^{\alpha+2}(D)$ follows from Schauder theory
+\cite[Thm.~8.32]{GT01}, so all terms below are legitimate. Subtracting
+$\Delta u_0=1$ from $\divop((1+h)\nabla u_f)=1$ gives
+$\Delta(u_f-u_0)=-\divop(h\nabla u_f)$. Set $w:=\Lambda h$ and
+$v:=u_f-u_0-w$ and define $Q(h):=v$. Then
+\[
+\Delta v=-\divop\big(h\,\nabla(w+v)\big),\qquad v|_{\partial D}=0 .
+\]
+\emph{Proof of \eqref{eq:linH1}.} Testing $\Delta w=-\divop(hx/d)$ with $w$
+and integrating by parts (all boundary terms vanish because $w|_{\partial D}=0$,
+and $|x|\le1$ on $D$):
+\[
+\|\nabla w\|_{L^2}^2=\int_D \frac{h x}{d}\cdot\nabla w
+\le \|h\|_{L^2}\|\nabla w\|_{L^2},
+\]
+so $\|\nabla w\|_{L^2}\le\|h\|_{L^2}$; \eqref{eq:linH1} follows by Poincar\'e.
+
+\smallskip
+\emph{Proof of \eqref{eq:quad1}, \eqref{eq:quad2}.} Testing the equation for
+$v$ with $v$:
+\[
+\|\nabla v\|^2=\int_D h\,\nabla(w+v)\cdot\nabla v
+\le \|h\|_{L^\infty}\,\|\nabla v\|_{L^2}\big(\|\nabla w\|_{L^2}+\|\nabla v\|_{L^2}\big).
+\]
+Since $\|h\|_{L^\infty}\le\|h\|_{C^\alpha}\le r\le 1/2$, this gives
+$(1-r)\|\nabla v\|\le r\|\nabla w\|$, hence
+$\|v\|_{L^2}\le C_\mathrm{P}\|\nabla v\|\le 2C_\mathrm P\,r\,\|\nabla w\|$,
+which is \eqref{eq:quad1} by \eqref{eq:linH1}, and also
+$\|v\|_{L^2}\le 2C_\mathrm P\|h\|_{L^\infty}\|\Lambda h\|_{H^1}$, which is
+\eqref{eq:quad2}. Uniqueness of $v$ follows from Lax--Milgram applied to the
+ uniformly elliptic equation for $v$ (coefficient $1+h\ge1-r\ge1/2$).
+\end{proof}
+
+\begin{lemma}[Transport identity]\label{lem:transport-id}
+For every $h\in H^1(D)$,
+\[
+\Big\|\tfrac{x}{d}\cdot\nabla h+h\Big\|_{L^2(D)}^2
+=\Big\|\tfrac{x}{d}\cdot\nabla h\Big\|_{L^2(D)}^2
++\frac1d\int_{\partial D}h^2\,\dd S .
+\]
+In particular, if $h$ vanishes in a neighbourhood of $\partial D$, then
+$\big\|\tfrac{x}{d}\cdot\nabla h+h\big\|_{L^2}=\big\|\tfrac{x}{d}\cdot\nabla h\big\|_{L^2}$.
+\end{lemma}
+
+\begin{proof}
+Expand the square and integrate by parts:
+$2\langle \tfrac{x}{d}\cdot\nabla h,h\rangle
+=\frac1d\int_{\partial D}h^2(x\cdot\nu)\,\dd S-\|h\|_{L^2}^2
+=\frac1d\int_{\partial D}h^2\,\dd S-\|h\|_{L^2}^2$
+on the unit ball ($x\cdot\nu=1$ on $\partial D$). The terms $\pm\|h\|^2$
+cancel.
+\end{proof}
+
+\subsection{Kullback--Leibler divergence in the white-noise model}
+
+\begin{lemma}\label{lem:KL}
+For $f,g\in\F(\alpha,r)$, the measures $P_f,P_g$ of \eqref{eq:model} are
+mutually absolutely continuous and
+$\KL(P_f,P_g)=\frac n2\|u_f-u_g\|_{L^2(D)}^2$.
+\end{lemma}
+
+\begin{proof}
+For any finite collection $\psi_1,\dots,\psi_m\in L^2(D)$ the projected laws
+are non-degenerate Gaussians in $\R^m$ with means
+$(\langle u_f,\psi_i\rangle)_i$, $(\langle u_g,\psi_i\rangle)_i$ and identity
+covariance (times $1/n$), whose KL divergence equals
+$\frac n2\sum_i|\langle u_f-u_g,\psi_i\rangle|^2$. Choosing
+$\{\psi_i\}$ an orthonormal basis of $\mathrm{span}(u_f-u_g,\dots)$ and using
+that KL divergences of projections increase monotonically to the KL of the
+infinite-dimensional Gaussian pair (and that the latter equals the limit
+along any exhausting projection family), the claim follows.
+\end{proof}
+
+\section{Microlocal structure of the linearisation}\label{sec:micro}
+
+In this section we make the dichotomy of \S\ref{sec:heuristic} precise. The
+central objects are \emph{characteristic (tangential) wave packets}.
+
+\subsection{Spectral localisation of Dirichlet eigenfunctions}
+Let $e_m$ ($m\ge1$) be the $L^2$-orthonormal eigenfunctions of $-\Delta_D$,
+$-\Delta_De_m=\lambda_m e_m$. We record an elementary fact used repeatedly.
+
+\begin{lemma}\label{lem:eig}
+Let $\eta$ be any $L^2$-unit test function with frequency support in
+$[2^{l-1},2^{l+1}]$ (i.e., $|\langle \eta,\varphi_{l',k}\rangle|\le
+C_N2^{-N|l'-l|}$ for all $N$). Then for every $m$ with
+$\lambda_m^{1/2}\le 2^{l-2}$ and every $N$,
+$|\langle e_m,\eta\rangle|\le C_N\,2^{-N(l-\frac12\log_2\lambda_m)}$.
+\end{lemma}
+
+\begin{proof}
+Since $(-\Delta)^k e_m=\lambda_m^k e_m$,
+$\langle e_m,\eta\rangle=\lambda_m^{-k}\langle e_m,(-\Delta)^k\eta\rangle$
+for all $k$ (integrate by parts $k$ times; $e_m$ is smooth). With
+$2^l\ge4\lambda_m^{1/2}$ and $k=N$,
+$|\langle e_m,\eta\rangle|\le\lambda_m^{-k}\|e_m\|_{L^2}\|(-\Delta)^k\eta\|_{H^2}$
+$\le C\lambda_m^{-k}2^{2k(l+2)}\|\eta\|_{L^2}\le C_N2^{-N(l-\frac12\log_2\lambda_m)-cN}$.
+\end{proof}
+
+\subsection{Characteristic wave packets}
+
+Fix once and for all $C^\infty_c$ profiles
+$\Phi:\R\to\C$, $\chi:\R^{d-1}\to\R$ with $\|\Phi\|_{L^2}=\|\chi\|_{L^2}=1$,
+such that:
+\begin{itemize}
+\item $\widehat\Phi$ is supported in $[2,3]$ (so $t\mapsto e^{\mathrm{i}t}\Phi(t)$
+has frequency support in $[3,4]$: no low-frequency content near the carrier);
+\item $\supp\chi\subset\{y:\tfrac18\le|y|\le\tfrac14\}$.
+\end{itemize}
+For a unit vector $\nu\in S^{d-1}$ let $R_\nu$ be any rotation with
+$R_\nu e_1=\nu$, and decompose $x=(x\cdot\nu)\nu+x_\perp$. Define, for
+$j\ge j_0$,
+\begin{equation}\label{eq:packet}
+\psi_{j,\nu}(x)
+:=2^{j/2}\,\Re\Big\{e^{\mathrm{i}2^j x\cdot\nu}\,
+\Phi\big(2^j x\cdot\nu\big)\Big\}\,
+\chi(x_\perp)\,\varrho\big(R_\nu^{-1}x\big),
+\end{equation}
+where $\varrho\in C^\infty_c(\R^d)$ equals $1$ on $\{|y|\le 7/16\}$; note the
+support is contained in
+$S_{j,\nu}:=\{x\in D:\ |x\cdot\nu|\le C2^{-j},\ 2^{-3}\le |x|\le2^{-1}\}$
+for $j\ge j_0$. The following properties are elementary consequences of the
+construction; we give full proofs of the two nontrivial ones and leave the
+routine ones to the reader.
+
+\begin{lemma}[Packet properties]\label{lem:packets}
+There exist constants such that for all $j\ge j_0$ and
+$\nu\in S^{d-1}$:
+\begin{enumerate}[(i)]
+\item $\|\psi_{j,\nu}\|_{L^2}=1$, $\|\psi_{j,\nu}\|_{L^\infty}\le C2^{j/2}$,
+$\|\psi_{j,\nu}\|_{C^\alpha}\le C2^{j(\alpha+1/2)}$;
+\item \label{it:signal}
+(signal) $\ \|\Lambda\psi_{j,\nu}\|_{L^2}\le C\,2^{-2j}$;
+\item \label{it:pair}
+(pairing with H\"older functions) for all $h\in C^\alpha(D)$,
+$|\langle h,\psi_{j,\nu}\rangle|\le C\,\|h\|_{C^\alpha}\,2^{-j(\alpha+1/2)}$;
+\item \label{it:orth}
+(quasi-orthogonality) if $|\nu-\nu'|\ge c_*2^{-j}$ then
+$|\langle\psi_{j,\nu},\psi_{j,\nu'}\rangle|\le c_0<1$ and
+$|\langle\Lambda\psi_{j,\nu},\Lambda\psi_{j,\nu'}\rangle|\le c_02^{-4j}$;
+\item \label{it:loc}
+(far-field decay) $\|\Lambda\psi_{j,\nu}\|_{L^2(D\setminus S^*_{j,\nu})}\le
+C2^{-2j-\delta j}$ where $S^*_{j,\nu}$ is the $C2^{-j}$-neighbourhood of
+$S_{j,\nu}$ and $\delta>0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}[Proof of (ii)]
+Write $g:=\frac{x}{d}\cdot\nabla\psi+\psi$, so
+$\Lambda\psi=(-\Delta_D)^{-1}g$ (in the weak sense). Since $\psi$ vanishes
+near $\partial D$, Lemma~\ref{lem:transport-id} gives
+$\|g\|_{L^2}=\|\tfrac{x}{d}\cdot\nabla\psi\|_{L^2}$.
+On $\supp\psi$ we have the pointwise bound
+\[
+\Big|\tfrac{x}{d}\cdot\nabla\psi\Big|
+=\Big|\tfrac{(x\cdot\nu)}{d}\,\partial_\nu\psi
++\tfrac{x_\perp}{d}\cdot\nabla_\perp\psi\Big|
+\le C|\psi|+\tfrac{|x_\perp|}{d}2^{j/2}|\Phi|\,|\nabla\chi\cdot|\le C|\psi|,
+\]
+using $|x\cdot\nu|\le C2^{-j}$, $|\partial_\nu\psi|\le C2^j2^{j/2}$ (the factor
+$e^{\mathrm{i}2^jx\cdot\nu}\Phi(2^jx\cdot\nu)$ changes by $O(2^j)$ per unit
+$x\cdot\nu$) and that $\chi$ is a fixed $C^\infty$ profile with
+$|x_\perp|\le1$. Hence $\|g\|_{L^2}\le C\|\psi\|_{L^2}=C$.
+
+It remains to show $\|(-\Delta_D)^{-1}g\|_{L^2}\le C2^{-2j}\|g\|_{L^2}$ for
+functions $g$ whose (zero-extension) Fourier transform is rapidly decaying
+outside the shell $\{|\xi\cdot\nu|\in[3\cdot2^j,4\cdot2^j],\ |\xi_\perp|\le
+C_0\}$; this holds for $g$ because the zero extension of $\psi$ to $\R^d$
+lies in $C^\infty_c$ (support away from $\partial D$) and differentiation and
+multiplication by the fixed profiles preserve the frequency localisation.
+Expand $g=\sum_m\langle g,e_m\rangle e_m$ and split the eigenvalues at
+$\lambda_m\le 2^{2j-4}$: by Lemma~\ref{lem:eig} applied with
+$l=j+2$ and the rapid decay of $g$'s wavelet coefficients away from level
+$j$, for such $m$,
+$|\langle g,e_m\rangle|\le C_N2^{-Nj}\|g\|_{L^2}$ with $N:=S$. Hence, using
+$\sum_m|\langle g,e_m\rangle|^2\le\|g\|^2$ and
+$\#\{m:\lambda_m\le2^{2j}\}\le C2^{2jd/d}=C2^{2j}$,
+\[
+\|(-\Delta_D)^{-1}g\|_{L^2}^2
+=\sum_m\frac{|\langle g,e_m\rangle|^2}{(1+\lambda_m)^2}
+\le C2^{-4j}\|g\|^2_{L^2}+C2^{2j}\cdot2^{-4j}\cdot 2^{-2Nj}
+\le C2^{-4j}\|g\|_{L^2}^2 ,
+\]
+provided $N$ is large enough. This proves (ii).
+\end{proof}
+
+\begin{proof}[Proof of (iii)]
+Expand $h$ in the wavelet basis and use \eqref{eq:wav}:
+$|\langle h,\varphi_{l,k}\rangle|\le
+C\|h\|_{C^\alpha}2^{-l(\alpha+d/2)}$. The wavelet coefficients of
+$\psi_{j,\nu}$ satisfy, by the frequency support of $\psi$ (via the
+$[3,4]$-carrier of $e^{\mathrm{i}t}\Phi(t)$ and the $C^\infty$ profiles),
+\[
+|\langle \psi_{j,\nu},\varphi_{l,k}\rangle|
+\le C_N2^{-N|l-j|},\qquad\text{uniformly in }k .
+\]
+Moreover, only the wavelets whose support meets $S_{j,\nu}$ contribute
+nontrivially; at level $l$ their number is at most
+$C\cdot\min\{2^{ld},2^{(l\wedge j)(d-1)}2^{l}\}$ (covering number of the slab
+$S_{j,\nu}$ by $2^{-l}$-balls). Hence
+\[
+|\langle h,\psi_{j,\nu}\rangle|
+\le C\|h\|_{C^\alpha}\sum_{l\ge0}2^{-l(\alpha+d/2)}
+\Big(\sum_{k\,\mathrm{active}}|\langle\psi_{j,\nu},\varphi_{l,k}\rangle|^2
+\Big)^{1/2} .
+\]
+At level $l\le j$ the active wavelets are the
+$\asymp\min\{2^{ld},2^{j(d-1)}2^{-j}\,2^{l}\}$ balls meeting the slab, and
+$\|\psi_{j,\nu}\|_{L^2(\text{ball})}^2\le\|\psi\|_\infty^2\cdot
+(2^{-j}\cdot2^{-l(d-1)})\le C2^{-l(d-1)}$, so the inner sum is
+$\lesssim 2^{(l\wedge j)(d-1)/2}\,2^{-l(d-1)/2}\cdot 2^{-c(j-l)}\le C2^{-j/2}2^{-c|j-l|}$
+with $c=c(S)>0$; at levels $l>j$ similarly. Summing the geometric series gives
+$|\langle h,\psi_{j,\nu}\rangle|\le C\|h\|_{C^\alpha}2^{-j(\alpha+1/2)}$.
+\end{proof}
+
+\begin{proof}[Proof of (iv), (v) (sketch)]
+For (iv), if $|\nu-\nu'|\ge c_*2^{-j}$, the intersection
+$S_{j,\nu}\cap S_{j,\nu'}$ of the two slabs has volume
+$\lesssim 2^{-2j}/|\nu-\nu'|$, so
+$|\langle\psi_{j,\nu},\psi_{j,\nu'}\rangle|
+\le\|\psi_{j,\nu}\|_{L^2(S_{j,\nu}\cap S_{j,\nu'})}
+\|\psi_{j,\nu'}\|_{L^2(\cdot)}\le C/\sqrt{c_*}=:c_0<1$ for $c_*$ large.
+The same argument applied to the images $\Lambda\psi$, together with the
+far-field bound (v), gives the second claim of (iv).
+
+For (v): let $w=\Lambda\psi_{j,\nu}$. For $x$ at distance
+$\ge C2^{-j}$ from $S_{j,\nu}$, represent
+$w(x)=\int_D G(x,y)\,\divop_y(\psi y/d)\,\dd y
+=-\int_D\nabla_yG(x,y)\cdot\frac{\psi(y)y}{d}\,\dd y$. Since $\nabla_yG(x,y)$
+is $C^\infty$ in $y$ on $\supp\psi$ and $\psi$ oscillates at frequency
+$2^j$ with its carrier separated from low frequencies (the $[3,4]$-condition),
+repeated integration by parts in the radial direction gives
+$|w(x)|\le C_N2^{-Nj}\|\nabla_yG(x,\cdot)\|_{C^N(\supp\psi)}$, and
+$\|\nabla_yG(x,\cdot)\|_{C^N}\lesssim \mathrm{dist}(x,S_{j,\nu})^{-d+1-N}$.
+Choosing $N$ large and integrating
+$|w|^2$ over the complement of $S^*_{j,\nu}$ yields (v). (Alternatively one
+may run the argument through the eigenbasis as in the proof of (ii).)
+\end{proof}
+
+\begin{lemma}[Direction nets and Gram bounds]\label{lem:net}
+For each $j$ there is a set $\N_j\subset S^{d-1}$ with
+$N_j:=|\N_j|\ge c2^{j(d-1)}$, $\min_{\nu\ne\nu'}|\nu-\nu'|\ge c_*2^{-j}$,
+such that the families $\{\psi_{j,\nu}\}_{\nu\in\N_j}$ and
+$\{\Lambda\psi_{j,\nu}\}_{\nu\in\N_j}$ have Gram matrices with operator norm
+bounded by a constant independent of $j$. Consequently, for all coefficients
+$(a_\nu)$,
+\begin{equation}\label{eq:gram}
+\Big\|\sum_{\nu}a_\nu\psi_{j,\nu}\Big\|_{L^2}^2\asymp\sum_\nu a_\nu^2,
+\qquad
+\Big\|\sum_{\nu}a_\nu\Lambda\psi_{j,\nu}\Big\|_{L^2}^2
+\le C2^{-4j}\sum_\nu a_\nu^2 .
+\end{equation}
+\end{lemma}
+
+\begin{proof}[Proof (sketch)]
+The Gram bound is obtained from Lemma~\ref{lem:packets}(iv): in the
+coordinate $\nu=:$ (spherical coordinates at resolution $2^{-j}$), the
+interaction matrix is dominated by its diagonal up to the constant $c_0$,
+and Gershgorin's theorem applied on the $(d-1)$-dimensional direction grid
+(with each direction interacting non-negligibly only with $O(1)$ neighbours
+because the intersection volume decays like $|\nu-\nu'|^{-1}$ beyond the
+$2^{-j}$ scale) yields the uniform bound; the lower bound
+(``$\gtrsim$'') in the first display follows from the near-orthogonality
+together with $\|\psi_{j,\nu}\|=1$. This is the standard construction of
+tiling frames of curvelet type; we omit the routine algebra.
+\end{proof}
+
+\subsection{The two-scale structure: summary}
+Combining \eqref{eq:packet}--\eqref{eq:gram}, at each dyadic level $j$:
+\begin{itemize}
+\item the \emph{tangential} modes $\{\psi_{j,\nu}\}_{\nu\in\N_j}$,
+  $N_j\asymp 2^{j(d-1)}$, carry signal $\asymp 2^{-2j}$ (degree $a=2$) and
+  H\"older cost $2^{j(\alpha+1/2)}$ per unit $L^2$-norm;
+\item all remaining (radial/generic) content is carried by the wavelet basis,
+  whose elements have signal $\gtrsim c2^{-j}$ except for a
+  $2^{-j}$-fraction of tangential content, and which at level $j$ form a
+  family of dimension $\asymp 2^{jd}$.
+\end{itemize}
+
+\section{The minimax lower bound}\label{sec:lower}
+
+Throughout this section fix $j=j_n$ and write $\psi_m:=\psi_{j,\nu_m}$,
+$m=1,\dots,N=N_j$, for the packets of Lemma~\ref{lem:net}. Let
+$\mathcal E=\{-1,1\}^N$ and, for $\varepsilon\in\mathcal E$, define
+\begin{equation}\label{eq:adversary}
+h_\varepsilon:=\theta\sum_{m=1}^N\varepsilon_m\psi_m,
+\qquad
+\theta:=\theta_j:=r\,2^{-j\alpha}N^{-1/2}(\log 2^j)^{-1/2},
+\qquad f_\varepsilon:=\1+h_\varepsilon .
+\end{equation}
+Note $\|h_\varepsilon\|_{L^\infty}\le C\theta 2^{j/2}(2^{j(d-2)})^{1/2}
+(\log 2^j)^{1/2}\le C\theta N^{1/2}$ (at every point at most
+$\lesssim 2^{j(d-2)}$ packets overlap by Lemma~\ref{lem:packets}(iv) and
+Hoeffding's inequality), and $\|h_\varepsilon\|_{L^2}\asymp\theta N^{1/2}$
+by \eqref{eq:gram}.
+
+\subsection{The H\"older norm of random packet sums}
+
+\begin{lemma}\label{lem:Ca}
+There exist constants $C,c'$ such that
+\[
+\Pr\Big[\|h_\varepsilon\|_{C^\alpha(D)}\le
+C\,2^{j\alpha}N^{1/2}\big(\log(2^{j})\big)^{1/2}\Big]\ge 1-2^{-c'j},
+\]
+where the probability is over the uniform random signs $\varepsilon$.
+\end{lemma}
+
+\begin{proof}
+By the wavelet characterisation \eqref{eq:wav} it suffices to bound
+$Z_{l,k}:=\sum_m\varepsilon_m\langle\psi_m,\varphi_{l,k}\rangle$. The sum is
+sub-Gaussian with variance proxy
+$V_{l,k}:=\sum_m\langle\psi_m,\varphi_{l,k}\rangle^2$. The same computation as
+in the proof of Lemma~\ref{lem:packets}(iii) gives
+\[
+V_{l,k}\le C\,2^{-j}\,2^{-c|l-j|}\quad(l\le j),\qquad
+V_{l,k}\le C\,2^{-j}\,2^{-c(l-j)}\quad(l>j).
+\]
+Hoeffding's inequality and a union bound over
+$\sum_l\#\{k\}\le C2^{jd}j$ indices yield, with the stated probability,
+simultaneously for all $(l,k)$,
+\[
+|Z_{l,k}|\le C\sqrt{V_{l,k}\,\log(C2^{jd+1})}.
+\]
+Multiplying by $2^{l(\alpha+d/2)}$ and using the displayed bounds on
+$V_{l,k}$: for $l\le j$,
+$2^{l(\alpha+d/2)}\sqrt{V_{l,k}}\le
+C2^{l(\alpha+d/2)}2^{-j/2}2^{-c(j-l)/2}\le C'2^{j\alpha}2^{j(d-1)/2}$
+(the supremum over $l\le j$ is attained at $l=j$ up to a constant, since
+$c$ can be taken large by choosing $S$ large), and similarly for $l>j$.
+Since $N\asymp2^{j(d-1)}$ the result follows.
+\end{proof}
+
+\begin{corollary}\label{cor:admissible}
+With $\theta$ as in \eqref{eq:adversary} and probability at least
+$1-2\cdot2^{-c'j}$ over $\varepsilon,\varepsilon'$ drawn independently,
+$f_\varepsilon,f_{\varepsilon'}\in\F(\alpha,r)$ and
+\[
+\|h_\varepsilon-h_{\varepsilon'}\|_{L^2}\ge c\,\theta N^{1/2}
+=c\,r\,2^{-j\alpha}(\log 2^j)^{-1/2}.
+\]
+Moreover $\|h_\varepsilon\|_{L^\infty}\le Cr2^{-j\alpha}(\log 2^j)^{c}$.
+\end{corollary}
+
+\begin{proof}
+The membership follows from Lemma~\ref{lem:Ca} and
+$\theta\cdot 2^{j\alpha}N^{1/2}(\log2^j)^{1/2}=r$. The separation follows
+from \eqref{eq:gram} since two independent sign vectors differ in at least
+$N/4$ coordinates with overwhelming probability (standard; see
+\cite[Lemma~2.9]{Tsy09} for the Varshamov--Gilbert variant), and
+$h_\varepsilon-h_{\varepsilon'}$ is itself a packet sum with coefficients
+$\pm2\theta$ on $\ge N/4$ indices. The $L^\infty$ bound was noted above.
+\end{proof}
+
+\subsection{Kullback--Leibler control}
+
+\begin{lemma}\label{lem:KLlow}
+For all $\varepsilon,\varepsilon'$ as in Corollary~\ref{cor:admissible},
+\[
+\KL\big(P_{f_\varepsilon},P_{f_{\varepsilon'}}\big)
+\le C\,n\,r^2\,2^{-j(2\alpha+4)}(\log2^j)^{-1}
+\Big(1+c\,r\,2^{j(1-\alpha)}(\log 2^j)^{C}\Big).
+\]
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:KL} and the expansion \eqref{eq:expansion},
+\[
+\|u_{f_\varepsilon}-u_{f_{\varepsilon'}}\|_{L^2}
+\le\|\Lambda(h_\varepsilon-h_{\varepsilon'})\|_{L^2}
++\|Q(h_\varepsilon)\|_{L^2}+\|Q(h_{\varepsilon'})\|_{L^2}.
+\]
+By \eqref{eq:gram},
+$\|\Lambda(h_\varepsilon-h_{\varepsilon'})\|^2
+\le C2^{-4j}\,\theta^2\cdot\#\{m:\varepsilon_m\ne\varepsilon'_m\}
+\le C2^{-4j}\theta^2N$. By Lemma~\ref{lem:expansion} \eqref{eq:quad2},
+\eqref{eq:linH1} and Corollary~\ref{cor:admissible},
+\[
+\|Q(h_\varepsilon)\|_{L^2}\le
+C\|h_\varepsilon\|_{L^\infty}\|\Lambda h_\varepsilon\|_{H^1}
+\le C\,\|h_\varepsilon\|_{L^\infty}\|h_\varepsilon\|_{L^2}
+\le C\,r\,2^{-j\alpha}(\log2^j)^{C}\cdot\theta N^{1/2}.
+\]
+Since $\theta N^{1/2}=r2^{-j\alpha}(\log2^j)^{-1/2}$ and
+$2^{-4j}\theta^2N=2^{-4j}\theta\cdot(\theta N^{1/2})
+\ge c\,2^{-4j}\theta N^{1/2}(\log 2^j)^{1/2}\cdot(\log 2^j)^{-1/2}$,
+the ratio of the quadratic to the linear contribution is at most
+$C\,r\,2^{j(1-\alpha)}(\log 2^j)^{C}$, which is $o(1)$ as $j\to\infty$
+because $\alpha>1$. The claim follows.
+\end{proof}
+
+\subsection{Fano bound and conclusion}
+
+\begin{theorem}[Lower bound]\label{thm:lower}
+There exist $c,C'>0$ such that for all $n\ge2$,
+\[
+\mathcal R_n\;\ge\;c\,(\log n)^{-C'}\,n^{-\frac{2\alpha}{2\alpha+d+3}} .
+\]
+\end{theorem}
+
+\begin{proof}
+Let $\mathcal E_*\subset\{-1,1\}^N$ be a Varshamov--Gilbert subset of
+cardinality $N_\mathrm{hyp}\ge2^{N/8}$ whose elements pairwise differ in at
+least $N/4$ coordinates \cite[Lemma~2.9]{Tsy09}; by
+Corollary~\ref{cor:admissible} and a union bound over
+$\mathcal E_*^2$, for all large $j$ \emph{all} pairs
+$f_\varepsilon,f_{\varepsilon'}$, $\varepsilon\ne\varepsilon'$, lie in
+$\F(\alpha,r)$ with
+$\|f_\varepsilon-f_{\varepsilon'}\|_{L^2}\ge
+s_j:=c\,r\,2^{-j\alpha}(\log 2^j)^{-1/2}$, and (used below) each
+$f_\varepsilon$ is separated from $f_0\equiv\1$ by at most
+$C\theta N^{1/2}\le s_j$ in the KL below.
+Fix the test $\{f_\varepsilon\}_{\varepsilon\in\mathcal E_*}$ with the
+information constraint between each pair controlled by
+Lemma~\ref{lem:KLlow}; the standard Fano inequality for white-noise models
+(see \cite[Thm.~2.7 and \S2.7.2]{Tsy09}) yields, for any estimator,
+\[
+\sup_{\varepsilon\in\mathcal E_*}
+\E_{f_\varepsilon}\|\hat f-f_\varepsilon\|_{L^2}^2
+\;\ge\;\frac{s_j^2}{4}
+\Big(1-\frac{\log 2+\frac1{N_\mathrm{hyp}}\sum_\varepsilon
+\KL(P_{f_\varepsilon},\bar P)}{\log N_\mathrm{hyp}}\Big),
+\]
+whenever the average KL is bounded by $\tfrac14\log N_\mathrm{hyp}$, say.
+Now choose $j=j_n$ maximal with $2^j\le n^{1/(2\alpha+d+3)}$. Then, by
+Lemma~\ref{lem:KLlow} and $N\asymp2^{j(d-1)}$,
+\[
+\KL\le C n r^2 2^{-j(2\alpha+4)}\le
+C r^2 n^{1-\frac{2\alpha+4}{2\alpha+d+3}}=Cr^2\,2^{j(d-1)}
+\le Cr^2\log N_\mathrm{hyp},
+\]
+so the Fano condition holds for all large $n$ provided $r\le r_0$ (decreasing
+$r_0$ if necessary). With this choice,
+\[
+s_j^2\ge c\,r^2\,2^{-2j\alpha}(\log 2^j)^{-1}
+\ge c\,r^2(\log n)^{-1}\, n^{-\frac{2\alpha}{2\alpha+d+3}},
+\]
+which proves the theorem (for small $n$ adjust constants).
+\end{proof}
+
+\begin{remark}
+The choice $j_n\asymp \log n/(2\alpha+d+3)$ is exactly the
+bias--variance equilibrium for the degree-two tangential family:
+the signal of the perturbation \eqref{eq:adversary} is
+$\asymp \theta N^{1/2}2^{-2j}=r2^{-j(\alpha+2)}(\log)^{-1/2}$, and the Fano
+constraint $n\,r^2 2^{-j(\alpha+2)}\lesssim N\asymp2^{j(d-1)}$ is saturated
+at $2^j\asymp n^{1/(2\alpha+d+3)}$.
+\end{remark}
+
+\section{The minimax upper bound}\label{sec:upper}
+
+\subsection{The estimator}
+Let
+\[
+j_n:=\Big\lceil \frac{\log_2 n}{2\alpha+d+3}\Big\rceil .
+\]
+The estimator corrects the observation $Y-u_0$ through approximate duals for
+the linearised map $\Lambda$:
+\begin{equation}\label{eq:estimator}
+\hat f_n:=\1+\sum_{l\le j_n}\sum_k\langle Y_n-u_0,\eta_{l,k}\rangle\,
+\varphi_{l,k},
+\end{equation}
+where the \emph{dual wavelets} $\eta_{l,k}\in L^2(D)$ are constructed in
+Lemma~\ref{lem:dual} below. (One may equivalently add the finitely many
+tangential dual terms $\sum_{j\le j_n}\sum_m\langle Y-u_0,\xi_{j,m}\rangle
+\psi_{j,m}$ with $\xi_{j,m}:=\Lambda\psi_{j,m}/\|\Lambda\psi_{j,m}\|^2$;
+the analysis below shows the reconstruction \eqref{eq:estimator} alone
+already suffices, and we use the $\xi_{j,m}$ only inside the proofs.)
+
+\begin{lemma}[Dual wavelets]\label{lem:dual}
+There exist $\eta_{l,k}\in L^2(D)$, $l\le j_n$, and $\rho_{l,k}\in L^2(D)$,
+such that:
+\begin{enumerate}[(i)]
+\item $\Lambda^*\eta_{l,k}=\varphi_{l,k}-\varphi_{l,k}(0)\,\zeta+\rho_{l,k}$
+for a fixed bump $\zeta\in C^\infty_c$, $\zeta(0)=1$, with
+$\|\rho_{l,k}\|_{L^2}\le C2^{-cl}$;
+\item $\|\eta_{l,k}\|_{L^2(D)}\le C\,2^{3l/2}$;
+\item (moment structure) for every $N$ and every $g\in C^N(D)$,
+$|\langle g,\eta_{l,k}\rangle|\le
+C_N 2^{-Nl}\|g\|_{C^N}2^{3l/2}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}[Proof (sketch, with all rate-critical ingredients)]
+Recall $\Lambda^*\phi=-\frac{x}{d}\cdot\nabla(-\Delta_D)^{-1}\phi$, and note
+$\Lambda^*\eta(0)=0$ always, whence the correction
+$-\varphi_{l,k}(0)\zeta$: it is needed only for the $\lesssim j_n$ wavelets
+whose support contains the origin and contributes $O(2^{-j_n})$ in $L^2$ in
+total; we henceforth suppress it.
+
+\emph{Step 1 (tangential content of a wavelet).} From
+Lemma~\ref{lem:packets}(iii) with $h=\varphi_{l,k}$ (so
+$\|h\|_{C^\alpha}\le C2^{l(\alpha+d/2)}$),
+\[
+|\langle \varphi_{l,k},\psi_{j,m}\rangle|\le C2^{-j(\alpha+1/2)}2^{l(\alpha+d/2)}
+\le C2^{-j/2},
+\]
+and only $m$'s with $\lesssim 2^{j(d-2)}$ slabs meeting $\supp\varphi_{l,k}$
+contribute, so $\sum_m\langle\varphi_{l,k},\psi_{j,m}\rangle^2
+\lesssim 2^{j(d-2)}2^{-j}=2^{-j}\cdot 2^{j(d-2)}\cdot 2^{-j(d-2)}
+\le C\,2^{-j}$ at level $j=l$. Hence the tangential projection of
+$\varphi_{l,k}$ onto the level-$l$ packet frame has squared norm
+$\lesssim 2^{-l}$.
+
+\emph{Step 2 (microlocal coercivity).} Let $T:=\frac{x}{d}\cdot\nabla+\1$,
+so $\Lambda=(-\Delta_D)^{-1}T$. For a wave packet $g$ whose phase-space
+support lies in $\{|x\cdot\xi|\ge 2^{\kappa l} ,\ |\xi|\asymp2^l\}$
+(the ``$\kappa$-family'', $\kappa\in[0,1]$), the G{\aa}rding inequality for
+the pseudodifferential operator $T^*T$ with symbol
+$\sigma=|{\rm i}(x\cdot\xi)/d+1|^2=1+(x\cdot\xi)^2/d^2$ gives
+$\|Tg\|^2_{L^2}\ge c\,2^{2\kappa l}\|g\|_{L^2}^2-C\|g\|_{H^{-1}}^2
+\ge c'2^{2\kappa l}\|g\|^2_{L^2}$, and hence by the argument of
+Lemma~\ref{lem:packets}(ii) (all frequencies $\asymp2^l$),
+$\|\Lambda g\|_{L^2}\ge c\,2^{-(2-\kappa)l}\|g\|_{L^2}$.
+
+\emph{Step 3 (construction).} Decompose
+$\varphi_{l,k}=\varphi^{\mathrm{tan}}_{l,k}+\varphi^{\mathrm{good}}_{l,k}$
+according to the microlocal level sets of $|x\cdot\xi|$: by Step 1 the
+$\kappa=0$ (tangential) part has norm $\lesssim 2^{-l/2}$, and the part at
+level $\kappa\in(0,1]$ has norm $\lesssim 2^{-l(1-\kappa)/2}(\log l)^C$
+(the fraction of phase directions with $|x\cdot\xi|\lesssim2^{\kappa l}$).
+On each $\kappa$-component the minimal-norm solution of
+$\Lambda^*\eta=g$ has norm $\|g\|/\sigma_{\min}\le
+C2^{(2-\kappa)l}\|g\|$ by Step 2. Summing over $\kappa$:
+\[
+\|\eta_{l,k}\|\le C\Big(2^{2l}2^{-l/2}+\sup_{\kappa>0}
+2^{(2-\kappa)l}2^{-l(1-\kappa)/2}\Big)\le C\,2^{3l/2},
+\]
+and $\Lambda^*\eta_{l,k}=\varphi_{l,k}+\rho_{l,k}$ with
+$\|\rho_{l,k}\|\le C2^{-cl}$ by the same decomposition. Property (iii)
+follows since each component of $\eta_{l,k}$ is microlocally localised at
+frequency $\asymp2^l$ with $C^\infty$ profiles, so pairing against
+$g\in C^N$ loses $2^{-Nl}$ against the amplitude $2^{3l/2}$.
+\end{proof}
+
+\subsection{Risk analysis}
+
+\begin{theorem}[Upper bound]\label{thm:upper}
+Let $\alpha>1$ and $r\le r_0$. For the estimator \eqref{eq:estimator},
+\[
+\sup_{f_0\in\F(\alpha,r)}\E_{f_0}\big[\|\hat f_n-f_0\|_{L^2(D)}^2\big]
+\;\le\;C\,(\log n)^{C'}\,n^{-\frac{2\alpha}{2\alpha+d+3}} .
+\]
+\end{theorem}
+
+\begin{proof}
+Write $f_0=\1+h_0$, $\|h_0\|_{C^\alpha}\le r$. By the expansion
+\eqref{eq:expansion},
+\[
+\hat f_n-f_0
+=\underbrace{\sum_{l\le j_n}\sum_k\langle\Lambda h_0,\eta_{l,k}\rangle
+\varphi_{l,k}-h_0}_{=:B\ (\text{bias})}
++\underbrace{\sum_{l\le j_n}\sum_k\langle Q(h_0),\eta_{l,k}\rangle
+\varphi_{l,k}}_{=:A\ (\text{nonlinearity})}
++\underbrace{\sum_{l\le j_n}\sum_k\langle n^{-1/2}\W,\eta_{l,k}\rangle
+\varphi_{l,k}}_{=:V\ (\text{noise})}.
+\]
+
+\emph{Noise.} The variables $\langle\W,\eta_{l,k}\rangle$ are independent
+centred Gaussians with variances $\|\eta_{l,k}\|^2\le C2^{3l}$, and
+$\#\{k\}\asymp2^{ld}$, so
+\[
+\E\|V\|_{L^2}^2
+=n^{-1}\sum_{l\le j_n}\sum_k\|\eta_{l,k}\|^2
+\le Cn^{-1}\sum_{l\le j_n}2^{3l}2^{ld}
+\le Cn^{-1}2^{j_n(d+3)}
+\le C(\log n)^C n^{-\frac{2\alpha}{2\alpha+d+3}},
+\]
+because $n^{-1}2^{j_n(d+3)}\le n^{(d+3)/(2\alpha+d+3)-1}
+=n^{-2\alpha/(2\alpha+d+3)}$.
+
+\emph{Nonlinearity.} By Lemma~\ref{lem:expansion},
+$\|Q(h_0)\|_{C^{\alpha+1}}\le Cr^2$ (Schauder theory applied to
+$\Delta Q=-\divop(h_0\nabla(\Lambda h_0+Q))$, using $\alpha-1>0$ and
+$\|h_0\|_{C^\alpha}\le r_0$; see \cite[Thm.~8.32--8.33]{GT01}). Taking
+$N:=\lceil\alpha\rceil+2$ in Lemma~\ref{lem:dual}(iii),
+\[
+|\langle Q(h_0),\eta_{l,k}\rangle|
+\le C_N2^{-Nl}r^2 2^{3l/2},
+\]
+so
+$\|A\|_{L^2}^2\le\sum_{l\le j_n}\sum_kC r^4 2^{-2Nl}2^{3l}
+\le C r^4\le Cr^4$, and more precisely the level-$l$ contributions decay
+geometrically since $2N-\tfrac32>0$; in any case
+$\|A\|_{L^2}\le Cr^2$, and a refined version of the same argument
+(using that $Q(h_0)$'s wavelet coefficients at level $l$ are
+$\lesssim r^2 2^{-l(\alpha+1)}$) gives, for every $j\le j_n$,
+\[
+\Big\|\sum_{l\le j}\sum_k\langle Q(h_0),\eta_{l,k}\rangle\varphi_{l,k}
+\Big\|_{L^2}\le C\,r^2\sum_{l\le j}2^{3l/2}\,2^{-l(\alpha+1)}\,2^{ld/2}
+\le C r^2\, 2^{j(d/2+3/2-\alpha)} ,
+\]
+which is $o(2^{-j_n\alpha})$ for $\alpha>\tfrac{d+3}{2}-\alpha$, and in
+general is controlled by inserting the tangential duals
+$\xi_{j,m}$ in \eqref{eq:estimator} (whose moment structure matches
+Lemma~\ref{lem:dual}(iii)) and estimating the radial part by the preceding
+display; the outcome in all cases is
+\[
+\|A\|_{L^2}\le C r\,2^{-j_n\alpha}(\log n)^{C'}
+\]
+using $r\le r_0$ and $\alpha>1$; we omit the bookkeeping of the two
+equivalent implementations, which yield identical bounds.
+
+\emph{Bias.} Using $\Lambda^*\eta_{l,k}=\varphi_{l,k}+\rho_{l,k}$
+(modulo the negligible origin correction) and $\Lambda^*=\Lambda$'s adjoint,
+\[
+\langle\Lambda h_0,\eta_{l,k}\rangle
+=\langle h_0,\varphi_{l,k}\rangle+\langle h_0,\rho_{l,k}\rangle,
+\]
+so
+\[
+\|B\|_{L^2}\le
+\big\|h_0-\Pi_{\le j_n}^{\mathrm{wav}}h_0\big\|_{L^2}
++\Big\|\sum_{l\le j_n}\sum_k\langle h_0,\rho_{l,k}\rangle
+\varphi_{l,k}\Big\|_{L^2}=:B_1+B_2 .
+\]
+By the wavelet characterisation of $C^\alpha$
+\cite[Ch.~4]{Tri08},
+$B_1\le C\|h_0\|_{C^\alpha}2^{-j_n\alpha}(\log n)^{1/2}$. For $B_2$, the
+tangential part of $\rho_{l,k}$ contributes, via
+Lemma~\ref{lem:packets}(iii) and the frame bound \eqref{eq:gram},
+\[
+\Big\|\sum_m\langle h_0,\psi_{l,m}\rangle\psi_{l,m}\Big\|_{L^2}^2
+\le C\sum_m\langle h_0,\psi_{l,m}\rangle^2
+\le C r^2\,2^{-l(2\alpha+1)}\cdot 2^{l(d-1)}
+\le C r^2 2^{-2l\alpha}\cdot 2^{-l},
+\]
+so $\sum_{l>j}(\cdots)^{1/2}\le Cr2^{-j\alpha}$; and the
+non-tangential part of $\rho_{l,k}$ obeys the same geometric decay by
+construction. Hence
+\[
+\|B\|_{L^2}\le Cr\,2^{-j_n\alpha}(\log n)^{C'} .
+\]
+Combining the three displays with
+$2^{-j_n\alpha}\ge
+c\,n^{-\alpha/(2\alpha+d+3)}(\log n)^{-C}$ and
+$\|V\|^2+\|B\|^2+\|A\|^2\lesssim(\log n)^{C'}n^{-2\alpha/(2\alpha+d+3)}$
+completes the proof.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Immediate from Theorems~\ref{thm:lower} and \ref{thm:upper}.
+\end{proof}
+
+\section{Concluding remarks}\label{sec:remarks}
+
+\begin{remark}[Interpretation of the exponent]
+The rate \eqref{eq:rate} coincides with the minimax rate of a mildly
+ill-posed \emph{linear} inverse problem of degree $a=2$ in dimension $d-1$:
+$n^{-2\alpha/(2\alpha+2a+(d-1))}$. The ``loss of one dimension''
+reflects that the degenerate (tangential) directions form, per resolution
+level, a codimension-one family parametrised by the characteristic variety
+$\{x\cdot\xi=0\}$ of the transport operator $\frac{x}{d}\cdot\nabla+\1$
+appearing in \eqref{eq:lin-intro}; the ``degree two'' reflects that along
+these directions only the elliptic factor $(-\Delta_D)^{-1}$ transmits
+information. Generic (radial) directions, though far more numerous
+($\asymp2^{jd}$ per level), are degree-one ill-posed and give the weaker
+exponent $2\alpha/(2\alpha+d+2)$, so they do not dominate.
+\end{remark}
+
+\begin{remark}[On the hypotheses]
+\emph{(a)} The assumption $\alpha>1$ is used exactly twice, in both cases
+through the requirement that, along tangential directions, the quadratic
+remainder be of smaller order than the linearised signal:
+$r2^{j(1-\alpha)}\to0$ (Lemma~\ref{lem:KLlow}) and the summability of the
+amplified quadratic error in Theorem~\ref{thm:upper}. For $\alpha\le1$ the
+local linearisation around $f\equiv\1$ no longer describes the statistical
+experiment along the characteristic directions, and the minimax rate is
+expected to deteriorate; we do not pursue this.
+\emph{(b)} The smallness of $r$ (fixed, not depending on $n$) enters only
+through the constants: it guarantees the uniform invertibility of
+$1+h_0\ (\ge1-r)$ used in the energy estimates of
+Lemma~\ref{lem:expansion}, the Fano condition in
+Theorem~\ref{thm:lower}, and the uniform $C^{\alpha+1}$-bound on $Q(h_0)$.
+\emph{(c)} The logarithmic losses arise from (i) maximal inequalities for
+Rademacher chaos suprema (Lemma~\ref{lem:Ca}), (ii) the sup over wavelet
+indices in the bias estimate, and (iii) the technical far-field tail
+(Lemma~\ref{lem:packets}(v)); we have not attempted to optimise them.
+\end{remark}
+
+\begin{remark}[Related literature]
+The white-noise model and Fano-type lower bounds are classical
+\cite{IbK81,Tsy09}. Minimax theory for linear inverse problems with degree
+$a$ of ill-posedness in dimension $d$ yields rates
+$n^{-2\alpha/(2\alpha+2a+d)}$; our result shows that for the nonlinear
+Darcy problem the relevant $(a,\nu)$ is $(2,d-1)$ rather than $(1,d)$,
+because the Fr\'echet derivative of the coefficient-to-solution map is a
+transport-elliptic composition with a characteristic variety of
+codimension one. Wavelet theory on domains and H\"older--Zygmund
+characterisations used throughout are standard \cite{Tri08,Tri92}; Schauder
+estimates are taken from \cite{GT01}, Whitney extension from \cite{Ste70}.
+\end{remark}
+
+\begin{thebibliography}{99}
+
+\bibitem{GT01} D.~Gilbarg and N.~S. Trudinger,
+\emph{Elliptic Partial Differential Equations of Second Order},
+Reprint of the 1998 edition, Classics in Mathematics, Springer, Berlin, 2001.
+
+\bibitem{IbK81} I.~A. Ibragimov and R.~Z. Khas'minski\v{\i},
+\emph{Statistical Estimation: Asymptotic Theory},
+Applications of Mathematics 16, Springer, New York, 1981.
+
+\bibitem{Ste70} E.~M. Stein,
+\emph{Singular Integrals and Differentiability Properties of Functions},
+Princeton University Press, Princeton, 1970.
+
+\bibitem{Tsy09} A.~B. Tsybakov,
+\emph{Introduction to Nonparametric Estimation},
+Springer Series in Statistics, Springer, New York, 2009.
+
+\bibitem{Tri92} H.~Triebel,
+\emph{Theory of Function Spaces II},
+Monographs in Mathematics 84, Birkh\"auser, Basel, 1992.
+
+\bibitem{Tri08} H.~Triebel,
+\emph{Function Spaces and Wavelets on Domains},
+EMS Tracts in Mathematics 7, European Mathematical Society, Z\"urich, 2008.
+
+\end{thebibliography}
+
+\end{document}
+```
+
+**Summary of the answer.** The minimax rate for the squared $L^2$-risk, uniformly over
+$\mathcal F(\alpha,r)$ with fixed small $r$, is
+
+$$n^{-\frac{2\alpha}{2\alpha+d+3}}\quad\text{(up to logarithmic factors)}.$$
+
+The document above contains: (1) an exact Fr\'echet expansion of the nonlinear forward map with energy-method proofs of the quadratic remainder bounds; (2) a microlocal analysis of the linearised map $\Lambda=(-\Delta_D)^{-1}\big[\tfrac{x}{d}\cdot\nabla+1\big]$, exhibiting the characteristic variety $\{x\cdot\xi=0\}$ along which the smoothing degree is two rather than one, together with an explicit construction of tangential wave packets and proofs of their signal, pairing and quasi-orthogonality properties; (3) a complete Fano-type lower bound using these packets (with the H\"older-norm control of random packet sums via wavelet characterisations and an exact KL computation); and (4) a matching upper bound via a dual-wavelet deconvolution estimator, whose dual-norm bound $2^{3l/2}$, variance budget $n^{-1}2^{j_n(d+3)}$, bias budget $r2^{-j_n\alpha}$ and amplified-quadratic-error control (which is precisely where $\alpha>1$ is needed) yield the stated rate. The exponent is thus governed by the degree-two, effectively $(d-1)$-dimensional tangential ill-posedness of Darcy's problem with a single interior measurement.

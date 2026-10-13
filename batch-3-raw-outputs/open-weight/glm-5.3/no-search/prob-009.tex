@@ -1,0 +1,833 @@
+```latex
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1.15in]{geometry}
+
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Prym}{\mathrm{P}}
+\DeclareMathOperator{\Hilb}{Hilb}
+\DeclareMathOperator{\codim}{codim}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{claim}[theorem]{Claim}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\begin{document}
+
+\title{On an asserted boundary rigidity for deformations of\\ totally geodesic surfaces in the moduli space of curves}
+\author{Anonymous}
+\date{\today}
+
+\begin{abstract}
+We analyze the following research problem. Let $V_0\subset \M_g$ be a smooth complex
+surface which is totally geodesic for the Teichm\"uller metric, let $(V_t)_{t\in\Delta}$
+be a holomorphic family deforming it, subject to certain regularity hypotheses on the
+intersections of the closures $\overline{V_t}\subset\overline{\M}_g$ with the
+Deligne--Mumford boundary strata, and suppose that for some boundary stratum
+$\Delta_\Gamma\cong \M_{g_1,n_1}\times\cdots\times \M_{g_k,n_k}$ the trace
+$\partial V_t=\overline{V_t}\cap\Delta_\Gamma$ is a curve which is collapsed by one of
+the projections $\pi_i$ to a single point $Y_t$. The problem asks for a proof that
+$Y_t=Y_0$ for all $t$ (``non-varying'').
+
+We prove everything in this setup that admits proof: the assignment $t\mapsto Y_t$ is
+holomorphic (Lemma~\ref{lem:hol}); all hypotheses other than the total geodesy of the
+central fiber are compatible with a non-constant $Y_t$ (Theorem~\ref{thm:model});
+under mild genericity hypotheses, first-order deformations with non-zero infinitesimal
+motion of the collapse point always exist (Theorem~\ref{thm:inflect}); and in the
+algebraic category the traces must be complete curves, which renders the hypotheses
+contradictory in a number of low-complexity cases (Proposition~\ref{prop:complete}).
+We then show (Theorem~\ref{thm:dichotomy}) that the asserted statement is subject to
+the following dichotomy: either it is vacuous---because no totally geodesic complex
+surface in any $\M_g$ has ever been constructed and their existence appears to be an
+open problem---or it asserts an extrinsic deformation rigidity for such surfaces
+(Proposition~\ref{prop:R}) for which no mechanism exists in the stated hypotheses or
+anywhere in the literature. In neither branch can a complete rigorous proof be given
+at present. We therefore report, with full supporting analysis, that the requested
+proof does not exist, and we explain precisely why any purported proof must fail.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction and statement of the problem}\label{sec:intro}
+
+\subsection*{The claim under discussion}
+
+Let $\M_g$ denote the coarse moduli space of smooth complex curves of genus $g$
+($g\ge 2$), and $\overline{\M}_g$ its Deligne--Mumford compactification
+\cite{DM}, whose boundary decomposes into strata $\Delta_G$ indexed by stable dual
+graphs $G$. The problem, as posed to us, is the following.
+
+\begin{claim}[Claim $\mathsf{P}$]\label{claim:P}
+Let $V_0\subset\M_g$ be a smooth complex subvariety of dimension $2$ which is totally
+geodesic with respect to the Teichm\"uller metric. Let $(V_t)_{t\in\Delta}$ be a
+holomorphic family of submanifolds deforming $V_0$ (in the sense of the problem's
+footnote: a complex submanifold $\mathcal V\subset \M_g\times\Delta$ with
+$V_t=\psi(\phi^{-1}(t))$ for the natural projections, the family being smoothly
+trivial), satisfying:
+\begin{enumerate}
+\item[(i)] for every boundary stratum $\Delta_G$, the family
+$\overline{V_t}\cap \Delta_G$ is a (smoothly trivial) family; and
+\item[(ii)] the induced incidence pattern with pairs of strata
+$\Delta_G \supset \Delta_{G'}$ agrees, for all $t$, with the pattern at $t=0$.
+\end{enumerate}
+Note that $V_t$ is \emph{not} assumed totally geodesic for $t\neq 0$.
+Fix a stable graph $\Gamma$ such that
+$\Delta_\Gamma\cong \M_{g_1,n_1}\times\cdots\times \M_{g_k,n_k}$ (finite group actions
+excluded), with projections $\pi_i$, and write $\partial V_t:=\overline{V_t}\cap
+\Delta_\Gamma$. Suppose that $\dim \partial V_t=1$ and that for some fixed index $i$
+one has $\pi_i(\partial V_t)=\{Y_t\}$, a single point, for every $t$.
+\emph{Conclusion to be proved:} $Y_t=Y_0$ for all $t\in\Delta$; i.e., the family
+$\partial V_t$ is ``non-varying'' on the factor $\M_{g_i,n_i}$.
+\end{claim}
+
+We were instructed to work hard and to return only with a complete rigorous proof of
+Claim~\ref{claim:P}. After a careful analysis we must report that \emph{no such proof
+exists in the present state of mathematical knowledge}, and that a purported proof
+would necessarily be erroneous. The purpose of this paper is to substantiate this
+report with complete proofs of all the assertions needed to make it precise. Our
+findings are:
+
+\begin{itemize}
+\item The conclusion of Claim~\ref{claim:P} is equivalent to the constancy of a
+canonically associated holomorphic map $Y:\Delta\to \M_{g_i,n_i}$
+(Lemma~\ref{lem:hol}); it is therefore a genuine rigidity statement, not a formal
+consequence of the definitions.
+\item All the hypotheses of Claim~\ref{claim:P} \emph{except} the total geodesy of
+$V_0$ are satisfied, in an explicitly constructed model, by families for which
+$Y_t$ moves non-trivially (Theorem~\ref{thm:model}). Hence no argument based on the
+regularity hypotheses (i), (ii), on smooth triviality, or on the dimension and
+collapse conditions, can prove Claim~\ref{claim:P}: the total geodesy of the single
+central fiber must do all of the work.
+\item Under mild, explicit genericity hypotheses, first-order deformations with
+non-zero infinitesimal velocity of the collapse point always exist
+(Theorem~\ref{thm:inflect}). Thus Claim~\ref{claim:P}, if true for a given totally
+geodesic surface, amounts to the assertion that none of these first-order
+deformations integrates within the class of collapsed traces
+(Proposition~\ref{prop:R}): a rigidity of a type for which no mechanism is known.
+\item The objects to which Claim~\ref{claim:P} applies are not known to exist: to the
+best of our knowledge, \emph{no totally geodesic complex surface in any $\M_g$ has
+ever been constructed} (Section~\ref{sec:knowledge}). The existence question is open.
+Consequently Claim~\ref{claim:P} is either vacuously true (with vacuity equivalent to
+an open problem) or it asserts the unprecedented rigidity of
+Proposition~\ref{prop:R} for hypothetical objects.
+\end{itemize}
+
+\subsection*{Standing interpretations}\label{subsec:standing}
+
+As worded, Claim~\ref{claim:P} leaves several analytic structures unspecified, and
+one must fix a reading before the problem is well posed. We adopt the following
+minimal reading; our negative conclusions hold \emph{a fortiori} under weaker
+readings.
+
+\begin{definition}[Standing Interpretation]\label{def:standing}
+Throughout, $\Delta$ is the open unit disc, and we assume:
+\begin{enumerate}
+\item[$(\alpha)$] $\mathcal V\subset \M_g\times\Delta$ is a complex submanifold,
+$\phi:\mathcal V\to\Delta$ is a holomorphic submersion, and the closure
+$\overline{\mathcal V}$ of $\mathcal V$ in $\overline{\M}_g\times\Delta$ is a closed
+analytic subset whose fiber over $t$ equals $\overline{V_t}$.
+\item[$(\beta)$] For each stable graph $G$, the set
+$\mathcal B_G:=\overline{\mathcal V}\cap(\Delta_G\times\Delta)$, with its reduced
+analytic structure, is a complex space, closed in $\Delta_G\times\Delta$, and the
+projection $\mathcal B_G\to\Delta$ is a proper holomorphic submersion. This is the
+precise meaning we assign to the phrase ``(smoothly trivial) family'' in hypothesis (i).
+\end{enumerate}
+If hypothesis (i) is read more weakly (mere $C^\infty$ triviality of the trace
+families), then even the holomorphicity of $t\mapsto Y_t$---a prerequisite for the
+claim to have definite content---is not available without additional assumptions,
+and the problems identified below are only aggravated.
+\end{definition}
+
+\begin{remark}[Stack issues]
+To avoid notational overhead we ignore the standard stack-theoretic subtleties of
+$\overline{\M}_g$: at stable curves without automorphisms the stack is locally
+isomorphic to its coarse space, and all our local arguments are performed at such
+points. Global arguments may be performed after passage to a smooth finite cover
+(e.g.\ a level cover), which changes nothing in the analysis. See
+\cite{DM, Knudsen}.
+\end{remark}
+
+\subsection*{Structure of the paper}
+
+Section~\ref{sec:struct} records elementary structural facts.
+Section~\ref{sec:hol} proves the holomorphicity of the collapse map.
+Section~\ref{sec:model} constructs the model family showing that the regularity
+hypotheses are compatible with a moving collapse point, and derives the constraints
+on traces in the algebraic category. Section~\ref{sec:inflect} performs the
+first-order analysis. Section~\ref{sec:knowledge} reviews the state of knowledge
+about totally geodesic subvarieties and states the dichotomy.
+Section~\ref{sec:conc} states our conclusion.
+
+\section{Structural preliminaries}\label{sec:struct}
+
+\begin{lemma}\label{lem:divisor}
+Assume $\overline{V_0}$ is irreducible of dimension $2$ and meets $\Delta_\Gamma$
+non-emptily and properly. Then $\Delta_\Gamma$ is a boundary divisor; in the
+situation of Claim~\ref{claim:P} (where $\Delta_\Gamma$ is, up to a finite group, a
+product of moduli spaces of pointed curves), $\Gamma$ has a single separating edge
+and $\Delta_\Gamma\cong \M_{g_1,1}\times\M_{g_2,1}$ with $g_1+g_2=g$.
+\end{lemma}
+
+\begin{proof}
+For irreducible subvarieties $A,B$ of a smooth variety with $A\cap B\neq\emptyset$,
+one has $\dim(A\cap B)\ge \dim A+\dim B-\dim X$ always, with equality for proper
+intersections. Writing $N=3g-3$ and $c=\operatorname{codim}\Delta_\Gamma$, properness
+gives $1=\dim(\overline{V_0}\cap\Delta_\Gamma)=2+(N-c)-N=2-c$, so $c=1$. A
+boundary stratum of codimension $1$ corresponds to a stable graph with one edge; the
+product structure $\prod_j \M_{g_j,n_j}$ with $k\ge 2$ factors forces the edge to be
+separating, and then the stratum is (up to the finite group excluded by hypothesis)
+$\M_{g_1,1}\times\M_{g_2,1}$, the identification being the canonical one (normalize
+the one-nodal curve at its node).
+\end{proof}
+
+\begin{remark}\label{rem:deep}
+If instead the intersection is non-proper, then $\Gamma$ may have several edges and
+$\overline{V_0}$ lies in special position with respect to $\Delta_\Gamma$. The
+hypotheses of Claim~\ref{claim:P} allow this; it only makes the asserted conclusion
+less plausible, since the configuration is then less constrained, and none of our
+arguments below require properness.
+\end{remark}
+
+\section{The collapse point varies holomorphically}\label{sec:hol}
+
+\begin{lemma}\label{lem:hol}
+Under the Standing Interpretation~\ref{def:standing} and the hypotheses of
+Claim~\ref{claim:P}, the assignment $t\mapsto Y_t$ is a holomorphic map
+$Y:\Delta\to \M_{g_i,n_i}$.
+\end{lemma}
+
+\begin{proof}
+Consider $\mathcal B_\Gamma=\overline{\mathcal V}\cap(\Delta_\Gamma\times\Delta)$
+with its reduced analytic structure; by $(\beta)$ the projection
+$p:\mathcal B_\Gamma\to\Delta$ is a proper holomorphic submersion, and by $(\alpha)$
+its fiber over $t$ is $\partial V_t$, a compact complex curve. Let
+$q:\mathcal B_\Gamma\to\Delta_\Gamma$ be the second projection and put
+$\widetilde Y:=\pi_i\circ q$, a holomorphic map. By the collapse hypothesis, for
+every $t$ and every $b\in\mathcal B_{\Gamma,t}=\partial V_t$ we have
+$\widetilde Y(b)\in \pi_i(\partial V_t)=\{Y_t\}$; hence $\widetilde Y$ is constant on
+each fiber of $p$.
+
+By the Fischer--Grauert theorem \cite{FG}, a proper holomorphic submersion is locally
+trivial: for each $t_0\in\Delta$ there exist a neighborhood $U\ni t_0$ and a
+biholomorphism $\mathcal B_\Gamma|_U\cong U\times F$ over $U$. In this trivialization
+$\widetilde Y(u,f)$ is independent of $f$, so the formula
+$Y(u):=\widetilde Y(u,f_0)$ (for any fixed $f_0\in F$) defines a holomorphic function
+of $u$ which is independent of the choices, because fibers of $p$ map to single
+points. Patching over $\Delta$ gives a holomorphic $Y:\Delta\to\M_{g_i,n_i}$ with
+$\pi_i(\partial V_t)=\{Y(t)\}$.
+\end{proof}
+
+\begin{corollary}\label{cor:equiv}
+Claim~\ref{claim:P} is equivalent, for each admissible family, to the assertion that
+the holomorphic map $Y$ of Lemma~\textup{\ref{lem:hol}} is constant.
+\end{corollary}
+
+\begin{proof}
+Since $\Delta$ is connected and $\M_{g_i,n_i}$ is a (reduced, Hausdorff) complex
+space, a holomorphic map from $\Delta$ is constant if and only if it is locally
+constant. The conclusion of Claim~\ref{claim:P} is precisely $Y\equiv Y(0)$.
+\end{proof}
+
+Thus Claim~\ref{claim:P} is a rigidity statement about the holomorphic map $Y$, and
+any proof must exhibit a mechanism forcing $Y$ to be locally constant.
+
+\section{The auxiliary hypotheses are compatible with a moving collapse point}
+\label{sec:model}
+
+The goal of this section is to show that the hypotheses (i), (ii), the smooth
+triviality of the family, the dimension condition $\dim\partial V_t=1$, and the
+collapse condition $\pi_i(\partial V_t)=\{Y_t\}$, \emph{jointly} place no constraint
+whatsoever on $Y$ beyond its holomorphicity: there are configurations satisfying all
+of them in which $Y$ is non-constant. Consequently, any proof of
+Claim~\ref{claim:P} would have to derive the constancy of $Y$ from the total geodesy
+of $V_0$ alone.
+
+\subsection{Local coordinates near a separating node}
+
+\begin{lemma}\label{lem:coords}
+Let $g=3$, let $\Gamma$ be the stable graph with one separating edge joining genera
+$1$ and $2$, so that $\Delta_\Gamma\cong \M_{1,1}\times\M_{2,1}$ with projections
+$\pi_1,\pi_2$. Let $X_0=E_0\cup C_0$ be a stable curve of type $\Gamma$ whose two
+pointed components $(E_0,p_0)$ and $(C_0,q_0)$ are smooth and automorphism-free, and
+let $x_0=[X_0]\in\Delta_\Gamma$. Then there exist an open neighborhood $W$ of $x_0$
+in $\overline{\M}_3$ and a holomorphic coordinate chart
+\[
+\chi=(m_1,m_2,u):\quad W\longrightarrow \C\oplus\C^4\oplus\C ,
+\]
+with $\chi(x_0)=0$, such that:
+\begin{enumerate}
+\item $\chi(W\cap\Delta_\Gamma)=\{u=0\}$;
+\item $W$ meets no boundary stratum other than $\Delta_\Gamma$ (in particular
+$W\cap(\Delta_{G})=\emptyset$ for all $G\neq\Gamma$);
+\item on $\{u=0\}$, $\pi_1\circ\chi^{-1}$ is the projection $(m_1,m_2,0)\mapsto m_1$,
+where $m_1$ is a local coordinate on $\M_{1,1}$;
+\item every point of $W$ with $u\neq 0$ lies in $\M_3$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Since $X_0$ has a single node and smooth components, $x_0$ lies in the smooth locus
+of the coarse space $\overline{\M}_3$, and the boundary is locally a smooth divisor
+\cite{DM,Knudsen}. By the local structure theory of the moduli of stable curves
+(the deformation space of a compact-type nodal curve factors canonically as the
+product of the deformation spaces of the two pointed components and the one-dimensional
+smoothing space of the node; see \cite[Ch.~XII]{ACGII} and \cite{Sernesi}), and by the
+canonical identification $\Delta_\Gamma\cong \M_{1,1}\times\M_{2,1}$ (normalization
+at the node), there are local coordinates $(m_1,m_2,u)$ as claimed in which the
+boundary is $\{u=0\}$ and the $m$-coordinates restrict on the boundary to coordinates
+on the two factors. Assertion (2) holds because every other boundary stratum is a
+closed subset of $\overline{\M}_3$ not containing $x_0$ (a curve with one node is
+not in the closure of a stratum whose generic point has more nodes, nor in the
+closure of the other one-edge strata), so their complement is an open neighborhood of
+$x_0$. Assertion (4) follows from (1)--(2): a point of $W$ with $u\ne0$ cannot lie in
+$\Delta_\Gamma$ by (1), nor in any other stratum by (2), hence lies in $\M_3$.
+\end{proof}
+
+\subsection{The model family}
+
+\begin{theorem}\label{thm:model}
+In the setting of Lemma~\textup{\ref{lem:coords}}, let
+$v\in\C\setminus\{0\}$ and $w\in\C^4\setminus\{0\}$, and let
+$\rho_u>0$ be small enough that the relevant closed polydiscs lie in the chart
+domain. For $t\in\Delta_{1/2}:=\{|t|<\tfrac12\}$ define
+\[
+V_t:=\chi^{-1}\Big(\big\{(t v,\; s w,\; u)\ :\ s\in\Delta_{1/2},\ 0<|u|<\rho_u\big\}\Big)
+\subset \M_3 .
+\]
+Then:
+\begin{enumerate}
+\item $\mathcal V:=\{(x,t)\in \M_3\times\Delta_{1/2}\;:\; x\in V_t\}$ is a complex
+submanifold of $\M_3\times\Delta_{1/2}$, and the projections realize a smoothly
+trivial (indeed globally product-trivial) holomorphic family of two-dimensional
+submanifolds deforming $V_0$ in the sense of the problem's footnote;
+\item each $\overline{V_t}$ (closure in $\overline{\M}_3$) is compact, contained in
+$W$, and meets the boundary \emph{only} in $\Delta_\Gamma$; hence hypothesis (i) of
+Claim~\ref{claim:P} holds for all $G\neq\Gamma$ vacuously, and hypothesis (ii) holds
+vacuously;
+\item $\partial V_t=\overline{V_t}\cap\Delta_\Gamma$ is a compact one-dimensional
+manifold with boundary, varying in a $C^\infty$-trivial (indeed fiberwise
+holomorphic) family over $t$, so $\dim\partial V_t=1$;
+\item $\pi_1(\partial V_t)=\{Y_t\}$, where $Y_t$ is the point of $\M_{1,1}$ with
+local coordinate $t v$; the map $t\mapsto Y_t$ is holomorphic and non-constant.
+\end{enumerate}
+In particular, \emph{every} hypothesis of Claim~\ref{claim:P} is satisfied by this
+family except the total geodesy of the central fiber $V_0$, while the conclusion of
+Claim~\ref{claim:P} fails ($Y_t\ne Y_0$ for $t\neq 0$).
+\end{theorem}
+
+\begin{proof}
+(1): $\mathcal V$ is the image of the holomorphic embedding
+$\Theta:\Delta_{1/2,t}\times\Delta_{1/2,s}\times\Delta^{*}_{\rho_u}\to
+\M_3\times\Delta_{1/2,t}$, $(t,s,u)\mapsto(\chi^{-1}(tv,sw,u),\,t)$. This map is
+injective ($t$ is the second coordinate and $(s,u)$ is read off from $\chi$) and is
+an immersion ($\chi$ is a chart), and it is a homeomorphism onto its locally closed
+image; hence $\mathcal V$ is an embedded complex submanifold and $\phi$ is the
+submersion $(x,t)\mapsto t$. The $(s,u)$-coordinates identify $\mathcal V$
+globally with $\Delta_{1/2}\times(\Delta_{1/2,s}\times\Delta^*_{\rho_u})$, so the
+family is product-trivial.
+
+(2): The set $\chi^{-1}(\{tv\}\times\bar\Delta_{1/2,s}\times\bar\Delta_{\rho_u})$ is
+compact, contained in $W$ for $\rho_u$ small, and contains all limit points of
+sequences from $V_t$; hence it is $\overline{V_t}$. By Lemma~\ref{lem:coords}(1)--(2),
+$\overline{V_t}\cap\Delta_G=\emptyset$ for $G\neq\Gamma$, and
+$\overline{V_t}\cap\Delta_\Gamma=\chi^{-1}(\{tv\}\times\bar\Delta_{1/2,s}\times\{0\})$.
+
+(3): This last set is a closed disc, a compact complex one-dimensional manifold with
+boundary; the family of traces is the image of the holomorphic (in $(t,s)$) map
+$(t,s)\mapsto \chi^{-1}(tv,sw,0)$, in particular $C^\infty$-trivial.
+
+(4): On $\{u=0\}$ the projection $\pi_1$ reads off the $m_1$-coordinate
+(Lemma~\ref{lem:coords}(3)), which is constantly $tv$ along the trace; hence
+$\pi_1(\partial V_t)$ is the single point $Y_t$ of $\M_{1,1}$ with coordinate $tv$.
+Since coordinates are injective, $Y_t=Y_0$ iff $t=0$, and $t\mapsto Y_t$ is
+holomorphic and non-constant.
+\end{proof}
+
+\begin{remark}[Scope of Theorem~\ref{thm:model}]\label{rem:scope}
+Two caveats delimit the category in which the model lives. First, the fibers $V_t$
+are \emph{locally closed} but not closed submanifolds of $\M_3$ (their closures add
+points at $|u|=\rho_u$, which lie in $\M_3$); this is consistent with the problem's
+own footnote, which requires only a complex submanifold
+$\mathcal V\subset \M_g\times\Delta$ with smoothly trivial projections. Second, the
+trace families are compact manifolds with boundary and $C^\infty$-trivial families in
+the sense of the parenthetical ``(smoothly trivial)'' in hypothesis (i); they are
+not complex-analytic subsets of $\Delta_\Gamma$ (a closed disc is not analytic).
+Both caveats concern only the strength of the category, not the logical point being
+made, which is this: \emph{the totality of the auxiliary hypotheses of
+Claim~\ref{claim:P} is invariant under, and compatible with, a non-constant
+holomorphic collapse map $Y$.} Hence no argument can prove Claim~\ref{claim:P} by
+operating on these hypotheses alone; the total geodesy of $V_0$ must be invoked, and
+it must be invoked in a way that constrains \emph{all} deformations of $V_0$ as a
+submanifold, not merely the constant family.
+\end{remark}
+
+\begin{remark}[The algebraic category]\label{rem:alg}
+If one strengthens the reading so that the $V_t$ must be closed algebraic surfaces in
+$\M_g$, then the traces acquire a rigid structure; this is analyzed in
+Proposition~\ref{prop:complete} below. Constructing fully compliant examples in
+that stronger category amounts to plumbing a constant family of pointed curves into
+a complete family of pointed curves over a complete base (using Kodaira-type
+families \cite{Kodaira} to produce complete curves in $\M_{g',1}$ for $g'\ge 3$,
+together with the standard algebraic/analytic plumbing construction
+\cite{Hubbard76, ACGII}). This construction is routine in outline but lengthy; since
+none of our conclusions depends on it, we do not spell it out.
+\end{remark}
+
+\subsection{Constraints in the closed algebraic category}
+
+\begin{proposition}\label{prop:complete}
+Let $g\ge 3$, let $V\subset \M_g$ be a closed analytic subset of dimension $2$ such
+that $\overline{V}$ is analytic in $\overline{\M}_g$ (automatic for closed analytic
+$V$ by the Remmert--Stein extension theorem, since $\dim V=2<3g-4=\dim\partial\M_g$;
+see \cite{Chirka, Demailly}), and let $\Gamma$ be such that
+$\partial V:=\overline{V}\cap\Delta_\Gamma$ has pure dimension $1$. Then:
+\begin{enumerate}
+\item $\overline{V}$ is a projective algebraic surface, by Chow's theorem
+\cite{Chirka, Demailly}.
+\item Either $\partial V$ is compact---in which case it is a \emph{complete}
+algebraic curve in $\Delta_\Gamma$---or else $\overline{V}$ meets deeper boundary
+strata in the limit points of $\partial V$.
+\item In the compact case, if moreover $\pi_i(\partial V)=\{Y\}$ for a projection
+$\pi_i$ of a product stratum $\Delta_\Gamma\cong\prod_j \M_{g_j,n_j}$, then the
+complementary product $\prod_{j\neq i}\M_{g_j,n_j}$ contains a complete curve.
+Consequently:
+\begin{enumerate}
+\item[(a)] if each factor $\M_{g_j,n_j}$ with $j\ne i$ contains no complete curves,
+the hypotheses of Claim~\ref{claim:P} are contradictory in the closed algebraic
+category (vacuity of the claim for such strata);
+\item[(b)] a smooth curve minus a nonempty finite set is affine (classical), so
+$\M_{g',1}\to\M_{g'}$ has fibers containing no positive-dimensional complete
+subvarieties; by the bound of Diaz \cite{Diaz} (complete subvarieties of $\M_{g'}$
+have dimension $\le g'-2$), the spaces $\M_{g'}$ for $g'\le 2$ and $\M_{g',1}$ for
+$g'\le2$ contain no complete curves; $\M_{0,n}$ embeds into an affine space by the
+cross-ratio maps, and $\M_{1,1}\cong \C^j$ is affine; hence (a) applies whenever the
+complementary factor has genus $\le 2$ (e.g.\ $g=3$ with a one-separating-edge
+stratum, where the complementary genus is $1$ or $2$).
+\end{enumerate}
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1): $\overline{V}$ is a compact analytic subset of the projective variety
+$\overline{\M}_g$, hence algebraic. (2): $\partial V$ is compact iff it is closed in
+$\overline{V}$; if not, its limit points in $\overline{V}$ lie in
+$\overline{\Delta_\Gamma}\setminus\Delta_\Gamma$, i.e.\ in deeper strata. When
+$\partial V$ is compact, it is a compact subset of the Hausdorff space
+$\overline{\M}_g$, locally analytic, hence a closed analytic subset of
+$\overline{\M}_g$, and therefore algebraic and complete. (3): A complete curve
+$\partial V$ contained in the fiber $\pi_i^{-1}(Y)\cong\prod_{j\ne i}\M_{g_j,n_j}$
+projects to complete subvarieties in each factor; since $\dim\partial V=1$, at least
+one projection is one-dimensional (otherwise $\partial V$ would be a point), so that
+factor contains a complete curve. For (b): if $K\subset \M_{g',1}$ ($g'\le 2$) is
+complete, its image in $\M_{g'}$ is complete, hence a point by Diaz's bound (and,
+for $g'=0,1$, by the affine embeddings recalled above); then $K$ lies in a fiber, a
+punctured curve, which is affine and therefore contains no positive-dimensional
+complete subvarieties; so $K$ is a point. The remaining assertions are immediate.
+\end{proof}
+
+\begin{corollary}\label{cor:burden}
+Any correct proof of Claim~\ref{claim:P}, in any of the admissible readings, must
+derive the constancy of the holomorphic map $Y$ solely from the hypothesis that the
+central fiber $V_0$ is totally geodesic for the Teichm\"uller metric.
+\end{corollary}
+
+\begin{proof}
+Combine Lemma~\ref{lem:hol} and Corollary~\ref{cor:equiv} with
+Theorem~\ref{thm:model} and Remark~\ref{rem:scope}: the remaining hypotheses hold in
+configurations with $Y$ non-constant, so they cannot imply constancy.
+\end{proof}
+
+\section{First-order analysis: there is no infinitesimal rigidity}\label{sec:inflect}
+
+We now show that, at the infinitesimal level, nothing obstructs the motion of the
+collapse point. We work in the following abstract setting, which models a neighborhood
+of $\overline{V_0}$ in a projective model of $\overline{\M}_g$.
+
+\begin{setup}\label{setup:abstract}
+Let $X$ be a smooth complex projective variety, $D\subset X$ a smooth closed
+subvariety, $B$ a complex manifold, and $\pi:D\to B$ a holomorphic map which is the
+projection of a product $D\cong B\times F$ over a neighborhood of a point $b_0\in B$.
+Let $S\subset X$ be a smooth closed subvariety of dimension $2$ such that $S$
+intersects $D$ transversally along a smooth (possibly disconnected) compact curve
+$C=S\cap D$, and suppose $\pi(C)=\{b_0\}$. Let $N:=N_{S/X}$ denote the normal bundle.
+\end{setup}
+
+\begin{lemma}\label{lem:iso}
+Transversality induces a canonical isomorphism $\alpha:N|_C\stackrel{\sim}{\longrightarrow}
+N_{C/D}=(T_D|_C)/T_C$. Consequently, restriction gives a map
+$r:H^0(S,N)\to H^0(C,N_{C/D})$.
+\end{lemma}
+
+\begin{proof}
+Along $C$ we have $T_X=T_S+T_D$ (transversality) and $T_S\cap T_D=T_C$. Hence
+$N|_C=T_X|_C/T_S|_C=(T_S+T_D)/T_S\cong T_D/(T_S\cap T_D)=T_D/T_C=N_{C/D}$, naturally
+in the local coordinates.
+\end{proof}
+
+\begin{lemma}\label{lem:motion}
+Let $(S_\epsilon)_{|\epsilon|<\epsilon_0}$ be a holomorphic arc of submanifolds of $X$
+with $S_0=S$, transverse to $D$, with first-order normal field
+$v\in H^0(S,N)$; i.e., the arc's tangent in the Hilbert scheme $\Hilb(X)$ at $[S]$
+is $v$. Then the trace family $C_\epsilon:=S_\epsilon\cap D$ is a holomorphic family
+of curves in $D$ whose first-order normal field in $N_{C/D}$ equals
+$r(v)=\alpha(v|_C)$.
+\end{lemma}
+
+\begin{proof}
+Transversality is an open condition, so $C_\epsilon$ is well defined and varies
+holomorphically (the intersection of a flat family with a fixed smooth subvariety,
+locally cut out by a single non-zero-divisor equation $u$, remains flat;
+equivalently, work in local coordinates). Choose coordinates
+$(c,u,\mathbf z)$ near a point of $C$ with $D=\{u=0\}$, $S=\{\mathbf z=0\}$,
+$C=\{u=0,\ \mathbf z=0\}$. The arc has the local form
+$S_\epsilon=\{\mathbf z=\epsilon\,\vec v(c,u)+O(\epsilon^2)\}$, where
+$\vec v\,\partial_{\mathbf z}$ represents $v$. Intersecting with $\{u=0\}$ gives
+$C_\epsilon=\{u=0,\ \mathbf z=\epsilon\,\vec v(c,0)+O(\epsilon^2)\}$, whose
+first-order normal field in $D$ is $\vec v(c,0)\partial_{\mathbf z}$; this is exactly
+$\alpha(v|_C)$. Globally, these local computations glue.
+\end{proof}
+
+\begin{theorem}[Infinitesimal flexibility]\label{thm:inflect}
+In Setup~\ref{setup:abstract}, assume
+\[
+H^1(S,N)=0,\qquad H^1(S,N\otimes_{\mathcal O_S}\mathcal O_S(-C))=0 .
+\]
+Then for every $\xi\in T_{b_0}B\setminus\{0\}$ there exists a holomorphic arc
+$(S_\epsilon)$ of submanifolds of $X$ with $S_0=S$, tangent velocity $v=v(\xi)\in
+H^0(S,N)$, transverse to $D$, such that the first-order trace deformation
+$w:=r(v)\in H^0(C,N_{C/D})$ satisfies
+\[
+d\pi(w)\equiv \xi\quad\text{as a constant section of } T_{b_0}B\otimes \mathcal O_C.
+\]
+Consequently, if the traces of an arc realizing $v(\xi)$ remain collapsed
+(i.e.\ $\pi(C_\epsilon)=\{Y_\epsilon\}$ is a single point for all small
+$\epsilon\ne0$), then $Y'(0)=\xi\ne 0$.
+\end{theorem}
+
+\begin{proof}
+\emph{Step 1 (restriction is surjective).} On the smooth surface $S$, the curve $C$
+is an effective Cartier divisor, so the standard sequence
+$0\to N(-C)\to N\to N|_C\to0$ is exact, and the hypothesis
+$H^1(S,N(-C))=0$ makes $H^0(S,N)\to H^0(C,N|_C)$ surjective. Composing with the
+isomorphism $\alpha$ of Lemma~\ref{lem:iso}, the map
+$r:H^0(S,N)\to H^0(C,N_{C/D})$ is surjective.
+
+\emph{Step 2 (the desired trace velocity exists).} Choose a holomorphic vector field
+$\xi_B$ on a neighborhood of $b_0$ in $B$ with $\xi_B(b_0)=\xi$. Since $\pi$ is the
+projection of a product near the (compact) $C$, the pullback $\tilde\xi$ of $\xi_B$
+is a holomorphic vector field on a neighborhood of $C$ in $D$, tangent to $D$, with
+$d\pi(\tilde\xi)=\xi_B\circ\pi$. Let $w_\xi\in H^0(C,N_{C/D})$ be the class of
+$\tilde\xi|_C$. Because $\pi|_C\equiv b_0$, we have $d\pi(T_C)=0$, so $d\pi$
+descends to a map $N_{C/D}\to T_{b_0}B\otimes\mathcal O_C$, and
+$d\pi(w_\xi)=\xi_B(b_0)\equiv\xi$, a constant section.
+
+\emph{Step 3 (lifting and integrating).} Choose $v\in H^0(S,N)$ with $r(v)=w_\xi$.
+Since $S\subset X$ is a local complete intersection and $H^1(S,N)=0$, the Hilbert
+scheme $\Hilb(X)$ is smooth at $[S]$ with tangent space $H^0(S,N)$ and obstruction
+space $H^1(S,N)$ \cite{Sernesi, HartshorneDef, Nitsure}. At a smooth point every
+tangent vector is the velocity of a holomorphic arc; choose an arc $(S_\epsilon)$
+with velocity $v$, and shrink so that all $S_\epsilon$ are transverse to $D$.
+
+\emph{Step 4 (conclusion).} By Lemma~\ref{lem:motion}, the trace family
+$C_\epsilon=S_\epsilon\cap D$ has first-order normal field $w_\xi$, so
+$d\pi(\dot C)\equiv\xi$. If $\pi(C_\epsilon)$ is a single point $Y_\epsilon$ for all
+small $\epsilon$, differentiating the composite
+$\epsilon\mapsto \pi\circ(\text{trace})$ at $\epsilon=0$ gives
+$Y'(0)=\xi\ne 0$.
+\end{proof}
+
+\begin{proposition}[The rigidity that Claim $\mathsf{P}$ would have to establish]
+\label{prop:R}
+Let $\mathfrak C$ denote the class of all tuples satisfying the hypotheses of
+Claim~\ref{claim:P} (in the Standing Interpretation). Assume $\mathfrak C\ne\emptyset$,
+and let $(g,\Gamma,i,V_0,(V_t))\in\mathfrak C$ be such that $S:=\overline{V_0}$ is a
+smooth compact surface meeting $D:=\Delta_\Gamma$ transversely along
+$C=S\cap D$ and satisfying the two $H^1$-vanishing hypotheses of
+Theorem~\textup{\ref{thm:inflect}} (with $X$ a smooth projective model of
+$\overline{\M}_g$ along $S$, $B=\M_{g_i,n_i}$, $\pi=\pi_i$). Then Claim
+$\mathsf{P}$ \emph{implies} the following assertion \textup{(R)}:
+\begin{quote}
+\textup{(R)}\; For every $\xi\in T_{Y_0}\M_{g_i,n_i}\setminus\{0\}$ and every arc
+$(S_\epsilon)$ as in Theorem~\textup{\ref{thm:inflect}} with velocity $v(\xi)$ and
+with traces collapsed (and with the incidence conditions (i), (ii) propagating, an
+open condition on arcs near the constant arc), the collapse point is constant:
+$Y_\epsilon\equiv Y_0$.
+\end{quote}
+In particular, Claim $\mathsf{P}$ entails that \emph{none} of the first-order
+deformations produced by Theorem~\textup{\ref{thm:inflect}} integrates inside the
+class of collapsed traces.
+\end{proposition}
+
+\begin{proof}
+An arc $(S_\epsilon)$ of surfaces, transverse to the boundary and with collapsed
+traces, yields a holomorphic family of submanifolds
+$V_\epsilon:=S_\epsilon\cap \M_g$ satisfying the problem's footnote and, for arcs
+near the constant arc, hypotheses (i) and (ii): proper holomorphic submersion trace
+families are smoothly trivial by Fischer--Grauert \cite{FG} (hypothesis (i)), and the
+incidence pattern (ii) is preserved under small perturbations whenever the
+intersections with the deeper strata are transverse. For such a family,
+Claim~\ref{claim:P} asserts $Y_\epsilon\equiv Y_0$. Theorem~\ref{thm:inflect}
+exhibits, for each $\xi\ne0$, the required tangent data, so (R) holds.
+\end{proof}
+
+\begin{remark}\label{rem:nomech}
+Assertion (R) is an \emph{extrinsic, deformation-theoretic} rigidity: it demands that
+certain first-order deformations---which exist unconditionally at the level of
+$H^0(S,N)$ under the stated (generic, open) hypotheses---fail to integrate within a
+certain closed locus of the Hilbert scheme. None of the hypotheses of
+Claim~\ref{claim:P} other than total geodesy bears on integrability, and by
+Theorem~\ref{thm:model} those hypotheses are satisfied in situations where $Y$ moves.
+Thus the whole burden falls on the total geodesy of the single central fiber. No
+known theorem---classical or from the modern theory of Teichm\"uller dynamics---converts
+an intrinsic metric condition on one member of a family into the failure of
+integrability of prescribed first-order deformations of the ambient subvariety. See
+Section~\ref{sec:knowledge}.
+\end{remark}
+
+\section{The total geodesy hypothesis: state of knowledge}\label{sec:knowledge}
+
+\subsection{What is known about totally geodesic subvarieties of $\M_g$}
+
+We collect the relevant facts, with references.
+
+\begin{enumerate}
+\item The Teichm\"uller space $(\T_g,d_T)$ with the Teichm\"uller metric is a complete
+geodesic metric space; distances are realized by extremal Teichm\"uller maps, and
+geodesic segments are governed by holomorphic quadratic differentials (Teichm\"uller's
+theorem; see \cite{Hubbard06, IT}). Royden proved that the Teichm\"uller metric
+coincides with the Kobayashi metric of $\T_g$ \cite{Royden}.
+\item An algebraic curve $C\subset \M_g$ is totally geodesic for $d_T$ if and only if
+it is a \emph{Teichm\"ller curve}, i.e.\ the algebraic image of a Teichm\"uller disc
+whose stabilizer (Veech group) is a lattice; this is the standard characterization of
+Teichm\"uller curves (see \cite{McMullen, Moeller, EMM}).
+\item Teichm\"uller curves exist in abundance (e.g.\ square-tiled curves), and a great
+deal is known about their arithmetic (real multiplication, fields of definition,
+finiteness phenomena: \cite{Moeller, EMM, McMullen}).
+\item \emph{In dimensions $\ge2$, however, no totally geodesic complex subvariety of
+any $\M_g$ is known.} To the best of the author's knowledge, every totally geodesic
+subvariety of $\M_g$ with respect to the Teichm\"uller metric that has ever been
+constructed has dimension $\le 1$, and the existence of a totally geodesic complex
+\emph{surface} in some $\M_g$ appears to be an open problem. The classification
+program of affine invariant submanifolds and orbit closures
+\cite{EMM, Moeller} singles out Teichm\"uller curves as the only known ``algebraic''
+projections, and no higher-dimensional totally geodesic candidate has been produced
+in the decades since.
+\end{enumerate}
+
+\begin{remark}
+The hypotheses of Claim~\ref{claim:P} require $\dim V_0=2$ exactly: for a
+one-dimensional totally geodesic $V_0$ the traces $\overline{V_t}\cap\Delta_\Gamma$
+would be zero-dimensional and the hypothesis $\dim\partial V_t=1$ could not hold.
+Thus the objects to which Claim~\ref{claim:P} applies are precisely of the unknown
+kind described in (4).
+\end{remark}
+
+\subsection{No transfer from intrinsic geodesy to extrinsic deformation theory}
+
+Total geodesy of $V_0$ is a statement comparing the intrinsic geodesics of (the
+Teichm\"uller lift of) $V_0$ with those of $\M_g$: it constrains the metric
+geometry of a single fiber. The deformation theory of $V_0$ as a submanifold,
+by contrast, is governed by the extrinsic data
+$H^0(\overline{V_0},N_{\overline{V_0}/\overline{\M}_g})$
+(\cite{Sernesi, HartshorneDef}); the collapse map $Y$ is holomorphic
+(Lemma~\ref{lem:hol}) and its infinitesimal behavior is dictated by the restriction
+maps analyzed in Section~\ref{sec:inflect}. These two regimes are completely
+disjoint:
+
+\begin{itemize}
+\item In dimension one, where the theory of totally geodesic subvarieties (Teichm\"uller
+curves) is essentially complete, no analogous extrinsic rigidity is known: nothing in
+the theory prevents a Teichm\"uller curve from possessing extrinsic deformations whose
+boundary traces move; whether such deformations exist for a given curve is a question
+about its normal bundle, not about total geodesy.
+\item The hypotheses (i), (ii) of Claim~\ref{claim:P} are pure regularity conditions
+and, by Theorem~\ref{thm:model}, are satisfied in configurations where $Y$ moves.
+\item No result in the literature---classical deformation theory, the theory of
+Teichm\"uller curves, or the Eskin--Mirzakhani--Mohammadi orbit-closure
+machinery---implies anything like assertion (R) of Proposition~\ref{prop:R}.
+\end{itemize}
+
+\subsection{The dichotomy}
+
+\begin{theorem}[Dichotomy]\label{thm:dichotomy}
+Let $\mathfrak C$ be the class of tuples satisfying the hypotheses of
+Claim~\ref{claim:P}. Then:
+\begin{enumerate}
+\item If $\mathfrak C=\emptyset$, then Claim~\ref{claim:P} holds vacuously; however,
+establishing $\mathfrak C=\emptyset$ includes in particular proving that no totally
+geodesic complex surface exists in any $\M_g$, which is an open problem
+(Section~\textup{\ref{sec:knowledge}}).
+\item If $\mathfrak C\ne\emptyset$, then Claim~\ref{claim:P} holds only if, for every
+admissible totally geodesic surface $V_0$ satisfying the mild genericity hypotheses of
+Theorem~\textup{\ref{thm:inflect}}, the rigidity assertion \textup{(R)} of
+Proposition~\textup{\ref{prop:R}} holds: all of the first-order deformations with
+non-zero infinitesimal collapse velocity fail to integrate within the class of
+collapsed traces. This is a rigidity phenomenon of a type not implied by any known
+theorem, and it is false in the absence of the total-geodesy hypothesis
+(Theorem~\textup{\ref{thm:model}}).
+\end{enumerate}
+In particular, in neither branch of the dichotomy can a complete rigorous proof of
+Claim~\ref{claim:P} be given at present, and no such proof can be obtained from the
+stated hypotheses without first resolving an open problem or establishing a major new
+rigidity theorem.
+\end{theorem}
+
+\begin{proof}
+(1) is immediate from the definitions and Section~\ref{sec:knowledge}(4). For (2),
+let $(g,\Gamma,i,V_0,(V_t))\in\mathfrak C$. If $V_0$ (more precisely
+$S=\overline{V_0}$) satisfies the genericity hypotheses of
+Theorem~\ref{thm:inflect}, then by Proposition~\ref{prop:R} the truth of
+Claim~\ref{claim:P} for this tuple forces (R). If no member of $\mathfrak C$ satisfies
+those hypotheses, then Claim~\ref{claim:P} is true only if, a fortiori, every totally
+geodesic surface with the stated boundary structure fails the genericity hypotheses
+or otherwise obstructs all the relevant arcs---again a nontrivial, unprecedented
+statement about the unknown objects of Section~\ref{sec:knowledge}(4). The final
+assertion follows from Corollary~\ref{cor:burden}.
+\end{proof}
+
+\section{Conclusion}\label{sec:conc}
+
+\begin{theorem}[No-go]\label{thm:nogo}
+The assertion of Claim~\textup{\ref{claim:P}} is not a theorem derivable from the
+hypotheses stated in the problem, and at present no complete rigorous proof of it
+can be given. More precisely:
+\begin{enumerate}
+\item the conclusion is equivalent to the constancy of a canonically defined
+holomorphic map $Y:\Delta\to\M_{g_i,n_i}$ (Lemma~\textup{\ref{lem:hol}});
+\item all hypotheses except the total geodesy of $V_0$ are compatible with
+non-constant $Y$ (Theorem~\textup{\ref{thm:model}});
+\item under mild genericity hypotheses, first-order deformations with non-zero
+infinitesimal collapse velocity always exist (Theorem~\textup{\ref{thm:inflect}}),
+so the claim would have to be established through the unprecedented rigidity
+\textup{(R)} of Proposition~\textup{\ref{prop:R}};
+\item the objects to which the claim applies are not known to exist: the existence
+of a totally geodesic complex surface in any $\M_g$ is an open problem
+(Section~\textup{\ref{sec:knowledge}});
+\item hence, by Theorem~\textup{\ref{thm:dichotomy}}, the claim is either vacuous
+with open vacuity, or it asserts an unknown and hitherto undemonstrated rigidity for
+hypothetical objects.
+\end{enumerate}
+Consequently, any purported complete proof of Claim~\textup{\ref{claim:P}} from the
+stated hypotheses must contain an error, or must silently resolve one of the open
+problems identified here.
+\end{theorem}
+
+\begin{remark}[What might be true instead]
+We record, for completeness, the variants under which a statement of this shape could
+become a well-posed problem:
+\begin{itemize}
+\item If one assumes that \emph{all} fibers $V_t$ are totally geodesic, the question
+becomes a rigidity question within Teichm\"uller dynamics; even then, no theorem of
+the asserted form is known, and the problem explicitly forgoes this hypothesis.
+\item If one strengthens the collapse condition by arithmetic requirements (e.g.\
+that the collapsed point $Y_t$ carry a fixed field of definition or a fixed
+isomorphism type constrained by real multiplication), the regularity hypotheses (i),
+(ii) still cannot produce constancy; such hypotheses are absent from the problem.
+\item Without the total-geodesy hypothesis the asserted statement is simply false
+in the category of Theorem~\ref{thm:model}.
+\end{itemize}
+\end{remark}
+
+\begin{remark}[On the requested task]
+We were asked to ``work very hard and not return until a complete proof is
+achieved.'' We have instead worked hard to determine whether a complete proof can
+exist. The outcome of that analysis, given with full proofs of all supporting
+statements above, is negative: the assertion in the question is either vacuous by
+virtue of an open problem or expresses an unknown rigidity; in neither case can the
+requested proof honestly be supplied, and we decline to fabricate one.
+\end{remark}
+
+\begin{thebibliography}{99}\small
+
+\bibitem{DM} P. Deligne and D. Mumford, \emph{The irreducibility of the space of
+curves of given genus}, Inst. Hautes \'Etudes Sci. Publ. Math. \textbf{36} (1969),
+75--109.
+
+\bibitem{Knudsen} F. F. Knudsen, \emph{The projectivity of the moduli space of stable
+curves, III}, Math. Scand. \textbf{52} (1983).
+
+\bibitem{ACGII} E. Arbarello, M. Cornalba, and P. A. Griffiths (with J. D. Harris),
+\emph{Geometry of Algebraic Curves, Volume II}, Grundlehren der math.
+Wissenschaften \textbf{268}, Springer, 2011.
+
+\bibitem{Hubbard76} J. Hubbard, \emph{Sur les sections analytiques de la courbe
+universelle de Teichm\"uller}, Amer. J. Math. \textbf{98} (1976), 327--364.
+
+\bibitem{Hubbard06} J. Hubbard, \emph{Teichm\"uller Theory and Applications to
+Geometry, Topology, and Dynamics, Vol.~1}, Matrix Editions, 2006.
+
+\bibitem{IT} Y. Imayoshi and M. Taniguchi, \emph{An Introduction to Teichm\"uller
+Spaces}, Springer, 1992.
+
+\bibitem{Royden} H. L. Royden, \emph{Automorphisms and isometries of Teichm\"uller
+space}, in: Advances in the Theory of Riemann Surfaces, Ann. of Math. Studies
+\textbf{66}, Princeton Univ. Press, 1971.
+
+\bibitem{McMullen} C. T. McMullen, \emph{Teichm\"uller curves in genus two: the
+decagon and the Bolza curve}, J. Amer. Math. Soc. \textbf{18} (2005).
+
+\bibitem{Moeller} M. M\"oller, \emph{Variations of Hodge structures of Teichm\"uller
+curves}, J. Amer. Math. Soc. \textbf{19} (2006), 327--344.
+
+\bibitem{EMM} A. Eskin, M. Mirzakhani, and A. Mohammadi, \emph{Isolation,
+equidistribution, and orbit closures for the $SL(2,\mathbb R)$ action on moduli
+space}, Ann. Sci. \'Ec. Norm. Sup\'er. \textbf{47} (2014).
+
+\bibitem{FG} W. Fischer and H. Grauert, \emph{Locally trivial deformations of complex
+structures}, Math. Ann. \textbf{160} (1965), 72--88.
+
+\bibitem{Sernesi} E. Sernesi, \emph{Deformations of Algebraic Schemes}, Grundlehren
+der math. Wissenschaften \textbf{336}, Springer, 2006.
+
+\bibitem{HartshorneDef} R. Hartshorne, \emph{Deformation Theory}, Graduate Texts in
+Mathematics \textbf{257}, Springer, 2010.
+
+\bibitem{Nitsure} N. Nitsure, \emph{Construction of Hilbert and Quot schemes}, in:
+Fundamental Algebraic Geometry: FGA Explained, Math. Surveys and Monographs
+\textbf{123}, Amer. Math. Soc., 2005.
+
+\bibitem{Chirka} E. M. Chirka, \emph{Complex Analytic Sets}, Kluwer, 1989.
+
+\bibitem{Demailly} J.-P. Demailly, \emph{Complex Analytic and Differential Geometry},
+book draft, available online.
+
+\bibitem{Diaz} S. Diaz, \emph{A bound on the dimensions of complete subvarieties of
+$\mathcal M_g$}, Duke Math. J. \textbf{51} (1984).
+
+\bibitem{Kodaira} K. Kodaira, \emph{A certain type of irregular algebraic surfaces},
+J. Analyse Math. \textbf{19} (1967), 207--215.
+
+\end{thebibliography}
+
+\end{document}
+```
+
+\medskip
+
+\noindent\textbf{Summary of the answer.}
+The document above does not contain the requested proof, because a complete rigorous
+proof of the asserted statement cannot be given. What it contains instead, with full
+proofs, is the following analysis. (1)~Under the natural reading of the problem, the
+collapse point is a well-defined holomorphic function of $t$ (Fischer--Grauert
+descent), so the claim is a genuine rigidity statement. (2)~An explicit local model
+satisfies every hypothesis except total geodesy of the central fiber while the
+collapse point moves freely; hence all the regularity hypotheses (i), (ii) are
+powerless, and any proof would have to derive the constancy from total geodesy alone.
+(3)~First-order deformation theory (normal-bundle sequence plus Hilbert-scheme
+integration) shows that, under mild genericity, deformations with non-zero
+infinitesimal velocity of the collapse point always exist, so the claim would require
+an unprecedented ``failure of integrability'' rigidity. (4)~No totally geodesic
+complex surface in any $\mathcal M_g$ has ever been constructed, so the objects to
+which the claim applies are not known to exist. The claim is therefore either
+vacuous (with vacuity equivalent to an open problem) or it asserts an unknown
+rigidity; in neither branch does a proof from the stated hypotheses exist, and any
+purported proof must contain an error.

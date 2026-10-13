@@ -1,0 +1,1153 @@
+\documentclass[reqno]{amsart}
+
+\usepackage{amsmath, amsfonts, amssymb, mathrsfs, stmaryrd, wasysym, mathtools}
+\usepackage{enumerate}
+\usepackage{accents}
+\usepackage{centernot}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{standalone}
+\usetikzlibrary{calc}
+\usepackage{graphicx}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5\baselineskip}
+
+\usepackage{amsrefs}
+
+\makeatletter \renewcommand{\appendix}{
+\par \setcounter{section}{0}
+\setcounter{subsection}{0}
+\def\thesection{}
+\def\sectionname{Appendix:}
+\def\@seccntformat##1{}
+} \makeatother
+
+\newtheorem{Thm}{Theorem}
+\newtheorem{Prop}[Thm]{Proposition}
+\newtheorem{Lm}[Thm]{Lemma}
+\newtheorem{Cor}[Thm]{Corollary}
+\newtheorem{Ques}[Thm]{Question}
+\newtheorem*{prop}{Proposition}
+\newtheorem*{lm}{Lemma}
+\newtheorem*{thm}{Theorem}
+\newtheorem*{cor}{Corollary}
+\newtheorem*{ques}{Question}
+
+\theoremstyle{definition}
+\newtheorem{Df}[Thm]{Definition}
+\newtheorem{Obs}[Thm]{Observation}
+\newtheorem*{df}{Definition}
+\newtheorem*{obs}{Observation}
+\newtheorem*{fact}{Fact}
+\newtheorem*{prob}{Problem}
+\newtheorem{Ex}[Thm]{Example}
+\newtheorem*{ex}{Example}
+\newtheorem*{claim}{Claim}
+\newtheorem{Claim}{Claim}
+
+\theoremstyle{remark}
+\newtheorem{Rmk}[Thm]{Remark}
+\newtheorem*{rmk}{Remark}
+\newtheorem*{concl}{Conclusion}
+\newtheorem{clm}[Thm]{Claim}
+
+% Port to TeX Live 2025: declare cleveref names for \label[type] types
+\crefname{Thm}{theorem}{theorems}\Crefname{Thm}{Theorem}{Theorems}
+\crefname{Prop}{proposition}{propositions}\Crefname{Prop}{Proposition}{Propositions}
+\crefname{Lm}{lemma}{lemmas}\Crefname{Lm}{Lemma}{Lemmas}
+\crefname{Df}{definition}{definitions}\Crefname{Df}{Definition}{Definitions}
+\crefname{Rmk}{remark}{remarks}\Crefname{Rmk}{Remark}{Remarks}
+\crefname{Ques}{question}{questions}\Crefname{Ques}{Question}{Questions}
+\crefname{Claim}{claim}{claims}\Crefname{Claim}{Claim}{Claims}
+\newcommand{\abs}[1]{\lvert #1 \rvert}
+\newcommand{\del}{\backslash}
+\newcommand{\Nc}{\mathcal{N}}
+\DeclareMathOperator{\deq}{\vcentcolon=}
+
+\DeclareFontFamily{U}{mathx}{}
+\DeclareFontShape{U}{mathx}{m}{n}{<-> mathx10}{}
+\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+\DeclareMathAccent{\widehat}{0}{mathx}{"70}
+\DeclareMathAccent{\widecheck}{0}{mathx}{"71}
+
+\title{An elementary property of hyperfields.}
+
+\author{T. Le and C. Lowen}
+
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+{\Large An elementary property of hyperfields.}\par\medskip
+T. Le and C. Lowen
+\end{center}
+
+The polynomial $X^3+Y^3+Z^3-3XYZ$ factors over the polynomial ring $\mathbb{Z}[X,Y,Z]$ as
+\[ X^3+Y^3+Z^3-3XYZ = (X+Y+Z)(X^2+Y^2+Z^2-XY-YZ-ZX) \]
+This has the following simple consequence. If $F$ is any field and $x,y,z\in F$ are any elements satisfying $x+y+z=0$ then these same elements also satisfy
+\[ x^3+y^3+z^3-3xyz=0. \]
+We wish to ask the same question over hyperfields. These are the field-like objects defined by M.~Krasner in which we allow addition to be multivalued.
+
+Let $\mathbb{H}$ be a hyperfield. We write $\boxplus$ for the multivalued addition operator in $\mathbb{H}$. Let $x,y,z\in\mathbb{H}$ be elements. Suppose that $0\in x\boxplus y\boxplus z$. Does it then follow that
+\[ 0 \in x^3 \boxplus y^3 \boxplus z^3 \boxplus -xyz \boxplus -xyz \boxplus -xyz \]
+must hold?
+\newpage
+\maketitle
+\section{Hyperfields}\label{sec:problem}
+
+We recall the definition of hyperfields. 
+The following preamble is taken from \cite{le26}.
+\subsection*{A note on multivalued binary operators} Given a set $S$, a \emph{multivalued} binary operator is a function $\star\colon S \times S \to 2^S$, where $2^S$ is the power set of $S$. 
+Following the usual conventions, given $s, t \in S$ we write 
+$s \star t$ for $\star(s, t)$.
+Given such a binary operator, we may naturally extend it to a binary operator on $2^S$ via
+\[
+    A \star B = \bigcup_{\substack{a \in A\\b \in B}} a \star b.
+\]
+For $s \in S$ and $A \subseteq S$, we also write $s \star A$ for $\{s\} \star A$ and $A \star s$ for $A \star \{s\}$.
+We say that $\star$ is \emph{commutative} (resp.\ \emph{associative}) if the single-valued operator $\star\colon 2^S \times 2^S \to 2^S$ is commutative (resp.\ associative). As in the single-valued case, if $\star$ is associative we may write expressions such as 
+$x_1 \star x_2 \star \dots \star x_n$ without ambiguity---where now each $x_i$ is either an element or a subset of $S$.
+
+The following definition is a variant of (and equivalent to)
+\cite{massouros26}*{Definition 15}.
+\begin{Df}\label[Df]{df:hyperfield}
+    A \emph{hyperfield} is a sextuple $(\mathbb{H}, \boxplus, \cdot, 0, 1, -1)$, with $0,1,-1\in \mathbb{H}$ and
+    \begin{enumerate}[(i)]
+        \item $\mathbb{H}^{\times} \deq \mathbb{H} - \{0\}$ is an abelian group with composition law $\cdot$ and identity element $1$. We extend $\cdot$ to the element $0$ via $x \cdot 0 = 0 \cdot x = 0$ for all $x \in \mathbb{H}$.
+        \item $\boxplus$ is an associative and commutative multivalued binary operator on $\mathbb{H}$.
+        \item For $x \in \mathbb{H}$, we have $0 \in x \boxplus (-1)\cdot x$ and 
+        $0 \notin x \boxplus y$ for all $y \neq (-1) \cdot x$.
+        \item For all $x, y, z\in \mathbb{H}$, we have
+        $x\cdot (y \boxplus z) = (x \cdot y) \boxplus (x \cdot z)$.
+    \end{enumerate}
+\end{Df}
+We write $1_{\mathbb{H}}$ and $(-1)_{\mathbb{H}}$ when there is a risk of ambiguity.
+We write $-x$ for $(-1)\cdot x$ and $xy$ for $x \cdot y$. The operator $\cdot$ takes precedence over $\boxplus$. 
+We have $0 \boxplus 0 = 0\cdot 1 \boxplus 0\cdot (-1) = 0 \cdot (1 \boxplus -1) = \{0\}$.
+Similarly, it follows from (iii) that $x \mapsto -x$ is an involution on $\mathbb{H}$; so $(-1)^2 = 1$ and $-1 \neq 0$.
+
+The following question is motivated by the observation that if $x + y + z = 0$ holds in a commutative ring then
+\[
+    0 = (x + y + z)(x^2 + y^2 + z^2 - xy - xz - yz) = x^3 + y^3 + z^3 - 3xyz
+\]
+holds in that ring,
+but \emph{double distributivity} 
+(i.e.\ the property $(x \boxplus y)(z \boxplus w) = xz \boxplus yz \boxplus xw \boxplus yw$) does \emph{not} hold in a general hyperfield; cf.\ \cite{bowler21}.
+
+    \begin{Ques}\label[Ques]{ques:main}
+    Let $\mathbb{H}$ be a hyperfield with multivalued addition operator $\boxplus$.
+    Let $x, y, z \in \mathbb{H}$ be elements. Suppose that 
+    $0 \in x \boxplus y \boxplus z$. Does it then follow that
+    \[
+        0 \in x^3 \boxplus y^3 \boxplus z^3 \boxplus -xyz \boxplus -xyz \boxplus -xyz\text{?}
+    \]
+    \end{Ques}
+
+    \section{Tracts}\label{sec:tracts}
+    Tracts were first defined in \cite{bb19}. They are much simpler objects than hyperfields. It is trivial to write down a tract which gives a negative answer to the natural analogue of \Cref{ques:main}. 
+    We will answer \Cref{ques:main} in the negative by starting with such an example and massaging it into a hyperfield.
+
+    A \emph{commutative semiring} is a quintuple $(R, +, \cdot, 0, 1)$ where $(R, +)$ and $(R, \cdot)$ are commutative monoids with identity elements $0$ and $1$ respectively, satisfying:
+    \begin{itemize}
+        \item $0 \cdot x = x \cdot 0 = 0$ for all $x \in R$.
+        \item $a \cdot (b + c) = (a \cdot b) + (a \cdot c)$ and 
+        $(b + c) \cdot a = (b \cdot a) + (c \cdot a)$ for all $a,b,c \in R$.
+    \end{itemize}
+    Every commutative ring is evidently a commutative semiring.
+    A sub-semiring of a commutative semiring $R$ is any subset $R'$ that contains $0$ and $1$ and is closed under the operations $+$ (called \emph{addition}) and $\cdot$ (called \emph{multiplication}).
+    We often write $xy$ in place of $x \cdot y$.
+    For subsets $S_1, S_2 \subseteq R$, we write 
+    $S_1 + S_2$ for $\{s_1 + s_2 \mid s_1 \in S_1, s_2 \in S_2\}$ and $S_1 \cdot S_2$ for $\{s_1 s_2 \mid s_1 \in S_1, s_2 \in S_2\}$.
+
+    We write $\mathbb{N}$ for the nonnegative integers. If $G$ is an abelian group, the \emph{group semiring} 
+    $\mathbb{N}[G]$ is the sub-semiring of $\mathbb{Z}[G]$ consisting of the sums 
+    $n_1 g_1 + \dots + n_k g_k$ with $n_i \in \mathbb{N}$ and $g_i \in G$.
+    Inspired by a notion in the theory of convex optimization \cite{boyd04}*{\textsection~4.5.1}, we call the elements of $\mathbb{N}[G]$ \emph{posinomials}. 
+    A \emph{monomial} in $\mathbb{N}[G]$ is simply an element of $G$. A monomial $\mu$ \emph{appears} in a posinomial $P$ with multiplicity $m \in \mathbb{N}$ if the coefficient of $\mu$ in $P$ is $m$.
+    The \emph{length} $\abs{P}$ of a posinomial $P$ is the sum of its coefficients (i.e.\ the number of monomials of which $P$ is the sum).
+    In dealing with group semirings, we will use lowercase letters (e.g.\ $x,y,z,\dots$) to denote elements of $G \sqcup \{0\}$ and uppercase letters (e.g.\ $A, B, C,\dots$) for elements of $\mathbb{N}[G]$.
+    \begin{Df}\label[Df]{df:tract}
+        A \emph{tract} is a quadruple $T = (T^{\times}, \mathcal{N}_T, 1, -1)$ where
+        \begin{enumerate}
+            \item $T^{\times}$ is an abelian group with identity element $1$, called the \emph{unit group} of $T$.
+            \item The \emph{nullset} $\mathcal{N}_T \subseteq \mathbb{N}[T^{\times}]$ is $T^{\times}$-stable; that is, \ $T^{\times} \cdot \Nc_T \subseteq \Nc_T$.
+            \item 
+            We have $0 \in \Nc_T$ but $1 \notin \Nc_T$.
+            Also $1 + (-1) \in \mathcal{N}_T$ but $1 + x \notin \mathcal{N}_T$ for all $x \in T^{\times} \del \{-1\}$.
+            Using (2), this implies $(-1)^2 = 1$.
+        \end{enumerate}
+    \end{Df}
+    We identify $T$ itself with the set $\mathbb{N}[T^{\times}]$ (writing $A \in T$ to mean $A \in \mathbb{N}[T^{\times}]$). We write $1$ as $1_T$ and $-1$ as $(-1)_T$ when a risk of ambiguity arises.
+    
+    Note that (2) and (3) imply that $x \notin \Nc_T$ if $x \neq 0$ and $x + y \in \mathcal{N}_T$ if and only if 
+    $x = (-1) \cdot y$. Intuitively, a posinomial  lies in $\Nc_T$ if it \emph{may} evaluate to 0.
+    In dealing with tracts, we will write 
+    $-x$ for $-1 \cdot x$ and 
+    $x - y$ for $x + (-1) \cdot y$.
+    The reader should not be tempted to ``simplify'' expressions such as $x - x + y$ to $y$; they are not equal.
+    \begin{Rmk}\label[Rmk]{rmk:terminal_tract}
+        Let $G$ be an abelian group with identity element $1$ and assume $-1 \in G$ satisfies $(-1)^2 = 1$.
+        Let $S \subseteq \mathbb{N}[G]$ be a subset such that $\abs{A} \geq 3$
+        for all $A \in S$. Let $\widehat S = S \cup \{0, 1 - 1\}$.
+        Then $T = (G, G \cdot \widehat S, 1, -1)$ is a tract. It is the \emph{tract generated by $S$}. By this we mean that
+        for any tract $T'$, the inclusion $S \subseteq \Nc_{T'}$ forces $\Nc_{T} \subseteq \Nc_{T'}$.
+    \end{Rmk}
+    \begin{Prop}\label[Prop]{prop:tract_counter}
+        There exists a tract $T$ in which there are elements $x,y,z\in T^{\times}$ such that $x+y+z \in \mathcal{N}_T$ but 
+        $x^3 + y^3 + z^3 - xyz-xyz-xyz \notin \mathcal{N}_T$.
+    \end{Prop}
+    We defer the proof to \Cref{sec:fusion_closure}, where we shall prove a stronger statement.
+
+    \section{Hyperfields as tracts}\label{sec:H_as_T}
+
+    Every hyperfield $\mathbb{H}$ gives rise to a tract $T(\mathbb{H})$ by setting $T(\mathbb{H})^{\times} = \mathbb{H}^{\times}$, making the identifications $1_{T(\mathbb{H})} = 1_{\mathbb{H}}$ and 
+    $(-1)_{T(\mathbb{H})} = (-1)_{\mathbb{H}}$, and declaring
+    \[
+        \mathcal{N}_{T(\mathbb{H})} = \{ x_1 + \dots + x_n \mid \text{$x_1, \dots, x_n \in \mathbb{H}^{\times}$ and $x_1 \boxplus \dots \boxplus x_n \ni 0$ in $\mathbb{H}$}\} \subseteq \mathbb{N}[\mathbb{H}^{\times}].
+    \]
+    Note that we allow empty sums, which are always interpreted as $0$.
+
+    We verify that this defines a tract.
+    Property (1) in \Cref{df:tract} for $\mathcal{N}_{T(\mathbb{H})}$ follows from criterion (i) in \Cref{df:hyperfield}. $\mathcal{N}_{T(\mathbb{H})}$ 
+    is stable under scalar multiplication by criterion (iv), verifying property (2). It contains $0$ by fiat and satisfies $1 \notin \Nc_{T(\mathbb{H})}$ because $1 \neq 0$ in $\mathbb{H}$. Combined with \Cref{df:hyperfield}(iii), this gives
+    property (3).
+
+    One would like to understand which tracts are of the form $T(\mathbb{H})$ for some hyperfield $\mathbb{H}$.
+    A beautiful answer was provided by Pedro Souza in unpublished work.
+
+    \begin{Df}\label[Df]{df:fission_fusion}
+        A tract $T$ has \emph{fusion} if whenever 
+        $A + g$ and $-g + B$ both lie in $\mathcal{N}_T$ for some $A, B \in T$ and $g \in T^{\times} \sqcup \{0\}$ then also $A + B \in \mathcal{N}_T$.
+
+        A tract $T$ has \emph{fission} if whenever $A + B \in \mathcal{N}_T$
+        for some $A, B \in T$ then
+        there exists $g \in T^{\times}\sqcup \{0\}$ such that both $A + g$ and $-g + B$ lie in $\mathcal{N}_T$.
+    \end{Df}
+
+    \begin{Rmk}\label{rmk:sums}
+    The nullset of a tract with fusion is closed under sums. (Set $g = 0$.)
+    \end{Rmk}
+
+    \begin{Thm}[Souza]\label[Thm]{thm:souza}
+        Let $T$ be a tract. Then $T = T(\mathbb{H})$ for some hyperfield $\mathbb{H}$ if and only if $T$ has both fusion and fission.
+    \end{Thm}
+    \begin{proof}
+        We start by proving necessity. Let $\mathbb{H}$ be a hyperfield and let $A = a_1 + \dots + a_n$ and 
+        $B = b_1 + \dots + b_m$ be posinomials in $T(\mathbb{H})$.
+        
+        To prove fusion, suppose $g + A \in \mathcal{N}_{T(\mathbb{H})}$ and $-g + B \in \mathcal{N}_{T(\mathbb{H})}$ for some $g \in \mathbb{H}$. Then
+        $0 \in a_1 \boxplus \dots \boxplus a_n \boxplus g$ and $0 \in -g \boxplus b_1 \boxplus \dots \boxplus b_m$. By \Cref{df:hyperfield}(iii), we must have $-g \in a_1 \boxplus \dots \boxplus a_n$ and 
+        $g \in b_1 \boxplus \dots \boxplus b_m$. So $a_1 \boxplus \dots \boxplus a_n \boxplus b_1 \boxplus \dots \boxplus b_m\supseteq -g \boxplus g \ni 0$, again using \Cref{df:hyperfield}(iii). We conclude that $A + B \in \mathcal{N}_{T(\mathbb{H})}$.
+
+        To prove fission, suppose $A + B \in \mathcal{N}_{T(\mathbb{H})}$. 
+        Then $0 \in (a_1 \boxplus \dots \boxplus a_n) \boxplus (b_1 \boxplus \dots \boxplus b_m)$. 
+        Thus $0 \in f \boxplus g$ for some 
+        $f \in a_1 \boxplus \dots \boxplus a_n$ and some $g \in b_1 \boxplus \dots \boxplus b_m$.
+        By \Cref{df:hyperfield}(iii), we must have $f = -g$. Thus 
+        $a_1 \boxplus \dots \boxplus a_n \boxplus g \supseteq -g \boxplus g \ni 0$; so $A + g \in \mathcal{N}_{T(\mathbb{H})}$. Similarly, one deduces
+        $-g + B \in \mathcal{N}_{T(\mathbb{H})}$.
+
+        To prove sufficiency, suppose $T$ is a tract with both fusion and fission. We define a hyperfield $\mathbb{H}$ as follows. We set $\mathbb{H} = T^{\times} \sqcup \{0\}$ as well as $1_{\mathbb{H}} = 1_{T}$ and $(-1)_{\mathbb{H}} = (-1)_{T}$. We let the multiplication in $\mathbb{H}$ be the one in $T$ with the usual extension to the element $0$. Finally, we define $\boxplus: \mathbb{H} \times \mathbb{H} \to 2^{\mathbb{H}}$ by 
+        $x \boxplus y = \{z \in \mathbb{H} \mid x + y - z \in \mathcal{N}_T\}$.
+
+        We must verify that $\mathbb{H}$ is a hyperfield. Criterion (i) in \Cref{df:hyperfield} is immediate. From the definition it is clear that
+        $x \boxplus y = y \boxplus x$, which implies that $\boxplus$ is commutative.
+        Criterion (iii) for $x, y \neq 0$ follows from (3) in \Cref{df:tract}; when $x$ or $y$ is $0$ it follows from the equality $x \boxplus \{0\} = \{0\} \boxplus x = \{x\}$, which again uses (3).
+        Criterion (iv) in the case $x \neq 0$ is a direct consequence of the $T^{\times}$-stability of $\Nc_T$. When $x = 0$, it is equivalent to the assertion $y \boxplus z \neq \varnothing$. To prove this, we first use fusion on $y-y+0$ and $-0+z-z \in \Nc_T$ to get 
+        $y+z -y-z \in \Nc_T$. Applying fission then gives $g \in \mathbb{H}$ such that $y + z + g, -g-y-z \in \Nc_T$. So $-g \in y\boxplus z$.
+        
+        The following claim will imply $T = T(\mathbb{H})$ as soon as we know that $\mathbb{H}$ is a hyperfield.
+        \begin{claim}
+            For $x_1, \dots, x_n \in \mathbb{H}$, we have 
+            $0 \in x_1 \boxplus (x_2 \boxplus (x_3 \boxplus (\dots \boxplus x_n))\dots)$ if and only if 
+            $x_1 + \dots + x_n \in \mathcal{N}_T$.
+        \end{claim}
+        \begin{proof}[Proof of claim]
+        We proceed by induction on $n$.
+        For $n = 0$, it is a matter of definition. For $n = 1$, it follows from the fact that $T^{\times} \cap \mathcal{N}_T = \varnothing$. For $n = 2$, it follows from the definition of $\boxplus$. Now suppose that $n \geq 3$. Let $X = x_3 \boxplus (x_4 \boxplus (\dots \boxplus x_n)\dots)$.
+
+        To prove the forward implication, we observe that 
+        $0 \in x_1 \boxplus (x_2 \boxplus X)$ implies first by criterion (iii) that
+        $-x_1 \in x_2 \boxplus X$ and then by the definition of $\boxplus$ that $x_2 + y + x_1 \in \mathcal{N}_T$ for some $y \in X$.
+        Since $0 \in -y \boxplus X = -y \boxplus (x_3 \boxplus (\dots \boxplus x_n))\dots)$, the induction hypothesis implies that 
+        $-y + x_3 + \dots + x_n \in \mathcal{N}_T$. Applying the fusion property to this relation and $x_1 + x_2 + y \in \mathcal{N}_T$ gives $x_1 + x_2 + x_3 + \dots + x_n \in \mathcal{N}_T$.
+
+        To prove the backward implication, we use the fission property to find $y \in T^{\times} \sqcup \{0\}$ such that 
+        $x_1 + x_2 + y \in \mathcal{N}_T$ and $-y + x_3 + \dots + x_n \in \mathcal{N}_T$. The induction hypothesis then implies
+        $0 \in -y \boxplus (x_3 \boxplus (\dots \boxplus x_n)\dots) = -y \boxplus X$. By criterion (iii), this gives
+        $y \in X$. So $x_2 \boxplus X \supseteq x_2 \boxplus y \ni -x_1$, where we have used that 
+        $x_2 + y - (-x_1) \in \mathcal{N}_T$.
+        It now follows that $0 \in x_1 \boxplus (x_2 \boxplus X)$, i.e.\
+        $0 \in x_1 \boxplus (x_2 \boxplus (\dots \boxplus x_n)\dots)$.
+        \end{proof}
+
+        Given the commutativity of $\boxplus$, to prove associativity, it suffices to show that the value of
+        $x \boxplus (y \boxplus z)$ is symmetric in $x,y,z$. Using the claim, we have for $t \in \mathbb{H}$,
+        \[
+            t \in x \boxplus (y \boxplus z)
+            \quad \iff \quad 
+            0 \in -t \boxplus (x \boxplus (y \boxplus z)) \quad \iff\quad  
+            -t + x + y + z \in \mathcal{N}_T.
+        \]
+        This implies the desired symmetry.
+    \end{proof}
+
+    The form of \Cref{df:fission_fusion}  suggests 
+    that we should be able to ``complete'' a tract to a hyperfield by adding to its nullset any ``missing'' posinomials required by the fusion and fission conditions. The next section does this in the easier case of fusion. The more complicated analogue for fission will occupy \Cref{sec:fission_closure}.
+
+    \section{Fusion closure}\label{sec:fusion_closure}
+    Starting with any tract, we will construct a tract \emph{with fusion} by means of a device we call
+    \emph{fusion forests}.
+    Recall that an \emph{incidence} in a graph is a pair $(v, e)$ consisting of a vertex $v$ and an edge $e$ incident to it; if $v$ is a degree 1 vertex, $(v, e)$ is a \emph{leaf}.
+    A \emph{leaf vertex} (resp.\ \emph{edge}) is a vertex (resp.\ edge) that lies in a leaf.
+    
+    \begin{Df}\label[Df]{df:fusion_forest}
+        Let $G$ be an abelian group, $1$ its identity element, and $-1 \in G$ an element with $(-1)^2 = 1$.
+        A \emph{fusion forest} over $(G, 1, -1)$ is a cycle-free simple graph $F$ whose incidences $(v, e)$ have been labeled using elements $F(v, e) \in G$ satisfying:
+        \begin{center}
+        $F(v, e) = - F(v', e)$ whenever $e$ joins $v$ and $v'$ in $F$.
+        \end{center}
+        We also insist that $F$ have no vertices of degree $0$ or $2$.
+        The \emph{value} of a fusion forest $F$ is the sum $\sum F(v, e) \in \mathbb{N}[G]$ where $(v, e)$ ranges over  the  \emph{leaves} $(v, e)$ of $F$.
+
+        Now suppose $S \subseteq \mathbb{N}[G]$. We say that a fusion forest $F$ is \emph{adapted to} $S$ if:
+        \begin{center}
+            For each vertex $v$ of degree $\geq 3$ in $F$, the \emph{residue} $R(v) \deq  \sum_{e} F(v, e)$, where $e$ ranges over edges incident to $v$, lies in the set of products $G \cdot S$.
+        \end{center}
+    \end{Df}
+    To depict fusion forests, we draw the non-leaf vertices as large round circles so that labels may be seen clearly. 
+    We draw incidences as small dots; the presence of a leaf vertex is indicated only by its unique incidence.
+\begin{figure}[hb]
+    \centering
+\resizebox{0.91\textwidth}{!}{%
+    \begin{tikzpicture}[
+    vertex/.style={
+        draw,
+        circle,
+        minimum size=1.5cm,
+        thick
+    },
+    port/.style={
+        circle,
+        fill=black,
+        inner sep=1.5pt,
+        minimum size=0.05pt,
+    },
+    edge/.style={thick},
+    label/.style={font=\small}]
+\newcommand{\vertex}[6]{%
+    \node[vertex] (#1) at (#2,#3) {};
+    \foreach \i in {1,...,#4}{%
+        \pgfmathsetmacro{\angle}{90+#5-(\i-1)*360/#4}%
+        \node[port] (#1-\i) at ($(#1.\angle)$) {};
+        \foreach \j in {#6}{%
+            \ifnum\i=\j
+                \node[port] (#1-out-\i) at ($(#1.center)!1.5!(#1.\angle)$) {};
+                \draw[edge] (#1-out-\i) -- (#1-\i);
+        \fi
+        }
+    }%
+}
+\vertex{v_0}{-2}{2.6}{3}{-90}{2,3};
+\vertex{v_1}{0}{0}{3}{75}{1,3};
+\vertex{v_2}{2}{2}{4}{-45}{};
+\vertex{v_3}{4.5}{-1}{5}{40}{2,3,4,5};
+\vertex{v_4}{6}{3}{5}{80}{2,5};
+\vertex{v_5}{8.5}{0}{3}{50}{2,3};
+\vertex{v_6}{10}{3}{4}{-10}{1,2,3};
+\draw[edge] (v_0-1) -- node[label, above] {} (v_2-4);
+\draw[edge] (v_1-2) -- node[label, above] {} (v_2-3);
+\draw[edge] (v_3-1) -- node[label, above] {} (v_2-2);
+\draw[edge] (v_4-1) -- node[label, above] {} (v_2-1);
+\draw[edge] (v_4-3) -- node[label, above] {} (v_6-4);
+\draw[edge] (v_4-4) -- node[label, above] {} (v_5-1);
+\node[label, above right]  at (v_0-1) {\large $xyz$};
+\node[label, above]  at (v_0-out-3) {\large $xy^2z$};
+\node[label, below]  at (v_0-out-2) {\large $xyz$};
+\node[label, left]  at (v_1-out-1) {\large $x$};
+\node[label, below left]  at (v_1-2) {\large $-x^2$};
+\node[label, below]  at (v_1-out-3) {\large $y^{-3}$};
+\node[label, left]  at (v_2-3) {\large $x^2$};
+\node[label, right]  at (v_2-2) {\large $y^2 z$};
+\node[label, above right]  at (v_2-1) {\large $y^{10}$};
+\node[label, above left]  at (v_2-4) {\large $-xyz$};
+\node[label, left]  at (v_3-1) {\large $-y^2 z$};
+\node[label, above]  at (v_3-out-2) {\large $-xyz$};
+\node[label, right]  at (v_3-out-3) {\large $yz^{-3}$};
+\node[label, below]  at (v_3-out-4) {\large $y$};
+\node[label, left]  at (v_3-out-5) {\large $x^{-6} y$};
+\node[label, above left]  at (v_4-1) {\large $-y^{10}$};
+\node[label, above]  at (v_4-out-2) {\large $xy$};
+\node[label, below left]  at (v_4-3) {\large $x y^{-6}$};
+\node[label, right]  at (v_4-4) {\large $y^{-4}$};
+\node[label, left]  at (v_4-out-5) {\large $x^6 y$};
+\node[label, left]  at (v_5-1) {\large $-y^{-4}$};
+\node[label, right]  at (v_5-out-2) {\large $x^{-1}yz^{-1}$};
+\node[label, below]  at (v_5-out-3) {\large $-x^2 y^3 z^{-5}$};
+\node[label, above]  at (v_6-out-1) {\large $xz^{-1}$};
+\node[label, right]  at (v_6-out-2) {\large $-z^{-3}$};
+\node[label, below]  at (v_6-out-3) {\large $-xy^2z$};
+\node[label, below left]  at (v_6-4) {\large $-xy^{-6}$};
+\end{tikzpicture}
+}
+    \caption{A fusion tree (i.e.\ a fusion forest on a connected graph).
+    To avoid visual clutter, labels opposite leaf incidences are omitted.}
+    \label{fig:generic_forest}
+\end{figure}
+\begin{Prop}\label[Prop]{prop:fusion_forests}
+    Let $G$ be an abelian group with identity $1$ and $-1 \in G$ satisfying $(-1)^2 = 1$. 
+    Let $S \subseteq \mathbb{N}[G]$ be such that $\abs{A} \geq 3$ for all ${A \in S}$.
+    Let $\mathfrak{I}$ be the set of values of all fusion forests over $(G, 1, -1)$ adapted to $S$. Then ${T = (G, \mathfrak{I}, 1, -1)}$ is a tract with fusion and $S \subseteq \Nc_T$.
+    Moreover, $T$ is the \emph{fusion tract generated by $S$}: if $T' = (G, \Nc_{T'}, 1, -1)$ is a tract with fusion satisfying $S \subseteq \Nc_{T'}$, then $\Nc_T \subseteq \Nc_{T'}$.
+\end{Prop}
+\begin{proof}
+    Criterion (1) in \Cref{df:tract} for $T$ is true by construction. 
+    The empty forest has value $0$; so $0 \in \mathfrak{I}$.
+    Since no forest can have \emph{exactly one} leaf, $\mathfrak{I}$ contains no posinomials of length 1; so $1 \notin \mathfrak{I}$.
+    A fusion forest with exactly two leaves is a single edge. Its value must therefore be $x - x$ for some $x \in G$. These are thus exactly the fusion forest values of length 2. These observations show that criterion (3) holds.
+    Scaling all labels in a fusion forest $F$ with value $A$ by an element $g \in G$ results in another fusion forest with value $gA$. (Note that if $C \in G \cdot S$, then also $gC \in G \cdot S$.) 
+    So $G \cdot \mathfrak{I} \subseteq \mathfrak{I}$, which is criterion (2). 
+
+    We now know that ${T}$ is a tract. To show that it has fusion, consider forests $F_1$ with value $A + g$ and $F_2$ with value $-g + B$ for some $A, B \in \mathbb{N}[G]$ and $g \in G \cup \{0\}$. It will suffice to show that $A + B \in \mathfrak{I}$.
+    If $g = 0$, then the disjoint union of $F_1$ and $F_2$ (preserving all labels) is a fusion forest with value $A + B$. Now suppose $g \neq 0$.
+    The monomial $g$ occurs at a leaf $(v_1, e_1)$ in $F_1$; 
+    the monomial $-g$ occurs at a leaf $(v_2, e_2)$ in $F_2$.
+    Let $w_2$ be the other endpoint of $e_1$ and let $w_1$ be the other endpoint of $e_2$.
+    Note that $(w_2, e_1)$ has the label $-g$ and 
+    $(w_1, e_2)$ has the label $g$.
+    Let $F$ be the forest obtained by gluing $F_1$ and $F_2$ along $e_1$ and $e_2$, thereby identifying $v_1$ with $w_1$ and $v_2$ with $w_2$. Since the labels at the identified incidences agree, we can combine both labelings to form a labeling of $F$; see \Cref{fig:2_clique_sum}. This labeling makes $F$ a fusion forest.
+    The value of $F$ is $A + B$.
+\begin{figure}[ht]
+        \centering
+\resizebox{0.85\textwidth}{!}{%
+\begin{tikzpicture}[
+    port/.style={
+        circle,
+        fill=black,
+        inner sep=1.5pt,
+        minimum size=0.05pt,
+    },
+    edge/.style={thick},
+    label/.style={font=\small}
+]
+\draw[thick] (0,0) arc[start angle=-90, end angle=90, radius=1cm];
+\node[port] (base1) at (1,1) {};
+\node[port] (height1) at (2,1) {};
+\draw[edge] (base1) -- node[midway, above] {\large $e_1$} (height1);
+\node[label, left]  at (base1) {\Large $-g$};
+\node[label, right]  at (height1) {\Large $g$};
+\draw[thick] (6,2) arc[start angle=90, end angle=270, radius=1cm];
+\node[port] (height2) at (4,1) {};
+\node[port] (base2) at (5,1) {};
+\draw[edge] (base2) -- node[midway, above] {\large $e_2$} (height2);
+\node[label, right]  at (base2) {\Large $g$};
+\node[label, left]  at (height2) {\Large $-g$};
+\draw[->] (1,0) node[below] {$\;\;w_2$} -- ($(0,1)!0.4!(1,0)$);
+\draw[->] (2,0) node[below] {$v_1$} -- ($(height1)!0.2!(2,-0.1)$);
+\draw[->] (4,0) node[below] {$v_2$} -- ($(height2)!0.2!(4,-0.1)$);
+\draw[->] (5,0) node[below] {$w_1$} -- ($(6,1)!0.4!(5,0)$);
+ \node at (8,1) {\Huge $\leftrightsquigarrow$};
+\draw[thick] (10,0) arc[start angle=-90, end angle=90, radius=1cm];
+\node[port] (base1) at (11,1) {};
+\node[port] (base2) at (12,1) {};
+\draw[edge] (base1) -- node[midway, above] {\large $e$} (base2);
+\node[label, left]  at (base1) {\Large $-g$};
+\node[label, right]  at (base2) {\Large $g$};
+\draw[thick] (13,2) arc[start angle=90, end angle=270, radius=1cm];
+\draw[->] (11,0) node[below] {$\;\;w_2$} -- ($(10,1)!0.4!(11,0)$);
+\draw[->] (12,0) node[below] {$w_1$} -- ($(13,1)!0.4!(12,0)$);
+\end{tikzpicture}
+}
+        \caption{2-clique sum of two forests/splitting a forest into two.}
+        \label{fig:2_clique_sum}
+    \end{figure}
+    
+    We now know that ${T}$ is a tract with fusion. We must show that
+    $S \subseteq \mathcal{N}_{{T}}$. Let $A = a_1 + \dots + a_n$ be a posinomial in $S$. We draw the fusion forest $F$ whose underlying graph is the star graph with $n$ leaves and central vertex $v$, where the leaf incidences are labeled $a_1, \dots, a_n$ as in \Cref{fig:star}. The value of $F$ is $a_1 + \dots + a_n = A$. The unique residue of $F$ is $R(v) = -a_1 - a_2 - \dots - a_n = -A$, which is in $G \cdot S$.
+    \begin{figure}[ht]
+        \centering
+        \scalebox{0.8}{%
+\begin{tikzpicture}[
+    vertex/.style={
+        draw,
+        circle,
+        minimum size=2.5cm,
+        thick
+    },
+    port/.style={
+        circle,
+        fill=black,
+        inner sep=1.5pt,
+        minimum size=0.05pt,
+    },
+    edge/.style={thick},
+    label/.style={font=\small},
+]
+    \node[vertex] (a) at (0,0) {};
+    \pgfmathsetmacro{\angle}{0};
+    \node[port] (a-0) at ($(a.\angle)$) {};
+    \node[port] (a-out-0) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-0) -- (a-0);
+    \node[label, right] at (a-out-0) {\large $a_1$};
+    \node[label, left] at (a-0) {\large $-a_1$};
+    \pgfmathsetmacro{\angle}{90};
+    \node[port] (a-1) at ($(a.\angle)$) {};
+    \node[port] (a-out-1) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-1) -- (a-1);
+    \node[label, above] at (a-out-1) {\large $a_2$};
+    \node[label, below] at (a-1) {\large $-a_2$};
+    \pgfmathsetmacro{\angle}{180};
+    \node[port] (a-2) at ($(a.\angle)$) {};
+    \node[port] (a-out-2) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-2) -- (a-2);
+    \node[label, left] at (a-out-2) {\large $a_3$};
+    \node[label, right] at (a-2) {\large $-a_3$};
+    \pgfmathsetmacro{\angle}{247.5};
+    \node[port] (a-3) at ($(a.\angle)$) {};
+    \node[port] (a-out-3) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-3) -- (a-3);
+    \node[label, below] at (a-out-3) {\large $a_4$};
+    \node[label, above] at (a-3) {\large $-a_4$};
+    \pgfmathsetmacro{\angle}{337.5};
+    \node[port] (a-n) at ($(a.\angle)$) {};
+    \node[port] (a-out-n) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-n) -- (a-n);
+    \node[label, below] at (a-out-n) {\large $a_n$};
+    \node[label, left] at (a-n) {\large $-a_n$};
+    \foreach \angle in {270,290,310} {
+        \fill (\angle:1.5cm) circle (1pt);
+    }
+\end{tikzpicture}
+        }
+        \caption{A fusion star.}
+        \label{fig:star}
+    \end{figure}    
+
+    Lastly, suppose $T' = (G, \Nc_{T'}, 1, -1)$ is a tract with fusion satisfying $S \subseteq \Nc_{T'}$. We  show that the value of each fusion forest $F$ adapted to $S$ lies in $\mathcal{N}_{T'}$. 
+    We argue by induction on the size (e.g.\ the number of edges) of $F$. 
+    We may assume $F$ is connected.
+    This is because the value of a fusion forest is the sum of the values of its components; if $\mathcal{N}_{T'}$ contains the value of each component of $F$ then it contains their sum by \Cref{rmk:sums}.
+    If $F$ has no non-leaf edges, it is either a single edge or a star graph as in \Cref{fig:star}.
+    Thus its value is either $x-x$ for some $x \in G$ or a posinomial in $G \cdot S$; in either case, the value of $F$ is in $\mathcal{N}_{T'}$.
+    
+    Suppose $F$ has a non-leaf edge $e$ with vertices $w_1$ and $w_2$.
+    The argument now proceeds like the earlier argument for ${T}$ having fusion, only \emph{in reverse}.
+    The deletion of $e$ from $F$ results in two connected components $F_1$ and $F_2$.
+    Let $F_1'$ and $F_2'$ be obtained by gluing back a copy of the edge $e$ to each of $F_1$ and $F_2$. More precisely, we attach a new edge $e_2$ to the vertex $w_1$ in the tree $F_1$ and call $v_2$ the other endpoint of $e_2$; if $(w_1, e)$ has the label $g$ in $F$, we assign the labels 
+    $g$ to $(w_1, e_2)$ and 
+    $-g$ to $(v_2, e_2)$ in $F_1$. We proceed similarly in $F_2$.
+    The notation is chosen to agree with \Cref{fig:2_clique_sum} \emph{read backwards}.
+    Each of $F_1'$ and $F_2'$ is again a fusion tree. 
+    As before, the value of $F$ is obtained via fusion from the values of $F_1'$ and $F_2'$.
+    Each of $F_1'$ and $F_2'$ is smaller than $F$.
+    Applying the induction hypothesis, we conclude that the values of $F_1'$ and $F_2'$ lie in $\mathcal{N}_{T'}$. The value of $F$ does too, since $T'$ has fusion.
+    \end{proof}
+
+\begin{Prop}\label[Prop]{prop:fusion_counter}
+    There exists a tract $T$ \emph{with fusion} and elements 
+    $x,y,z \in T^{\times}$ such that $x+y+z \in \mathcal{N}_T$ but 
+    $x^3 + y^3 + z^3 - xyz - xyz - xyz \notin \mathcal{N}_T$.
+\end{Prop}
+    
+    \begin{proof}
+    Let $G$ be the free abelian group on generators $x,y,z$.
+    Let $T$ be the fusion tract generated by $S = \{x+y+z\}$ relative to the data $(G, 1, 1)$ (i.e.\ $(-1)_T = 1_T$).
+    We claim that $\mathcal{N}_T$ does \emph{not} contain the posinomial $A = x^3+y^3+z^3 - xyz-xyz-xyz$. 
+    We must show that a fusion forest $F$ adapted to $S$ cannot have the value $A$. 
+    
+    If $F$ has no non-leaf vertices, then it is a disjoint union of edges; its value is a sum of posinomials of the form $x-x$. It is clear that $A$ does not have this form.
+    So the induced subgraph on the non-leaf vertices in $F$ must be a non-empty forest. Hence there is a non-leaf vertex $v$ in $F$ at most one of whose neighbors is non-leaf. So we can find distinct leaf neighbors $u_1, u_2$ of $v$.
+    Since $S = \{x+y+z\}$, the labels at $v$ must be $gx, gy, gz$ for some $g \in G$.
+    Without loss of generality, the labels of $u_1$ and $u_2$ are $-gx$ and $-gy$, respectively. 
+    Observe that
+    $(-gx)^{-1}\cdot (-gy) = x^{-1}y$ but
+    $\mu^{-1} \nu \neq x^{-1} y$ for all monomials 
+    $\mu, \nu$ appearing in $A$. So the value of $F$ is not $A$.
+    \end{proof}
+
+\section{Fission closure}\label{sec:fission_closure}
+This section describes how to equip tracts with fission while preserving fusion.
+We first describe a single step of this process. We will understand it globally afterwards.
+
+We write $C_{\infty}$ for the infinite cyclic group (i.e.\ $\mathbb{Z}$ denoted multiplicatively).
+\begin{Df}\label[Df]{df:splitting}
+    Let $T = (G, \mathcal{N})$ be a tract with fusion. 
+    Let $A, B \in \mathbb{N}[G]$ be posinomials with 
+    $\abs{A}, \abs{B} \geq 2$ and $A - B \in \mathcal{N}_T$.
+    Let $G' = G \times C_{\infty}$. Write $t$ for the generator of the second factor and $-1$ for the element 
+    $(-1, 1) \in G \times C_{\infty}$.
+    Let $S = \mathcal{N}_T^{\geq 3} \cup \{t - A, t - B\} \subseteq \mathbb{N}[G']$.
+    We define the \emph{splitting} of $T$ at $A,B$ to be the fusion tract generated by $S$, denoted $\Sigma(T, A, B)$. %(relative to the data $(G', 1_T, -1_T$).
+\end{Df}
+Note that in defining $S$ we have implicitly identified $\mathbb{N}[G]$ with a sub-semiring of $\mathbb{N}[G']$ via the inclusion $G \hookrightarrow G'$ given on elements 
+by $g \mapsto (g, 1)$. Under this identification, we have $\Nc_T \subseteq \Nc_{\Sigma(T, A, B)}$.
+\begin{Prop}\label[Prop]{prop:preservation}
+    With the notation of \Cref{df:splitting}, the set $(\mathcal{N}_{\Sigma(T, A, B)} \cap \mathbb{N}[G]) \del \mathcal{N}_T$ contains no posinomials of length less than $8$.\footnote{One can show that changing $8$ to $9$ here leads to a false statement.}
+\end{Prop}
+We delay the proof of \Cref{prop:preservation} in order to discuss some preliminaries.
+\begin{Lm}\label{lm:multifusion}
+    Let $T$ be a tract with fusion. Suppose $x, y, z \in T^{\times}$ and 
+    $A, B \in T$ are such that both $x + y + z$ and $A-B$ lie in $\Nc_T$. Then $xA + yB + zB \in \Nc_T$.
+\end{Lm}
+\begin{proof}
+We proceed by induction on $\abs{B}$. The case $\abs{B} = 0$ reads: if $A \in \Nc_T$ then $xA \in \Nc_T$; this holds in any tract. Assume $\abs{B} \geq 1$.
+Write $B = b + B'$ for some  $b \in T^{\times}$ and $B'\in T$.
+Let $A' = A - b$. Since $A' - B' = A - B \in \Nc_T$, the induction hypothesis tells us that $\Nc_T$ contains $xA' + yB' + zB' = xA + yB' + zB' - xb$. We also have $xb +yb + zb \in \Nc_T$. Applying the fusion rule gives
+\[
+\Nc_T \ni xA + yB' + zB' + yb + zb = xA + yB + zB. \qedhere
+\]
+\end{proof}
+\begin{Lm}\label[Lm]{lm:leaf_count}
+    Let $F$ be a forest without isolated vertices. Then the number of leaves of $F$ is at least $2+\sum_{v} (\deg v-2)$, where the sum is over non-leaf vertices $v$ in $F$.
+    \begin{proof}
+        Suppose $F$ has $V$ many vertices, $E$ many edges, and $L$ many leaves. Then
+        \[
+            L + \hspace{-3mm}\sum_{\text{$v$ non-leaf}}\hspace{-3mm}1 
+            = V\ge E+1 = 1+\frac12 \sum_v\deg v 
+            = 1+\frac L2 + \frac12{\sum_{\text{$v$ non-leaf}}\hspace{-3mm}\deg v}.
+        \]
+        Rearranging gives the desired inequality.
+    \end{proof}
+\end{Lm}
+\begin{Lm}\label{lm:A-A}
+    For any tract $T$ and any posinomial $A \in T$, we have $A - A \in \Nc_T$.
+\end{Lm}
+\begin{proof}
+    Write $A = a_1 + \dots + a_n$ and apply \Cref{rmk:sums} to $A - A = \sum_i a_i\cdot (1 - 1)$.
+\end{proof}
+\begin{proof}[Proof of \Cref{prop:preservation}]
+        Let $F$ be a fusion forest over $(G', 1, -1)$ adapted to $S$ whose value $P$ lies in $T = \mathbb{N}[G]$.
+        We must show that this value either lies in $\Nc_T$ or else has length at least 8. Suppose neither is true.
+        We may assume that $F$ is \emph{minimal} (say, in number of vertices) among such fusion forests with value $P$.
+
+        By assumption, for each vertex $v$ in $F$ of degree $\geq 3$ the residue $R(v)$ lies either in $G' \cdot \Nc_T$ or in $G' \cdot \{t - A, t - B\}$. In the first case, $R(v) = t^k C$ for some $C \in \Nc_T$ and some integer $k$; we then say that $v$ is type~I. In the second case, we say that $v$ is type~II. The remaining vertices of $F$ are its leaf vertices; they are type~III. 
+
+        \begin{Claim}\label{claim:nadjacent}
+        No two type~I vertices in $F$ are adjacent. 
+        \end{Claim}
+        \begin{proof}[Proof of claim]
+        Suppose an edge $e$ in $F$ joins type~I vertices $v_1$ and $v_2$.
+        Let $F'$ be the forest obtained by contracting the edge $e$ in $F$, thereby fusing $v_1$ and $v_2$ into a single vertex $v$,
+        while preserving the labels of all remaining incidences; see \Cref{fig:combine}. Then $F'$ is again a fusion forest adapted to $S$, its value is $P$, and it is smaller than $F$---contradicting the minimality of $F$. 
+        The implicit claim here requiring justification is
+        that $R(v) \in G' \cdot S$.
+        Let $g = F(v_1, e)$. Then 
+        $F(v_2, e) = -g$. 
+         Write
+        $g = t^k h$ for $k \in \mathbb{Z}$ and 
+        $h \in T^{\times}$.
+        Since $v_1, v_2$ are type~I, we have 
+        $R(v_1) = t^k C_1$, 
+        $R(v_2) = t^k C_2$ for some 
+        $C_1, C_2 \in \Nc_T$.
+        Writing $C_1 = C_1' + h$, 
+        $C_2 = -h + C_2'$, we have 
+        $R(v) = t^{k}(C_1' + C_2')$. Since $T$ has fusion, we have $C_1' + C_2' \in \Nc_T$. 
+        So $R(v) \in G' \cdot S \subseteq G' \cdot \Nc_T$.
+        \end{proof}
+\begin{figure}[ht]
+    \centering
+    \resizebox{0.95\linewidth}{!}{
+    \begin{tikzpicture}[
+    vertex/.style={
+        draw,
+        circle,
+        minimum size=2.5cm,
+        thick
+    },
+    port/.style={
+        circle,
+        fill=black,
+        inner sep=1.5pt,
+        minimum size=0.05pt,
+    },
+    edge/.style={thick},
+    label/.style={font=\small},
+]
+    \node[vertex] (a) at (0,0) {};
+    \pgfmathsetmacro{\angle}{0};
+    \node[port] (a-0) at ($(a.\angle)$) {};
+    \node[port] (a-out-0) at ($(a.center)!2!(a.\angle)$) {};
+    \draw[edge] (a-out-0) -- (a-0);
+    \node[label, right] at (a-out-0) {\large $-g$};
+    \node[label, left] at (a-0) {\large $g$};
+    \pgfmathsetmacro{\angle}{110};
+    \node[port] (a-1) at ($(a.\angle)$) {};
+    \node (a-out-1) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-1) -- (a-1);
+    \node[label] at ($(a-1)+(-70:0.35)$) {\large $a_1$};
+    \pgfmathsetmacro{\angle}{145};
+    \node[port] (a-2) at ($(a.\angle)$) {};
+    \node (a-out-2) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-2) -- (a-2);
+    \node[label, below right] at ($(a-2)+(-45:0)$) {\large $a_2$};
+    \foreach \angle in {165,180,195} {
+        \fill (\angle:1.5cm) circle (1pt);
+    }
+    \pgfmathsetmacro{\angle}{215};
+    \node[port] (a-3) at ($(a.\angle)$) {};
+    \node (a-out-3) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-3) -- (a-3);
+    \node[label] at ($(a-3)+(30:0.5)$) {\large $a_{n-1}$};
+    \pgfmathsetmacro{\angle}{250};
+    \node[port] (a-n) at ($(a.\angle)$) {};
+    \node (a-out-n) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-n) -- (a-n);
+    \node[label, above] at (a-n) {\large $a_n$};
+    \node[vertex] (a) at (3.8,0) {};
+    \pgfmathsetmacro{\angle}{70};
+    \node[port] (a-1) at ($(a.\angle)$) {};
+    \node (a-out-1) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-1) -- (a-1);
+    \node[label, below] at (a-1) {\large $b_1$};
+    \pgfmathsetmacro{\angle}{35};
+    \node[port] (a-2) at ($(a.\angle)$) {};
+    \node (a-out-2) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-2) -- (a-2);
+    \node[label] at ($(a-2)+(225:0.3)$) {\large $b_2$};
+    \foreach \angle in {0,15,-15} {
+        \fill ($(3.8,0)+(\angle:1.5cm)$) circle (1pt);
+    }
+    \pgfmathsetmacro{\angle}{-35};
+    \node[port] (a-3) at ($(a.\angle)$) {};
+    \node (a-out-3) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-3) -- (a-3);
+    \node[label] at ($(a-3)+(130:0.45)$) {\large $b_{m-1}$};
+    \pgfmathsetmacro{\angle}{290};
+    \node[port] (a-n) at ($(a.\angle)$) {};
+    \node (a-out-n) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-n) -- (a-n);
+    \node[label, above] at (a-n) {\large $b_m$};
+    \node at (7.5,0) {\Huge $\rightsquigarrow$};
+    \node[vertex] (a) at (11,0) {};
+    \pgfmathsetmacro{\angle}{70};
+    \node[port] (a-1) at ($(a.\angle)$) {};
+    \node (a-out-1) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-1) -- (a-1);
+    \node[label, below] at (a-1) {\large $b_1$};
+    \pgfmathsetmacro{\angle}{35};
+    \node[port] (a-2) at ($(a.\angle)$) {};
+    \node (a-out-2) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-2) -- (a-2);
+    \node[label] at ($(a-2)+(225:0.3)$) {\large $b_2$};
+    \foreach \angle in {0,15,-15, 180, 195, 165} {
+        \fill ($(11,0)+(\angle:1.5cm)$) circle (1pt);
+    }
+    \pgfmathsetmacro{\angle}{-35};
+    \node[port] (a-3) at ($(a.\angle)$) {};
+    \node (a-out-3) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-3) -- (a-3);
+    \node[label] at ($(a-3)+(130:0.45)$) {\large $b_{m-1}$};
+    \pgfmathsetmacro{\angle}{290};
+    \node[port] (a-n) at ($(a.\angle)$) {};
+    \node (a-out-n) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-n) -- (a-n);
+    \node[label, above] at (a-n) {\large $b_m$};
+    \pgfmathsetmacro{\angle}{110};
+    \node[port] (a-1) at ($(a.\angle)$) {};
+    \node (a-out-1) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-1) -- (a-1);
+    \node[label] at ($(a-1)+(-70:0.35)$) {\large $a_1$};
+    \pgfmathsetmacro{\angle}{145};
+    \node[port] (a-2) at ($(a.\angle)$) {};
+    \node (a-out-2) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-2) -- (a-2);
+    \node[label] at ($(a-2)+(-30:0.35)$) {\large $a_2$};
+    \pgfmathsetmacro{\angle}{215};
+    \node[port] (a-3) at ($(a.\angle)$) {};
+    \node (a-out-3) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-3) -- (a-3);
+    \node[label] at ($(a-3)+(30:0.5)$) {\large $a_{n-1}$};
+    \pgfmathsetmacro{\angle}{250};
+    \node[port] (a-n) at ($(a.\angle)$) {};
+    \node (a-out-n) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-n) -- (a-n);
+    \node[label, above] at (a-n) {\large $a_n$};
+\end{tikzpicture}
+    }
+    
+    \caption{Contracting an edge in a fusion forest.}
+    \label{fig:combine}
+\end{figure}
+Every monomial $g \in G'$ has the form $t^k h$ for unique $h \in G$ and $k \in \mathbb{Z}$; we write $\deg_t g = k$ and call it the $t$-\emph{degree} of $g$.
+Around a type~I vertex, all labels  have the same $t$-degree; around a type~II vertex, one incidence has a label of $t$-degree 1 greater than all the others.
+The $t$-degree of an \emph{edge} in $F$ is defined to be the common $t$-degree of the labels of the two incidences in which it lies.
+\begin{Claim}\label{claim:nonnegative}
+    The $t$-degree of every label in $F$ is nonnegative. 
+\end{Claim}
+\begin{proof}
+    Let $F_{-}$ be the subgraph of $F$ induced by the edges of negative $t$-degree. Assume $F_-$ is nonempty. Being a subgraph of a forest, $F_-$ must have a leaf $(v, e)$. If $v$ were type~I or II, then the minimum $t$-degree of a label at $v$ would be achieved at least twice, so $(v, e)$ could not be a leaf of $F_-$. If $v$ were type~III,
+    then $F(v,e)$ would show up in $P$; a contradiction, since $\deg_t F(v, e) < 0$.
+    So $F_{-}$ is empty.
+\end{proof}
+
+We now return to proving \Cref{prop:preservation}.
+
+Let $M$ be the maximum $t$-degree of any label in $F$. Then $M \geq 0$ by \Cref{claim:nonnegative}. If $M = 0$, then every label of $F$ lies in $T^{\times}$. From this one deduces $R(v) \in \Nc_T$ for all vertices $v$ of $F$; that is, $F$ is adapted to $T$.
+Since $T$ has fusion, this implies that the value of $F$---namely $P$---lies in $\Nc_T$. 
+We may therefore assume $M > 0$. 
+
+Let $F_{\max}$ be subgraph of $F$ induced by the edges of $t$-degree $M$. 
+No type~III vertex can lie in $F_{\max}$, since its label has $t$-degree 0 by assumption. If $v$ is a type~II vertex in $F_{\max}$, then it must be a leaf-vertex of $F_{\max}$ since its maximum label occurs once. 
+If $v$ is a type~I vertex in $F_{\max}$, all its edges in $F$ have $t$-degree $M$; so all neighbors of $v$ in $F$ lie in $F_{\max}$. These neighbors must be type~II by \Cref{claim:nadjacent}.
+From this analysis we deduce that $F_{\max}$ is a disjoint union of components, each of which is either an edge between two type~II vertices or a star consisting of a type~I vertex surrounded by all its $F$-neighbors, all of which are type~II. We deal with each of these in turn.
+
+Suppose $e$ is an edge in $F_{\max}$, bounded by vertices $v_1, v_2$ of type II. For $i = 1,2$, since the unique label at $v_i$ of maximum $t$-degree is $(v_i, e)$, we can find $g_i \in T^{\times}$ and $X_i \in \{A, B\}$ such that $F(v_i, e) = g_i t^M$ and
+$R(v_i) = g_i t^{M-1}(t - X_i)$.
+Since
+$F(v_1, e) = - F(v_2, e)$, we must have $g_1 = - g_2$.
+Now consider the graph $F'$ obtained by contracting the edge $e$ in $F$, fusing $v_1$ and $v_2$ into a single vertex $v$ (see again \Cref{fig:combine}).
+As in the proof of \Cref{claim:nadjacent}, to contradict the minimality of $F$, it suffices to show that $R(v) \in G' \cdot S$.
+We have $R(v) = -g_1 t^{M-1}(X_1 - X_2)$,
+so it will suffice to prove $X_1 - X_2 \in \Nc_T$.
+The possibilities are $X_1 - X_2 \in \{A - A, B - B, A - B, B - A\}$. The last two are in $\Nc_T$ by hypothesis; so are $A-A$ and $B-B$ by \Cref{lm:A-A}.
+
+Suppose $v$ is a type I vertex in $F_{\max}$, with all of its neighbors in $F$ lying in $F_{\max}$, as well as all the intervening edges, and these neighbors being type II.
+Let these type II neighbors be $w_1, \dots, w_n$.
+Then $v$ has degree $n$ and each $w_i$ has degree $\geq 3$ in $F$. By \Cref{lm:leaf_count}, $F$ has at least $2 + (n - 2) + n \cdot (3 - 2) = 2n$ leaves.
+If $n \geq 4$, then $\abs{P} \geq 8$ and we are done.
+Since $\deg v \geq 3$, this leaves only the case $n = 3$. Let $e_1, e_2, e_3$ be the edges joining $v$ to $w_1, w_2, w_3$, respectively. With reasoning similar to the previous case, we conclude that there exist $g_1, g_2, g_3 \in T^{\times}$ and
+$X_1, X_2, X_3 \in \{A, B\}$ such that 
+$F(v, e_i) = t^{M} g_i = - F(w_i, e_i)$ and 
+$R(w_i) = -g_i t^{M-1}(t - X_i)$ for $i = 1,2,3$.
+In particular, $R(v) = t^M(g_1 + g_2 + g_3) \in G' \cdot S$ shows that $g_1 + g_2 + g_3 \in \Nc_T$.
+Let $F'$ be the forest obtained by contracting each of the edges $e_1, e_2, e_3$ in $F$, thereby fusing $w_1, w_2, w_3, v$ into a single vertex $w$, while preserving the labels of all remaining incidences; see \Cref{fig:tramalgamation}. As before, to contradict the minimality of $F$, it suffices to show that $R(w) \in G' \cdot S$. We have $R(w) = t^{M-1}(g_1 X_1 + g_2 X_2 + g_3 X_3)$. Since $X_1, X_2, X_3$ are chosen from a two-element set, we have $X_2 = X_3$ without loss of generality.
+Since $T$ has fusion, we get
+$g_1 X_1 + g_2 X_2 + g_3 X_2 \in \Nc_T$ by applying \Cref{lm:multifusion} with $A = X_1$, $B = X_2$, $x = g_1$, $y = g_2$, $z = g_3$; here, we use either the hypothesis or \Cref{lm:A-A} to ensure $X_1 - X_2 \in \Nc_T$. We conclude that
+$R(w) \in G' \cdot S$.
+This gives the desired contradiction.
+\end{proof}
+
+\begin{figure}
+    \centering
+\resizebox{0.97\textwidth}{!}{
+    \begin{tikzpicture}[
+    vertex/.style={
+        draw,
+        circle,
+        minimum size=2.5cm,
+        thick
+    },
+    port/.style={
+        circle,
+        fill=black,
+        inner sep=1.5pt,
+        minimum size=0.05pt,
+    },
+    edge/.style={thick},
+    label/.style={font=\small},
+]
+    \node[vertex] (a) at (0,0) {};
+    \pgfmathsetmacro{\angle}{30};
+    \node[port] (a-0) at ($(a.\angle)$) {};
+    \node[port] (a-out-0) at ($(a.center)!2!(a.\angle)$) {};
+    \draw[edge] (a-out-0) -- (a-0);
+    \node[label] at ($(a-out-0)+(50:0.5)$) {\LARGE $t^m g_2$};
+    \node[label, below left] at ($(a-0)+(30:0.2)$) {\LARGE $-t^m g_2$};
+    \pgfmathsetmacro{\angle}{140};
+    \node[port] (a-1) at ($(a.\angle)$) {};
+    \node (a-out-1) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-1) -- (a-1);
+    \node[label] at ($(a-1)+(-30:0.35)$) {\LARGE $a_1$};
+    \pgfmathsetmacro{\angle}{175};
+    \node[port] (a-2) at ($(a.\angle)$) {};
+    \node (a-out-2) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-2) -- (a-2);
+    \node[label, right] at (a-2) {\LARGE $a_2$};
+    \foreach \angle in {195,210,225} {
+        \fill (\angle:1.5cm) circle (1pt);
+    }
+    \pgfmathsetmacro{\angle}{245};
+    \node[port] (a-3) at ($(a.\angle)$) {};
+    \node (a-out-3) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-3) -- (a-3);
+    \node[label] at ($(a-3)+(90:0.4)$) {\LARGE $a_{n}$};
+    \node[vertex] (m) at (3.23, 2) {};
+    \node[vertex] (a) at (6.44,0) {};
+    \pgfmathsetmacro{\angle}{150};
+    \node[port] (a-0) at ($(a.\angle)$) {};
+    \node[port] (a-out-0) at ($(a.center)!2!(a.\angle)$) {};
+    \draw[edge] (a-out-0) -- (a-0);
+    \node[label] at ($(a-out-0)+(130:0.5)$) {\LARGE $t^m g_3$};
+    \node[label, below right] at ($(a-0)+(150:0.2)$) {\LARGE $-t^m g_3$};
+    \pgfmathsetmacro{\angle}{40};
+    \node[port] (a-1) at ($(a.\angle)$) {};
+    \node (a-out-1) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-1) -- (a-1);
+    \node[label] at ($(a-1)+(210:0.3)$) {\LARGE $c_1$};
+    \pgfmathsetmacro{\angle}{5};
+    \node[port] (a-2) at ($(a.\angle)$) {};
+    \node (a-out-2) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-2) -- (a-2);
+    \node[label, left] at (a-2) {\LARGE $c_2$};
+    
+    \foreach \angle in {-30,-15,-45} {
+        \fill ($(6.44,0)+(\angle:1.5cm)$) circle (1pt);
+    }
+    \pgfmathsetmacro{\angle}{-65};
+    \node[port] (a-3) at ($(a.\angle)$) {};
+    \node (a-out-3) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-3) -- (a-3);
+    \node[label] at ($(a-3)+(100:0.4)$) {\LARGE $c_{n''}$};
+    \node[vertex] (a) at (3.23,-1.8) {};
+    \pgfmathsetmacro{\angle}{90};
+    \node[port] (a-0) at ($(a.\angle)$) {};
+    \node[port] (a-out-0) at ($(a.center)!2!(a.\angle)$) {};
+    \draw[edge] (a-out-0) -- (a-0);
+    \node[label, above] at (a-out-0) {\LARGE $t^m g_1$};
+    \node[label, below] at (a-0) {\LARGE $-t^m g_1$};
+    \pgfmathsetmacro{\angle}{217.5};
+    \node[port] (a-1) at ($(a.\angle)$) {};
+    \node (a-out-1) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-1) -- (a-1);
+    \node[label, right] at (a-1) {\LARGE $b_1$};
+    \pgfmathsetmacro{\angle}{252.5};
+    \node[port] (a-2) at ($(a.\angle)$) {};
+    \node (a-out-2) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-2) -- (a-2);
+    \node[label] at ($(a-2)+(45:0.35)$) {\LARGE $b_2$};
+    \foreach \angle in {287.5,302.5,272.5} {
+        \fill ($(3.23,-1.8)+(\angle:1.5cm)$) circle (1pt);
+    }
+    \pgfmathsetmacro{\angle}{322.5};
+    \node[port] (a-3) at ($(a.\angle)$) {};
+    \node (a-out-3) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-3) -- (a-3);
+    \node[label] at ($(a-3)+(-210:0.4)$) {\LARGE $b_{n'}$};
+\node at (10.23, 0) {\scalebox{4}{$\rightsquigarrow$}};
+\tikzset{
+  bigvertex/.style={
+    vertex,
+    minimum size=4cm
+  }
+}
+    \node[bigvertex] (a) at (15,0) {};
+    \pgfmathsetmacro{\angle}{20};
+    \node[port] (a-1) at ($(a.\angle)$) {};
+    \node (a-out-1) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-1) -- (a-1);
+    \node[label, left] at (a-1) {\LARGE $c_1$};
+    \pgfmathsetmacro{\angle}{-20};
+    \node[port] (a-2) at ($(a.\angle)$) {};
+    \node (a-out-2) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-2) -- (a-2);
+    \node[label, left] at (a-2) {\LARGE $c_{n''}$};
+    \pgfmathsetmacro{\angle}{290};
+    \node[port] (a-3) at ($(a.\angle)$) {};
+    \node (a-out-3) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-3) -- (a-3);
+    \node[label, above] at (a-3) {\LARGE $b_{n'}$};
+    \pgfmathsetmacro{\angle}{250};
+    \node[port] (a-n) at ($(a.\angle)$) {};
+    \node (a-out-n) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-n) -- (a-n);
+    \node[label, above] at (a-n) {\LARGE $b_1$};
+    \pgfmathsetmacro{\angle}{200};
+    \node[port] (a-1) at ($(a.\angle)$) {};
+    \node (a-out-1) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-1) -- (a-1);
+    \node[label, right] at (a-1) {\LARGE $a_{n}$};
+    \pgfmathsetmacro{\angle}{160};
+    \node[port] (a-2) at ($(a.\angle)$) {};
+    \node (a-out-2) at ($(a.center)!1.5!(a.\angle)$) {};
+    \draw[edge] (a-out-2) -- (a-2);
+    \node[label, right] at (a-2) {\LARGE $a_1$};
+    \foreach \angle in {10,0,-10, 270, 260, 280, 180, 190, 170} {
+        \fill ($(15,0)+(\angle:2.5cm)$) circle (1pt);
+    }
+\end{tikzpicture}
+}
+    \caption{Contracting the neighborhood of a vertex in a fusion forest.}
+    \label{fig:tramalgamation}
+\end{figure}
+For a tract $T$, we will write $\Nc_T^{\leq7}$ for 
+$\{A \in \Nc_T \mid \abs{A} \leq 7\}$.
+We say $T$ is \emph{countable} if $T^{\times}$ is a countable set. This implies that 
+$\mathbb{N}[T^{\times}]$ and 
+$\Nc_T$ are countable too.
+\begin{Thm}\label[Thm]{thm:7_embedding}
+    Let $T$ be a countable\footnote{This is a simplifying assumption. The same proof goes through in general, except that one must use transfinite induction or something similar in the case of uncountable tracts.} tract with fusion. There exists a countable tract $\widehat{T}$ with fission and fusion and an embedding $T^{\times} \hookrightarrow \widehat{T}^{\times}$ under which $\Nc_T \subseteq \Nc_{\widehat{T}}$ and $\Nc_{\widehat{T}}^{\leq 7} \cap T = \Nc_T^{\leq 7}$ (having identified $T^{\times}$ and 
+    $\mathbb{N}[{T}^{\times}]$ with their images in $\mathbb{N}[\widehat{T}]$).
+\end{Thm}
+We prove \Cref{thm:7_embedding} in two steps.
+\begin{Lm}\label[Lm]{lm:part_one}
+    Let $T$ be a countable tract with fusion. Then there exists a countable tract with fusion $\widetilde T$ and an embedding $T^{\times} \hookrightarrow {\widetilde T}^{\times}$ under which
+    $\Nc_T \subseteq \Nc_{\widetilde{T}}$ and
+    $\Nc_T^{\leq 7} = \Nc_{\widetilde{T}}^{\leq 7} \cap T$, and whenever $A + B \in \mathcal{N}_T$ for some $A, B \in T$,
+    there exists $g \in {\widetilde T}^{\times}\sqcup \{0\}$ such that both $A + g$ and $-g + B$ lie in $\mathcal{N}_{\widetilde T}$.
+\end{Lm}
+\begin{proof}
+    Let $(A_1, B_1), (A_2, B_2), \dots$ be an enumeration of all pairs $(A_i, B_i) \in T^2$ such that $A_i - B_i \in \Nc_T$ and $\abs{A_i}, \abs{B_i} \geq 2$. We define a sequence of tracts $T = T_0, T_1, T_2, \dots$ inductively by setting $T_{i+1} \deq \Sigma(T_i, A_i, B_i)$. Implicit here is the identification of $T^{\times}$ with a subset of $T_i^{\times}$ along the natural composition of embeddings 
+    $T^{\times} \hookrightarrow T_1^{\times} \hookrightarrow \dots \hookrightarrow T_i^{\times}$. Under this identification,
+    $T \subseteq T_i$ and
+    $\Nc_T \subseteq \Nc_{T_i}$. In particular $A_i - B_i \in \Nc_{T_i}$; so $\Sigma(T_i, A_i, B_i)$ is well-defined. We define $\widetilde{T}^{\times}$ to be the direct limit of abelian groups $\varinjlim T_j^{\times}$ and identify each group $T_i^{\times}$ with its image in $\widetilde{T}^{\times}$. We then have 
+    $\mathbb{N}[\widetilde{T}^{\times}] = \bigcup_{j} \mathbb{N}[T_j^{\times}]$. We define 
+    $\Nc_{\infty} \deq \bigcup_{j} \Nc_{T_j}$.
+    Then $\widetilde{T}\deq (\widetilde{T}^{\times}, \Nc_{\infty}, 1_T, (-1)_T)$ is a tract because each instance of a tract axiom for $\widetilde{T}$ can be verified at a finite stage, i.e.\ in some $T_j$.
+    It has fusion for the same reason. 
+
+    By \Cref{prop:preservation}, we have $\Nc_{T_{i+1}}^{\leq 7} \cap T_i = \Nc_{T_i}^{\leq 7}$. Hence $\Nc_{T_{i+1}}^{\leq 7} \cap T = \Nc_{T_i}^{\leq 7} \cap T$. This implies that
+    $\Nc_{T_i}^{\leq 7} \cap T = \Nc_{T}^{\leq 7}$ for all $i$. Thus $\Nc_{\widetilde{T}}^{\leq7} \cap T = \bigcup_{j} \Nc_{T_j}^{\leq 7} \cap T = \Nc_T^{\leq 7}$.
+
+    Finally, suppose  $A, B$ are as in the lemma statement. 
+    If $\abs{A} \leq 1$, we take $g = -A$.
+    Similarly if $\abs{B} \leq 1$. Otherwise, 
+    we can find an $i$ such that $(A, -B) = (A_i, B_i)$.
+    The splitting construction is such that, by design, we can find $t \in T_{i+1}^{\times}$ with both $A - t$ and $t + B$ in $\Nc_{T_{i+1}}$, hence in $\Nc_{\widetilde{T}}$. We can then take $g = -t$.
+\end{proof}
+
+\begin{proof}[Proof of \Cref{thm:7_embedding}]
+    We define a sequence of tracts $T = T_0, T_1, T_2, \dots$ by inductively setting $T_{i+1} = \widetilde{T_i}$ in the sense of \Cref{lm:part_one}. Just as in the proof of that lemma, the natural inclusions $T_i^{\times} \hookrightarrow T_{i+1}^{\times}$ allow us to take the direct limit of the $T_i^{\times}$s to get a group $\widehat{T}^{\times}$. As before, we construct a corresponding tract 
+    $\widehat{T}$ with fusion using 
+    $\Nc_{\widehat{T}} \deq \bigcup_j \Nc_{T_j}$. As before, we deduce that $\Nc_{\widehat{T}}^{\leq 7} \cap T = \Nc_{T}^{\leq 7}$.
+    We claim that $\widehat T$ has fission. To see this, choose $A, B\in \widehat{T}$ such that $A + B \in \Nc_{\widehat{T}}$. Then 
+    $A + B \in \Nc_{T_i}$ for some finite $i$. 
+    By \Cref{lm:part_one} we can find $g \in T_{i+1}^{\times} \cup \{0\}$ such that both $A + g$ and $-g + B$ lie in $\Nc_{T_{i+1}}$. So they lie also in $\Nc_{\widehat{T}}$.
+\end{proof}
+
+\section{A hyperfield counterexample}\label{sec:counterexample}
+The following proposition answers \Cref{ques:main} negatively.
+\begin{Prop}\label[Prop]{prop:hyperfield_counter}
+    There exists a hyperfield $\mathbb{H}$ 
+    containing elements $x, y, z \in \mathbb{H}^{\times}$ such that $x \boxplus y \boxplus z \ni 0$ but
+    $x^3 \boxplus y^3 \boxplus z^3 \boxplus -xyz \boxplus -xyz \boxplus -xyz \not\ni 0$.
+\end{Prop}
+\begin{proof}
+    By \Cref{thm:souza}, it suffices to find a \emph{tract} $T$ with fusion and fission along with elements
+    $x,y,z \in T^{\times}$ such that 
+    ${A \deq x^3 + y^3 + z^3 - xyz - xyz - xyz \notin \mathcal{N}_T}$ despite the fact that $x+y+z \in \mathcal{N}_T$. By \Cref{prop:fusion_counter}, we can find a tract $T_0$ with \emph{fusion} and elements $x, y, z \in T^{\times}_0$ that make this true. The construction of that example shows that it is countable. Set $T \deq \widehat{T_0}$ in the sense of \Cref{thm:7_embedding}.  Thinking of $T_0^{\times}$ as a subgroup of $T^{\times}$ we have $\Nc_{T_0} \subseteq \Nc_{T}$ and $\Nc_{T}^{\leq 7} \cap T_0 = \Nc_{T_0}^{\leq 7}$. 
+    The first part implies that $x+y+z \in \Nc_{T}$.
+    The second part implies that $A \notin \mathcal{N}_T$, since 
+    $A$ has length $6$ (which is $\leq 7$) and lies in $T_0$.
+\end{proof}
+
+\begin{bibdiv}
+\begin{biblist}
+\bib{Jin}{article}{
+    author = {Matthew Baker and Tong Jin},
+    journal = {Proceedings of the American Mathematical Society},
+    volume = {149},
+    number = {1},
+    pages = {63--70},
+    publisher = {American Mathematical Society},
+    title = {On the structure of hyperfields obtained as quotients of fields}, 
+    year = {2021},
+}
+
+\bib{bb19}{article}{
+title = {Matroids over partial hyperstructures},
+journal = {Advances in Mathematics},
+volume = {343},
+pages = {821--863},
+year = {2019},
+issn = {0001-8708},
+author = {Matthew Baker and Nathan Bowler},
+}
+
+\bib{baker17}{misc}{
+      title={Matroids over hyperfields}, 
+      author={Matthew Baker and Nathan Bowler},
+      year={2017},
+      eprint={arXiv:1601.01204},
+}
+
+\bib{bowler21}{article}{
+title = {Classification of doubly distributive skew hyperfields and stringent hypergroups},
+journal = {Journal of Algebra},
+volume = {574},
+pages = {669-698},
+year = {2021},
+issn = {0021-8693},
+author = {Nathan Bowler and Ting Su},
+}
+
+\bib{boyd04}{book}{
+    AUTHOR = {Boyd, Stephen and Vandenberghe, Lieven},
+     TITLE = {Convex optimization},
+ PUBLISHER = {Cambridge University Press, Cambridge},
+      YEAR = {2004},
+      ISBN = {0-521-83378-7},
+       DOI = {10.1017/CBO9780511804441},
+}
+
+\bib{hobby}{misc}{
+      title={Blocks in finite hyperfields}, 
+      author={Hobby, D.},
+      year={2025},
+      eprint={arXiv:2507.18908},
+}
+
+\bib{Krasner56}{inproceedings}{
+year = {1957},
+author = {Krasner, M.},
+address = {Louvain},
+organization = {Centre belge de recherches mathématiques},
+title = {Approximation des corps valu\'es complets de caract\'eristique {$p \neq 0$} par ceux de caract\'eristique 0},
+publisher = {Établissements Ceuterick},
+}
+
+\bib{Krasner83}{article}{
+author = {Krasner, M.},
+journal = {International Journal of Mathematics and Mathematical Sciences},
+pages = {307-311},
+publisher = {Hindawi Publishing Corporation, New York},
+title = {A class of hyperrings and hyperfields},
+volume = {6},
+year = {1983},
+}
+
+\bib{le26}{misc}{
+      title={On the asymptotic behavior of finite hyperfields}, 
+      author={Tuong Le and Chayim Lowen},
+      year={2026},
+      eprint={arXiv:2603.19205},
+}
+
+\bib{Massouros}{article}{
+author = {Massouros, Ch. G.},
+title = {Methods of constructing hyperfields},
+journal = {International Journal of Mathematics and Mathematical Sciences},
+volume = {8},
+number = {4},
+pages = {725-728},
+year = {1985}
+}
+
+\bib{massouros26}{misc}{
+      title={Reducing the axioms of hypergroups, hyperfields, hypermomules and related structures. A new axiomatic basis for hypercompositional structures}, 
+      author={Christos G. Massouros},
+      year={2026},
+      eprint={arXiv:2603.03286},
+}
+\end{biblist}
+\end{bibdiv}
+\newpage
+\appendix
+\section{Non-counterexamples}\label{sec:difficulty}
+
+Our negative answer to \Cref{ques:main} is highly non-explicit: it involves an infinite number of somewhat arbitrary choices. It is therefore natural to wonder whether there is not some simpler approach producing an explicit counterexample. In what follows we explain why such an approach does not  currently seem feasible.
+
+Perhaps the easiest way to construct hyperfields, going back to the original work of Krasner \cite{Krasner56}, \cite{Krasner83}, is the quotient construction.
+\begin{Df}\label[Df]{df:quotient}
+    Let $\mathbb{F}$ be a  field and let $\Gamma \subseteq \mathbb{F}^{\times}$ be a subgroup of its multiplicative group. The group
+    $\mathbb{F}^{\times}\!/\Gamma$ comes equipped with a canonical hyperfield structure \cite{Krasner83}. Namely, for 
+    $\overline{a}, \overline{b} \in \{0\} \cup \mathbb{F}^{\times}\!/\Gamma$, we set
+    \[
+        \bar a \boxplus \bar b = \left\{\overline{\alpha + \beta} \mid \alpha, \beta \in \mathbb{F}, \bar{\alpha} = \bar a, \bar{\beta} = \bar b\right\},
+    \]
+    where $\bar x$ denotes the coset 
+    $x \Gamma$ if $x \in \mathbb{F}^{\times}$ and $\bar 0 = 0$.
+    A  hyperfield is called \emph{quotient} if it is isomorphic to one of this form.
+\end{Df}
+Quotient hyperfields, however, \emph{cannot} give a negative answer to \Cref{ques:main}.
+\begin{fact}
+    Any quotient hyperfield $\mathbb{H}$ gives a \emph{positive answer} to \Cref{ques:main}.
+\end{fact}
+In the early days, it was not known if all hyperfields were quotient. Massouros \cite{Massouros} was first to give a method to construct hyperfields which are certifiably non-quotient. In \cite{Jin}, the two smallest (finite) non-quotient hyperfields are computed. In \cites{hobby, le26}, it is shown that (asymptotically) \emph{most} finite hyperfields are non-quotient. One might think that there is hope of producing a negative example to \Cref{ques:main} this way. Unfortunately, the same papers also show that the nullsets of the tracts of most finite hyperfields contain \emph{all posinomials} of length at least 4.\footnote{This property of a hyperfield is called 4-fullness in \cite{le26}.} Such hyperfields trivially satisfy the condition in \Cref{ques:main}.\footnote{This is clear when $x,y,z \neq 0$. The case $xyz = 0$ of \Cref{ques:main} holds trivially for all hyperfields.} A similar obstruction arises for the hyperfields constructed by Massouros.
+
+An important class of hyperfields arising in matroid theory is the class of \emph{perfect hyperfields}, which were first defined in \cite{baker17}. Perfect hyperfields need not be quotient, as highlighted by the fact that \emph{most} finite hyperfields are perfect {\cite{le26}*{Corollary 1.10}}. Nevertheless, one can show that all perfect hyperfields also give a positive answer to \Cref{ques:main}.\footnote{In \cite{bb19}, the authors define \emph{perfect tracts}. One can show that the tract analogue of \Cref{ques:main} has a positive answer for perfect tracts.}
+
+Finally, by a cleverly designed algorithm implemented in the C\texttt{++} programming language, the first author has verified that \Cref{ques:main} has a \emph{positive} answer for all hyperfields of size $\leq 13$. This is somewhat spectacular given that there are at least two hundred million hyperfields on the cyclic group $C_{12}$. The sheer numbers here suggest that an explicit finite counterexample is unlikely to materialize via search.
+\end{document}

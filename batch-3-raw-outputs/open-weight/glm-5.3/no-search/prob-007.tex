@@ -1,0 +1,1303 @@
+# Dehn Twists on the Deformation Space of a Quadratic Rational Map with a Critical Point of Period Four
+
+```latex
+\documentclass[11pt]{amsart}
+\usepackage{amssymb,amsthm,amsmath,amscd}
+\usepackage{hyperref}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\newcommand{\Sph}{\mathbb{S}^2}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\H}{\mathbb{H}}
+\newcommand{\Teich}{\mathrm{Teich}}
+\newcommand{\Mod}{\mathrm{Mod}}
+\newcommand{\Homeo}{\mathrm{Homeo}}
+\newcommand{\QC}{\mathrm{QC}}
+\newcommand{\PSL}{\mathrm{PSL}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\S}{\mathcal{S}}
+\newcommand{\P}{\mathcal{P}}
+\newcommand{\Crit}{\mathrm{Crit}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Spec}{\mathrm{Spec}}
+
+\begin{document}
+
+\title{Dehn twists and the deformation space of a quadratic rational map\\
+with a critical point of period four}
+
+\author{}
+\date{}
+
+\begin{abstract}
+Let $f$ be a quadratic rational map with a critical point $c_1$ of period
+$4$ whose cycle is $A=\{c_1,f(c_1),f^{\circ 2}(c_1),f^{\circ 3}(c_1)\}$, and
+whose second critical value $v=f(c_2)$ does not lie on the cycle.  For
+$B=A\cup\{v\}$ we consider Epstein's deformation space
+$\D_f=\{\tau\in\Teich(\Sph,B)\,:\, f^{*}\tau=i_{*}\tau\}$.  We prove that the
+Dehn twist $T_\gamma$ about a simple closed curve $\gamma\subset(\Sph,B)$
+separating $\{c_1,v\}$ from $\{f(c_1),f^{\circ 2}(c_1),f^{\circ 3}(c_1)\}$
+has the property that the square $T_\gamma^{\,2}$ preserves $\D_f$, and that
+the induced action of $T_\gamma^{\,2}$ on the set $\pi_0(\D_f)$ of connected
+components of $\D_f$ has infinite orbits.  In particular, $\D_f$ has
+infinitely many connected components.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction and statement of the main theorem}\label{s:intro}
+
+\subsection{Setup}
+
+Let $f:\Sph\to\Sph$ be a map of degree two, i.e.\ a quadratic rational map
+once a conformal identification $\Sph\cong\widehat\C$ has been chosen.  Let
+$c_1,c_2$ be its critical points, let $V(f)=\{f(c_1),f(c_2)\}$ be its set of
+critical values, and suppose:
+
+\begin{itemize}
+\item $c_1$ is periodic of \emph{exact} period $4$; write
+$$A=\{c_1,\ p_1,\ p_2,\ p_3\}=\{c_1,\ f(c_1),\ f^{\circ 2}(c_1),\
+f^{\circ 3}(c_1)\},$$
+so that $f(A)=A$ and $f|_A$ is the cyclic permutation
+$c_1\mapsto p_1\mapsto p_2\mapsto p_3\mapsto c_1$;
+\item the second critical value $v:=f(c_2)$ satisfies $v\notin A$.
+\end{itemize}
+Set $B:=A\cup\{v\}$.  Note that $f(A)\cup V(f)\cup A\subseteq B$: indeed
+$f(A)=A$ and $V(f)=\{p_1,v\}\subseteq B$.  Hence, in the notation of the
+statement of the problem, both the pullback map
+$f^{*}:\Teich(\Sph,B)\to\Teich(\Sph,A)$ and the forgetful map
+$i_{*}:\Teich(\Sph,B)\to\Teich(\Sph,A)$ are defined, and so is the
+\emph{deformation space}
+$$\D_f:=\{\tau\in\Teich(\Sph,B)\ :\ f^{*}\tau=i_{*}\tau\}.$$
+
+\subsection{Main theorem}
+
+For a finite set $X\subset\Sph$ with $|X|\ge 3$, a simple closed curve in
+$(\Sph,X)$ is a Jordan curve $\gamma\subset\Sph\setminus X$; it is
+\emph{essential} if the two components of $\Sph\setminus\gamma$ each contain
+at least two points of $X$.  Essential curves are classified, up to isotopy
+rel.\ $X$, by the partition of $X$ induced by the two sides.
+
+\begin{theorem}[Main Theorem]\label{thm:main}
+Let $f$ be a quadratic rational map with critical points $c_1,c_2$, where
+$c_1$ has exact period $4$ with cycle $A$, and $v=f(c_2)\notin A$; let
+$B=A\cup\{v\}$ and let $\D_f\subset\Teich(\Sph,B)$ be the associated
+deformation space.
+
+Let $\gamma\subset(\Sph,B)$ be any essential simple closed curve such that
+one of the two components of $\Sph\setminus\gamma$ is a disk $D$ with
+$D\cap B=\{c_1,v\}$ (i.e.\ $\gamma$ ``encloses exactly the critical point
+$c_1$ and the second critical value $v$'').  Then:
+\begin{enumerate}
+\item[(a)] the square of the Dehn twist $T_\gamma$ about $\gamma$ preserves
+$\D_f$; that is, $T_\gamma^{\,2}\cdot\D_f=\D_f$ inside $\Teich(\Sph,B)$;
+\item[(b)] the induced action of $T_\gamma^{\,2}$ on the set $\pi_0(\D_f)$
+of connected components of $\D_f$ has infinite orbits.  In particular
+$\D_f$ has infinitely many connected components.
+\end{enumerate}
+The same conclusions hold for the curves enclosing exactly $\{p_2,v\}$ or
+exactly $\{p_3,v\}$.
+\end{theorem}
+
+\begin{remark}
+(i) Part (a) is \emph{unconditional}: it is a purely topological
+combinatorial statement about the branched cover
+$f:(\Sph,f^{-1}B)\to(\Sph,B)$, proved in \S\ref{s:preserve} by an explicit
+computation of the full inverse image of $\gamma$.
+
+(ii) The reason a \emph{power} of the twist is needed is that
+$f^{-1}(\gamma)$ is a \emph{single} curve mapping onto $\gamma$ with degree
+$2$; a Dehn twist about $\gamma$ admits a lift through $f$ only after
+squaring.  This is proved in Lemma~\ref{lem:lift}.  The factor $2$ matches
+the fact, established in \S\ref{s:stratum}, that in the explicit
+one--parameter family of maps with a marked $4$--cycle, the second critical
+value is the \emph{square} of a rational function of the parameter, so that
+one turn of the parameter around the corresponding cusp produces two turns
+of $v$ around $c_1$.
+\end{remark}
+
+\subsection{Strategy and scheme of proof}
+
+The proof of Theorem~\ref{thm:main} proceeds through the following steps.
+
+\begin{enumerate}
+\item[\S\ref{s:prelim}] Foundations: Teichm\"uller spaces of marked spheres,
+mapping class groups, peripheral twists, the forgetful map and its
+equivariance, and the point--pushing subgroup (Birman exact sequence).
+\item[\S\ref{s:pullback}] The pullback map $f^{*}$ and the dynamical
+characterisation of $\D_f$: a point $\tau=[\phi]$ of $\Teich(\Sph,B)$ lies
+in $\D_f$ if and only if there exists a quasiconformal $u\sim_A\id$ such
+that $\phi\circ f\circ u\circ\phi^{-1}$ is rational
+(Proposition~\ref{prop:dynchar}).
+\item[\S\ref{s:twists}] Lifting twists through the double cover: the exact
+exponent formula $k/d_i$ for the lift of $T_\gamma^{k}$, the two
+intertwining identities (Lemmas \ref{lem:intertwine1}, \ref{lem:intertwine2}),
+and the \emph{Preservation Criterion} (Theorem~\ref{thm:crit}).
+\item[\S\ref{s:stratum}] The explicit algebraic model of the stratum of
+quadratic rational maps with a marked critical $4$--cycle: the family
+$f_t$, the formula $v(t)=\bigl(\tfrac{t^2-t-1}{t^2+t-1}\bigr)^{2}$, the set
+of cusps, and the braid monodromy table
+(Lemma~\ref{lem:monodromytable}).
+\item[\S\ref{s:preserve}] Proof of Theorem~\ref{thm:main}(a) by the
+criterion of \S\ref{s:twists}, with the complete case analysis.
+\item[\S\ref{s:components}] The component structure of $\D_f$: the
+identification of the fibre of $\D_f\to\S$ over the base point with a
+subgroup $Z\le\Mod(\Sph,B)$ (Proposition~\ref{prop:fibre}), the monodromy
+group $M\subseteq Z$, the coset description
+$\pi_0(\D_f)\cong Z/M$ (Proposition~\ref{prop:cosets}), the fact that
+$Z$ contains a nonabelian free group generated by the squares of the three
+pushes of $v$ (Proposition~\ref{prop:free}), and the deduction of
+Theorem~\ref{thm:main}(b) from the class--monodromy input at the cusps
+(Proposition~\ref{prop:input}), which we prove using the explicit model of
+\S\ref{s:stratum} together with the standard theory of invariant curves for
+critically preperiodic maps.
+\end{enumerate}
+
+Throughout, ``isotopy'' always means isotopy through orientation--preserving
+homeomorphisms fixing each point of the relevant marked set, and
+$\Homeo^+(\Sph,X)$ denotes the group of orientation--preserving
+homeomorphisms of $\Sph$ fixing $X$ pointwise.
+
+\section{Marked spheres, Teichm\"uller spaces, and mapping class groups}
+\label{s:prelim}
+
+\subsection{Teichm\"uller spaces}
+
+Let $X\subset\Sph$ be a finite set.
+
+\begin{definition}\label{def:teich}
+$\Teich(\Sph,X)$ is the set of equivalence classes of quasiconformal
+homeomorphisms $\phi:\Sph\to\widehat\C$, where
+$\phi\sim_X\phi'$ if and only if there exist a M\"obius transformation
+$M\in\PSL_2(\C)$ with $M(\phi(x))=\phi'(x)$ for all $x\in X$, and a
+quasiconformal homeomorphism $h:\Sph\to\Sph$ with $h|_X=\id|_X$ and
+$h$ isotopic to $\id$ rel.\ $X$, such that $\phi'=M\circ\phi\circ h$.
+We write $[\phi]_X$ for the class of $\phi$.
+\end{definition}
+
+If $|X|\le 3$ then $\Teich(\Sph,X)$ is a point; if $|X|=n\ge4$ then
+$\Teich(\Sph,X)$ is a complex manifold of dimension $n-3$, naturally
+identified with the Teichm\"uller space of the $n$--punctured sphere.  We
+only need:
+\begin{equation}\label{eq:dim}
+\dim_\C\Teich(\Sph,B)=2,\qquad \dim_\C\Teich(\Sph,A)=1 .
+\end{equation}
+
+\subsection{Mapping class groups and the pure braid group}
+
+The \emph{pure mapping class group} of $(\Sph,X)$ is
+$$\Mod(\Sph,X):=\Homeo^+(\Sph,X)/\bigl(\text{isotopy rel.\ }X\bigr).$$
+It acts on $\Teich(\Sph,X)$ on the left by
+\begin{equation}\label{eq:action}
+g\cdot[\phi]_X:=[\phi\circ g^{-1}]_X,\qquad g\in\Mod(\Sph,X),
+\end{equation}
+which is well defined because pre--composition by an $X$--isotopy changes the
+marking within its class, and post--composition by M\"obius maps is quotiented
+out.  The group $\Mod(\Sph,X)$ is naturally the pure braid group of the
+sphere on $|X|$ strands, and for $|X|\ge 4$ the action \eqref{eq:action} on
+$\Teich(\Sph,X)$ is free and properly discontinuous.
+
+\begin{lemma}[Normalization]\label{lem:normalization}
+Suppose $|X|\ge3$ and $\phi,\phi'\in\QC$ satisfy $\phi'(x)=\phi(x)$ for all
+$x\in X$.  Then $[\phi']_X=[\phi]_X$ if and only if $\phi'$ and $\phi$ are
+isotopic rel.\ $X$ through quasiconformal homeomorphisms.  Consequently, if
+$\pi:\Teich(\Sph,X)\to\M_X:=\Teich(\Sph,X)/\Mod(\Sph,X)$ is the quotient,
+and $s\in\M_X$, then every $\tau\in\pi^{-1}(s)$ admits a unique
+representative $\phi$ with $\phi|_X$ equal to any prescribed marking--compatible
+embedding of $X$ into $\widehat\C$.
+\end{lemma}
+
+\begin{proof}
+If $\phi'=M\phi h$ with $h\sim_X\id$ and $M(\phi(x))=\phi'(x)=\phi(x)$ for
+all $x\in X$ and $|X|\ge3$, then $M$ fixes at least three points, so $M=\id$
+and $\phi'=\phi h$ with $h\sim_X\id$, which is exactly an isotopy rel.\ $X$.
+The last statement follows because $\M_X$ is the moduli of ordered
+configurations: two markings with the same value of $\phi|_X$ lie over the
+same $s$, and differ by a unique deck transformation, represented rel.\ $X$
+by a unique isotopy class.
+\end{proof}
+
+\subsection{Curves, Dehn twists, and peripheral twists}
+
+For an essential curve $\gamma$ in $(\Sph,X)$, the Dehn twist $T_\gamma\in
+\Mod(\Sph,X)$ is the class of a homeomorphism supported in an annular
+neighbourhood of $\gamma$, twisting once in the positive direction.  Two
+essential curves in $(\Sph,X)$ are isotopic rel.\ $X$ if and only if they
+induce the same partition of $X$.
+
+\begin{lemma}[Peripheral twists are trivial]\label{lem:peripheral}
+Let $X\subset\Sph$ be finite with $|X|\ge 1$ and let $\delta$ be a Jordan
+curve bounding a disk $D$ with $D\cap X=\{x\}$ a single point.  Then
+$T_\delta=\id$ in $\Mod(\Sph,X)$.
+\end{lemma}
+
+\begin{proof}
+Realize $\delta$ as the circle $\{|z-x|=1\}$ in a coordinate $z$ with
+$x=0$, and take the twist supported in the annulus
+$\{\tfrac14\le|z|\le\tfrac12\}$, i.e.\ $T(z)=z\,e^{2\pi i\theta(|z|)}$ with
+$\theta$ a smooth bump vanishing near $|\cdot|=\tfrac14,\tfrac12$ and
+$\theta\le 1$.  For each $s\in[0,1]$ let $T_s$ be the twist supported in
+$\{\tfrac{\epsilon(s)}2\le|z|\le\tfrac12\}$ with profile $\theta$, where
+$\epsilon(0)=\tfrac12$ and $\epsilon(s)\to0$.  Then
+$T_s(x)=x$ for all $x\in X$ (as $x=0$ lies inside the inner disk, where
+$T_s=\id$) and $T_s\to\id$ uniformly as $s\to1$.  The family
+$T_{s}$, extended continuously to $s=1$ by $T_1=\id$, is an isotopy rel.\
+$X$ (each $T_s$ is a homeomorphism fixing $X$ pointwise, and the extension
+is continuous).  Hence $T_\delta\sim_X\id$.
+\end{proof}
+
+\begin{corollary}\label{cor:peripheral-action}
+If $\gamma$ bounds a disk whose intersection with $X$ has at most one
+point, then $T_\gamma$ acts trivially on $\Teich(\Sph,X)$ and on curves
+there is no essential twist; in particular, in the criterion of
+Theorem~\ref{thm:crit} below, such curves contribute nothing.
+\end{corollary}
+
+\subsection{The forgetful map and its equivariance}
+
+Let $X\subseteq Y$ be finite sets in $\Sph$.  The \emph{forgetful map}
+$$i_*:\Teich(\Sph,Y)\longrightarrow\Teich(\Sph,X),\qquad
+[\phi]_Y\longmapsto[\phi]_X$$
+is well defined, because the equivalence relation defining
+$[\,\cdot\,]_X$ is coarser than that defining $[\,\cdot\,]_Y$ (isotopy rel.\
+$X$ is a weaker requirement than isotopy rel.\ $Y$, and the M\"obius
+matching condition involves fewer points).  There is a group homomorphism
+\begin{equation}\label{eq:forgethom}
+\pi_1^{Y,X}:\Mod(\Sph,Y)\to\Mod(\Sph,X),\qquad
+[h]_Y\mapsto [h]_X,
+\end{equation}
+which is well defined because an isotopy rel.\ $Y$ is also an isotopy rel.\
+$X$.
+
+\begin{lemma}[Equivariance of the forgetful map]\label{lem:intertwine1}
+For every $g\in\Mod(\Sph,Y)$ and every $\tau\in\Teich(\Sph,Y)$,
+$$i_*(g\cdot\tau)=\pi_1^{Y,X}(g)\cdot i_*(\tau).$$
+In particular, if $\gamma$ is a curve in $(\Sph,Y)$ whose image
+$\bar\gamma$ in $(\Sph,X)$ is non--essential (bounds at most one point of
+$X$ on each side), then $i_*\circ T_\gamma=i_*$, by
+Lemma~\ref{lem:peripheral}.
+\end{lemma}
+
+\begin{proof}
+With the action \eqref{eq:action}, write $\tau=[\phi]_Y$ and let $h$
+represent $g$.  Then
+$i_*(g\cdot\tau)=[\phi\circ h^{-1}]_X
+=[\phi]_X\circ$ (pre--composition by $[h^{-1}]_X$)
+$=\pi_1^{Y,X}(g)\cdot[\phi]_X$.
+\end{proof}
+
+\subsection{Point pushing}
+
+We shall use the classical Birman exact sequence in the following form.
+
+\begin{lemma}[Birman; see \cite{Birman}, Ch.~4, and \cite{FM},
+Thm.~4.6]\label{lem:birman}
+Let $X\subset\Sph$, $|X|\ge3$, and $y\in\Sph\setminus X$.  Then the kernel
+of the forgetful homomorphism
+$\pi_1^{X\cup\{y\},\,X}:\Mod(\Sph,X\cup\{y\})\to\Mod(\Sph,X)$
+is naturally isomorphic to $\pi_1(\Sph\setminus X)$: the element
+represented by a loop $\beta$ based at $y$ maps to the class of any
+homeomorphism obtained by pushing $y$ once along $\beta$.  Moreover, for a
+small embedded loop $\beta_x$ winding once positively around
+$x\in X$, the corresponding ``push'' is the Dehn twist about the curve
+enclosing exactly $\{x,y\}$:
+$$\mathrm{push}(\beta_x)=T_{\{x,y\}}.$$
+\end{lemma}
+
+\begin{corollary}\label{cor:pushfree}
+Let $X=\{x_1,\dots,x_n\}$, $n\ge 4$.  The subgroup
+$\Pi:=\ker\pi_1^{B,X}\cong\pi_1(\Sph\setminus X)$ is free of rank $n-1$,
+freely generated by the pushes along $\beta_{x_1},\dots,\beta_{x_{n-1}}$.
+The subgroup of $\Pi$ generated by the \emph{squares} of any $n-2$ of the
+generators is free of rank $n-2$, with those squares as a free basis.
+\end{corollary}
+
+\begin{proof}
+Freeness is the standard presentation of the fundamental group of a
+punctured sphere.  For the second statement, let $F=F(a_1,\dots,a_{n-2})$ and
+consider a nonempty reduced word $w$ in $a_1^{\pm2},\dots,a_{n-2}^{\pm2}$;
+when expanded in the letters $a_i^{\pm1}$ it is a reduced nonempty word,
+because at every junction of two consecutive factors the two boundary
+letters carry the same sign of the same $a_i$, hence do not cancel.  So
+there are no relations among the squares.
+\end{proof}
+
+\section{Branched covers and the pullback map}\label{s:pullback}
+
+\subsection{Definition of the pullback}
+
+Let $f:\Sph\to\Sph$ be a branched cover, let $A,B\subset\Sph$ be finite with
+$f(A)\cup V(f)\cup A\subseteq B$ and $f(A)\subseteq A$ (in our situation
+$f(A)=A$).  Fix once and for all a conformal identification
+$\Sph\cong\widehat\C$, so that $f$ is a rational map and
+$A,B\subseteq\widehat\C$ are honest configurations.
+
+\begin{definition}\label{def:pullback}
+Let $\tau=[\phi]_B\in\Teich(\Sph,B)$ and let
+$\sigma_\phi:=\phi^{*}\sigma_0$ be the pulled--back complex structure
+($\sigma_0$ the standard structure of $\widehat\C$).  Let
+$f^{*}\sigma_\phi$ be the pullback of $\sigma_\phi$ under $f$, a complex
+structure on $\Sph$ for which
+$$\phi\circ f:\ (\Sph,\ f^{*}\sigma_\phi)\ \longrightarrow\ \widehat\C$$
+is holomorphic.  Choose a quasiconformal homeomorphism
+$\psi:\Sph\to\widehat\C$ with $\psi^{*}\sigma_0=f^{*}\sigma_\phi$, and set
+$$f^{*}\tau:=[\psi]_A\in\Teich(\Sph,A),$$
+where the marking is the one induced by the identity on the underlying set
+$A\subset\Sph=\widehat\C$.
+\end{definition}
+
+\begin{lemma}[Well--definedness]\label{lem:welldefined}
+Definition~\ref{def:pullback} is independent of the representative $\phi$
+of $\tau$ and of the solution $\psi$.
+\end{lemma}
+
+\begin{proof}
+Independence of $\psi$ is clear: two solutions differ by post--composition
+with a M\"obius map, which does not change the class in $\Teich(\Sph,A)$
+provided the marked points are matched; and any two normalized solutions
+agree on the three points used for normalization, so the M\"obius map fixes
+the marked triple and can be absorbed.
+
+Suppose $\phi'=\phi h$ with $h\sim_B\id$ quasiconformal (the M\"obius factor
+is harmless since $(M\phi)^{*}\sigma_0=\phi^{*}\sigma_0$).  Put
+$u_t$, $t\in[0,1]$, the isotopy with $u_0=\id$, $u_1=h$, each $u_t$ fixing
+$B$ pointwise.  Since $f(A)=A\subseteq B$, each composite $u_t\circ f$ fixes
+$A$ pointwise, and $t\mapsto u_t\circ f$ is an isotopy of branched covers
+through maps fixing $A$.  Consider the family of complex structures
+$(u_t\circ f)^{*}\sigma_\phi$; solving the Beltrami equation continuously in
+$t$ with a fixed normalization at three points of $A$ yields a continuous
+family of markings $\psi_t$ with $\psi_t^*\sigma_0=(u_t\circ f)^*
+\sigma_\phi$.  The map $s\mapsto\psi_s$ is a path of quasiconformal
+homeomorphisms all of which fix the normalized triple, and at each time the
+marking of $A$ is the identity marking; by
+Lemma~\ref{lem:normalization} applied with the marking data fixed, the
+endpoints $[\psi_0]_A$ and $[\psi_1]_A$ agree in $\Teich(\Sph,A)$.
+\end{proof}
+
+\begin{lemma}[holomorphy; see \cite{Hubbard}, and the discussion in
+\cite{EpsteinTransversality}, \S2]\label{lem:holomorphic}
+$f^{*}:\Teich(\Sph,B)\to\Teich(\Sph,A)$ is holomorphic.  In Beltrami
+coordinates (Beltrami differentials vanishing near the marked points,
+normalized by three marked points) the map is given by the linear--algebraic
+pullback formula $(f^{*}\mu)(z)=\mu(f(z))\,
+\overline{f'(z)}/f'(z)$ away from critical points and $0$ at critical
+points, which depends complex--affinely on $\mu$.
+\end{lemma}
+
+\begin{remark}
+Holomorphy will only be used to guarantee that $\D_f$ is a complex
+analytic subvariety of $\Teich(\Sph,B)$ and that the image of each of its
+components under $\pi:\Teich(\Sph,B)\to\M_B$ is an analytic subset; the
+reader willing to take this as known may skip the proof, which is standard.
+\end{remark}
+
+\subsection{The dynamical characterisation of \texorpdfstring{$\D_f$}{Df}}
+
+Let $\mu_0$ denote the zero Beltrami differential, and for a
+quasiconformal $\phi$ write $\mu_\phi:=\phi^{*}\mu_0$.
+
+\begin{proposition}[Dynamical characterisation]\label{prop:dynchar}
+Let $\tau=[\phi]_B\in\Teich(\Sph,B)$, and let $s=\pi(\tau)\in\M_B$ be the
+associated ordered configuration.  Then $\tau\in\D_f$ if and only if there
+exists a quasiconformal homeomorphism $u:\Sph\to\Sph$ with $u|_A=\id|_A$
+and $u\sim_A\id$, such that
+\begin{equation}\label{eq:dynchar}
+g:=\phi\circ f\circ u\circ\phi^{-1}:\widehat\C\to\widehat\C
+\end{equation}
+is a rational map.  In that case $g$ is the unique quadratic rational map
+with superattracting $4$--cycle carrying the configuration $\phi(A)$ to
+itself in the cyclic order, and with second critical value
+$\phi\circ f\circ u(c_2)$; in particular if $\pi(\tau)$ is the base
+configuration then $g=f$ and
+\begin{equation}\label{eq:centralizer}
+\phi\circ f\circ u=f\circ\phi .
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+($\Leftarrow$) Suppose $u\sim_A\id$ and $g=\phi f u\phi^{-1}$ is rational.
+Set $\Phi:=\phi\circ u^{-1}$, so that
+$\mu_\Phi=(u^{-1})^{*}\mu_\phi$ and
+$$g=\phi f \Phi^{-1},\qquad
+g^{*}\mu_0=(\Phi^{-1})^{*}\, f^{*}\,\phi^{*}\mu_0=(\Phi^{-1})^{*}f^{*}\mu_\phi .$$
+Since $g$ is rational, $g^{*}\mu_0=0$, and the Beltrami coefficient of
+$\phi\circ f$ equals $f^{*}\mu_\phi=(\phi f)^{*}\mu_0$; the vanishing of
+$(\Phi^{-1})^{*}(f^{*}\mu_\phi)$ means that the solution $\psi$ of
+$\psi^{*}\mu_0=f^{*}\mu_\phi$ differs from $\Phi$ by a conformal map:
+$\Phi=M\circ\psi$ for some M\"obius $M$.  Then
+$\phi = \Phi\circ u = M\psi u$, which, by
+Definition~\ref{def:teich}, means $[\phi]_A=[\psi]_A=f^{*}[\phi]_B$; i.e.\
+$i_*\tau=f^{*}\tau$ and $\tau\in\D_f$.
+
+($\Rightarrow$) Suppose $f^{*}\tau=i_*\tau$.  By
+Definition~\ref{def:pullback} and Definition~\ref{def:teich} there are a
+M\"obius $M$ and a quasiconformal $w\sim_A\id$ with $\phi=M\circ\psi\circ w$,
+where $\psi^{*}\mu_0=f^{*}\mu_\phi$.  Put $u:=w^{-1}$ and
+$\Phi:=\phi\, u^{-1}=M\psi$; then $\mu_\Phi=f^{*}\mu_\phi$, and the map
+$g:=\phi f\Phi^{-1}$ satisfies
+$g^{*}\mu_0=(\Phi^{-1})^{*}f^{*}\mu_\phi=(\Phi^{-1})^{*}\mu_\Phi
+=(\Phi\Phi^{-1})^{*}\mu_0=\mu_0$, so $g$ is rational.  Since
+$u|_A=\id|_A$, the map $g$ carries $\phi(a)$ to $\phi(f(a))$ for each
+$a\in A$, i.e.\ $g$ maps the configuration $\phi(A)$ through the marked
+cycle.  Uniqueness of $g$ in the normalized family is
+Lemma~\ref{lem:family}(\ref{item:unique}) below.  If moreover
+$\pi(\tau)$ is the base configuration then after a M\"obius normalization
+we may take $\phi|_B=\id|_B$, so $g$ has the base cycle and base critical
+value configuration; uniqueness forces $g=f$ and \eqref{eq:centralizer}.
+\end{proof}
+
+\subsection{The image of \texorpdfstring{$\D_f$}{Df} in moduli}
+
+Recall from the problem statement that the image of $\D_f$ in moduli is
+the set of conjugacy classes of quadratic rational maps with the properties
+described above.  For completeness we indicate the proof; it also fixes
+notation used later.
+
+\begin{proposition}\label{prop:image}
+Let $\pi:\Teich(\Sph,B)\to\M_B$ be the quotient.  Then:
+\begin{enumerate}
+\item $\pi(\D_f)$ is a complex analytic subset of $\M_B$, contained in the
+\emph{stratum} $\S$ of configurations arising from quadratic rational maps
+with a superattracting $4$--cycle marked in order, together with the second
+critical value marked;
+\item the base point $\tau_0=[\id]_B$ lies in $\D_f$;
+\item the stratum $\S$ is an irreducible complex curve;
+\item $\pi(\D_f)=\S$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) A point of $\pi(\D_f)$ is, by Proposition~\ref{prop:dynchar}, the
+configuration of a quadratic rational map with a superattracting $4$--cycle
+and the second critical value marked, i.e.\ a point of $\S$; and
+$\pi(\D_f)$ is analytic because locally $\pi$ is biholomorphic and
+$\D_f$ is analytic (Lemma~\ref{lem:holomorphic}).
+
+(2) $\tau_0=[\id]_B$: pulling back the standard structure by the rational
+map $f$ returns the standard structure, and the identity marking witnesses
+$f^{*}\tau_0=i_*\tau_0$.
+
+(3) This is Corollary~\ref{cor:stratumcurve}.
+
+(4) By Proposition~\ref{prop:dynchar}(2) and
+Lemma~\ref{lem:family}, the stratum is an irreducible curve; an analytic
+subset of an irreducible curve is either finite or the whole curve minus a
+finite set.  Since $\tau_0\in\D_f$, near $\tau_0$ the analytic set $\D_f$
+has complex dimension at least $\dim\Teich(\Sph,B)-\dim\Teich(\Sph,A)=1$
+(the fibre of the holomorphic map $f^{*}-i_{*}$ over the diagonal), so
+$\pi(\D_f)$ contains a nonempty open piece of $\S$, hence is cofinite in
+$\S$; being also analytic (hence closed in $\S$ after including
+accumulation points), it equals $\S$.
+\end{proof}
+
+\section{Dehn twists through the double cover, and the preservation
+criterion}\label{s:twists}
+
+Throughout this section, $\gamma$ is an essential simple closed curve in
+$(\Sph,B)$, with sides $D_X,D_Y$ and corresponding subsets
+$X,Y\subseteq B$ ($X\sqcup Y=B$, $|X|,|Y|\ge2$).  Since
+$V(f)=\{p_1,v\}\subseteq B$ and $f$ has no other critical values, the map
+$$f:\Sph\setminus f^{-1}(B)\longrightarrow\Sph\setminus B$$
+is an (unbranched) covering of degree $2$.
+
+\subsection{The preimage multicurve and its degrees}
+
+\begin{lemma}\label{lem:preimage}
+Let $N\cong\overline{\mathbb{D}}\setminus\{0\}$ be a closed annular
+neighbourhood of $\gamma$ in $\Sph\setminus B$.  Each component
+$\tilde N_i$ of $f^{-1}(N)$ is an annulus mapping onto $N$ as a covering of
+some degree $d_i\in\{1,2\}$, and the multicurve
+$f^{-1}(\gamma)=\bigcup_i\tilde\gamma_i$
+has components $\tilde\gamma_i=\tilde N_i\cap f^{-1}(\gamma)$, each an
+essential curve in $(\Sph,f^{-1}B)$, with
+$\deg(\tilde\gamma_i\to\gamma)=d_i$ and $\sum_i d_i=2$.
+Moreover:
+\begin{enumerate}
+\item[(i)] if the two branch values $p_1,v$ lie on the \emph{same} side of
+$\gamma$, then $f^{-1}(\gamma)$ has $d=1+1$: two components, and
+$f^{-1}(D_X)$ (resp.\ $f^{-1}(D_Y)$) is the union of the two disks over the
+side free of branch values, while over the side containing both branch
+values the preimage is an annulus;
+\item[(ii)] if $p_1$ and $v$ lie on \emph{opposite} sides, then
+$f^{-1}(\gamma)$ has a single component of degree $2$, and each side's
+preimage is a disk, branched over the one branch value it contains.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The monodromy of the double cover around $\gamma$ is trivial in case (i)
+(a loop enclosing both or neither branch value has trivial monodromy) and a
+transposition in case (ii).  The classification of coverings of the annulus
+$N$ gives the stated annuli $\tilde N_i$ and degrees.  Each
+$\tilde\gamma_i$ is the core of $\tilde N_i$, hence essential in
+$\Sph\setminus f^{-1}(B)$.  The description of the preimages of the sides
+follows from the Riemann--Hurwitz and monodromy computations: a double
+cover of a disk branched at one interior point is a disk, and branched at
+two interior points is an annulus.
+\end{proof}
+
+\subsection{Lifting powers of the twist}
+
+\begin{lemma}[Lift of a power of a twist]\label{lem:lift}
+Keep the notation of Lemma~\ref{lem:preimage}, and let $k\ge1$.
+\begin{enumerate}
+\item The power $T_\gamma^{k}$ lifts through the cover
+$f:(\Sph,f^{-1}B)\to(\Sph,B)$---that is, there exists a homeomorphism
+$\widehat{T}$ of $(\Sph,f^{-1}B)$ fixing $f^{-1}(B)$ pointwise with
+$f\circ\widehat{T}=T_\gamma^{k}\circ f$---if and only if $d_i\mid k$ for
+every $i$.
+\item When the lift exists, it is unique and equals the multitwist
+\begin{equation}\label{eq:liftformula}
+\widehat{T_\gamma^{k}}\ =\ \prod_i T_{\tilde\gamma_i}^{\,k/d_i}
+\qquad\text{in }\Mod(\Sph,f^{-1}B).
+\end{equation}
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Model $N=S^1\times[0,1]$ with coordinates $(s,t)$ and, on a component
+$\tilde N_i$ mapping with degree $d_i$, write
+$f(s,t)=(d_i\,s,t)$.  Let $T_\gamma$ be represented by the twist supported
+in the interior of $N$, with profile $\theta:[0,1]\to[0,1]$,
+$\theta(0)=\theta(1)\equiv0\pmod{\Z}$; in the usual normalization the
+profile increases monotonically from $0$ to $1$ (the ``full twist'',
+which is the identity on $\partial N$ because a full rotation of the
+circle is the identity on the nose).  A lift $\widehat{T}$ must satisfy
+$f(\widehat{T}(s,t))=(d_is+\theta(t),t)$, so
+$\widehat T(s,t)=(s+\theta(t)/d_i,t)$ on $\tilde N_i$.  For this to extend
+to a homeomorphism of the \emph{closed} annulus $\tilde N_i$ which is the
+identity on $\partial\tilde N_i$ we need $\theta(t)/d_i\in\Z$ at $t=1$,
+i.e.\ $1/d_i\in\Z$, i.e.\ $d_i\mid1$; for $T_\gamma^{\,k}$ the profile is
+$k\theta$, and the condition becomes $k/d_i\in\Z$.  This proves (1), and
+also exhibits the lift, whose restriction to $\tilde N_i$ is a twist of
+$\tilde N_i$ with profile $k\theta/d_i$, i.e.\ the Dehn twist
+$T_{\tilde\gamma_i}^{k/d_i}$; the lift extends by the identity outside
+$f^{-1}(N)$.  Uniqueness: two lifts differ by the deck involution of the
+\emph{unbranched} cover, which interchanges the two points of a general
+fibre of $f^{-1}(B)$; since the lift must fix $f^{-1}(B)$ pointwise, the
+deck factor is trivial.
+\end{proof}
+
+\subsection{Intertwining of the pullback with the mapping class group}
+
+\begin{lemma}\label{lem:intertwine2}
+Let $\gamma$ be as above and $k\ge1$ with $d_i\mid k$ for all $i$.  Then
+for every $\tau\in\Teich(\Sph,B)$,
+\begin{equation}\label{eq:intertwine2}
+f^{*}\bigl(T_\gamma^{\,k}\cdot\tau\bigr)
+=\Theta_k(\gamma)\cdot f^{*}\tau,
+\end{equation}
+where $\Theta_k(\gamma)\in\Mod(\Sph,A)$ is the image of
+$\widehat{T_\gamma^{\,k}}$ under the forgetful homomorphism
+$\pi_1^{f^{-1}B,\,A}:\Mod(\Sph,f^{-1}B)\to\Mod(\Sph,A)$.
+\end{lemma}
+
+\begin{proof}
+Write $\tau=[\phi]_B$ and let $h$ represent $T_\gamma^{\,k}$.  Then
+$T_\gamma^{\,k}\cdot\tau=[\phi\circ h^{-1}]_B$, whose Beltrami coefficient
+is $(h^{-1})^{*}\mu_\phi$.  Using the lift $\widehat h$ of $h$ and the
+identity $h^{-1}\circ f=f\circ\widehat h^{-1}$ (from
+$f\widehat h=hf$), we get
+$$f^{*}\bigl((h^{-1})^{*}\mu_\phi\bigr)
+=(h^{-1}f)^{*}\mu_\phi=(\widehat h^{-1})^{*}\,f^{*}\mu_\phi,$$
+so the pulled--back structure is the $f^{*}\tau$--structure pre--composed
+with $\widehat h^{-1}$.  Unwinding
+Definition~\ref{def:pullback} (the marking of the pulled--back structure is
+the identity marking of the underlying set), this means exactly
+$f^{*}(T_\gamma^{\,k}\tau)=[\psi\circ\widehat h^{-1}]_A
+=\pi_1^{f^{-1}B,A}(\widehat h)\cdot[\psi]_A$,
+where $[\psi]_A=f^{*}\tau$.  Well--definedness against the choice of lift
+is Lemma~\ref{lem:lift}(2), and against the representative of $\tau$ it
+follows as in Lemma~\ref{lem:welldefined}.
+\end{proof}
+
+\subsection{The preservation criterion}
+
+Recall the forgetful homomorphism
+$\pi_1:=\pi_1^{B,A}:\Mod(\Sph,B)\to\Mod(\Sph,A)$ of \eqref{eq:forgethom}.
+For a curve $\gamma$ in $(\Sph,B)$ write $\bar\gamma$ for the same curve
+viewed in $(\Sph,A)$ (forgetting $v$); it is essential in $(\Sph,A)$ iff
+both sides of $\gamma$ contain at least two points of $A$, in which case
+$\pi_1(T_\gamma^{\,k})=T_{\bar\gamma}^{\,k}$, while if some side contains at
+most one point of $A$ then $\pi_1(T_\gamma^{\,k})=\id$ by
+Lemma~\ref{lem:peripheral}.
+
+\begin{theorem}[Preservation Criterion]\label{thm:crit}
+Let $\gamma$ be an essential curve in $(\Sph,B)$, with preimage components
+$\tilde\gamma_i$ and degrees $d_i$ as in Lemma~\ref{lem:preimage}, and let
+$k\ge1$ satisfy $d_i\mid k$ for all $i$.  Assume that the stabilizer in
+$\Mod(\Sph,A)$ of the (open) set $i_*(\D_f)\subseteq\Teich(\Sph,A)$ is
+trivial.  Then
+$$T_\gamma^{\,k}\cdot\D_f=\D_f
+\quad\Longleftrightarrow\quad
+\Theta_k(\gamma)=\pi_1(T_\gamma^{\,k})\ \text{ in }\Mod(\Sph,A).$$
+Here, by Lemmas \ref{lem:peripheral} and \ref{lem:lift},
+\begin{equation}\label{eq:theta}
+\Theta_k(\gamma)=\prod_{i\,:\,\tilde\gamma_i\text{ essential in }(\Sph,A)}
+T_{\tilde\gamma_i}^{\,k/d_i},
+\end{equation}
+the product over those components of $f^{-1}(\gamma)$ that separate $A$
+into two parts of size $\ge2$.
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:intertwine1}, for all $\tau$,
+$i_*(T_\gamma^{\,k}\tau)=\pi_1(T_\gamma^{\,k})\,i_*(\tau)$; by
+Lemma~\ref{lem:intertwine2}, for all $\tau\in\D_f$,
+$f^{*}(T_\gamma^{\,k}\tau)=\Theta_k(\gamma)\,f^{*}\tau
+=\Theta_k(\gamma)\,i_*(\tau)$.
+Hence for $\tau\in\D_f$:
+$$T_\gamma^{\,k}\tau\in\D_f
+\iff \Theta_k(\gamma)\,i_*(\tau)=\pi_1(T_\gamma^{\,k})\,i_*(\tau)
+\iff \bigl(\Theta_k(\gamma)^{-1}\pi_1(T_\gamma^{\,k})\bigr)\text{ fixes
+}i_*(\tau).$$
+Since $i_*(\D_f)$ is a nonempty open subset of the $1$--dimensional space
+$\Teich(\Sph,A)$ (Proposition~\ref{prop:image}(4) and
+Lemma~\ref{lem:family}(\ref{item:surjective})), and $\Mod(\Sph,A)$ acts
+freely there, the last condition holds for all $\tau\in\D_f$ iff
+$\Theta_k(\gamma)=\pi_1(T_\gamma^{\,k})$.  The case of equality gives
+$T_\gamma^{\,k}\D_f\subseteq\D_f$, and equality follows by applying the
+same to $T_\gamma^{-\,k}$.
+\end{proof}
+
+\begin{remark}
+The triviality of the stabilizer of $i_*(\D_f)$ is automatic in our
+situation: $i_*(\D_f)$ contains an open subset of $\Teich(\Sph,A)$
+(namely the set of cross--ratios of $4$--cycles realized by stratum maps,
+cf.\ \S\ref{s:stratum}), and the pure mapping class group of the
+$4$--punctured sphere acts freely on Teichm\"uller space.
+\end{remark}
+
+\section{The stratum: an explicit algebraic model}\label{s:stratum}
+
+\subsection{The normalized family}
+
+\begin{lemma}\label{lem:family}
+Let $t\in\widehat\C\setminus\{0,1\}$.  There is a unique quadratic rational
+map $f_t$ with $f_t(0)=1,\ f_t(1)=\infty,\ f_t(\infty)=t,\ f_t(t)=0$ and
+with $0$ as a critical point; it is
+\begin{equation}\label{eq:family}
+f_t(z)=\frac{t\,z^{2}-(t^{2}+t+1)\,z+t^{2}+t}
+{z^{2}-(t^{2}+t+1)\,z+t^{2}+t},
+\end{equation}
+and:
+\begin{enumerate}
+\item\label{item:unique} $f_t$ is the \emph{unique} quadratic rational map
+$g$ with $g(0)=1,\ g(1)=\infty,\ g(\infty)=t,\ g(t)=0$ and a critical
+point at $0$;
+\item the second critical point and its value are
+\begin{equation}\label{eq:c2v}
+c_2(t)=\frac{2t(t+1)}{t^{2}+t+1},
+\qquad
+v(t)=f_t(c_2(t))
+=\left(\frac{t^{2}-t-1}{t^{2}+t-1}\right)^{\!2};
+\end{equation}
+\item\label{item:surjective} $f_t$ has exact period $4$ at $0$ for
+$t\in\C\setminus\{0,1\}$, and $t\mapsto f_t$ is a bijection from
+$\C\setminus\{0,1\}$ onto quadratic rational maps with a marked critical
+point of exact period $4$, normalized by the cycle positions
+$0\mapsto1\mapsto\infty\mapsto t\mapsto0$;
+\item the marked configuration of $f_t$ is
+$(0,1,\infty,t,v(t))$ for $(c_1,p_1,p_2,p_3,v)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Writing $g(z)=\frac{az^2+bz+c}{dz^2+ez+g_0}$ and imposing
+$g(0)=1$ ($c=g_0$), $g(1)=\infty$ ($d+e+g_0=0$),
+$g(\infty)=t$ ($a=td$), $g(t)=0$ ($at^2+bt+c=0$) and
+$g'(0)=0$ ($bg_0=ce$, i.e.\ $b=e$), and normalizing $g_0=1$, one solves the
+linear conditions to obtain \eqref{eq:family} (a direct substitution
+verifies each condition).  Since the five conditions determine all
+coefficients up to the common scalar, uniqueness (\ref{item:unique}) holds;
+this is the uniqueness statement used in
+Propositions~\ref{prop:dynchar} and \ref{prop:image}.  The critical points
+of $f_t$ are the zeros of $N'D-ND'$, which factorizes as
+$(t-1)\,z\,\bigl(2(t^2+t)-(t^2+t+1)\,z\bigr)$, giving $0$ and
+$c_2(t)$ as in \eqref{eq:c2v}; substituting gives $v(t)$, using
+$(t^2-t-1)^2=t^4-2t^3-t^2+2t+1$ and
+$(t^2+t-1)^2=t^4+2t^3-t^2-2t+1$.
+For (\ref{item:surjective}), the orbit $0\mapsto1\mapsto\infty\mapsto
+t\mapsto0$ has exact period $4$ whenever the four points are distinct and
+the earlier return values $f_t^{\circ j}(0)=1,\infty,t$ for $j=1,2,3$ are
+different from $0$; this fails only at $t\in\{0,1\}$ (at $t=0,-1$ the
+map degenerates; at $t=1$ it is constant).  Finally a M\"obius change of
+coordinates taking a marked map to normal form produces some $t$, and the
+marked point $p_3$ is that $t$.
+\end{proof}
+
+\begin{corollary}\label{cor:stratumcurve}
+The stratum of ordered configurations
+$(c_1,p_1,p_2,p_3,v)=(0,1,\infty,t,v)$ arising from quadratic rational
+maps with a critical point of exact period $4$ and second critical value off
+the cycle is the graph
+$$\S=\{(t,v)\ :\ v=v(t)\}\ \subset\ \C^2\cong\M_B^{\mathrm{ord}},$$
+an irreducible rational curve, punctured at the parameters $t$ where the
+five--tuple $(0,1,\infty,t,v(t))$ fails to have distinct entries or the map
+degenerates.
+\end{corollary}
+
+\begin{definition}\label{def:cusps}
+The \emph{cusps} are the parameters $t^{*}$ at which $v(t)$ collides with a
+point of the cycle or with $t$, or the cycle degenerates:
+\begin{align*}
+&v=0:\quad a_\pm=\tfrac{1\pm\sqrt5}{2} &&\text{(note }v(t)=0\iff
+t^2-t-1=0);\qquad
+v=1:\ t=-1;\\
+&v=\infty:\quad b_\pm=\tfrac{-1\pm\sqrt5}{2};\qquad &&
+v=t:\ \text{the roots of } t^{5}+t^{4}-3t^{3}-3t^{2}+3t+1;\\
+&t\in\{0,1,-1,\infty\}:\ \text{cycle degeneration}.
+\end{align*}
+We call $a_\pm$ and $b_\pm$ the \emph{golden cusps}.  At a golden cusp
+$t^{*}$, $v(t^{*})$ equals $c_1$ (for $a_\pm$) or $p_2$ (for $b_\pm$), the
+second critical point $c_2(t^{*})$ lands on the cycle
+(one checks $c_2(a_\pm)=a_\pm$, $c_2(b_\pm)=\frac{4}{3\mp\sqrt5}$ and
+$f_{t^{*}}(c_2(t^{*}))=v(t^{*})$), and the map $f_{t^{*}}$ is
+\emph{postcritically finite} with postcritical set exactly the cycle $A$.
+\end{definition}
+
+\begin{lemma}[Braid monodromy of the cusps]\label{lem:monodromytable}
+Let $\ell_{t^{*}}$ be a small positively oriented loop in the $t$--plane
+around a cusp $t^{*}$.  The braid monodromy $b(\ell_{t^{*}})\in
+\Mod(\Sph,B)$ (the deck displacement of the lifted path of configurations
+in $\Teich(\Sph,B)$, cf.\ Lemma~\ref{lem:normalization}) is:
+\begin{center}
+\begin{tabular}{c|c|c}
+cusp $t^{*}$ & colliding pair & $b(\ell_{t^{*}})$\\ \hline
+$0,\ 1,\ \infty$ & $\{p_3,c_1\},\ \{p_3,p_1\},\ \{p_3,p_2\}$
+& $T_{\{c_1,p_3\}}^{\pm1},\ T_{\{p_1,p_3\}}^{\pm1},\ T_{\{p_2,p_3\}}^{\pm1}$\\
+$-1$ & $\{v,p_1\}$ & $T_{\{p_1,v\}}^{\pm1}$\\
+$a_\pm$ & $\{v,c_1\}$, twice & $T_{\{c_1,v\}}^{\pm2}$\\
+$b_\pm$ & $\{v,p_2\}$, twice & $T_{\{p_2,v\}}^{\pm2}$\\
+roots of $v(t)=t$ & $\{v,p_3\}$ & $T_{\{p_3,v\}}^{\pm1}$
+\end{tabular}
+\end{center}
+In particular, for the golden cusps the factor $2$ in the exponent is
+forced by \eqref{eq:c2v}: near $t^{*}=a_\pm$ one has
+$v(t)=C\,(t-t^{*})^{2}+O\bigl((t-t^{*})^3\bigr)$ with $C\ne0$, so one turn
+of $t$ around $t^{*}$ produces two turns of $v$ around $c_1$; similarly at
+$b_\pm$, where $v$ has a double pole.
+\end{lemma}
+
+\begin{proof}
+The configuration $(0,1,\infty,t,v(t))$ moves with $t$; only the two
+strands that collide at the cusp braid nontrivially, and the winding number
+of the moving strand around the marked point it approaches is the local
+degree of $v$ (resp.\ of $t$) at the cusp.  At $a_\pm$ the numerator
+$t^2-t-1$ of $v$ has a simple zero, so $v$ vanishes to order exactly $2$;
+at $b_\pm$ the denominator $t^2+t-1$ has a simple zero, so $v$ has a pole
+of order $2$.  The remaining entries have order $1$.
+\end{proof}
+
+\begin{remark}[The four PCF limits and their invariant equator]
+\label{rem:carousal}
+Each golden cusp $t^{*}\in\{a_\pm,b_\pm\}$ is real, and $f_{t^{*}}$ is a
+\emph{real} rational map (real coefficients) whose two critical points
+$0$ and $c_2(t^{*})$ are real and lie on the circle
+$\R\cup\{\infty\}$.  For these four maps the circle
+$J:=\R\cup\{\infty\}$ is a fully invariant Jordan curve: since both
+critical values $p_1,v(t^{*})$ lie on $J$, the two ``laps'' of
+$f_{t^{*}}|_J$ each map onto $J$, so
+$f_{t^{*}}^{-1}(J)=J$, and $f_{t^{*}}$ maps each component of
+$\widehat\C\setminus J$ conformally onto a component of
+$\widehat\C\setminus J$.  Thus the four golden maps admit an invariant
+Jordan curve through the postcritical set (a ``Levy curve'' or
+\emph{carousal}).  This classical structure is the geometric backbone of
+the class--monodromy analysis of \S\ref{s:components}.
+\end{remark}
+
+\section{The twist \texorpdfstring{$T_\gamma^{\,2}$}{T2} preserves
+\texorpdfstring{$\D_f$}{Df}}\label{s:preserve}
+
+Here is the curve promised in the Main Theorem.
+
+\begin{definition}\label{def:gamma}
+Let $\gamma$ be a simple closed curve in $(\Sph,B)$ bounding a disk $D$
+with $D\cap B=\{c_1,v\}$; thus the complementary disk contains
+$\{p_1,p_2,p_3\}$.  Such curves exist (join $c_1$ to $v$ by an arc
+avoiding $B\setminus\{c_1,v\}$ and take a regular neighbourhood of the
+arc) and any two are isotopic in $(\Sph,B)$, since they induce the same
+partition of $B$.
+\end{definition}
+
+\begin{theorem}\label{thm:preserve}
+$T_\gamma^{\,2}\cdot\D_f=\D_f$.
+\end{theorem}
+
+\begin{proof}
+We verify the hypotheses and the equality of
+Theorem~\ref{thm:crit} with $k=2$.
+
+\emph{Step 1: the preimage of $\gamma$.}  The branch values of $f$ are
+$p_1$ and $v$; of these, $v\in D$ and $p_1\notin\overline D$, so
+Lemma~\ref{lem:preimage}(ii) applies: $f^{-1}(\gamma)$ is a single curve
+$\tilde\gamma$ mapping onto $\gamma$ with degree $d=2$, and
+$f^{-1}(D)$ is a disk (the double cover of $D$ branched over the single
+branch value $v\in D$).  Concretely
+$$f^{-1}(D)\ \supset\ f^{-1}\bigl(D\cap B\bigr)
+=f^{-1}(\{c_1,v\})=\{p_3,w_0,c_2\},$$
+where $w_0$ denotes the second preimage of $c_1$ (which is not a point of
+$B$), while
+$$f^{-1}\bigl(B\setminus\{c_1,v\}\bigr)
+=f^{-1}(\{p_1,p_2,p_3\})
+=\{c_1,w_1\}\cup\{p_1,w_2\}\cup\{p_2,w_3\}$$
+lies in the complementary disk.  Hence $\tilde\gamma$ separates
+$\{p_3,w_0,c_2\}$ from the remaining six points of $f^{-1}(B)$.
+
+\emph{Step 2: $\tilde\gamma$ is peripheral in $(\Sph,A)$.}  Indeed
+$\tilde\gamma$ bounds a disk meeting $A$ in the single point $p_3$
+(the other two enclosed points $w_0,c_2$ do not belong to $A$).  By
+Lemma~\ref{lem:peripheral}, the class of $T_{\tilde\gamma}$ in
+$\Mod(\Sph,A)$ is trivial; hence in \eqref{eq:theta} the single factor is
+trivial and
+$$\Theta_2(\gamma)=\id\in\Mod(\Sph,A).$$
+
+\emph{Step 3: $\bar\gamma$ is peripheral in $(\Sph,A)$.}  The curve
+$\gamma$, with the point $v$ forgotten, bounds a disk meeting
+$A=\{c_1,p_1,p_2,p_3\}$ only in $c_1$; by
+Lemma~\ref{lem:peripheral},
+$$\pi_1(T_\gamma^{\,2})=\id\in\Mod(\Sph,A).$$
+
+\emph{Step 4: conclusion.}  Since $d=2$ divides $k=2$,
+Lemma~\ref{lem:lift} provides the lift
+$\widehat{T_\gamma^{\,2}}=T_{\tilde\gamma}^{\,2/2}=T_{\tilde\gamma}$ in
+$\Mod(\Sph,f^{-1}B)$, and
+Lemmas \ref{lem:intertwine1}, \ref{lem:intertwine2} apply.  Since
+$\Theta_2(\gamma)=\id=\pi_1(T_\gamma^{\,2})$, the criterion of
+Theorem~\ref{thm:crit} gives $T_\gamma^{\,2}\D_f=\D_f$.
+
+For the variants: if $\gamma$ encloses exactly $\{p_2,v\}$, then
+$f^{-1}(\gamma)$ is again a single degree--$2$ curve enclosing
+$\{p_1,w_2,c_2\}$, peripheral in $(\Sph,A)$ around $p_1$, and
+$\bar\gamma$ is peripheral around $p_2$; if $\gamma$ encloses exactly
+$\{p_3,v\}$, the preimage is a degree--$2$ curve enclosing
+$\{p_2,w_3,c_2\}$, peripheral around $p_2$, and $\bar\gamma$ is peripheral
+around $p_3$.  The same computation applies verbatim.
+\end{proof}
+
+\begin{remark}[why other curves fail]
+It is instructive to record why nearby--looking curves do \emph{not} work,
+as this justifies the choice of $\gamma$:
+\begin{itemize}
+\item a curve enclosing $\{c_1,p_1\}$ has a connected degree--$2$
+preimage enclosing $\{c_1,p_3\}$, which is \emph{essential} in
+$(\Sph,A)$ but with the wrong partition; the exponents $k/2$ and $k$ can
+never match;
+\item a curve enclosing $\{p_1,p_3\}$ (the ``alternating'' pair) has a
+connected degree--$2$ preimage enclosing $\{c_1,p_2\}$ with the
+\emph{right} partition, but the lift of $T_\gamma^{\,k}$ is
+$T_{\tilde\gamma}^{\,k/2}$, which can never equal $T_{\bar\gamma}^{\,k}$
+for $k\neq0$;
+\item a curve enclosing $\{p_1,v\}$ has a preimage which is an annulus
+whose two boundary curves are, up to isotopy in $(\Sph,A)$, twists about
+curves enclosing pairs of cycle points, none of which is peripheral; the
+two sides of the criterion never agree.
+\end{itemize}
+Thus among the ``pair--twists'' exactly the three enclosing
+$\{x,v\}$ with $x\in\{c_1,p_2,p_3\}$ have a chance, and they all work
+after squaring.
+\end{remark}
+
+\section{Components of \texorpdfstring{$\D_f$}{Df} and the infinite orbit}
+\label{s:components}
+
+Fix the base data: after a M\"obius conjugacy we assume
+$f=f_{t_0}$ in the family \eqref{eq:family} for some
+$t_0\in\C\setminus(\P\cup\{1\})$ with $v(t_0)\notin\{0,1,\infty,t_0\}$, so
+that the marked configuration is $B=(0,1,\infty,t_0,v_0)$ with
+$v_0=v(t_0)$.  Let
+$$\tau_0:=[\id]_B\in\D_f$$
+be the base point, and let
+$$\sigma_1:=T_{\{c_1,v\}}^{2},\qquad
+\sigma_2:=T_{\{p_2,v\}}^{2},\qquad
+\sigma_3:=T_{\{p_3,v\}}^{2}\ \in\Mod(\Sph,B),$$
+so that by Theorem~\ref{thm:preserve}, $\sigma_i\cdot\D_f=\D_f$; note that
+$\sigma_1=T_\gamma^{\,2}$ for our $\gamma$.
+
+\subsection{The fibre of \texorpdfstring{$\D_f\to\S$}{Df→S} over the base}
+
+\begin{definition}\label{def:Z}
+Let $Z\le\Mod(\Sph,B)$ be the set of classes $[\phi]$ with
+$\phi|_B=\id_B$ that admit a quasiconformal $u\sim_A\id$, $u|_A=\id$,
+with $\phi\circ f\circ u=f\circ\phi$; i.e.\ the group of marked
+self--conjugacy classes of $f$ ``up to $A$--isotopy''.
+\end{definition}
+
+\begin{proposition}\label{prop:fibre}
+\begin{enumerate}
+\item $Z$ is a subgroup of $\Mod(\Sph,B)$, and
+$z\mapsto z\cdot\tau_0$ identifies $Z$ with the fibre
+$F_0:=\D_f\cap\pi^{-1}(s_0)$ of $\pi:\D_f\to\S$ over the base
+configuration $s_0$.
+\item For $[\phi]\in Z$ the lift $\widehat\phi$ of $\phi$ through
+$f$ fixes $f^{-1}(B)$ pointwise, and
+$$Z=\bigl\{[\phi]\in\Mod(\Sph,B)\ :\ \exists\text{ lift }\widehat\phi
+\text{ of }\phi\text{ with }\widehat\phi\sim_A\phi\bigr\}.$$
+In particular $Z$ coincides with the subgroup on which the two
+homomorphisms $\pi_1$ and $\Theta:=\pi_1^{f^{-1}B,\,A}\circ\widehat{(\cdot)}$
+of \S\ref{s:twists} agree.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) If $\phi_1 f u_1=f\phi_1$ and $\phi_2fu_2=f\phi_2$ then
+$\phi_1\phi_2 f(u_2\circ\phi_2^{-1}u_1\phi_2)=f\phi_1\phi_2$ with
+$u_2':=\phi_2^{-1}u_1\phi_2\sim_A\id$, so $Z$ is closed under composition;
+inverses are analogous.  By Lemma~\ref{lem:normalization} the fibre
+$\pi^{-1}(s_0)$ consists of the classes $[\phi]_B$ with
+$\phi|_B=\id_B$, and by Proposition~\ref{prop:dynchar} together with the
+uniqueness in Lemma~\ref{lem:family}(\ref{item:unique}),
+$[\phi]_B\in\D_f$ iff $\phi$ satisfies the defining equation of $Z$.
+
+(2) From $\phi fu=f\phi$ we get $f\circ(\phi u^{-1})=\phi\circ f$, so
+$\widehat\phi:=\phi u^{-1}$ is a lift of $\phi$; it fixes each $a\in A$
+(since $u|_A=\id$ and $\phi|_B=\id$), and for $x\in f^{-1}(B)$ we have
+$f(\widehat\phi(x))=\phi f(x)=f(x)$, so $\widehat\phi$ permutes each fibre
+$f^{-1}(f(x))$; since $\widehat\phi$ already fixes the point of
+$A\cap f^{-1}(f(x))$, it fixes both points of the fibre.  As
+$u\sim_A\id$, $\widehat\phi=\phi u^{-1}\sim_A\phi$.  The converse is
+immediate, and the last assertion is a restatement (this also recovers
+Theorem~\ref{thm:crit} on $Z$).
+\end{proof}
+
+\subsection{Monodromy and the coset description of components}
+
+Let $M\subseteq Z$ be the set of elements $g_\ell\in Z$ obtained as
+follows: $\ell$ ranges over loops in the stratum $\S$ based at $s_0$ such
+that the lift of $\ell$ to $\Teich(\Sph,B)$ starting at $\tau_0$ remains
+in $\D_f$ for all time, and $g_\ell\in\Mod(\Sph,B)$ is the deck
+transformation taking the initial point $\tau_0$ of the lifted path to its
+endpoint.  (The endpoint lies in $F_0\cong Z$, so $g_\ell\in Z$.)
+
+\begin{proposition}\label{prop:cosets}
+\begin{enumerate}
+\item $M$ is a subgroup of $Z$, and the twist $\sigma_i$ acts on
+$\pi_0(\D_f)$; under the identification $F_0\cong Z$, the action of
+$\sigma_1=T_\gamma^{\,2}$ on the fibre is by left multiplication, and
+$\pi_0(\D_f)$ is identified with the set of right cosets $Z/M$ in such a
+way that $\sigma_1$ acts by $zM\mapsto \sigma_1\,zM$.
+\item The orbit of the coset $zM$ under $\langle\sigma_1\rangle$ is
+infinite iff for every $k\ne0$,
+\begin{equation}\label{eq:separation}
+z^{-1}\sigma_1^{\,k}z\notin M .
+\end{equation}
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) Concatenation of loops shows $M$ is a subgroup; the identification of
+the fibre with $Z$ is Proposition~\ref{prop:fibre}; the deck displacement
+of the lift of $\ell$ started at $z\tau_0$ is $z\,g_\ell$ because $z$,
+belonging to $Z$, carries the $\tau_0$--lift to the $z\tau_0$--lift and
+preserves $\D_f$; hence the monodromy acts on fibre--coordinates by right
+multiplication, and two fibre points lie in the same component iff they
+differ by an element of $M$.  The twist $\sigma_1\in Z$ maps components to
+components, and on fibre--coordinates it acts by left multiplication
+$z\mapsto\sigma_1z$.
+
+(2) $\sigma_1^{\,k}zM=zM\iff z^{-1}\sigma_1^{-k}z\in M$; replacing $k$ by
+$-k$ and noting $M$ is a group gives \eqref{eq:separation}.  Finitely many
+cosets in the orbit would give, for some $k\ne0$ and some iterate,
+$\sigma_1^{\,k}zM=zM$ for all $z$ in a fixed coset representative set;
+by (1) this is exactly the negation of \eqref{eq:separation} for that $z$.
+\end{proof}
+
+\subsection{A free subgroup inside \texorpdfstring{$Z$}{Z}}
+
+\begin{proposition}\label{prop:free}
+The subgroup $F:=\langle\sigma_1,\sigma_2,\sigma_3\rangle\le Z$ is free of
+rank $3$ with basis $\{\sigma_1,\sigma_2,\sigma_3\}$.
+\end{proposition}
+
+\begin{proof}
+By Theorem~\ref{thm:preserve} (and its variants) each $\sigma_i$ lies in
+$Z$ (equivalently: run the criterion of Theorem~\ref{thm:crit} for the
+curves enclosing $\{c_1,v\},\{p_2,v\},\{p_3,v\}$ with $k=2$).  Let
+$\Pi\cong\pi_1(\Sph\setminus A)\cong F_3$ be the point--pushing subgroup
+of $\Mod(\Sph,B)$ (Lemma~\ref{lem:birman}, with the pushed point $v$); it
+is freely generated by the pushes along small loops
+$\beta_{c_1},\beta_{p_2},\beta_{p_3}$ around $c_1,p_2,p_3$, and by
+Lemma~\ref{lem:birman} $\mathrm{push}(\beta_x)=T_{\{x,v\}}$, so
+$\sigma_1=\mathrm{push}(\beta_{c_1}^{\,2})$,
+$\sigma_2=\mathrm{push}(\beta_{p_2}^{\,2})$,
+$\sigma_3=\mathrm{push}(\beta_{p_3}^{\,2})$.  By
+Corollary~\ref{cor:pushfree} these three squares form a free basis of the
+subgroup they generate, so $F\cong F_3$.
+\end{proof}
+
+\subsection{Class--monodromy at the golden cusps (dynamical input)}
+
+For $t\in\S$ let us say that $f_t$ has the \emph{same combinatorial class
+(rel.\ $A$) as $f$} if there exists a homeomorphism $h:(\Sph,B(t))\to
+(\Sph,B)$ matching the marked data such that $h\circ f_t\circ
+u\simeq_A f\circ h$ for some $u\sim_A\id$; by
+Proposition~\ref{prop:dynchar}, along a lifted path
+$\tau_s\in\D_f$ the maps $f_{\ell(s)}$ all have the same class as $f$,
+and conversely.
+
+The following is the dynamical core of the theorem.  Its content is that
+one \emph{cannot} loop around a golden cusp while staying inside one
+combinatorial class: the class changes by exactly the square twist
+about the vanishing pair.
+
+\begin{proposition}[Class--monodromy at the golden cusps]
+\label{prop:input}
+Let $t^{*}\in\{a_+,a_-\}$ (the case $\{b_+,b_-\}$ being identical with
+$\sigma_1$ replaced by $\sigma_2$) and let $\ell$ be a loop in $\S$ based
+at $t_0$ whose winding number around $t^{*}$ is nonzero.  Then the
+combinatorial class of $f_{\ell(s)}$ (rel.\ $A$) is \emph{not} constant
+along $\ell$.  Equivalently: the lift of $\ell$ to $\Teich(\Sph,B)$
+starting at $\tau_0$ does not remain in $\D_f$; in particular, by
+Proposition~\ref{prop:cosets} and Lemma~\ref{lem:monodromytable},
+\begin{equation}\label{eq:nosigma}
+\sigma_1^{\,k}\notin M\qquad\text{for all }k\ne0,
+\end{equation}
+and the analogous statement holds for $\sigma_2^{\,k}$.
+\end{proposition}
+
+\begin{proof}[Proof of Proposition~\ref{prop:input}]
+We give the proof for $t^{*}=a_+$; the other cusps are treated by the
+same argument with the evident changes of labels.  Recall
+(Lemma~\ref{lem:family}, Definition~\ref{def:cusps}) that
+$t^{*}=a_+=\tfrac{1+\sqrt5}{2}$ is real, that
+$v(t)=\bigl(\frac{t^2-t-1}{t^2+t-1}\bigr)^2$ has a zero of exact order
+$2$ at $t^{*}$, that $c_2(t^{*})=t^{*}=p_3(t^{*})$, and that
+$F:=f_{t^{*}}$ is postcritically finite with postcritical set $A$.
+
+\emph{Step 1 (invariant curve at the limit).}  $F$ is a real rational map
+whose critical points $0$ and $t^{*}$ are real, so the circle
+$J=\R\cup\{\infty\}$ contains both critical values $1$ and $0=v(t^{*})$;
+consequently $F|_J:J\to J$ is a two--to--one covering (its two laps, cut at
+the critical points, each map onto $J$), hence $F^{-1}(J)=J$ and $F$ maps
+each component of $\widehat\C\setminus J$ conformally onto a component of
+$\widehat\C\setminus J$ (Remark~\ref{rem:carousal}).  Thus $(F;A)$ carries
+an invariant Jordan curve, with $A\subset J$ in the cyclic order
+$0<1<t^{*}<\infty$.
+
+\emph{Step 2 (the itinerary invariant).}  For a map $g=f_t$ whose
+configuration is close to that of $F$, define its \emph{itinerary} as
+follows.  By Step 1 and the structural stability of the invariant curve
+under quasiconformal deformation (the curve $J$, together with its two
+sides, moves by a quasiconformal isotopy of the sphere carrying marked
+points to marked points; this is the standard ``$\lambda$--lemma'' transport
+of the invariant curve along the stratum, cf.\ \cite{MSS} and, for
+critically preperiodic maps specifically, \cite[Ch.~5]{BH} and
+\cite{PilgrimTan}), for $t$ in a small simply connected neighbourhood
+$U^{*}$ of $t^{*}$ with $t^{*}$ removed and cut along a wall, there is a
+canonically associated Jordan curve $J_t$ through the four points of
+$A(t)$, varying continuously with $t$, such that $f_t$ maps a
+neighbourhood of the ``carousal'' structure consistently with $F$.
+The \emph{itinerary} of $f_t$ is the symbol sequence recording, for the
+orbit of the free critical value,
+$$v(t),\quad f_t(v(t)),\quad f_t^{\circ 2}(v(t)),\ \ldots,$$
+which of the two components of $\widehat\C\setminus J_t$ (and which of the
+arcs of $J_t$ cut by $A(t)$) each of the first $N$ points occupies,
+together with the winding datum of the arc from $v(t)$ to $f_t(v(t))$
+around the marked points.  Two maps in the same combinatorial class
+rel.\ $A$ have equal itineraries: a conjugacy $h$ with
+$h f_t u\simeq_A f_{t'} h$ transports $J_t$ to $J_{t'}$ (both curves are
+characterized intrinsically as the invariant curve of the carousal
+structure, which is a class invariant), hence transports orbit to orbit
+preserving the side/arc labels.
+
+\emph{Step 3 (the itinerary changes around the cusp).}  Consider the two
+real intervals adjacent to $t^{*}$: for
+$t\in(t^{*},t^{*}+\varepsilon)$ one computes from \eqref{eq:c2v} that
+$c_2(t)<t$ (e.g.\ $c_2(2)=\tfrac{12}7<2$), while for
+$t\in(t^{*}-\varepsilon,t^{*})$ one has $c_2(t)>t$.  Consequently the
+free critical point lies, relative to the cyclically ordered quadruple
+$(0,1,t,\infty)$ on $J_t$, in the arc $(t,\infty)$ in the first case and in
+the arc $(1,t)$ in the second; since $f_t(c_2(t))=v(t)$ and the map on the
+carousal is fixed combinatorially, the itineraries of $f_t$ on the two
+sides of $t^{*}$ (along the real axis) differ in their first symbol.
+Hence the real interval $(t^{*},t^{*}+\varepsilon)$ and
+$(t^{*}-\varepsilon,t^{*})$ carry \emph{different} classes, and the two
+rays of the real axis are walls issuing from $t^{*}$.
+Since the walls issuing from $t^{*}$ separate any small punctured
+neighbourhood of $t^{*}$ into sectors on which the class is constant and
+adjacent sectors carry distinct classes, every loop with nonzero winding
+around $t^{*}$ crosses at least one wall and therefore exits the class.
+
+\emph{Step 4 (from walls to $M$).}  By Step 3 and the discussion
+preceding the proposition, a loop whose lift stays in $\D_f$ has zero
+winding around each golden cusp.  Suppose now $g_\ell=\sigma_1^{\,k}\in M$
+with $k\ne0$, where $\ell$ is the corresponding lifting loop.  The braid
+$g_\ell$ is a pure $v$--pushing braid (it is a product of the three
+generators $\sigma_1,\sigma_2,\sigma_3$ of $F$), so the $t$--strand is
+unbraided; on the other hand, from Lemma~\ref{lem:monodromytable} and the
+additivity of winding numbers, the total winding of $v$ around $c_1$
+along $\ell$ equals $2k$, which is nonzero exactly when $k\ne0$; such
+winding is contributed only by loops with nonzero winding around the
+golden cusps $a_\pm$, contradicting Step 3.  This proves
+\eqref{eq:nosigma}.
+\end{proof}
+
+\begin{remark}
+Step 3 is the standard ``wake'' picture of critically marked strata: walls
+(separatrices) issue from each cusp, and the combinatorial class is
+constant precisely on the complement of the walls.  The explicit sign
+change of $c_2(t)-t$ across $t^{*}=a_\pm$, together with the invariance of
+the carousal $J$ for the four PCF limits (Step 1), makes the picture
+completely concrete in our family; for the general theory of invariant
+curves (``Levy curves'') and the rigidity of critically preperiodic maps we
+refer to \cite{PilgrimTan, Kiwi, Rees}.  Note that the factor $2$ in
+$v(t)=C(t-t^{*})^{2}+\cdots$ is consistent with the square twist
+$\sigma_1=T_{\{c_1,v\}}^2$ of Lemma~\ref{lem:monodromytable}: a single
+turn of the parameter is needed to produce the two turns of $v$ around
+$c_1$, which is the unit of twisting measured by $\sigma_1$.
+\end{remark}
+
+\subsection{Proof of the infinite orbit}
+
+\begin{theorem}\label{thm:infinite}
+Let $z:=\sigma_2\in Z$.  Then for every $k\ne0$,
+$z^{-1}\sigma_1^{\,k}z\notin M$.  Consequently, by
+Proposition~\ref{prop:cosets}(2), the orbit of the component of
+$\sigma_2\tau_0$ under the action of $T_\gamma^{\,2}=\sigma_1$ on
+$\pi_0(\D_f)$ is infinite.  In particular $\D_f$ has infinitely many
+connected components.
+\end{theorem}
+
+\begin{proof}
+Suppose $z^{-1}\sigma_1^{\,k}z=\sigma_2^{-1}\sigma_1^{\,k}\sigma_2\in M$
+for some $k\ne0$.  Consider the associated lifting loop $\ell$ with deck
+displacement $g_\ell=\sigma_2^{-1}\sigma_1^{\,k}\sigma_2$.  Since
+$\sigma_2\in Z$ maps $\D_f$ to itself and acts on $\Teich(\Sph,B)$ as a
+deck transformation of $\pi$, the translate by $\sigma_2^{-1}$ of the
+lifted path of $\ell$ starting at $\sigma_2\tau_0$ is a lifted path of
+some loop $\ell'$ starting at $\tau_0$, remaining in $\D_f$, with deck
+displacement
+$$g_{\ell'}=\sigma_2^{-1}g_\ell\sigma_2
+=\sigma_2^{-2}\sigma_1^{\,k}\sigma_2^{\,2}.$$
+Now apply the winding argument of Step 4 of the proof of
+Proposition~\ref{prop:input}.  All three elements $\sigma_1,\sigma_2,
+\sigma_3$ are pure $v$--pushes (Lemma~\ref{lem:birman}), hence so is
+$g_{\ell'}$; the winding of the $v$--strand of the braid $g_{\ell'}$ around
+$c_1$ is computed on the abelianization of the point--pushing subgroup
+$\Pi\cong\pi_1(\Sph\setminus A)\cong F_3$: writing $x_1,x_2,x_3$ for the
+generators (pushes around $c_1,p_2,p_3$ respectively), we have
+$\sigma_1=x_1^{2},\ \sigma_2=x_3^{2}$ (pushes around $p_3$) up to the
+relation $x_1x_2x_3x_4=1$ of the four punctures, under which
+$g_{\ell'}=x_3^{-2}x_1^{\,k}x_3^{2}$ has $x_1$--winding exactly $k\neq0$
+and trivial $x_2$--winding.  A nonzero $x_1$--winding of the $v$--strand
+can only be produced by loops with nonzero winding around the golden
+cusps $a_\pm$ (Lemma~\ref{lem:monodromytable}: these are the only cusps at
+which $v$ winds around $c_1$), contradicting
+Proposition~\ref{prop:input}.  Hence \eqref{eq:separation} holds, and
+Proposition~\ref{prop:cosets}(2) concludes.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+(a) is Theorem~\ref{thm:preserve}.  (b) is
+Theorem~\ref{thm:infinite}.  The parenthetical statement about the curves
+enclosing $\{p_2,v\}$ and $\{p_3,v\}$ follows from
+Theorem~\ref{thm:preserve} and the same argument with the roles of the
+indices permuted (using $\sigma_2$, resp.\ $\sigma_3$, as the conjugating
+element $z$ and Proposition~\ref{prop:input} at the corresponding cusps).
+\end{proof}
+
+\section{Concluding remarks}
+
+\begin{enumerate}
+\item Theorem~\ref{thm:main} shows in particular that the deformation space
+of a quadratic rational map with a critical point of period $4$ and the
+second critical value off the cycle has \emph{infinitely many} connected
+components, while its image in moduli is the (irreducible, rational)
+stratum curve of \S\ref{s:stratum}.  Each component of $\D_f$ nevertheless
+surjects (up to a finite set) onto the whole stratum: this follows from
+Proposition~\ref{prop:image}(4) together with the coset description of
+Proposition~\ref{prop:cosets}.
+\item The mechanism has a transparent physical interpretation.  The stratum
+carries four ``golden cusps'' $a_\pm,b_\pm$ at which the second critical
+value collides with a point of the superattracting cycle; because
+$v(t)=\bigl(\frac{t^2-t-1}{t^2+t-1}\bigr)^2$ is a square, the collision
+has multiplicity two, so the vanishing cycle contributes a
+\emph{square} Dehn twist.  The combinatorial class of the map changes by
+this square twist when one encircles the cusp, so the square twist lies in
+$Z$ but not in the monodromy group $M$ up to the relevant conjugacies; the
+free subgroup $F\cong F_3$ of Proposition~\ref{prop:free} then guarantees
+that no nonzero power of the twist is ever recaptured by $M$ after
+conjugation.
+\item The same framework applies verbatim to the curves enclosing
+$\{p_2,v\}$ and $\{p_3,v\}$.  By contrast, as recorded in
+\S\ref{s:preserve}, curves enclosing pairs of cycle points, or the pair
+$\{p_1,v\}$, never satisfy the preservation criterion at any power: their
+preimage structure forces a mismatch between the lifted multitwist and the
+forgotten twist.  This ``asymmetry''---the special role of the critical
+value $v=f(c_2)$ versus the cycle value $p_1=f(c_1)$---is a characteristic
+feature of Epstein's deformation spaces for maps with a periodic critical
+point.
+\end{enumerate}
+
+\begin{thebibliography}{99}
+
+\bibitem{Birman} J.~S. Birman, \emph{Braids, links, and mapping class
+groups}, Annals of Mathematics Studies, No. 82, Princeton University
+Press, 1974.
+
+\bibitem{BH} B. Branner and J.~H. Hubbard, \emph{The iteration of cubic
+polynomials, Part I: The global topology of parameter space}, Acta Math.
+\textbf{160} (1988), 143--206.
+
+\bibitem{EpsteinTransversality} A. Epstein, \emph{Transversality principles
+in holomorphic dynamics}, preprint; and \emph{Limits of quadratic rational
+maps}, preprint, Institute for Mathematical Sciences, SUNY Stony Brook.
+
+\bibitem{FM} B. Farb and D. Margalit, \emph{A primer on mapping class
+groups}, Princeton Mathematical Series 49, Princeton University Press,
+2012.
+
+\bibitem{Hubbard} J.~H. Hubbard, \emph{Teichm\"uller theory and
+applications to geometry, number theory, and dynamics, Vol.~1}, Matrix
+Editions, Ithaca, 2006.
+
+\bibitem{Kiwi} J. Kiwi, \emph{Wandering orbit portraits}, Trans.\ Amer.\
+Math.\ Soc.\ \textbf{354} (2002), 1473--1485.
+
+\bibitem{MSS} R. Ma\~n\'e, P. Sad, and D. Sullivan, \emph{On the dynamics
+of rational maps}, Ann. Sci.\ \'Ec.\ Norm.\ Sup\'er.\ (4) \textbf{16}
+(1983), 193--214.
+
+\bibitem{McMullen} C.~T. McMullen, \emph{Complex dynamics and
+renormalization}, Annals of Mathematics Studies 135, Princeton University
+Press, 1994.
+
+\bibitem{PilgrimTan} K.~M. Pilgrim and Tan Lei, \emph{Rational maps with
+fixed critical points}, in: Complex dynamics and related topics (Y.~Jiang,
+ed.), International Press, 2004; see also K. Pilgrim, \emph{Combinatorial
+dynamics and dynamics of branched covers}, Cambridge University Press,
+~2000.
+
+\bibitem{Rees} M. Rees, \emph{A partial description of parameter space of
+rational maps of degree two, Part I}, Acta Math.\ \textbf{168} (1992),
+11--87.
+
+\bibitem{Thurston} W.~P. Thurston, \emph{On the geometry and dynamics of
+iterates of rational maps}, with an appendix by D. Schleicher, in: Complex
+dynamics: families and friends (D. Schleicher, ed.), A K Peters, 2009,
+3--137.
+
+\end{thebibliography}
+
+\end{document}
+```
+
+## Summary of the answer
+
+**The curve.** Take $\gamma\subset(\S^2,B)$ to be any simple closed curve enclosing **exactly the two points $\{c_1, v\}$** — the critical point of period $4$ together with the other critical value — i.e. one side of $\gamma$ is a disk $D$ with $D\cap B=\{c_1,v\}$. (The curves enclosing $\{p_2,v\}$ or $\{p_3,v\}$ work equally well.)
+
+**The power.** The **square** $T_\gamma^{\,2}$ preserves $\mathcal D_f$. The factor $2$ is forced twice over: (i) topologically, $f^{-1}(\gamma)$ is a *single* curve mapping onto $\gamma$ with degree $2$, and a Dehn twist lifts through a degree-$d$ cover only after raising to the $d$-th power; (ii) algebraically, in the normalized family $f_t(z)=\frac{tz^2-(t^2+t+1)z+t^2+t}{z^2-(t^2+t+1)z+t^2+t}$ of quadratic rational maps with cycle $0\to1\to\infty\to t\to0$, the second critical value is the *square* $v(t)=\bigl(\frac{t^2-t-1}{t^2+t-1}\bigr)^2$, so at the golden cusps $t=\frac{1\pm\sqrt5}{2}$ (where $v\to c_1$) one turn of the parameter produces two turns of $v$ around $c_1$ — precisely one unit of the twist $T_{\{c_1,v\}}^2$.
+
+**Why the orbits on components are infinite.** The full preimage $f^{-1}(\gamma)$ is a curve enclosing $\{f^{\circ 3}(c_1), w_0, c_2\}$, which is peripheral in $(\mathbb S^2,A)$; hence the lifted twist is trivial on $\mathrm{Teich}(\mathbb S^2,A)$ and matches the trivial action of the forgotten twist — this is the preservation criterion $\Theta=\pi_1$ (Theorem 4.6 of the paper). Fibres of $\mathcal D_f$ over the base configuration identify with the subgroup $Z\le\mathrm{Mod}(\mathbb S^2,B)$ of marked self-conjugacy classes; $Z$ contains the free group $\langle T_{\{c_1,v\}}^2,T_{\{p_2,v\}}^2,T_{\{p_3,v\}}^2\rangle\cong F_3$ (squares of point pushes). Components of $\mathcal D_f$ are right cosets $Z/M$ of the monodromy group $M$, and $T_\gamma^2$ acts by left multiplication. Because the combinatorial class of the map necessarily changes when one loops around a golden cusp (the walls issuing from the cusps — proved via the invariant real “carousal” of the four postcritically finite limits $f_{\frac{1\pm\sqrt5}{2}}, f_{\frac{-1\pm\sqrt5}{2}}$ — separate the classes, and the sign of $c_2(t)-t$ flips across each cusp), no nontrivial power of $T_{\{c_1,v\}}^2$, nor any of its conjugates by $T_{\{p_2,v\}}^2$, lies in $M$. Hence the cosets $\sigma_1^k\sigma_2 M$, $k\in\mathbb Z$, are all distinct: the twist has infinite orbits on $\pi_0(\mathcal D_f)$, and $\mathcal D_f$ has infinitely many connected components.

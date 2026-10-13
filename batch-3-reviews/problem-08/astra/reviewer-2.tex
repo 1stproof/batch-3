@@ -1,0 +1,363 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}[lemma]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[lemma]{Definition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\htop}{h_{\mathrm{top}}}
+\newcommand{\Dprime}{\mathcal{D}'}
+
+\newcommand{\fptitle}{Review of Problem 8 -- Astra}
+\newcommand{\reviewtag}{Reviewer 2}
+\usepackage{fp-review}
+
+\begin{document}
+\maketitle
+
+\section{Review}
+
+\paragraph{Correctness.}
+\begin{itemize}
+	\item  1: essentially flawless mathematical argument
+	\item  0.5: minor errors that are easily corrected
+	\item  0: blank solution, or acknowledged partial result
+	\item  $-0.5$: major errors
+	\item  $-1$: proposed proof makes no progress towards the result.
+\end{itemize}
+Note that points should be docked for wrong statements/ solutions.
+
+\noindent Score: 0.
+The argument involves a trivial manipulation that doesn't solve the problem, or bring anyone closer to the solution.
+
+\paragraph{Exposition.}
+\begin{itemize}
+	\item  1: well-written and clear solution.
+	\item  0: argument that is possible to follow with serious effort
+	\item  $-1$: very poor exposition
+\end{itemize}
+
+\noindent Score: 0.
+Not much of a solution.
+
+\paragraph{Attributions.}
+\begin{itemize}
+	\item  1: solutions contains fully appropriate attributions
+		to related work and theorems being used.
+	\item  0: moderate issues with missing attributions or hallucinated references
+	\item  $-1$: blatant plagiarism or hallucinations
+\end{itemize}
+
+\noindent Score: 0.
+The reduction from continuous to discrete is in the literature.
+
+\newpage
+\section{Submission with inline comments}
+
+
+\begin{abstract}
+A complete proof of the proposed assertion is not known in the stated
+generality. In fact, the assertion would settle the open problem of
+vanishing Lyapunov exponents for cohomologically rigid diffeomorphisms.
+We give a complete proof of this reduction, explaining why the usual
+structural results about globally hypoelliptic vector fields do not
+supply the requested conclusion.
+\end{abstract}
+
+\section{Status of the question}
+
+The hypothesis in the question is called \emph{global hypoellipticity}.
+The established theory relates this property to cohomology freeness and
+gives unique ergodicity with a smooth invariant probability density;
+see Forni~\cite[Proposition~2.4 and Theorem~3.10]{Forni}.
+It does not, however, supply the proposed general entropy conclusion.
+
+The relevant unresolved issue is explicitly recorded by
+Karaliolios~\cite[Introduction, p.~6]{Karaliolios}: it is unknown whether
+cohomological rigidity of a diffeomorphism implies that all its Lyapunov
+exponents vanish. The suspension construction below shows that a proof
+of the assertion in the question would imply precisely this vanishing
+result.
+
+Thus the following is a rigorous reduction to an open problem, rather
+than a purported proof of the requested assertion.
+
+\section{A sufficient condition for global hypoellipticity}
+
+We use smooth positive densities, so that orientability is unnecessary.
+If $\mu$ is such a density, scalar distributions are identified with
+continuous linear functionals on $C^\infty(M)$ through the pairing
+\[
+ \langle u,\phi\rangle_\mu
+ =
+ \langle u,\phi\mu\rangle.
+\]
+For a vector field preserving $\mu$, the distributional derivative
+satisfies
+\[
+ \langle Xu,\phi\rangle_\mu
+ =
+ -\langle u,X\phi\rangle_\mu.
+\]
+
+\begin{lemma}\label{lem:cf-gh}
+Let $Y$ be a smooth vector field on a compact manifold $P$, preserving
+a smooth positive probability density $\mu$. Suppose that for every
+$f\in C^\infty(P)$ there is $v\in C^\infty(P)$ such that
+\begin{equation}\label{eq:flow-cf}
+ Yv=f-\int_P f\,d\mu.
+\end{equation}
+Then $Y$ satisfies the global hypoellipticity hypothesis of the question.
+\end{lemma}
+
+\begin{proof}
+Suppose that $Yu=f$ for $u\in\Dprime(P)$ and $f\in C^\infty(P)$.
+Invariance of $\mu$ gives
+\[
+ \int_P f\,d\mu
+ =
+ \langle Yu,1\rangle_\mu
+ =
+ -\langle u,Y1\rangle_\mu
+ =
+ 0.
+\]
+Consequently, \eqref{eq:flow-cf} supplies a smooth function $v$ with
+$Yv=f$. Set $w=u-v$, so that $Yw=0$.
+
+For any $\phi\in C^\infty(P)$, choose $a\in C^\infty(P)$ satisfying
+\[
+ Ya=\phi-\int_P\phi\,d\mu.
+\]
+Then
+\[
+ \langle w,\phi\rangle_\mu
+ =
+ \left(\int_P\phi\,d\mu\right)\langle w,1\rangle_\mu
+ +\langle w,Ya\rangle_\mu
+ =
+ \left(\int_P\phi\,d\mu\right)\langle w,1\rangle_\mu.
+\]
+Thus $w$ is a constant distribution. It follows that $u=v+w$ is smooth.
+\end{proof}
+
+\section{Suspending a cohomologically rigid diffeomorphism}
+
+\begin{definition}
+Let $F:N\to N$ be a smooth diffeomorphism of a compact connected
+manifold, preserving a smooth positive probability density $\nu$.
+We call $F$ \emph{cohomologically rigid} if, for every
+$a\in C^\infty(N)$ with $\int_N a\,d\nu=0$, there is
+$v\in C^\infty(N)$ satisfying
+\begin{equation}\label{eq:map-cf}
+ v\circ F-v=a.
+\end{equation}
+\end{definition}
+
+\begin{lemma}\label{lem:suspension}
+The constant-roof suspension of a cohomologically rigid diffeomorphism
+has a globally hypoelliptic generating vector field.
+\end{lemma}
+
+\begin{proof}
+Let
+\[
+ P_F=(N\times\R)/{\sim},
+ \qquad
+ (x,s+1)\sim(Fx,s).
+\]
+The equivalence relation is generated by the free, properly
+discontinuous smooth $\mathbb Z$-action
+\[
+ k\cdot(x,s)=(F^k x,s-k).
+\]
+Hence $P_F$ is a smooth manifold. It is compact because the image of
+$N\times[0,1]$ is all of $P_F$, and it is connected because $N$ is
+connected.
+
+Translation in the second coordinate descends to the smooth flow
+\[
+ G_t[x,s]=[x,s+t],
+\]
+whose generating vector field $Y$ is induced by $\partial_s$.
+Since $F$ preserves $\nu$, the product density $d\nu\,ds$ descends to
+a smooth positive $G_t$-invariant probability density $\mu$ on $P_F$.
+
+We verify \eqref{eq:flow-cf}. Given $f\in C^\infty(P_F)$, denote its
+lift to $N\times\R$ by $\widetilde f$. Thus
+\[
+ \widetilde f(x,s+1)=\widetilde f(Fx,s).
+\]
+Set
+\[
+ c=\int_{P_F}f\,d\mu,
+ \qquad
+ a(x)=\int_0^1\bigl(\widetilde f(x,r)-c\bigr)\,dr.
+\]
+By the definition of the suspension measure,
+$\int_N a\,d\nu=0$. Cohomological rigidity supplies
+$v\in C^\infty(N)$ with $v\circ F-v=a$.
+
+Define, for all $s\in\R$,
+\[
+ \widetilde u(x,s)
+ =
+ v(x)+\int_0^s\bigl(\widetilde f(x,r)-c\bigr)\,dr.
+\]
+This is smooth. Moreover,
+\[
+ \frac{\partial}{\partial s}
+ \bigl(\widetilde u(x,s+1)-\widetilde u(Fx,s)\bigr)=0,
+\]
+and at $s=0$ the expression in parentheses equals
+\[
+ v(x)+a(x)-v(Fx)=0.
+\]
+Therefore
+\[
+ \widetilde u(x,s+1)=\widetilde u(Fx,s).
+\]
+It follows that $\widetilde u$ descends to a smooth function $u$ on
+$P_F$, and
+\[
+ Yu=f-c=f-\int_{P_F}f\,d\mu.
+\]
+Lemma~\ref{lem:cf-gh} now proves global hypoellipticity.
+\end{proof}
+
+\section{What the requested assertion would imply}
+
+\begin{proposition}\label{prop:reduction}
+If the assertion in the question holds for all compact connected smooth
+manifolds, then every cohomologically rigid smooth diffeomorphism
+preserving a smooth positive probability density has zero topological
+entropy and all its Lyapunov exponents vanish almost everywhere.
+\end{proposition}
+
+\review{The reduction of the discrete time to continuous time version is available in the paper of Rodriguez-Hertz--Rodriguez-Hertz, and overall the reductions in this text are straightforward and are not much progress.
+On the positive side, the paper is quite explicit that it doesn't solve the problem.}
+
+\begin{proof}
+Let $F:N\to N$ be such a diffeomorphism and form the suspension from
+Lemma~\ref{lem:suspension}. Its generating vector field satisfies
+exactly the hypothesis of the question.
+
+The embedded section
+\[
+ S=\{[x,0]:x\in N\}\subset P_F
+\]
+is invariant under the time-one map, since
+\[
+ G_1[x,0]=[x,1]=[Fx,0].
+\]
+Thus $G_1|_S$ is conjugate to $F$. Topological entropy cannot increase
+upon restriction to a compact invariant subset: this follows directly
+from the definition using separated sets, since every separated set
+in the subset is also separated in the ambient space. Hence
+\begin{equation}\label{eq:entropy-restriction}
+ \htop(F)\leq\htop(G_1).
+\end{equation}
+The entropy of a flow is, by convention, that of its time-one map.
+Consequently, the requested assertion would give
+$\htop(G_1)=0$, and \eqref{eq:entropy-restriction} would imply
+$\htop(F)=0$.
+
+Metric entropy is bounded above by topological entropy
+\cite{Goodwyn}, so
+\[
+ h_\nu(F)=0.
+\]
+Let $\lambda_1(x),\ldots,\lambda_d(x)$ denote the Lyapunov exponents,
+listed with multiplicity. Since $F$ is smooth and $\nu$ is a smooth
+invariant probability density, Pesin's entropy formula applies
+\cite{Pesin}:
+\[
+ h_\nu(F)
+ =
+ \int_N\sum_{j=1}^d\max\{\lambda_j(x),0\}\,d\nu(x).
+\]
+The integrand is nonnegative. Its integral being zero, every Lyapunov
+exponent is nonpositive at $\nu$-almost every point.
+
+Finally, choose a Riemannian volume density $m$ and write
+$d\nu=\rho\,dm$, where $\rho$ is smooth and everywhere positive.
+Invariance of $\nu$ gives
+\[
+ \bigl|\det D_xF^n\bigr|
+ =
+ \frac{\rho(x)}{\rho(F^n x)}.
+\]
+Because $\rho$ is bounded above and bounded away from zero,
+\[
+ \sum_{j=1}^d\lambda_j(x)
+ =
+ \lim_{n\to\infty}\frac1n
+       \log\bigl|\det D_xF^n\bigr|
+ =
+ 0
+\]
+at every Lyapunov-regular point. A finite collection of nonpositive
+numbers with sum zero consists entirely of zeros. Thus all Lyapunov
+exponents vanish $\nu$-almost everywhere.
+\end{proof}
+
+\begin{remark}[The essential gap in a tempting entropy argument]
+Preservation of a smooth volume gives
+$\sum_j\lambda_j=0$, not
+$\sum_j\max\{\lambda_j,0\}=0$.
+The latter is the quantity occurring in Pesin's entropy formula.
+Consequently, replacing entropy by the integral of the logarithm of
+the full Jacobian determinant would be incorrect.
+\end{remark}
+
+\section{Conclusion}
+
+Proposition~\ref{prop:reduction} shows that the question includes the
+Lyapunov-exponent vanishing problem explicitly identified as open in
+\cite{Karaliolios}. The established global-hypoellipticity results
+provide cohomological rigidity and a smooth invariant measure, but
+not the additional vanishing needed for entropy. Therefore a complete
+proof of the proposed general assertion cannot presently be supplied
+as an established mathematical result; doing so would require resolving
+this open problem.
+
+\begin{thebibliography}{9}
+
+\bibitem{Forni}
+G.~Forni,
+\emph{On the Greenfield--Wallach and Katok conjectures in dimension three},
+in \emph{Geometric and Probabilistic Structures in Dynamics},
+Contemporary Mathematics \textbf{469},
+American Mathematical Society, 2008, pp.~197--213.
+See also arXiv:0706.3981, especially Proposition~2.4 and Theorem~3.10.
+
+\bibitem{Goodwyn}
+L.~W.~Goodwyn,
+\emph{Topological entropy bounds measure-theoretic entropy},
+Proceedings of the American Mathematical Society
+\textbf{23} (1969), 679--688.
+
+\bibitem{Karaliolios}
+N.~Karaliolios,
+\emph{Cohomological rigidity and the Anosov--Katok construction},
+arXiv:1711.02732.
+See the Introduction, p.~6, for the open question concerning
+vanishing Lyapunov exponents.
+
+\bibitem{Pesin}
+Ya.~B.~Pesin,
+\emph{Characteristic Lyapunov exponents and smooth ergodic theory},
+Russian Mathematical Surveys
+\textbf{32} (1977), no.~4, 55--114.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,14 @@
+kind: attempt
+Open question attempted: whether global hypoellipticity (GH) forces subexponential growth of the derivative of the flow (or some other rigidity property implying zero entropy), which would settle the headline claim that GH flows have zero topological entropy.
+
+Background (planner's analysis; facts marked "expected" are not yet proved and you should prove whatever you use): for X GH on compact connected M (problem statement below), expected consequences are: the kernel of X on distributions is the constants; X has closed range on C^infinity with tame estimates ||u - mean||_{C^r} <= C_r ||Xu||_{C^{k(r)}}; X preserves a smooth volume and the flow is uniquely ergodic and minimal; all zero-mean smooth functions are smooth coboundaries. Also: GH is invariant under time changes (hX, h>0 smooth) and smooth conjugacy. Spectral consequence: for smooth zero-mean f, the spectral measure sigma_f of the unitary flow on L^2(omega) satisfies sigma_f([-e,e]) = O(e^N) for every N.
+
+Observations of what does NOT work: comparing the tame estimate for u∘g_t (or for weighted ergodic integrals) with growth of ||Dg_t|| gives no contradiction because of the loss of derivatives; the spectral vanishing at 0 alone is compatible with positive entropy measure-theoretically (dense sets of coboundaries exist in any ergodic system), so the algebra structure of C^infinity (closure under products and smooth functional calculus) or the geometry must enter.
+
+Task: by a functional-analytic, spectral, or geometric argument (a fresh lens, not Pesin theory), try to prove one of the following, each of which implies zero entropy (explain the implication):
+ (a) lim_{t->inf} (1/t) log sup_x ||D g_t(x)|| = 0 (then Ruelle–Przytycki-type bound h_top <= dim M * lim (1/t) log Lip(g_t) gives zero entropy);
+ (b) the flow is uniformly rigid (g_{t_n} -> id uniformly along some t_n -> infinity), or equicontinuous, or preserves a continuous Riemannian metric or continuous metric;
+ (c) the flow, with its smooth invariant volume, has zero measure-theoretic entropy (e.g. discrete spectrum, or no Lebesgue spectral component), together with unique ergodicity;
+ (d) any other property you can actually prove from GH that implies zero topological entropy.
+Ideas that may help: Kozlovski's formula h_top(f) = lim (1/n) log integral ||Lambda Df^n|| for C^infinity f; Yomdin volume growth; the fact that if f = Xu then phi'(u) f = X(phi(u)); products f·(h∘g_s); constructing generalized functions w from the dynamics (orbit measures, derivatives of delta functions transported along orbits, measures on pieces of submanifolds pushed by the flow) whose X-image is small or smooth, contradicting GH or its quantitative dual form ||w - <w,1>||_{(C^k)'} <= C ||Xw||_{(C^s)'}.
+Give complete proofs of whatever you establish; clearly separate proved statements from heuristics; if you settle the claim, write the full proof.

@@ -1,0 +1,193 @@
+```latex
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+
+\newcommand{\Hf}{\mathbb{H}}
+\newcommand{\boxplusop}{\boxplus}
+\newcommand{\inv}[1]{#1^{-1}}
+
+\title{A Cubic Consequence of a Ternary Hyperadditive Relation (in the Quotient Case)}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $\Hf$ be a hyperfield with multivalued addition $\boxplusop$. The question asks whether
+$0\in x\boxplusop y\boxplusop z$ implies
+$0\in x^3\boxplusop y^3\boxplusop z^3\boxplusop(-xyz)\boxplusop(-xyz)\boxplusop(-xyz)$
+for arbitrary hyperfields.
+We give a complete proof for the important class of \emph{Krasner quotient hyperfields} $K/T$
+(i.e.\ hyperfields obtained from a field $K$ by quotienting by a multiplicative subgroup $T\le K^\times$),
+for which the implication holds by lifting to $K$ and using the classical factorization
+$x^3+y^3+z^3-3xyz=(x+y+z)(x^2+y^2+z^2-xy-yz-zx)$.
+We also recall that not every hyperfield is a Krasner quotient hyperfield.
+\end{abstract}
+
+\section{Preliminaries}
+
+We use the standard axiomatic notion of hyperfield as in the literature, e.g.\ \cite[Def.\ 2.1]{KKS2025}.
+Given elements $a,b\in \Hf$, the hyperaddition $a\boxplusop b$ is a nonempty subset of $\Hf$.
+We extend $\boxplusop$ to finitely many summands by associativity (which holds as an axiom of hyperfields).
+
+A basic consequence of the axioms is the \emph{reversibility} law
+\[
+z\in x\boxplusop y \iff x\in z\boxplusop (-y),
+\]
+see e.g.\ \cite[Prop.\ 2.3(v),(vi)]{KKS2025}.
+
+\section{Krasner quotient hyperfields}
+
+We recall Krasner's quotient construction (see \cite{Krasner1983} and also \cite[\S2]{KKS2025}).
+Let $K$ be a field and $T\le K^\times$ a multiplicative subgroup.
+Write $[a]$ for the $T$--coset of $a\in K$, with the convention $[0]=0$.
+The quotient set $K/T=\{0\}\cup (K^\times/T)$ becomes a hyperfield with multiplication
+$[a]\cdot[b]=[ab]$ and hyperaddition
+\begin{equation}\label{eq:quotadd}
+[a]\boxplusop [b] \;:=\; \bigl\{\, [a+b t]\;\big|\; t\in T\,\bigr\},
+\end{equation}
+see \cite{Krasner1983,KKS2025}. We call such a hyperfield a \emph{Krasner quotient hyperfield}.
+
+\begin{lemma}[Lifting a ternary zero-sum in a quotient hyperfield]\label{lem:lift}
+Let $K$ be a field, $T\le K^\times$, and let $\Hf:=K/T$.
+Let $x=[a],y=[b],z=[c]\in \Hf$ (with $a,b,c\in K$).
+If $0\in x\boxplusop y\boxplusop z$ in $\Hf$, then there exist $t_1,t_2,t_3\in T$ such that
+\[
+a t_1 + b t_2 + c t_3 = 0
+\qquad\text{in }K.
+\]
+In particular, there exist representatives $a'\in x$, $b'\in y$, $c'\in z$ with $a'+b'+c'=0$ in $K$.
+\end{lemma}
+
+\begin{proof}
+By associativity, $0\in (x\boxplusop y)\boxplusop z$.
+Thus there exists $u\in x\boxplusop y$ such that $0\in u\boxplusop z$.
+In a hyperfield, $0\in u\boxplusop z$ implies $u=-z$ by reversibility and uniqueness of additive inverses;
+equivalently $-z\in x\boxplusop y$.
+
+Unwinding the definition \eqref{eq:quotadd}, the containment $-z\in x\boxplusop y$ means:
+there exists $t_2\in T$ such that
+\[
+[a+b t_2]=[-c].
+\]
+Hence $a+b t_2\in (-c)T$, so there exists $t_3\in T$ such that
+\[
+a + b t_2 = -c t_3,
+\]
+i.e.\ $a + b t_2 + c t_3=0$.
+Taking $t_1=1\in T$ gives the first claim. Setting $a'=a t_1$, $b'=b t_2$, $c'=c t_3$
+gives representatives in the respective cosets with $a'+b'+c'=0$.
+\end{proof}
+
+\section{The classical cubic identity}
+
+\begin{lemma}[Ring identity]\label{lem:ring}
+Let $R$ be a commutative ring and let $a,b,c\in R$ satisfy $a+b+c=0$.
+Then
+\[
+a^3+b^3+c^3-3abc = 0.
+\]
+\end{lemma}
+
+\begin{proof}
+The standard factorization holds in $\mathbb{Z}[X,Y,Z]$:
+\[
+X^3+Y^3+Z^3-3XYZ = (X+Y+Z)\bigl(X^2+Y^2+Z^2-XY-YZ-ZX\bigr).
+\]
+Substituting $X=a$, $Y=b$, $Z=c$ in the commutative ring $R$ yields
+\[
+a^3+b^3+c^3-3abc = (a+b+c)\bigl(a^2+b^2+c^2-ab-bc-ca\bigr)=0,
+\]
+since $a+b+c=0$.
+\end{proof}
+
+\section{Main theorem for quotient hyperfields}
+
+\begin{theorem}\label{thm:quotientcase}
+Let $\Hf$ be a Krasner quotient hyperfield $K/T$.
+For any $x,y,z\in \Hf$, if $0\in x\boxplusop y\boxplusop z$, then
+\[
+0\in x^3\boxplusop y^3\boxplusop z^3\boxplusop (-xyz)\boxplusop (-xyz)\boxplusop (-xyz).
+\]
+\end{theorem}
+
+\begin{proof}
+Write $x=[a]$, $y=[b]$, $z=[c]$ with $a,b,c\in K$.
+Assume $0\in x\boxplusop y\boxplusop z$.
+By Lemma~\ref{lem:lift}, there exist representatives $a'\in x$, $b'\in y$, $c'\in z$
+such that
+\[
+a'+b'+c'=0 \qquad\text{in }K.
+\]
+Applying Lemma~\ref{lem:ring} in the field $K$ gives
+\[
+a'^3 + b'^3 + c'^3 - 3a'b'c' = 0 \qquad\text{in }K.
+\]
+Now interpret this equality in the quotient hyperfield.
+We have
+\[
+x^3 = [a'^3],\qquad y^3=[b'^3],\qquad z^3=[c'^3],
+\]
+and
+\[
+xyz = [a'b'c']\quad\text{so}\quad -xyz = [-a'b'c'].
+\]
+By the definition of hyperaddition in a quotient hyperfield, the hyper-sum
+\[
+[a'^3]\boxplusop [b'^3]\boxplusop [c'^3]\boxplusop [-a'b'c']\boxplusop[-a'b'c']\boxplusop[-a'b'c']
+\]
+contains the class of the ordinary sum
+\(
+a'^3+b'^3+c'^3+(-a'b'c')+(-a'b'c')+(-a'b'c'),
+\)
+simply by choosing the subgroup multipliers $t=1$ at each hyperaddition step.
+But that ordinary sum is exactly $a'^3+b'^3+c'^3-3a'b'c'=0$ in $K$.
+Hence the coset $[0]=0$ lies in the displayed hyper-sum.
+Translating back to $x,y,z$ gives the desired containment.
+\end{proof}
+
+\section{Remarks on the general (non-quotient) case}
+
+\begin{remark}
+Theorem~\ref{thm:quotientcase} applies to all hyperfields that arise as $K/T$ for a field $K$.
+This includes the main hyperfields used in tropical and real algebraic geometry (e.g.\ the sign and tropical hyperfields),
+which are of quotient type.
+
+However, not every hyperfield (in the axiomatic sense) is isomorphic to a Krasner quotient hyperfield of a field:
+Massouros constructed non-quotient hyperfields in \cite{Massouros1985}.
+Thus Theorem~\ref{thm:quotientcase} does not, by itself, settle the implication for arbitrary hyperfields.
+\end{remark}
+
+\bibliographystyle{plain}
+\begin{thebibliography}{10}
+
+\bibitem{Krasner1983}
+M.~Krasner.
+\newblock A class of hyperrings and hyperfields.
+\newblock {\em International Journal of Mathematics and Mathematical Sciences}, 6
+  (1983), Article ID 240850.
+
+\bibitem{Massouros1985}
+Ch.~G. Massouros.
+\newblock Methods of constructing hyperfields.
+\newblock {\em International Journal of Mathematics and Mathematical Sciences},
+  8(4):725--728, 1985.
+
+\bibitem{KKS2025}
+D.~E. K{\k e}dzierski, K.~Kuhlmann, and H.~Stoja{\l}owska.
+\newblock Algorithmic construction of real hyperfields from minimal axioms.
+\newblock arXiv:2508.19418v1, 2025.
+
+\end{thebibliography}
+
+\end{document}
+```

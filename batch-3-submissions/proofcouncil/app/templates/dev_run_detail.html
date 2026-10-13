@@ -1,0 +1,205 @@
+{% extends "dev_base.html" %}
+{% import "dev_macros.html" as ui %}
+{% set active_tab = 'runs' %}
+{% block title %}{{ run.display_name }} — ProofCouncil{% endblock %}
+
+{% block content %}
+    <h1>{{ run.display_name }}</h1>
+
+    <div class="card">
+        <div class="grid">
+            {% if run.started_at %}<div class="key">Started:</div><div class="val">{{ run.started_at | display_time }}</div>{% endif %}
+            {% if run.wallclock_s is not none %}<div class="key">Wallclock:</div><div class="val">{{ run.wallclock_s | display_duration }}</div>{% endif %}
+            {% if run.cost_usd is not none %}<div class="key">USD:</div><div class="val">${{ '%.4f'|format(run.cost_usd) }}</div>{% endif %}
+            {% if run.tokens is not none %}<div class="key">Tokens:</div><div class="val">{{ run.tokens | display_tokens }}</div>{% endif %}
+        </div>
+    </div>
+
+    {% if run_running and run_alive %}
+        <div class="card">
+            <form method="post" action="{{ url_for('run_stop', run_id=run.run_id) }}"
+                  onsubmit="return confirm('Stop this run? It will be terminated cleanly and you can Resume it later from where it stopped.');">
+                <button type="submit">⏹ Stop run</button>
+                <span class="dim">Terminates the run (and its model calls) now to stop spending tokens. Finished nodes are kept, so you can Resume it later from where it stopped.</span>
+            </form>
+        </div>
+    {% endif %}
+
+    {% if run.status == 'parked' %}
+        <div class="card"><span class="dim">⏸ This run parked (paused in a resumable state). It did not fail — resume it below.</span></div>
+    {% elif run.status == 'stopped' %}
+        <div class="card"><span class="dim">⏹ This run was stopped. Resume it below to continue from where it left off.</span></div>
+    {% elif run.process_dead %}
+        <div class="card"><span class="dim">⚠ This run is marked “running” but its process is no longer alive (it likely crashed or the machine slept).
+        {% if can_resume %}Resume it below to continue.{% else %}Open the problem run below to resume it.{% endif %}</span></div>
+    {% endif %}
+
+    {% if can_resume and not run_finished and not run_alive and (not human_tasks or run.status in ('stopped', 'parked')) %}
+        <div class="card">
+            <form method="post" action="{{ url_for('run_resume', run_id=run.run_id) }}"
+                  onsubmit="return confirm('Resume this run? Only do this if it has stopped or crashed — resuming a run that is still going will launch a duplicate.');">
+                <button type="submit" class="btn-primary">▶ Resume run</button>
+                <span class="dim">Replays finished nodes (including your answers) from disk and continues where it stopped.</span>
+            </form>
+        </div>
+    {% endif %}
+
+    {% if pruned_kb is not none %}
+        <div class="card"><span class="dim">🧹 Reclaimed {{ pruned_kb }} KB by removing finished-node sandboxes and CLI logs.</span></div>
+    {% endif %}
+    {% set pb = prunable_bytes or 0 %}
+    {% if pb > 0 %}
+        <div class="card">
+            <form method="post" action="{{ url_for('run_prune', run_id=run.run_id) }}"
+                  onsubmit="return confirm('Delete finished nodes’ throwaway sandboxes and raw CLI logs to reclaim disk?\n\nProof outputs, run history, and everything shown in the dashboard are kept, and the run can still be resumed.');">
+                <button type="submit">🧹 Prune artifacts ({% if pb >= 1048576 %}{{ (pb / 1048576) | round(1) }} MB{% else %}{{ (pb / 1024) | round(0) | int }} KB{% endif %})</button>
+                <span class="dim">Frees disk on long runs by deleting finished nodes' sandbox files and CLI logs (redundant with cached output). Keeps proof text, run history, and resume.</span>
+            </form>
+        </div>
+    {% endif %}
+
+    {% if human_tasks %}
+        {% for task in human_tasks %}
+            <div class="card human-task-card">
+                <h2>⏳ Waiting for your input{% if task.agent %} — <span class="dim">{{ task.agent }}</span>{% endif %}</h2>
+                {% if task.prompt %}
+                    <div class="output-toolbar">
+                        <button type="button" class="copy-prompt-btn">Copy</button>
+                        <button type="button" class="prompt-txt-btn">Download .txt</button>
+                        {% if task.inputs and task.inputs.get('proof') %}
+                        <button type="button" class="prompt-tex-btn" data-tex-url="{{ url_for('run_human_proof_tex', run_id=run.run_id, task=task.response_filename) }}">Download proof .tex</button>
+                        <button type="button" class="proof-pdf-btn" data-pdf-url="{{ url_for('run_human_proof_pdf', run_id=run.run_id, task=task.response_filename) }}">Proof PDF</button>
+                        {% endif %}
+                    </div>
+                    <pre class="human-task-prompt">{{ task.prompt }}</pre>
+                {% endif %}
+                {% if task.response_error %}
+                    <p class="input-warning">{{ task.response_error }} Submit again to replace it.</p>
+                {% endif %}
+                <form method="post" action="{{ url_for('run_human_submit', run_id=run.run_id) }}">
+                    <input type="hidden" name="response_filename" value="{{ task.response_filename }}">
+                    {% for field, ftype in task.output_fields.items() %}
+                        {% if field != 'status' %}
+                            <label class="human-task-field">
+                                <span class="key">{{ field }}</span>
+                                <textarea name="f_{{ field }}" rows="12" spellcheck="false" placeholder="Type your {{ field }} here…"></textarea>
+                            </label>
+                        {% endif %}
+                    {% endfor %}
+                    <button type="submit" class="btn-primary">Submit</button>
+                </form>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {# Poll for human-task changes so a NEW ask (e.g. the 2nd time a loop reaches
+       a human node) appears on its own — and so the page refreshes to the final
+       result when the run ends. Never reloads while you're entering an answer. #}
+    <script>
+        (function () {
+            const rendered = {{ human_tasks | map(attribute='response_filename') | list | tojson }};
+            const renderedFinished = {{ 'true' if run_finished else 'false' }};
+            const renderedAlive = {{ 'true' if run_alive else 'false' }};
+            const pollUrl = "{{ url_for('run_human_pending', run_id=run.run_id) }}";
+            function userIsEntering() {
+                const active = document.activeElement;
+                if (active && active.tagName === 'TEXTAREA' && active.closest('.human-task-card')) {
+                    return true;
+                }
+                return [...document.querySelectorAll('.human-task-card textarea')]
+                    .some((t) => t.value.trim() !== '');
+            }
+            function sameSet(a, b) {
+                if (a.length !== b.length) return false;
+                const s = new Set(a);
+                return b.every((x) => s.has(x));
+            }
+            async function poll() {
+                try {
+                    const r = await fetch(pollUrl, { cache: 'no-store' });
+                    if (r.ok) {
+                        const data = await r.json();
+                        const pending = data.pending || [];
+                        if (!userIsEntering()) {
+                            // A task appeared or was answered -> show the new state.
+                            if (!sameSet(pending, rendered)) { window.location.reload(); return; }
+                            // Worker came up (resume) or went down (stop/crash) ->
+                            // swap the Stop/Resume button.
+                            if (data.alive !== renderedAlive) { window.location.reload(); return; }
+                            // Run just finished -> show the final result.
+                            if (data.finished && !renderedFinished) { window.location.reload(); return; }
+                            if (data.finished) { return; }  // settled; stop polling
+                        }
+                    }
+                } catch (e) { /* transient; keep polling */ }
+                setTimeout(poll, 5000);
+            }
+            if (!renderedFinished || rendered.length) { setTimeout(poll, 5000); }
+        })();
+    </script>
+
+    {% if run.problems %}
+        <h2>Problem Runs</h2>
+        <table class="runs">
+            <thead><tr><th>Problem</th><th>Status</th><th>Details</th><th>Started</th></tr></thead>
+            <tbody>
+                {% for problem_id, problem in run.problems.items() %}
+                    <tr>
+                        <td>{{ problem.display_name or problem.title or problem.problem_id or problem_id }}</td>
+                        <td><span class="pill" data-problem-status="{{ problem.status or 'queued' }}">{{ problem.status or 'queued' }}</span></td>
+                        <td>
+                            {% if problem.run_id and problem.has_run %}
+                                <a class="agent-link" href="{{ url_for('run_detail', run_id=problem.run_id) }}">Open</a>
+                            {% elif problem.status == 'error' and problem.error %}
+                                <span class="dim">{{ problem.error }}</span>
+                            {% elif problem.run_id %}
+                                <span class="dim">Waiting for run...</span>
+                            {% else %}—{% endif %}
+                        </td>
+                        <td><span class="dim">{{ problem.started_at | display_time }}</span></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <script>
+            if ([...document.querySelectorAll('[data-problem-status]')].some((el) => ['queued', 'running'].includes(el.dataset.problemStatus))) {
+                setTimeout(() => window.location.reload(), 3000);
+            }
+        </script>
+    {% endif %}
+
+    {% if show_execution_graph %}
+        <h2>Execution graph</h2>
+        <div id="execution-graph-panel">
+            {% include "dev_run_graph.html" %}
+        </div>
+        <script>
+            startRunGraphPolling("{{ url_for('run_graph_fragment', run_id=run.run_id) }}");
+        </script>
+    {% endif %}
+
+    {% if workflow_input is not none %}
+        <details class="run-workflow-input-section" open>
+            <summary><span class="run-monitor-heading">Workflow input</span></summary>
+            {{ ui.render_input(workflow_input, 'No workflow input captured.') }}
+        </details>
+    {% endif %}
+
+    {% if show_monitor %}
+        <details class="run-monitor-section" open>
+            <summary><span class="run-monitor-heading">Monitor summaries</span></summary>
+            <div id="run-monitor-panel">
+                {% include "dev_run_monitor.html" %}
+            </div>
+        </details>
+        <script>
+            startRunMonitorPolling("{{ url_for('run_monitor_fragment', run_id=run.run_id) }}");
+        </script>
+    {% endif %}
+
+    {% if workflow_output is not none %}
+        <h2>Workflow output</h2>
+        {{ ui.render_output(workflow_output, run.run_id, 'No workflow output captured.') }}
+    {% endif %}
+
+{% endblock %}

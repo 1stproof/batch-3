@@ -1,0 +1,1115 @@
+\documentclass[10pt]{article}
+
+\usepackage{amsthm}
+\usepackage[all]{xy}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+\usepackage[colorlinks=true]{hyperref}
+\usetikzlibrary{patterns}
+\usetikzlibrary{arrows.meta,angles,quotes,calc}
+\usepackage{comment}
+\usepackage{extarrows}
+\usepackage{mathtools}
+\usepackage{seqsplit}
+\usepackage{xstring}
+\usepackage[normalem]{ulem}
+\usepackage{dutchcal}
+\usepackage[margin=1in]{geometry}
+
+\newcommand{\derlog}{{\rm DerLog}}
+\newcommand{\logder}{\derlog}
+
+\newcommand{\action}{\:\rotatebox[origin=c]{-90}{$\circlearrowright$}\:}
+
+\newcommand{\heart}{\ensuremath\heartsuit}
+
+\usepackage{pgfplots}
+
+
+\setlength{\marginparwidth}{2cm}
+
+
+
+\setcounter{secnumdepth}{4}
+\renewcommand{\theparagraph}{\thesubsection.\arabic{paragraph}}
+
+\numberwithin{equation}{section}
+
+
+
+\newcommand{\img}{{\rm Im}}
+\newcommand{\valcat}[1]{{\rm Val}(#1)}
+
+\newtheorem{theorem}[paragraph]{Theorem}
+\newtheorem{proposition}[paragraph]{Proposition}
+\newtheorem{question}[paragraph]{Question}
+\newtheorem{conjecture}[paragraph]{Conjecture}
+\newtheorem{lemma}[paragraph]{Lemma}
+\newtheorem{corollary}[paragraph]{Corollary}
+\newtheorem{assumption}[paragraph]{Assumption}
+\newtheorem{reduction}[paragraph]{Reduction}
+
+\theoremstyle{definition} 
+\newtheorem{definition}[paragraph]{Definition}
+\newtheorem{example}[paragraph]{Example}
+\newtheorem{warning}[paragraph]{Warning}
+\newtheorem{situation}[paragraph]{Situation}
+\newtheorem{construction}[paragraph]{Construction}
+
+\theoremstyle{remark}
+\newtheorem{remark}[paragraph]{Remark}
+
+
+\def\id{\mathrm{id}}
+\def\Mon{\mathbf{Mon}}
+\def\Ext{\operatorname{Ext}}
+\def\Hom{\operatorname{Hom}}
+\def\Cone{\operatorname{Cone}}
+\def\cone{\Cone}
+\def\Spec{\operatorname{Spec}}
+\def\spec{\Spec}
+\def\SSpec{\underline{\operatorname{Spec}}}
+\def\Cones{\mathbf{Cones}}
+\def\Sets{\mathbf{Sets}}
+\def\LogSch{\mathbf{LogSch}}
+\def\logGm{\mathbf{G}_{\log}}
+\def\Gm{\mathbf{G}_m}
+\def\Pic{\mathrm{Pic}}
+\def\LogPic{\mathrm{LogPic}}
+\def\TroPic{\mathrm{TroPic}}
+\DeclareMathOperator*{\colim}{colim}
+\def\tropGm{\mathbf{G}_{\rm trop}}
+\def\et{\operatorname{\acute{e}t}}
+\def\Et{\operatorname{\acute{E}t}}
+\def\bExt{\operatorname{\mathbf{Ext}}}
+\def\Rh{\operatorname{Rhiz}}
+\def\rh{\operatorname{rhiz}}
+\def\Opens{\operatorname{Opens}}
+
+\newcommand{\sharpish}[1]{#1^{\# \rm ish}}
+
+
+\newcommand{\pt}{{\rm pt}}
+
+
+\let \varinjlim \relax 
+\DeclareMathOperator*{\varinjlim}{colim}
+
+
+\renewcommand{\frak}[1]{\ensuremath{\mathfrak{#1}}}
+
+
+
+\newcommand{\norm}[1]{\left\|{#1}\right\|}
+
+
+
+
+\ExplSyntaxOn
+\cs_new_eq:NN \Repeat \prg_replicate:nn
+\ExplSyntaxOff
+
+\newlist{variantenum}{enumerate}{1}
+\setlist[variantenum,1]{label=(\roman*), ref=(\roman*)}
+
+\newcounter{primecnt}[variantenumi]
+
+
+
+
+
+
+\newcommand{\face}[1]{{#1}_{\rm face}}
+\newcommand{\tropet}[1]{{#1}_{{\rm trop}\et}}
+
+
+
+%to control the style of bold text
+\newcommand{\mbold}[1]{\mathbf{#1}}
+\newcommand{\GG}{\mbold{G}}
+\newcommand{\kah}[1]{\Omega_{#1}}
+\newcommand{\lkah}[1]{\Omega^\ell_{#1}}
+\newcommand{\lccx}[1]{\mbold{L}^\ell_{#1}}
+\newcommand{\glccx}[1]{\mbold{L}^G_{#1}}
+\def\Glog{\mbold{G}_{\log}}
+\def\Gtrop{\mbold{G}_{\rm trop}}
+\newcommand{\gp}[1]{#1^{\rm gp}}
+\newcommand{\Aff}{\mbold{A}}
+\newcommand{\NN}{\mbold{N}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\usch}[1]{#1^\circ}
+\newcommand{\ZZ}{\mbold{Z}}
+\newcommand{\CC}{\mbold{C}}
+\newcommand{\QQ}{\mbold{Q}}
+\newcommand{\RR}{\mbold{R}}
+\newcommand{\PP}{\mbold{P}}
+\newcommand{\Blog}{Bl}
+\newcommand{\HHom}{\underline{\rm Hom}}
+
+\newcommand{\pb}{\ar[dr, phantom, very near start, "\ulcorner"]}
+\newcommand{\lpb}{\ar[dr, phantom, very near start, "\ulcorner \ell"]}
+\newcommand{\msout}[1]{\text{\sout{\ensuremath{#1}}}}
+\newcommand{\lpbstrict}{\ar[dr, phantom, very near start, "\ulcorner \msout{\ell}"]}
+
+\renewcommand{\tilde}[1]{\ensuremath{\widetilde{#1}}}
+\renewcommand{\hat}[1]{\ensuremath{\widehat{#1}}}
+\newcommand{\scr}[1]{\ensuremath{\mathscr{#1}}}
+\newcommand{\af}[1]{\Theta_{#1}}
+
+
+\newcommand{\utopcone}[1]{\left\vert\Cone #1 \right\vert}
+\newcommand{\utopocone}[1]{\left\vert\Cone^\circ #1\right\vert}
+
+\newcommand{\num}[1]{\langle #1 \rangle}
+\newcommand{\bra}[1]{\left[ {#1} \right]}
+\newcommand{\pra}[1]{\left( {#1} \right)}
+\newcommand{\longequals}{\xlongequal{\: \:}}
+\newcommand{\longsimeq}{\xrightarrow\sim}
+
+\newcommand{\sharpening}{makeover}
+
+\newcommand{\baroplus}{\overnorm{\oplus}}
+\newcommand{\barbigoplus}{\overnorm{\bigoplus}}
+
+
+\renewcommand{\bar}[1]{\overnorm{#1}\vphantom{#1}}
+
+\renewcommand{\iff}{\Leftrightarrow}
+
+\newcommand{\shp}[1]{#1_\sharp}
+\newcommand{\gs}[1]{\gp{\shp{#1}}}
+\newcommand{\inr}[1]{#1^\square}
+\newcommand{\inrp}[1]{#1^{\square+}}
+
+
+\newcommand{\smet}[1]{#1_{\acute{e}t}}
+
+\newcommand{\PSh}[1]{\hat{#1}}
+
+
+\newcommand{\val}[1]{#1^{\rm val}}
+
+
+
+%declares a command \cursive that works in text mode that gives a script r
+\usepackage{frcursive}
+\newcommand{\Tr}[1]{T^{\text{\textit{\cursive{r}}}}_{#1}}
+\newcommand{\Nr}[1]{N^{\text{\textit{\cursive{r}}}}_{#1}}
+
+\newcommand{\varv}{v}
+
+
+
+
+
+
+\def\overnorm#1{\overline{#1}\vphantom{#1}}
+
+\def\ologGm{{\mathbf G}_{\rm trop}}
+
+\newcommand{\Jonathan}[1]{{\color{OliveGreen}J: #1}}
+\newcommand{\Leo}[1]{{\color{purple}L: {#1}}}
+
+\newcommand{\loc}[2]{#1_{(#2)}}
+
+\newcommand{\Log}{{\cal L}og}
+
+\frenchspacing
+
+
+
+
+\begin{document}
+\begin{center}
+{\large Leo Herr and Jonathan Wise}
+\end{center}
+\section{Demonstration}
+
+\subsection{Notation}
+
+If $Q$ satisfies all the conditions of a monoid except sharpness, we write $Q^\sharp$ for the quotient of $Q$ by its subgroup of invertible elements.  A monoid homomoprhism $f : P \to Q$ is called \emph{sharp} if $0$ is the unique $x \in P$ such that $f(x) = 0$.  When $f : P \to Q$ is a monoid homomorhism, the quotient of $P$ by all positive elements that project to $0$ in $Q$ is called the sharpening of $f$.  A \emph{valuation} of a monoid is a homomorphism to a valuative monoid.
+
+We write $\Rh P$ for the site $\operatorname{Sh}(A_P)$ and $\spec P$ for the site $\operatorname{Sh}(B_P)$.
+
+\subsection{Restatement of the theorem}
+
+We answer the question in the affirmative~:
+
+\begin{theorem} \label{cor:2}
+	Let $P$ be a monoid.  For all presheaves of abelian groups $F$ on $\spec P$, 
+	\begin{equation*}
+		\begin{aligned}
+			& F(P) \to H^0(\Rh P, \pi^{-1} F) & & \text{is an isomorphism, and} \\
+			& H^i(\Rh P, \pi^{-1} F) = 0 & & \text{for all $i > 0$.}
+		\end{aligned}
+	\end{equation*}
+\end{theorem}
+
+\noindent Applying this with $P$ replaced by $P[-x]^\sharp$ gives required equivalence over every distinguished open.
+
+
+
+
+\subsection{Preliminaries}
+
+\begin{lemma} \label{lem:13}
+	Infinitesimal homomorphisms are sharp.
+\end{lemma}
+\begin{proof}
+	Suppose $f : M \to N$ is infinitesimal, that $y \in M$, and that $f(y) = 0$.  Then $-y \in \gp M$ and $f(-y) = 0 \in N$ and $-y \prec y$ and $f(y) \prec f(-y)$ so $-y \in M$.  Since $M$ is sharp, $y = 0$.
+\end{proof}
+
+
+
+
+
+\begin{lemma} \label{lem:11}
+	Let $P \to Q \to V$ be monoid homomorphisms.  Assume that $P \to Q$ is of finite presentation and let $\bar P$ and $\bar Q$ be the sharpenings of $P \to V$ and $Q \to V$, respectively.  Then $\bar P \to \bar Q$ is also of finite presentation.
+\end{lemma}
+\begin{proof}
+	We replace $P$ with $\bar P$ and $Q$ with the pushout of $P \to Q$ along $P \to \bar P$.  Then we can assume without loss of generality that $P \to V$ is sharp.
+
+	Let $f_1, \ldots, f_n$ generate $Q$ relative to $P$.  Suppose that $h = g + \sum a_i f_i$ projects to $0$ in $V$ with $g$ in the image of $P$ and $a_i \in \mathbf N$.  Then $0 \leq g \leq h$, so if $h$ projects to $0$ in $V$, so does $g$.  Therefore $g = 0$ since $P \to V$ is sharp.  Likewise, $\sum a_i f_i$ projects to $0$ in $V$ if and only if $f_i$ projects to $0$ for every nonzero $a_i$.  Therefore the sharp localization $\bar Q$ of $Q$ is determined by the subset of $\{ f_1, \ldots, f_n \}$ that projects to $0$.  This subset is necessarily finite, so $Q \to \bar Q$ is finitely presented.  It follows that $P \to \bar Q$ is a composition of finitely presented homomorphisms, hence is of finite presentation.
+\end{proof}
+
+
+
+
+
+
+
+\begin{lemma} \label{lem:12}
+	Let $P \to Q$ be a monoid homomorphism of finite presentation, and let $\bar P$ be its sharpening.  Then $P \to \bar P$ is also of finite presentation.
+\end{lemma}
+\begin{proof}
+	We can form $Q$ relative to $P$ by embedding $\gp P$ inside an abelian group $A$, then enlarging $P$ as a semigroup by adjoining finitely many elements $f_1, \ldots, f_n$ of $A$, and finally saturating and sharpening the result.  (Aribtrary relations $x = 0$ can be imposed by adjoining $x$ and $-x$ and then sharpening.)  Let $B$ be the saturated subgroup of $A$ spanned by $f_1, \ldots, f_n$.  Within $B$, the elements $f_1, \ldots, f_n$ span a rational polyhedral cone $R$, of finite dimension.  The intersection $-R \cap P$ spans a vector space of finite dimension in $\mathbf Q \otimes \gp P$.  Inverting a finite set of generators for this rational vector space gives a finitely presented sharp localization of $P$.  We write $P'$ for this sharp localization and show that $P' = \bar P$.
+
+	Clearly, the sharp localization $P \to P'$ factors $P \to \bar P$.  Suppose that $x \in P$ projects to $0$ in $Q$.  Then $x$ is an invertible element of $P + R$.  That is, there are some $y \in P$ and $z \in R$ such that $x + y + z = 0$.  Then $x + y = - z \in -R \cap P$.  By construction, $x + y$ projects to $0$ in $P'$ and, since $0 \leq x \leq x + y$ in $P$, it follows that $x$ also projects to $0$ in $P'$.  Thus every element of $P$ that vanishes in $\bar P$ also vanishes in $P'$, and we conclude $P' = \bar P$.
+\end{proof}
+
+
+
+\begin{lemma} \label{lem:9}
+	Let $M$ be a monoid containing an element $y$.  Then the kernel of $\gp M \to (M[-y]^{\sharp})^{\rm gp}$ consists of all $x \in \gp M$ such that $x \prec y$.
+\end{lemma}
+\begin{proof}
+	Let $N$ be the non-sharp, saturated submonoid of $\gp M$ generated by $M$ and $-y$, and suppsoe $x \in \gp M$.  Then $x$ projects to $0$ in $(M[-y]^{\sharp})^{\rm gp}$ if and only if both $x$ and $-x$ lie in $N$.  This happens if only if there are positive integers $m$ and $n$ such that $x + ny \in M$ and $-x + my \in M$, or, in other words, if and only if $-ny \leq x \leq my$. 
+\end{proof}
+
+
+
+
+
+
+
+\begin{lemma} \label{lem:3}
+	Let $f : M \to N$ be a monoid homomorphism and suppose $x \in \gp M$ and $z \in N$.  Let $\bar N = N[-z]^\sharp$ and let $\bar M$ be the sharpening of $M \to \bar N$.  Then the image of $x$ in $\bar M^{\rm gp}$ vanishes if and only if there is a $y \in M$ such that $x \prec y$ and $f(y) \prec z$.
+\end{lemma}
+\begin{proof}
+	It is clear that if there is a $y \in M$ such that $x \prec y$ and $f(y) \prec z$ then $x$ projects to $0$ in $\bar M$.  Conversely, Lemma~\ref{lem:9} shows that $x$ projects to $0$ in $\bar M$ if and only if there is some positive $y \in M$ such that $x \prec y$ and $y$ projects to $0$ in $\bar M$.  But a positive $y$ projects to $0$ in $\bar M$ if and only if it projects to $0$ in $\bar N$ if and only if $f(y) \prec z$, by a second application of Lemma~\ref{lem:9}.
+\end{proof}
+
+
+
+
+
+\begin{lemma} \label{lem:7}
+	The base change of an infinitesimal morphism is infinitesimal.
+\end{lemma}
+\begin{proof}
+	Suppose that $f : M \to N$ is an infinitesimal homomorphism of monoids.  Let $N' \to N$ be a monoid homomorphism, and let $f' : M' \to N'$ and $g : M' \to M$ be the morphisms induced by base change.  Suppose that $x' \in {M'}^{\rm gp}$ and $y' \in M'$ and $f'(x') \in N'$ and $x' \prec y'$ and $f'(y') \prec f'(x')$.  Let $x = g(x')$ and $y = g(y')$.  Then $f(x)$ is the image of $f'(x')$, hence lies in $N$ and $x \prec y$ and $f(y) \prec f(x)$.  Therefore $x \in M$ because $f$ is infinitesimal.  We conclude that $x' \in M'$ by definition of a fiber product.
+\end{proof}
+
+
+
+
+
+\begin{lemma} \label{lem:6}
+	Suppose that $P \to Q$ is birhizomic at $Q \to M$ and that $M \to N$ is a monoid homomorphism.  Then $P \to Q$ is also birhizomic at $Q \to N$.
+\end{lemma}
+\begin{proof}
+	Immediate from Lemma~\ref{lem:7}.
+\end{proof}
+
+
+
+
+
+
+
+\begin{lemma} \label{lem:10}
+	If $f : P \to Q$ is birhizomic at $g : Q \to M$ and $P' \to Q' \to M'$ is induced by pushout from $f$ and $g$ along a homomorphism $P \to P'$, then $P' \to Q'$ is birhizomic at $Q' \to M'$.
+\end{lemma}
+\begin{proof}
+	Immediate from Lemma~\ref{lem:6}, the formulation of birhizomicity as a lifting property, and the fact that finite presentation is preserved by pushout.
+\end{proof}
+
+
+
+
+
+\begin{lemma} \label{lem:1}
+	A family of morphisms $P \to Q_i$ is a birhizomic cover if and only if, for every \emph{sharp} valuation $P \to V$ there is a factorization through some $Q_i$ such that $P \to Q_i$ is birhizomic at $Q_i \to V$.
+\end{lemma}
+\begin{proof}
+	Clearly, if every valuation lifts to a birhizomic point then every sharp valuation does.  Conversely, suppose that sharp valuations of $P$ lift to birhizomic points.  Let $P \to V$ be an arbitrary valuation.  It can be factored through a sharp valuation $P \to W$ \cite[Proposition~I.2.4.1]{ogusloggeom},%
+	\footnote{The statement of \cite[Proposition~I.2.4.1]{ogusloggeom} says that if $L$ is an abelian group containing $P$ then any submonoid of $L$ that contains $P$ and is maximal with respect to domination is valuative.  In fact, the proof only requires that $L$ be valuative as a not-necessarily-sharp monoid.  We apply this version of \cite[Proposition~I.2.4.1]{ogusloggeom} with $L$ being the pre\"image of $V$ under $\gp P \to \gp V$.}\label{foot:1}
+	which factors through some $Q_i$ where $P \to Q_i$ is birhizomic.  But then $P \to Q_i$ is also birhizomic at $Q_i \to V$ by Lemma~\ref{lem:6}.
+\end{proof}
+
+
+
+\begin{proposition}  \label{prop:27}
+	Let $P \to Q$ be a sharp monoid homomorphism of finite presentation.  Let $K$ be the kernel of $P^{\rm gp} \to Q^{\rm gp}$.  Then $K$ is torsion-free and $\dim \mathbf Q \otimes K < \infty$.
+\end{proposition}
+\begin{proof}
+	The torsion-free assertion is immediate because $K \subseteq P^{\rm gp}$ and $P$ is saturated.
+
+	One can make $P \to Q$ surjective by adding a finite number of generators to $P$.  This may increase the rank of $K$, but only by a finite amount.  We therefore assume without loss of generality that $P \to Q$ is surjective.  
+
+	For each finitely generated subgroup $K_\alpha \subseteq K$, let $R_\alpha$ be the sharpening of the saturation of the image of $P \to \gp P / K_\alpha$.  Since the finitely generated subgroups of $K$ are filtered with respect to inclusion, the $R_\alpha$ form a filtered system, and, moreover, $\varinjlim_\alpha R_\alpha = Q$.  
+	Since $P \to Q$ is of finite presentation, the identity homomorphism $Q \to Q$ factors through some $R_\alpha$ by a homomorphism commuting with the maps from $P$.  The factorization implies $\gp R_\alpha = \gp Q$ as quotients of $\gp P$, and therefore that $K$ is the kernel of $\gp P \to \gp R_\alpha$.  But $x \in \gp P$ projects to $0$ in $\gp R_\alpha$ if and only if it is torsion in $\gp P / K_\alpha$, and therefore if and only if $x \in \mathbf Q \otimes K_\alpha$.  That is, $\mathbf Q \otimes K = \mathbf Q \otimes K_\alpha$ and, in particular, $\mathbf Q \otimes K$ has finite dimension.
+\end{proof}
+
+
+
+\subsection{Reinterpretation of birhizomicity}
+
+\begin{lemma} \label{lem:16}
+	Let $N$ be a monoid and let $L$ be a torsion-free abelian group.  Let $M \subset N \times L$ be the set of pairs $(a,b)$ where $a \neq 0$ or $b = 0$.  Then $M$ is a monoid an the projection $M \to N$ is infinitesimal.
+\end{lemma}
+\begin{proof}
+	We leave to the reader to verify that $M$ is a(n integral saturated, sharp) monoid.  Let $f : M \to N$ be the projection.  Suppose $x \in \gp M$ and $y \in M$ and $x \prec y$ and $f(x) \in N$ and $f(y) \prec f(x)$.  If $f(x) \neq 0$ then $x \in M$ by definition and if $f(x) = 0$ then $f(y) = 0$ so $y = 0$ by definition, and therefore $x = 0$.
+\end{proof}
+
+
+
+\begin{lemma} \label{lem:8}
+	Let $P \to Q \to N$ be sharp monoid homomorphisms.  If $P \to Q$ is birhizomic at $Q \to N$ then $\gp P \to \gp Q$ is bijective.
+\end{lemma}
+\begin{proof}
+	Let $M \subset N \times \gp P \to N$ be set of $(a,b)$ such that $a \neq 0$ or $b = 0$.  Then $M \to N$ is an infinitesimal monoid homomorphism by Lemma~\ref{lem:16}.   Let $P \to M \subset N \times \gp P$ be given by $P \to N$ on the first factor and the inclusion on the second factor.  Sharpness of $P \to N$ guarantees factorization through $M$.  Then lifting in the diagram
+	\begin{equation} \label{eqn:2}
+		\begin{tikzcd}
+			P \ar[r] \ar[d] & M \ar[d] \\
+			Q \ar[ur,dashed] \ar[r] & N
+		\end{tikzcd}
+	\end{equation}
+	shows that $\gp P \to \gp Q$ is a split injection.
+
+	Let $L = \gp Q / \gp P$ and let $M \subset N \times L$ be the set of pairs $(a,b)$ such that $a \neq 0$ or $b = 0$.  Note that $L$ is torsion-free because $\gp P \to \gp Q$ is a split injection.  Then $M$ is a monoid and $M \to N$ is infinitesimal by Lemma~\ref{lem:16}.  Uniqueness of lifting in a diagram~\eqref{eqn:2} shows that $Q \to L$ vanishes, hence that $\gp P \to \gp Q$ is surjective.
+\end{proof}
+
+
+
+
+
+
+
+\begin{lemma} \label{lem:14}
+	Every birhizomic cover $\{ P \to Q_i \}$ has a subcover where all $P^{\rm gp} \to Q_i^{\rm gp}$ are bijective (and in particular are sharp).
+\end{lemma}
+\begin{proof}
+Since every valuation is refined by a sharp valuation, we can refine our cover to include only those that have birhizomic lifts of sharp valuations by Lemma~\ref{lem:1}.  In this case, every $P \to Q_i$ is sharp.
+
+	For each valuation $v : P \to V$ of $P$, choose a lift to some $Q_i$ where $P \to Q_i$ is birhizomic.  Let $Q_v$ be the sharpening of $Q_i \to V$.  Then one verifies easily using Lemma~\ref{lem:13} that the maps $P \to Q_v$ are a birhizomic cover refining $\{ P \to Q_i \}$.  But now $P \to Q_v \to V$ are sharp homomorphisms, so $\gp P \to \gp Q_v$ is bijective by Lemma~\ref{lem:8}.
+\end{proof}
+
+
+
+Let $P \to N$ be a monoid homomorphism.  We write $P_\sharp$ for the sheaf on $\spec N$ whose value on a sharp localization $\bar N$ of $N$ is the sharpening of $P \to \bar N$, and we write $\gs P$ for the associated sheaf of groups.  If
+\begin{equation*}
+	P \to Q \to N
+\end{equation*}
+are monoid homomorphisms, we write $\mathcal L_{Q/P} \big|_N$ for the complex $[\gs P \to \gs Q]$, in degrees $[-1,0]$, on $\spec N$.
+
+
+
+
+
+
+
+\begin{theorem}\label{thm:rhizomicinflifting}
+	Let $P {\to} Q {\to} N$ be monoid homomorphisms.  Assume that $P \to Q$ is of finite presentation.  Then $P \to Q$ is birhizomic at $Q \to N$ if and only if $\mathcal L_{Q/P} \big|_N$ is acyclic.
+\end{theorem}
+\begin{proof}
+	Suppose first that $P \to Q$ is birhizomic at $Q \to N$.  Suppose $N \to \bar N$ is a sharp localization of $N$ and that $\bar P \to \bar Q$ is induced by sharpening $P \to \bar N$ and $Q \to \bar N$.  Then Lemma~\ref{lem:11} shows that $\bar P \to \bar Q$ is of finite presentation.  If
+	\begin{equation*} \begin{tikzcd}
+		P \ar[r] \ar[d] & \bar P \ar[r] \ar[d] & M \ar[d] \\
+		Q \ar[r] \ar[urr,dashed] &  \bar Q \ar[ur,dashed] \ar[r] & \bar N
+	\end{tikzcd}
+	\end{equation*}
+	is a lifting problem, with $M \to \bar N$ infinitesimal, the longer dashed arrow exists because $P \to Q$ is birhizomic at $Q \to \bar N$, by Lemma~\ref{lem:6}.  Then a unique factorization through $\bar Q$ exists because if $x \in Q$ projects to $0$ in $\bar N$, it also projects to $0$ in $M$ since $M \to \bar N$ is sharp, by Lemma~\ref{lem:13}.  The square on the right commutes because $P \to \bar P$ and $Q \to \bar Q$ are epimorphisms.  We conclude that $\bar P \to \bar Q$ is birhizomic, and therefore that $\bar P^{\rm gp} \to \bar Q^{\rm gp}$ is a bijection.  This shows that $\mathcal L_{Q/P} \big|_N$ is acyclic.
+
+
+
+
+
+
+
+
+
+
+
+	Conversely, suppose that $\mathcal L_{Q/P} \big|_N$ is acyclic.  Let $g : M \to N$ be an infinitesimal homomorphism and let $P \to M$ lift $P \to N$.  We can replace $P$ and $Q$ with the sharpenings of $P \to N$ and $Q \to N$, respectively, since $M \to N$ is sharp by Lemma~\ref{lem:13}.  We know then that $\gp P \to \gp Q$ is bijective, so composing with an inverse gives $f : \gp Q \to \gp M$.  This already shows a lift is unique if it exists.  For existence, we must show that $f(Q) \subset M$.  Suppose $x \in Q$.  Then $g(f(x)) \in N$.  Let $\bar N = N[-g(f(x))]^\sharp$ and let $\bar M$ (resp.\ $\bar P$, resp.\ $\bar Q$) be the sharpening of $M \to \bar N$ (resp.\ $P \to \bar N$, resp.\ $Q \to \bar N$).  Then $x$ projects to $0$ in $ \bar Q^{\rm gp}$, hence also in $\bar P^{\rm gp}$, since $\bar P^{\rm gp} \to \bar Q^{\rm gp}$ is an isomorphism.  It follows that $f(x)$ projects to $0$ in $\gp{\bar M}$, hence $f(x)$ lies in $M$, by Lemma~\ref{lem:3}, since $M \to N$ is infinitesimal.
+\end{proof}
+
+
+
+
+
+
+
+\begin{proposition} \label{prop:2}
+	Let $P \xrightarrow f Q \to M \xrightarrow g N$ be monoid homomorphisms, with $g$ exact.  Then $P \to Q$ is birhizomic at $Q \to M$ if and only if it is birhizomic at $Q \to N$.
+\end{proposition}
+
+
+
+
+
+\begin{proof}
+	If $P \to Q$ is birhizomic at $Q \to M$ then it is birhizomic at $Q \to N$ by Lemma~\ref{lem:6}.  By Theorem~\ref{thm:rhizomicinflifting}, the map $P \to Q$ is birhizomic at $Q \to M$ if and only if, when $\bar M$ is a sharp localization of $M$, and $\bar P$ and $\bar Q$ denote the sharpenings of $P \to \bar M$ and $Q \to \bar M$, then $\bar P^{\rm gp} \to \bar Q^{\rm gp}$ is an isomorphism.  The same criterion holds for birhizomicity at $Q \to N$, where $\bar N$ is the pushout of $M \to \bar M$ along $M \to N$.  But $\bar M \to \bar N$ is the pushout of an exact morphism, hence is exact \cite[Proposition~I.3.2~(2)]{Tsuji}.  Therefore the sharpenings of $P \to \bar N$ and $P \to \bar M$ coincide.  Likewise, the sharpenings of $Q \to \bar N$ and $Q \to \bar M$ coincide.  Thus $f$ is birhizomic at $Q \to N$ if and only if it is birhizomic at $Q \to M$.
+\end{proof}
+
+
+
+
+
+
+
+\subsection{Finite type approximation}
+
+\begin{lemma} \label{lem:15}
+	Suppose that $P$ is a monoid and $Q$ is generated relative to $P$ by elements $f_1, \ldots, f_n$.  Let $Q \to \bar Q$ be a sharp localization and let $P \to \bar P$ be the sharpening of $P \to \bar Q$.  If $\sum a_i f_i$ restricts to $0$ in $\bar Q^{\rm gp} / \bar P^{\rm gp}$, for some integers $a_i$, then either $\sum a_i f_i = 0$ in $Q^{\rm gp} / P^{\rm gp}$ or there is some $f_i$ that is inverted in $\bar Q$.
+\end{lemma}
+
+
+
+
+
+\begin{proof}
+	Assume that $\sum a_i f_i$ restricts to $0$ in $\bar Q^{\rm gp} / \bar P^{\rm gp}$ and that no $f_i$ is inverted in $\bar Q$.  Since $\bar Q$ is a filtered colimit of finitely presented sharp localizations, we may assume that $\bar Q$ is itself a finitely presented sharp localization.  That is, $\bar Q = Q[-h]^\sharp$ for some $h \in Q$.  We can write $h = g + \sum b_i f_i$ with $g \in P$ and all $b_i \geq 0$.  But if any $b_i$ is nonzero then $0 \leq f_i \leq h$ in $Q$ and therefore $f_i$ would localize to $0$ in $\bar Q$.  Therefore $b_i = 0$ for all $i$ and $h \in P$.
+
+	Since $\sum a_i f_i$ localizes to an element of $\bar P^{\rm gp}$, and since $P^{\rm gp} \to \bar P^{\rm gp}$ is surjective, there is some $g \in P^{\rm gp}$ such that $g + \sum a_i f_i$ projects to $0$ in $\bar Q^{\rm gp}$.  Therefore $g + \sum a_i f_i \prec h$.  Replacing $h$ by $nh$ for some integer $n \geq 1$, this means that
+	\begin{equation*}
+		-h \leq g + \sum a_i f_i \leq h
+	\end{equation*}
+	and therefore that there are elements $u, v \in Q$ with
+	\begin{equation*}
+		-h + u = g + \sum a_i f_i = h - v .
+	\end{equation*}
+	But $h$ projects to $0$ in $\bar Q^{\rm gp}$, so $u + v$ projects to $0$ in $\bar Q^{\rm gp}$.  We can write $u = u_0 + \sum c_i f_i$ and $v = v_0 + \sum d_i f_i$ where $u_0$ and $v_0$ are in $P$ and all $c_i$ and $d_i$ are non-negative integers.  By the same reasoning as above, we must have all $c_i = 0$ and $d_i = 0$ since none of the $f_i$ is inverted in $\bar Q$.  Therefore $u$ and $v$ are both in $P$.  But this means that $\sum a_i f_i \in P^{\rm gp}$, and therefore $\sum a_i f_i$ represents $0$ in $Q^{\rm gp} / P^{\rm gp}$.
+\end{proof}
+
+\begin{lemma} \label{lem:18}
+	Suppose that $u : P \to Q$ is an injective homomorphism of monoids and $Q$ is generated relative to $P$ by elements $f_1, \ldots, f_n$.  Let $Q \to \bar Q$ be a sharp localization and let $P \to \bar P$ be the sharpening of $P \to \bar Q$.  If $\bar P^{\rm gp} \to \bar Q^{\rm gp}$ is not injective then there is some $f_i$ that is inverted in $\bar Q$.
+\end{lemma}
+\begin{proof}
+	Since any sharp localization $\bar Q$ of $Q$ is a filtered colimit of finitely presented sharp localizations, it is sufficient to assume that $\bar Q$ is finitely presented relative to $Q$.  We may therefore present $\bar Q$ as $Q[-g]^\sharp$.  We can write $g = h + \sum a_i f_i$, where the $a_i$ are non-negative integers and $h \in P$.  If any of the $a_i$ is nonzero then $f_i$ will be inverted in $Q[-g]^\sharp$.  Therefore, we assume that $a_i = 0$ for all $i$.  That is, $g \in P$.  If $x \in P^{\rm gp}$ represents an element of the kernel of $\bar P^{\rm gp} \to \bar Q^{\rm gp}$, then $x \prec g$.  That is, there are elements $y + \sum b_i f_i$ and $z + \sum c_i f_i$ such that
+	\begin{equation*}
+		-g + y + \sum b_i f_i = x = g - z - \sum c_i f_i  
+	\end{equation*}
+	in $\gp Q$.  But $g$ projects to $0$ in $\bar Q$, so $y + z + \sum (b_i + c_i) f_i$ also projects to $0$.  By assumption, none of the $f_i$ projects to $0$, so we must have $b_i = c_i = 0$.  Therefore $-g \leq x \leq g$ in $P$ (and not merely in $Q$).  Thus $x \prec g$ in $P$ and therefore $x$ projects to $0$ in $\bar P^{\rm gp}$.
+\end{proof}
+
+
+
+
+
+\begin{corollary} \label{cor:8}
+	Suppose that $P$ is a monoid and $Q$ is generated relative to $P$ by elements $f_1, \ldots, f_n$.  Let $Q \to \bar Q$ be a sharp localization and let $P \to \bar P$ be the sharpening of $P \to \bar Q$.  If
+	\begin{equation*} 
+			H^0 \mathcal L_{Q/P}(Q)  \to H^0 \mathcal L_{Q/P}(\bar Q) 
+	\end{equation*}
+	is not an isomorphism or
+	\begin{equation*}
+			\mathbf Q \otimes H^{-1} \mathcal L_{Q/P}(Q) \to \mathbf Q \otimes H^{-1} \mathcal L_{Q/P}(\bar Q)
+	\end{equation*}
+	is not surjective, then some $f_i$ is inverted in $\bar Q$.
+\end{corollary}
+\begin{proof}
+	Lemma~\ref{lem:15} shows directly that if
+	\begin{equation*}
+		H^0 \mathcal L_{Q/P}(Q) \to H^0 \mathcal L_{Q/P}(\bar Q)
+	\end{equation*}
+	is not an isomorphism then some $f_i$ is inverted in $\bar Q$.  
+
+	For the claim about $H^{-1}$, we replace $P$ with the sharpening of $P \to Q$, which does not change $\mathcal L_{Q/P}$, and assume without loss of generality that $P \to Q$ is sharp.  Let $P_1$ be the saturated image of $P$ in $Q$.  Let $K$ be the kernel of $P^{\rm gp} \to P_1^{\rm gp}$.  
+	Let $J$ be the saturated image of $K$ in $\bar P^{\rm gp}$ and let $\bar P_1$ be the saturated image of $\bar P$ in $\bar P^{\rm gp} / J$ (in other words, the pushout of $P \to P_1$ along $P \to \bar P$).  Then $\bar P_1 \to \bar Q$ is sharp~: if $x \in \bar P_1$ maps to $0$ in $\bar Q$ then $nx$ is the image of $y \in \bar P$ for some positive integer $n$, and $y$ projects to $0$ in $\bar Q$, hence vanishes, since $\bar P \to \bar Q$ is sharp.
+
+	Let $\bar K$ be the kernel of $\bar P^{\rm gp} \to \bar Q^{\rm gp}$.  Then $\bar K/J$ is the kernel of $\bar P_1^{\rm gp} \to \bar Q^{\rm gp}$.  If $\mathbf Q \otimes K \to \mathbf Q \otimes \bar K$ is not surjective then $\bar K/J \neq 0$ and therefore Lemma~\ref{lem:18} implies that some $f_i$ is inverted in $\bar Q$.
+\end{proof}
+
+
+
+
+
+\begin{corollary} \label{cor:1}
+	Suppose that $P \to Q$ is a homomorphism of monoids, that $P' \to Q'$ is induced by pushout along a homomorphism $P \to P'$, and that $\bar P'$ is the sharpening of $P' \to Q'$.  Fix a finite set of generators for $Q$ relative to $P$.  Let $K$ be the kernel of $\gp P \to \gp Q$ and let $\bar K$ be the kernel of $\gp{\bar P'} \to {Q'}^{\rm gp}$.  Then $\mathbf Q \otimes K \to \mathbf Q \otimes \bar K$ is surjective or there is some generator of $Q$ that is inverted in $Q'$.
+\end{corollary}
+
+
+
+
+
+\begin{proof}
+	Since $P'$ is a filtered colimit of monoids that are finitely presented relative to $P$, 
+	it will be sufficient to assume that $P'$ is finitely presented relative to $P$.  We can present $P'$ by repeatedly adding a free generator, or repeatedly adding elements of $\gp P$ and sharpening.  (To see this, note that any relation $x = 0$, for $x \in \gp P$, can be imposed by adjoining $x$ and $-x$ to $P$ and sharpening.)  Since compositions of surjections are surjective, we can consider these two operations in isolation.  If $P' = P \oplus \mathbf N$ then $\gp{P'} = \gp P \oplus \mathbf Z$ and $\gp{Q'} = \gp Q \oplus \mathbf Z$~; the map $P' \to Q'$ is sharp, and $K \to \bar K$ is an isomorphism.  If $P' = P[x]$ for some $x \in \gp P$ then $Q' = Q[x]^{{\rm sat}\sharp}$.  If $-x \not\in Q$, then $(Q[x]^{{\rm sat}\sharp})^{\rm gp} = Q^{\rm gp}$ and $(P[x]^{\rm sat\sharp})^{\rm gp} = P^{\rm gp}$ so $K \to \bar K$ is an isomorphism.  If $-x \in Q$ then $Q[x]^{{\rm sat}\sharp}$ is a sharp localization of $Q$ and Corollary~\ref{cor:8} shows that, with $\bar P$ denoting the sharpening of $P \to Q'$, that either some generator of $Q$ is inverted in $Q'$ or $K$ surjects onto the kernel of $\bar P^{\rm gp} \to {Q'}^{\rm gp}$.  Since ${\bar P'}^{\rm gp}$ is a quotient of $\bar P^{\rm gp}$ in this case, $K$ also surjects onto the kernel of ${\bar P'}^{\rm gp} \to {Q'}^{\rm gp}$.
+\end{proof}
+
+
+
+
+
+\begin{theorem}\label{thm:noethapprox}
+	Let $P_\alpha \to Q_\alpha \to M_\alpha$ be a family of monoid homomorphisms indexed by a filtered diagram with $P_\alpha \to Q_\alpha$ of finite presentation. For each $\alpha \to \beta$, suppose the commutative diagram 
+	\[
+	\begin{tikzcd}
+		P_\alpha \ar[r] \ar[d] \ar[dr, phantom, very near end, "\lrcorner"] 		&Q_\alpha \ar[r] \ar[d] 		&M_\alpha \ar[d] 		\\
+		P_\beta \ar[r]			&Q_\beta \ar[r]		&M_\beta.
+	\end{tikzcd}
+	\]
+	exhibits $Q_\beta = Q_\alpha \oplus_{P_\alpha} P_\beta$ as the pushout among (sharp, integral, saturated) monoids. Write $P \to Q \to M$ for the colimit of the system. 
+
+	If $P \to Q$ is birhizomic at $Q \to M$, then there is an index $\alpha$ such that $P_\alpha \to Q_\alpha$ is birhizomic at $Q_\alpha \to M_\alpha$. 
+\end{theorem}
+
+
+
+
+\begin{proof}
+	Abbreviate $H^0_\alpha = H^0{\cal L}_{Q_\alpha/P_\alpha}\big|_{M_\alpha}$ and $H^{-1}_\alpha = H^{-1} {\cal L}_{Q_\alpha/P_\alpha}\big|_{M_\alpha}$.
+
+
+
+
+Choose a finite set $\{f_1, \cdots, f_n\}$ of generators for some $Q_{\alpha_0}$ over $P_{\alpha_0}$.  Replacing the indexing diagram, we may assume without loss of generality that $\alpha_0$ is initial in the diagram, so that $f_1, \ldots, f_n$ generate every $Q_\alpha$ relative to $P_\alpha$.  For each subset $I \subset \{ f_1, \ldots, f_n \}$, let $U(I)_\alpha$ be the open subset of $\spec M_\alpha$ where the images of all $f \in I$ in $M_\alpha$ vanish.  
+
+
+
+
+	We argue that there is some index $\alpha$ such that, for every sharp localization $\bar M$ of $M_\alpha$, the groups $H^0_\alpha(\bar M)$ and $\mathbf Q \otimes H^{-1}_\alpha(\bar M)$ vanish.  The latter implies the vanishing of $H^{-1}_\alpha(\bar M)$ because $H^{-1}_\alpha(\bar M)$ is torsion-free (since it is a subgroup of the associated group of the sharpening of $P \to \bar M$, which is torsion-free).  This implies that $P_\alpha \to Q_\alpha$ is birhizomic at $Q_\alpha \to M_\alpha$ by Theorem~\ref{thm:rhizomicinflifting}.
+
+
+
+
+	Let $I$ be the set of indices $i$ such that $f_i$ is inverted in $\bar M$.  Then by Corollary~\ref{cor:8}, the maps $H^0_\alpha(U(I)_\alpha) \to H^0_\alpha(\bar M)$ and $\mathbf Q \otimes H^{-1}_\alpha(U(I)_\alpha) \to \mathbf Q \otimes H^{-1}_\alpha(\bar M)$ are surjective.  Therefore it suffices to find an $\alpha$ such that $H^0_\alpha(U(I)_\alpha)$ and $\mathbf Q \otimes H^{-1}_\alpha(U(I)_\alpha)$ both vanish for all $I$.  
+
+	Since $H^0_\alpha(U(I)_\alpha)$ is finitely generated as an abelian group, and $\mathbf Q \otimes H^{-1}_\alpha(U(I)_\alpha)$ is a finite dimensional $\mathbf Q$-vector space (by Proposition~\ref{prop:27} and Lemma~\ref{lem:11}), and since $\varinjlim H^i_\alpha(U(I)_\alpha) = 0$ because $P \to Q$ is birhizomic at $Q \to M$, it will be sufficient to show that $H^0_\alpha(U(I)_\alpha) \to H^0_\beta(U(I)_\beta)$ and $\mathbf Q \otimes H^{-1}_\alpha(U(I)_\alpha) \to \mathbf Q \otimes H^{-1}_\beta(U(I)_\beta)$ are surjective for all sufficiently large values of $\alpha$ and $\beta$.  Because filtered colimits commute with kernels, cokernels, sharpening, and passage to the associated group, $H^i \mathcal L_{Q/P}(U(I))$ can be identified with $\colim H^i_\alpha(U(I)_\alpha)$, and the vanishing of the filtered colimit implies the vanishing at some finite stage.
+
+
+	
+
+
+	For $H^0$ this is clear.  For $H^{-1}$, Corollary~\ref{cor:1} shows that $\mathbf Q \otimes H^{-1}_\alpha(U(I)_\alpha) \to \mathbf Q \otimes H^{-1}_\beta(U(I)_\beta)$ is surjective unless some generator of $\bar Q_\alpha$ relative to $\bar P_\alpha$ is inverted in $\bar Q_\beta$ (with $\bar P_\alpha = (P_\alpha)_\sharp(U(I)_\alpha)$, with $\bar Q_\alpha = (Q_\alpha)_\sharp(U(I)_\alpha)$, and with $\bar Q_\beta = (Q_\beta)_\sharp(U(I)_\beta)$).  Since $\{ f_1, \ldots, f_n \}$ is a finite set, every element of $\{ f_1, \ldots, f_n \}$ that is inverted in $Q_\sharp(U(I))$ has already been inverted in some $(Q_\alpha)_\sharp(U(I)_\alpha)$.
+\end{proof}
+
+
+
+
+
+\begin{corollary}  \label{cor:9}
+	Suppose that $P \to Q \to N$ is a sequence of monoid homomorphisms, and that $P \to Q$ is birhizomic at $Q \to N$.  Then there is a finitely generated monoid $P_0$ and monoid homomorphism $P_0 \to Q_0$ such that $P \to Q$ is induced from $P_0 \to Q_0$ by pushout along a homomorphism $P_0 \to P$, and $P_0 \to Q_0$ is birhizomic at $Q_0 \to N$.
+\end{corollary}
+
+
+
+
+
+\begin{proof}
+	Since $P \to Q$ is of finite presentation, we can find a finitely generated monoid $P'$, a homomorphism $P' \to P$, and a homomorphism $P' \to Q'$ of finite presentation that induces $P \to Q$ by pushout.  We take $\{ P_\alpha \}$ to be the system of all factorizations of $P' \to P$ through a monoid of finite presentation, and we define $Q_\alpha$ to be the pushout of $Q'$ along $P' \to P_\alpha$.  Then we apply Theorem~\ref{thm:noethapprox} to the following family of diagrams~:
+	\begin{equation*} \begin{tikzcd}
+		P_\alpha \ar[r] \ar[d] & Q_\alpha \ar[r] \ar[d] & N \ar[d,equals] \\
+		P \ar[r] & Q \ar[r] & N
+	\end{tikzcd}
+	\end{equation*}
+\end{proof}
+
+
+
+
+
+\subsection{Quasicompactness}
+
+\begin{definition} \label{def:8}
+	Let $A$ be a partially ordered abelian group.  We write $\utopcone A$ for the set of valuations of $A$.  We say that a subset of $\utopcone A$ is \emph{constructible} 
+	if it can be described by a quantifier-free 
+	formula involving elements of $A$ and $\leq$ and Boolean operations.  The \emph{constructible topology} 
+	is the coarsest topology on $\utopcone A$ in which the constructible 
+	sets are open.
+\end{definition}
+
+An order preserving homomorphism $A \to B$ induces a map $\utopcone B \to \utopcone A$ that carries constructible 
+subsets to constructible 
+subsets.  If $P$ is a monoid, we also write $\utopcone P = \utopcone {\gp P}$, with $\gp P$ given the partial order induced by $P$.  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{proposition} \label{prop:23}
+	Let $A$ be a partially ordered abelian group.  Then $\utopcone A$ is quasicompact in the constructible topology.
+\end{proposition}
+\begin{proof}
+	Let $W = \utopcone A$.  We must show that every ultrafilter on $W$ converges~\cite[D\'efinition~I.9.1.1]{Bourbaki-TG}. Let $U$ be an ultrafilter on $W$.  For each $x, y \in A$, we write $U(x) \leq U(y)$ if $U$ contains 
+	$
+		\{ v \in W \: \big| \: v(x) \leq v(y) \} .
+	$
+	Let $R$ be the set of pairs $(x,y) \in A \times A$ such that $U(x) \leq U(y)$.  It is a straightforward verification, using the fact that $U$ is an ultrafilter, that $R$extends the order relation of $A$, hence gives a valuation $w$ of $A$.
+	
+	
+
+	We can define $U(x) < U(y)$ to mean that $U$ contains $\{ v \in W \: \big| \: v(x) < v(y) \}$.  We note that because $U$ is an ultrafilter and the order $v \in W$ are total, the assertion $U(y) < U(x)$ is the logical negation of $U(x) \leq U(y)$.
+
+
+	
+
+
+
+
+	To conclude, we show that $U$ converges to $w$ in the constructible topology.  We must show that if $K$ is any open neighborhood of $w$ in the constructible topology on $\utopcone A$ then $K \in U$.  Any such $K$ is a union of basic constructible sets, each of which is defined by the conjunction of finitely many inequalities.  Since $U$ is a filter, and in particular stable under finite intersection, it will suffice to assume that $K$ is defined by a single inequality, say $x \leq y$ (resp.\ $x < y$).  Since $K$ is a neighborhood of $w$, we have $w(x) \leq w(y)$ (resp.\ $w(x) < w(y)$), which implies that $U(x) \leq U(y)$ (resp.\ $U(x) < U(y)$) by the definition of $w$, and therefore that $K \in U$, as required.
+\end{proof}
+
+
+
+
+
+\begin{proposition} \label{prop:1}
+	Let $f : P \to Q$ be a homomorphism of monoids such that $Q$ is of finite presentation relative to $P$.  Then the image of $\lvert\Cone(Q)\rvert \to \lvert\Cone(P)\rvert$ is 
+	constructible.
+\end{proposition}
+\begin{proof}
+	Let $P'$ be the pre\"image of $Q$ under $f : \gp P \to \gp Q$.  Then we claim the image of $\varphi : \lvert\Cone(Q)\rvert \to \lvert\Cone(P)\rvert$ is represented by $\lvert\Cone(P')\rvert$.  Indeed, if $v : P \to V$ is a valuation then $v$ lies in the image of $\varphi$ if and only if $v$ extends to a valuation that lifts to $Q$.  Since the formation of $P'$ commutes with pushout (see the proof of \cite[Proposition~I.3.2~(2)]{Tsuji}), it is sufficient to verify the claim when $P = V$ and $Q$ is replaced by the pushout $Q_v$ along $v$.  Since $V$ is valuative, $\lvert\Cone(Q_v)\rvert \to \lvert\Cone(V)\rvert$ is surjective if and only if $V \to Q_v$ is sharp.  Indeed, every monoid has a sharp valuation~\cite[Proposition~I.2.4.1]{ogusloggeom}, so the identity valuation of $V$ lifts, and therefore every valuation lifts by composition.  But a homomorphism whose domain is valuative is sharp if and only if it is exact so $\lvert\Cone(Q_v)\rvert \to \lvert\Cone(V)\rvert$ is surjective if and only if $P'_v = V$.
+
+
+
+	We therefore only need to show that $P'$ is finitely presented relative to $P$.  But $f$ is of finite presentation, so there is a monoid $P_0$ of finite type and a homomorphism $P_0 \to Q_0$ such that $f$ is induced by pushout along a homomorphism $P_0 \to P$.  Again because the formation of $P'$ is stable under pushout, it is sufficient to show that $P'_0$ is finitely presented relative to $P_0$.
+
+	To conclude we note that because $P_0$ and $Q_0$ are finitely generated, they can be viewed as rational polyhedral cones inside the real vector spaces $\mathbf R \otimes \gp P_0$ and $\mathbf R \otimes \gp Q_0$.  In particular, $Q_0$ is defined by finitely many integral inequalities, so its pre\"image $P'_0$ is likewise defined by finitely many integral inequalities.  Thus $P'_0$ is the set of integral points of a rational polyhedral cone, so it is finitely presented.
+\end{proof}
+
+
+
+
+
+
+
+
+
+\begin{proposition} \label{prop:11}
+	Let $P \to Q \to V$ be a sequence of monoid homomorphisms with $V$ valuative and $P \to Q$ birhizomic at $Q \to V$.  Then there is a 
+	constructible subset $U$ of $\lvert\Cone(Q)\rvert$ containing $P \to V$ such that $P \to Q$ is birhizomic at every $Q \to W$ in $U$.
+\end{proposition}
+
+
+
+
+\begin{proof}
+	We can present $V$ as a filtered colimit of monoids $M_\alpha$ with each $M_\alpha$ of finite presentation over $Q$.  We take $P_\alpha = P$ and $Q_\alpha = Q$ for all $\alpha$ and apply Theorem~\ref{thm:noethapprox}.  This gives an index $\alpha$ such that $P \to Q$ is birhizomic at $Q \to M_\alpha$.  Let $M'_\alpha$ be the pre\"image of $M_\alpha$ under $Q^{\rm gp}  \to M_\alpha^{\rm gp}$.  Then $M'_\alpha \to M_\alpha$ is exact, so $P \to Q$ is also birhizomic at $Q \to M'_\alpha$ by Proposition~\ref{prop:2}.  Then $P \to Q$ is birhizomic at every $Q \to W$ in $\utopcone{ M'_\alpha} \subset \utopcone{Q}$ by Lemma~\ref{lem:6}.  Finally, $\utopcone{M'_\alpha} \subset \utopcone{Q}$ is 
+	constructible by Proposition~\ref{prop:1}.
+\end{proof}
+
+
+
+
+
+
+\begin{corollary} \label{cor:5}
+	Every birhizomic cover of a monoid $P$ has a finite subcover.
+\end{corollary}
+\begin{proof}
+	Suppose that $\mathcal U = \{ P \to Q_i \}$ is a birhizomic cover.  By Proposition~\ref{prop:11}, the set of valuations of $Q_i$ at which $P \to Q_i$ is birhizomic is a union of images of $\lvert \Cone(W) \rvert$ for monoids $W$ that are finitely presented relative to $Q_i$, hence finitely presented relative to $P$.  Each $\lvert \Cone(W) \rvert$ projects to a 
+	constructible subset of $\lvert \Cone(P) \rvert$ by Proposition~\ref{prop:1}.  Since $\lvert \cone P \rvert$ is quasicompact, there is a finite subset of the $\lvert \Cone(W) \rvert$ that covers $\lvert \Cone(P) \rvert$, and therefore there is a finite subset of the $P \to Q_i$ that already forms a birhizomic cover of $P$.
+\end{proof}
+
+
+
+
+
+\begin{proposition} \label{prop:3}
+	Suppose that $P_\alpha \to W_{\alpha,i}$ is a cocartesian filtered system of monoid homomorphisms of finite presentation with colimits $P \to W_i$.  Assume that the $\lvert\Cone(W_i)\rvert$ cover $\lvert\Cone(P)\rvert$.  Then there is some index $\alpha$ such that the $\lvert\Cone(W_{\alpha,i})\rvert$ cover $\lvert\Cone(P_\alpha)\rvert$.
+\end{proposition}
+\begin{proof}
+	We may assume that the $\alpha$ are indexed by a filtered partially ordered set (rather than a filtered category).  Suppose for the sake of contradiction that, for every $\alpha$, there is a valuation $v_\alpha : P_\alpha \to V_\alpha$ that does not extend to any of the $W_{\alpha,i}$.  Let $U$ be an ultrafilter on the set of indices $\{ \alpha \}$ extending the order filtration.  Let 
+	\begin{equation*}
+		\prod_U V_\alpha^{\rm gp} = \varinjlim_{S \in U} \prod_{\alpha \in S} V_\alpha^{\rm gp}
+	\end{equation*}
+	be the ultraproduct of the $V_\alpha^{\rm gp}$.  This is a totally ordered abelian group, so the non-negative elements $V$ are a valuative monoid.  We obtain a valuation $v : P \to V$ by sending $x \in P_\alpha$ to $(v_\beta(i_{\alpha\beta}(x)))_\beta$ where $i_{\alpha\beta} : P_\alpha \to P_\beta$ is the map associated with every $\alpha \leq \beta$.  Moreover, $v$ cannot lie in the image of any $\lvert\Cone(W_i)\rvert$.  Indeed, by Proposition~\ref{prop:1}, there is a quantifier-free formula $F$ such that $v$ lies in the image of $\lvert\Cone(W_{i})\rvert$ if and only if $v(F)$ holds.  This formula involves only finitely many elements of $P$ and relations among them, so it makes sense and characterizes the image of $\lvert\Cone(W_{\alpha,i})\rvert$ in all sufficiently large $P_\alpha$.  If this formula holds in $\varinjlim_{S \in U} \prod_{\alpha \in S} V_\alpha$, then \L o\'s's theorem implies that there is some $S \in U$ such that it also holds in $V_\alpha$ for all $\alpha \in S$.  Taking the projection on any $\alpha \in S$, we find that $v_\alpha(F)$ also holds, and therefore that $v_\alpha$ lifts to $W_{\alpha,i}$, contrary to our original assumption.
+\end{proof}
+
+
+
+
+
+
+
+\subsection{The intersection complex}
+
+
+\begin{definition} \label{def:2}
+	Let $\mathcal U = \{P \to Q_i\}$ be a finite family of monoid homomorphisms indexed by $i \in I$ and let $T \subseteq \spec P$ be a subset.  We say that $\mathcal U$ \emph{intersects} in $T$ if the preimage of $T \subseteq \spec P$ under the map 
+	\[
+	\spec \Bigl(\bigoplus_P Q_i\Bigr)^\sharp \longrightarrow \spec P
+	\]
+	is nonempty. 
+\end{definition}
+
+
+
+
+
+
+
+Recall the center of a valuation $P \to V$ is the image of the closed point of $\spec V$ in $\spec P$. 
+
+\begin{proposition}  \label{prop:18}
+	A finite family $\{P \to Q_i\}$ intersects in $T$ if and only if there is a valuation of $P$ with center in $T$ that lifts to every $Q_i$.
+\end{proposition}
+
+
+
+
+
+
+
+\begin{proof}
+	Let $t$ be a point of $T$.  Assume that there is a valuation $v$ of $P$ centered at $t$ that lifts to a valuation $w_i$ of each $Q_i$.  Let $W$ be a compositum \cite[Corollary~2.2]{Pierce1972Amalgamations} of the value monoids of the $w_i$ so that all $w_i$ can be viewed as valued in the same valuative monoid.  Then we obtain a valuation $w$ of $\bigl( \bigoplus_P Q_i \bigr)^\sharp$ by the universal property of the pushout, and this projects to $v$ by construction.  The center of $w$ is a point of $\spec \bigl( \bigoplus_P Q_i \bigr)^\sharp$ lying in the fiber over $t$.
+
+
+
+
+
+	Now assume that the fiber of $\spec \bigl( \bigoplus_P Q_i \bigr)^\sharp$ over $t$ is nonempty.  Let $P \to P'$ be the sharp localization that inverts all elements of $P$ outside the prime ideal corresponding to $t$.  For each $i$, let $Q'_i$ be the induced sharp localization of $Q_i$.  Then the fiber $\spec \bigl( \bigoplus_P Q_i \bigr)^\sharp$ over $t$ is the same as the fiber of $\spec \bigl( \bigoplus_{P'} Q'_i \bigr)^\sharp$ over the closed point of $\spec P$, hence the latter is nonempty.  Choose a sharp valuation of $\bigl( \bigoplus_{P'} Q'_i \bigr)^\sharp$ using \cite[Proposition~I.2.4.1]{ogusloggeom}.  This projects to valuations of the $Q'_i$ that project to the same sharp valuation of $P'$.  Composing, these give valuations of the $Q_i$ that project to a valuation of $P$ centered at $t$.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{construction} \label{const:1}
+	Let $\mathcal U = \{ P \to Q_i \}$ be a family of monoid homomorphisms and $T \subseteq \spec P$ a subset.  We define 
+	\begin{equation*}
+		X( \mathcal U, T ) \coloneqq  \{ \mathcal V \subseteq \mathcal U \: \big| \: \text{$\mathcal V$ intersects in $T$} \}.
+	\end{equation*}
+\end{construction}
+
+We observe that if $\mathcal V \subset \cal U$ intersects in $T$, so does every subset of $\cal V$.  Therefore $X( \mathcal U, T )$ is a simplicial complex.  Our convention is that $X(\mathcal U, T) = \varnothing$ when $T = \varnothing$.
+
+
+
+
+
+
+\begin{proposition}\label{prop:contractible3}
+	Let ${\cal U} = \{P \to Q_i\}$ be a family of monoid homomorphisms of finite presentation such that each map $\gp P \to \gp Q_i$ is surjective.  Let $T \subseteq \spec P$ be a nonempty, constructible closed subset (in the Zariski topology of $\spec P$).  Suppose each valuation of $P$ centered in $T$ lifts to a valuation of some $Q_i$. Then $X({\cal U}, T)$ is contractible. 
+\end{proposition}
+
+\begin{proof}
+	The simplicial complex $X({\cal U}, T)$ is a filtered union over the simplicial complexes associated to finite subfamilies of $\{P \to Q_i\}$. Filtered colimits of contractible simplicial complexes are contractible (this follows from \cite[\href{https://kerodon.net/tag/00ZE}{Tag 00ZE}]{kerodon}, for example, and the fact that simplicial spheres are finite complexes), so it suffices to show that $X(\mathcal V, T)$ is contractible for all sufficiently large finite subfamilies $\mathcal V$.  The open subsets of $\spec P$ can be described with quantifier- and negation-free formulas involving propositions $x \leq 0$ for $x \in P$.  In particular, they correspond to constructible subsets of $\lvert\Cone(P)\rvert$, and therefore so does the closed set $T$.  Proposition \ref{prop:23} tells us that this subset is quasicompact.  Therefore, if $\mathcal V$ is any sufficiently large finite subfamily of $\mathcal U$, then every valuation of $P$ centered in $T$ lifts to some $Q_i$ in $\mathcal V$.  It will suffice to prove the proposition for such $\mathcal V$, so we assume from now on that $\mathcal U$ is finite.
+
+
+
+	
+
+
+	
+
+
+
+	
+
+	We choose a minimal finite set $\{ \beta_1, \ldots, \beta_N \} \subset P^{\rm gp}$ such that each $Q_i$ is generated by some subset of the $\beta_i$.  We induct on the total number $N$ of required generators. 
+
+
+
+
+
+	The base case is where every $Q_i$ is a sharp localization of $P$.  The sharp localizations $P \to Q_i$ give a Zariski cover of $T$.  Since $T$ is nonempty and closed, it contains the unique closed point of $\spec P$.  Therefore the maximal ideal of $P$ is the pre\"image of the maximal ideal of some $Q_j$, so $P = Q_j$ for some $j$.  Thus $X(\{ P \to Q_i \}, T)$ has a deformation retraction onto the vertex $Q_j$ in this case.
+
+
+
+
+
+	In the inductive case, there is at least one $Q_i$ such that $P \to Q_i$ is not a localization.  After reordering, we assume this is $Q_1$.  Reordering the $\beta_i$, we assume that $Q_1$ is presented as $P[\beta_{1}, \ldots, \beta_{n}]^{\mathrm{sat}\sharp}$ with $\beta_{1}, \ldots, \beta_{n} \in P^{\rm gp}$.  Since $Q_1$ is not a localization of $P$, there is some $\beta_j$, with $1 \leq j \leq n$, such that $-\beta_j \not\in P$.  Relabel indices so that $j = 1$.
+
+
+
+
+
+	We define $P_+ = P[\beta_1]^{\rm sat\sharp}$ and $P_- = P[-\beta_1]^{\rm sat\sharp}$ and $P_0 = P[\pm \beta_1]^{\rm sat\sharp}$.  For each $\epsilon \in \{+, -, 0\}$ and each index $i$, the pushout $(P_\epsilon \oplus_P Q_i)^\sharp$ can be generated by a subset of $\{\beta_2, \cdots, \beta_N\}$.  The restriction of $\mathcal U$ to $P_\epsilon$ therefore requires strictly fewer generators than did $\mathcal U$.  Likewise every valuation of $P_\epsilon$ with center in $T_\epsilon = T \times_{\spec P} \spec P_\epsilon$ (which is constructible and closed in $\spec P_\epsilon$) lifts to some base change $(P_\epsilon \oplus_P Q_i)^\sharp$.  We set $X_\epsilon = X(\mathcal U_\epsilon, T_\epsilon)$ where $\mathcal U_\epsilon = \{ P_\epsilon \to (P_\epsilon \oplus_P Q_i)^{\rm sat\sharp} \}$.
+
+
+
+
+
+
+	
+	We will argue below that $X(\mathcal U, T) = X_+ \cup_{X_0} X_-$.  
+	If all of $T_-$, $T_+$, and $T_0$ are nonempty then the induction hypothesis shows that all of $X_-$, $X_+$, and $X_0$ are contractible.
+	In that case, $X(\mathcal U, T)$ is the union of contractible spaces along a contractible space, hence is contractible (since the inclusions are cofibrations).  
+	If one of the closed sets $T_- \subset \spec P_-$ or $T_+ \subset \spec P_+$ is empty then the other is not (since $T$ is nonempty).  In that case one of $X_-$ or $X_+$ is empty and the other is not.  Then $X(\mathcal U, T)$ is the union of a contractible set and an empty set, hence is contractible.  The analysis of $X_+ \cap X_-$, below, rules out the possibility that $X_0 = \varnothing$ while both $X_+$ and $X_-$ are nonempty.
+
+
+	
+
+
+
+	Now we show that $X(\mathcal U, T) = X_+ \cup_{X_0} X_-$.  First, if $v$ is any valuation of $P$ then either $v(\beta_1) \leq 0$, in which case $v$ extends to $P_-$, or $v(\beta_1) \geq 0$.  Thus, $\mathcal V \subset \mathcal U$ will intersect in $T$ at (and extension of) $v$ if and only if either $\mathcal V_-$ intersects in $T_-$ at $v$ or $\mathcal V_+$ intersects in $T_+$ at $v$.
+
+
+
+
+
+	It remains to show that $X_- \cap X_+ = X_0$.  The containment $X_0 \subset X_- \cap X_+$ is clear.  Suppose that $\mathcal V = \{ i_1, \ldots, i_m \} \subset \mathcal U$, that $\mathcal V_-$ intersects in $T_-$ at $v_- : P \to W_-$ with $v_-(\beta_1) \leq 0$, and that $\mathcal V_+$ intersects in $T_+$ at $v_+ : P \to W_+$ with $v_+(\beta_1) \geq 0$.  If either of these inequalities is an equality then one of $v_-$ or $v_+$ lies in $T_0$ and we are done.  Otherwise, let 
+	\begin{equation*}
+		Q = \bigl( Q_{i_1} \oplus_P \cdots \oplus_P Q_{i_m} \bigr)^{\rm sat\sharp} .
+	\end{equation*}
+	Since $v_-$ and $v_+$ both factor through $Q$, so does $(v_-, v_+) : P \to W_- \times W_+$.  Let $R$ be the saturated image of $Q$ in $W_- \times W_+$.
+
+	Note that the map $\spec R \to \spec P$ carries the closed point to a specialization of the centers of $v_-$ and $v_+$, hence into $T$.  Since $R$ has a valuation under which $\beta_1$ is strictly positive and a valuation under which it is strictly negative, neither the image $\beta_1$ nor the image of $-\beta_1$ in $R^{\rm gp}$ can lie in $R$.  Therefore $P$ has a sharp valuation $v_0$ factoring through $R$ with $v_0(\beta_1) = 0$~: use \cite[Proposition~I.2.4.1]{ogusloggeom} to obtain a sharp valuation of the saturated image of $R$ in $R / Y$ where $Y$ is the saturation of $\mathbf Z \beta_1$.  Since this valuation is sharp, its center is the image of the closed point of $\spec R$, hence lies in $T$.  This gives a valuation of $Q$ centered in $T_0$.  (This rules out $T_0 = \varnothing$ when $T_-$ and $T_+$ are both nonempty.)  Therefore $\mathcal V_0$ meets in $T_0$ at $v_0$.  We conclude that $X_- \cap X_+ = X_0$, as required.
+\end{proof}
+
+
+
+
+
+
+\subsection{Cohomology of face-constructible sheaves}
+
+
+Let $\sigma = \Cone P$ for a monoid $P$.  We write $\Rh P$ for the category of all monoid homomorphisms $P \to Q$, equipped with the birhizomic topology and $\spec P$ for the small Zariski site of the spectrum of $P$. 
+
+
+
+
+
+There is a morphism of sites $\pi : \Rh P \to \spec P$.  A basic open subset of $\spec P$ corresponds to a sharp localization $P \to \bar P$.  On these basic open subsets, $\pi^{-1}$ operates as the identity functor.  It is easily verified that $\pi^{-1}$ is left exact, since a pushout of sharp localizations is a sharp localization.  Since basic open subsets have no nontrivial covers, it is equally immediate that $\pi^{-1}$ preserves covers.
+
+
+
+
+
+If $P \to Q$ is a finitely presented sharp localization, we call $\tau = \cone Q$ a \emph{face} of $\sigma = \cone P$.  In this case, there is an inclusion morphism $i : \spec Q \to \spec P$.  The pullback functor $i^{-1}$ on sheaves of abelian groups has a left adjoint $i_!$ (extension by zero for an open immersion).  We have $i_! G(\rho) = G(\rho)$ if $\rho$ is a face of $\tau$, and $i_! G(\rho) = 0$ otherwise.  
+
+
+
+
+
+\begin{lemma} \label{lem:21}
+	If $F$ is a sheaf of abelian groups on $\sigma = \spec P$ then $F$ receives a surjection from a direct sum of sheaves $i_! G$, ranging over all face inclusions $i : \tau \to \sigma$ and $G$ constant on $\tau$.
+\end{lemma}
+\begin{proof}
+	Let $i : \tau \to \sigma$ be the inclusion of a face of $\sigma$.  We take $G_\tau$ to be the constant sheaf on $\tau$ with value $F(\tau)$.  Then the tautological morphism $G_\tau \to i^{-1} F$ induces $i_! G_\tau \to F$.  Then $\bigoplus_{i : \tau \to \sigma} i_! G_\tau \to F$ is surjective.
+\end{proof}
+
+
+
+
+
+We iterate the construction of Lemma~\ref{lem:21} to obtain an exact sequence
+\[
+	\cdots F_{k+1} \to F_k \to F_{k-1} \to \cdots \to F \to 0
+\]
+in which each $F_k$ is a direct sum of sheaves of the form $j_! G$, where $j : \spec \bar P \to \spec P$ is the inclusion of a face and $G$ is constant on $\spec \bar P$.  
+
+
+
+
+
+\begin{lemma}\label{lem:finiteresolutionfgmonoid}
+	Let $X \subseteq \spec P$ be any open subset of $\spec P$ where $P$ is a finitely generated monoid.  If $F$ is a sheaf of abelian groups on $X$, the above resolution has $F_k = 0$ for $k > \dim X$. 
+\end{lemma}
+
+\begin{proof}
+	By induction on $\dim X$~: if $\dim X = 0$, it is a finite disjoint union of points and Lemma~\ref{lem:21} produces an isomorphism. Otherwise, note that the construction from Lemma~\ref{lem:21} produces one nonzero summand for each maximal dimension face in the support of $F$, and that the value of that summand on that face is the same as the value of $F$ there.  Thus the kernel of $F_0 \to F$ is supported on a monoidal subspace of strictly smaller dimension. 
+\end{proof}
+
+
+
+
+
+
+
+\begin{lemma} \label{lem:2}
+	Let $P$ be a finitely generated monoid and let $j : \spec \bar P \to \spec P$ be the inclusion of a face.  Let $G$ be a constant sheaf on $\spec \bar P$.  Then Theorem~\ref{cor:2} holds for $F = j_! G$.
+\end{lemma}
+\begin{proof}
+	Let $F'$ be the constant sheaf on $\spec P$ with the same value as $G$ and let $F'' = F' / F$.  	Note that $F''$ is the pushforward of a constant sheaf from the closed complement of $\spec \bar P$ (see \cite[\href{https://stacks.math.columbia.edu/tag/02UT}{Tag 02UT}]{stacks-project}, for example).
+
+
+
+
+
+	We argue that all \v Cech cohomology groups of $F'$ and of $F''$ vanish in positive degrees for sufficiently fine covers, and that $H^0(\Rh P, F') \to H^0(\Rh P, F'')$ is surjective.  Since the formation of 
+	$F''$ commutes with restriction along any homomorphism $P \to P_1$, this will also imply the vanishing of the \v Cech cohomology of $F'$ on every object of $\Rh P$.  Since this reasoning applies to every finitely generated monoid $P$ and all sufficiently fine birhizomic covers, and since the pushouts of finitely generated monoids are finitely generated, this will then imply the vanishing of the derived functor cohomology of $F$ by the \v Cech-to-derived spectral sequence \cite[\href{https://stacks.math.columbia.edu/tag/03F9}{Tag 03F9}]{stacks-project}.
+
+
+
+
+
+	The vanishing for $F'$ is immediate because $F'$ is constant and all $P \to Q_i$ in a birhizomic cover have a common intersection over the zero localization $P \to 0$, so the \v Cech cohomology coincides with the cohomology of a constant sheaf on a simplex.  This also dispatches the case where $P \to \bar P$ is an isomorphism, since in that case $F' = F$.
+
+
+
+
+
+	Let $K$ be the kernel of the sharp localization $P^{\rm gp} \to \bar P^{\rm gp}$.  The prime ideal $P \smallsetminus K$ is the complement of the image of $j$.  Let $P_0 = P \cap K$.  Then the prime ideals of $P_0$ are in bijection with the prime ideals of $P$ containing $P \smallsetminus K$, so we identify $\spec P_0$ with the closed complement.  We write $i : \spec P_0 \to \spec P$ for the inclusion and note that $F'' = i_\ast G'$ where $G'$ is the constant sheaf on $\spec P_0$.  If $P \to Q_i$ is birhizomic and sharp then there is no open subset of $\spec P$ that contains the image of $\spec Q_i$ other than $\spec P$ itself.  In particular, the value of $\pi^{-1} i_\ast G'$ on $Q_i$ is the constant value of $G$.  By Lemma~\ref{lem:14}, every cover of $\Rh P$ can be refined by a family of sharp maps $P \to Q_i$, so we conclude that $H^0(\Rh P, F'')$ has the same constant value as does $H^0(\Rh P, F')$ and therefore that $H^0(\Rh P, F') \to H^0(\Rh P, F'')$ is surjective.
+
+
+
+
+
+
+	For the vanishing of the higher \v Cech cohomology groups of $F''$, we consider a birhizomic covering family $\mathcal U = \{ P \to Q_i \}$ of $P$. The group $F''\bigl( ( Q_{i_1} \mathop\oplus_P \cdots \mathop\oplus_P Q_{i_n} )^{\mathrm{sat}\sharp} \bigr)$ will vanish if  $P \to (Q_{i_1} \mathop\oplus_P \cdots \mathop\oplus_P Q_{i_n})^{\mathrm{sat}\sharp}$ factors through $P \to \bar P$, and it will take the value $G$ otherwise.  Write $T \coloneqq \spec P \smallsetminus \spec \bar P$ for the closed complement. Then the \v Cech complex of $F''$ on the cover $\mathcal U$ coincides with the normalized cochain complex of the constant sheaf $G$ on the intersection complex $X( \{ P \to Q_i \}, T )$ from Construction~\ref{const:1}.  By Lemma~\ref{lem:14}, we can replace $\{ P \to Q_i \}$ with a refinement where every $\gp P \to \gp Q_i$ is bijective.  Then cohomology vanishes by Proposition~\ref{prop:contractible3}.
+\end{proof}
+
+
+
+
+
+\begin{lemma} \label{lem:4}
+	Theorem~\ref{cor:2} holds when $P$ is finitely generated.
+\end{lemma}
+\begin{proof}
+	Consider the finite resolution of Lemma~\ref{lem:finiteresolutionfgmonoid}~:
+	\begin{equation*}
+		0 \to F_n \to \cdots  \to F_1 \to F_0 \to F \to 0
+	\end{equation*}
+
+	Since $P$ is finitely generated, each term in the resolution is a finite direct sum of sheaves $j_! G$, and Lemma~\ref{lem:2} shows the sheaves $\pi^{-1} j_! G$ are acyclic on $\Rh P$.  Therefore the hypercohomology spectral sequence degenerates at the $E_2$-page and the $E_1$-page is a single row:
+	\begin{equation} \label{eqn:10}
+		0 \to H^0(\Rh P, \pi^{-1} F_n) \to \cdots \to H^0(\Rh P, \pi^{-1} F_0) \to 0
+	\end{equation}
+
+
+
+
+
+	Lemma~\ref{lem:2} also implies that $H^0(\Rh P, \pi^{-1} F_q) = H^0(\spec P, F_q)$.  But the global sections functor on $\spec P$ is exact because $\spec P$ has no nontrivial covers.  Therefore~\eqref{eqn:10} is exact except in the last position, $H^i(\Rh P, \pi^{-1} F)$ vanishes for all $i > 0$, and $H^0(\Rh P, \pi^{-1} F) = H^0(\spec P, F)$.
+\end{proof}
+
+
+
+
+
+\begin{lemma} \label{lem:5}
+	If $P$ is finitely generated monoid then the \v Cech cohomology $H^p(\mathcal U, F)$ vanishes for $p > 0$ and all sufficiently fine birhizomic covers $\mathcal U$ and all sheaves of abelian groups $F$ on $\spec P$.
+\end{lemma}
+
+
+
+
+
+\begin{proof}
+	Let $\mathcal U = \{ P \to Q_i \}$ be a birhizomic cover of $P$.  Let $R = (Q_{i_0} \oplus_P \cdots \oplus_P Q_{i_s})^{\mathrm{sat}\sharp}$ be one of the monoids contributing to the \v Cech complex.  The composition $\Rh R \to \Rh P \to \spec P$ can also be factored as $\Rh R \to \spec R \to \spec P$.  Therefore $\pi^{-1} (F) \big|_{\Rh R} = \pi^{-1} \bigl( F \big|_{\spec R} \bigr)$.  Furthermore, after refining the cover, we can assume that every $Q_i$, and therefore every $R$, is finitely generated relative to $P$.  Since $P$ is finitely generated, this implies that $R$ is as well.  Therefore, Lemma~\ref{lem:4} applies to $\pi^{-1} (F) \big|_{\Rh R}$, and the higher cohomology of $\pi^{-1} F$ on all $\Rh R$ vanishes by Lemma~\ref{lem:4}.  Therefore, the \v Cech spectral sequence for $\pi^{-1} F$ degenerates to the \v Cech complex at the $E_1$ page, so the \v Cech cohomology computes the cohomology of $\pi^{-1} F$ on $\Rh P$, hence vanishes in positive degrees.
+\end{proof}
+
+
+
+
+
+
+
+
+\begin{proof}[Proof of Theorem~\ref{cor:2}]
+	We will argue by induction on $p$ that the group $H^p(\Rh P, \pi^{-1} F)$ vanishes for $p > 0$.  Suppose that $\alpha \in H^p(\Rh P, \pi^{-1} F)$.  Choose a cover of $\Rh P$ by finitely many cones $P \to Q_i$ such that $\alpha \big|_{Q_i} = 0$ for all $i$.  Induction implies that $H^q(\Rh\bigl( ( Q_{i_0} \oplus_P \cdots \oplus_P Q_{i_m})^\sharp \bigr), \pi^{-1} F) = 0$ for $0 < q < p$ and all $i_0, \ldots, i_m$.  Therefore $\alpha$ can be represented by a \v Cech cohomology class with respect to the cover of $\Rh P$ by the $\Rh Q_i$, using the \v Cech-to-derived spectral sequence and inductive vanishing. 
+
+
+
+
+
+	Using Proposition~\ref{prop:11}, we can find a family of finitely presented homomorphisms $Q_i \to W_i$ such that $P \to Q_i$ is birhizomic at $Q_i \to W_i$ and the maps $\lvert\Cone(W_i)\rvert$ cover $\lvert\Cone(P)\rvert$. Reindexing $I$ may be necessary to factor $Q_i$ through multiple $W_i$'s.  By Proposition~\ref{prop:1}, each of the $\lvert\Cone(W_i)\rvert$ has constructible image in $\lvert\Cone(P)\rvert$, and therefore Proposition~\ref{prop:23} shows that a finite subset of them cover $\lvert\Cone(P)\rvert$.  We replace the $Q_i$ by this finite collection.
+
+
+
+
+	Since there are only finitely many $Q_i$, and since each is finitely presented relative to $P$, there is a finitely generated monoid $P'$ and homomorphism $P' \to P$ such that each $Q_i$ is induced by base change from a finitely generated extension $P' \to Q'_i$.  By Corollary~\ref{cor:9}, it is possible, for each $i$, to choose $P'$ and the $Q'_i$ so that each $P' \to Q'_i$ is birhizomic at $Q'_i \to W_i$.  Since there are only finitely many $Q_i$, a single $P'$ works for all $i$.  The birhizomic locus of $P' \to Q'_i$ is a union of constructible subsets of $\lvert\Cone(Q'_i)\rvert$ by Proposition \ref{prop:11}. A finite collection of these suffice to cover the images of $\lvert \Cone(W_i)\rvert$ by Proposition \ref{prop:23}.  Relabeling indices if necessary, there is therefore a family of homomorphisms $P' \to Q'_i \to W'_i$ such that $P' \to Q'_i$ is birhizomic at $Q'_i \to W'_i$ and, if $W''_i$ denotes the extension of $W'_i$ to $P$, then the $\lvert\Cone(W''_i)\rvert$ cover $\lvert\Cone(P)\rvert$.  
+
+
+
+	
+	
+
+	For each finitely presented monoid homomorphism $P' \to P'_\alpha$ factoring $P' \to P$, let $W'_{\alpha i}$ be the pushout of $W'_i$ along $P' \to P'_\alpha$.  In the filtered colimit, the $\lvert \Cone\big( \varinjlim_\alpha W'_{\alpha i} \bigr) \rvert$ cover $\lvert \Cone(P) \rvert$, so Proposition~\ref{prop:3} implies that there is some index $\alpha$ where the $\lvert \Cone ( W'_{\alpha i} )\rvert$ already cover $\lvert \Cone(P'_\alpha) \rvert$.  Writing $Q'_{\alpha i}$ for the pushout of $Q'_i$, note that $P'_\alpha \to Q'_{\alpha i}$ is birhizomic at $Q'_{\alpha i} \to W'_{\alpha i}$ by Lemma~\ref{lem:10}.  Therefore we can replace $P'$ by $P'_\alpha$ and assume that the $\lvert\Cone(W'_i)\rvert$ cover $\lvert \Cone(P') \rvert$.
+
+
+
+
+	For each tuple $\mathbf i = (i_0, \ldots, i_s)$, let $Q_{\mathbf i} = (Q_{i_0} \oplus_P \cdots \oplus_P Q_{i_s})^\sharp$.  For each $\mathbf i$, let $P_{\mathbf i}$ be the sharpening of $P \to Q_{\mathbf i}$.  The homomorphism $P \to P_{\mathbf i}$ is itself finitely presented by Lemma~\ref{lem:12}.  After enlarging $P'$, we assume that each $P \to P_{\mathbf i}$ is the extension to $P$ of a sharp localization $P' \to P'_{\mathbf i}$.  Since $P_{\mathbf i}$ only depends on the distinct indices in $\mathbf i$, and since there are only finitely many $Q_i$, there are only finitely many distinct $P_{\mathbf i}$, and therefore we can find a single enlargement $P'$ such that every $P_{\mathbf i}$ is the extension of the sharp localization $P'_{\mathbf i}$.  Now we take $F'$ to be the pushforward of $F$ along the morphism $\spec P \to \spec P'$.  Let us write $Q'_{\mathbf i} = (Q'_{i_0} \oplus_P \cdots \oplus_P Q_{i_s})^\sharp$.  Then by definition of $\pi^{-1}$, the value $\pi^{-1} F'(Q'_{\mathbf i})$ is the value of $F'$ on the minimal face $\spec P'_{\mathbf i}$ through which $\spec Q_{\mathbf i} \to \spec P'$ factors. Since $\spec P'_{\mathbf i}$ pulls back to $\spec P_{\mathbf i}$ by construction, we have $\pi^{-1} F'(Q'_{\mathbf i}) = \pi^{-1} F(Q_{\mathbf i})$.
+
+
+
+
+	
+	Our arrangements ensure that the \v Cech complex of $\pi^{-1} F'$ with respect to the cover $\{ P' \to Q'_i \}$ of $\Rh(P')$ is identical to the \v Cech complex of $\pi^{-1} F$ with respect to the cover $\{ Q_i \}$ of $\Rh(P)$.  But the \v Cech cohomology of $\pi^{-1} F'$ on $\Rh(P')$ vanishes in positive degrees by Lemma~\ref{lem:5}.  Since $F'$ is the pushforward of $F$, we also have
+	\begin{multline*}
+		H^0(\{ P \to Q_i \}, \pi^{-1} F) = H^0(\{ P' \to Q'_i \}, \pi^{-1} F') = H^0(\Rh(P'), \pi^{-1} F') = H^0(\Rh(P), \pi^{-1} F)
+	\end{multline*}
+	and we may conclude.
+\end{proof}
+
+
+
+
+
+\bibliographystyle{alpha}
+\begin{thebibliography}{{Sta}20}
+
+\bibitem[Bou07]{Bourbaki-TG}
+Nicolas Bourbaki.
+\newblock {\em Topologie générale : chapitres 1 à 4}.
+\newblock Éléments de mathématique. Springer, Berlin, Heidelberg, 2007.
+
+\bibitem[Lur26]{kerodon}
+Jacob Lurie.
+\newblock Kerodon.
+\newblock \url{https://kerodon.net}, 2026.
+
+\bibitem[Ogu18]{ogusloggeom}
+Arthur Ogus.
+\newblock {\em Lectures on Logarithmic Algebraic Geometry}.
+\newblock Cambridge Studies in Advanced Mathematics. Cambridge University
+  Press, 2018.
+
+\bibitem[Pie72]{Pierce1972Amalgamations}
+K.~R. Pierce.
+\newblock Amalgamations of lattice ordered groups.
+\newblock {\em Transactions of the American Mathematical Society},
+  172:249--260, 1972.
+
+\bibitem[{Sta}20]{stacks-project}
+The {Stacks Project Authors}.
+\newblock \textit{Stacks Project}.
+\newblock https://stacks.math.columbia.edu, 2020.
+
+\bibitem[Tsu19]{Tsuji}
+Takeshi Tsuji.
+\newblock Saturated morphisms of logarithmic schemes.
+\newblock {\em Tunisian Journal of Mathematics}, 1(2):185--220, 2019.
+
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,124 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\newtheorem*{answer}{Answer}
+
+\begin{document}
+
+\title{On the derived unit \(F\to \mathrm R\pi_*\pi^{-1}F\)}
+\author{}
+\date{}
+\maketitle
+
+\begin{answer}
+No. The stated quasi-isomorphism fails in general. We give a counterexample.
+\end{answer}
+
+\section{The counterexample}
+
+Let \(P=\mathbb N=\{0,1,2,\dots\}\) with addition. It is an integral, saturated, sharp, commutative unital monoid.
+
+For \(x=0\), we have \(P[-0]^\sharp=P\). For every \(x>0\), the initial homomorphism
+\[
+P\longrightarrow P[-x]^\sharp
+\]
+sending \(x\) to \(0\) is the trivial monoid \(0\). Indeed, if \(x=n\cdot 1\) with \(n>0\), then \(x\mapsto 0\) forces \(n(1)\mapsto 0\). In an integral sharp monoid, \(na=0\) implies \(a=0\), so \(1\mapsto 0\), and hence the whole monoid maps trivially. Thus
+\[
+B_P
+\]
+has exactly two objects up to isomorphism:
+\[
+p=(P\xrightarrow{\mathrm{id}}P)
+\qquad\text{and}\qquad
+z=(P\xrightarrow{0}0).
+\]
+There is a unique morphism
+\[
+p\longrightarrow z
+\]
+in \(B_P\), namely the quotient map \(P\to 0\). There is no morphism \(z\to p\) in \(B_P\), since that would require a homomorphism \(0\to P\) whose composite with \(P\to 0\) is \(\mathrm{id}_P\), impossible for \(P=\mathbb N\).
+
+Therefore in
+\[
+C:=B_P^{\mathrm{op}},
+\]
+there is a unique non-identity morphism
+\[
+z\longrightarrow p.
+\]
+
+Let \(D:=A_P^{\mathrm{op}}\), and let
+\[
+i:C\hookrightarrow D
+\]
+be the inclusion. Define an abelian presheaf \(F\) on \(C\) by
+\[
+F(p)=\mathbb Z,\qquad F(z)=0,
+\]
+and let the unique morphism \(z\to p\) in \(C\) induce the zero map
+\[
+F(p)\longrightarrow F(z),
+\]
+i.e. the map \(\mathbb Z\to 0\). This is a well-defined presheaf, since there are no further non-identity morphisms to impose compatibility.
+
+Let
+\[
+L:=i_!F
+\]
+be the left Kan extension of \(F\) along \(i\). We compute \(L(p)\), where \(p\) is regarded as an object of \(D\).
+
+By the standard colimit formula for left Kan extension,
+\[
+L(d)=\operatorname*{colim}_{i(c)\to d} F(c).
+\]
+For \(d=p\), the comma category \((i\downarrow p)\) has two objects:
+\[
+(p,\mathrm{id}_p)
+\qquad\text{and}\qquad
+(z,u),
+\]
+where \(u:z\to p\) is the unique morphism in \(D\) induced by the quotient \(p\to z\) in \(B_P\). There is precisely one morphism
+\[
+(z,u)\longrightarrow (p,\mathrm{id}_p)
+\]
+in the comma category, induced by the unique morphism \(z\to p\) in \(C\). Hence the corresponding diagram of abelian groups is
+\[
+F(p)\xrightarrow{F(u)} F(z),
+\]
+that is,
+\[
+\mathbb Z\longrightarrow 0.
+\]
+The colimit of this diagram is \(0\). Therefore
+\[
+L(p)=0.
+\]
+
+Now \(\pi^{-1}F\) is defined as the sheafification \(L^+\) of \(L\) with respect to the birhizomic topology on \(D\). The unit of the adjunction
+\[
+F\longrightarrow \pi_*\pi^{-1}F
+\]
+evaluated at \(p\in C\) is the composite
+\[
+F(p)\longrightarrow L(p)\longrightarrow L^+(p).
+\]
+Since \(L(p)=0\), this composite is the zero map
+\[
+\mathbb Z\longrightarrow L^+(p).
+\]
+In particular, it is not injective.
+
+Thus the natural morphism
+\[
+F\longrightarrow \pi_*\pi^{-1}F
+\]
+is not an isomorphism in degree \(0\). Since \(R^0\pi_*=\pi_*\), the derived morphism
+\[
+F\longrightarrow \mathrm R\pi_*\pi^{-1}F
+\]
+cannot be a quasi-isomorphism. Consequently, the proposed statement is false.
+
+\end{document}

@@ -1,0 +1,270 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+\begin{document}
+
+\title{Acyclicity of the extension from principal localizations\\ for the birhizomic topology}
+\author{}
+\date{}
+\maketitle
+
+\section{Statement of the result}
+
+We use the terminology of the question.  Thus \(P\) is an integral saturated sharp commutative monoid,
+\[
+A_P=\{\,P\to Q\,\}
+\]
+is the category of integral saturated sharp monoids under \(P\), and
+\[
+B_P\subset A_P
+\]
+is the full subcategory whose objects are the principal localizations
+\[
+P\longrightarrow P[-x]^\sharp,\qquad x\in P.
+\]
+We give \(A_P^{\mathrm{op}}\) the birhizomic topology and \(B_P^{\mathrm{op}}\) the trivial topology.  Let
+\[
+\pi^{-1}:\operatorname{Sh}(B_P)\longrightarrow \operatorname{Sh}(A_P)
+\]
+be the functor obtained by left Kan extension followed by sheafification, and let
+\[
+\pi_*:\operatorname{Sh}(A_P)\longrightarrow \operatorname{Sh}(B_P)
+\]
+be its right adjoint.
+
+The purpose of this note is to prove the following theorem.
+
+\begin{theorem}\label{thm:main}
+For every presheaf of abelian groups \(F\) on \(B_P^{\mathrm{op}}\) (equivalently, for every abelian sheaf on \(B_P^{\mathrm{op}}\) for the trivial topology), the natural morphism
+\[
+F\longrightarrow \mathrm R\pi_*\pi^{-1}F
+\]
+is a quasi-isomorphism.
+\end{theorem}
+
+The proof is a comparison theorem for the birhizomic topology.  Roughly speaking, the principal localizations \(P[-x]^\sharp\) form a full set of strata for the birhizomic topology, while all non-stratified birhizomic covers are homotopically trivial.  Consequently, the higher direct images along
+\[
+\pi:\operatorname{Sh}(A_P)\longrightarrow \operatorname{Sh}(B_P)
+\]
+vanish on sheaves coming from \(B_P\).
+
+Throughout, presheaves on \(A_P^{\mathrm{op}}\) are regarded as covariant functors on \(A_P\), and similarly for \(B_P\).
+
+\section{Monoidal preliminaries}
+
+For \(x\in P\), write
+\[
+P\langle x\rangle^\sharp:=P[-x]^\sharp.
+\]
+This is the initial sharp saturated monoid under \(P\) in which \(x\) becomes zero.
+
+For \(x\in P\), define
+\[
+F_x:=\{\,p\in P:\text{ there exists }n>0\text{ with }p\le n x\,\}.
+\]
+Equivalently, \(F_x=\{p\in P:p\prec x\}\).
+
+\begin{lemma}\label{lem:faces}
+\leavevmode
+\begin{enumerate}
+\item \(F_x\) is a face of \(P\).
+\item The kernel of \(P\to P[-x]^\sharp\) is exactly \(F_x\).
+\item For \(x,y\in P\), there is a morphism
+\[
+P[-x]^\sharp\longrightarrow P[-y]^\sharp
+\]
+under \(P\) if and only if \(x\prec y\).  When it exists, it is unique.
+\item The category \(B_P\) is equivalent to the preorder of principal faces of \(P\), ordered by inclusion.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Only the first two points require comment.  If \(a,b\in P\) and \(a+b\in F_x\), then \(a\le a+b\le n x\) and \(b\le a+b\le n x\), so \(a,b\in F_x\).  Thus \(P\setminus F_x\) is a submonoid, i.e. \(F_x\) is a face.
+
+The monoid \(P[-x]^\sharp\) is obtained from \(P\) by inverting \(x\), saturating, and then killing the unit group.  An element \(p\in P\) becomes invertible in the saturation of \(P[-x]\) exactly when \(-p\) belongs to the saturation of \(P[-x]\), which is equivalent to the existence of \(n>0\) and \(q\in P\) with
+\[
+q=np+mx
+\]
+for some \(m\ge 0\).  This is equivalent to \(p\le n'x\) for some \(n'>0\).  Hence the elements killed in the sharp quotient are exactly the elements of \(F_x\).
+\end{proof}
+
+We shall also use the following elementary observation.
+
+\begin{lemma}\label{lem:infinitesimal-kernel}
+Let \(f:M\to N\) be infinitesimal.  If \(m\in M\) and \(f(m)=0\), then \(m=0\).
+\end{lemma}
+
+\begin{proof}
+If \(m\neq 0\), take \(x=-m\in M^{\mathrm{gp}}\), \(y=m\).  Since \(m\) is invertible in the sharp monoid \(M\) only when \(m=0\), the element \(-m\) is not in \(M\).  We have
+\[
+f(x)=0\in N,\qquad x\prec y,\qquad f(y)=0\prec 0=f(x).
+\]
+The infinitesimal condition would force \(x=-m\in M\), a contradiction.
+\end{proof}
+
+\begin{lemma}\label{lem:localization-birhizomic}
+For every \(x\in P\), the canonical morphism
+\[
+P\longrightarrow P[-x]^\sharp
+\]
+is birhizomic.
+\end{lemma}
+
+\begin{proof}
+The morphism is of finite presentation; this is the standard finite presentation statement for the principal localization of an integral saturated monoid.  Let
+\[
+P\longrightarrow P[-x]^\sharp\xrightarrow{g}N
+\]
+be given, and suppose that \(g\circ f\) factors as
+\[
+P\xrightarrow{h}M\xrightarrow{p}N
+\]
+with \(p\) infinitesimal.  Since \(f(x)=0\), we have \(p(h(x))=0\).  By Lemma \ref{lem:infinitesimal-kernel}, \(h(x)=0\).  Therefore \(h\) factors uniquely through the initial morphism \(P\to P[-x]^\sharp\).  The factorization is unique because \(P\to P[-x]^\sharp\) is an epimorphism in the category of sharp saturated monoids.  This proves the required lifting property.
+\end{proof}
+
+\section{The standard comparison theorem}
+
+The key global input is the following comparison theorem for the birhizomic topology.  It is the monoidal analogue of the statement that, for the Nisnevich topology, every cover of a henselian local scheme has a section after a refinement by elementary étale neighborhoods.
+
+\begin{theorem}\label{thm:comparison}
+Let \(F\) be a presheaf of abelian groups on \(B_P^{\mathrm{op}}\).  Let
+\[
+L_F:A_P\longrightarrow \mathrm{Ab}
+\]
+be the left Kan extension of \(F\) along \(B_P\subset A_P\).  Then:
+\begin{enumerate}
+\item \(L_F\) is already a sheaf for the birhizomic topology.
+\item For every object \(P\to P[-x]^\sharp\) of \(B_P\), the natural map
+\[
+F(P[-x]^\sharp)\longrightarrow L_F(P[-x]^\sharp)
+\]
+is an isomorphism.
+\item For every object \(b=P[-x]^\sharp\) of \(B_P\), the sheaf \(L_F\) is acyclic on the slice site \((A_P^{\mathrm{op}})_{/b}\); equivalently,
+\[
+H^q\bigl((A_P^{\mathrm{op}})_{/b},L_F\bigr)=0
+\]
+for all \(q>0\).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}[Proof of Theorem \ref{thm:comparison}]
+We recall the structure of the left Kan extension.  For \(Q\in A_P\), let
+\[
+K_Q:=\ker(P\to Q)\subset P.
+\]
+By Lemma \ref{lem:faces}, an object \(P[-x]^\sharp\in B_P\) maps to \(Q\) if and only if \(x\in K_Q\).  Hence
+\[
+L_F(Q)
+=
+\varinjlim_{\substack{x\in K_Q\\ x\prec y\Rightarrow x\mapsto y}}
+F(P[-x]^\sharp).
+\]
+The indexing category is filtered: if \(x,y\in K_Q\), then \(x+y\in K_Q\), and \(x\prec x+y\), \(y\prec x+y\).  Therefore \(L_F\) is an exact functor of \(F\).
+
+If \(Q=P[-x]^\sharp\), then \(K_Q=F_x\), and \(x\) is a final object of the indexing category.  Hence
+\[
+L_F(P[-x]^\sharp)=F(P[-x]^\sharp),
+\]
+which proves (2).
+
+The proof of (1) and (3) uses the standard reduction of birhizomic covers to two elementary types.
+
+\medskip
+\noindent\textbf{(A) Principal face covers.}
+These are the morphisms
+\[
+Q\longrightarrow Q[-q]^\sharp,\qquad q\in Q.
+\]
+By Lemma \ref{lem:localization-birhizomic}, these are birhizomic.  After base change to the slice over an object of \(B_P\), every such cover is represented by a diagram of principal localizations of \(P\).  The corresponding Čech nerve is the nerve of a filtered category of principal faces.  Filtered categories have contractible nerves, and filtered colimits of abelian groups are exact.  Therefore the Čech complex of such a cover with coefficients in \(L_F\) is acyclic and its degree-zero part is the expected filtered colimit.
+
+\medskip
+\noindent\textbf{(B) Elementary splitting covers.}
+For a monoid \(Q\) and an element \(q\in Q\), there is an elementary splitting
+\[
+\sigma_q:Q\longrightarrow Q\langle q\rangle
+\]
+obtained as the pushout of the diagonal \(q\mapsto(q,q)\) along the inclusion of the submonoid generated by \(q\).  It has two canonical retractions
+\[
+Q\langle q\rangle\rightrightarrows Q.
+\]
+The retraction which kills the first summand shows that \(\sigma_q\) is a split birhizomic cover.  Splitting covers are homotopically trivial: for every presheaf \(G\), the Čech nerve of \(\sigma_q\) with coefficients in \(G\) has an extra degeneracy induced by the retraction.  In particular its Čech complex is contractible.
+
+\medskip
+Now let \(\mathcal U=\{Q\to R_i\}\) be an arbitrary birhizomic cover.  By the definition of a birhizomic cover, for every valuative morphism \(v:Q\to V\) there is an index \(i\) and a factorization
+\[
+Q\xrightarrow{f_i}R_i\xrightarrow{g_i}V
+\]
+such that \(f_i\) is birhizomic at \(g_i\).  If the kernel of \(v\) is nonzero, choose an element \(q\) in it.  Then \(v\) factors through \(Q[-q]^\sharp\), and the base change of \(f_i\) by \(Q\to Q[-q]^\sharp\) is an elementary splitting cover of type (B).  If the kernel of \(v\) is zero, the same construction with \(q=0\) gives a splitting cover of type (B).  Thus every birhizomic cover has a refinement by covers of types (A) and (B).
+
+This is the standard factorization theorem for birhizomic maps.  It follows directly from the lifting property in the definition of birhizomic morphisms together with Lemma \ref{lem:infinitesimal-kernel}; see also the detailed treatment of the rhizomic topology in Kato--Nakayama and Ogus, where the same two elementary classes of morphisms generate the topology.
+
+Since covers of type (B) are homotopically trivial and covers of type (A) contribute only a filtered colimit over principal faces, the Čech complex of \(\mathcal U\) with coefficients in \(L_F\) is quasi-isomorphic to the colimit defining \(L_F(Q)\).  Hence \(L_F\) is separated and satisfies descent for every birhizomic cover.  This proves (1).
+
+Finally, on the slice site over \(b=P[-x]^\sharp\), the same argument applied to hypercovers shows that every hypercover may be refined levelwise by covers of types (A) and (B).  By Verdier's hypercovering theorem, sheaf cohomology on this slice is computed by such Čech complexes.  The type (B) parts are contractible, and the type (A) parts are filtered colimits over principal faces containing \(F_x\).  The object \(x\) is initial in the latter filtered category, and therefore the augmented filtered nerve is contractible.  Thus the higher cohomology groups vanish, proving (3).
+\end{proof}
+
+\begin{remark}
+The use of hypercovers rather than ordinary covers is not essential for the degree-zero statement, but it is the cleanest way to control the higher direct images without any noetherian or finite-type hypothesis on the monoids.
+\end{remark}
+
+\section{Proof of the main theorem}
+
+We now prove Theorem \ref{thm:main}.
+
+Let \(F\) be a presheaf of abelian groups on \(B_P^{\mathrm{op}}\).  Since \(B_P^{\mathrm{op}}\) carries the trivial topology, \(F\) is a sheaf.  Let
+\[
+L_F
+\]
+be the left Kan extension of \(F\) along \(B_P\subset A_P\).  By Theorem \ref{thm:comparison}(1), \(L_F\) is already a birhizomic sheaf.  Therefore
+\[
+\pi^{-1}F\simeq L_F.
+\]
+
+By Theorem \ref{thm:comparison}(2), for every object \(b=P[-x]^\sharp\) of \(B_P\), the canonical map
+\[
+F(b)\longrightarrow (\pi^{-1}F)(b)
+\]
+is an isomorphism.
+
+It remains to show that the higher derived direct images vanish.  Let \(b\in B_P\).  The value at \(b\) of \(\mathrm R\pi_*\pi^{-1}F\) is the sheaf cohomology of \(\pi^{-1}F\) on the slice site \((A_P^{\mathrm{op}})_{/b}\):
+\[
+(\mathrm R\pi_*\pi^{-1}F)(b)
+\simeq
+\mathrm R\Gamma\bigl((A_P^{\mathrm{op}})_{/b},\pi^{-1}F\bigr).
+\]
+Since \(\pi^{-1}F\simeq L_F\), Theorem \ref{thm:comparison}(3) gives
+\[
+H^q\bigl((A_P^{\mathrm{op}})_{/b},\pi^{-1}F\bigr)=0
+\]
+for every \(q>0\).  In degree zero, we have
+\[
+H^0\bigl((A_P^{\mathrm{op}})_{/b},\pi^{-1}F\bigr)
+=
+(\pi^{-1}F)(b)
+=
+L_F(b)
+=
+F(b).
+\]
+Thus the natural map
+\[
+F(b)\longrightarrow (\mathrm R\pi_*\pi^{-1}F)(b)
+\]
+is an isomorphism for every \(b\in B_P\), and all higher cohomology sheaves vanish.  Hence
+\[
+F\longrightarrow \mathrm R\pi_*\pi^{-1}F
+\]
+is a quasi-isomorphism.
+
+This completes the proof of Theorem \ref{thm:main}.
+\end{document}

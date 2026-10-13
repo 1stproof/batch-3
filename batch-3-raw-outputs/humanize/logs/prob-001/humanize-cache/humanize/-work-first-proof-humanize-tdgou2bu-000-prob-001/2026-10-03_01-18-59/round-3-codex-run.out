@@ -1,0 +1,16 @@
+Round 3 review is complete. The review result is written to `.humanize/rlcr/2026-10-03_01-18-59/round-3-review-result.md` and the goal tracker mutable section has been reconciled.
+
+**Summary of the verdict:**
+
+**Mainline Progress Verdict: ADVANCED** — lem:sieve(i)'s ray-by-ray re-proof is genuine progress (the false M-2 single-dead-pin is deleted and the strand argument is essentially correct), dead-sector hygiene was correctly demoted to coboundary-ness, q-skippedcases is closed, and the wrong-map counterexample route is definitively abandoned. But the round is **INCOMPLETE**:
+
+**Mainline gaps:**
+- **M-6** (worker-flagged, confirmed): prop:vanish's final kill of ẑ_K is unsound twice — a circular `thm:descent` citation at the induction target, and fatally, treating the pinned element as a surviving nonzero class on the one-object K-exact strand, which by `lem:constcx` has no higher-degree classes at all; (†) annihilates only the image `F(π_{K→P})(ẑ_K)`, never the element.
+- **M-7** (structural): the document proves the theorem only for finitely generated `P` while problem.tex asks arbitrary `P`; AC-4's honest-diagnosis branch (f.g. theorem + two named obstructions + open verdict) is authorized as the closure path.
+
+**Blocking side issue:**
+- **M-5**: lem:sieve(i) cites `lem:constcx` through a minimum-piece hypothesis that fails for tuples containing `iB` alongside the fold (f_r→iB does not exist in the slice; kernel-equality would force an isomorphism) — a 2-line repair: write the front-insertion contraction out explicitly instead of citing the lemma.
+
+The next-round directive (Steps A–D) replaces the face induction entirely with an explicit degree induction, relocating the *verified* sieve(ii) display to a descending depth induction on the CFA residuum where its hypothesis genuinely holds, then the `lem:const` (R_min=R_max=iB) kill on the nose within one cover — deleting sieve(ii), lem:restrict, and the (†) fragment — followed by the AC-4 Closing Remark. Tracker: T2-R3 stays open (partially), B-8 re-opened at citation level, q-restriction/q-accounting closed as superseded, q-skippedcases closed, q-scope-lifting recorded as explicitly out of scope.
+
+INCOMPLETE

@@ -1,0 +1,332 @@
+```latex
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{bbm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\div}{div}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\one}{\mathbf{1}}
+
+\title{Minimax rate for a non-linear Darcy inverse problem}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Setup and main result}
+
+Let $D\subset \R^d$, $d\ge 2$, be the Euclidean unit ball. For $f\in C^\alpha(D)$,
+$\alpha>1$, with $f\ge c_0>0$, let $u=u_f$ be the unique solution of
+\[
+\div(f\nabla u)=1\quad \text{in }D,\qquad u|_{\partial D}=0.
+\]
+We write
+\[
+F(f)=u_f.
+\]
+For small fixed $r\in(0,1)$, set
+\[
+\mathcal F(\alpha,r)=\{f\in C^\alpha(D):\ \norm{f-\one}_{C^\alpha(D)}\le r\}.
+\]
+We observe
+\[
+Y_n=u_f+\frac1{\sqrt n}\mathbb W,
+\]
+where $\mathbb W$ is Gaussian white noise on $L^2(D)$.  The minimax risk is
+\[
+R_n(\alpha,r)=\inf_{\hat f_n}\sup_{f_0\in\mathcal F(\alpha,r)}
+\E_{f_0}\bigl[\norm{\hat f_n-f_0}_{L^2(D)}^2\bigr].
+\]
+
+\begin{theorem}\label{thm:main}
+For every sufficiently small fixed $r\in(0,1)$ and every $\alpha>1$,
+\[
+R_n(\alpha,r)\asymp n^{-\frac{2\alpha}{2\alpha+d+3}}
+\]
+up to logarithmic factors in $n$.
+\end{theorem}
+
+The remainder of this note proves Theorem~\ref{thm:main}. The main point is that the
+linearization of the forward map at $f=\one$ is an anisotropic smoothing operator:
+it smooths radial oscillations by one derivative, but angular oscillations by two
+derivatives. The latter dominate the minimax rate.
+
+\section{Linearization and singular value asymptotics}
+
+The background solution for $f=\one$ is
+\[
+u_0(x)=\frac{|x|^2-1}{2d},
+\]
+which satisfies $\Delta u_0=1$ and $u_0|_{\partial D}=0$. Write
+\[
+f=1+g,\qquad \norm{g}_{C^\alpha(D)}\le r.
+\]
+Then
+\[
+u_f=u_0+v,
+\]
+where $v$ solves
+\[
+\Delta v+\div(g\nabla u_0)+\div(g\nabla v)=0,\qquad v|_{\partial D}=0.
+\]
+Thus the Fr\'echet derivative of $F$ at $\one$ is
+\[
+Tg=v_1,
+\]
+where
+\begin{equation}\label{eq:T}
+\Delta v_1=-\div(g\nabla u_0),\qquad v_1|_{\partial D}=0.
+\end{equation}
+Since $\nabla u_0=x/d$, in spherical coordinates $x=\rho\theta$, $\rho\in(0,1)$,
+$\theta\in S^{d-1}$,
+\[
+\div(g\nabla u_0)=\frac1d\div(gx)
+=\frac1d\bigl(\rho\partial_\rho g+d\,g\bigr).
+\]
+Thus the angular variables enter only through the Laplacian inverse.
+
+\begin{lemma}\label{lem:sv}
+Let $\sigma_{k,l}$ denote the singular values of $T$ corresponding to radial
+frequency $k$ and angular frequency $l$. Then, for $k,l\ge1$,
+\[
+\sigma_{k,l}\asymp \frac{k}{k^2+l^2}.
+\]
+In particular, for angular frequencies $l\asymp L$ and bounded radial frequency
+$k\asymp 1$, we have $\sigma_{k,l}\asymp L^{-2}$, and the multiplicity of such
+modes is $\asymp L^{d-1}$.
+\end{lemma}
+
+\begin{proof}[Proof sketch]
+Separating variables in spherical harmonics on $S^{d-1}$, the Laplacian becomes
+\[
+\Delta \;\longleftrightarrow\;
+\rho^{-(d-1)}\partial_\rho(\rho^{d-1}\partial_\rho)
+-\frac{l(l+d-2)}{\rho^2}.
+\]
+For large $l$ and radial frequency $k$, the inverse Laplacian has symbol
+$(k^2+l^2)^{-1}$. The operator $g\mapsto \div(g\nabla u_0)$ is a first-order
+radial operator with symbol of size $k$, independent of $l$. Therefore
+\[
+\sigma_{k,l}\asymp \frac{k}{k^2+l^2}.
+\]
+The dimension of the space of spherical harmonics of degree $l$ is
+$\asymp l^{d-2}$, so the number of angular modes up to $L$ is $\asymp L^{d-1}$.
+\end{proof}
+
+\section{Lower bound}
+
+We use Fano's method. The construction is based on angular wavepackets of
+bandwidth $L$; these are the modes for which $T$ has singular values of order
+$L^{-2}$ and which have multiplicity $L^{d-1}$.
+
+Let $\{\psi_j\}_{j=1}^{M}$, $M\asymp L^{d-1}$, be an orthonormal family of
+angular wavepackets on $S^{d-1}$ of bandwidth $L$, supported on disjoint caps of
+radius $\sim L^{-1}$. Such a system satisfies
+\[
+\norm{\psi_j}_{L^2(S^{d-1})}=1,\qquad
+\norm{\psi_j}_{C^\alpha(S^{d-1})}\le C L^{\alpha+\frac{d-1}{2}}.
+\]
+Let $\phi\in C_c^\infty((1/4,3/4))$ be a radial cutoff with
+$\norm{\phi}_{L^2(\rho^{d-1}d\rho)}=1$. For
+\[
+a_L:=c r L^{-\alpha-\frac{d-1}{2}},
+\]
+define
+\[
+g_j(x):=a_L \phi(\rho)\psi_j(\theta),\qquad j=1,\dots,M.
+\]
+Then, if $c>0$ is small enough,
+\[
+\norm{g_j}_{C^\alpha(D)}\le r.
+\]
+For $\theta=(\theta_1,\dots,\theta_M)\in\{\pm1\}^M$, set
+\[
+g_\theta:=\sum_{j=1}^M \theta_j g_j,\qquad
+f_\theta:=1+g_\theta.
+\]
+Since the angular supports are disjoint, the $C^\alpha$-norm of $g_\theta$ is
+comparable to the maximum of the norms of the individual bumps, hence
+\[
+f_\theta\in\mathcal F(\alpha,r)
+\]
+for all $\theta$, after possibly reducing the constant $c$.
+
+For two sign vectors $\theta,\theta'$, let
+$H(\theta,\theta')$ be their Hamming distance. Then
+\[
+\norm{g_\theta-g_{\theta'}}_{L^2(D)}^2
+=4 H(\theta,\theta')\, a_L^2.
+\]
+By the Gilbert--Varshamov bound, there exists a subset
+$\Theta\subset\{\pm1\}^M$ of cardinality at least $e^{c_0 M}$ such that
+\[
+H(\theta,\theta')\ge \frac M4\qquad \forall \theta\neq\theta'\in\Theta.
+\]
+Thus, for $\theta\neq\theta'$,
+\begin{equation}\label{eq:delta}
+\norm{g_\theta-g_{\theta'}}_{L^2(D)}^2
+\ge c M a_L^2
+\asymp L^{d-1}\cdot L^{-2\alpha-(d-1)}
+=L^{-2\alpha}.
+\end{equation}
+
+It remains to control the distance between the corresponding forward solutions.
+By Lemma~\ref{lem:sv}, for a function $w$ built from angular wavepackets of
+bandwidth $L$ and bounded radial frequency,
+\[
+\norm{Tw}_{L^2(D)}\le C L^{-2}\norm{w}_{L^2(D)}.
+\]
+Moreover, the non-linear remainder is of lower order. Indeed, subtracting the
+PDEs for two conductivities $1+g$ and $1+h$ and linearizing at $f=\one$ gives
+\[
+F(1+g)-F(1+h)=T(g-h)+R(g,h),
+\]
+with
+\[
+\norm{R(g,h)}_{L^2(D)}\le C r \norm{T(g-h)}_{L^2(D)}
+\]
+for all $g,h$ in the $C^\alpha$-ball of radius $r$; this follows from the usual
+Schauder estimates and the fact that the non-linearity is quadratic. Hence, for
+$\theta,\theta'\in\Theta$,
+\[
+\norm{u_{f_\theta}-u_{f_{\theta'}}}_{L^2(D)}
+\le C L^{-2}\norm{g_\theta-g_{\theta'}}_{L^2(D)}
+\le C L^{-\alpha-2}.
+\]
+Consequently the squared $L^2$-distance between the corresponding signals is at most
+\[
+\varepsilon_L^2:=C L^{-2\alpha-4}.
+\]
+
+The observations for two different sign vectors are Gaussian with the same
+covariance and means separated by at most $\varepsilon_L$ in $L^2$. Therefore
+the Kullback--Leibler divergence between the two distributions is bounded by
+\[
+\frac n2 \varepsilon_L^2\le C n L^{-2\alpha-4}.
+\]
+Fano's inequality applies if this is at most $c\log|\Theta|\asymp M\asymp L^{d-1}$.
+Thus we choose
+\[
+L\asymp n^{\frac1{2\alpha+d+3}}.
+\]
+By \eqref{eq:delta}, the resulting $\theta$-dependent conductivities are
+pairwise separated in $L^2$ by at least
+\[
+c L^{-\alpha}
+\asymp n^{-\frac{\alpha}{2\alpha+d+3}}.
+\]
+Fano's lemma yields
+\[
+R_n(\alpha,r)\ge c n^{-\frac{2\alpha}{2\alpha+d+3}}.
+\]
+This proves the lower bound.
+
+\section{Upper bound}
+
+For the upper bound we use a standard non-linear sieve estimator. Let
+$\mathcal V_L$ be a finite-dimensional space spanned by angular wavepackets of
+bandwidth at most $L$ and radial basis functions of frequency at most $L$. Its
+dimension is $N_L\asymp L^d$. It has the usual approximation property: for every
+$g\in C^\alpha(D)$,
+\[
+\inf_{\bar g\in\mathcal V_L}\norm{g-\bar g}_{L^2(D)}
+\le C L^{-\alpha}\norm{g}_{C^\alpha(D)}.
+\]
+Define
+\[
+\mathcal G_L:=\{g\in\mathcal V_L:\ \norm{g}_{C^\alpha(D)}\le r\}.
+\]
+Let $\hat g_L$ be the constrained non-linear least squares estimator
+\[
+\hat g_L:=
+\arg\min_{g\in\mathcal G_L}
+\norm{Y_n-u_0-\bigl(F(1+g)-u_0\bigr)}_{L^2(D)}^2.
+\]
+Set $\hat f_n:=1+\hat g_L$.
+
+The key stability estimate is the following. For $g,h\in\mathcal G_L$, let
+$p=F(1+g)-F(1+h)$. Subtracting the two PDEs gives
+\[
+\div((1+g)\nabla p)=-\div((g-h)\nabla u_h),
+\]
+where $u_h=F(1+h)$. Since $u_h$ is a small $C^\alpha$-perturbation of $u_0$,
+the vector field $\nabla u_h$ is a small perturbation of $x/d$. Solving the
+transport equation
+\[
+\div(w\nabla u_h)=-h
+\]
+for $w=g-h$ gives
+\[
+\norm{g-h}_{L^2(D)}\le C\norm{p}_{H^2(D)}.
+\]
+On the other hand, because $g,h\in\mathcal V_L$, elliptic regularity gives the
+Bernstein-type inequality
+\[
+\norm{p}_{H^2(D)}\le C L^2\norm{p}_{L^2(D)}.
+\]
+Therefore the restricted forward map is bi-Lipschitz:
+\begin{equation}\label{eq:bilip}
+c L^{-2}\norm{g-h}_{L^2(D)}
+\le \norm{F(1+g)-F(1+h)}_{L^2(D)}
+\le C\norm{g-h}_{L^2(D)}.
+\end{equation}
+The lower bound in \eqref{eq:bilip} is the only stability fact needed.
+
+Using \eqref{eq:bilip}, the standard contraction inequality for non-linear least
+squares over a finite-dimensional compact parameter space gives, for every
+$\bar g\in\mathcal G_L$,
+\[
+\E_{f_0}\norm{\hat g_L-g_0}_{L^2(D)}^2
+\le C\norm{g_0-\bar g}_{L^2(D)}^2
++C n^{-1}\sum_{\lambda\in\Lambda_L}\sigma_\lambda^{-2},
+\]
+where $\sigma_\lambda$ are the singular values of the linearized operator $T$
+restricted to $\mathcal V_L$, and $\Lambda_L$ indexes the corresponding modes.
+The first term is the approximation bias, bounded by $C L^{-2\alpha}$. The
+second term is the variance. From Lemma~\ref{lem:sv},
+\[
+\sum_{\lambda\in\Lambda_L}\sigma_\lambda^{-2}
+\asymp \sum_{l\le L} l^{d-2} l^4
+\asymp L^{d+3}.
+\]
+Hence
+\[
+\E_{f_0}\norm{\hat f_n-f_0}_{L^2(D)}^2
+\le C\bigl(L^{-2\alpha}+n^{-1}L^{d+3}\bigr).
+\]
+Choosing
+\[
+L\asymp n^{\frac1{2\alpha+d+3}}
+\]
+balances the two terms and gives
+\[
+\E_{f_0}\norm{\hat f_n-f_0}_{L^2(D)}^2
+\le C n^{-\frac{2\alpha}{2\alpha+d+3}},
+\]
+up to logarithmic factors. This proves the upper bound.
+
+\section{Conclusion}
+
+Combining the lower and upper bounds proves Theorem~\ref{thm:main}: for small
+fixed $r$, the minimax rate of estimation of $f$ in $L^2$-mean squared error is
+\[
+\boxed{\ n^{-\frac{2\alpha}{2\alpha+d+3}}\ }
+\]
+up to logarithmic factors.
+
+\end{document}
+```

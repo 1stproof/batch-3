@@ -1,0 +1,906 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{fullpage}
+
+% Section headings in the normal text size (bold), keeping the standard
+% numbering and spacing of the article class.
+\makeatletter
+\renewcommand\section{\@startsection{section}{1}{\z@}%
+  {-3.5ex \@plus -1ex \@minus -.2ex}%
+  {2.3ex \@plus.2ex}%
+  {\normalfont\bfseries}}
+\makeatother
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{question}{Question}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Hh}{\mathbb{H}}
+\newcommand{\bp}{\boxplus}
+
+\begin{document}
+\title{Problem 5 -- ProofCouncil}
+\author{}
+\date{}
+\maketitle
+
+\begin{center}
+{\textbf{A counterexample to the cubic implication for hyperfields}}
+\end{center}
+
+\medskip
+\noindent\textbf{Abstract.}
+In a field, $x+y+z=0$ implies $x^3+y^3+z^3-3xyz=0$.  We show that the
+analogous implication for hyperfields,
+\[
+ 0\in x\bp y\bp z
+ \ \Longrightarrow\
+ 0\in x^3\bp y^3\bp z^3\bp(-xyz)\bp(-xyz)\bp(-xyz),
+\]
+fails in general, although it holds in every quotient $F/G$ of a field
+by a multiplicative subgroup.  The counterexample is a hyperfield
+attached, following Prenowitz and Connes--Consani, to an infinite
+cyclic projective plane; the plane is built from a perfect difference
+set in $\Z$ by an explicit variant of Hall's extension argument.  All
+hyperfield axioms are verified directly, so the paper is
+self-contained.
+
+\section{Introduction}\label{sec:intro}
+
+\paragraph{Conventions.}
+A \emph{hyperoperation} on a set $\Hh$ is a map $\bp$ assigning to each
+pair $(a,b)$ a nonempty subset $a\bp b\subseteq\Hh$.  It is extended to
+subsets by the union convention
+\begin{equation}\label{eq:union}
+ A\bp B=\bigcup_{a\in A,\ b\in B}(a\bp b),
+\end{equation}
+an element being identified with its singleton.  Thus
+$x\bp y\bp z$ means $(x\bp y)\bp z=\bigcup_{s\in x\bp y}(s\bp z)$, and
+in an expression such as $(-xyz)\bp(-xyz)\bp(-xyz)$ each occurrence is a
+separate summand; this is the reading intended in the question below.
+In a hyperfield (Definition~\ref{def:hyperfield}) the hyperaddition is
+associative, and then iterated sums do not depend on the bracketing
+(Remark~\ref{rem:iterated}).
+
+\paragraph{The question.}
+In a field, $x+y+z=0$ implies $x^3+y^3+z^3-3xyz=0$, because of the
+polynomial identity
+\begin{equation}\label{eq:cubic}
+ x^3+y^3+z^3-3xyz=(x+y+z)(x^2+y^2+z^2-xy-yz-zx).
+\end{equation}
+A \emph{hyperfield} is, roughly, a field whose addition is multivalued;
+the precise definition is recalled in Section~\ref{sec:hyperfields}.
+The question asks whether the implication survives in that generality.
+
+\begin{question}
+Let $\Hh$ be a hyperfield with hyperaddition $\bp$, and let
+$x,y,z\in\Hh$ satisfy $0\in x\bp y\bp z$.  Does it follow that
+\[
+ 0\in x^3\bp y^3\bp z^3\bp(-xyz)\bp(-xyz)\bp(-xyz)\,?
+\]
+\end{question}
+
+\noindent
+Here $x^3$ is the multiplicative cube and $-xyz$ the additive inverse
+(the \emph{negative}) of the product $xyz$.  We call the implication
+asked about the \emph{cubic implication}.  The answer is no.
+
+\begin{theorem}\label{thm:main}
+There exist a countably infinite commutative hyperfield $\Hh$ and
+elements $x,y,z\in\Hh$ such that $0\in x\bp y\bp z$ but
+\[
+ 0\notin x^3\bp y^3\bp z^3\bp(-xyz)\bp(-xyz)\bp(-xyz).
+\]
+\end{theorem}
+
+\paragraph{Why a counterexample must be a non-quotient hyperfield.}
+The most familiar hyperfields are Krasner's quotients $F/G$ of a field
+$F$ by a subgroup $G$ of its multiplicative group
+[Kr83] (recalled in Example~\ref{ex:quotient}).  In every such hyperfield the cubic
+implication \emph{does} hold (Proposition~\ref{prop:quotient}): the
+hypothesis $0\in x\bp y\bp z$ provides representatives $u,v,w\in F$
+with $u+v+w=0$, and the field identity~\eqref{eq:cubic} for $u,v,w$
+produces the required $0$.  Consequently a counterexample has to be a
+hyperfield that is not a quotient of a field, so its hyperfield axioms
+cannot be inherited from a field; we verify them directly in
+Section~\ref{sec:hyperfield}, which is the main technical work of the
+paper.
+
+\paragraph{Strategy.}
+The construction follows the geometric recipe of Prenowitz~[Pr43] and
+Connes--Consani~[CC11, \S3].  Let $P$ be the point set of a projective
+plane, in the weak sense that any two distinct points lie on exactly one
+line and any two distinct lines meet in exactly one point, and write
+$L(a,b)$ for the line through two distinct points $a,b$; three points
+are \emph{collinear} if one line contains them and \emph{noncollinear}
+otherwise, and the \emph{sides} of a noncollinear triple (a
+\emph{triangle}) $a,b,c$ are the three lines $L(a,b),L(a,c),L(b,c)$.
+On $\Hh=P\cup\{0\}$ define
+\[
+ \begin{aligned}
+ a\bp b&=L(a,b)\setminus\{a,b\} &&(a,b\in P,\ a\neq b),\\
+ a\bp a&=\{0,a\} &&(a\in P),\\
+ 0\bp a&=a\bp0=\{a\} &&(a\in\Hh)
+ \end{aligned}
+\]
+(this is~\eqref{eq:addition} below).  If, in addition, every line is
+infinite, $P$ is an abelian group, and
+multiplication by every element of $P$ maps lines to lines, then $\Hh$
+with this hyperaddition and the group multiplication is a commutative
+hyperfield; this is proved for our plane in
+Proposition~\ref{prop:hyperfield} by an argument that uses only these
+properties (compare [CC11, Propositions~3.1 and~3.5], where four points
+per line suffice).  Three features of this hyperfield drive the
+counterexample.
+\begin{enumerate}
+\item[(a)] Every element is its own negative: $0\in a\bp b$ if and only
+if $a=b$.  Hence $-xyz=xyz$, and for subsets $A,B\subseteq\Hh$ one has
+$0\in A\bp B$ if and only if $A\cap B\neq\varnothing$
+(Lemma~\ref{lem:zero}).
+\item[(b)] If $a,b,c$ are distinct points on a common line $L$, then
+$a\bp b\bp c=L\cup\{0\}$; in particular $0\in a\bp b\bp c$.
+\item[(c)] If $a,b,c$ are noncollinear, then
+$a\bp b\bp c=P\setminus\bigl(L(a,b)\cup L(a,c)\cup L(b,c)\bigr)$ is
+the complement of the three sides of the triangle $a,b,c$
+(Lemma~\ref{lem:triangle}); in particular $0\notin a\bp b\bp c$.
+\end{enumerate}
+Now let $x,y,z$ be distinct collinear points, so that $0\in x\bp y\bp z$
+by~(b), and put $q=xyz=-xyz$.  The defining rules give
+$q\bp q\bp q=\{0,q\}\bp q=\{q\}\cup\{0,q\}=\{0,q\}$, so by associativity
+the six-term sum of the question equals $S\bp\{0,q\}$ with
+$S=x^3\bp y^3\bp z^3$, and by~(a) it contains $0$ if and only if $S$
+meets $\{0,q\}$.  Suppose the cubes $x^3,y^3,z^3$ are noncollinear.
+Then (c) says that $0\notin S$ and that $q\in S$ exactly when $q$ lies
+on none of the sides of the triangle $x^3,y^3,z^3$.  The question has
+thus become one of pure incidence geometry: the cubic implication fails
+for $x,y,z$ precisely when the product $q=xyz$ lies on a side of the
+``cube triangle''.  So we need a plane whose points form a group acting
+by collineations, containing three collinear points whose cubes are
+noncollinear and whose product lies on a side of the cube triangle.
+
+\paragraph{Cyclic planes.}
+Let $P=\{t^j:j\in\Z\}$ be an infinite cyclic group and let
+$D\subseteq\Z$ be a \emph{perfect difference set}: every nonzero
+integer has exactly one representation $d-e$ with $d,e\in D$.  The sets
+$L_k=\{t^{k+d}:d\in D\}$, $k\in\Z$, are then the lines of a projective
+plane on $P$, and multiplication by $t^r$ carries $L_k$ to $L_{k+r}$
+(Section~\ref{sec:plane}).  This is the classical correspondence between
+cyclic planes and difference sets, due to Singer~[Si38] for finite
+planes and to Hall~[Ha47] for the group $\Z$.  Choose
+\[
+ x=1,\qquad y=t,\qquad z=t^3,\qquad\text{so that}\qquad
+ x^3=1,\quad y^3=t^3,\quad z^3=t^9,\quad q=xyz=t^4.
+\]
+The requirements become conditions on $D$: if $0,1,3\in D$ then $x,y,z$
+lie on $L_0$; if $20,24,29\in D$ then $1$, $q=t^4$ and $t^9$ lie on
+$L_{-20}$, which is therefore the side $L(1,t^9)$ of the cube triangle;
+and the uniqueness of differences then forces $23\notin D$ (because
+$23-20=3-0$), so that $t^3\notin L_{-20}$ and the cubes are
+noncollinear.  Hall proved that every finite set of integers with
+pairwise distinct differences is contained in a perfect difference set
+of $\Z$ [Ha47, Theorem~3.1].  Section~\ref{sec:diffset} carries this
+out explicitly, with a concrete spacing rule, for the seed
+\[
+ A_0=\{0,1,3,20,24,29\},
+\]
+whose fifteen positive differences are distinct.  (The value $20$ is one
+convenient choice making the differences of the seed distinct; nothing
+else about it is used.)
+
+\paragraph{Organization.}
+Section~\ref{sec:hyperfields} recalls hyperfields and quotient
+hyperfields and proves that the cubic implication holds in the latter.
+Section~\ref{sec:diffset} constructs the perfect difference set $D$,
+Section~\ref{sec:plane} the cyclic plane, and
+Section~\ref{sec:hyperfield} the hyperfield $\Hh$, including the
+verification of all axioms.  Section~\ref{sec:counterexample} proves
+Theorem~\ref{thm:main} and deduces that $\Hh$ is not a quotient of a
+field.  Credits for the ingredients are collected in
+Section~\ref{sec:credits}.
+
+\section{Hyperfields and quotient hyperfields}\label{sec:hyperfields}
+
+\begin{definition}[Krasner {[Kr83]}]\label{def:hyperfield}
+A \emph{commutative hyperfield} is a set $\Hh$ with two distinct
+distinguished elements $0$ and $1$, a multiplication making
+$\Hh\setminus\{0\}$ an abelian group with identity $1$ and satisfying
+$0\cdot a=a\cdot 0=0$, and a hyperoperation $\bp$ (the
+\emph{hyperaddition}) such that for all $a,b,c\in\Hh$:
+\begin{enumerate}
+\item[(H1)] $a\bp b=b\bp a$;
+\item[(H2)] $(a\bp b)\bp c=a\bp(b\bp c)$, both sides being read with the
+convention~\eqref{eq:union};
+\item[(H3)] $0\bp a=\{a\}$;
+\item[(H4)] there is a unique element $-a\in\Hh$ with $0\in a\bp(-a)$;
+\item[(H5)] (reversibility) if $c\in a\bp b$, then $b\in c\bp(-a)$;
+\item[(H6)] $a(b\bp c)=ab\bp ac$, where $a(b\bp c)=\{ad:d\in b\bp c\}$.
+\end{enumerate}
+\end{definition}
+
+A set with a hyperoperation and an element $0$ satisfying (H1)--(H5) is
+called a \emph{canonical hypergroup}, a term due to Mittas~[Mi72]; so a
+hyperfield is a canonical hypergroup with a compatible multiplication.
+A field is a hyperfield whose sums are singletons.  Hyperfields with noncommutative
+multiplication are also considered in the literature; since the
+question concerns an arbitrary hyperfield, a commutative counterexample
+suffices, and ``hyperfield'' will mean commutative hyperfield below.
+
+\begin{remark}[iterated sums]\label{rem:iterated}
+The convention~\eqref{eq:union} makes $\bp$ a binary operation on the
+nonempty subsets of $\Hh$, and (H1), (H2) make this operation
+commutative and associative: for nonempty $A,B,C$,
+\[
+ (A\bp B)\bp C
+ =\bigcup_{a\in A,\,b\in B,\,c\in C}(a\bp b)\bp c
+ =\bigcup_{a\in A,\,b\in B,\,c\in C}a\bp(b\bp c)
+ =A\bp(B\bp C).
+\]
+By the usual generalized associativity for an associative commutative
+binary operation, an iterated sum $x_1\bp\cdots\bp x_n$ is independent
+of the bracketing and of the order of the summands, and may be regrouped
+freely.  In Section~\ref{sec:counterexample} we use this to write a
+six-term sum as $(x^3\bp y^3\bp z^3)\bp(q\bp q\bp q)$.  Note also
+$A\bp\{0\}=A$, by (H3).
+\end{remark}
+
+\begin{lemma}\label{lem:zero}
+Let $\Hh$ be a hyperfield and $A,B\subseteq\Hh$ nonempty.  Then
+$0\in A\bp B$ if and only if there is $a\in A$ with $-a\in B$.
+In particular, if every element of $\Hh$ satisfies $-a=a$, then
+$0\in A\bp B$ if and only if $A\cap B\neq\varnothing$.
+\end{lemma}
+\begin{proof}
+For elements, $0\in a\bp b$ holds if and only if $b=-a$, by the
+uniqueness in (H4).  Now take the union over $a\in A$, $b\in B$.
+\end{proof}
+
+The second statement is the criterion of [CC11, Lemma~3.2], stated
+there for vector spaces over the Krasner hyperfield $\mathbf K$, in
+which likewise every element is its own negative.
+
+\begin{example}[quotient hyperfields, Krasner {[Kr83]}]\label{ex:quotient}
+Let $F$ be a field and $G\leq F^\times$ a subgroup of its multiplicative
+group.  Let $F/G=\{0\}\cup\{uG:u\in F^\times\}$ be the set of orbits of
+$G$ acting on $F$ by multiplication, and let $\pi\colon F\to F/G$ be the
+orbit map, $\pi(0)=0$ and $\pi(u)=uG$ for $u\neq0$.  Multiplication on
+$F/G$ is defined by $\pi(u)\pi(v)=\pi(uv)$, which is well defined, and
+hyperaddition by
+\[
+ \pi(u)\bp\pi(v)
+ =\bigl\{\pi(u'+v'):\ u'\in\pi^{-1}(\pi(u)),\ v'\in\pi^{-1}(\pi(v))\bigr\},
+\]
+the set of orbits of all sums of a representative of the first class
+and a representative of the second.  Krasner~[Kr83] proved that $F/G$
+is a commutative hyperfield.  Its negatives are $-\pi(u)=\pi(-u)$,
+because $0=\pi(u+(-u))\in\pi(u)\bp\pi(-u)$ and negatives are unique by
+(H4).  The fibres $\pi^{-1}(h)$ are $\{0\}$ and the cosets $uG$; they
+are stable under multiplication by elements of $G$.
+\end{example}
+
+\begin{proposition}\label{prop:quotient}
+Let $F$ be a field, $G\leq F^\times$ a subgroup, and $x,y,z\in F/G$.
+If $0\in x\bp y\bp z$, then
+$0\in x^3\bp y^3\bp z^3\bp(-xyz)\bp(-xyz)\bp(-xyz)$.
+\end{proposition}
+\begin{proof}
+We use two general facts about the orbit map $\pi$.
+
+\smallskip\noindent
+(i) \emph{If $u_1,\dots,u_n\in F$, then
+$\pi(u_1+\cdots+u_n)\in\pi(u_1)\bp\cdots\bp\pi(u_n)$.}
+For $n=1$ there is nothing to prove.  For $n\geq2$, the element
+$u_1+\cdots+u_{n-1}$ is a representative of its own class and $u_n$ of
+its own, so by the definition of $\bp$,
+\[
+ \pi(u_1+\cdots+u_n)\in\pi(u_1+\cdots+u_{n-1})\bp\pi(u_n),
+\]
+and $\pi(u_1+\cdots+u_{n-1})\in\pi(u_1)\bp\cdots\bp\pi(u_{n-1})$ by
+induction; the convention~\eqref{eq:union} combines the two memberships.
+
+\smallskip\noindent
+(ii) \emph{If $0\in x\bp y\bp z$, then there are representatives
+$u\in\pi^{-1}(x)$, $v\in\pi^{-1}(y)$, $w\in\pi^{-1}(z)$ with
+$u+v+w=0$.}  By~\eqref{eq:union}, $0\in s\bp z$ for some $s\in x\bp y$.
+By the definition of $\bp$, $0=\pi(s'+w)$ for some $s'\in\pi^{-1}(s)$
+and $w\in\pi^{-1}(z)$; as $\pi^{-1}(0)=\{0\}$, this means $s'=-w$.
+Also $s=\pi(u'+v')$ for some $u'\in\pi^{-1}(x)$, $v'\in\pi^{-1}(y)$.
+If $u'+v'\neq0$, then $s'$ and $u'+v'$ lie in the same coset of $G$, so
+$s'=(u'+v')g$ for some $g\in G$; put $u=u'g$ and $v=v'g$.  These still
+represent $x$ and $y$, because fibres are $G$-stable, and
+$u+v+w=s'+w=0$.  If $u'+v'=0$, then $s=0$, hence $s'=0$ and $w=0$, and
+$u=u'$, $v=v'$ work.
+
+\smallskip
+Now let $0\in x\bp y\bp z$ and choose $u,v,w$ as in (ii).  The
+identity~\eqref{eq:cubic} in the field $F$ gives
+\[
+ u^3+v^3+w^3+(-uvw)+(-uvw)+(-uvw)=0.
+\]
+Since $\pi$ is multiplicative and $\pi(-a)=-\pi(a)$
+(Example~\ref{ex:quotient}), the six summands represent
+$\pi(u^3)=x^3$, $\pi(v^3)=y^3$, $\pi(w^3)=z^3$ and
+$\pi(-uvw)=-xyz$ (three times).  Applying (i) to them gives
+\[
+ 0=\pi(0)\in x^3\bp y^3\bp z^3\bp(-xyz)\bp(-xyz)\bp(-xyz).\qedhere
+\]
+\end{proof}
+
+An \emph{isomorphism} of hyperfields is a bijection $f$ preserving $0$,
+multiplication and hyperaddition (that is, $f(a\bp b)=f(a)\bp f(b)$ as
+sets); it transports the cubic implication verbatim.  Together with
+Theorem~\ref{thm:main}, Proposition~\ref{prop:quotient} will therefore
+show that the hyperfield constructed below is not isomorphic to any
+quotient $F/G$ (Corollary~\ref{cor:nonquotient}).
+
+\section{A perfect difference set in the integers}\label{sec:diffset}
+
+\begin{definition}\label{def:pds}
+A subset $D\subseteq\Z$ is a \emph{perfect difference set} if the map
+\[
+ \{(d,e)\in D\times D:\ d\neq e\}\longrightarrow\Z\setminus\{0\},
+ \qquad (d,e)\longmapsto d-e,
+\]
+is bijective; that is, every nonzero integer has exactly one expression
+$d-e$ with $d,e\in D$.  For a finite set $A\subseteq\Z$ write
+\[
+ \Delta(A)=\{b-a:\ a,b\in A,\ a<b\}
+\]
+for its set of positive differences, and say that $A$ has
+\emph{distinct differences} if the expressions $b-a$, for $a<b$ in $A$,
+are pairwise distinct, i.e.\ if $|\Delta(A)|=\binom{|A|}{2}$.
+\end{definition}
+
+The terminology is Hall's~[Ha47]; the finite analogue, difference sets
+modulo $n^2+n+1$, goes back to Singer~[Si38].  Recall from the
+introduction that, by [Ha47, Theorem~3.1], every finite set with
+distinct differences is contained in a perfect difference set of $\Z$.
+We now carry this out for a specific seed and with an explicit spacing
+rule; the result is Lemma~\ref{lem:diff}.
+%% FLAG: the content of [Ha47, Theorem 3.1] was confirmed only through
+%% secondary sources ([CC11, Example 4.7] and a later paper citing it as
+%% the greedy extension of a finite Sidon set to an infinite perfect
+%% difference set); the original 1947 text was not inspected, so it is
+%% not claimed that Hall used the spacing rule N=2M+2m+1.
+
+\paragraph{The seed.}
+Let $A_0=\{0,1,3,20,24,29\}$.  Its positive differences, listed by
+smaller element, are
+\[
+ \begin{array}{ll}
+ \text{from }0:& 1,\ 3,\ 20,\ 24,\ 29,\\
+ \text{from }1:& 2,\ 19,\ 23,\ 28,\\
+ \text{from }3:& 17,\ 21,\ 26,\\
+ \text{from }20:& 4,\ 9,\\
+ \text{from }24:& 5,
+ \end{array}
+\]
+so that, in increasing order,
+\[
+ \Delta(A_0)=\{1,2,3,4,5,9,17,19,20,21,23,24,26,28,29\}.
+\]
+These are $15=\binom62$ distinct numbers, so $A_0$ has distinct
+differences.  The roles of the seed elements were explained in the
+introduction: $0,1,3$ make $x,y,z$ collinear, and $20,24,29$ make
+$1,t^4,t^9$ collinear.
+
+\paragraph{The extension step.}
+Suppose a finite set $A_n\subseteq\Z_{\geq0}$ with distinct differences
+has been constructed.  Define
+\begin{equation}\label{eq:parameters}
+ M_n=\max A_n,\qquad
+ m_n=\min\bigl(\Z_{>0}\setminus\Delta(A_n)\bigr),\qquad
+ N_n=2M_n+2m_n+1,
+\end{equation}
+and set
+\begin{equation}\label{eq:recursion}
+ A_{n+1}=A_n\cup\{N_n,\ N_n+m_n\},\qquad
+ D=\bigcup_{n\geq0}A_n.
+\end{equation}
+The integer $m_n$, the least positive difference not yet realized,
+exists because $A_n$ is finite.  The idea of the step is simple: the two
+new elements realize the missing difference $m_n$, and they are placed
+so far to the right of $A_n$ that every other new difference exceeds
+every old one.  For instance, $m_0=6$ and $N_0=2\cdot29+2\cdot6+1=71$,
+so $A_1=A_0\cup\{71,77\}$; then $m_1=7$ and $N_1=169$, so
+$A_2=A_1\cup\{169,176\}$.
+
+\begin{lemma}\label{lem:diff}
+Every $A_n$ has distinct differences.  The set $D$ is an infinite
+perfect difference set with $D\subseteq\Z_{\geq0}$ and $\min D=0$.
+\end{lemma}
+\begin{proof}
+\emph{Step 1: $A_{n+1}$ has distinct differences.}
+Abbreviate $A_n,M_n,m_n,N_n$ by $A,M,m,N$.  All elements of $A$ lie in
+$[0,M]$, so every old difference is at most $M$.  The positive
+differences of $A_{n+1}=A\cup\{N,N+m\}$ are the old ones, the
+difference $(N+m)-N=m$ of the two new elements, and the mixed
+differences
+\[
+ N-a\quad\text{and}\quad N+m-a\qquad(a\in A),
+\]
+which are positive because both new elements exceed $M$.  Since
+$a\leq M$,
+\[
+ N-a\geq N-M=M+2m+1>\max\{M,m\},
+\]
+and the same bound holds for $N+m-a$.  Consequently no mixed difference
+coincides with an old difference or with $m$, and $m$ is not an old
+difference by its choice.  Within the family $\{N-a\}$, equal values
+force equal $a$, and likewise within $\{N+m-a\}$.  A coincidence
+$N-a=N+m-b$ between the two families would give $b-a=m$ with
+$a,b\in A$, i.e.\ $m\in\Delta(A)$, contradicting the choice of $m$.
+Thus all positive differences of $A_{n+1}$ are distinct, and by
+induction every $A_n$ has distinct differences.
+
+\emph{Step 2: every nonzero integer is a difference.}
+By the minimality of $m_n$, the integers $1,\dots,m_n-1$ lie in
+$\Delta(A_n)\subseteq\Delta(A_{n+1})$, and $m_n\in\Delta(A_{n+1})$ by
+construction.  Hence $\{1,\dots,m_n\}\subseteq\Delta(A_{n+1})$ and
+$m_{n+1}>m_n$.  The sequence $(m_n)$ is therefore unbounded, so every
+positive integer $k$ satisfies $k<m_n$ for some $n$ and then
+$k\in\Delta(A_n)$; thus $k=d-e$ with $d,e\in D$.  For negative $k$,
+reverse the pair.
+
+\emph{Step 3: uniqueness.}
+Suppose $k=d-e=d'-e'$ with $(d,e)\neq(d',e')$ in $D\times D$ and, say,
+$k>0$.  The sets $A_n$ increase with $n$, so $d,e,d',e'$ all lie in one
+$A_n$, and $k$ would have two different expressions as a positive
+difference in $A_n$, contrary to Step~1.  For $k<0$ negate both
+expressions.
+
+\emph{Step 4.}  Each step adjoins two elements larger than $M_n$, so $D$
+is infinite; and $0\in A_0\subseteq D\subseteq\Z_{\geq0}$.
+\end{proof}
+
+\section{The cyclic plane}\label{sec:plane}
+
+Let
+\[
+ P=\{t^j:\ j\in\Z\}
+\]
+be an infinite cyclic group with generator $t$, written
+multiplicatively: $t^it^j=t^{i+j}$, with identity $1=t^0$, and distinct
+exponents denote distinct elements.  Using the perfect difference set
+$D$ of Lemma~\ref{lem:diff}, define for every $k\in\Z$ the \emph{line}
+\[
+ L_k=\{t^{k+d}:\ d\in D\}=t^k L_0 .
+\]
+Thus the lines are the translates of the single line $L_0=\{t^d:d\in D\}$.
+Three points are \emph{collinear} if some line contains all of them, and
+\emph{noncollinear} otherwise; a noncollinear triple $a,b,c$ is also
+called a \emph{triangle} with \emph{vertices} $a,b,c$, and once (I1)
+below is available its \emph{sides} are the lines
+$L(a,b),L(a,c),L(b,c)$.  The following lemma collects everything that
+will be used about the plane.
+
+\begin{lemma}\label{lem:incidence}
+The points of $P$ and the lines $L_k$ have the following properties.
+\begin{enumerate}
+\item[(I1)] Any two distinct points of $P$ lie on exactly one line.
+\item[(I2)] Any two distinct lines meet in exactly one point.
+\item[(I3)] The lines $L_k$, $k\in\Z$, are pairwise distinct.
+\item[(I4)] Every line is infinite.  (Also, no line is all of $P$, since
+$t^{k-1}\notin L_k$; this will not be needed.)
+\item[(I5)] $t^rL_k=L_{k+r}$ for all $r,k\in\Z$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(I3) Since $\min D=0$, the least exponent occurring in $L_k$ is $k$.
+
+(I1) Let $t^i\neq t^j$, so $i\neq j$.  The point $t^i$ lies on $L_k$ if
+and only if $i-k\in D$.  Hence $L_k$ contains both points if and only if
+$i-k=d$ and $j-k=e$ for some $d,e\in D$, and then $d-e=i-j\neq0$.  By
+Lemma~\ref{lem:diff} there is exactly one pair $(d,e)\in D\times D$ with
+$d-e=i-j$, so exactly one $k$, namely $k=i-d=j-e$, works; by (I3) this
+means that exactly one line contains both points.
+
+(I2) Let $k\neq\ell$.  A point $t^j$ lies on both $L_k$ and $L_\ell$ if
+and only if $j-k=d\in D$ and $j-\ell=e\in D$, and then
+$d-e=\ell-k\neq0$.  Again there is exactly one such pair $(d,e)$, hence
+exactly one such $j=k+d$.
+
+(I4) $D$ is infinite, and $-1\notin D$.
+
+(I5) $t^r L_k=\{t^{r+k+d}:d\in D\}=L_{k+r}$.
+\end{proof}
+
+By (I1) we may write $L(a,b)$ for the unique line through two distinct
+points $a,b$; thus, for $c\neq a,b$, the points $a,b,c$ are collinear if
+and only if $c\in L(a,b)$.  A useful consequence of (I5): for distinct
+$a,b\in P$ and $u\in P$,
+\begin{equation}\label{eq:translation}
+ uL(a,b)=L(ua,ub),
+\end{equation}
+because $uL(a,b)$ is a line by (I5) and contains the distinct points
+$ua,ub$.  Properties (I1) and (I2) say that $P$ with the lines $L_k$ is
+a projective plane in the weak sense used in the introduction, and (I5)
+says that the group $P$ acts on it by collineations.  Projective planes admitting a
+cyclic group of collineations that acts sharply transitively on the
+points (for any two points exactly one group element carries the first
+to the second) are the \emph{cyclic planes} of Singer and Hall; in the
+terminology of [CC11, \S3], a group structure on the point set for
+which multiplications are collineations, such as our $P$, is a
+two-sided incidence group of the plane.
+%% FLAG: the phrase "two-sided incidence group" is recalled from
+%% [CC11, Section 3] (Proposition 3.5 uses it); the exact wording of the
+%% definition there was not re-checked against the source.
+
+\section{The hyperfield}\label{sec:hyperfield}
+
+Adjoin to $P$ a new element $0\notin P$ and put $\Hh=P\cup\{0\}$.
+Extend the multiplication of $P$ by $0a=a0=0$ for all $a\in\Hh$; the
+multiplicative identity is $1=t^0$, which is different from the new
+element $0$.  Define the hyperaddition by
+\begin{equation}\label{eq:addition}
+ \begin{aligned}
+ 0\bp a&=a\bp0=\{a\} &&(a\in\Hh),\\
+ a\bp a&=\{0,a\} &&(a\in P),\\
+ a\bp b&=L(a,b)\setminus\{a,b\}
+       &&(a,b\in P,\ a\neq b).
+ \end{aligned}
+\end{equation}
+In words: the sum of two distinct points consists of the other points of
+the line joining them, and the sum of a point with itself is the point
+together with $0$.  This is Prenowitz's hyperaddition on a projective
+geometry [Pr43], in the form used by Connes and Consani
+[CC11, Proposition~3.1], who show that it yields a canonical hypergroup
+whenever every line has at least four points, and that a two-sided
+incidence group turns it into a hyperfield [CC11, Proposition~3.5].  We
+do not rely on those results but verify the axioms directly; this also
+makes visible exactly which incidence properties are used, namely
+(I1), (I2), (I4) and~\eqref{eq:translation}.
+
+Throughout this section we write, for $a,b,c\in\Hh$,
+\[
+ T(a,b,c)=(a\bp b)\bp c=\bigcup_{d\in a\bp b}(d\bp c)
+\]
+for the left-bracketed triple sum.  The first lemma is the heart of the
+associativity proof: for a triangle the triple sum has a description
+that is visibly symmetric in the three summands.  The formula also
+appears in the proof of [CC11, Proposition~3.1].
+
+\begin{lemma}[triangle formula]\label{lem:triangle}
+For three noncollinear points $a,b,c\in P$,
+\begin{equation}\label{eq:triangle}
+ T(a,b,c)=(a\bp b)\bp c
+ =P\setminus\bigl(L(a,b)\cup L(a,c)\cup L(b,c)\bigr).
+\end{equation}
+In particular $0\notin T(a,b,c)$, and $T(a,b,c)$ is disjoint from the
+three sides of the triangle $abc$.
+\end{lemma}
+\begin{proof}
+Noncollinear points are distinct, and $c\notin L(a,b)$,
+$b\notin L(a,c)$, $a\notin L(b,c)$; so the three sides are three distinct
+lines, and by (I2) any two of them meet only in their common vertex.
+
+\emph{The left side is contained in the right side.}
+Let $r\in T(a,b,c)$.  Then $r\in d\bp c$ for some
+$d\in a\bp b=L(a,b)\setminus\{a,b\}$.  Since $c\notin L(a,b)$ we have
+$d\neq c$, so $d\bp c=L(d,c)\setminus\{d,c\}$; in particular $r\neq0$,
+$r\in P$, and $r\neq d,c$.  The line $L(d,c)$ is different from
+$L(a,b)$ (it contains $c$), so it meets $L(a,b)$ only in $d$, by (I2);
+as $r\neq d$, $r\notin L(a,b)$.  Next, $d\notin L(a,c)$: the lines
+$L(a,c)$ and $L(a,b)$ are distinct and meet only in $a$, while
+$d\in L(a,b)$ and $d\neq a$.  Hence $L(d,c)\neq L(a,c)$, these two
+lines meet only in $c$, and $r\neq c$ gives $r\notin L(a,c)$.  The same
+argument with $b$ in place of $a$ gives $r\notin L(b,c)$.
+
+\emph{The right side is contained in the left side.}
+Let $r\in P$ lie on none of the three sides.  Then $r\neq c$, and the
+line $L(c,r)$ is different from $L(a,b)$ because $c\notin L(a,b)$; by
+(I2) the two lines meet in exactly one point $d$.  If $d$ were equal to
+$a$, then $a\in L(c,r)$ would force $L(c,r)=L(a,c)$ by (I1), placing
+$r$ on the side $L(a,c)$; so $d\neq a$, and likewise $d\neq b$.  Also
+$d\neq c$ (as $c\notin L(a,b)$) and $d\neq r$ (as $r\notin L(a,b)$).
+Therefore $d\in L(a,b)\setminus\{a,b\}=a\bp b$, and
+$r\in L(c,r)\setminus\{d,c\}=L(d,c)\setminus\{d,c\}=d\bp c$, so
+$r\in T(a,b,c)$.
+\end{proof}
+
+\begin{proposition}\label{prop:hyperfield}
+With the multiplication and hyperaddition above, $\Hh$ is a commutative
+hyperfield in the sense of Definition~\ref{def:hyperfield}.  Moreover
+\begin{equation}\label{eq:zero}
+ 0\in a\bp b\quad\Longleftrightarrow\quad a=b\qquad(a,b\in\Hh),
+\end{equation}
+so every element is its own negative, $-a=a$.
+\end{proposition}
+\begin{proof}
+All sums are nonempty: a line minus two points is nonempty by (I4).
+Commutativity (H1) and the neutrality of $0$ (H3) are built into
+\eqref{eq:addition}.
+
+\emph{Negatives (H4).}  Inspecting the three rules of
+\eqref{eq:addition} gives~\eqref{eq:zero}: $0$ lies in $a\bp a$ for
+every $a$ (including $a=0$), in $0\bp b=\{b\}$ only if $b=0$, and in
+$L(a,b)\setminus\{a,b\}\subseteq P$ never.  Thus $a$ itself is the
+unique element $-a$ with $0\in a\bp(-a)$.
+
+\emph{Reversibility (H5).}  Since $-a=a$, we must show that
+$c\in a\bp b$ implies $b\in c\bp a$; we show in fact that the two
+conditions
+\[
+ c\in a\bp b\qquad\text{and}\qquad b\in c\bp a
+\]
+are equivalent.  If one of $a,b,c$ is $0$, both conditions say that the
+other two are equal: for $a=0$ by (H3), for $b=0$ by (H3)
+and~\eqref{eq:zero}, and for $c=0$ by~\eqref{eq:zero} and (H3).  Let
+$a,b,c\in P$.  If $a=b=c$, both conditions hold ($a\in a\bp a$).  If
+exactly two of them are equal, both conditions fail: a sum
+$u\bp u=\{0,u\}$ never contains a point different from $u$, and a sum
+$u\bp v$ with $u\neq v$ contains neither $u$ nor $v$.  If $a,b,c$ are
+distinct, both conditions say that $a,b,c$ are collinear, by (I1).
+
+\emph{Associativity (H2).}  The commutativity part of
+Remark~\ref{rem:iterated} uses only (H1), so
+\[
+ a\bp(b\bp c)=(b\bp c)\bp a=T(b,c,a).
+\]
+Hence (H2) follows once we show that $T(a,b,c)$ depends only on the
+multiset $\{a,b,c\}$ and not on the order of the summands.  A triple
+either contains $0$, or lies in $P^3$ and has three equal summands,
+exactly two equal summands, or three distinct summands, the last being
+collinear or not; we compute $T$ in each of these five cases.
+\begin{itemize}
+\item \emph{A zero summand.}  By (H3) and $A\bp\{0\}=A$,
+$T(0,a,b)=T(a,0,b)=T(a,b,0)=a\bp b$, which is symmetric in $a,b$.
+\item \emph{Three equal nonzero summands $a,a,a$.}
+$T(a,a,a)=\{0,a\}\bp a=(0\bp a)\cup(a\bp a)=\{0,a\}$.
+\item \emph{Exactly two equal summands.}  Let the summands be $a,a,b$
+with $a\neq b$ in $P$, in any order, and put $L=L(a,b)$.  Then
+\[
+ T(a,a,b)=\{0,a\}\bp b=\{b\}\cup\bigl(L\setminus\{a,b\}\bigr)
+ =L\setminus\{a\},
+\]
+and, since $d\bp a=L\setminus\{d,a\}$ for $d\in L\setminus\{a,b\}$,
+\[
+ T(a,b,a)=T(b,a,a)
+ =\bigcup_{d\in L\setminus\{a,b\}}\bigl(L\setminus\{a,d\}\bigr)
+ =L\setminus\{a\}.
+\]
+For the last equality: the union is contained in $L\setminus\{a\}$, and
+a point $r\in L\setminus\{a\}$ is retained by choosing
+$d\in L\setminus\{a,b,r\}$, which is possible because $L$ is infinite
+(I4).  So all three orderings give $L(a,b)\setminus\{a\}$.
+\item \emph{Three distinct collinear summands} $a,b,c$ on a line $L$.
+Here $a\bp b=L\setminus\{a,b\}$, and for $d\in L\setminus\{a,b\}$ the
+summand $d\bp c$ is $\{0,c\}$ if $d=c$ and $L\setminus\{d,c\}$ if
+$d\neq c$ (because then $L(d,c)=L$).  Hence
+\[
+ T(a,b,c)=\{0,c\}\cup\bigcup_{d\in L\setminus\{a,b,c\}}
+ \bigl(L\setminus\{d,c\}\bigr)=\{0,c\}\cup\bigl(L\setminus\{c\}\bigr)
+ =L\cup\{0\},
+\]
+where a point $r\in L\setminus\{c\}$ is retained by choosing
+$d\in L\setminus\{a,b,c,r\}$, again possible by (I4).  The result
+$L\cup\{0\}$ depends only on the line $L$, hence only on the multiset
+$\{a,b,c\}$.
+\item \emph{Three noncollinear summands.}  By
+Lemma~\ref{lem:triangle}, $T(a,b,c)$ is the complement in $P$ of the
+union of the three sides, which is symmetric in $a,b,c$.
+\end{itemize}
+This proves (H2).  Thus $(\Hh,\bp,0)$ is a canonical hypergroup.  (It
+also satisfies $a\bp\Hh=\Hh$, a condition some authors include: given
+$b$, pick $c\in b\bp a$; then $b\in c\bp a$ by (H5).)
+
+\emph{Multiplication and distributivity (H6).}  The nonzero elements
+form the abelian group $P$ with identity $1\neq0$, and $0$ is
+absorbing.  Let $u\in P$.  For distinct $a,b\in P$,
+\eqref{eq:translation} gives
+\[
+ u(a\bp b)=uL(a,b)\setminus\{ua,ub\}=L(ua,ub)\setminus\{ua,ub\}
+ =ua\bp ub,
+\]
+using that multiplication by $u$ is a bijection of $P$.  For equal
+nonzero summands, $u\{0,a\}=\{0,ua\}=ua\bp ua$; if a summand is $0$,
+both sides of (H6) are the singleton of the product of $u$ with the
+other summand.  Finally, for $u=0$ both sides of (H6) equal $\{0\}$.
+\end{proof}
+
+\begin{remark}[where the size of the lines enters]\label{rem:linesize}
+Infiniteness of the lines was used only to choose a point of a line
+outside a prescribed set of at most four points; so the proof works
+verbatim for any plane satisfying (I1), (I2), whose point set is an
+abelian group acting by collineations as in (I5), and in which every
+line has at least five points.  Connes and Consani show that four points per
+line suffice for the hypergroup axioms [CC11, Proposition~3.1]; on a
+four-point line $L=\{a,b,c,d\}$ one computes
+$a\bp b\bp c=\{0,a,b,c\}$ rather than $L\cup\{0\}$, still a symmetric
+expression.
+With only three points per line the rule~\eqref{eq:addition} is not
+associative: on the line $\{a,b,c\}$ one finds
+$(a\bp b)\bp c=c\bp c=\{0,c\}$ but $a\bp(b\bp c)=a\bp a=\{0,a\}$.
+\end{remark}
+
+\section{The counterexample}\label{sec:counterexample}
+
+We now prove Theorem~\ref{thm:main} for the hyperfield $\Hh$ of
+Proposition~\ref{prop:hyperfield} and the elements
+\[
+ x=1,\qquad y=t,\qquad z=t^3 .
+\]
+Recall that $D\supseteq A_0=\{0,1,3,20,24,29\}$ and that $-a=a$ for
+every $a\in\Hh$, so the summands of the conclusion are
+\[
+ x^3=1,\qquad y^3=t^3,\qquad z^3=t^9,\qquad -xyz=xyz=t^4=:q .
+\]
+
+\begin{theorem}\label{thm:counterexample}
+In $\Hh$, with $x=1$, $y=t$, $z=t^3$,
+\[
+ 0\in x\bp y\bp z
+ \qquad\text{but}\qquad
+ 0\notin x^3\bp y^3\bp z^3\bp(-xyz)\bp(-xyz)\bp(-xyz).
+\]
+\end{theorem}
+\begin{proof}
+\emph{Step 1: the hypothesis holds.}  Since $0,1,3\in D$, the three
+distinct points $1,t,t^3$ lie on $L_0$.  In particular
+$t^3\in L(1,t)\setminus\{1,t\}=1\bp t$, hence
+\begin{equation}\label{eq:hypothesis}
+ 0\in t^3\bp t^3\subseteq(1\bp t)\bp t^3=x\bp y\bp z .
+\end{equation}
+(In fact $x\bp y\bp z=L_0\cup\{0\}$ by the collinear case in the proof
+of Proposition~\ref{prop:hyperfield}, but~\eqref{eq:hypothesis} is all
+we need.)
+
+\emph{Step 2: the cubes are noncollinear, and $q$ lies on a side of
+their triangle.}  Since $20,24,29\in D$,
+\begin{equation}\label{eq:specialline}
+ 1=t^{-20+20},\quad q=t^4=t^{-20+24},\quad t^9=t^{-20+29}\ \in\ L_{-20},
+\end{equation}
+so $L_{-20}=L(1,t^9)$ by (I1).  On the other hand $23\notin D$:
+otherwise the two distinct pairs $(23,20)$ and $(3,0)$ in $D\times D$
+would both represent $3=23-20=3-0$, contradicting the uniqueness in
+Lemma~\ref{lem:diff}.  Hence $t^3=t^{-20+23}\notin L_{-20}=L(1,t^9)$,
+which by (I1) says precisely that $1,t^3,t^9$ are noncollinear.
+
+\emph{Step 3: the conclusion fails.}  Put
+\[
+ S=x^3\bp y^3\bp z^3=(1\bp t^3)\bp t^9=T(1,t^3,t^9).
+\]
+By Step~2 and the triangle formula (Lemma~\ref{lem:triangle}), $S$
+contains neither $0$ nor any point of the side $L(1,t^9)=L_{-20}$.
+By~\eqref{eq:specialline}, $q\in L_{-20}$, so
+\begin{equation}\label{eq:disjoint}
+ S\cap\{0,q\}=\varnothing .
+\end{equation}
+Next, by~\eqref{eq:addition},
+\[
+ q\bp q\bp q=\{0,q\}\bp q=(0\bp q)\cup(q\bp q)=\{q\}\cup\{0,q\}=\{0,q\}.
+\]
+By Remark~\ref{rem:iterated} the six-term sum may be regrouped:
+\[
+ x^3\bp y^3\bp z^3\bp q\bp q\bp q
+ =(x^3\bp y^3\bp z^3)\bp(q\bp q\bp q)=S\bp\{0,q\}.
+\]
+Finally, Lemma~\ref{lem:zero} together with $-a=a$ gives, for subsets
+$A,B\subseteq\Hh$, that $0\in A\bp B$ if and only if
+$A\cap B\neq\varnothing$.  Applied to $A=S$ and $B=\{0,q\}$,
+\eqref{eq:disjoint} yields
+\[
+ 0\notin S\bp\{0,q\}
+ =x^3\bp y^3\bp z^3\bp(-xyz)\bp(-xyz)\bp(-xyz).
+\]
+Together with~\eqref{eq:hypothesis} this proves the theorem.
+\end{proof}
+
+Theorem~\ref{thm:counterexample} establishes Theorem~\ref{thm:main}:
+$\Hh$ is countably infinite, since $P\cong\Z$, and commutative by
+Proposition~\ref{prop:hyperfield}.  So the answer to the question is
+\textbf{no}.
+
+\begin{corollary}\label{cor:nonquotient}
+The hyperfield $\Hh$ is not isomorphic to a quotient hyperfield $F/G$
+of a field $F$ by a subgroup $G\leq F^\times$.
+\end{corollary}
+\begin{proof}
+By Proposition~\ref{prop:quotient} every quotient hyperfield satisfies
+the cubic implication, an isomorphism of hyperfields transports the
+implication, and $\Hh$ violates it by Theorem~\ref{thm:counterexample}.
+\end{proof}
+
+\begin{remark}\label{rem:context}
+Hyperfields that are not quotients of fields were first constructed by
+Massouros~[Ma85], by a different method.  Hyperfields attached to
+infinite cyclic planes built from Hall's difference sets appear in
+[CC11, Example~4.7].  For quotient hyperfields $F/G$ satisfying
+$a\bp a=\{0,a\}$ for all $a$ (a property our $\Hh$ shares,
+by~\eqref{eq:addition}), the projective geometry attached to the
+hyperaddition, whose lines are the sets $\{a,b\}\cup(a\bp b)$ for
+distinct nonzero $a,b$ (for our $\Hh$ these are exactly the lines
+$L(a,b)$), is Desarguesian; [KB25, Example~2.6(4) and Remark~4.3(3)]
+contrasts such quotients with a hyperfield built on an infinite cyclic
+group whose plane is non-Desarguesian, and thereby separates general
+hyperfields from quotients of fields.
+Corollary~\ref{cor:nonquotient} gives, for the specific $\Hh$
+constructed here, a direct elementary verification that involves no
+Desargues configuration: the cubic implication is a first-order
+statement true in every $F/G$ and false in $\Hh$.
+%% FLAG: the scope of the Desarguesian assertion (quotient hyperfields
+%% with a+a={0,a} only, not arbitrary quotients) follows the critic's
+%% reading of the published text of [KB25, Example 2.6(4), Remark
+%% 4.3(3)]; the editor did not inspect that text directly.
+\end{remark}
+
+\begin{remark}[what the example shows]
+For distinct $x,y,z\in P$ the hypothesis $0\in x\bp y\bp z$ is the
+collinearity of $x,y,z$ (by the collinear and noncollinear cases in the
+proof of Proposition~\ref{prop:hyperfield}), and, since cubing is
+injective on $P\cong\Z$ so that the cubes are distinct, the conclusion
+holds if the cubes are collinear and otherwise holds exactly when $xyz$
+avoids all three sides of the cube triangle, by the argument of
+Step~3.  In a field,
+or in a quotient of a field, the two conditions are linked by the
+identity~\eqref{eq:cubic}.  In the cyclic plane of a perfect difference
+set the two conditions are independent, and the construction exploits
+this: the seed elements $0,1,3\in D$ make $x,y,z$ collinear, so the
+hypothesis holds; the seed elements $20,24,29\in D$ place $xyz=t^4$ on
+the side $L(1,t^9)$ of the cube triangle, so the conclusion fails; and
+the uniqueness of differences built into $D$ excludes $23\in D$ (which
+would duplicate the difference $3=23-20=3-0$) and so keeps the cubes
+noncollinear.
+\end{remark}
+
+\section{Background and credits}\label{sec:credits}
+
+None of the ingredients is new: the hyperfield axioms and the quotient
+hyperfields $F/G$ are Krasner's [Kr83], the term canonical hypergroup
+is Mittas's [Mi72], the hyperaddition ``third points of the joining
+line'' is Prenowitz's [Pr43] and was combined with an incidence group
+to produce hyperfields by Connes and Consani [CC11, \S3, Example~4.7],
+and perfect difference sets and cyclic planes are due to Singer~[Si38]
+(finite case) and Hall~[Ha47] (the group $\Z$), of whose Theorem~3.1
+Lemma~\ref{lem:diff} is an explicit instance.
+Proposition~\ref{prop:quotient} is an elementary observation about
+quotient hyperfields.  What appears to be new is the counterexample
+itself: the choice of the seed $A_0$, the resulting incidence
+configuration, and the failure of the cubic implication; a literature
+search did not locate the question or an earlier answer.
+
+\medskip
+\noindent\textbf{References}
+
+\begin{description}
+\item[{[CC11]}] A. Connes, C. Consani,
+\emph{The hyperring of ad\`ele classes},
+J. Number Theory \textbf{131} (2011), no.~2, 159--194; arXiv:1001.4260.
+\item[{[Ha47]}] M. Hall, Jr.,
+\emph{Cyclic projective planes},
+Duke Math. J. \textbf{14} (1947), 1079--1090.
+\item[{[KB25]}] P. Kowalski, P. B\l{}aszkiewicz,
+\emph{The class of Krasner hyperfields is not elementary},
+J. Symbolic Logic (2025), published online.
+%% FLAG: author order and "published online, First View, 2025" follow the
+%% attribution review; volume and page numbers were not yet assigned.
+\item[{[Kr83]}] M. Krasner,
+\emph{A class of hyperrings and hyperfields},
+Internat. J. Math. Math. Sci. \textbf{6} (1983), no.~2, 307--311.
+%% FLAG: publisher's record gives pp. 307--311; the article's own header
+%% reportedly reads 307--312.
+\item[{[Ma85]}] Ch. G. Massouros,
+\emph{Methods of constructing hyperfields},
+Internat. J. Math. Math. Sci. \textbf{8} (1985), no.~4, 725--728.
+\item[{[Mi72]}] J. Mittas,
+\emph{Hypergroupes canoniques},
+Math. Balkanica \textbf{2} (1972), 165--179.
+\item[{[Pr43]}] W. Prenowitz,
+\emph{Projective geometries as multigroups},
+Amer. J. Math. \textbf{65} (1943), 235--256.
+\item[{[Si38]}] J. Singer,
+\emph{A theorem in finite projective geometry and some applications to
+number theory},
+Trans. Amer. Math. Soc. \textbf{43} (1938), 377--385.
+\end{description}
+
+\end{document}

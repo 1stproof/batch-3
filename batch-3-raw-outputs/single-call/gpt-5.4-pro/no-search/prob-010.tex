@@ -1,0 +1,210 @@
+```latex
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amsthm,amssymb,mathtools,hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\Pic}{\operatorname{Pic}}
+
+\begin{document}
+
+\title{On the mirror of a very general $H$-polarised Tyurin degeneration}
+\author{}
+\date{}
+\maketitle
+
+We write
+\[
+\Lambda_{\mathrm{K3}} \cong H^{\oplus 3}\oplus E_8^{\oplus 2}
+\]
+for the K3 lattice, where $H$ is the hyperbolic plane and $E_8$ is the negative-definite $E_8$ root lattice.
+
+The purpose of this note is to prove the following statement.
+
+\begin{theorem}\label{thm:main}
+Let $\pi_{\mathcal X}\colon \mathcal X\to \Delta$ be a Tyurin degeneration of K3 surfaces with central fibre
+\[
+X_0=V_1\cup V_2.
+\]
+Assume that $\pi_{\mathcal X}$ is $H$-polarised in the following corrected sense:
+\begin{enumerate}
+\item over $\Delta^*:=\Delta\setminus\{0\}$ there is a trivial local subsystem
+\[
+\mathcal L\subset R^2(\pi_{\mathcal X})_*\ZZ
+\]
+with fibre $H$, such that for every $t\in \Delta^*$ the fibre $\mathcal L_t\subset H^2(X_t;\ZZ)$ defines an $H$-quasipolarisation of $X_t$;
+
+\item there exists an effective, flat, and nef Cartier divisor $A$ on $\mathcal X$ such that, for every $t\in \Delta^*$, the restriction $A_t:=A|_{X_t}$ is nef and big and satisfies
+\[
+[A_t]\in \mathcal L_t,
+\]
+and moreover
+\[
+(A|_{V_i})^2>0 \qquad (i=1,2).
+\]
+\end{enumerate}
+Assume moreover that the image of $0\in \Delta$ in the Alexeev--Brunyate--Engel compactified moduli space of $H$-polarised K3 surfaces does not lie on any Noether--Lefschetz locus. Let $Y$ be a very general $H\oplus E_8\oplus E_8$-quasipolarised K3 surface. Then there exist an elliptic fibration
+\[
+f\colon Y\to \PP^1
+\]
+and an allowable loop $\gamma\subset \PP^1$ such that the given $H\oplus E_8\oplus E_8$-quasipolarisation is compatible with $(f,\gamma)$ in the sense of \cite[Definition~4.21]{GT24}, and such that $\pi_{\mathcal X}$ and $f$ are a mirror pair in the sense of \cite[Definition~5.1]{GT24}.
+\end{theorem}
+
+The argument is a direct specialisation of the general mirror-existence theorem of Giovenzana--Thompson to the lattice $H$, together with an elementary check that the resulting fibration is in fact elliptic.
+
+\begin{remark}\label{rem:correction}
+The notion of $H$-polarised Tyurin degeneration used in Theorem~\ref{thm:main} is the corrected form of \cite[Definition~3.20]{GT24}; the only difference from the arXiv text is the explicit requirement
+\[
+(A|_{V_i})^2>0 \qquad (i=1,2).
+\]
+This only strengthens the hypotheses. In particular, every degeneration satisfying the assumptions of Theorem~\ref{thm:main} is admissible for the arguments of \cite[\S\S 3--5]{GT24}.
+\end{remark}
+
+\begin{lemma}\label{lem:mirror-lattice}
+The Dolgachev mirror lattice of $H$ is, up to isometry,
+\[
+H\oplus E_8\oplus E_8.
+\]
+\end{lemma}
+
+\begin{proof}
+By definition, a mirror lattice $\check M$ for a primitive sublattice $M\subset \Lambda_{\mathrm{K3}}$ is a lattice satisfying
+\[
+M^\perp_{\Lambda_{\mathrm{K3}}}\cong H\oplus \check M.
+\]
+Taking $M=H$ and embedding it as one of the three hyperbolic-plane summands in
+\[
+\Lambda_{\mathrm{K3}}\cong H^{\oplus 3}\oplus E_8^{\oplus 2},
+\]
+we obtain
+\[
+H^\perp_{\Lambda_{\mathrm{K3}}}\cong H^{\oplus 2}\oplus E_8^{\oplus 2}
+\cong H\oplus (H\oplus E_8^{\oplus 2}).
+\]
+Hence one may take
+\[
+\check M\cong H\oplus E_8^{\oplus 2},
+\]
+as claimed.
+\end{proof}
+
+\begin{lemma}\label{lem:elliptic-criterion}
+Let $f\colon Y\to B$ be a surjective morphism with connected fibres from a K3 surface to a smooth curve, and let $F\in \Pic(Y)$ be the class of a fibre. Assume that there exists a class $G\in \Pic(Y)$ such that
+\[
+G^2=0,\qquad F\cdot G=1.
+\]
+Then $f$ is an elliptic fibration.
+\end{lemma}
+
+\begin{proof}
+Since distinct fibres are linearly equivalent and disjoint, one has
+\[
+F^2=0.
+\]
+Because $K_Y\sim 0$ for a K3 surface, the adjunction formula gives
+\[
+2p_a(F)-2 = F^2 + K_Y\cdot F = 0,
+\]
+so the generic fibre has arithmetic genus $1$. Thus $f$ is a genus-one fibration.
+
+It remains to prove that $f$ has a section. Set
+\[
+S:=G-F.
+\]
+Then
+\[
+S^2 = G^2 + F^2 - 2F\cdot G = -2
+\qquad\text{and}\qquad
+S\cdot F = G\cdot F - F^2 = 1.
+\]
+By Riemann--Roch on the K3 surface $Y$,
+\[
+\chi(\mathcal O_Y(S))=2+\frac{S^2}{2}=1.
+\]
+Using Serre duality, $h^2(\mathcal O_Y(S))=h^0(\mathcal O_Y(-S))$, so
+\[
+1=\chi(\mathcal O_Y(S))
+= h^0(\mathcal O_Y(S)) - h^1(\mathcal O_Y(S)) + h^0(\mathcal O_Y(-S))
+\le h^0(\mathcal O_Y(S)) + h^0(\mathcal O_Y(-S)).
+\]
+Hence either $S$ or $-S$ is effective.
+
+Now $F$ is nef, since it is the class of a fibre of a morphism to a curve. Therefore every effective divisor $D$ satisfies $D\cdot F\ge 0$. But
+\[
+(-S)\cdot F = -1,
+\]
+so $-S$ cannot be effective. Hence $S$ is effective.
+
+Let $D\sim S$ be an effective divisor. Since
+\[
+D\cdot F = S\cdot F = 1,
+\]
+exactly one irreducible component of $D$ dominates $B$, and it does so with degree $1$. Let $C$ be that component, and let $\widetilde C\to C$ be its normalisation. The induced morphism
+\[
+\widetilde C \longrightarrow B
+\]
+is finite of degree $1$, hence an isomorphism. Composing its inverse with the map $\widetilde C\to Y$ yields a section
+\[
+B\longrightarrow Y
+\]
+of $f$. Therefore $f$ is a genus-one fibration with a section, i.e. an elliptic fibration.
+\end{proof}
+
+\begin{proposition}\label{prop:GT}
+Under the hypotheses of Theorem~\ref{thm:main}, there exist a fibration
+\[
+f\colon Y\to \PP^1
+\]
+and an allowable loop $\gamma\subset \PP^1$ such that the given $H\oplus E_8\oplus E_8$-quasipolarisation on $Y$ is compatible with $(f,\gamma)$ in the sense of \cite[Definition~4.21]{GT24}, and such that $\pi_{\mathcal X}$ and $f$ are a mirror pair in the sense of \cite[Definition~5.1]{GT24}.
+\end{proposition}
+
+\begin{proof}
+By Remark~\ref{rem:correction}, the present notion of $H$-polarised Tyurin degeneration is the corrected one intended in \cite{GT24}. By Lemma~\ref{lem:mirror-lattice}, the mirror lattice of $H$ is $H\oplus E_8\oplus E_8$.
+
+The main existence theorem of \cite[\S5]{GT24} states, in particular, that if $M$ is a mirror-hyperbolic lattice, $\mathcal X\to \Delta$ is a very general $M$-polarised Tyurin degeneration, and $Y$ is a very general mirror $\check M$-quasipolarised K3 surface, then there exist a fibration $Y\to \PP^1$ and an allowable loop on the base, compatible with the $\check M$-quasipolarisation, such that the degeneration and the fibration form a mirror pair in the sense of \cite[Definition~5.1]{GT24}.
+
+Applying that theorem with $M=H$ and $\check M=H\oplus E_8\oplus E_8$, and using the very-generality hypothesis from Theorem~\ref{thm:main}, gives exactly the asserted fibration and allowable loop.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+By Proposition~\ref{prop:GT}, there exist a fibration
+\[
+f\colon Y\to \PP^1
+\]
+and an allowable loop $\gamma\subset \PP^1$ such that the given $H\oplus E_8\oplus E_8$-quasipolarisation is compatible with $(f,\gamma)$ and such that $\pi_{\mathcal X}$ and $f$ are a mirror pair in the sense of \cite[Definition~5.1]{GT24}.
+
+It remains only to show that this fibration is elliptic. Let $F$ be the class of a fibre of $f$. By the compatibility condition of \cite[Definition~4.21]{GT24}, the distinguished $H$-summand of the lattice
+\[
+H\oplus E_8\oplus E_8
+\]
+maps to a copy of $H$ in $\Pic(Y)$ containing the fibre class $F$. Since this summand is isometric to the hyperbolic plane, there is a class $G$ in the same summand such that
+\[
+G^2=0,\qquad F\cdot G=1.
+\]
+Lemma~\ref{lem:elliptic-criterion} now implies that $f$ has a section. As already noted in the proof of that lemma, every fibration from a K3 surface to a curve is automatically a genus-one fibration. Hence $f$ is an elliptic fibration.
+
+Therefore the fibration supplied by Proposition~\ref{prop:GT} is the desired elliptic fibration, and the theorem follows.
+\end{proof}
+
+\begin{thebibliography}{99}
+
+\bibitem[ABE22]{ABE22}
+V.~Alexeev, A.~Brunyate, and P.~Engel,
+\emph{Compactifications of moduli of elliptic {K3} surfaces: Stable pair and toroidal},
+Geom. Topol. \textbf{26} (2022), no.~8, 3525--3588.
+
+\bibitem[GT24]{GT24}
+L.~Giovenzana and A.~Thompson,
+\emph{Degenerations and fibrations of {K3} surfaces: Lattice polarisations and mirror symmetry},
+preprint, arXiv:2405.12009, May 2024.
+
+\end{thebibliography}
+
+\end{document}
+```

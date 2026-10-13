@@ -1,0 +1,17 @@
+{
+  "submitter_id": "merlean",
+  "timestamp_utc": "2026-10-02T18:08:09Z",
+  "git_commit": "f8d7753c562fe21b822d75ec82ece50a7a214e63",
+  "instance_type": "r7i.2xlarge",
+  "instance_id": "i-09cf0e2379c212a0e",
+  "storage_gb": 100,
+  "exit_code": 124,
+  "runtime_seconds": 86409,
+  "timeout_minutes": 1440,
+  "timeout_overridden": false,
+  "output_files": 30,
+  "failed": false,
+  "run_script": "run-fixed.sh",
+  "reconstructed": true,
+  "notes": "Written by hand on 2026-10-03. The run script's file-by-file copy was stopped before it finished because the output was 22 GB in 304,994 files; the complete output was retrieved instead as results/merlean-output-full.tar.gz. exit_code is inferred, not read from the script: the team's container-result.json reports status 'interrupted' at 2026-10-03T18:29:04Z, 24 hours after start, which is the 24-hour timeout (exit code 124). runtime_seconds is the interval between the team's container-start.json and container-result.json timestamps. timestamp_utc is the EC2 instance launch time. stdout.log and stderr.log were retrieved and are empty."
+}

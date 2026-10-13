@@ -1,0 +1,536 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\PD}{\operatorname{PD}_{\Z}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\cO}{\mathcal O}
+
+\newcommand{\fptitle}{Review of Problem 4 -- MerLean}
+\newcommand{\reviewtag}{Reviewer 3}
+\usepackage{fp-review}
+
+\begin{document}
+\maketitle
+
+\section{Review}
+
+This submission does not purport to solve the problem, but it does make progress. It describes this progress in two ways: by giving some unconditional partial results, and a conditional result saying that if one could do such and such, the problem would be solved.  The unconditional partial results are uninteresting (they fall back on integrability of complex structures on curves), but the conditional results are strong, and follow the path that Siebert took to a full solution. Siebert's first key idea is to develop the novel theory of pseudo-holomorphic line bundles (an excellent idea, something which symplectic geometers should take on board). Lynx does the same thing (under the name of `holomorphic presentations' for complex line bundles). Siebert uses pseudo-holomorphic local frames for the line-bundle summands of normal bundles to strata to construct the local defining functions; Lynx proposes the same method. Like Siebert, Heron, and Wren, Lynx uses approximately holomorphic methods to produce auxiliary divisors, and does so nicely, using Auroux's work in the relative form worked out by Mohsen (the latter reference was apparently missed by Siebert). Lynx proposes to construct pseudo-holomorphic structures on normal line bundles by identifying them with the line bundles $\mathcal{O}_X(E)$ of divisors---again, this was Siebert's neat method. What is missing here is an idea for how to set up a recursive scheme.
+
+In a human--LLM collaboration, this submission would take the project a long way forward. 
+
+The exposition is pretty good: the arguments are clearly laid out, with introduction of appropriate terminology (e.g. `holomorphic presentation'), a reasonably well done `mutatis mutandis' argument for the approximately holomorphic theory, identifying points that need care because they are slightly different from that in the cited paper, and easy-to-follow delineation between unconditional and conditional results.  I had some expository quibbles; for instance, some material cited from Auroux needed to be spelled out more explicitly. But these are minor complaints.
+ 
+The attributions are fine: a short bibliography covers the key sources. Standard methods are used without attribution; for example, Lemma 4.3 uses a method familiar to symplectic geometers from McDuff--Salamon's textbook, and it would be preferable to cite secondary sources such as that textbook, or the primary sources on which the texts are based. 
+
+
+\paragraph{Correctness.}
+\begin{itemize}
+	\item  1: essentially flawless mathematical argument
+	\item  0.5: minor errors that are easily corrected
+	\item  0: blank solution, or acknowledged partial result
+	\item  $-0.5$: major errors
+	\item  $-1$: proposed proof makes no progress towards the result.
+\end{itemize}
+Note that points should be docked for wrong statements/ solutions.
+
+\vspace{5mm}
+
+\noindent {\bf Score: 0.5.} According to the rubric this should score 0 for an acknowledged partial result. Based on its considerable value, explained above, I think a score of 0.5 is a more accurate reflection of the strength of the submission. 
+
+\paragraph{Exposition.}
+\begin{itemize}
+	\item  1: well-written and clear solution.
+	\item  0: argument that is possible to follow with serious effort
+	\item  $-1$: very poor exposition
+\end{itemize}
+
+\noindent {\bf Score: 1.} The arguments are clearly laid out, with introduction of appropriate terminology, a reasonably well done `mutatis mutandis' argument, and easy-to-follow delineation between unconditional and conditional results.  My occasional expository quibbles are minor.
+
+
+\paragraph{Attributions.}
+\begin{itemize}
+	\item  1: solutions contains fully appropriate attributions
+		to related work and theorems being used.
+	\item  0: moderate issues with missing attributions or hallucinated references
+	\item  $-1$: blatant plagiarism or hallucinations
+\end{itemize}
+
+\noindent {\bf Score: 1.} A short but appropriate bibliography, valid citations.
+
+\newpage
+\section{Submission with inline comments}
+
+
+\begin{abstract}
+We study whether a symplectic simple normal crossings divisor admits local holomorphic defining coordinates for one tame almost complex structure, after a cohomologous symplectic deformation preserving the divisor. 
+\review{This summary of the question leaves a key point unclear: that coordinates are to be smooth, while the ones that define divisor-components are to be holomorphic.}
+We prove the assertion in real dimension at most four, and for smooth divisors in dimension six. For a smooth divisor in any dimension we give an equivalent condition on holomorphic transition functions of its normal line. An explicit local example shows that invariance of the divisor and vanishing of the Nijenhuis tensor along it do not suffice for a prescribed almost complex structure. We also prove a conditional construction in arbitrary dimension from a finite collection of auxiliary divisors and compatible normal-bundle data. The realization of the full input to that construction is not established here; the unrestricted existence question remains unresolved in this paper.
+\end{abstract}
+
+\section{The question and the results}
+
+Let $(M^{2n},\omega)$ be a closed symplectic manifold; closed means compact without boundary. An almost complex structure is a smooth endomorphism $J$ of $TM$ with $J^2=-\id$. It is \emph{$\omega$-tame} if $\omega(v,Jv)>0$ for every nonzero tangent vector $v$. It is \emph{$\omega$-compatible} if, in addition, $\omega(Ju,Jv)=\omega(u,v)$. A complex-valued smooth function $f$ is $J$-holomorphic when
+\begin{equation}\label{eq:holomorphic}
+ df\circ J=i\,df.
+\end{equation}
+This equation is imposed on the whole domain of $f$.
+
+We use the positive, all-strata convention for a \emph{symplectic simple normal crossings divisor} (SNC divisor). Thus $D=\bigcup_{a\in A}D_a$, where the $D_a$ are closed embedded submanifolds of real codimension two, every multiple intersection
+\[
+ D_I=\bigcap_{a\in I}D_a,\qquad D_\varnothing=M,
+\]
+is transverse and symplectic, and its symplectic orientation agrees with its intersection orientation. The latter is induced by the oriented normal-bundle isomorphism
+$N_MD_I\simeq\bigoplus_{a\in I}N_MD_a|_{D_I}$ and the orientation of $M$.
+Zero-dimensional strata have positive symplectic orientation. The family is finite; equivalently, one may start with a locally finite family and use compactness. No orthogonality is assumed. This is the ``SC'' convention of \cite[Definition 2.1]{TMZ}.
+
+\review{Correct review of definitions, with proper attribution.}
+
+\begin{question}\label{q:main}
+Does every such pair admit a smooth path of symplectic forms $\omega_t$, $0\leq t\leq1$, and one $\omega_1$-tame almost complex structure $J$ such that
+\[
+ \omega_0=\omega,\qquad [\omega_t]=[\omega],
+ \qquad D\text{ is symplectic SNC for every }\omega_t,
+\]
+and every $p\in M$ has a neighborhood $U$ with a smooth coordinate chart $(z_1,\ldots,z_n):U\to V\subset\C^n$ in which, for some $0\leq r\leq n$,
+\begin{equation}\label{eq:desired}
+ dz_a\circ J=i\,dz_a\quad(1\leq a\leq r),
+ \qquad D\cap U=\{x\in U:z_1(x)\cdots z_r(x)=0\}?
+\end{equation}
+\end{question}
+Here a smooth complex coordinate chart is a real smooth chart onto an open set $V$, with its coordinates paired into complex numbers. Only the first $r$ functions must be holomorphic. For $r=0$ the product is $1$, so the equation describes the empty set. In particular, no integrability is demanded away from $D$. At an $n$-fold point all coordinates in \eqref{eq:desired} are holomorphic.
+
+The distinction between a $J$-invariant divisor and holomorphic defining functions is the main issue. Symplectic regularization provides coherent tubular neighborhoods after the permitted deformation \cite[Theorem 2.13]{TMZ}. Its normal-direction integrability condition, discussed in \cite[Section 1.1]{TMZ}, does not itself give functions satisfying \eqref{eq:holomorphic} on open neighborhoods. The example in Section~\ref{sec:local} makes this distinction explicit.
+
+\review{Accurate description of key issues.}
+
+\begin{theorem}\label{thm:partial}
+Under the convention above:
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item Question~\ref{q:main} has an affirmative answer when $\dim_\R M\leq4$.
+\item If $\dim_\R M=6$ and the branches $D_a$ are pairwise disjoint, it has an affirmative answer with the constant path $\omega_t=\omega$.
+\item For $n\geq2$, after the permitted deformation there is an endpoint-tame almost complex structure that is integrable near
+\[
+ K=\bigcup_{|I|=n-1}D_I
+\]
+and satisfies \eqref{eq:desired} throughout a neighborhood of $K$.
+\end{enumerate}
+\end{theorem}
+Part (iii) asserts no defining-coordinate property at the remaining points of $D$. The proof of (i) and (iii) uses line-bundle models over curves. Part (ii) follows from a normal-line criterion and auxiliary divisors representing differences of integral Chern classes. The latter construction uses Auroux's quantitative perturbation theorem \cite[Theorem 2]{Auroux}; we include the simultaneous-transversality and orientation arguments needed for its application.
+
+Section~\ref{sec:conditional} gives a further conditional result in every dimension. Its hypotheses concern actual smooth line-bundle identifications and their behavior in tubular charts, not just Chern classes. The construction extends one common structure through the strata in decreasing codimension. Section~\ref{sec:limits} specifies the realization problem left by this conditional statement and explains the relevance, and limits, of Mohsen's relative transversality theorem \cite[p.~657]{Mohsen}. We make no novelty or priority claim for the auxiliary tools.
+
+\section{Local functions and extension}\label{sec:local}
+
+\begin{lemma}\label{lem:submersion}
+The chart condition \eqref{eq:desired} near a point of $r$ branches is equivalent to a smooth submersion $F=(f_1,\ldots,f_r):U\to\C^r$ such that $dF\circ J=i\,dF$ and the branches are $\{f_a=0\}$. For such a submersion, $\ker dF$ is $J$-invariant and integrable. Moreover $dF(N_J)=0$, where
+\[
+ N_J(X,Y)=[JX,JY]-J[JX,Y]-J[X,JY]-[X,Y].
+\]
+\end{lemma}
+\begin{proof}
+Projection onto the first $r$ chart coordinates gives $F$. Conversely the smooth submersion theorem completes the real and imaginary parts of its components to a real coordinate system; pair the remaining coordinates. The fibers of $F$ give the integral submanifolds of $\ker dF$, which is $J$-invariant by the displayed equation.
+For a holomorphic function $f$, $JX(f)=iX(f)$. Substitution in the four brackets defining $N_J$, using complex-linear extension to vector fields, cancels every term and gives $df(N_J(X,Y))=0$. Apply this componentwise.
+\end{proof}
+
+\review{Integrability assertion correct (and clear). Assertion about $df(N_J)$ lemma less obvious, but it checks out.}
+
+\begin{example}\label{ex:badJ}
+A tame structure preserving a smooth divisor, even with $N_J=0$ along that divisor, need not admit a transverse holomorphic defining function.
+On $\C^3$ with coordinates $(z_1,z_2,w)$, prescribe the type-$(0,1)$ tangent space (the $-i$ eigenspace of the complexified structure) to be spanned by
+\[
+ W_0=\partial_{\bar w},\qquad W_1=\partial_{\bar z_1},\qquad
+ W_2=\partial_{\bar z_2}-\bar z_1w\partial_w.
+\]
+Comparison of the $z_1,z_2,\bar z_1,\bar z_2$ coefficients, followed by the vertical coefficients, shows that this span intersects its conjugate trivially. It therefore defines a smooth real almost complex structure. Along $D_0=\{w=0\}$ it is standard, and it is tame for the standard symplectic form in a sufficiently small neighborhood of the origin, by openness of tameness.
+
+The same-type brackets are
+\[
+ [W_1,W_2]=-w\partial_w,\qquad [W_0,W_1]=[W_0,W_2]=0.
+\]
+For type-$(0,1)$ fields $U,V$, the convention above gives
+$N_J(U,V)=-4[U,V]^{1,0}$; the tensor vanishes on mixed types. Thus $N_J=0$ along $D_0$.
+\review{OK, but vanishing of $N_J$ on $D_0$ was already clear, from standardness of $J$ along $D_0$ and the fact that $N_J$ is a tensor.}
+If $f$ is $J$-holomorphic, the equations $W_af=0$ imply $w\partial_wf=0$. 
+\review{Right---but say that this is because then $(W_1W_2 - W_2 W_1)f=0$.}
+Consequently $\partial_wf=0$ off $D_0$, and also on $D_0$ by continuity. The equation $W_0f=0$ gives $\partial_{\bar w}f=0$. If $f|_{D_0}=0$, its tangential differential vanishes there as well, so $df|_{D_0}=0$.
+The standard complex structure does work for this same local divisor. This example concerns the prescribed $J$ and is not a negative answer to Question~\ref{q:main}.
+\end{example}
+
+We will construct structures near closed subsets and then extend them. The following explicit extension is useful because it preserves a prescribed germ, meaning agreement on some smaller neighborhood.
+
+\begin{lemma}[Relative tame extension]\label{lem:extension}
+Let $\Omega$ be symplectic on a closed manifold $X$, let $K\subset X$ be closed, and let $J$ be $\Omega$-tame on a neighborhood $U$ of $K$. There is a global $\Omega$-tame structure agreeing with $J$ on a neighborhood of $K$.
+\end{lemma}
+\begin{proof}
+Choose an $\Omega$-compatible structure $J_0$ and write
+$g_0(u,v)=\Omega(u,J_0v)$. Such a structure is obtained from a metric $h$ by defining $h(Au,v)=\Omega(u,v)$ and setting
+$J_0=A(-A^2)^{-1/2}$.
+The map $J+J_0$ is invertible: $Jv=-J_0v$ for $v\ne0$ would contradict tameness. Set
+\[
+ Q=(J+J_0)^{-1}(J_0-J).
+\]
+Direct algebra gives $QJ_0=-J_0Q$ and
+$J=(1+Q)J_0(1+Q)^{-1}$. Furthermore,
+\begin{equation}\label{eq:cayley}
+ \Omega((1+Q)v,J(1+Q)v)=g_0(v,v)-g_0(Qv,Qv).
+\end{equation}
+Indeed the two cross terms cancel by symmetry of $g_0$. Hence $\|Q\|_{g_0}<1$ pointwise. Choose $\chi:X\to[0,1]$ supported in $U$ and equal to one near $K$. Extend $Q'=\chi Q$ by zero. It still anticommutes with $J_0$ and has norm less than one. Thus $1+Q'$ is invertible and \eqref{eq:cayley} makes
+$(1+Q')J_0(1+Q')^{-1}$ the required structure.
+\end{proof}
+
+\begin{lemma}[Division of defining functions]\label{lem:division}
+If $f,g$ are $J$-holomorphic submersions with the same zero hypersurface $H$, then $f/g$ extends across $H$ as a smooth nowhere-zero $J$-holomorphic function, after shrinking around any point of $H$.
+\end{lemma}
+\begin{proof}
+Along $H$ the differentials are nonzero complex-linear forms on the same complex normal line, so $df=c\,dg$ for a smooth nonzero complex function $c$ on $H$. In smooth coordinates $(x,w)$ with $g=w$, Taylor expansion gives
+$f(x,w)=c(x)w+O(|w|^2)$. Therefore $u=f/g$ extends continuously, and is locally bounded, with value $c$ on $H$.
+
+Off $H$ it satisfies $D_Ju=0$, where $D_Ju=du+i\,du\circ J$. To verify this equation distributionally across $H$, insert a cutoff vanishing for $|w|\leq\varepsilon$ and equal to one for $|w|\geq2\varepsilon$. Its derivative is $O(\varepsilon^{-1})$ and is supported in a set of volume $O(\varepsilon^2)$ on each compact coordinate patch. Boundedness of $u$ makes the resulting error $O(\varepsilon)$, which tends to zero. Thus $D_Ju=0$ distributionally. Its symbol on a nonzero real covector $\xi$ is $\xi+i\xi\circ J$, which is nonzero. Consequently $D_J^*D_J$ is elliptic. Interior elliptic regularity makes $u$ smooth, and the first-order equation still holds. Since $u|_H=c\ne0$, it is a unit near the point in question.
+\end{proof}
+\review{Correct lemma; proof makes appropriate use of elliptic regularity.}
+
+\section{The normal line of a smooth divisor}\label{sec:normal}
+
+\begin{definition}
+For an almost complex manifold $(B,j)$, a \emph{$j$-holomorphic presentation} of a smooth complex line bundle $E\to B$ is an atlas of complex-linear trivializations whose transition functions $\gamma:B\supset U\to\C^*$ satisfy $d\gamma\circ j=i\,d\gamma$. A section is holomorphic if its coefficient in each of these frames is a $j$-holomorphic function. This definition does not assume that $j$ is integrable.
+\end{definition}
+
+\review{Notion coincides with pseudo-holomorphic structures on line bundles in problem-setter's solution.}
+
+Tensor products and duals inherit such presentations. On the total space of a presented line, the product structures $j\oplus i$ in local trivializations agree. Indeed, for the change of coordinates
+$(x,w)\mapsto(x,\gamma(x)w)$, the derivative is complex-linear precisely when $d\gamma\circ j=i\,d\gamma$. The projection and the local fiber coordinates are then holomorphic.
+
+\begin{proposition}[Normal-line criterion]\label{prop:normal}
+Let $B$ be a closed smooth symplectic hypersurface in a closed symplectic manifold $(X,\Omega)$, and give its symplectic normal plane bundle $E=N_XB$ a compatible complex structure. The following are equivalent:
+\begin{enumerate}[label=(\alph*),leftmargin=*]
+\item There is a global $\Omega$-tame structure with transverse holomorphic local defining functions for $B$.
+\item There is an $\Omega|_B$-tame structure $j$ such that the actual smooth complex line $E$ admits a $j$-holomorphic presentation.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+For (a), the tangent bundle of $B$ is invariant. 
+\review{`For (a)' should be `For (a)$\Rightarrow$(b)'. Similarly with `For (b)' below.}
+Restrict $J$ to it. 
+By Lemma~\ref{lem:division}, ratios of local defining functions extend as holomorphic units. Their restrictions to $B$ give the changes of frame for the conormal line; inversion gives a presentation of the normal line. The quotient complex structure induced by $J$ has the symplectic orientation: both the ambient tangent bundle and $TB$ have the orientations determined by the taming form. Positive complex structures on an oriented plane bundle are homotopic, so this quotient complex line is isomorphic to the chosen $E$.
+
+For (b), the product construction preceding the proposition gives an almost complex structure on $E$ with holomorphic fiber coordinates. On its zero section it tames the direct sum of $\Omega|_B$ and the positive normal area form. The symplectic neighborhood theorem identifies a neighborhood of that section with a neighborhood of $B$ in $X$, with this splitting along $B$. Tameness persists on a smaller neighborhood by openness and compactness. Apply Lemma~\ref{lem:extension}, and complete the defining functions to coordinates using Lemma~\ref{lem:submersion}.
+\end{proof}
+\review{Pertinent lemma, valid proof.}
+
+\begin{lemma}[Divisor lines]\label{lem:divisorline}
+Let $H$ be a closed embedded real codimension-two submanifold of $(B,j)$ admitting transverse $j$-holomorphic local defining functions. There is a $j$-holomorphically presented line $\cO_j(H)$ with a transverse holomorphic section of zero set $H$, and
+\[
+ c_1(\cO_j(H))=\PD[H]\in H^2(B;\Z),
+\]
+where $H$ has its complex normal orientation. Here $\PD[H]$ denotes the integral Poincar\'e dual, defined as the image of the oriented normal Thom class in $H^2(B;\Z)$.
+\end{lemma}
+\begin{proof}
+Use defining functions near $H$ and the function $1$ on $B\setminus H$. Lemma~\ref{lem:division} makes their ratios holomorphic units; these ratios satisfy the cocycle identity and define the line and section. The first Chern class of a complex line is the Euler class of its oriented real plane bundle. The transverse-zero formula for the Euler class identifies it with the integral Poincar\'e dual of $H$.
+\end{proof}
+\review{Another pertinent lemma with a valid proof. Such line bundles are also constructed in the symplectic context by Tehrani--Zinger (precise ref.?), and while a citation would be appropriate, it's not vital: they do not consider the holomorphic presentations.}
+
+The integral identity matters: a real cohomology identity would lose torsion. In particular, if
+$c_1(E_a)=\PD[H_a^+]-\PD[H_a^-]$ and one $j$ admits defining functions for all these hypersurfaces, classification of complex line bundles by integral $c_1$ identifies $E_a$ with
+$\cO_j(H_a^+)\otimes\cO_j(H_a^-)^*$ as a smooth complex line, giving it the desired presentation.
+
+
+\begin{lemma}[Extension using a section]\label{lem:section}
+Suppose a fixed smooth complex line $G\to(B,j)$ has a section $s$ transverse to zero. If a holomorphic presentation is given near a compact set $Z$ containing $s^{-1}(0)$, and $s$ is holomorphic there, that presentation extends to $B$. Moreover, two presentations of the same $G$ making the same transverse section holomorphic agree under the identity of $G$.
+\end{lemma}
+\begin{proof}
+Adjoin the frame $s$ on $B\setminus s^{-1}(0)$ to the given frames. On overlaps its coefficients are nonzero holomorphic functions. For uniqueness, $s$ is a common holomorphic frame away from its zeros. Near a zero its coefficients in two presented frames are transverse holomorphic defining functions. Their ratio is a holomorphic unit by Lemma~\ref{lem:division}, so the identity intertwines the presentations there too.
+\end{proof}
+
+\section{Regularized neighborhoods over curves}\label{sec:curves}
+
+We first specify the external geometric input. The theorem cited below concerns smooth symplectic models and does not assert their holomorphicity.
+
+\begin{theorem}[Regularization, specialized from \cite{TMZ}]\label{thm:regularization}
+For a finite positive symplectic SNC family in $(M,\omega)$ there are smooth global one-forms $\mu_t$, with $\mu_0=0$, such that $\omega_t=\omega+d\mu_t$ remains symplectic SNC on the fixed family and the endpoint $\Omega=\omega_1$ admits the regularization of \cite[Definition 2.12(1)]{TMZ}.
+\end{theorem}
+This is \cite[Theorem 2.13, p.~17]{TMZ} with parameter manifold a point, $X=M$, $V_a=D_a$, $X^*=\varnothing$, and both boundary neighborhoods empty. Finiteness, closedness, transversality, and the positive all-strata orientation are exactly its hypotheses. There are no boundary or support conditions to check in this specialization. All locators refer to the April 30, 2017 author manuscript.
+
+Here is the part of a regularization used below. For each stratum $D_I$ there is a diffeomorphism $\Psi_I$ from a neighborhood of the zero section in
+\[
+ \pi_I:E_I=\bigoplus_{a\in I} E_{I;a}\longrightarrow D_I,
+ \qquad E_{I;a}=N_{D_{I\setminus\{a\}}}D_I\simeq N_MD_a|_{D_I},
+\]
+onto a neighborhood of $D_I$ in $M$, fixing the zero section and inducing the identity on its normal bundle. Each line has a Hermitian metric, complex structure, and unitary connection. The pulled-back form is the coupling form
+\begin{equation}\label{eq:coupling}
+ \pi_I^*(\Omega|_{D_I})+
+ \frac12\sum_{a\in I}d\bigl(\Omega_a^{\nabla_a}(R_a,\cdot)\bigr),
+\end{equation}
+where pullbacks from the individual line summands to $E_I$ are understood. Here $R_a$ is the radial vector field in that line,
+\review{`radial vector field': meaning the Euler vector field?} and $\Omega_a^{\nabla_a}$ extends its fiber area form using the connection, with horizontal vectors in its kernel. At the zero section \eqref{eq:coupling} is the direct sum of the base form and the fiber areas.
+
+For $A\subset I$, setting the $A$-coordinates to zero gives $D_A$ in the $I$-chart. The derivative identification $\mathfrak D\Psi_{I;A}$ is linear in the $A$-normal variables, covers the map of the remaining coordinates into $D_A$, and satisfies
+\begin{equation}\label{eq:composition}
+ \Psi_I=\Psi_A\circ\mathfrak D\Psi_{I;A}.
+\end{equation}
+It is a product Hermitian isomorphism, preserving the individual connections. These statements are the content of \cite[Definitions 2.8--2.12, equations (2.10)--(2.17)]{TMZ}; connection preservation is part of its definition of a product Hermitian isomorphism on p.~14.
+
+\review{Salient summary of regularization.}
+
+\begin{lemma}[Line models over a curve]\label{lem:curve}
+Let $(C,j)$ be a complex curve, and let $E_1,\ldots,E_q$ be smooth complex lines with complex-linear connections. The almost complex structure on their direct sum obtained by horizontal lift of $j$ and the standard vertical structures is integrable. Each coordinate hyperplane subbundle, where one fiber coordinate vanishes, has a transverse holomorphic defining function locally. In parallel frames for flat connections it is the product structure.
+\end{lemma}
+\begin{proof}
+In a complex coordinate $z$ and smooth fiber frames $w_a$, its type-$(0,1)$ space is generated by the $\partial_{\bar w_a}$ and
+\[
+ L=\partial_{\bar z}-\sum_{a=1}^q a_a(z,\bar z)w_a\partial_{w_a}.
+\]
+Vertical $\partial_{\bar w_a}$ terms in the horizontal lift are absorbed into the other generators. Locally solve $\partial_{\bar z}h_a=a_a$. For completeness, extend $a_a$ by multiplying it by a cutoff equal to one on a smaller disk, and use the Cauchy--Green operator
+\[
+ Tq(z)=\frac1\pi\int_\C\frac{q(\zeta)}{z-\zeta}\,dA(\zeta),
+ \qquad \partial_{\bar z}Tq=q.
+\]
+For smooth compactly supported $q$, this distributional identity and local regularity give a smooth solution. Then $z,e^{h_1}w_1,\ldots,e^{h_q}w_q$ are holomorphic functions with invertible real differential. They are the required complex coordinates. If the frames are parallel, each $a_a=0$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:partial}(i) and (iii)]
+For $n=0$ the divisor is empty. For $n=1$ it is a finite set. Put the standard structure on disjoint Darboux disks and extend by Lemma~\ref{lem:extension}.
+Now let $n\geq2$ and apply Theorem~\ref{thm:regularization}. Each nonempty $D_I$ with $|I|=n-1$ is a compact symplectic curve. Distinct such curves meet only at $n$-fold points, since their intersection is $D_{I\cup I'}$ and any intersection of more than $n$ branches is empty. There are finitely many curves and points.
+
+Choose disjoint regularization charts at these points. Their model is a direct sum of $n$ complex lines over a point, with its product symplectic and complex structures. Each curve through the point is one coordinate axis. On every curve choose a positive complex structure $j_I$ equal to those axis structures on smaller disks. To make this choice, extend positive metrics from the disks and use the polar construction for the area form. Every almost complex structure on a surface is integrable (equivalently, apply isothermal coordinates to its Hermitian metric).
+
+On $E_I$ horizontally lift $j_I$ using the regularization connections. Lemma~\ref{lem:curve} gives an integrable total-space structure. Near an $n$-fold point, the product Hermitian identification in \eqref{eq:composition} identifies its lines with pullbacks of lines over that point. Their connections are therefore flat in the indicated frames. Since the base structure is the prescribed axis structure, this total-space structure agrees exactly with the product structure of the point chart on an open neighborhood. All incident curve models agree with that same chart.
+
+We spell out the shrinking needed for gluing. Remove smaller point neighborhoods whose closures lie inside the common product charts. The remaining closed portions of distinct curves are disjoint compact sets and have disjoint sufficiently small tubes. Restrict the tubes over the removed disks to the larger product neighborhoods. Thus all overlaps occur where equality has been proved. A branch $D_b$ with $b\notin I$ meets $D_I$ only at an $n$-fold point; the same compactness argument excludes it from the remaining tube. The coordinate-incidence property of the regularization identifies every branch that is present with its appropriate coordinate subbundle.
+
+At each curve zero section, the lifted structure tames \eqref{eq:coupling}. Compactness and openness allow the tubes to be shrunk so that it is tame everywhere. The resulting integrable structure near $K$ has the required local divisor equation: retain the fiber coordinates that vanish at the point and omit the nonvanishing factors. At an $n$-fold point use the product chart. Extend by Lemma~\ref{lem:extension} while retaining a smaller neighborhood of $K$. This proves (iii). For $n=2$, $K=D$, so this also proves (i) in dimension four. On $M\setminus D$, take $r=0$.
+\end{proof}
+
+\review{Valid proof, though not really an interesting point, because it falls back on integrability of complex structures on curves.}
+
+\section{Auxiliary divisors and smooth hypersurfaces}\label{sec:aux}
+
+The next lemma gives the integral classes needed by the normal-line criterion. The symplectic form used in its conclusion is fixed; a rational approximation enters only to apply the section theorem.
+
+\begin{lemma}\label{lem:aux}
+Let $(X^{2m},\sigma)$ be closed symplectic and let $E_1,\ldots,E_N$ be smooth complex lines. There are closed embedded hypersurfaces $H_0,\ldots,H_N$ forming a positive $\sigma$-SNC family and satisfying
+\begin{equation}\label{eq:chern}
+ \PD[H_a]-\PD[H_0]=c_1(E_a),\qquad 1\leq a\leq N.
+\end{equation}
+Empty hypersurfaces and intersections are allowed.
+\end{lemma}
+\begin{proof}
+In dimension zero all lines are trivial and the empty hypersurfaces suffice. Otherwise put $E_0=\underline\C$. Choose a symplectic form $\rho$ arbitrarily $C^\infty$-close to $\sigma$ with $[\rho/(2\pi)]$ rational. Explicitly, vary the coefficients of $\sigma/(2\pi)$ in a fixed finite-dimensional space of closed representatives to rational numbers. Choose a $\rho$-compatible structure $j$ close to a $\sigma$-compatible one; it is still $\sigma$-tame. For an integer $q>0$ clearing denominators, set $\tau=q\rho$ and choose an integral lift $h$ of $[\tau/(2\pi)]$. Let $L$ have $c_1(L)=h$. A unitary connection with curvature $-i\tau$ is obtained from any connection by correcting its curvature with an imaginary one-form. Fix metrics and connections on the $E_a$ and the $\tau$-compatible metric on $X$ for the following estimates.
+
+Use Auroux's theorem \cite[Definitions 1--2 and Theorem 2]{Auroux} with parameter space $\{0\}$, symplectic form $\tau$, compatible structure $j$, prequantum line $L$, and fixed twisting vector bundles. Its hypotheses on a sequence $s_k$
+\review{Here $s_k$ is a section of $E\otimes L^k$, for a fixed vector bundle $E$. This is from Auroux, but ought to be spelled out here.}
+are
+\begin{gather*}
+ |s_k|=O(1),\quad |\nabla s_k|=O(k^{1/2}),\quad
+ |\bar\partial s_k|=O(1),\\
+ |\nabla^2s_k|=O(k),\qquad |\nabla\bar\partial s_k|=O(k^{1/2}),
+\end{gather*}
+where $\bar\partial s_k=\tfrac12(\nabla s_k+i\nabla s_k\circ j)$ is the complex-antilinear part of its covariant derivative. For every $\varepsilon>0$ it supplies a sequence satisfying the same bounds, differing by less than $\varepsilon$ in
+\[
+ \|u\|_{1,k}=\max\{\|u\|_{C^0},k^{-1/2}\|\nabla u\|_{C^0}\},
+\]
+and uniformly transverse to zero. The latter means that, when $|s_k(x)|<\eta$, the derivative is surjective with a right inverse of norm at most $\eta^{-1}k^{-1/2}$, for some $\eta>0$ independent of sufficiently large $k$. Equivalently, the least singular value of the adjoint of the rescaled derivative is at least $\eta$ at such points.
+
+Start from the zero tuple in $\bigoplus_{a=0}^N(E_a\otimes L^k)$. Enumerate all nonempty subsets $I\subset\{0,\ldots,N\}$. At each step apply the theorem to the projected tuple $s_{I,k}$ and extend the change by zero in the other coordinates. If an earlier tuple is $b$-transverse, a change of norm less than $b/4$ leaves it $b/2$-transverse: where the new value has norm less than $b/2$ the old value has norm less than $b$, and the least singular value just described drops by at most $b/4$. Choose each change smaller than a quarter of every currently retained constant. There are finitely many steps. Their asymptotic bounds remain uniform, and after discarding finitely many initial indices there is one $\eta>0$ valid for every nonempty subtuple.
+
+Fix large $k$ and set $H_a=s_{a,k}^{-1}(0)$. Every common zero set $W_I$ is smooth with tangent $\ker\nabla s_{I,k}$. If $|I|>m$ it is empty, since the derivative cannot surject onto a larger-dimensional target. We must check symplecticity and orientations for the original $\sigma$. At a zero write
+\[
+ A=k^{-1/2}\nabla s_{I,k},\qquad
+ B=\tfrac12(A+iAj),\qquad A^+=A-B.
+\]
+The map $A^+$ is complex-linear and $\alpha=\|B\|=O(k^{-1/2})$. The least singular value of $A^*$ is at least $\eta$. For $\alpha<\eta/4$, let $W=\ker A^+$ and let $U=W^\perp$ in the $\tau$-compatible metric. The restrictions to $U$ of $A_t=A^++tB$, $0\leq t\leq1$, are invertible with inverse norm at most $2/\eta$. Consequently
+\begin{equation}\label{eq:graph}
+ \ker A_t=\operatorname{graph}\left(-\left(A_t|_U\right)^{-1}tB|_W\right),
+\end{equation}
+whose graph map has norm at most $2\alpha/\eta$.
+
+Every $j$-complex plane is $\sigma$-symplectic with its complex orientation. Indeed the restriction of $\sigma$ tames $j$, and its convex interpolation with a compatible form is nondegenerate and preserves orientation. The bundles of complex Grassmannians over compact $X$ are compact. Thus there is a uniform neighborhood of these planes in which symplecticity and that orientation persist. Formula~\eqref{eq:graph} places every $\ker A_t$ in this neighborhood for a common sufficiently large $k$.
+
+Orient a kernel by the ambient symplectic orientation and the complex target orientation. At $t=0$ this is its complex orientation, hence its $\sigma$-orientation. Both vary continuously along the surjective path $A_t$, so they agree at $t=1$. For a coordinate tuple, its zero-set orientation is the intersection orientation of the singleton zero sets. All normal dimensions are even, so reordering causes no sign. The same exact-sequence argument on nested kernels checks induced intersections inside strata. Thus the whole family is positive SNC for $\sigma$. Local trivializations of the sections and the submersion theorem supply simultaneous smooth crossing charts.
+
+Finally the integral transverse-zero formula gives
+\[
+ \PD[H_a]=c_1(E_a)+kh,\qquad \PD[H_0]=kh.
+\]
+Their difference proves \eqref{eq:chern}, including its torsion information. If connected branches are desired, each compact zero manifold has finitely many components and can be split into them.
+\end{proof}
+
+\review{Pertinent use of Auroux's construction.}
+
+\begin{proposition}[Dimension reduction]\label{prop:reduction}
+Suppose Question~\ref{q:main} has an affirmative answer for every closed symplectic manifold of dimension $2m$. Then, for every finite collection of complex lines on any fixed closed symplectic $(X^{2m},\sigma)$, there is one $\sigma$-tame structure for which all of the lines have holomorphic presentations. Consequently every smooth symplectic divisor in a closed symplectic manifold of dimension $2m+2$ satisfies the question with no ambient deformation.
+\end{proposition}
+\begin{proof}
+Apply Lemma~\ref{lem:aux} and then the assumed assertion to the union of the resulting hypersurfaces. The endpoint structure $j$ and Lemma~\ref{lem:divisorline} give presentations of all the $E_a$. The endpoint form may be $\sigma_1$ rather than $\sigma$. Moser stability supplies an isotopy $\phi_t$ with $\phi_t^*\sigma_t=\sigma$. To recall the argument, choose smooth $\alpha_t$ with $d\alpha_t=\dot\sigma_t$, solve $\iota_{V_t}\sigma_t=-\alpha_t$, and integrate $V_t$. Smooth primitives exist for a smooth family of exact forms, for example by a fixed Hodge right inverse. Compactness gives the flow for the full interval.
+
+Pulling back $j$ and the presentations by $\phi_1$ gives a $\sigma$-tame structure and presentations on $\phi_1^*E_a$. Since $\phi_1$ is isotopic to the identity, these lines are smoothly isomorphic to the original $E_a$; transport the presentations through those isomorphisms. Apply Proposition~\ref{prop:normal} to the symplectic normal line of a smooth divisor to obtain the last assertion.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:partial}(ii)]
+Part (i) and Proposition~\ref{prop:reduction} with $m=2$ treat a smooth divisor in dimension six. For finitely many pairwise disjoint branches use disjoint neighborhoods and apply Lemma~\ref{lem:extension} to their union.
+\end{proof}
+
+\section{A conditional construction in arbitrary dimension}\label{sec:conditional}
+
+The smooth-divisor criterion does not settle crossing configurations by separate applications on their branches: the resulting structures may disagree on their intersections. We now give a sufficient finite set of data that resolves this gluing problem. Every additional hypothesis is stated explicitly, and its realization from an arbitrary initial pair is kept separate.
+
+Let $H=\bigcup_{b\in B}H_b$ be a finite positive SNC family in a closed symplectic $(M^{2n},\Omega)$, $n\geq2$. It contains distinguished original branches $D_a$. Write $S_I=\bigcap_{b\in I}H_b$. Suppose it has regularization charts $\Psi_I$ with the splitting, coordinate-incidence, and composition properties described in Section~\ref{sec:curves}.
+
+For each $b$ choose the smooth divisor line $G_b$ and its section $s_b$ by tubular clutching: on the singleton tube take the pullback of $N_MH_b$ with its tautological section; off $H_b$ take the trivial line with section $1$; identify them on the punctured tube by the nonzero tautological vector. Thus
+\begin{equation}\label{eq:G}
+ c_1(G_b)=\PD[H_b],\qquad G_b|_{H_b}=N_MH_b.
+\end{equation}
+This construction requires no almost complex structure on the base.
+
+We specify the smooth compatibility data needed to compare these lines on different tubes. Let $U_I$ be the image of a sufficiently small $I$-tube and $r_I=\pi_I\Psi_I^{-1}:U_I\to S_I$ its retraction. Assume there are complex-linear transports
+\begin{equation}\label{eq:transport}
+ T_{I;b}:G_b|_{U_I}\longrightarrow r_I^*(G_b|_{S_I})
+\end{equation}
+with the following properties, as germs along the indicated compact strata:
+\begin{enumerate}[label=(\alph*),leftmargin=*]
+\item In a deeper $L$-chart, $I\subset L$, the map $r_I$ deletes exactly the $I$-normal coordinates. The transports to $S_L$ agree with transport first to $S_I$ and then to $S_L$ inside $S_I$. The analogous identities on intersections of nonnested tubes hold in their union chart. All induced restrictions use the same normal-line identifications.
+\item If $b\in I$, the transport is the normal derivative identification from \eqref{eq:composition}. It sends $s_b$ to the $b$-coordinate vector, not to the zero section over $S_I$.
+\item If $b\notin I$, then $H_b\cap U_I=r_I^{-1}(H_b\cap S_I)$ and $T_{I;b}(s_b)=r_I^*(s_b|_{S_I})$.
+\end{enumerate}
+These are identities of smooth maps and sections, without holomorphicity assumptions. Their local form is suggested by the actual regularization: in an $(I\cup\{b\})$-chart both section vectors in (c) are the same $b$-coordinate. Off $H_b$, a section-preserving transport is unique, and this coordinate description is its smooth extension across $H_b$. The finite, simultaneous choice of these data is part of the hypotheses below; equality of Chern classes alone is insufficient.
+
+Assign every label a generation $g(b)\in\{0,\ldots,n-1\}$, with generation zero precisely the original labels. For each $b$ with $g(b)\leq n-2$, assume there are two labels $b^+,b^-$ of generation $g(b)+1$ and an actual smooth complex-line isomorphism
+\begin{equation}\label{eq:theta}
+ \theta_b:G_b\longrightarrow G_{b^+}\otimes G_{b^-}^*.
+\end{equation}
+No relation is required for the last generation. The maps may be modified by smooth nowhere-zero scalar functions during the proof.
+
+\begin{theorem}[Conditional finite-data statement]\label{thm:conditional}
+Under all the smooth and symplectic hypotheses of this section, there is a global $\Omega$-tame almost complex structure satisfying \eqref{eq:desired} for the original divisor $D$. In particular, these data at the endpoint of a deformation allowed in Question~\ref{q:main} suffice for an affirmative answer for that initial pair.
+\end{theorem}
+The hypotheses specify auxiliary divisors, smooth transports, and smooth bundle isomorphisms; they do not postulate any of the desired holomorphic functions. The proof explains why the generation bound makes a finite construction possible.
+
+Call an index set $I$ \emph{eligible} in this proof if it contains an original label and $g(b)\leq |I|-1$ for every $b\in I$. This is only an indexing convention. Unions of eligible sets are eligible. A stratum of more than $n$ labels is empty. If $|I|=k<n$ and $i\in I$, substituting \eqref{eq:theta} repeatedly for every factor whose label still lies in $I$ terminates: generations strictly increase, and $I$ has no label of generation $k$. All resulting exterior factors have generation at most $k$.
+
+We also use the following elementary fact about neighborhoods. If structures near compact sets $K_1,K_2$ agree near $K_1\cap K_2$, their domains can be shrunk so they agree on the entire overlap. Indeed, for any prescribed open neighborhood $W$ of the intersection, sufficiently small neighborhoods $U_1,U_2$ have $U_1\cap U_2\subset W$. Otherwise a convergent sequence outside $W$ approaching both compact sets contradicts its choice. A finite iteration retains a neighborhood of the union. This fact chooses domains after agreement has been proved; it cannot supply agreement.
+
+\review{This mechanism is very similar to Siebert's.}
+
+\begin{proof}[Proof of Theorem~\ref{thm:conditional}]
+Process nonempty eligible strata in decreasing cardinality, in any order within a level. We construct a common tame structure near their union $K$, retaining germs when domains are shrunk. For each treated $I$, $l=|I|$, maintain the following data:
+\begin{enumerate}[label=(\arabic*),leftmargin=*]
+\item In $\Psi_I$ the structure is the product structure of $j_I=J|_{S_I}$ and holomorphic presentations of its normal lines $G_i|_{S_I}$, $i\in I$.
+\item For every $b$ with $g(b)\leq\min(l,n-1)$, there is a holomorphic presentation of the actual $G_b$ on this tube, pulled back from $S_I$ by \eqref{eq:transport}, in which $s_b$ is holomorphic and transverse to zero. Presentations agree under the identity on overlaps where both are specified.
+\item For $i\in I$ with $\theta_i$ defined, that map is holomorphic between the specified presentations and is the exact pullback of $\theta_i|_{S_I}$. Its germ near treated strata containing $i$ is retained in later modifications.
+\item On every untreated eligible $S_T$, the structure preserves $TS_T$ near $S_T\cap K$.
+\end{enumerate}
+In (2), a section with empty zero set is transverse vacuously. In (3) no condition is placed on $\theta_i$ in a chart whose index set does not contain $i$. This restriction is essential: an unrelated smooth isomorphism need not be holomorphic in the chosen frames.
+
+At an eligible $n$-fold point use the regularization product structure. Give each incident divisor line its constant normal frame; give each absent line the nonvanishing section $s_b$ as frame after shrinking. Conditions (1), (2), and (4) follow from the coordinate equations and the transport hypotheses. If an incident $\theta_i$ has coefficient $c_i$ in these frames, multiply it by
+\[
+ \exp\bigl(-\chi\log(c_i/c_i(p))\bigr),
+\]
+where the logarithm exists near the point and $\chi$ equals one on a smaller chart. Extend this multiplier by $1$ outside the chart. It makes the coefficient constant near $p$, proving (3). The point charts are disjoint. If there are no such points, begin with $K=\varnothing$.
+
+Now let $S_I$ be the next stratum, $k=|I|<n$. Put $Z=S_I\cap K$. This compact set is a union of already treated strata $S_L$ with $L\supset I$: for every previously treated $A$, the eligible union $A\cup I$ has larger cardinality unless $A=I$, which is not yet treated. By (4), $J$ restricts to an $\Omega|_{S_I}$-tame structure near $Z$. Lemma~\ref{lem:extension} extends it to a global $j_I$ on the closed symplectic manifold $S_I$, retaining it near $Z$.
+
+First construct presentations of $G_b|_{S_I}$ for all $b\notin I$ with $g(b)\leq k$. The whole zero set of $s_b|_{S_I}$ is $S_{I\cup\{b\}}$. Its index set is eligible and has size $k+1$, so this zero set lies in $Z$. Earlier charts near $Z$ supply the line presentations by (2), and their restrictions are presentations for the retained $j_I$. The restricted section is transverse because the family is SNC. Lemma~\ref{lem:section} extends these presentations over $S_I$ using $s_b$ as a frame off its zero set, without altering their germs near all of $Z$.
+
+Next define the presentations of the internal lines $G_i|_{S_I}$, $i\in I$, in decreasing generation order. Both children of $i$ have higher generation. An internal child has already been treated in this order, and an external child has just received its presentation. Pull back their tensor and dual presentation through $\theta_i|_{S_I}$. This is possible because $g(i)\leq k-1\leq n-2$. It agrees with the old presentation near $Z$: in each earlier $L$-chart with $L\supset I$, condition (3) makes $\theta_i$ holomorphic, and (2) provides all its child presentations. Starting from the exterior lines and descending through the generations proves agreement for every internal line under the actual identity of that line.
+
+Take the product structure on $\bigoplus_{i\in I}G_i|_{S_I}$ and push it forward by $\Psi_I$. This is well-defined even if $j_I$ is not integrable, by the transition calculation in Section~\ref{sec:normal}. It is tame on the zero section because of the split form \eqref{eq:coupling}, and on a smaller tube by compactness.
+
+The crucial point is equality with the previous $J$ on open overlaps. Work near $S_L$, $L\supset I$, in its already treated chart. There $S_I$ is obtained by setting the $I$-coordinates to zero, and its inherited structure is the product of $j_L$ with the remaining $L\setminus I$ lines. The new $j_I$ is exactly that restriction near $S_L$. The old normal $I$-line presentations are, by (2) and the transport cocycle, pullbacks of their restrictions to this subbundle. Those restrictions are exactly the presentations just constructed. In local holomorphic frames over $S_L$, both total-space constructions therefore give the same tensor
+\[
+ j_L\oplus\bigoplus_{a\in L}i.
+\]
+One construction groups the $L\setminus I$ variables with the base; the other does not. The actual maps to $M$ agree by \eqref{eq:composition}. Thus the tensors agree on an open neighborhood of $S_L$, not merely on a zero section. Finiteness gives agreement near all of $Z$.
+
+For every $b$ with $g(b)\leq k$, pull the constructed base presentation to the new tube using $T_{I;b}$. The projection is holomorphic for its product structure. If $b\in I$, $s_b$ is the tautological coordinate vector; if $b\notin I$, it is the pullback of the holomorphic restricted section. Thus $s_b$ is holomorphic in either case. On common domains with the old $J$, Lemma~\ref{lem:section} makes the two presentations agree under the identity. This establishes (2).
+
+It remains to arrange the exact pullback assertion (3), rather than merely its restriction to $S_I$. For $i\in I$, compare $\theta_i$ with the transported pullback of $\theta_i|_{S_I}$ and let $q_i$ be their scalar ratio. It is $1$ on $S_I$, so it has a logarithm near $1$ on a sufficiently small tube. Near every earlier $S_L$ with $L\supset I$, condition (3), the transport cocycle, and $r_Lr_I=r_L$ imply $q_i=1$ on an open neighborhood. If an earlier $S_A$ contains $i$ but not $I$, its intersection with $S_I$ is the earlier eligible $S_{A\cup I}$, which gives the same ratio-one neighborhood. By the compact-neighborhood fact above, shrink the correction support around $S_I$ so it meets those earlier strata only in these regions. The global modification
+\[
+ \theta_i\longmapsto\theta_i\exp(-\chi\log q_i)
+\]
+then leaves $\theta_i|_{S_I}$ and every previously required germ fixed, and makes it a pullback near $S_I$. It changes none of the already fixed line presentations or almost complex tensors. Different $\theta_i$ are different maps, so these finitely many corrections do not undo one another. The corrected map is holomorphic because its base restriction is holomorphic. Shrink the tube to where the cutoff is one; this proves (3).
+
+We can now glue, retaining the germs near all earlier strata. To check (4) for an untreated eligible $T$, if $T\subset I$ its tangent invariance follows from the coordinate subbundle equations in the new chart. If $T\not\subset I$, the eligible union $I\cup T$ has larger size than $I$ and was already treated, unless its stratum is empty. Near it the old and new tensors agree, and the old chart preserves $TS_T$. Since $S_T\cap S_I=S_{I\cup T}$, this is exactly the new germ required in (4). Earlier germs persist. Compactness excludes unwanted overlaps away from these intersections. This completes the induction step.
+
+There are finitely many eligible sets, and every set of original labels is eligible. The construction reaches every original singleton. At a point of exactly $r$ original branches, their $r$-stratum model supplies $r$ independent holomorphic fiber coordinates. Exclude other original branches by shrinking and complete the coordinates using Lemma~\ref{lem:submersion}. Extend the common tame structure near $D$ globally by Lemma~\ref{lem:extension}. Points of its complement use $r=0$. Auxiliary branches away from $D$ impose no conclusion.
+\end{proof}
+
+\section{Limits of the reductions}\label{sec:limits}
+
+The finite-data theorem separates two tasks. One is the construction of a common almost complex structure once the geometric data are available; this was proved in Section~\ref{sec:conditional}. The other is to produce those data from every original $(M,\omega,D)$ by allowed deformations. The latter is not proved here. In particular, Lemma~\ref{lem:aux} produces an auxiliary family without prescribed old strata. It cannot simply be reapplied and presumed to retain all mixed intersections, normal transports, and subsequent identifications needed by Theorem~\ref{thm:conditional}.
+
+There is a relevant additional tool. Mohsen's relative Donaldson--Auroux theorem \cite[p.~657]{Mohsen}, with its fixed Hermitian twisting-bundle extension \cite[p.~662]{Mohsen}, gives small controlled approximately holomorphic perturbations whose restrictions to a specified compact submanifold $Y$ are uniformly transverse. Its weight on the derivative is $k^{-1/2}$. The theorem assumes a prequantum line with curvature $-2\pi i\omega$; in the normalization of Section~\ref{sec:aux} one takes its symplectic form to be $\tau/(2\pi)$. Taking the prescribed derivative-control order at least two permits the same finite preservation argument for a finite list of submanifolds and section subtuples. At a zero-dimensional submanifold, transversality forces nonvanishing.
+
+This relative theorem does not prescribe holomorphic germs, nor does it choose a compatible almost complex structure preserving an arbitrary fixed collection of old strata after rational approximation. To use it to realize the full conditional input one must also justify that preparation, the positivity of every mixed intersection for the current form, and the simultaneous smooth transport identities through all stages of the construction. A possible route uses finitely many auxiliary generations to realize the Chern-class identities behind \eqref{eq:theta}. Such identities yield global smooth isomorphisms, but their coexistence with the specified tubular transports still requires the complete geometric construction. No conclusion here rules that construction out.
+
+Two precise failures of tempting relative shortcuts clarify why these issues matter.
+
+\begin{proposition}[Relative Moser requires relative primitives]\label{prop:relativeMoser}
+For a smooth symplectic path $\Omega_t$ on a closed $X$ and a fixed open set $U\subset X$, an isotopy $\phi_t$ with $\phi_0=\id$, $\phi_t^*\Omega_t=\Omega_0$, and $\phi_t|_U=\id$ exists if and only if there are smooth one-forms $\alpha_t$ satisfying
+\[
+ \dot\Omega_t=d\alpha_t,\qquad \alpha_t|_U=0.
+\]
+Constancy of $[\Omega_t]$ and constancy of the forms near a divisor do not suffice.
+\end{proposition}
+\begin{proof}
+For sufficiency solve $\iota_{V_t}\Omega_t=-\alpha_t$. The vector field vanishes on $U$ and its flow has the required pullback derivative zero. Conversely the generator of such an isotopy vanishes on $U$, and differentiating its pullback identity gives the required forms $\alpha_t=-\iota_{V_t}\Omega_t$.
+
+For the last assertion let $X=S^2\times T^2$, with period-one torus coordinates $x,y$, and let $\sigma=\eta+dx\wedge dy$, where $\eta$ is an area form on $S^2$. Choose disjoint disks $U_p,U_q$ and a smooth function $f$ on $S^2$ equal to $1$ on $U_p$ and $0$ on $U_q$. For $\varepsilon\ne0$ put
+\[
+ \Omega_t=\sigma+t\varepsilon\,d(f\,dx).
+\]
+Both $\sigma\wedge d(f\,dx)$ and $d(f\,dx)^2$ vanish, so $\Omega_t^2=\sigma^2$. The path is symplectic, cohomologous, and constant on $U=(U_p\cup U_q)\times T^2$. The divisor
+$(\{p\}\times T^2)\cup(\{q\}\times T^2)$ stays symplectic. If the required isotopy fixed $U$, differentiation at zero would make
+$\beta=\varepsilon f\,dx+\iota_{V_0}\sigma$ closed. Its integrals around the two homologous $x$-circles at $p$ and $q$ would be $\varepsilon$ and $0$, contradicting Stokes' theorem.
+\end{proof}
+
+\begin{remark}[Prescribed bundle identifications]
+Let $E,F$ be globally isomorphic complex lines over a smooth manifold $X$, and let $U$ be a tubular neighborhood of a compact submanifold $C$. Given a global smooth isomorphism $\theta_0$ and a prescribed one $\theta_U$ on $U$, write $\theta_U=\theta_0q$. An extension requires $[q]\in H^1(U;\Z)$ to lie in the restriction image of $H^1(X;\Z)$, since $\C^*$ retracts to $S^1$. Conversely, take a global map $G:X\to\C^*$ representing such a preimage. The function $q/G$ has a logarithm $h$ on $U$, and $G\exp(\chi h)$ extends $q$ on a smaller tube, with $\chi$ supported in $U$ and equal to one near $C$. Thus equality of $c_1(E)$ and $c_1(F)$ does not extend an arbitrary prescribed identification. The proof of Theorem~\ref{thm:conditional} instead starts with global maps and corrects ratios equal to $1$ along the new stratum, where a logarithm is available.
+\end{remark}
+
+These obstructions concern proposed methods or a prescribed structure, not all structures and all permitted deformations for a fixed pair. The results proved here therefore give neither a counterexample to Question~\ref{q:main} nor an unconditional affirmative answer in arbitrary dimension.
+
+\begin{thebibliography}{9}
+\bibitem{Auroux}
+D.~Auroux, \emph{Asymptotically holomorphic families of symplectic submanifolds},
+Geom. Funct. Anal. \textbf{7} (1997), 971--995.
+\href{https://doi.org/10.1007/s000390050033}{doi:10.1007/s000390050033}.
+Theorem and definition numbering follows the
+\href{https://people.math.harvard.edu/~auroux/papers/ahsub4.pdf}{author manuscript}, pp.~1--3.
+
+\bibitem{TMZ}
+M.~Farajzadeh Tehrani, M.~McLean, and A.~Zinger,
+\emph{Normal crossings singularities for symplectic topology},
+Adv. Math. \textbf{339} (2018), 672--748.
+\href{https://doi.org/10.1016/j.aim.2018.09.035}{doi:10.1016/j.aim.2018.09.035};
+\href{https://arxiv.org/abs/1410.0609}{arXiv:1410.0609}.
+The statements used here are in the
+\href{https://www.math.stonybrook.edu/~azinger/research/SympDivConf.pdf}{April 30, 2017 author manuscript},
+Definition 2.1, Definitions 2.8--2.12, and Theorem 2.13.
+
+\bibitem{Mohsen}
+J.-P.~Mohsen, \emph{Transversalit\'e quantitative en g\'eom\'etrie symplectique:
+sous-vari\'et\'es et hypersurfaces},
+Ann. Fac. Sci. Toulouse Math. (6) \textbf{28} (2019), no.~4, 655--706.
+\href{https://doi.org/10.5802/afst.1612}{doi:10.5802/afst.1612}.
+The relative theorem is on p.~657 and the twisting remark on p.~662 of the
+\href{https://www.numdam.org/item/10.5802/afst.1612.pdf}{published text}.
+\end{thebibliography}
+
+\end{document}

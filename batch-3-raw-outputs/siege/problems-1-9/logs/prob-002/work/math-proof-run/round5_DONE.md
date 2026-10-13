@@ -1,0 +1,1 @@
+Entry 18 [GOAL] is established by entries 4 and 12 (proofs: round1_q1 lines 1-90, round3_q1, with repairs R1-R5 from round4_q1/round4_q2 and lemma details in round4_q3), certified by the two audits round4_q1 and round4_q2 (ledger entries 19, 20).

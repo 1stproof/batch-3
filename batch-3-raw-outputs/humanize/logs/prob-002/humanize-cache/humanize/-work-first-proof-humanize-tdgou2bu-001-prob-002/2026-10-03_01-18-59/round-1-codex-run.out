@@ -1,0 +1,18 @@
+# Code Review — Round 1 (audit #4)
+
+**Scope verified.** I read `plan.md`, `problem.tex`, the round-1 prompt (audit #3), goal-tracker, round-0 summary/review and round-1 contract, and the full current `solution.tex` (HEAD `63fe231`, 1531 lines) end-to-end. Compile re-run independently: two `pdflatex` passes → **16 pages, 0 undefined references**; grep clean of `bounded isomorphism`, hedge words, and stray `2√d`. Review written to `round-1-review-result.md`; goal-tracker corrected (Plan Version 5, F-1/F-2 re-opened as blocking mainline, B-6 demoted to open, review note appended); both committed (`abbb1c8`).
+
+**Where the worker's claims hold.** The audit-#3 sweep genuinely landed and is substantially correct: G1's multiplicative-`r` local linearization about the comparison point (`eq:opdiff`, exact operator difference, `rδ‖h‖` opdiff bound via interior Schauder + packet localization) is sound; the absorption chain is valid for all `α>1` (correctly superseding audit #3's wrong `α>(1+√(1+2d))/2` dichotomy); the radial origin lemma (`‖Tg‖₂≍δ²‖g‖₂`) is exact; G4's smooth-majorant AO, G5's power count, G6's packet restriction, G7's measurable-argmin estimator, B-5/B-7/B-9 all verified. The lower bound (Prop. 4.1) was already sound. The document is now structurally coherent for the first time and the rate `n^{-2α/(2α+d+2)}` is consistent.
+
+**Where claims fail — three gaps prevent COMPLETE (full details + directive plan in `round-1-review-result.md`):**
+
+- **F-1 (blocking, fatal).** `lem:invert`(ii)/(iii) uses *norm-square* subtraction with a middle-band bound `C₁δ‖h‖` where `C₁` is the large upper constant: the literal arithmetic is `c₁²−(C₁+c/4)²<0`, so the inf–sup lower bound — the load-bearing input to the whole risk analysis — collapses. Fix (singular, spelled out): bound the `O(η)` middle band by the document's own off-shell decay (`η^{-N/2}`), combine by triangle subtraction in norm.
+- **F-2 (mainline gap).** `lem:origin`'s general interpolation `δ_λ(δ_λ+|x_λ|)` is asserted from a "computation along one ray" — rhetoric, not proof. The proof only needs a one-sided bound on origin-near modes (never inverted); replace accordingly.
+- **F-3 (one line).** The absorption display needs the bridging step `‖h‖∞≤Σⱼ‖hⱼ‖∞` before dividing `‖ρ̃‖₂≲‖h‖∞‖h‖₂` by `δ‖h‖₂`.
+- **F-4 (AC-3 sweep).** Source-sign mismatch with `problem.tex` is handled by invariance rather than corrected; do the trivial global `u₀=(|x|²−1)/(2d)` sweep.
+
+**Goal alignment:** `ACs: 1/5 met (AC-5) | AC-2 near-met | AC-1/AC-3 open exactly at F-1..F-4 | Forgotten items: 0 | Unjustified deferrals: 2` (the worker queued F-1/F-2 "for next audit" — both reclassified as blocking mainline in the tracker). Capability alignment: `anchor N/A | gaps 0 | drift no`.
+
+**Mainline Progress Verdict: ADVANCED** — this round converted a structurally-vacuous upper bound into an almost-complete proof; the remaining work is three localized, explicitly-characterized gaps, not direction changes.
+
+Since current-scope AC-1 work (F-1–F-3) and AC-3 work (F-4) remain open, I do not output COMPLETE.

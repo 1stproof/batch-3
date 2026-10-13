@@ -1,0 +1,1249 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\cF}{\mathcal F}
+\newcommand{\Sph}{\mathbb S^{d-1}}
+\DeclareMathOperator{\divergence}{div}
+\DeclareMathOperator{\KL}{KL}
+\DeclareMathOperator{\Id}{Id}
+
+\title{The minimax rate for Darcy's inverse problem\\
+near a constant conductivity}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For a sufficiently small, fixed H\"older--Zygmund ball of conductivities
+around the constant function \(1\), the minimax squared \(L^2\)-risk is,
+up to logarithmic factors,
+\[
+n^{-2\alpha/(2\alpha+d+3)}.
+\]
+We prove matching polynomial upper and lower bounds for every \(d\geq2\)
+and \(\alpha>1\). The upper bound uses a regularized reconstruction along
+gradient trajectories, together with a variance estimate that exploits
+integration along these trajectories. The lower bound uses perturbations
+that oscillate in the \(d-1\) angular directions. No boundary condition
+on the conductivity is imposed.
+\end{abstract}
+
+\section{Statement and conventions}
+
+Let \(D=B(0,1)\subset\R^d\). We interpret \(C^s(D)\) as the
+H\"older--Zygmund restriction space \(B^s_{\infty,\infty}(D)\).
+Any fixed usual equivalent norm may be used; the constants below,
+including the admissible radius, may depend on this choice.
+
+White noise means the isonormal experiment
+\[
+Y_n(\varphi)=\langle u_f,\varphi\rangle_{L^2(D)}
++n^{-1/2}\mathbb W(\varphi),\qquad \varphi\in L^2(D),
+\]
+where
+\(\E[\mathbb W(\varphi)\mathbb W(\psi)]=\langle\varphi,\psi\rangle\).
+Write
+\[
+\cF(\alpha,r)=
+\{f:\|f-\one\|_{C^\alpha(D)}\leq r\},
+\qquad
+R_n(\alpha,r)=
+\inf_{\widehat f}\sup_{f\in\cF(\alpha,r)}
+\E_f\|\widehat f-f\|_{L^2(D)}^2.
+\]
+
+\begin{theorem}\label{thm:main}
+Fix \(d\geq2\) and \(\alpha>1\). There exists \(r_*>0\) such that,
+for each fixed \(r\in(0,r_*]\), there are constants
+\(c,C>0\) and \(n_0\) for which
+\[
+c\,n^{-2\alpha/(2\alpha+d+3)}
+\leq R_n(\alpha,r)
+\leq
+C(\log n)^4 n^{-2\alpha/(2\alpha+d+3)},
+\qquad n\geq n_0.
+\]
+If \(\alpha\notin\mathbb N\), the logarithmic factor in this upper bound
+can be omitted. In particular, the answer up to logarithmic factors is
+\[
+\boxed{\displaystyle
+R_n(\alpha,r)=\widetilde{\asymp}\,
+n^{-2\alpha/(2\alpha+d+3)}.}
+\]
+\end{theorem}
+
+For a smooth function \(a\), the notation
+\[
+\|a\|_{k,\infty;\Omega}
+=\max_{|\beta|\leq k}\|\partial^\beta a\|_{L^\infty(\Omega)}
+\]
+denotes the classical derivative norm, not an integer-index Zygmund
+norm. Domain subscripts will be suppressed when unambiguous.
+Constants denoted by \(C\) may change from line to line, but are
+independent of \(n\), the bandwidth, and the conductivity in the
+specified parameter class.
+
+\section{Analytic preliminaries}
+
+\subsection{Function spaces and the forward equation}
+
+We use the Littlewood--Paley characterization
+\begin{equation}\label{eq:LP}
+\|a\|_{C^s(\R^d)}
+\asymp \sup_{j\geq0}2^{js}\|\Delta_j a\|_\infty
+\end{equation}
+for an inhomogeneous smooth dyadic decomposition. The equivalence with
+classical H\"older spaces at noninteger positive indices, and the
+differentiation properties of these spaces, are given in
+\cite[Chapter~13, Section~8]{Taylor}.
+% Online source for the preceding function-space characterization: ([mtaylor.web.unc.edu](https://mtaylor.web.unc.edu/wp-content/uploads/sites/16915/2018/04/chap13.pdf))
+
+We also use a common bounded extension operator from a smooth bounded
+domain to \(\R^d\), bounded on all the finitely many Besov spaces under
+consideration. Such an operator exists even for Lipschitz domains;
+see \cite{Rychkov}.
+% Online source for the extension theorem: ([londmathsoc.onlinelibrary.wiley.com](https://londmathsoc.onlinelibrary.wiley.com/doi/pdf/10.1112/S0024610799007723))
+
+Here are some consequences, with the relevant arguments recalled.
+Differentiation maps \(C^s\) boundedly to \(C^{s-1}\).
+For \(s>0\), \(C^s\) is a multiplication algebra:
+\begin{equation}\label{eq:algebra}
+\|ab\|_{C^s}\leq C_s\|a\|_{C^s}\|b\|_{C^s}.
+\end{equation}
+Indeed, decompose the product into low--high, high--low, and
+comparable-frequency products. The low--high contribution to its
+\(j\)-th dyadic block is bounded by
+\(C\|a\|_\infty 2^{-js}\|b\|_{C^s}\); interchange \(a,b\) for
+the high--low contribution. For comparable frequencies \(k\geq j-C\),
+the bound is
+\[
+C\|a\|_{C^s}\|b\|_{C^s}
+\sum_{k\geq j-C}2^{-2ks}
+\leq C_s2^{-js}\|a\|_{C^s}\|b\|_{C^s}.
+\]
+This proves \eqref{eq:algebra}. Extension and restriction give the same
+facts on \(D\).
+
+We shall also use the real interpolation identity
+\begin{equation}\label{eq:interp}
+(C^{s_0},C^{s_1})_{\theta,\infty}
+=C^{(1-\theta)s_0+\theta s_1},
+\qquad s_0<s_1,\quad 0<\theta<1.
+\end{equation}
+For completeness, on \(\R^d\) this follows by splitting the dyadic
+series at a level \(J\). If \(s=(1-\theta)s_0+\theta s_1\), the low
+and high parts satisfy
+\[
+\|a_{\leq J}\|_{C^{s_1}}
+\leq C2^{J(s_1-s)}\|a\|_{C^s},\qquad
+\|a_{>J}\|_{C^{s_0}}
+\leq C2^{-J(s-s_0)}\|a\|_{C^s}.
+\]
+Taking \(2^{J(s_1-s_0)}\asymp t^{-1}\) bounds the \(K\)-functional
+by \(Ct^\theta\|a\|_{C^s}\). Conversely, applying \(\Delta_j\) to
+any decomposition \(a=a_0+a_1\) gives
+\[
+\|\Delta_j a\|_\infty
+\leq C2^{-js_0}
+K(2^{-j(s_1-s_0)},a;C^{s_0},C^{s_1}),
+\]
+which proves the reverse bound. A common extension operator transfers
+the identity to \(D\).
+
+\begin{lemma}[Uniform perturbative regularity]\label{lem:forward}
+Put
+\[
+u_\circ(x)=\frac{|x|^2-1}{2d}.
+\]
+For sufficiently small \(r_*>0\), every
+\(f\in\cF(\alpha,r_*)\) satisfies \(1/2\leq f\leq3/2\), and the
+Dirichlet problem
+\[
+\divergence(f\nabla u)=1,\qquad u|_{\partial D}=0
+\]
+has a unique weak solution. Moreover,
+\begin{equation}\label{eq:forward-reg}
+\|u_f-u_\circ\|_{C^{\alpha+1}(D)}
+\leq C\|f-\one\|_{C^\alpha(D)}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Let \(\mathcal P F\) be the zero-Dirichlet solution of
+\(\Delta w=\divergence F\). For every \(s>1\),
+\begin{equation}\label{eq:poisson}
+\|\mathcal P F\|_{C^{s+1}(D)}
+\leq C_s\|F\|_{C^s(D)}.
+\end{equation}
+At noninteger \(s\), this is the classical global Schauder estimate
+and solvability theorem, including higher-order regularity; see
+\cite[Theorems~6.6, 6.14 and 6.19]{GT}.
+At integer \(s\), apply these bounds at two surrounding noninteger
+indices and use \eqref{eq:interp}. Thus \eqref{eq:poisson} holds
+also at the Zygmund indices.
+% Online source for the cited Schauder theory: ([link.springer.com](https://link.springer.com/book/10.1007/978-3-642-61798-0))
+
+Writing \(u=u_\circ+w\), the desired equation becomes
+\[
+w=-\mathcal P\big((f-1)\nabla u_\circ\big)
+  -\mathcal P\big((f-1)\nabla w\big).
+\]
+By \eqref{eq:algebra} and \eqref{eq:poisson}, the second term is a
+linear operator on the zero-trace subspace of \(C^{\alpha+1}(D)\)
+with norm at most \(C\|f-1\|_{C^\alpha}\). Choosing \(r_*\) so that
+this norm is at most \(1/2\), the Neumann series gives a solution
+and \eqref{eq:forward-reg}.
+
+The embedding \(C^\alpha(D)\hookrightarrow C^0(\overline D)\)
+allows us to decrease \(r_*\) so that \(1/2\leq f\leq3/2\).
+Uniqueness of a weak solution follows by testing the equation for
+the difference of two solutions against that difference:
+\(\int_D f|\nabla w|^2=0\). Finally, the constructed solution has
+zero trace and belongs to \(H^1_0(D)\), so it is that unique weak
+solution.
+\end{proof}
+
+\subsection{Smoothing and a product cancellation}
+
+Set
+\[
+m_0=\lceil\alpha\rceil-1.
+\]
+Fix a real \(K\in C^\infty_c(B(0,1))\) such that
+\begin{equation}\label{eq:kernel}
+\int K=1,\qquad
+\int x^\beta K(x)\,dx=0
+\quad(1\leq|\beta|\leq2m_0+2).
+\end{equation}
+Such a kernel can be obtained from a finite linear combination of
+distinct dilations of a smooth unit-integral bump: the required
+coefficients solve a Vandermonde system in the dilation parameters.
+Positivity of \(K\) is neither required nor asserted.
+
+For \(0<h<1/8\), put
+\[
+K_h(x)=h^{-d}K(x/h),\qquad
+\Omega_h=B(0,1-2h),\qquad
+S_h a(x)=\int_D K_h(x-y)a(y)\,dy,\quad x\in\Omega_h,
+\]
+and let \(L_h=\log(e/h)\).
+
+\begin{lemma}[Smoothing and commutator bounds]\label{lem:commutator}
+Suppose \(a,b\in C^\alpha(D)\) have bounded norms. Uniformly on
+\(\Omega_h\),
+\begin{align}
+\|S_h a-a\|_\infty&\leq C h^\alpha L_h,
+\label{eq:smoothing}\\
+\left\|\partial^\gamma
+\big((S_h a)(S_h b)-S_h(ab)\big)\right\|_\infty
+&\leq C h^{\alpha+1-|\gamma|}L_h^2,
+\qquad |\gamma|\leq2.
+\label{eq:commutator}
+\end{align}
+If \(\alpha\notin\mathbb N\), all factors \(L_h\) in these two
+bounds may be replaced by \(1\). The statements hold componentwise
+for vector-valued \(b\).
+\end{lemma}
+
+\begin{proof}
+We first record the local Taylor remainder
+\begin{equation}\label{eq:taylor}
+\sup_{|y-x|\leq h}|a(y)-P_{a,x}(y)|
+\leq C h^\alpha L_h,
+\end{equation}
+where \(P_{a,x}\) is the Taylor polynomial of degree \(m_0\).
+Its coefficients are uniformly bounded. At noninteger \(\alpha\),
+this is the ordinary H\"older Taylor estimate, without \(L_h\).
+At integer \(\alpha\), derivatives of order \(\alpha-1\) have
+modulus of continuity bounded by \(Ct\log(e/t)\). To see the latter
+directly from \eqref{eq:LP}, split their dyadic series at
+\(2^J\asymp t^{-1}\): the low-frequency increments sum to
+\(C\sum_{j\leq J}t\), and the high-frequency tail is at most
+\(C\sum_{j>J}2^{-j}\). Taylor's integral remainder then gives
+\eqref{eq:taylor}. Extension to \(\R^d\) justifies this argument
+uniformly near the boundary.
+
+Polynomial reproduction from \eqref{eq:kernel} immediately proves
+\eqref{eq:smoothing}. To prove \eqref{eq:commutator}, write
+\[
+Q_h(a,b)=(S_h a)(S_h b)-S_h(ab).
+\]
+Fix \(x\) and write \(a=P_a+R_a\), \(b=P_b+R_b\), using the Taylor
+polynomials at \(x\). Keep these polynomials fixed when differentiating
+at \(x\). Polynomial reproduction gives \(Q_h(P_a,P_b)=0\).
+Also \(Q_h(a,c)=0\) for every constant \(c\).
+
+On \(B(x,h)\), the remainders satisfy
+\(|R_a|+|R_b|\leq Ch^\alpha L_h\), whereas
+\(|P_a-P_a(x)|+|P_b-P_b(x)|\leq Ch\).
+Differentiating the convolution kernels gives, for \(|\gamma|\leq2\),
+\[
+|\partial^\gamma Q_h(R_a,P_b)(x)|
++
+|\partial^\gamma Q_h(P_a,R_b)(x)|
+\leq C h^{\alpha+1-|\gamma|}L_h.
+\]
+For example, in the first expression subtract the constant \(P_b(x)\);
+the differentiated convolution of
+\(R_a(P_b-P_b(x))\) has precisely this bound. In the product term,
+a derivative falling on the polynomial is bounded by
+\(Ch^{1-k}\) at derivative order \(k\geq1\); the undifferentiated
+polynomial vanishes at \(x\). Finally,
+\[
+|\partial^\gamma Q_h(R_a,R_b)(x)|
+\leq C h^{2\alpha-|\gamma|}L_h^2.
+\]
+Since \(\alpha>1\), these inequalities prove
+\eqref{eq:commutator}. The same proof without logarithms applies
+at noninteger \(\alpha\).
+\end{proof}
+
+\begin{lemma}[Completion of a thin boundary strip]\label{lem:extension}
+For all sufficiently small \(h\), there is a linear map
+\(E_h:L^2(\Omega_h)\to L^2(D)\) such that
+\begin{align}
+\|E_h a\|_{L^2(D)}&\leq C\|a\|_{L^2(\Omega_h)},\label{eq:E-stable}\\
+\|E_h(f|_{\Omega_h})-f\|_{L^2(D)}
+&\leq C\|f\|_{C^\alpha(D)}h^\alpha L_h.
+\label{eq:E-approx}
+\end{align}
+At noninteger \(\alpha\), \(L_h\) can be omitted.
+\end{lemma}
+
+\begin{proof}
+Let \(q=m_0+1\) and
+\(\lambda_j=(-1)^{j+1}\binom qj\), \(1\leq j\leq q\).
+Then
+\[
+\sum_{j=1}^q\lambda_j=1,\qquad
+\sum_{j=1}^q\lambda_j j^k=0,\quad 1\leq k\leq m_0.
+\]
+Define \(E_h a=a\) on \(\Omega_h\), and, for \(x\in D\setminus\Omega_h\),
+define
+\[
+E_h a(x)=\sum_{j=1}^q\lambda_j a((1-3jh)x).
+\]
+For \(h<1/(6q)\), all arguments on the right belong to \(\Omega_h\)
+and all dilation factors are at least \(1/2\).
+A change of variables proves \eqref{eq:E-stable}.
+Taylor expansion of \(f\) at \(x\), together with the displayed
+moment identities and \eqref{eq:taylor}, proves
+\eqref{eq:E-approx}.
+\end{proof}
+
+\section{Inversion along gradient trajectories}
+
+For a smooth function \(v\), define
+\[
+T_v a=\divergence(a\nabla v)
+=\nabla v\cdot\nabla a+(\Delta v)a.
+\]
+
+\begin{lemma}[Transport inverse]\label{lem:transport}
+Let \(\Omega=B(0,R)\), \(3/4\leq R\leq1\), and suppose \(v\) is
+smooth on a neighborhood of \(\overline\Omega\), with
+\begin{equation}\label{eq:geometry}
+\lambda I\leq D^2v\leq\Lambda I,\qquad
+\nabla v\cdot\nu>0\ \text{on }\partial\Omega,
+\end{equation}
+where \(0<\lambda\leq\Lambda\).
+There is a unique critical point \(p\in\Omega\).
+Let \(z_t(x)\) solve
+\[
+\frac{d}{dt}z_t(x)=-\nabla v(z_t(x)),\qquad z_0(x)=x.
+\]
+This flow exists in \(\overline\Omega\) for all \(t\geq0\), and
+\begin{equation}\label{eq:radial-flow}
+e^{-\Lambda t}|x-p|
+\leq |z_t(x)-p|
+\leq e^{-\lambda t}|x-p|.
+\end{equation}
+
+For smooth \(g\), the unique bounded smooth solution of \(T_v a=g\)
+is
+\begin{equation}\label{eq:transport-inverse}
+P_vg(x)=
+\int_0^\infty
+\exp\left\{-\int_0^t\Delta v(z_s(x))\,ds\right\}
+g(z_t(x))\,dt.
+\end{equation}
+With \(c_0=d\lambda\), it satisfies
+\begin{align}
+\|P_vg\|_\infty&\leq c_0^{-1}\|g\|_\infty,\label{eq:P-infty}\\
+\|P_vg\|_2&\leq 2c_0^{-1}\|g\|_2,\label{eq:P-L2}\\
+\|P_vg\|_{H^1}
+&\leq C\big\{\|g\|_{H^1}
+ +(1+\|D^3v\|_\infty)\|g\|_2\big\}.
+\label{eq:P-H1}
+\end{align}
+The constants in the last estimate depend only on \(d,\lambda,\Lambda\).
+\end{lemma}
+
+\begin{proof}
+Strict convexity gives at most one critical point. A minimum on
+\(\overline\Omega\) cannot occur at the boundary, because the inward
+direction decreases \(v\), so this critical point exists in \(\Omega\).
+The vector field \(-\nabla v\) points inward at the boundary;
+the usual first-exit argument and local existence for a smooth
+vector field therefore give a global backward-gradient flow in
+\(\overline\Omega\).
+
+For \(z\in\Omega\),
+\[
+\lambda|z-p|^2
+\leq (z-p)\cdot\nabla v(z)
+\leq\Lambda|z-p|^2.
+\]
+Applying this to the derivative of \(|z_t-p|\) proves
+\eqref{eq:radial-flow}.
+
+Since \(\Delta v\geq c_0\), the integral in
+\eqref{eq:transport-inverse} converges absolutely and gives
+\eqref{eq:P-infty}. It is smooth up to the boundary. Here is a
+justification of differentiating the infinite-time integral.
+The first variational equation gives
+\(\|D_xz_t\|\leq e^{-\lambda t}\).
+Inductively, the equation for \(D_x^kz_t\) has homogeneous part
+\(-D^2v(z_t)D_x^kz_t\), while each forcing term is a product of
+at least two lower-order flow derivatives. Variation of constants
+therefore gives
+\(\|D_x^kz_t\|\leq C_ke^{-\lambda t}\).
+Derivatives of \(\int_0^t\Delta v(z_s)\,ds\) of every positive
+order are consequently bounded uniformly in \(t\).
+Every differentiated integrand is thus bounded by \(C_ke^{-c_0t}\).
+
+The flow semigroup property, or differentiation after splitting the
+integral at a finite time, gives \(T_vP_vg=g\).
+If \(T_va=0\), differentiation along the flow shows
+\[
+a(x)=
+\exp\left\{-\int_0^t\Delta v(z_s(x))\,ds\right\}a(z_t(x)).
+\]
+Letting \(t\to\infty\) proves uniqueness among bounded solutions.
+
+For \(a=P_vg\), integration by parts gives
+\[
+\int_\Omega aT_va
+=
+\frac12\int_{\partial\Omega}(\nabla v\cdot\nu)a^2
++\frac12\int_\Omega(\Delta v)a^2
+\geq\frac{c_0}{2}\|a\|_2^2.
+\]
+This proves \eqref{eq:P-L2}. Differentiating the equation gives
+\[
+T_v(\nabla a)+D^2v\,\nabla a
+=\nabla g-a\nabla\Delta v.
+\]
+The same integration by parts, now for a vector field, yields
+\[
+(c_0/2+\lambda)\|\nabla a\|_2
+\leq\|\nabla g\|_2+\|\nabla\Delta v\|_\infty\|a\|_2.
+\]
+Together with \eqref{eq:P-L2}, this proves \eqref{eq:P-H1}.
+\end{proof}
+
+\section{Gaussian smoothing and the decisive variance estimate}
+
+Define
+\[
+Z_h(x)=n^{-1/2}\mathbb W(K_h(x-\cdot)),\qquad x\in\R^d,
+\]
+where the white-noise argument is restricted to \(D\).
+
+\begin{lemma}[Gaussian smoothing bounds]\label{lem:gaussian}
+For every fixed nonnegative integer \(k\) and \(p\geq1\),
+\begin{align}
+\E\|Z_h\|_{k,\infty;\Omega_h}^{p}
+&\leq C_p n^{-p/2}h^{-p(d/2+k)}L_h^{p/2},
+\label{eq:gaussian-sup}\\
+\E\|Z_h\|_{H^k(\Omega_h)}^2
+&\leq Cn^{-1}h^{-d-2k},\label{eq:gaussian-H2}\\
+\E\|Z_h\|_{H^k(\Omega_h)}^4
+&\leq Cn^{-2}h^{-2d-4k}.
+\label{eq:gaussian-H4}
+\end{align}
+Moreover, for \(t\geq0\),
+\begin{equation}\label{eq:gaussian-tail}
+\Prob\left(
+\|Z_h\|_{k,\infty;\Omega_h}>
+C n^{-1/2}h^{-d/2-k}\sqrt{L_h+t}
+\right)\leq Ce^{-t}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The white-noise isometry gives
+\[
+\E|\partial^\beta Z_h(x)|^2
+\leq Cn^{-1}h^{-d-2|\beta|}.
+\]
+Integrating proves \eqref{eq:gaussian-H2}.
+For centered jointly Gaussian variables \(X,Y\),
+\(\E(X^2Y^2)\leq3(\E X^2)(\E Y^2)\);
+double integration proves \eqref{eq:gaussian-H4}.
+
+The field has a smooth version. Indeed, after multiplication by a
+fixed smooth cutoff, its weak derivatives of every order have finite
+expected squared \(L^2\)-norm. Almost surely it therefore belongs to
+every integer Sobolev space locally. Fourier inversion and
+Cauchy--Schwarz imply \(H^s(\R^d)\hookrightarrow C^k\) for
+\(s>k+d/2\), which gives the assertion.
+
+For a derivative of order \(k\), let
+\(A=n^{-1/2}h^{-d/2-k}\).
+Its Gaussian increment metric is bounded by
+\[
+CA\min\{1,|x-y|/h\}.
+\]
+On a fixed cube containing \(\Omega_h\), use successive grids of mesh
+\(h2^{-j}\). The initial grid has at most \(Ch^{-d}\) points, and
+the \(j\)-th grid has at most \(Ch^{-d}2^{jd}\) points.
+Join each point to a nearest point of the preceding grid.
+Gaussian tail bounds and a union bound show that, outside an event
+of probability \(Ce^{-t}\), the initial values are bounded by
+\(CA\sqrt{L_h+t}\), and every increment at level \(j\geq1\) is bounded by
+\[
+CA2^{-j}\sqrt{L_h+t+j}.
+\]
+The constants can be chosen so that the failure probabilities at
+level \(j\) sum to \(Ce^{-t}\).
+Summing the increments and using continuity proves
+\eqref{eq:gaussian-tail}. A finite union handles all derivatives
+of order at most \(k\). Integrating the tail proves
+\eqref{eq:gaussian-sup}.
+\end{proof}
+
+The next lemma is responsible for the denominator \(2\alpha+d+3\).
+
+\begin{lemma}[Variance after transport inversion]\label{lem:variance}
+Suppose \(v\) satisfies \eqref{eq:geometry} on \(\Omega_h\), and
+\[
+2d\lambda>\Lambda.
+\]
+If \(\|a\|_{1,\infty;\Omega_h}\leq A_0\), then
+\begin{equation}\label{eq:key-variance}
+\E\left\|P_v\divergence(a\nabla Z_h)\right\|_{L^2(\Omega_h)}^2
+\leq Cn^{-1}h^{-d-3}.
+\end{equation}
+The constant depends only on \(d,\lambda,\Lambda,A_0,K\), and not
+on higher derivatives of \(v\) or \(a\).
+\end{lemma}
+
+\begin{proof}
+For \(z\in\Omega_h\), set
+\[
+H_h(z,y)=a(z)\Delta K_h(z-y)+\nabla a(z)\cdot\nabla K_h(z-y).
+\]
+Its \(L^2(D)\)-norm is at most \(Ch^{-d/2-2}\), and its support
+in \(y\) is contained in \(B(z,h)\). Consequently,
+\begin{equation}\label{eq:kernel-overlap}
+|\langle H_h(z,\cdot),H_h(w,\cdot)\rangle|
+\leq Ch^{-d-4}\one_{\{|z-w|\leq2h\}}.
+\end{equation}
+Let \(p\) be the critical point of \(v\), \(c_0=d\lambda\), and
+\(r=|x-p|\). The representation \eqref{eq:transport-inverse},
+the white-noise isometry, and \eqref{eq:kernel-overlap} give the
+pointwise variance bound
+\[
+Cn^{-1}h^{-d-4}
+\int_0^\infty\int_0^\infty
+e^{-c_0(t+s)}
+\one_{\{|z_t(x)-z_s(x)|\leq2h\}}\,ds\,dt.
+\]
+
+For \(s=t+w\), put \(r_t=|z_t(x)-p|\).
+By \eqref{eq:radial-flow},
+\[
+|z_t-z_{t+w}|
+\geq r_t-r_{t+w}
+\geq (1-e^{-\lambda w})r_t.
+\]
+If \(r_t>4h\), overlap therefore forces
+\(w\leq4h/(\lambda r_t)\). If \(r_t\leq4h\), the exponential
+integral in \(w\) is bounded by a constant. Thus
+\[
+\int_0^\infty e^{-c_0w}
+\one_{\{|z_t-z_{t+w}|\leq2h\}}\,dw
+\leq C\min\{1,h/r_t\}.
+\]
+Since \(r_t\geq e^{-\Lambda t}r\), the double time integral is at most
+\[
+C\int_0^\infty e^{-2c_0t}
+\min\{1,(h/r)e^{\Lambda t}\}\,dt
+\leq C\min\{1,h/r\}.
+\]
+The last inequality uses \(2c_0>\Lambda\); at \(r=0\) the minimum
+is interpreted as \(1\).
+
+Finally, since \(d\geq2\) and \(\Omega_h\subset B(p,2)\),
+\[
+\int_{\Omega_h}\min\{1,h/|x-p|\}\,dx
+\leq C\left(h^d+h\int_h^2 r^{d-2}\,dr\right)
+\leq Ch.
+\]
+Integrating the pointwise variance proves \eqref{eq:key-variance}.
+All interchanges of integrals are justified by the exponential
+weights and the uniform \(L^2\)-bound on \(H_h\).
+\end{proof}
+
+\section{The upper bound}
+
+\begin{proposition}\label{prop:upper}
+For sufficiently small \(r_*>0\), the upper bound in
+Theorem~\ref{thm:main} holds uniformly over
+\(\cF(\alpha,r_*)\).
+\end{proposition}
+
+\begin{proof}
+Write
+\[
+p_\alpha=2\alpha+d+3,\qquad h=n^{-1/p_\alpha}.
+\]
+Only sufficiently large \(n\) will be considered.
+
+\subsection*{Construction of the estimator}
+
+Form the observable smooth field
+\[
+\widehat u_h(x)=Y_n(K_h(x-\cdot)),\qquad x\in\Omega_h.
+\]
+For a fixed true \(f\), use the deterministic notation
+\[
+u=u_f,\qquad v=S_hu,\qquad a=S_hf.
+\]
+Then \(\widehat u_h=v+Z_h\).
+
+Choose a fixed \(\delta>0\), depending only on \(d\), so small that
+\[
+\|w-u_\circ\|_{2,\infty;\Omega_h}\leq\delta
+\]
+implies \eqref{eq:geometry}, uniformly for \(h<1/8\), with
+\[
+\lambda=\frac{3}{4d},\qquad
+\Lambda=\frac{5}{4d}.
+\]
+Indeed, sufficiently small entrywise perturbations of \(D^2u_\circ=I/d\)
+give these Hessian bounds, and
+\(\nabla u_\circ\cdot\nu=(1-2h)/d\) on \(\partial\Omega_h\).
+These constants also satisfy \(2d\lambda>\Lambda\).
+
+Polynomial reproduction and Lemma~\ref{lem:forward} imply
+\[
+\|v-u_\circ\|_{2,\infty}\leq Cr_*.
+\]
+Also, by moving one derivative onto the kernel,
+\[
+\|a\|_{1,\infty}\leq C,\qquad
+\|a\|_{2,\infty}\leq Ch^{-1},\qquad
+\|v\|_{3,\infty}\leq Ch^{-1}.
+\]
+Decrease \(r_*\) so that the first bound is at most \(\delta/2\).
+Choose a fixed sufficiently large \(M_0\), and define the observable
+event
+\[
+\mathcal A_h=
+\left\{
+\|\widehat u_h-u_\circ\|_{2,\infty}\leq\delta,\quad
+h\|\widehat u_h\|_{3,\infty}\leq M_0
+\right\}.
+\]
+Lemma~\ref{lem:gaussian} implies, uniformly in the parameter class,
+\begin{equation}\label{eq:good-event}
+\Prob_f(\mathcal A_h^c)\leq Cn^{-3}.
+\end{equation}
+To verify this explicitly, take \(t=3\log n\) in
+\eqref{eq:gaussian-tail}. Both the \(C^2\)-noise norm and \(h\)
+times the \(C^3\)-noise norm are bounded, with this probability,
+by a constant times
+\[
+n^{-1/2}h^{-d/2-2}\sqrt{\log n}
+=h^{\alpha-1/2}\sqrt{\log n}=o(1).
+\]
+
+On \(\mathcal A_h\), define
+\[
+\widetilde f_h=P_{\widehat u_h}\one
+\quad\text{on }\Omega_h.
+\]
+Let \(\Pi\) denote pointwise projection onto \([1/2,3/2]\), and set
+\[
+\widehat f_n=
+\begin{cases}
+\Pi(E_h\widetilde f_h),&\mathcal A_h,\\
+\one,&\mathcal A_h^c.
+\end{cases}
+\]
+This is an estimator based only on the observations.
+Its measurability follows from the flow formula:
+finite-time solutions of the smooth ODE depend continuously on the
+vector field, and the tail of \eqref{eq:transport-inverse} is uniformly
+exponentially small on \(\mathcal A_h\).
+Notice that the auxiliary transport reconstruction does not require
+a boundary value for \(\widetilde f_h\).
+
+\subsection*{Deterministic smoothing bias}
+
+Set
+\[
+\mathcal R_h=1-T_va.
+\]
+Because \(\divergence(f\nabla u)=1\), convolution commutes with
+differentiation in the interior and gives
+\[
+\mathcal R_h
+=-\divergence\left((S_hf)(S_h\nabla u)-S_h(f\nabla u)\right).
+\]
+Both \(f\) and \(\nabla u\) have uniformly bounded \(C^\alpha\)-norms.
+Lemma~\ref{lem:commutator} therefore gives, with
+\[
+B_h=h^\alpha L_h^2,
+\]
+the bounds
+\begin{equation}\label{eq:residual-bounds}
+\|\mathcal R_h\|_2\leq CB_h,\qquad
+\|\mathcal R_h\|_{H^1}\leq Ch^{-1}B_h.
+\end{equation}
+Also, Lemmas~\ref{lem:commutator} and \ref{lem:extension} give
+\begin{equation}\label{eq:completed-bias}
+\|E_ha-f\|_{L^2(D)}\leq Ch^\alpha L_h.
+\end{equation}
+
+\subsection*{Control of the nonlinear noise contribution}
+
+All identities in this paragraph are on \(\mathcal A_h\).
+Put
+\[
+e=\widetilde f_h-a,\qquad
+S_Zb=\divergence(b\nabla Z_h).
+\]
+Since \(T_{\widehat u_h}=T_v+S_Z\),
+\begin{equation}\label{eq:error-equation}
+T_{\widehat u_h}e=\mathcal R_h-S_Za.
+\end{equation}
+The elementary product bounds
+\[
+\|S_Za\|_2\leq C\|Z_h\|_{H^2},
+\qquad
+\|S_Za\|_{H^1}
+\leq C\big(\|Z_h\|_{H^3}+h^{-1}\|Z_h\|_{H^2}\big)
+\]
+follow by differentiating \(a\Delta Z_h+\nabla a\cdot\nabla Z_h\)
+and using the displayed bounds on \(a\).
+Lemma~\ref{lem:transport}, the definition of \(\mathcal A_h\),
+and \eqref{eq:residual-bounds} yield the rough estimates
+\begin{align}
+\|e\|_2
+&\leq C\big(B_h+\|Z_h\|_{H^2}\big),
+\label{eq:rough-L2}\\
+\|e\|_{H^1}
+&\leq C\big(
+h^{-1}B_h+\|Z_h\|_{H^3}
++h^{-1}\|Z_h\|_{H^2}\big).
+\label{eq:rough-H1}
+\end{align}
+
+To obtain the sharp variance, rewrite \eqref{eq:error-equation} as
+\begin{equation}\label{eq:sharp-expansion}
+e=P_v\mathcal R_h-P_vS_Za-P_vS_Ze.
+\end{equation}
+The middle term is linear in the noise and, by
+Lemma~\ref{lem:variance},
+\begin{equation}\label{eq:linear-risk}
+\E\|P_vS_Za\|_2^2\leq Cn^{-1}h^{-d-3}.
+\end{equation}
+The last term is controlled without any independence assumption
+between the estimated flow and the noise. Namely,
+\[
+\|P_vS_Ze\|_2
+\leq C\left(
+\|Z_h\|_{1,\infty}\|e\|_{H^1}
++\|Z_h\|_{2,\infty}\|e\|_2
+\right).
+\]
+Substitute \eqref{eq:rough-L2}--\eqref{eq:rough-H1} and apply
+Lemma~\ref{lem:gaussian} and Cauchy--Schwarz. This gives
+\begin{equation}\label{eq:nonlinear-risk}
+\E\left[\one_{\mathcal A_h}\|P_vS_Ze\|_2^2\right]
+\leq C\left(
+B_h^2n^{-1}h^{-d-4}L_h
++n^{-2}h^{-2d-8}L_h
+\right).
+\end{equation}
+For clarity, a representative fourth-moment calculation is
+\[
+\E\left(
+\|Z_h\|_{1,\infty}^2\|Z_h\|_{H^3}^2
+\right)
+\leq
+\left(\E\|Z_h\|_{1,\infty}^4\right)^{1/2}
+\left(\E\|Z_h\|_{H^3}^4\right)^{1/2}
+\leq Cn^{-2}h^{-2d-8}L_h.
+\]
+The term with
+\(h^{-1}\|Z_h\|_{1,\infty}\|Z_h\|_{H^2}\)
+has the same bound, as does the term with
+\(\|Z_h\|_{2,\infty}\|Z_h\|_{H^2}\).
+The terms containing \(B_h\) give the first term in
+\eqref{eq:nonlinear-risk}.
+
+Combining \eqref{eq:sharp-expansion}--\eqref{eq:nonlinear-risk},
+\[
+\E[\one_{\mathcal A_h}\|e\|_2^2]
+\leq C\left(
+B_h^2+n^{-1}h^{-d-3}
++B_h^2n^{-1}h^{-d-4}L_h
++n^{-2}h^{-2d-8}L_h
+\right).
+\]
+Our bandwidth satisfies \(n^{-1}=h^{2\alpha+d+3}\). Hence the last
+display becomes
+\[
+C\left(
+h^{2\alpha}L_h^4+h^{2\alpha}
++h^{2\alpha}L_h^4 h^{2\alpha-1}L_h
++h^{4\alpha-2}L_h
+\right)
+\leq Ch^{2\alpha}L_h^4.
+\]
+Here \(\alpha>1\) is used in
+\(h^{4\alpha-2}L_h\leq Ch^{2\alpha}\).
+
+Projection onto \([1/2,3/2]\) cannot increase the loss, since the
+true conductivity takes values in that interval. By
+\eqref{eq:E-stable}, \eqref{eq:completed-bias}, and
+\eqref{eq:good-event},
+\[
+\sup_{f\in\cF(\alpha,r_*)}
+\E_f\|\widehat f_n-f\|_2^2
+\leq Ch^{2\alpha}L_h^4+Cn^{-3}.
+\]
+This is the asserted upper bound.
+
+If \(\alpha\notin\mathbb N\), use the versions of the approximation
+lemmas without logarithms, so that \(B_h=h^\alpha\).
+The logarithms remaining in the stochastic remainder are absorbed
+by the strictly positive powers \(h^{2\alpha-1}\) and
+\(h^{2\alpha-2}\). The resulting upper bound is \(Ch^{2\alpha}\).
+\end{proof}
+
+\section{The lower bound}
+
+We construct pressure perturbations with fine angular oscillations
+and fixed radial scale.
+
+\subsection{Angular bumps}
+
+Let \(m=d-1\). Fix a smooth coordinate chart
+\(\chi:Q\to\Sph\), and a smaller cube compactly contained in \(Q\).
+For sufficiently small \(h\), choose centers \(z_1,\ldots,z_{M_h}\)
+in this cube, separated by \(4h\), such that
+\[
+c h^{-m}\leq M_h\leq C h^{-m}.
+\]
+Fix a nonzero \(\psi\in C^\infty_c((-1,1)^m)\), and define
+\[
+\psi_{j,h}(\chi(z))=\psi((z-z_j)/h),
+\]
+extended by zero outside the chart. Their supports are pairwise
+disjoint. Coordinate changes on the fixed chart give
+\begin{align}
+\|\psi_{j,h}\|_{L^2(\Sph)}^2&\asymp h^m,\label{eq:angular-L2}\\
+\|\nabla_{\Sph}\psi_{j,h}\|_{L^2(\Sph)}^2&\asymp h^{m-2}.
+\label{eq:angular-grad}
+\end{align}
+Integration by parts and Cauchy--Schwarz imply
+\begin{equation}\label{eq:angular-lap}
+\|\Delta_{\Sph}\psi_{j,h}\|_2^2
+\geq
+\frac{\|\nabla_{\Sph}\psi_{j,h}\|_2^4}
+{\|\psi_{j,h}\|_2^2}
+\geq c h^{m-4}.
+\end{equation}
+For \(\theta\in\{0,1\}^{M_h}\), write
+\(q_\theta=\sum_j\theta_j\psi_{j,h}\).
+Disjointness gives
+\[
+\|q_\theta\|_2^2\leq C,\qquad
+\|\nabla_{\Sph}^kq_\theta\|_\infty\leq C_k h^{-k}
+\]
+for every fixed \(k\).
+
+\subsection{Realization as conductivities}
+
+Fix a nonnegative, nonzero
+\(\rho\in C^\infty_c((1/4,1/2))\).
+For a fixed small \(\kappa>0\), define on \(\R^d\)
+\[
+v_\theta(x)=
+\kappa h^{\alpha+2}\rho(|x|)
+q_\theta\!\left(\frac{x}{|x|}\right),
+\qquad
+u_\theta=u_\circ+v_\theta.
+\]
+The perturbation is zero near \(0\), so this defines a smooth
+function everywhere. For each fixed \(k\),
+\begin{equation}\label{eq:v-derivatives}
+\|\nabla^kv_\theta\|_\infty
+\leq C_k\kappa h^{\alpha+2-k}.
+\end{equation}
+In particular, for sufficiently small \(\kappa\),
+\(D^2u_\theta\) is uniformly positive definite, independently of
+\(h,\theta\).
+
+\begin{lemma}[Conductivity realization and expansion]\label{lem:realization}
+For sufficiently small \(\kappa\), there are smooth positive
+conductivities \(f_\theta=1+g_\theta\) such that
+\[
+\divergence(f_\theta\nabla u_\theta)=1
+\quad\text{on }\R^d,
+\]
+and, uniformly in \(h,\theta\),
+\begin{align}
+\|\nabla^kg_\theta\|_\infty
+&\leq C_k\kappa h^{\alpha-k}
+\quad\text{for every fixed }k,\label{eq:g-derivatives}\\
+\|g_\theta\|_{C^\alpha(D)}
+&\leq C\kappa,\label{eq:g-class}\\
+g_\theta&=\ell_\theta+\varepsilon_\theta,\qquad
+\ell_\theta=-P_{u_\circ}\Delta v_\theta,\qquad
+\|\varepsilon_\theta\|_{L^2(D)}
+\leq C\kappa^2h^{2\alpha}.
+\label{eq:lower-expansion}
+\end{align}
+Moreover, \(u_{f_\theta}=u_\theta\) on \(D\).
+\end{lemma}
+
+\begin{proof}
+The backward-gradient flow of \(u_\theta\) is globally defined on
+\(\R^d\): its vector field is globally Lipschitz and has at most
+linear growth. Its unique critical point is \(0\), and the flow
+contracts towards \(0\).
+Define \(f_\theta=P_{u_\theta}\one\) by the same integral as
+\eqref{eq:transport-inverse}. That formula and its proof apply on
+\(\R^d\) here, since the Hessian has uniform positive bounds and
+all derivatives of order at least two are bounded.
+Thus \(f_\theta\) is smooth, positive, bounded, and satisfies the
+stated equation.
+
+Write \(u=u_\theta\), \(v=v_\theta\), and \(g=f_\theta-1\).
+Then
+\begin{equation}\label{eq:g-transport}
+T_ug=-\Delta v.
+\end{equation}
+The \(L^\infty\) transport estimate gives
+\(\|g\|_\infty\leq C\kappa h^\alpha\).
+
+We prove \eqref{eq:g-derivatives} by induction.
+Differentiating \eqref{eq:g-transport} \(k\) times, and collecting
+the terms containing \(k\)-th derivatives of \(g\), gives
+\[
+T_u(\nabla^kg)+\mathscr H_k\nabla^kg=F_k.
+\]
+Here \(\mathscr H_k\) is the sum of the actions of \(D^2u\) on
+the \(k\) tensor indices. If \(D^2u\geq\lambda I\), it is symmetric
+and bounded below by \(k\lambda I\). Leibniz's rule gives
+\begin{align*}
+\|F_k\|_\infty\leq C_k\bigg(
+&\|\nabla^{k+2}v\|_\infty\\
+&+\sum_{j=2}^k
+\|\nabla^{j+1}v\|_\infty
+\|\nabla^{k-j+1}g\|_\infty\\
+&+\sum_{j=1}^k
+\|\nabla^{j+2}v\|_\infty
+\|\nabla^{k-j}g\|_\infty
+\bigg).
+\end{align*}
+All derivatives of \(u_\circ\) of order at least three vanish.
+Along each trajectory, the homogeneous matrix equation has
+propagator norm at most \(e^{-(d+k)\lambda t}\).
+Consequently
+\[
+\|\nabla^kg\|_\infty
+\leq ((d+k)\lambda)^{-1}\|F_k\|_\infty.
+\]
+The differentiability and boundedness needed here also follow by the
+variational-equation argument in Lemma~\ref{lem:transport}.
+Using the induction hypothesis and \eqref{eq:v-derivatives}, the
+right side is bounded by
+\[
+C_k\big(\kappa h^{\alpha-k}
++\kappa^2h^{2\alpha-k}\big)
+\leq C_k'\kappa h^{\alpha-k}.
+\]
+This proves \eqref{eq:g-derivatives}.
+
+Choose an integer \(J>\alpha\). The dyadic characterization implies
+\[
+\|g\|_{C^\alpha(\R^d)}
+\leq C\left(
+\|g\|_\infty+
+\|g\|_\infty^{1-\alpha/J}
+\|\nabla^Jg\|_\infty^{\alpha/J}
+\right).
+\]
+Indeed, a dyadic block is bounded both by \(C\|g\|_\infty\) and,
+using its vanishing moments, by
+\(C2^{-jJ}\|\nabla^Jg\|_\infty\); optimize between these bounds.
+Substitution of \eqref{eq:g-derivatives} proves
+\eqref{eq:g-class}, including at integer \(\alpha\).
+
+Expanding the original equation around \((1,u_\circ)\) gives
+\[
+T_{u_\circ}g=-\Delta v-\divergence(g\nabla v).
+\]
+Therefore
+\[
+g=-P_{u_\circ}\Delta v
+  -P_{u_\circ}\divergence(g\nabla v).
+\]
+The \(L^\infty\) bound for \(P_{u_\circ}\), together with
+\eqref{eq:v-derivatives} and \eqref{eq:g-derivatives} at orders
+zero and one, yields
+\[
+\|P_{u_\circ}\divergence(g\nabla v)\|_\infty
+\leq C\left(
+\|\nabla g\|_\infty\|\nabla v\|_\infty
++\|g\|_\infty\|\Delta v\|_\infty
+\right)
+\leq C\kappa^2h^{2\alpha}.
+\]
+This proves \eqref{eq:lower-expansion}.
+
+Finally, \(v_\theta\) vanishes near \(\partial D\), so
+\(u_\theta=0\) there. Since \(f_\theta>0\), uniqueness of the
+Dirichlet problem implies \(u_{f_\theta}=u_\theta\).
+\end{proof}
+
+\subsection{Separation of the conductivities}
+
+For \(x=r\omega\), the unperturbed inverse is explicitly
+\[
+P_{u_\circ}s(r\omega)
+=d r^{-d}\int_0^r t^{d-1}s(t\omega)\,dt.
+\]
+Using the polar-coordinate Laplacian, for \(r>1/2\) we obtain
+\begin{equation}\label{eq:ell-explicit}
+\ell_\theta(r\omega)=
+-d\kappa h^{\alpha+2}J_\rho r^{-d}
+\Delta_{\Sph}q_\theta(\omega),
+\qquad
+J_\rho=\int_0^\infty t^{d-3}\rho(t)\,dt>0.
+\end{equation}
+Indeed, the radial part integrates to
+\([t^{d-1}\rho'(t)]_0^r=0\).
+
+Let \(H(\theta,\eta)\) be Hamming distance. Since the angular
+supports are disjoint, integration over the fixed annulus
+\(3/4<|x|<7/8\), using \eqref{eq:angular-lap} and
+\eqref{eq:ell-explicit}, gives
+\begin{equation}\label{eq:linear-separation}
+\|\ell_\theta-\ell_\eta\|_{L^2(D)}^2
+\geq c\kappa^2 h^{2\alpha+m}H(\theta,\eta).
+\end{equation}
+
+There is a subset \(\Theta_h\subset\{0,1\}^{M_h}\) such that
+\begin{equation}\label{eq:code}
+\log|\Theta_h|\geq cM_h,\qquad
+H(\theta,\eta)\geq M_h/8
+\quad(\theta\neq\eta).
+\end{equation}
+This is the usual binary packing bound; see, for example,
+\cite[Lemma~2.9]{Tsybakov}.
+% Online bibliographic source for the binary packing bound: ([link.springer.com](https://link.springer.com/book/10.1007/b13794))
+One elementary proof is to select words greedily, removing at each
+step a Hamming ball of radius \(\lfloor M_h/8\rfloor\).
+Such a ball has at most
+\[
+\sum_{k\leq M_h/8}\binom{M_h}{k}
+\leq \exp\{M_h H_b(1/8)\}
+\]
+points, where \(H_b(t)=-t\log t-(1-t)\log(1-t)<\log2\).
+The binomial bound follows by multiplying by
+\((t/(1-t))^k\) and applying the binomial theorem.
+The greedy procedure therefore leaves exponentially many selected
+words and proves \eqref{eq:code}.
+
+Since \(M_h\asymp h^{-m}\), equations
+\eqref{eq:linear-separation} and \eqref{eq:code} imply
+\[
+\|\ell_\theta-\ell_\eta\|_2\geq c\kappa h^\alpha
+\quad(\theta,\eta\in\Theta_h,\ \theta\neq\eta).
+\]
+Lemma~\ref{lem:realization} then gives, for all sufficiently small \(h\),
+\begin{equation}\label{eq:nonlinear-separation}
+\|f_\theta-f_\eta\|_2\geq c'\kappa h^\alpha.
+\end{equation}
+The remainder is negligible because
+\(\kappa^2h^{2\alpha}=o(\kappa h^\alpha)\).
+
+\subsection{Testing bound}
+
+\begin{proposition}\label{prop:lower}
+For every fixed sufficiently small \(r>0\),
+\[
+R_n(\alpha,r)\geq c\,n^{-2\alpha/(2\alpha+d+3)}
+\]
+for all sufficiently large \(n\).
+\end{proposition}
+
+\begin{proof}
+Choose a fixed positive \(\kappa\) so small that all the preceding
+constructions apply and \(C\kappa\leq r\), where \(C\) is the constant
+in \eqref{eq:g-class}. Thus every \(f_\theta\) belongs to
+\(\cF(\alpha,r)\).
+
+Let \(P_\theta\) be the observation law under \(f_\theta\), and let
+\(P_\circ\) be that under \(f=1\).
+For Gaussian white noise with variance level \(n^{-1}\),
+\begin{equation}\label{eq:KL}
+\KL(P_\theta,P_\circ)
+=\frac n2\|u_\theta-u_\circ\|_2^2
+=\frac n2\|v_\theta\|_2^2
+\leq Cn\kappa^2h^{2\alpha+4}.
+\end{equation}
+The equality follows directly from the Gaussian likelihood
+\[
+\frac{dP_\theta}{dP_\circ}
+=
+\exp\left\{
+n\big(Y_n(v_\theta)-\langle u_\circ,v_\theta\rangle\big)
+-\frac n2\|v_\theta\|_2^2
+\right\}.
+\]
+It can equivalently be obtained by finite-dimensional projections
+and convergence of the isonormal series. The inequality in
+\eqref{eq:KL} uses \(\|q_\theta\|_2^2\leq C\).
+
+Take
+\[
+h=n^{-1/(2\alpha+d+3)}.
+\]
+Since \(m=d-1\),
+\[
+nh^{2\alpha+4}=h^{-m},
+\qquad
+\log|\Theta_h|\geq c h^{-m}.
+\]
+Decrease the fixed \(\kappa\), if necessary, so that
+\begin{equation}\label{eq:information-small}
+\frac1{|\Theta_h|}
+\sum_{\theta\in\Theta_h}\KL(P_\theta,P_\circ)
+\leq\frac18\log|\Theta_h|.
+\end{equation}
+
+We recall the finite-hypothesis information inequality used here,
+a form of Fano's inequality; compare
+\cite[Theorem~2.5 and Chapter~2]{Tsybakov}.
+% Online bibliographic source for the cited minimax testing inequality: ([link.springer.com](https://link.springer.com/book/10.1007/b13794))
+Let \(J\) be uniform over \(N\) hypotheses and let
+\(\overline P=N^{-1}\sum_jP_j\).
+For every reference law \(P_0\),
+\[
+I(J;Y)
+=\frac1N\sum_j\KL(P_j,\overline P)
+\leq\frac1N\sum_j\KL(P_j,P_0),
+\]
+because the difference of the right side and the middle expression
+is \(\KL(\overline P,P_0)\).
+For any classifier \(\widehat J\), with error probability \(p_e\),
+the binary error indicator gives
+\[
+H(J\mid Y)\leq\log2+p_e\log N.
+\]
+Since \(H(J)=\log N\), it follows that
+\[
+p_e\geq1-\frac{I(J;Y)+\log2}{\log N}.
+\]
+Applying this with \eqref{eq:information-small} shows that every
+classifier has average error probability at least \(1/2\) for
+large \(n\).
+
+Given any \(L^2(D)\)-valued estimator, classify by its nearest member
+of \(\{f_\theta:\theta\in\Theta_h\}\), resolving ties by a fixed rule.
+By \eqref{eq:nonlinear-separation}, misclassification implies an
+\(L^2\)-error of at least \(c\kappa h^\alpha/2\).
+Consequently,
+\[
+\sup_{f\in\cF(\alpha,r)}
+\E_f\|\widehat f-f\|_2^2
+\geq
+\frac1{|\Theta_h|}
+\sum_{\theta\in\Theta_h}
+\E_\theta\|\widehat f-f_\theta\|_2^2
+\geq c\kappa^2h^{2\alpha}.
+\]
+Taking the infimum over estimators proves the proposition.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Choose \(r_*\) sufficiently small for
+Lemma~\ref{lem:forward} and Proposition~\ref{prop:upper}.
+The upper bound then holds for every subclass
+\(\cF(\alpha,r)\), \(0<r\leq r_*\).
+Proposition~\ref{prop:lower}, with its fixed \(\kappa\) chosen
+according to \(r\), gives the matching lower bound.
+\end{proof}
+
+\begin{remark}
+The effective denominator is \(2\alpha+d+3\), rather than the
+denominator obtained by treating the forward map as an isotropic
+operator of a single differential order. In the lower bound there
+are \(d-1\) angular directions and a two-derivative attenuation.
+In the upper bound, transport integration reduces the integrated
+variance of a twice differentiated, smoothed white noise from
+order \(n^{-1}h^{-d-4}\) to order \(n^{-1}h^{-d-3}\).
+The small-radius assumption supplies uniform convexity of the
+pressure and uniform control of this transport geometry.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{GT}
+D.~Gilbarg and N.~S.~Trudinger,
+\emph{Elliptic Partial Differential Equations of Second Order},
+second edition, Classics in Mathematics,
+Springer, Berlin, 2001.
+doi:10.1007/978-3-642-61798-0.
+
+\bibitem{Rychkov}
+V.~S.~Rychkov,
+On restrictions and extensions of the Besov and Triebel--Lizorkin
+spaces with respect to Lipschitz domains,
+\emph{Journal of the London Mathematical Society} (2)
+\textbf{60} (1999), 237--257.
+doi:10.1112/S0024610799007723.
+
+\bibitem{Taylor}
+M.~E.~Taylor,
+\emph{Partial Differential Equations III: Nonlinear Equations},
+second edition, Applied Mathematical Sciences, vol.~117,
+Springer, New York, 2011.
+
+\bibitem{Tsybakov}
+A.~B.~Tsybakov,
+\emph{Introduction to Nonparametric Estimation},
+Springer Series in Statistics,
+Springer, New York, 2009.
+doi:10.1007/b13794.
+
+\end{thebibliography}
+
+\end{document}

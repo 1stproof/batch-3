@@ -1,0 +1,398 @@
+```latex
+\documentclass[11pt]{amsart}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\NS}{NS}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\disc}{disc}
+\DeclareMathOperator{\sgn}{sgn}
+
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\D}{\Delta}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\PP}{\mathbb{P}}
+
+\begin{document}
+
+\title{Mirror pairs for $H$-polarized Tyurin degenerations}
+\author{}
+\date{}
+\maketitle
+
+\section{Statement}
+
+Let $H$ be the hyperbolic plane, and let $E_8$ denote the negative definite
+$E_8$ lattice.  We use the corrected definition of an $H$-polarized Tyurin
+degeneration stated in the question.  In particular, the ample model class $A$
+is required to satisfy
+\[
+(A|_{V_i})^2>0
+\qquad (i=1,2).
+\]
+This condition is used in the mirror-pair criterion and is not a consequence
+of the other assumptions.
+
+\begin{theorem}\label{thm:main}
+Let
+\[
+\pi\colon \cX\longrightarrow \D
+\]
+be a Tyurin degeneration of $K3$ surfaces whose central fibre is
+\[
+X_0=V_1\cup V_2,
+\]
+and suppose that it is $H$-polarized in the corrected sense of
+\cite[Definition~3.20]{dfk3slpms}.  Assume that the image of $0$ in the
+Alexeev--Brunyate--Engel compactification of the moduli space of
+$H$-polarized $K3$ surfaces is not contained in any Noether--Lefschetz locus.
+
+Let $Y$ be a very general
+\[
+M:=H\oplus E_8\oplus E_8
+\]
+quasipolarized $K3$ surface.  Then there exist
+\begin{enumerate}
+\item an elliptic fibration
+\[
+\pi_Y\colon Y\longrightarrow \PP^1;
+\]
+\item an allowable loop $\gamma\subset \PP^1$ in the sense of
+\cite[Definition~4.11]{dfk3slpms},
+\end{enumerate}
+such that the $M$-quasipolarization is compatible with $\pi_Y$ and $\gamma$
+in the sense of \cite[Definition~4.21]{dfk3slpms}, and such that
+\[
+\bigl(\cX/\D,\; Y/\PP^1,\gamma\bigr)
+\]
+is a mirror pair in the sense of \cite[Definition~5.1]{dfk3slpms}.
+\end{theorem}
+
+The proof has three parts.  First, we identify the mirror lattice.  Second,
+we realize the $M$-quasipolarization by an elliptic fibration with an
+allowable loop.  Finally, we verify that the hypotheses of the
+Giovenzana--Thompson mirror-pair criterion are satisfied.
+
+\section{The mirror lattice}
+
+Let
+\[
+L_{K3}\simeq H^{\oplus 3}\oplus E_8^{\oplus 2}
+\]
+be the even unimodular $K3$ lattice.
+
+\begin{lemma}\label{lem:M-lattice}
+The lattice
+\[
+M=H\oplus E_8\oplus E_8
+\]
+is even and unimodular, and has signature $(1,17)$.
+\end{lemma}
+
+\begin{proof}
+The hyperbolic plane is even, has signature $(1,1)$, and satisfies
+$\disc H=-1$.  The negative $E_8$ lattice is even, unimodular, and has
+signature $(0,8)$.  Therefore the displayed orthogonal direct sum is even,
+has determinant $-1$, and has signature
+\[
+(1,1)+(0,8)+(0,8)=(1,17).
+\]
+Thus $M$ is unimodular.
+\end{proof}
+
+The following lattice calculation explains the origin of the mirror
+polarization.
+
+\begin{lemma}\label{lem:cusp-quotient}
+Let $I\subset L_{K3}$ be a primitive totally isotropic sublattice of rank
+two.  Then
+\[
+I^\perp/I\simeq H\oplus E_8\oplus E_8.
+\]
+\end{lemma}
+
+\begin{proof}
+Because $I$ is primitive and totally isotropic, the induced quadratic form on
+$I^\perp/I$ is even and nondegenerate.  Since $L_{K3}$ is unimodular and $I$
+is primitive, the quotient $I^\perp/I$ is also unimodular; this is the
+standard discriminant calculation for primitive isotropic sublattices
+\cite{nikulin}.  Its rank is
+\[
+22-2\rank I=18.
+\]
+Passing from $L_{K3}$ to $I^\perp/I$ removes one hyperbolic plane from the
+signature, so
+\[
+\sgn(I^\perp/I)=(3,19)-(1,1)=(1,17).
+\]
+Indefinite even unimodular lattices are classified by their signatures
+\cite{nikulin}.  Since
+\[
+17-1=16\equiv 0\pmod 8,
+\]
+the unique even unimodular lattice of signature $(1,17)$ is
+\[
+H\oplus E_8\oplus E_8.
+\]
+This proves the lemma.
+\end{proof}
+
+\begin{remark}
+For a Type~III degeneration of $K3$ surfaces, the limiting mixed Hodge
+structure has a primitive totally isotropic plane $I=W_0$; see
+\cite{schmid,kulikov}.  Lemma~\ref{lem:cusp-quotient} identifies the
+associated mirror polarization lattice as $M$.
+\end{remark}
+
+We next record the usual description of a very general lattice-polarized
+$K3$ surface.
+
+\begin{lemma}\label{lem:very-general-NS}
+If $Y$ is a very general $M$-quasipolarized $K3$ surface, then the given
+primitive embedding $M\hookrightarrow \NS(Y)$ is an isomorphism:
+\[
+\NS(Y)\simeq M.
+\]
+\end{lemma}
+
+\begin{proof}
+Let $\omega_Y$ be the period of $Y$.  If
+$d\in H^2(Y;\Z)$ represents an integral $(1,1)$-class not lying in $M$, then
+\[
+d\cdot\omega_Y=0.
+\]
+For fixed $d\notin M$, this equation cuts out a proper Noether--Lefschetz
+locus in the $M$-polarized period domain.  There are countably many such
+classes.  A very general point avoids their union, and hence every integral
+$(1,1)$-class lies in the image of $M$.  Thus $\NS(Y)=M$.
+\end{proof}
+
+\section{The compatible elliptic fibration}
+
+We now use the standard elliptic criterion for $K3$ surfaces, together with
+the compatible-loop construction of Giovenzana--Thompson.
+
+\begin{proposition}\label{prop:compatible-fibration}
+Let $Y$ be a very general $M$-quasipolarized $K3$ surface.  Then there exist
+an elliptic fibration with section
+\[
+\pi_Y\colon Y\longrightarrow \PP^1
+\]
+and an allowable loop $\gamma\subset\PP^1$ such that the given
+$M$-quasipolarization is compatible with $\pi_Y$ and $\gamma$ in the sense of
+\cite[Definition~4.21]{dfk3slpms}.
+
+Moreover, the compatible realization may be chosen so that:
+\begin{enumerate}
+\item the $H$-summand is generated by the fibre and section classes;
+\item the two $E_8$-summands occur as the root lattices of the two
+distinguished reducible fibres lying on opposite sides of $\gamma$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{lem:very-general-NS}, $\NS(Y)\simeq M$.  The hyperbolic plane
+contains a primitive isotropic vector $f$.  After replacing $f$ by $-f$ and
+changing the chosen Weyl chamber, if necessary, $f$ lies in the closure of the
+ample cone.  A primitive nef isotropic divisor on a $K3$ surface is
+base-point free, and the morphism associated to $|f|$ is an elliptic
+fibration; see \cite{saintdonat} and \cite[Chapter~2]{huybrechts}.  Since
+$\NS(Y)$ contains the hyperbolic plane, the fibration can be chosen with a
+section: this is the standard $U$-lattice criterion for elliptic $K3$
+surfaces with section \cite[Chapter~11]{huybrechts}.
+
+Let $s$ and $f$ denote the section and fibre classes.  Then
+\[
+s^2=-2,\qquad f^2=0,\qquad s\cdot f=1,
+\]
+so $\langle s,f\rangle\simeq H$.  In the unimodular lattice
+\[
+M=\langle s,f\rangle\oplus E_8\oplus E_8,
+\]
+the root frame orthogonal to $\langle s,f\rangle$ is $E_8\oplus E_8$.
+Each $E_8$-factor is irreducible as a root system and therefore corresponds
+to one reducible fibre whose dual graph is affine $E_8$; by the Kodaira
+classification, such a fibre is of type $\mathrm{II}^*$.
+
+The existence of an allowable loop separating these two distinguished fibres,
+and the fact that the loop and fibration may be chosen compatibly with the
+fixed $M$-quasipolarization, is the rank-two case of the compatible
+fibration construction in \cite[\S4]{dfk3slpms}.  The loop is taken in the
+complement of the discriminant locus of $\pi_Y$, and it is chosen so that
+the two $E_8$-factors lie in different connected components of
+$\PP^1\setminus\gamma$.  This is precisely the lattice compatibility
+required by \cite[Definition~4.21]{dfk3slpms}.
+\end{proof}
+
+\begin{remark}
+The remaining singular fibres, if any, do not affect the compatibility
+condition.  The allowable loop is chosen after all critical values have been
+fixed, and the loop criterion in \cite[\S4]{dfk3slpms} permits a generic
+embedded loop separating the two distinguished $E_8$-fibres.
+\end{remark}
+
+\section{The mirror-pair criterion}
+
+We now state the mirror correspondence input from
+\cite{dfk3slpms}.  This is the point at which the corrected positivity
+condition on both components of the central fibre is used.
+
+\begin{theorem}[Giovenzana--Thompson mirror-pair criterion]
+\label{thm:GT-criterion}
+Let $\cX\to\D$ be a Tyurin degeneration satisfying the corrected definition
+of an $H$-polarization, including
+\[
+(A|_{V_1})^2>0,\qquad (A|_{V_2})^2>0.
+\]
+Suppose that the image of $0$ in the Alexeev--Brunyate--Engel
+compactification is not contained in any Noether--Lefschetz locus.
+
+Let $Y$ be a very general
+\[
+H\oplus E_8\oplus E_8
+\]
+quasipolarized $K3$ surface, and let $\pi_Y\colon Y\to\PP^1$ and
+$\gamma\subset\PP^1$ be compatible fibration data as in
+Proposition~\ref{prop:compatible-fibration}.  Then
+\[
+\bigl(\cX/\D,\;Y/\PP^1,\gamma\bigr)
+\]
+is a mirror pair in the sense of \cite[Definition~5.1]{dfk3slpms}.
+\end{theorem}
+
+\begin{proof}
+This is the rank-two case of the mirror-pair correspondence proved in
+\cite[\S5]{dfk3slpms}.  For clarity, we indicate how the hypotheses enter.
+
+The limiting mixed Hodge structure of the Type~III degeneration determines a
+primitive totally isotropic plane $I\subset L_{K3}$.  By
+Lemma~\ref{lem:cusp-quotient},
+\[
+I^\perp/I\simeq H\oplus E_8\oplus E_8,
+\]
+which is the polarization lattice on the fibration side.  The
+Alexeev--Brunyate--Engel compactification identifies the corresponding
+boundary point with the stable-pair data of the two components
+$(V_1,D_1)$ and $(V_2,D_2)$ \cite{cmek3sspt}.  The corrected inequalities
+\[
+(A|_{V_i})^2>0
+\]
+ensure that the classes induced by $A$ satisfy the positivity condition
+required on both components in the mirror-pair comparison.
+
+Finally, the assumption that the boundary point lies in no
+Noether--Lefschetz locus implies that no additional integral $(1,1)$-class
+occurs in the limiting period.  Under this very-generality assumption, the
+comparison theorem of \cite[\S5]{dfk3slpms} identifies the monodromy and
+lattice data on the two sides of the allowable loop with the two components
+of the Type~III central fibre.  These are the conditions defining a mirror
+pair in \cite[Definition~5.1]{dfk3slpms}.
+\end{proof}
+
+\section{Proof of the main theorem}
+
+We now assemble the preceding results.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+By assumption, $\cX\to\D$ satisfies the corrected conditions of
+\cite[Definition~3.20]{dfk3slpms}.  In particular:
+\begin{enumerate}
+\item the local subsystem $\cL$ with fibre $H$ is monodromy invariant and
+defines an $H$-quasipolarization on every smooth fibre;
+\item the effective flat nef Cartier divisor $A$ restricts to a nef and big
+class in $\cL_p$ for every $p\in\D^*$;
+\item the two numerical inequalities
+\[
+(A|_{V_1})^2>0,\qquad (A|_{V_2})^2>0
+\]
+hold.
+\end{enumerate}
+Moreover, the image of $0$ in the Alexeev--Brunyate--Engel compactification
+avoids every Noether--Lefschetz locus.
+
+Let $Y$ be the fixed very general
+$H\oplus E_8\oplus E_8$-quasipolarized $K3$ surface.  By
+Proposition~\ref{prop:compatible-fibration}, there exist an elliptic
+fibration
+\[
+\pi_Y\colon Y\longrightarrow \PP^1
+\]
+and an allowable loop $\gamma\subset\PP^1$ with which the given
+quasipolarization is compatible in the sense of
+\cite[Definition~4.21]{dfk3slpms}.
+
+The degeneration and these fibration data now satisfy all hypotheses of the
+mirror-pair criterion in Theorem~\ref{thm:GT-criterion}.  Therefore
+\[
+\bigl(\cX/\D,\;Y/\PP^1,\gamma\bigr)
+\]
+is a mirror pair in the sense of \cite[Definition~5.1]{dfk3slpms}.
+\end{proof}
+
+\begin{remark}[Role of the corrected definition]
+The final inequalities in condition (2) are essential in the application of
+Theorem~\ref{thm:GT-criterion}.  They guarantee that the pseudo-ample class
+induced by $A$ has positive self-intersection on both components $V_1$ and
+$V_2$.  Thus the corrected definition, rather than the incomplete arXiv
+version, is the one used in the proof.
+\end{remark}
+
+\begin{thebibliography}{ABE22}
+
+\bibitem[ABE22]{cmek3sspt}
+V.~Alexeev, A.~Brunyate, and P.~Engel,
+\emph{Compactifications of moduli of elliptic $K3$ surfaces: Stable pair and
+toroidal},
+Geom. Topol. \textbf{26} (2022), no.~8, 3525--3588.
+
+\bibitem[GT24]{dfk3slpms}
+L.~Giovenzana and A.~Thompson,
+\emph{Degenerations and fibrations of $K3$ surfaces: Lattice polarisations and
+mirror symmetry},
+Preprint, May 2024, arXiv:2405.12009.
+
+\bibitem[Huy16]{huybrechts}
+D.~Huybrechts,
+\emph{Lectures on $K3$ surfaces},
+Cambridge Studies in Advanced Mathematics \textbf{158},
+Cambridge University Press, Cambridge, 2016.
+
+\bibitem[Kul77]{kulikov}
+V.~S.~Kulikov,
+\emph{Degenerations of $K3$ surfaces and Enriques surfaces},
+Izv. Akad. Nauk SSSR Ser. Mat. \textbf{41} (1977), no.~5, 1008--1042;
+English translation, Math. USSR-Izv. \textbf{11} (1977), 957--989.
+
+\bibitem[Nik80]{nikulin}
+V.~V.~Nikulin,
+\emph{Integer symmetric bilinear forms and some of their geometric
+applications},
+Izv. Akad. Nauk SSSR Ser. Mat. \textbf{43} (1979), 111--177;
+English translation, Math. USSR-Izv. \textbf{14} (1980), 103--167.
+
+\bibitem[SD74]{saintdonat}
+B.~Saint-Donat,
+\emph{Projective models of $K3$ surfaces},
+Amer. J. Math. \textbf{96} (1974), 602--639.
+
+\bibitem[Sch73]{schmid}
+W.~Schmid,
+\emph{Variation of Hodge structure: the singularities of the period mapping},
+Invent. Math. \textbf{22} (1973), 211--319.
+
+\end{thebibliography}
+
+\end{document}
+```

@@ -1,0 +1,700 @@
+\documentclass[11pt]{amsart}
+\usepackage[headings]{fullpage}
+\usepackage{amssymb,epic,eepic,epsfig,amsbsy,amsmath,amscd,color,graphicx,subcaption,texdraw,bbm,url}
+%\usepackage[bb=boondox]{mathalpha} 
+%\usepackage[all]{xy}
+\usepackage{mathrsfs}
+%\usepackage{standalone}
+\usepackage[normalem]{ulem}
+%\usepackage{comment}
+\usepackage{refcheck}
+%\usepackage{soul}
+\usepackage[final]{pdfpages}
+\usepackage{tikz}
+\usetikzlibrary{cd,positioning,knots,patterns,hobby,math,decorations,decorations.markings,arrows.meta}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{question}{Question}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{definition}{Definition}
+\newtheorem{state}{Statement}
+
+\theoremstyle{definition}
+
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newcommand{\bcon}{\begin{conjecture}}
+\newcommand{\econ}{\end{conjecture}}
+\newcommand{\bcor}{\begin{corollary}}
+\newcommand{\ecor}{\end{corollary}}
+\newcommand{\bdf}{\begin{definition}}
+\newcommand{\edf}{\end{definition}}
+\newcommand{\benu}{\begin{enumerate}}
+\newcommand{\eenu}{\end{enumerate}}
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bexa}{\begin{example}}
+\newcommand{\eexa}{\end{example}}
+\newcommand{\bexe}{\begin{exercise}}
+\newcommand{\eexe}{\end{exercise}}
+\newcommand{\bfac}{\begin{fact}}
+\newcommand{\efac}{\end{fact}}
+\newcommand{\bite}{\begin{itemize}}
+\newcommand{\eite}{\end{itemize}}
+\newcommand{\blem}{\begin{lemma}}
+\newcommand{\elem}{\end{lemma}}
+\newcommand{\bmat}{\begin{pmatrix}}
+\newcommand{\emat}{\end{pmatrix}}
+\newcommand{\bprb}{\begin{problem}}
+\newcommand{\eprb}{\end{problem}}
+\newcommand{\bpro}{\begin{proposition}}
+\newcommand{\epro}{\end{proposition}}
+\newcommand{\bprof}[1]{\noindent{\it Proof of #1:}}
+\newcommand{\bque}{\begin{question}}
+\newcommand{\eque}{\end{question}}
+\newcommand{\brem}{\begin{remark}}
+\newcommand{\erem}{\end{remark}}
+\newcommand{\bthm}{\begin{theorem}}
+\newcommand{\ethm}{\end{theorem}}
+
+\newcommand{\bpr}{\begin{proof}}
+\newcommand{\epr}{\end{proof}}
+\newcommand{\ignore}[1]{}
+\newcommand{\xra}{\xrightarrow}
+\newcommand{\hra}{\hookrightarrow}
+\newcommand{\lb}{\label}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+
+%%%%%%%%%%%
+
+\def\nc{\newcommand}
+
+\newcommand\FIGc[3]{\begin{figure}[htpb]
+    \includegraphics[height=#3]{draws/#1.eps}
+    \caption{#2}
+    \label{fig:#1}
+    \end{figure}}
+
+
+\newcommand\incl[2]{{\includegraphics[height=#1]{#2.eps}}}
+
+\newcommand\incljpg[2]{
+\raisebox  {- .49 \height}
+{\includegraphics[height=#1]{draws/#2.jpg}}
+}
+\def\bdD{{\mathbf D}}
+\def\cD{\mathcal D}
+
+\newcommand{\diag}[2]{\raisebox{-.5\height}{\includegraphics[height=#2]{#1}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\def\BA{\mathbb A}
+\def\BC{\mathbb C}
+\def\BN{\mathbb N}
+\def\BZ{\mathbb Z}
+\def\BR{\mathbb R}
+\def\BT{\mathbb T}
+\def\BQ{\mathbb Q}
+
+\def\N{\mathbb N}
+\def\Z{\mathbb Z}
+\def\C{\mathbb C}
+\def\Q{\mathbb Q}
+
+\def\fb{\mathfrak b}
+\def\fp{\mathfrak p}
+\def\ft{\mathfrak t}
+\def\sl{{\mathfrak{sl}}}
+
+\def\ov{\overline}
+
+\def\al{\alpha}
+\def\ve{\varepsilon}
+\def\cS{\mathscr S}
+\def\bcS{\overline{\mathscr{S}} }
+
+\def\embed{\hookrightarrow}
+\def\SL{\mathrm{SL}}
+
+\def\p{\partial}
+\def\ab{\mathrm{ab}}
+\def\SM{(\Sigma,\cP)}
+\def\pS{\partial \Sigma}
+\def\btau{\bar \tau}
+\def\ooS{\mathring {\cS}}
+\def\id{\mathrm{id}}
+\def\Dess{\D_{\mathrm{ess}}}
+\def\np{\newpage}
+\def\pM{\partial M}
+\def\cI{\mathcal I}
+\def\cN{\mathcal N}
+\def\MN{(M,\cN)}
+\def\tiX{\widetilde {\sX}}
+\def\tcS{\widetilde \cS}
+\def\tF{\tilde F}
+\def\tPhi{\widetilde{\Phi}}
+\def\XD{\sX(\D)}
+\def\vpD{\vp_\D}
+\def\vpDp{\vp_{\D'}}
+\def\Hu{{\cH}}
+\def\Hm{\cH_\bullet}
+\def\ZD{\CZ(\D)}
+\def\LMN{\cT\MN}
+\def\fr{\operatorname{fr}}
+\def\Splus{\cS^+}
+\def\cB{\mathcal B}
+\def\Cx{{\BC^\times}}
+\def\ord{\mathrm{ord}}
+\def\Sx{\cS_\xi}
+\def\cL{\mathcal L}
+\def\cT{\mathcal T}
+\def\hPhi{\hat \Phi}
+\def\Col{\text{Col}}
+
+\def\Se{\cS_\ve}
+\def\Sx{\cS_\xi}
+\def\tSe{\widetilde{\cS}_\ve}
+\def\tSx{\widetilde{\cS}_\xi}
+\def\Rel{\mathrm{Rel}}
+\def\MNp{(M',\cN')}
+\def\ocP{\mathring {\cP}}
+\def\PDDp{\Psi_{\D,\D'}}
+\def\PSSp{\PSi_{\Sigma,\Sigma'}}
+\def\cSp{\cS^+}
+\def\cD{\mathcal D}
+\def\chL{\check L}
+
+\def\be{\begin{equation}}
+
+\def\ee{\end{equation}}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+
+\def\Mod{{\mathsf {Mod}}}
+\def\LMod{{\mathsf {LMod}}}
+\def\RMod{{\mathsf {RMod}}}
+\def\LMC{\LMod_\CC}
+\def\RMC{\RMod_{\CC}}
+\def\End{{\mathsf{End}}}
+\def\ot{{\otimes}}
+\def\CM{{\mathcal M}}
+\def\CA{{\mathcal A}}
+\def\CE{{\mathcal E}}
+\def\CN{{\mathcal N}}
+\def\op{\mathrm{op}}
+\def\uF{{\underline F}}
+
+\def\fg{{\mathfrak{g}}}
+\def\UAg{{U_\CA(\fg)}}
+\def\UA{{U_\CA}}
+
+\def\UR{{U_R}}
+\def\Ck{{\CC_k}}
+
+\def\Uxi{{U_\xi}}
+\def\Cxi{{\CC_\xi}}
+\def\tCxi{{\tilde\CC_\xi}}
+\def\Obj{{\mathsf {Obj}}}
+\def\tR{{\tilde R}}
+\def\comod{\text{-comod}}
+\def\CCf{{\CC}^f}
+\def\hC{\hat{\CC}^f}
+\def\Rib{{{\mathcal R}ib}}
+\def\Ccomod{{\cH\text{-coMod}}}
+
+\def\coinv{{\mathsf{coinv}}}
+\def\CH{{\mathcal H}}
+
+
+\def\inv{{\mathsf{inv}}}
+\def\Cut{{\mathsf{Cut}}}
+
+\def\hxi{{\hat \xi}}
+\def\cA{{\mathcal A}}
+
+\def\Zq{{\BZ[q^{\pm 1}]}}
+\def\Zhq{{\BZ[\hq^{\pm 1}  ]}}
+\def\Zv{{\BZ[v^{\pm 1}]}}
+
+\def\hq{{\hat q}}
+\def\Zv{{\BZ[v^{\pm 1}]}}
+\def\Qv{{\BQ(v)}}
+
+\def\AU{{_\cA \Ud}}
+\def\AMs{{_\cA M_*}}
+\def\AM{{_\cA M}}
+\def\Qq{\BQ(\hq)}
+
+\def\Rep{{\mathsf{Rep}}}
+\def\Oq{{\mathcal O_q}}
+
+\def\bbeta{\boldsymbol{\beta}}  
+\def\scrB{\mathscr{B}} 
+\def\scrC{\mathscr{C}} 
+\def\bSS{\overline{\cS}(\fS)}
+\def\bSSQ{\overline{\cS}(\fS)_\BQ}  
+
+\def\g{{\mathfrak g}}
+
+\def\U{{ {\mathcal U}}}
+\def\Uc{{\check {\mathcal U}}}
+\def\Ucg{\Uc_q(gl_n)}
+
+\def\UcB{ \Uc^{\ge   }}
+\def\UcBn{ \Uc^{\le}}
+\newcommand{\lf}{{l\! f}}
+\def\Ulf{\U^{l\! f}}
+\def\Uclf{\Uc^{l\! f}}
+
+\def\O{{\mathcal O}}
+\def\TO{\mathcal T\O}
+
+
+\def\Ud{{\dot{\mathcal U}}}
+\def\Urat{{\Ud^{ \mathsf {rat  }  }}}
+\def\Uhxi{{\dot{\mathcal U}}_\hxi}
+\def\UcA{_\cA\Uc}
+
+
+\def\bS{\overline \CS}
+
+\def\SS{{\cS(\fS)}}
+\def\fB{\mathfrak B}
+
+\def\onto{\twoheadrightarrow}
+
+\def\binv{{\overline{\mathsf{inv}  }_{ e_l }}}
+
+\def\glue{{\mathsf{glue}}}
+
+\def\buu{{\mathbf  u}}
+
+\def\bipr{{
+  \triangleright\mathrel{\mkern-12mu}
+  \triangleleft}}
+  
+ \def\INV{{\mathsf{INV}}}
+\def\tm{{\mathsf{tm}}}
+\def\pmo{{\pm 1}}
+\def\mpo{{\mp 1}}
+\def\K{\mathbb K}
+
+\newcommand{\red}[1]{{\color{red}#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tikzset{edge/.style={line width=0.8}}
+\tikzset{wall/.style={very thick}} 
+\tikzset{->-/.style n args={2}{decoration={markings, mark=at position #1 with {\arrow{#2}}}, postaction={decorate}}}
+
+\ExplSyntaxOn
+\cs_new_eq:NN \ifstreqF \str_if_eq:nnF
+\cs_new_eq:NN \ifstreqTF \str_if_eq:nnTF
+\ExplSyntaxOff
+
+\tikzset{-o-/.code 2 args={\ifstreqF{#2}{}
+{\ifstreqTF{#2}{>}
+   {\pgfkeysalso{decoration={markings,mark=at position #1 with {\arrow[scale=0.8]{#2}}}
+                    ,postaction={decorate}}
+    }
+   {\ifstreqTF{#2}{<}
+       {\pgfkeysalso{decoration={markings,mark=at position #1 with {\arrow[scale=0.8]{#2}}}
+                    ,postaction={decorate}}
+        }
+       {\pgfkeysalso{decoration={markings,
+                    mark=at position #1 with 
+                    {\draw[black, fill={#2}] circle[radius=2pt];}}
+                    ,postaction={decorate}}
+        }
+     }
+  }}} 
+
+
+\newcommand{\bigonpicold}[6]{ 
+\raisebox{-0.4\height}{\begin{tikzpicture}
+        \tikzmath{\xdim=#4; \ydim=#5; \h=0.5; \o=\ydim/2; \t1=\ydim/3; \t2=\ydim*2/3;} 
+        \ifthenelse{\equal{#3}{b}}{
+         \fill[gray!20!white, rounded corners=1.5mm]  (\xdim/2, -\h)-- (0,0)--(0,\ydim) -- (\xdim/2, \ydim+\h) -- 
+         (\xdim,\ydim)  -- (\xdim,0) -- cycle;
+          \draw[wall,  -o-={.3}{#1}, rounded corners=1.5mm] (\xdim/2, -\h)-- (0,0)--(0,\ydim) -- (\xdim/2, \ydim+\h);
+       \draw[wall, -o-={.3}{#2}, rounded corners=1.5mm] (\xdim/2, -\h)-- (\xdim,0)--(\xdim,\ydim) -- (\xdim/2, \ydim+\h);
+        \draw[black, fill=white] (\xdim/2,\ydim+\h) circle[radius=2pt];
+        }
+        {\draw[wall,  -o-={.51}{#1}, fill=gray!20!white]  
+        (\xdim/2, -\h) [rounded corners=1.5mm] --  (0,0) [sharp corners] --(0,\ydim) 
+        arc [start angle =180, end angle =0, radius=\xdim/2] 
+         [rounded corners=1.5mm]  --(\xdim,0) [sharp corners] -- cycle;} 
+        \draw[black, fill=white] (0.5*\xdim,-\h) circle[radius=2pt];
+          #6
+\end{tikzpicture}
+}\hspace*{-.1in}} 
+
+
+\newcommand{\bigonalpha}[6]{ 
+\bigonpicold{#1}{#2}{#3}{0.8}{.6}{
+\coordinate[label={left:{\small #5}}] (A) at (0,\o); 
+\coordinate[label={right:{\small #6}}] (B) at (\xdim,\o);
+\node [thick, circle, draw, fill=white, radius=0.5] (N) at (\xdim/2,\o) {\hspace*{-.1in}#4\hspace*{-.1in}};
+\draw[edge] (0,\o) -- (N);
+\draw[edge] (N) -- (\xdim,\o);
+}
+}
+
+\newcommand{\BigonP}[3]{
+\begin{tikzpicture}[baseline=.6ex, scale=#1]
+    \fill[gray!20] (0,2) to[bend left=90] (0,-2) to[bend left=90] (0,2);
+    \draw[thick, #2] (0,2) to[bend left=90] (0,-2);
+    \draw[thick, #2] (0,2) to[bend right=90] (0,-2);
+    \fill[draw=black, fill=white] (0,2) circle (0.2);
+    \fill[draw=black, fill=white] (0,0) circle (0.2);
+    \fill[draw=black, fill=white] (0,-2) circle (0.2);
+    #3
+\end{tikzpicture}
+}
+
+\def\BigonPlines{
+\BigonP{0.35}{}{
+\draw[draw=blue, thick]  (-1.1, 0.8) -- (1.1, 0.8);
+\draw[draw=blue, thick]  (-1.1, -0.8) -- (1.1, -0.8);
+}
+}
+
+\def\BigonPGens{ 
+\BigonP{.50}{decoration={markings, mark=at position 0.8 with {\arrow{>}}}, postaction={decorate}}{
+\draw[draw=blue, thick, decoration={markings, mark=at position 0.5 with {\arrow{>}}}, postaction={decorate}]  (-1.1, 0.55) -- (1.1, 0.55);
+\draw[draw=blue, thick, decoration={markings, mark=at position 0.5 with {\arrow{>}}}, postaction={decorate}]  (-1.1, -0.55) -- (1.1, -0.55);
+\node[anchor=east] at (-1.1, 0.55) {$k$};
+\node[anchor=west] at (1.1, 0.55) {$l$};
+\node[anchor=east] at (-1.1, -0.55) {$i$};
+\node[anchor=west] at (1.1, -0.55) {$j$};
+\node[anchor=south] at (0, 0.55) {$c_{kl}$};
+\node[anchor=north] at (0, -0.55) {$b_{ij}$};
+}
+}
+
+ \def\punctbigonweb{
+ \BigonP{.5}{decoration={markings, mark=at position 0.9 with {\arrow{>}}}, postaction={decorate}}{
+ \draw[draw=blue] ellipse (0.7 and 1.5);
+ \node[anchor=south] at (0, 0.1) {\color{blue} $\beta$};
+  \draw[draw=blue, thick] (-1.1, 0.8) -- (-0.65, 0.7);
+    \draw[draw=blue, thick] (-1.1,-0.8) -- (-0.65,-0.7);
+    \node[left]  at (-1.1, 0.8) {$i_k$};
+    \node[left]  at (-1.1, -0.8) {$i_1$};
+    
+    \foreach \y in {-0.25,0,0.25}
+        \fill[blue] (-1,\y) circle (1.5pt);
+
+    \draw[draw=blue, thick] (0.65, 0.7) -- (1.1, 0.8);
+    \draw[draw=blue, thick] (0.65,-0.7) -- (1.1,-0.8);
+    \node[right]  at (1.1, 0.8) {$j_l$};
+    \node[right]  at (1.1, -0.8) {$j_1$};
+
+    \foreach \y in {-0.25,0,0.25}
+        \fill[blue]  (1,\y) circle (1.5pt);
+ }
+ }
+ 
+ \def\punctbigonwebS{
+ \BigonP{.5}{decoration={markings, mark=at position 0.9 with {\arrow{>}}}, postaction={decorate}}{
+ \draw[draw=blue] ellipse (0.7 and 1.5);
+ \node[anchor=north] at (0, 0.1) {\color{blue} \rotatebox[origin=c]{180}{$\beta$}};
+  \draw[draw=blue, thick] (-1.1, 0.8) -- (-0.65, 0.7);
+    \draw[draw=blue, thick] (-1.1,-0.8) -- (-0.65,-0.7);
+    \node[left]  at (-1.1, 0.8) {$\overline{j_1}$};
+    \node[left]  at (-1.1, -0.8) {$\overline{j_l}$};
+
+    \foreach \y in {-0.25,0,0.25}
+        \fill[blue] (-1,\y) circle (1.5pt);
+
+    \draw[draw=blue, thick] (0.65, 0.7) -- (1.1, 0.8);
+    \draw[draw=blue, thick] (0.65,-0.7) -- (1.1,-0.8);
+    \node[right]  at (1.1, 0.8) {$\overline{i_1}$};
+    \node[right]  at (1.1, -0.8) {$\overline{i_k}$};
+
+    \foreach \y in {-0.25,0,0.25}
+        \fill[blue]  (1,\y) circle (1.5pt);
+ }
+ }
+
+\def\BigonPpm{ 
+\BigonP{.6}{decoration={markings, mark=at position 0.8 with {\arrow{>}}}, postaction={decorate}}{
+\draw[draw=blue, thick, decoration={markings, mark=at position 0.5 with {\arrow{>}}}, postaction={decorate}]  (-1.1, 0.55) -- (1.1, 0.55);
+\draw[draw=blue, thick, decoration={markings, mark=at position 0.5 with {\arrow{>}}}, postaction={decorate}]  (-1.1, -0.55) -- (1.1, -0.55);
+\node[anchor=south] at (0, 0.55) {$\fB^-$};
+\node[anchor=north] at (0, -0.55) {$\fB^+$};
+}
+}
+
+\newcommand{\BigonXY}[1]{
+\begin{tikzpicture}[ baseline=.6ex, scale=#1, line cap=round, line join=round]
+
+    \fill[gray!20] (0,2) .. controls (1.85,1.55) and (1.85,-1.55) .. (0,-2)
+        .. controls (-1.85,-1.55) and (-1.85,1.55) .. cycle;
+        
+    \draw[ blue, line width=1.2pt, name path=understrand]
+        (-1.40,.31) .. controls (-.01,-1.31) and (-.35,-1.75) .. (1.04,-.25) -- (1.40,.28);
+ 
+    \path[name path=overstrand]
+        (-1.39,-.42)  .. controls (-.09,1.06) and (.19,1.10) .. (1.40,-.42);
+ 
+    \path[name intersections={of=understrand and overstrand, name=crossing} ];
+    \foreach \k in {1,2}
+        \fill[gray!20] (crossing-\k) circle[radius=.15];
+
+    \draw[blue,line width=1.2pt] (-1.39,-.42) .. controls (-.09,1.06) and (.19,1.10) .. (1.40,-.42);
+    
+    \draw[thick, decoration={markings, mark=at position 0.8 with {\arrow{>}}}, postaction={decorate}] 
+        (0,2)  .. controls (1.85,1.55) and (1.85,-1.55) .. (0,-2);
+    \draw[thick, decoration={markings, mark=at position 0.8 with {\arrow{>}}}, postaction={decorate}] 
+        (0,2) .. controls (-1.85,1.55) and (-1.85,-1.55) .. (0,-2);
+      
+    \filldraw[ fill=white, draw=blue, line width=1.2pt ] (0,.69) ellipse[x radius=.53,y radius=.39];
+
+    \node at (0,.69) {$x^{-}$};
+
+    \filldraw[fill=white,draw=blue, line width=1.2pt] (0,-.90) ellipse[x radius=.53,y radius=.39];
+
+    \node at (0,-.90) {$x^{+}$};
+
+    \foreach \p in {(0,2),(0,0),(0,-2)}
+        \filldraw[ fill=white, draw=black, line width=.6pt] \p circle[radius=.13];
+\end{tikzpicture}
+}
+
+\newcommand{\Bigonbc}[5]{
+\begin{tikzpicture}[baseline=.6ex, scale=#1, line cap=round, line join=round]
+ 
+    \fill[gray!20] (0,2) .. controls (1.85,1.55) and (1.85,-1.55) .. (0,-2) .. controls (-1.85,-1.55) and (-1.85,1.55) .. cycle;
+    
+    \draw[blue, line width=.8pt, decoration={markings, mark=at position .5 with {\arrow{>}}}, postaction={decorate}] (-1.4,.6) -- (1.4,.6);
+     \node[anchor=east] at (-1.4, 0.6) {#2};
+     \node[anchor=west] at (1.4, 0.6) {#3};
+ 
+    \draw[blue, line width=.8pt, decoration={markings, mark=at position .5 with {\arrow{>}}}, postaction={decorate}] (-1.4,-.6) -- (1.4,-.6);
+    \node[anchor=east] at (-1.4, -0.6) {#4};
+     \node[anchor=west] at (1.4, -0.6) {#5};
+     
+    \draw[thick, decoration={markings, mark=at position 0.8 with {\arrow{>}}}, postaction={decorate}]
+        (0,2) .. controls (1.85,1.55) and (1.85,-1.55) .. (0,-2);
+
+    \draw[thick, decoration={markings, mark=at position 0.8 with {\arrow{>}} }, postaction={decorate}]
+        (0,2) .. controls (-1.85,1.55) and (-1.85,-1.55) .. (0,-2);
+
+    \foreach \p in {(0,2),(0,0),(0,-2)}
+        \filldraw[ fill=white, draw=black, line width=.6pt] \p circle[radius=.13];
+\end{tikzpicture}
+}
+
+
+\newcommand{\BigonbcXX}[1]{
+\begin{tikzpicture}[baseline=.6ex, scale=#1, line cap=round, line join=round]
+ 
+    \fill[gray!20] (0,2) .. controls (1.85,1.55) and (1.85,-1.55) .. (0,-2) .. controls (-1.85,-1.55) and (-1.85,1.55) .. cycle;
+    
+    \draw[blue, line width=1pt, name path=understrand, decoration={markings, mark=at position 0.8 with {\arrow{>}}}, postaction={decorate}]
+        (-1.40,.31) .. controls (-.01,-1.31)  .. (1.04,-.25) .. controls (1.16,-.12) and (1.2,.10) .. (1.40,.28);
+     \node[anchor=east] at (-1.4, 0.4) {$i$};
+     \node[anchor=west] at (1.4, 0.4) {$j$};
+ 
+    \path[name path=overstrand] (-1.39,-.42)  .. controls (-.09,1.06) and (.19,1.10) .. (1.40,-.42);
+    \node[anchor=east] at (-1.4, -0.4) {$k$};
+     \node[anchor=west] at (1.4, -0.4) {$l$};
+
+    \path[name intersections={of=understrand and overstrand,name=crossing}];
+
+    \foreach \k in {1,2}
+     \fill[gray!20] (crossing-\k) circle[radius=.15];
+
+    \draw[blue,line width=1pt, decoration={markings, mark=at position 0.8 with {\arrow{>}}}, postaction={decorate}]
+        (-1.39,-.42)
+        .. controls (-.09,1.06) and (.19,1.10) .. (1.40,-.42);
+
+    \draw[thick, decoration={markings, mark=at position 0.8 with {\arrow{>}}}, postaction={decorate}]
+        (0,2) .. controls (1.85,1.55) and (1.85,-1.55) .. (0,-2);
+
+    \draw[ thick, decoration={markings, mark=at position 0.8 with {\arrow{>}} }, postaction={decorate}]
+        (0,2) .. controls (-1.85,1.55) and (-1.85,-1.55) .. (0,-2);
+
+    \foreach \p in {(0,2),(0,0),(0,-2)}
+        \filldraw[ fill=white, draw=black, line width=.6pt] \p circle[radius=.13];
+\end{tikzpicture}
+}
+
+\def\Ci{
+\begin{tikzpicture}[baseline=.6ex, scale=0.35]
+
+    \fill[gray!20] (0,2) to[bend left=45] (0,-2) to[bend left=45] (0,2);
+    \draw[thick] (0,2) to[bend left=45] (0,-2);
+    \draw[thick] (0,2) to[bend right=45] (0,-2);
+    
+    \draw[thick, draw=blue, decoration={markings, mark=at position 0.5 with {\arrow{>}}}, postaction={decorate}] 
+        (-0.75, 0.8) -- (0.75, 0.8);
+
+    \fill[draw=black, fill=white] (0,2) circle (0.1);
+    \fill[draw=black, fill=white] (0,0) circle (0.1);
+    \fill[draw=black, fill=white] (0,-2) circle (0.1);
+    
+     \node[anchor=east] at (-0.85, 0.8) {$i$};
+    \node[anchor=west] at (0.85, 0.8) {$i$};
+\end{tikzpicture}
+}
+
+\def\Bin{
+\begin{tikzpicture}[baseline=.6ex, scale=0.35]
+    {}
+    \fill[gray!20] (0,2) to[bend left=45] (0,-2) to[bend left=45] (0,2);
+    \draw[thick] (0,2) to[bend left=45] (0,-2);
+    \draw[thick] (0,2) to[bend right=45] (0,-2);
+
+    {}
+    \draw[thick, draw=blue, decoration={markings, mark=at position 0.5 with {\arrow{<}}}, postaction={decorate}] 
+        (-0.75, -0.8) -- (0.75, -0.8);
+
+    {}
+    \fill[draw=black, fill=white] (0,2) circle (0.1);
+    \fill[draw=black, fill=white] (0,0) circle (0.1);
+    \fill[draw=black, fill=white] (0,-2) circle (0.1);
+
+    {}
+     \node[anchor=east] at (-0.85, -0.8) {$\bar i$};
+    \node[anchor=west] at (0.85, -0.8) {$\bar i$};
+\end{tikzpicture}
+}
+
+\newcommand{\Ei}[4]{
+\begin{tikzpicture}[baseline=.6ex, scale=0.45]
+    \fill[gray!20] (0,2) to[bend left=45] (0,-2) to[bend left=45] (0,2);
+    \draw[thick, decoration={markings, mark=at position 0.9 with {\arrow{>}}}, postaction={decorate}] (0,2) to[bend left=45] (0,-2);
+    \draw[thick, decoration={markings, mark=at position 0.9 with {\arrow{>}}}, postaction={decorate}] (0,2) to[bend right=45] (0,-2);
+
+    \draw[thick, draw=blue, decoration={markings, mark=at position 0.5 with {\arrow{>}}}, postaction={decorate}] 
+        (-0.75, 0.9) -- (0.75, 0.9);
+    \draw[thick, draw=blue, decoration={markings, mark=at position 0.5 with {\arrow{<}}}, postaction={decorate}] 
+        (-0.85, 0.2) -- (0.85, 0.2);
+        
+    \fill[draw=black, fill=white] (0,2) circle (0.1);
+    \fill[draw=black, fill=white] (0,-0.3) circle (0.1);
+    \fill[draw=black, fill=white] (0,-2) circle (0.1);
+
+    \node[anchor=east] at (-0.85, 1) {#1};
+    \node[anchor=west] at (0.85, 1) {#2};
+    \node[anchor=east] at (-0.85, 0) {#3};
+    \node[anchor=west] at (0.85, 0) {#4};
+\end{tikzpicture}
+}
+
+\newcommand{\Fi}[4]{
+\begin{tikzpicture}[baseline=.6ex, scale=0.45]
+  
+    \fill[gray!20] (0,2) to[bend left=45] (0,-2) to[bend left=45] (0,2);
+    \draw[thick,decoration={markings, mark=at position 0.9 with {\arrow{>}}}, postaction={decorate}] (0,2) to[bend left=45] (0,-2);
+    \draw[thick, decoration={markings, mark=at position 0.9 with {\arrow{>}}}, postaction={decorate}] (0,2) to[bend right=45] (0,-2);
+
+    \draw[thick, draw=blue, decoration={markings, mark=at position 0.5 with {\arrow{>}}}, postaction={decorate}] 
+        (-0.75, -0.8) -- (0.75, -0.8);
+    \draw[thick, draw=blue, decoration={markings, mark=at position 0.5 with {\arrow{<}}}, postaction={decorate}] 
+        (-0.85, -0.2) -- (0.85, -0.2);
+
+    \fill[draw=black, fill=white] (0,2) circle (0.1);
+    \fill[draw=black, fill=white] (0,.3) circle (0.1);
+    \fill[draw=black, fill=white] (0,-2) circle (0.1);
+    
+    \node[anchor=east] at (-0.85, 0) {#1};
+    \node[anchor=west] at (0.85, 0) {#2};
+    \node[anchor=east] at (-0.85, -1) {#3};
+    \node[anchor=west] at (0.85, -1) {#4};
+\end{tikzpicture}
+}
+
+\newcommand{\upperbigoncross}[1]{
+\begin{tikzpicture}[scale=#1]
+   
+    \fill[gray!30]
+        (0,2)
+        .. controls (-1.25,1.35) and (-1.45,0.55) .. (-1.35,0)
+        .. controls (1.35,0) .. (1.35,0)
+        .. controls (1.45,0.55) and (1.25,1.35) .. cycle;        
+    \draw[thick, draw=blue] (-0.90,1.35) -- (1.35,0.10);
+
+\draw[gray!30, line width=5pt]  (-1.35,0.25) -- (1,1.3);
+
+\draw[thick, draw=blue] (-1.35,0.25) -- (0.95,1.3);    
+
+    \draw[thick] (0,2) .. controls (-1.25,1.35) and (-1.45,0.55) .. (-1.35,0);
+    \draw[thick] (0,2) .. controls (1.25,1.35) and (1.45,0.55) .. (1.35,0);
+
+    \filldraw[fill=white, thick] (0,2) circle (0.13);
+  
+    \node[left]  at (-1.35,0) {$k$};
+    \node[right] at (1.35,0) {$j$};
+    \node[left]  at (-0.85,1.55) {$i$};
+    \node[right] at (0.95,1.55) {$\ell$};
+\end{tikzpicture}
+}
+
+\newcommand{\Rform}[2]{
+\begin{tikzpicture}[ scale=.4, baseline=(current bounding box.center),
+    line width=1.5pt,
+    >={Stealth[length=3mm,width=2mm]},
+    bg/.style={black!12},
+    bubble/.style={circle, draw, line width=1.5pt,
+                   inner sep=0pt, minimum size=0.6cm, fill=black!12}
+  ]
+
+  \fill[bg] (0,0.4) rectangle (4.3,-4.3);
+
+  \node[bubble] (x) at (1.25,-1.2) {#1};
+  \node[bubble] (y) at (1.25,-3) {#2};
+
+  \draw (0,-1.2) -- (x.west);
+  \draw (0,-3) -- (y.west);
+
+  \draw (y.east) .. controls (2.6,-3) and (2.9,-1.8) .. (4.4,-0.95);
+
+  \draw[preaction={draw,line width=8pt,bg}]
+        (x.east) .. controls (2.6,-1.2) and (2.9,-2.9) .. (4.4,-3.75);
+        
+  \draw[->] (0,0.4) -- (0,-5);
+  \draw[->] (4.4,0.4) -- (4.4,-5);        
+
+\end{tikzpicture}
+}
+
+
+\newcommand{\gray}[1]{{\color{blue}#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\section{Problem Statement} 
+
+
+Let $\Uc_q(\fb_+),$ $\Uc_q(\fb_-)$ be the upper and lower Borel subalgebras of the simply-connected quantum group $\Uc_q(\sl(n)).$ (This quantum group appears for example in the Klimyk–Schm\"udgen book as $U_q^{ext}(\sl(n))$.)
+
+(1) Construct an explicit algebra isomorphism between $\bcS_n(\fB^*)$ and the generalized quantum double
+$\Uc_q(\fb_-)\,  \bipr\, \Uc_q(\fb_+)$ (with respect to the standard Drinfeld–Tanisaki skew pairing, 
+$$\la \hat K_i, \hat K_j\ra =q^{\frac1n-\delta_{i,j}},\quad \la E_i,F_j\ra=\delta_{i,j}/(q^{-1}-q), \quad \la \hat K_i,F_j\ra=\la E_j,\hat K_i\ra=0,$$ 
+in the notation of Klimyk–Schm\"udgen).
+
+(2) Deduce that the algebra $\Uc_q(\sl(n))$ is isomorphic with $\bcS_n(\fB^*)/I$, 
+where $I$ is the two sided ideal generated by $b_{ii}c_{ii}-1$ for $1\leq i\leq n,$ and $b_{ij}, c_{kl}$ are the horizontal arcs directed to the right: \BigonPGens
+\vspace*{.2in} 
+
+\end{document}

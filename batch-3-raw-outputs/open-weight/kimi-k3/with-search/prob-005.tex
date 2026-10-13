@@ -1,0 +1,276 @@
+% Sources:
+% [ar5iv.labs.arxiv.org](https://ar5iv.labs.arxiv.org/html/2307.09400)
+% [arxiv.org](https://arxiv.org/html/2309.17302)
+% [ar5iv.labs.arxiv.org](https://ar5iv.labs.arxiv.org/html/1006.3034)
+% [math.stonybrook.edu](https://www.math.stonybrook.edu/%7Eoleg/VersoTeX/Show/Hyperfields/hf.html)
+
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\usepackage{url}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+\newcommand{\hplus}{\boxplus}
+\newcommand{\cP}{\mathcal P}
+
+\title{A Cubic Zero-Sum Identity in Hyperfields}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Conventions and standard operations}
+
+Let \(\mathbb H\) be a hyperfield. We use the standard convention that its
+hyperaddition
+\[
+\hplus\colon \mathbb H\times \mathbb H\longrightarrow \cP^{*}(\mathbb H)
+\]
+takes values in nonempty subsets and is commutative and associative, has \(0\)
+as an identity, has unique additive inverses, and satisfies reversibility.
+Moreover, \(\mathbb H^\times=\mathbb H\setminus\{0\}\) is an abelian
+multiplicative group, \(0\) is absorbing, and scalar multiplication distributes
+over hyperaddition:
+\[
+a(b\hplus c)=ab\hplus ac.
+\]
+These are the standard hyperfield axioms and the strong form of scalar
+distributivity; see \cite{FactoringHyperfields,TropicalExtensions,Viro}.
+
+For nonempty subsets \(A,B\subseteq\mathbb H\), extend hyperaddition by
+\[
+A\hplus B:=\bigcup_{\substack{a\in A\\ b\in B}}a\hplus b.
+\]
+We identify an element \(a\in\mathbb H\) with the singleton \(\{a\}\).
+Associativity and commutativity of elementwise hyperaddition imply that finite
+hypersums of subsets may be flattened, reassociated, and reordered.
+
+\begin{lemma}[Scalar distributivity over finite hypersums]
+\label{lem:scalar-distributivity}
+For all \(a,x_1,\ldots,x_n\in\mathbb H\),
+\[
+a(x_1\hplus\cdots\hplus x_n)
+=
+ax_1\hplus\cdots\hplus ax_n.
+\]
+\end{lemma}
+
+\begin{proof}
+For \(n=2\), this is the scalar distributive law. The general case follows by
+induction and associativity:
+\[
+a\bigl((x_1\hplus\cdots\hplus x_{n-1})\hplus x_n\bigr)
+=
+a(x_1\hplus\cdots\hplus x_{n-1})\hplus ax_n
+=
+ax_1\hplus\cdots\hplus ax_n.
+\]
+The case \(a=0\) is consistent with absorption and the additive identity, since
+both sides equal \(\{0\}\).
+\end{proof}
+
+\begin{lemma}[Compatibility of negation and multiplication]
+\label{lem:negation-multiplication}
+For all \(a,b\in\mathbb H\),
+\[
+-(ab)=(-a)b=a(-b).
+\]
+\end{lemma}
+
+\begin{proof}
+If \(a=0\) or \(b=0\), all three expressions equal \(0\). Otherwise,
+\[
+0\in a\hplus(-a).
+\]
+Scalar multiplication by \(b\), together with
+Lemma~\ref{lem:scalar-distributivity}, gives
+\[
+0\in ba\hplus b(-a).
+\]
+Thus \(b(-a)\) is an additive inverse of \(ba\). By uniqueness of additive
+inverses,
+\[
+b(-a)=-(ba).
+\]
+Commutativity of multiplication gives the other equality.
+\end{proof}
+
+\begin{lemma}[Finite hypersums of sets containing zero]
+\label{lem:zero-in-each}
+If \(0\in A_i\) for \(1\leq i\leq n\), then
+\[
+0\in A_1\hplus\cdots\hplus A_n.
+\]
+\end{lemma}
+
+\begin{proof}
+Since \(0\in A_1\) and \(0\in A_2\),
+\[
+0\in 0\hplus 0=\{0\}\subseteq A_1\hplus A_2.
+\]
+Iterating this argument gives the claim.
+\end{proof}
+
+\begin{lemma}[Balanced-pair augmentation]
+\label{lem:balanced-augmentation}
+For every subset \(A\subseteq\mathbb H\) and every \(r\in\mathbb H\),
+\[
+A\subseteq A\hplus r\hplus(-r).
+\]
+\end{lemma}
+
+\begin{proof}
+The additive-inverse axiom gives
+\[
+0\in r\hplus(-r).
+\]
+For every \(a\in A\), the identity axiom and monotonicity of extended
+hyperaddition give
+\[
+\{a\}=a\hplus 0
+\subseteq a\hplus\bigl(r\hplus(-r)\bigr)
+=a\hplus r\hplus(-r).
+\]
+Taking the union over \(a\in A\) proves the inclusion.
+\end{proof}
+
+\section{The cubic identity}
+
+Define
+\[
+D:=x\hplus y\hplus z
+\]
+and
+\[
+T:=x^3\hplus y^3\hplus z^3
+\hplus(-xyz)\hplus(-xyz)\hplus(-xyz).
+\]
+Also define
+\[
+S:=x^2D\hplus y^2D\hplus z^2D
+\hplus(-xy)D\hplus(-xz)D\hplus(-yz)D.
+\]
+
+\begin{lemma}[Expansion and regrouping]
+\label{lem:expansion}
+With the notation above,
+\begin{align*}
+S={}&T
+\hplus\bigl(x^2y\hplus(-x^2y)\bigr)
+\hplus\bigl(xy^2\hplus(-xy^2)\bigr)\\
+&\quad
+\hplus\bigl(x^2z\hplus(-x^2z)\bigr)
+\hplus\bigl(xz^2\hplus(-xz^2)\bigr)\\
+&\quad
+\hplus\bigl(y^2z\hplus(-y^2z)\bigr)
+\hplus\bigl(yz^2\hplus(-yz^2)\bigr).
+\end{align*}
+In particular, \(T\subseteq S\).
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:scalar-distributivity},
+\begin{align*}
+x^2D&=x^3\hplus x^2y\hplus x^2z,\\
+y^2D&=xy^2\hplus y^3\hplus y^2z,\\
+z^2D&=xz^2\hplus yz^2\hplus z^3.
+\end{align*}
+Using Lemma~\ref{lem:negation-multiplication} as well,
+\begin{align*}
+(-xy)D&=(-x^2y)\hplus(-xy^2)\hplus(-xyz),\\
+(-xz)D&=(-x^2z)\hplus(-xyz)\hplus(-xz^2),\\
+(-yz)D&=(-xyz)\hplus(-y^2z)\hplus(-yz^2).
+\end{align*}
+Flattening these six ternary hypersums and reordering the eighteen terms gives
+the displayed equality.
+
+Finally, six applications of Lemma~\ref{lem:balanced-augmentation}, with
+\[
+r=x^2y,\ xy^2,\ x^2z,\ xz^2,\ y^2z,\ yz^2,
+\]
+show that \(T\subseteq S\).
+\end{proof}
+
+The preceding expansion is the hyperfield form of the ordinary polynomial
+identity
+\[
+(x+y+z)(x^2+y^2+z^2-xy-xz-yz)
+=x^3+y^3+z^3-3xyz.
+\]
+It is important that the argument distributes each scalar \(q\) over \(D\)
+separately. It does not assert double distributivity of one hypersum over
+another, a property not justified by the basic hyperfield axioms; in general
+the corresponding product-of-sums statement is only an inclusion
+\cite{Viro,ViroNotes}.
+
+\begin{theorem}
+Let \(\mathbb H\) be a hyperfield, and let \(x,y,z\in\mathbb H\). If
+\[
+0\in x\hplus y\hplus z,
+\]
+then
+\[
+0\in x^3\hplus y^3\hplus z^3
+\hplus(-xyz)\hplus(-xyz)\hplus(-xyz).
+\]
+\end{theorem}
+
+\begin{proof}
+By hypothesis,
+\[
+0\in D=x\hplus y\hplus z.
+\]
+For every
+\[
+q\in\{x^2,y^2,z^2,-xy,-xz,-yz\},
+\]
+absorption gives \(q0=0\), and hence
+\[
+0\in qD.
+\]
+Therefore, by Lemma~\ref{lem:zero-in-each},
+\[
+0\in
+x^2D\hplus y^2D\hplus z^2D
+\hplus(-xy)D\hplus(-xz)D\hplus(-yz)D
+=S.
+\]
+Lemma~\ref{lem:expansion} gives \(T\subseteq S\). Since \(0\in S\), it follows
+that \(0\in T\), which is precisely the claimed inclusion.
+\end{proof}
+
+\begin{thebibliography}{9}
+
+\bibitem{FactoringHyperfields}
+\emph{Factoring multivariate polynomials over hyperfields and the
+multivariable Descartes' problem}, arXiv:2307.09400.
+Available at
+\href{https://ar5iv.labs.arxiv.org/html/2307.09400}{ar5iv.labs.arxiv.org}.
+
+\bibitem{TropicalExtensions}
+\emph{Geometry of tropical extensions of hyperfields}, Definition~2.1,
+arXiv:2309.17302.
+Available at
+\href{https://arxiv.org/html/2309.17302}{arxiv.org}.
+
+\bibitem{Viro}
+O.~Viro,
+\emph{Hyperfields for tropical geometry I. Hyperfields and dequantization},
+arXiv:1006.3034, Theorems~4.A and~4.B.
+Available at
+\href{https://ar5iv.labs.arxiv.org/html/1006.3034}{ar5iv.labs.arxiv.org}.
+
+\bibitem{ViroNotes}
+O.~Viro,
+\emph{Hyperfields and dequantization}, online exposition, Theorem~4.B.
+Available at
+\href{https://www.math.stonybrook.edu/\%7Eoleg/VersoTeX/Show/Hyperfields/hf.html}{math.stonybrook.edu}.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,989 @@
+from __future__ import annotations
+
+import json
+import sys
+import types
+import unittest
+from pathlib import Path
+from types import SimpleNamespace
+from unittest.mock import patch
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
+
+if "anthropic" not in sys.modules:
+    anthropic = types.ModuleType("anthropic")
+    anthropic.NOT_GIVEN = object()
+    anthropic.Anthropic = object
+    sys.modules["anthropic"] = anthropic
+
+    anthropic_types = types.ModuleType("anthropic.types")
+    anthropic_types.TextBlock = type("TextBlock", (), {})
+    anthropic_types.ThinkingBlock = type("ThinkingBlock", (), {})
+    sys.modules["anthropic.types"] = anthropic_types
+
+    anthropic_message_params = types.ModuleType("anthropic.types.message_create_params")
+    anthropic_message_params.MessageCreateParamsNonStreaming = dict
+    sys.modules["anthropic.types.message_create_params"] = anthropic_message_params
+
+    anthropic_batch_params = types.ModuleType("anthropic.types.messages.batch_create_params")
+    anthropic_batch_params.Request = dict
+    sys.modules["anthropic.types.messages.batch_create_params"] = anthropic_batch_params
+
+if "openai" not in sys.modules:
+    openai = types.ModuleType("openai")
+    openai.OpenAI = object
+    openai.RateLimitError = RuntimeError
+    sys.modules["openai"] = openai
+
+if "together" not in sys.modules:
+    together = types.ModuleType("together")
+    together.Together = object
+    sys.modules["together"] = together
+
+if "transformers" not in sys.modules:
+    transformers = types.ModuleType("transformers")
+    transformers.AutoTokenizer = object
+    sys.modules["transformers"] = transformers
+
+if "loguru" not in sys.modules:
+    loguru = types.ModuleType("loguru")
+
+    class _Logger:
+        def info(self, *args, **kwargs):
+            pass
+
+        def warning(self, *args, **kwargs):
+            pass
+
+        def error(self, *args, **kwargs):
+            pass
+
+    loguru.logger = _Logger()
+    sys.modules["loguru"] = loguru
+
+from mathagents import api_client as api_client_module  # noqa: E402
+from mathagents.api_client import (  # noqa: E402
+    APIClient,
+    ProviderAttachmentRejectedError,
+    _ClientTerminated,
+)
+
+
+def _function_tool(name: str = "list_persisted_files") -> dict:
+    return {
+        "type": "function",
+        "function": {
+            "name": name,
+            "description": "List files.",
+            "parameters": {"type": "object", "properties": {}, "required": []},
+        },
+    }
+
+
+def _message(text: str):
+    return SimpleNamespace(
+        type="message",
+        id="msg_1",
+        content=[SimpleNamespace(type="output_text", text=text)],
+    )
+
+
+def _function_call(name: str = "list_persisted_files"):
+    return SimpleNamespace(
+        type="function_call",
+        id="fc_1",
+        call_id="call_1",
+        name=name,
+        arguments="{}",
+    )
+
+
+def _web_search_call():
+    return SimpleNamespace(
+        type="web_search_call",
+        id="ws_1",
+        status="completed",
+        action=SimpleNamespace(type="search", queries=["irrationality of sqrt 2"]),
+    )
+
+
+def _code_interpreter_call():
+    return SimpleNamespace(
+        type="code_interpreter_call",
+        id="ci_1",
+        code='print("ok")',
+        container_id="cntr_1",
+        status="completed",
+        results=[],
+    )
+
+
+def _reasoning():
+    return SimpleNamespace(
+        type="reasoning",
+        id="rs_1",
+        summary=[SimpleNamespace(text="thinking", type="summary_text")],
+        content=None,
+        encrypted_content=None,
+    )
+
+
+def _response(*outputs):
+    return SimpleNamespace(
+        output=list(outputs),
+        usage={"input_tokens": 1, "output_tokens": 1},
+        model_dump=lambda: {"output": [getattr(out, "type", "") for out in outputs]},
+    )
+
+
+def _cache_usage(*, input_tokens=1000, cached_tokens=200, cache_write_tokens=300, output_tokens=10):
+    dumped = {
+        "input_tokens": input_tokens,
+        "input_tokens_details": {
+            "cached_tokens": cached_tokens,
+            "cache_write_tokens": cache_write_tokens,
+        },
+        "output_tokens": output_tokens,
+        "total_tokens": input_tokens + output_tokens,
+    }
+    return SimpleNamespace(
+        input_tokens=input_tokens,
+        input_tokens_details=SimpleNamespace(
+            cached_tokens=cached_tokens,
+            cache_write_tokens=cache_write_tokens,
+        ),
+        output_tokens=output_tokens,
+        total_tokens=input_tokens + output_tokens,
+        model_dump=lambda: dumped,
+    )
+
+
+class _Responses:
+    def __init__(self, responses):
+        self.responses = list(responses)
+        self.payloads = []
+
+    def create(self, **payload):
+        self.payloads.append(payload)
+        if not self.responses:
+            raise AssertionError("unexpected extra Responses API call")
+        return self.responses.pop(0)
+
+
+class ResponsesToolLoopTests(unittest.TestCase):
+    def test_cache_write_config_requires_boolean_flag_and_positive_rate(self) -> None:
+        with self.assertRaisesRegex(ValueError, "cache_write_tokens_in_input must be a boolean"):
+            APIClient(model="fake", api="custom", cache_write_tokens_in_input=1)
+        with self.assertRaisesRegex(ValueError, "cache_write_cost must be positive"):
+            APIClient(model="fake", api="custom", cache_write_tokens_in_input=True)
+
+    def test_cache_write_tokens_are_billed_as_an_input_category(self) -> None:
+        api = APIClient(
+            model="fake",
+            api="custom",
+            read_cost=5,
+            cache_read_cost=0.5,
+            cache_write_cost=6.25,
+            cache_write_tokens_in_input=True,
+            write_cost=30,
+        )
+        usage = SimpleNamespace(
+            input_tokens=1000,
+            input_tokens_details=SimpleNamespace(
+                cached_tokens=200,
+                cache_write_tokens=600,
+            ),
+            output_tokens=10,
+        )
+
+        extracted = api._extract_usage_tokens(usage)
+
+        self.assertEqual(extracted, (1000, 10, 200, 600))
+        expected = (200 * 5 + 200 * 0.5 + 600 * 6.25 + 10 * 30) / 1_000_000
+        self.assertAlmostEqual(api._get_cost(*extracted), expected)
+
+    def test_flat_cache_fields_are_extracted(self) -> None:
+        api = APIClient(model="fake", api="custom")
+        usage = SimpleNamespace(
+            input_tokens=1000,
+            cached_tokens=200,
+            cache_write_tokens=300,
+            output_tokens=10,
+        )
+
+        self.assertEqual(api._extract_usage_tokens(usage), (1000, 10, 200, 300))
+
+    def test_long_context_multiplier_applies_to_the_full_request(self) -> None:
+        api = APIClient(
+            model="fake",
+            api="custom",
+            read_cost=5,
+            cache_read_cost=0.5,
+            cache_write_cost=6.25,
+            cache_write_tokens_in_input=True,
+            write_cost=30,
+            long_context_threshold_tokens=272000,
+            long_context_input_multiplier=2,
+            long_context_output_multiplier=1.5,
+        )
+
+        at_threshold = api._get_cost(272000, 1000, 100000, 50000)
+        above_threshold = api._get_cost(272001, 1000, 100000, 50000)
+        base_input = (122000 * 5 + 100000 * 0.5 + 50000 * 6.25) / 1_000_000
+        above_base_input = (122001 * 5 + 100000 * 0.5 + 50000 * 6.25) / 1_000_000
+
+        self.assertAlmostEqual(at_threshold, base_input + 1000 * 30 / 1_000_000)
+        self.assertAlmostEqual(
+            above_threshold,
+            above_base_input * 2 + 1000 * 30 * 1.5 / 1_000_000,
+        )
+
+    def test_long_context_cost_is_computed_per_provider_request(self) -> None:
+        def list_persisted_files() -> dict:
+            return {"ok": True, "files": []}
+
+        api = APIClient(
+            model="fake",
+            api="custom",
+            use_openai_responses_api=True,
+            read_cost=5,
+            write_cost=30,
+            long_context_threshold_tokens=272000,
+            long_context_input_multiplier=2,
+            long_context_output_multiplier=1.5,
+            tools=[(list_persisted_files, _function_tool())],
+        )
+        first = _response(_function_call())
+        first.usage = {"input_tokens": 200000, "output_tokens": 10}
+        second = _response(_message("done"))
+        second.usage = {"input_tokens": 200000, "output_tokens": 10}
+        client = SimpleNamespace(responses=_Responses([first, second]))
+
+        with patch("mathagents.api_client.request_logger.log_request"), patch(
+            "mathagents.api_client.request_logger.log_response"
+        ):
+            result = api._openai_query_responses_api(
+                client, 0, [{"role": "user", "content": "hi"}]
+            )
+
+        expected = 2 * (200000 * 5 + 10 * 30) / 1_000_000
+        self.assertAlmostEqual(result.cost_usd, expected)
+        self.assertGreater(
+            api._get_cost(result.input_tokens, result.output_tokens),
+            result.cost_usd,
+        )
+
+    def test_chat_completions_propagates_cache_write_tokens(self) -> None:
+        usage = _cache_usage()
+        message = SimpleNamespace(
+            reasoning_details=None,
+            reasoning=None,
+            reasoning_content=None,
+            tool_calls=[],
+            model_dump=lambda: {"role": "assistant", "content": "done", "tool_calls": []},
+        )
+        response = SimpleNamespace(
+            usage=usage,
+            choices=[SimpleNamespace(message=message)],
+            model_dump=lambda: {"usage": usage.model_dump()},
+        )
+        completions = SimpleNamespace(create=lambda **kwargs: response)
+        client = SimpleNamespace(chat=SimpleNamespace(completions=completions))
+        api = APIClient(model="fake", api="custom")
+
+        with patch("mathagents.api_client.request_logger.log_request"), patch(
+            "mathagents.api_client.request_logger.log_response"
+        ):
+            result = api._openai_query_chat_completions_api(
+                client, 0, [{"role": "user", "content": "hi"}]
+            )
+
+        self.assertEqual(result.cached_write_tokens, 300)
+
+    def test_streaming_chat_completions_propagates_cache_write_tokens(self) -> None:
+        usage = _cache_usage()
+        response = [
+            SimpleNamespace(
+                usage=None,
+                choices=[SimpleNamespace(delta=SimpleNamespace(content="done", reasoning=None))],
+            ),
+            SimpleNamespace(usage=usage, choices=[]),
+        ]
+        completions = SimpleNamespace(create=lambda **kwargs: response)
+        client = SimpleNamespace(chat=SimpleNamespace(completions=completions))
+        api = APIClient(model="fake", api="custom", stream_openai_chat_completions=True)
+
+        with patch("mathagents.api_client.request_logger.log_request"), patch(
+            "mathagents.api_client.request_logger.log_response"
+        ):
+            result = api._openai_query_chat_completions_api(
+                client, 0, [{"role": "user", "content": "hi"}]
+            )
+
+        self.assertEqual(result.cached_write_tokens, 300)
+
+    def test_openai_batch_propagates_cache_write_tokens(self) -> None:
+        usage = _cache_usage().model_dump()
+        row = {
+            "custom_id": "apiquery-0",
+            "response": {
+                "status_code": 200,
+                "body": {
+                    "choices": [{"message": {"content": "done"}}],
+                    "usage": usage,
+                },
+            },
+        }
+        batch = SimpleNamespace(
+            id="batch-1",
+            request_counts={"completed": 1, "failed": 0},
+            status="completed",
+            output_file_id="output-1",
+        )
+        files = SimpleNamespace(
+            create=lambda **kwargs: SimpleNamespace(id="input-1"),
+            content=lambda **kwargs: SimpleNamespace(iter_lines=lambda: [json.dumps(row)]),
+        )
+        batches = SimpleNamespace(create=lambda **kwargs: batch, retrieve=lambda batch_id: batch)
+        fake_client = SimpleNamespace(files=files, batches=batches)
+        api = APIClient(model="fake", api="custom", max_retries=1)
+
+        with patch.object(api_client_module, "OpenAI", return_value=fake_client):
+            result = api._openai_batch_processing(
+                [[{"role": "user", "content": "hi"}]], [0]
+            )[0]
+
+        self.assertIsNotNone(result)
+        self.assertEqual(result.cached_write_tokens, 300)
+
+    def test_anthropic_batch_propagates_cache_write_tokens(self) -> None:
+        usage = SimpleNamespace(
+            input_tokens=100,
+            cache_read_input_tokens=20,
+            cache_creation_input_tokens=30,
+            output_tokens=10,
+        )
+        raw_result = SimpleNamespace(
+            result=SimpleNamespace(
+                type="succeeded",
+                message=SimpleNamespace(content=[], usage=usage),
+            ),
+            model_dump=lambda: {},
+        )
+        batch = SimpleNamespace(
+            id="batch-1",
+            request_counts={"succeeded": 1},
+            processing_status="ended",
+        )
+        batches = SimpleNamespace(
+            create=lambda **kwargs: batch,
+            retrieve=lambda **kwargs: batch,
+            results=lambda **kwargs: [raw_result],
+        )
+        fake_client = SimpleNamespace(messages=SimpleNamespace(batches=batches))
+        api = APIClient(model="fake", api="custom", max_retries=1)
+
+        with patch.object(api_client_module.anthropic, "Anthropic", return_value=fake_client), patch.object(
+            api,
+            "_get_messages_from_anthropic_content",
+            return_value=[{"role": "assistant", "content": "done"}],
+        ), patch("mathagents.api_client.request_logger.log_request"), patch(
+            "mathagents.api_client.request_logger.log_response"
+        ):
+            result = api._anthropic_batch_processing(
+                [[{"role": "user", "content": "hi"}]], [0]
+            )[0]
+
+        self.assertIsNotNone(result)
+        self.assertEqual(result.cached_write_tokens, 30)
+
+    def test_default_tool_budget_is_unbounded_and_reaches_final_message(self) -> None:
+        def list_persisted_files() -> dict:
+            return {"ok": True, "files": []}
+
+        api = APIClient(
+            model="fake",
+            api="custom",
+            use_openai_responses_api=True,
+            tools=[(list_persisted_files, _function_tool())],
+        )
+        responses = _Responses([
+            _response(_function_call()),
+            _response(_message("<solution>done</solution>")),
+        ])
+        client = SimpleNamespace(responses=responses)
+
+        with patch("mathagents.api_client.request_logger.log_request"), patch(
+            "mathagents.api_client.request_logger.log_response"
+        ):
+            result = api._openai_query_responses_api(client, 0, [{"role": "user", "content": "hi"}])
+
+        self.assertEqual(len(responses.payloads), 2)
+        self.assertEqual(api.max_tool_calls["any"], float("inf"))
+        self.assertEqual(result.conversation[-1]["content"].strip(), "<solution>done</solution>")
+        self.assertEqual(result.conversation[-2]["type"], "function_call_output")
+        self.assertIn("'files': []", result.conversation[-2]["output"])
+
+    def test_zero_tool_budget_removes_local_functions_from_responses_payload(self) -> None:
+        def list_persisted_files() -> dict:
+            return {"ok": True, "files": []}
+
+        api = APIClient(
+            model="fake",
+            api="custom",
+            use_openai_responses_api=True,
+            max_tool_calls=0,
+            tools=[
+                (list_persisted_files, _function_tool()),
+                (None, {"type": "code_interpreter", "container": {"type": "auto"}}),
+            ],
+        )
+        responses = _Responses([_response(_message("done"))])
+        client = SimpleNamespace(responses=responses)
+
+        with patch("mathagents.api_client.request_logger.log_request"), patch(
+            "mathagents.api_client.request_logger.log_response"
+        ):
+            api._openai_query_responses_api(client, 0, [{"role": "user", "content": "hi"}])
+
+        self.assertEqual(responses.payloads[0]["tools"], [{"type": "code_interpreter", "container": {"type": "auto"}}])
+
+    def test_provider_web_search_call_is_replayed_without_query_field(self) -> None:
+        def list_persisted_files() -> dict:
+            return {"ok": True, "files": []}
+
+        api = APIClient(
+            model="fake",
+            api="custom",
+            use_openai_responses_api=True,
+            tools=[
+                (list_persisted_files, _function_tool()),
+                (None, {"type": "web_search_preview"}),
+                (None, {"type": "code_interpreter", "container": {"type": "auto"}}),
+            ],
+        )
+        responses = _Responses([
+            _response(_reasoning(), _web_search_call(), _code_interpreter_call(), _function_call()),
+            _response(_message("<solution>done</solution>")),
+        ])
+        client = SimpleNamespace(responses=responses)
+
+        with patch("mathagents.api_client.request_logger.log_request"), patch(
+            "mathagents.api_client.request_logger.log_response"
+        ):
+            api._openai_query_responses_api(client, 0, [{"role": "user", "content": "hi"}])
+
+        replayed = responses.payloads[1]["input"]
+        web_items = [item for item in replayed if item.get("type") == "web_search_call"]
+        self.assertEqual(web_items, [{"type": "web_search_call", "id": "ws_1", "status": "completed"}])
+        self.assertNotIn("query", web_items[0])
+        code_items = [item for item in replayed if item.get("type") == "code_interpreter_call"]
+        self.assertEqual(
+            code_items,
+            [
+                {
+                    "type": "code_interpreter_call",
+                    "id": "ci_1",
+                    "code": 'print("ok")',
+                    "container_id": "cntr_1",
+                    "status": "completed",
+                    "outputs": None,
+                }
+            ],
+        )
+        self.assertNotIn("results", code_items[0])
+        reasoning_items = [item for item in replayed if item.get("type") == "reasoning"]
+        self.assertEqual(reasoning_items, [{"type": "reasoning", "id": "rs_1", "summary": [{"text": "thinking", "type": "summary_text"}]}])
+        self.assertNotIn("content", reasoning_items[0])
+
+
+class SalvagePrefersOutputTests(unittest.TestCase):
+    """When OpenAI returns ``response.status='failed'`` with
+    ``rate_limit_exceeded`` but ``response.output`` contains the model's
+    actual reply, we must salvage the output rather than retry the call.
+
+    The old order checked the rate-limit branch first and discarded a
+    fully-formed response; that was responsible for two ~$0 / no-content
+    Author rounds in the hilbert_admissible_v1 production run.
+    """
+
+    def test_salvage_takes_precedence_over_retry_when_output_present(self) -> None:
+        queued = SimpleNamespace(id="resp_test_123", status="queued")
+        failed_with_output = SimpleNamespace(
+            id="resp_test_123",
+            status="failed",
+            error=SimpleNamespace(
+                code="rate_limit_exceeded",
+                message="Rate limit reached for gpt-5.5-pro. Please try again in 1.573s.",
+            ),
+            output=[_message("the complete model reply")],
+            usage=None,
+            model_dump=lambda: {"output": ["message"], "status": "failed"},
+        )
+
+        class _BackgroundResponses:
+            def __init__(self):
+                self.create_calls = 0
+                self.retrieve_calls = 0
+
+            def create(self, **payload):
+                self.create_calls += 1
+                return queued
+
+            def retrieve(self, response_id, **kwargs):
+                self.retrieve_calls += 1
+                return failed_with_output
+
+        responses = _BackgroundResponses()
+        client = SimpleNamespace(responses=responses)
+
+        api = APIClient(
+            model="fake-pro",
+            api="custom",
+            use_openai_responses_api=True,
+            background=True,
+        )
+
+        with patch("mathagents.api_client.request_logger.log_request"), patch(
+            "mathagents.api_client.request_logger.log_response"
+        ), patch("mathagents.api_client.time.sleep"):
+            result = api._openai_query_responses_api(
+                client, 0, [{"role": "user", "content": "hi"}]
+            )
+
+        self.assertEqual(
+            responses.create_calls,
+            1,
+            "rate_limit_exceeded with non-empty output must NOT trigger a retry — "
+            "the existing output is the salvageable response.",
+        )
+        self.assertEqual(
+            result.conversation[-1]["content"].strip(),
+            "the complete model reply",
+            "salvaged output must reach the final conversation",
+        )
+
+    def test_retry_still_fires_when_output_is_empty(self) -> None:
+        """Sanity: retry-on-rate-limit still works when there's nothing to salvage."""
+        failed_empty = SimpleNamespace(
+            id="resp_test_456",
+            status="failed",
+            error=SimpleNamespace(
+                code="rate_limit_exceeded",
+                message="Rate limit reached. Please try again in 1.0s.",
+            ),
+            output=[],
+            usage=None,
+            model_dump=lambda: {"output": [], "status": "failed"},
+        )
+        completed_after_retry = SimpleNamespace(
+            id="resp_test_789",
+            status="completed",
+            output=[_message("recovered on retry")],
+            usage=SimpleNamespace(input_tokens=1, output_tokens=1, total_tokens=2),
+            model_dump=lambda: {"output": ["message"], "status": "completed"},
+        )
+
+        class _BackgroundResponses:
+            def __init__(self):
+                self.create_calls = 0
+                self.retrieve_calls = 0
+
+            def create(self, **payload):
+                self.create_calls += 1
+                # Each create starts a new queued response; the retrieve
+                # sequence below decides what state it ends in.
+                return SimpleNamespace(
+                    id=f"resp_{self.create_calls}", status="queued"
+                )
+
+            def retrieve(self, response_id, **kwargs):
+                self.retrieve_calls += 1
+                # First poll: failed-with-no-output (triggers retry).
+                # Second poll: a clean completed response on the retry.
+                if self.retrieve_calls == 1:
+                    return failed_empty
+                return completed_after_retry
+
+        responses = _BackgroundResponses()
+        client = SimpleNamespace(responses=responses)
+
+        api = APIClient(
+            model="fake-pro",
+            api="custom",
+            use_openai_responses_api=True,
+            background=True,
+        )
+
+        with patch("mathagents.api_client.request_logger.log_request"), patch(
+            "mathagents.api_client.request_logger.log_response"
+        ), patch("mathagents.api_client.time.sleep"):
+            result = api._openai_query_responses_api(
+                client, 0, [{"role": "user", "content": "hi"}]
+            )
+
+        self.assertEqual(
+            responses.create_calls,
+            2,
+            "rate_limit_exceeded with EMPTY output should still trigger a retry",
+        )
+        self.assertEqual(
+            result.conversation[-1]["content"].strip(),
+            "recovered on retry",
+        )
+
+    def test_container_file_limit_is_terminal_even_with_partial_output(self) -> None:
+        queued = SimpleNamespace(id="resp_file_limit", status="queued")
+        failed = SimpleNamespace(
+            id="resp_file_limit",
+            status="failed",
+            error=SimpleNamespace(
+                code="array_above_max_length",
+                message="The container has too many files; maximum of 1000 files.",
+            ),
+            output=[_message("partial tool chatter is not a usable answer")],
+            usage=None,
+            model_dump=lambda: {"output": ["message"], "status": "failed"},
+        )
+
+        class _BackgroundResponses:
+            def __init__(self):
+                self.create_calls = 0
+
+            def create(self, **payload):
+                self.create_calls += 1
+                return queued
+
+            def retrieve(self, response_id, **kwargs):
+                return failed
+
+        responses = _BackgroundResponses()
+        api = APIClient(
+            model="fake-pro",
+            api="custom",
+            use_openai_responses_api=True,
+            background=True,
+        )
+
+        with patch("mathagents.api_client.request_logger.log_request"), patch(
+            "mathagents.api_client.request_logger.log_response"
+        ), patch("mathagents.api_client.time.sleep"):
+            with self.assertRaisesRegex(
+                ProviderAttachmentRejectedError,
+                "array_above_max_length",
+            ) as raised:
+                api._openai_query_responses_api(
+                    SimpleNamespace(responses=responses),
+                    0,
+                    [{"role": "user", "content": "hi"}],
+                )
+
+        self.assertEqual(responses.create_calls, 1)
+        self.assertGreaterEqual(raised.exception.cost["input_tokens"], 0)
+        self.assertGreater(raised.exception.cost["output_tokens"], 0)
+        self.assertGreater(raised.exception.cost["cost"], 0.0)
+
+
+class BackgroundTimeoutRetryTests(unittest.TestCase):
+    def test_timeout_retry_cancels_and_downgrades_reasoning_effort(self) -> None:
+        queued = SimpleNamespace(
+            id="resp_timeout_1",
+            status="queued",
+            model_dump=lambda: {"status": "queued"},
+        )
+        completed = SimpleNamespace(
+            id="resp_done_1",
+            status="completed",
+            output=[_message("done at lower effort")],
+            usage=SimpleNamespace(input_tokens=1, output_tokens=1, total_tokens=2),
+            model_dump=lambda: {"output": ["message"], "status": "completed"},
+        )
+
+        class _BackgroundResponses:
+            def __init__(self):
+                self.create_calls = 0
+                self.retrieve_calls = 0
+                self.cancelled = []
+                self.payloads = []
+
+            def create(self, **payload):
+                self.create_calls += 1
+                self.payloads.append(payload)
+                if self.create_calls == 1:
+                    return queued
+                return completed
+
+            def retrieve(self, response_id, **kwargs):
+                self.retrieve_calls += 1
+                return queued
+
+            def cancel(self, response_id, **kwargs):
+                self.cancelled.append(response_id)
+
+        clock = {"now": 0.0}
+
+        def fake_time():
+            return clock["now"]
+
+        def fake_sleep(seconds):
+            clock["now"] += seconds
+
+        responses = _BackgroundResponses()
+        client = SimpleNamespace(responses=responses)
+
+        api = APIClient(
+            model="gpt-5.5-pro--xhigh",
+            api="custom",
+            use_openai_responses_api=True,
+            background=True,
+            timeout=1,
+            max_wallclock_per_call_s=300,
+            background_timeout_downgrade_after=1,
+            background_timeout_reasoning_efforts=["high"],
+        )
+
+        with patch("mathagents.api_client.request_logger.log_request"), patch(
+            "mathagents.api_client.request_logger.log_response"
+        ), patch("mathagents.api_client.time.time", fake_time), patch(
+            "mathagents.api_client.time.sleep", fake_sleep
+        ):
+            result = api._openai_query_responses_api(
+                client, 0, [{"role": "user", "content": "hi"}]
+            )
+
+        self.assertEqual(responses.create_calls, 2)
+        self.assertEqual(responses.cancelled, ["resp_timeout_1"])
+        self.assertEqual(responses.payloads[0]["reasoning"]["effort"], "xhigh")
+        self.assertEqual(responses.payloads[1]["reasoning"]["effort"], "high")
+        self.assertEqual(
+            result.conversation[-1]["content"].strip(),
+            "done at lower effort",
+        )
+
+    def test_poll_deadline_capped_by_remaining_wallclock_budget(self) -> None:
+        # Per-attempt timeout is much larger than the inner-loop
+        # wallclock budget. Without the wallclock-aware cap, the
+        # polling loop would wait the full ``timeout`` before raising,
+        # letting a stuck call hold the worker slot well past the
+        # ``max_wallclock_per_call_s`` budget. The fix caps each
+        # poll's deadline at ``min(timeout, remaining_wallclock)``.
+        queued = SimpleNamespace(
+            id="resp_wallclock_1",
+            status="queued",
+            model_dump=lambda: {"status": "queued"},
+        )
+
+        class _BackgroundResponses:
+            def __init__(self):
+                self.create_calls = 0
+                self.cancelled = []
+
+            def create(self, **payload):
+                self.create_calls += 1
+                return queued
+
+            def retrieve(self, response_id, **kwargs):
+                return queued
+
+            def cancel(self, response_id, **kwargs):
+                self.cancelled.append(response_id)
+
+        clock = {"now": 0.0}
+
+        def fake_time():
+            return clock["now"]
+
+        def fake_sleep(seconds):
+            clock["now"] += seconds
+
+        responses = _BackgroundResponses()
+        client = SimpleNamespace(responses=responses)
+
+        api = APIClient(
+            model="gpt-5.5-pro--xhigh",
+            api="custom",
+            use_openai_responses_api=True,
+            background=True,
+            timeout=11400,
+            max_wallclock_per_call_s=180,
+        )
+
+        with patch("mathagents.api_client.request_logger.log_request"), patch(
+            "mathagents.api_client.request_logger.log_response"
+        ), patch("mathagents.api_client.time.time", fake_time), patch(
+            "mathagents.api_client.time.sleep", fake_sleep
+        ):
+            with self.assertRaises(ValueError):
+                api._openai_query_responses_api(
+                    client, 0, [{"role": "user", "content": "hi"}]
+                )
+
+        # The poll must have cancelled the stuck call rather than
+        # waiting out the 11400s per-attempt timeout.
+        self.assertGreaterEqual(len(responses.cancelled), 1)
+        self.assertEqual(responses.cancelled[0], "resp_wallclock_1")
+        # And the whole inner loop must have exited well before
+        # ``self.timeout`` — within a small multiple of the wallclock
+        # budget, not the per-attempt timeout.
+        self.assertLess(clock["now"], 600.0)
+
+    def test_first_attempt_runs_to_per_attempt_timeout(self) -> None:
+        # Regression: the polling deadline used to be a duration that
+        # shrunk as time passed (``min(self.timeout, max_wallclock -
+        # elapsed)``), which truncated attempt 1 to roughly half the
+        # inner-loop wallclock budget instead of the configured
+        # per-attempt timeout. Pin the absolute-deadline behavior:
+        # with no prior calls, attempt 1 must run until ~self.timeout
+        # even when max_wallclock is comfortably larger.
+        timeout = 4000
+        max_wallclock = 5000
+
+        queued = SimpleNamespace(
+            id="resp_full_attempt_1",
+            status="queued",
+            model_dump=lambda: {"status": "queued"},
+        )
+
+        cancelled_at: list[float] = []
+
+        class _BackgroundResponses:
+            def create(self, **payload):
+                return queued
+
+            def retrieve(self, response_id, **kwargs):
+                return queued
+
+            def cancel(self, response_id, **kwargs):
+                cancelled_at.append(clock["now"])
+
+        clock = {"now": 0.0}
+
+        def fake_time():
+            return clock["now"]
+
+        def fake_sleep(seconds):
+            clock["now"] += seconds
+
+        client = SimpleNamespace(responses=_BackgroundResponses())
+
+        api = APIClient(
+            model="gpt-5.5-pro--xhigh",
+            api="custom",
+            use_openai_responses_api=True,
+            background=True,
+            timeout=timeout,
+            max_wallclock_per_call_s=max_wallclock,
+        )
+
+        with patch("mathagents.api_client.request_logger.log_request"), patch(
+            "mathagents.api_client.request_logger.log_response"
+        ), patch("mathagents.api_client.time.time", fake_time), patch(
+            "mathagents.api_client.time.sleep", fake_sleep
+        ):
+            with self.assertRaises(ValueError):
+                api._openai_query_responses_api(
+                    client, 0, [{"role": "user", "content": "hi"}]
+                )
+
+        # Bugged version cancelled around t = max_wallclock / 2 (~2520s
+        # for the production config). Pin the fix: first cancel must be
+        # at or after ``self.timeout``, not at the wallclock midpoint.
+        self.assertGreater(cancelled_at[0], float(timeout) - 60.0)
+        self.assertLess(cancelled_at[0], float(timeout) + 120.0)
+
+
+class TerminateDuringBackgroundPollTests(unittest.TestCase):
+    def test_outer_retry_returns_immediately_for_client_termination(self) -> None:
+        api = APIClient(model="fake-pro", api="custom")
+        with patch.object(
+            api,
+            "_run_query",
+            side_effect=_ClientTerminated("terminated"),
+        ) as run_query, patch("mathagents.api_client.time.sleep") as sleep:
+            result = api._run_query_with_retry(
+                0,
+                [{"role": "user", "content": "hi"}],
+            )
+
+        self.assertIsNone(result)
+        self.assertEqual(run_query.call_count, 1)
+        sleep.assert_not_called()
+
+    def test_outer_retry_preserves_typed_attachment_rejection(self) -> None:
+        api = APIClient(model="fake-pro", api="custom")
+        rejected = ProviderAttachmentRejectedError(
+            "file rejected",
+            cost={"cost": 1.5, "input_tokens": 10, "output_tokens": 2},
+        )
+        with patch.object(
+            api,
+            "_run_query",
+            side_effect=rejected,
+        ) as run_query, patch("mathagents.api_client.time.sleep") as sleep:
+            with self.assertRaises(ProviderAttachmentRejectedError) as raised:
+                api._run_query_with_retry(
+                    0,
+                    [{"role": "user", "content": "hi"}],
+                )
+
+        self.assertIs(raised.exception, rejected)
+        self.assertEqual(raised.exception.cost["cost"], 1.5)
+        self.assertEqual(run_query.call_count, 1)
+        sleep.assert_not_called()
+
+    def test_terminate_cancels_response_and_escapes_poll(self) -> None:
+        # terminate() must interrupt the poll within one sleep slice,
+        # cancel the server-side response, and escape the retry loops
+        # (a _ClientTerminated retry would relaunch the whole call).
+        pending = SimpleNamespace(
+            id="resp_pending_1",
+            status="in_progress",
+            output=[],
+            usage=None,
+            model_dump=lambda: {"status": "in_progress"},
+        )
+
+        class _BackgroundResponses:
+            def __init__(self):
+                self.cancelled = []
+                self.retrieve_calls = 0
+
+            def create(self, **payload):
+                return pending
+
+            def retrieve(self, response_id, **kwargs):
+                self.retrieve_calls += 1
+                return pending
+
+            def cancel(self, response_id, **kwargs):
+                self.cancelled.append(response_id)
+
+        api = APIClient(
+            model="gpt-5.5-pro--xhigh",
+            api="custom",
+            use_openai_responses_api=True,
+            background=True,
+            timeout=3600,
+        )
+
+        def fake_sleep(seconds):
+            api.terminated = True
+
+        responses = _BackgroundResponses()
+        client = SimpleNamespace(responses=responses)
+
+        with patch("mathagents.api_client.request_logger.log_request"), patch(
+            "mathagents.api_client.request_logger.log_response"
+        ), patch("mathagents.api_client.time.sleep", fake_sleep):
+            with self.assertRaises(_ClientTerminated):
+                api._openai_query_responses_api(
+                    client, 0, [{"role": "user", "content": "hi"}]
+                )
+
+        self.assertEqual(responses.cancelled, ["resp_pending_1"])
+        self.assertEqual(responses.retrieve_calls, 1)  # Reconcile the same ID; never create a replacement.
+
+
+if __name__ == "__main__":
+    unittest.main()

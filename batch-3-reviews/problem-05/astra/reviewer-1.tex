@@ -1,0 +1,531 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\HH}{\mathbb{H}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\newcommand{\fptitle}{Review of Problem 5 -- Astra}
+\newcommand{\reviewtag}{Reviewer 1}
+\usepackage{fp-review}
+
+\begin{document}
+\maketitle
+
+\section{Review}
+{The solution is mathematically correct. It provides a counterexample to the given question. The counterexample is constructed using an infinite cyclic projective plane, a construction studied in the literature. The new observation is to appropriately use this construction to give a counterexample to the question. This is very similar to the example constructed in submissions of other AI systems but different from the human submission. There are some important missing attributions. The exposition is not very good. An overview of the proof is not available, and many parts of the proof are unmotivated.
+}
+
+\paragraph{Correctness.}
+\begin{itemize}
+	\item  1: essentially flawless mathematical argument
+	\item  0.5: minor errors that are easily corrected
+	\item  0: blank solution, or acknowledged partial result
+	\item  $-0.5$: major errors
+	\item  $-1$: proposed proof makes no progress towards the result.
+\end{itemize}
+Note that points should be docked for wrong statements/ solutions.
+
+\noindent Score: 1
+
+\paragraph{Exposition.}
+\begin{itemize}
+	\item  1: well-written and clear solution.
+	\item  0: argument that is possible to follow with serious effort
+	\item  $-1$: very poor exposition
+\end{itemize}
+
+\noindent Score: 0
+
+\paragraph{Attributions.}
+\begin{itemize}
+	\item  1: solutions contains fully appropriate attributions
+		to related work and theorems being used.
+	\item  0: moderate issues with missing attributions or hallucinated references
+	\item  $-1$: blatant plagiarism or hallucinations
+\end{itemize}
+
+\noindent Score: -1
+
+\newpage
+\section{Submission with inline comments}
+
+
+\begin{abstract}
+The proposed implication is false for general hyperfields. We construct a
+countably infinite counterexample whose multiplicative group is infinite
+cyclic. The construction uses an explicitly defined infinite difference set.
+All required incidence properties and all hyperfield axioms are verified
+directly.
+\end{abstract}
+
+\section{Statement and conventions}
+
+We will prove the following.
+
+\begin{theorem}\label{thm:main}
+There exists a hyperfield
+\[
+    \HH=\{0\}\sqcup\{t^n:n\in\ZZ\},
+    \qquad t^m t^n=t^{m+n},
+\]
+in which every element is its own additive inverse and
+\[
+    0\in 1\boxplus t\boxplus t^6,
+\]
+but
+\[
+    0\notin
+    1\boxplus t^3\boxplus t^{18}
+      \boxplus t^7\boxplus t^7\boxplus t^7.
+\]
+Consequently, the implication in the question fails for
+\[
+    x=1,\qquad y=t,\qquad z=t^6.
+\]
+\end{theorem}
+
+Here the symbols \(t^n\) are pairwise distinct formal symbols, and \(1=t^0\).
+In particular, the integer \(0\), when used as an exponent or an incidence
+point, must be distinguished from the hyperfield element \(0\).
+
+For subsets \(A,B\) of a set equipped with hyperaddition, we use the convention
+\[
+    A\boxplus B
+    =\bigcup_{\substack{a\in A\\ b\in B}}(a\boxplus b).
+\]
+Singleton sets are identified with their elements in such expressions.
+
+We use the usual definition of a commutative hyperfield: its nonzero elements
+form an abelian multiplicative group, zero is multiplicatively absorbing,
+and hyperaddition is a commutative, associative, nonempty-valued operation
+with neutral element \(0\), unique additive inverses, and reversibility
+\[
+    c\in a\boxplus b
+    \quad\Longleftrightarrow\quad
+    b\in c\boxplus(-a).
+\]
+Multiplication must distribute over hyperaddition as an equality of sets.
+
+The connection between projective incidence geometry and hyperfields
+extending the Krasner hyperfield is developed in
+\cite[Sections~3--4]{CC}. The construction below, including the verification
+of the hyperfield axioms, is self-contained.
+
+\section{An infinite difference set}
+\review{This section (and the introduction) gives no motivation for why infinite difference set is a relevant  object to look at. The construction of this infinite difference set is essentially the argument in Theorem 3.1 of Marshall Hall's 1947 paper ``Cyclic projective planes,'' which was never credited.}
+
+\begin{lemma}\label{lem:difference-set}
+There exists an infinite set \(D\subseteq\ZZ_{\geq 0}\) such that
+\begin{enumerate}
+    \item
+    \[
+        D\cap\{0,1,\ldots,38\}=\{0,1,6,20,23,27\};
+    \]
+    \item every nonzero integer has a unique expression \(d-e\), where
+    \(d,e\in D\).
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+For a finite set \(A\subseteq\ZZ_{\geq 0}\), put
+\[
+    \Delta(A)=\{a-b:a,b\in A,\ a>b\}.
+\]
+Say that \(A\) has distinct positive differences if each element of
+\(\Delta(A)\) arises from exactly one ordered pair \((a,b)\).
+
+Begin with
+\[
+    A_0=\{0,1,6,20,23,27\}.
+\]
+Its positive differences are
+\[
+    1,3,4,5,6,7,14,17,19,20,21,22,23,26,27.
+\]
+These are fifteen distinct integers, accounting for all
+\(\binom{6}{2}=15\) pairs. Thus \(A_0\) has distinct positive differences.
+
+We first describe an extension step. Suppose that \(A\) is a finite set
+containing \(A_0\), that \(A\) has distinct positive differences, and that
+\(n\geq 1\) does not belong to \(\Delta(A)\). Set
+\[
+    M=\max A,\qquad u=2M+n+1,
+    \qquad A'=A\cup\{u,u+n\}.
+\]
+All positive differences in \(A'\) occur in the following four sets:
+\[
+    \Delta(A),\qquad
+    \{n\},\qquad
+    \{u-a:a\in A\},\qquad
+    \{u+n-a:a\in A\}.
+\]
+These sets are pairwise disjoint. Indeed, \(n\notin\Delta(A)\), while every
+integer in either of the last two sets is at least
+\[
+    u-M=M+n+1>\max\{M,n\}.
+\]
+Every element of \(\Delta(A)\) is at most \(M\). Finally, an equality
+\[
+    u-a=u+n-b
+\]
+would imply \(b-a=n\), contrary to \(n\notin\Delta(A)\).
+Within each of the last two sets, distinct elements of \(A\) give distinct
+differences. Therefore \(A'\) again has distinct positive differences.
+Moreover, \(n\in\Delta(A')\).
+
+Now define \(A_n\) recursively for \(n\geq 1\). If
+\(n\in\Delta(A_{n-1})\), let \(A_n=A_{n-1}\). Otherwise apply the extension
+step with \(A=A_{n-1}\) and this value of \(n\). Set
+\[
+    D=\bigcup_{n\geq 0}A_n.
+\]
+Every positive integer \(n\) belongs to \(\Delta(A_n)\), hence is a
+difference of two elements of \(D\). Such a representation is unique:
+any two competing representations would have all their entries in some
+finite \(A_N\), contradicting the distinct-difference property of \(A_N\).
+Reversing the ordered pair proves existence and uniqueness for negative
+integers as well.
+
+At every extension step \(M\geq 27\), so
+\[
+    u=2M+n+1\geq 56>38.
+\]
+Thus no new element at most \(38\) is ever introduced, proving the first
+assertion. Finally, \(D\) is infinite, since a finite set has only finitely
+many differences.
+\end{proof}
+
+\begin{lemma}\label{lem:incidence}
+For \(k\in\ZZ\), define
+\[
+    L_k=D+k=\{d+k:d\in D\}.
+\]
+Regard the integers as points and the sets \(L_k\) as lines. Then:
+\begin{enumerate}
+    \item every two distinct points lie on exactly one line;
+    \item every two distinct lines meet in exactly one point;
+    \item every line is infinite;
+    \item integer translations preserve the collection of lines.
+\end{enumerate}
+\end{lemma}
+\review{The ideas and proof of this lemma appears in  ``Projective Geometries as Multigroups'' by Prenowitz, ``A Theorem in Finite Projective Geometry and Some Applications to Number Theory'' by Singer, and should have been given some attributions.}
+\begin{proof}
+Let \(p\neq q\) be integers. By Lemma~\ref{lem:difference-set}, there is a
+unique ordered pair \(d,e\in D\) satisfying
+\[
+    p-q=d-e.
+\]
+Then
+\[
+    k=p-d=q-e
+\]
+is the unique integer for which \(p,q\in L_k\). This proves the first
+assertion.
+
+For \(k\neq \ell\), a point of \(L_k\cap L_\ell\) corresponds precisely to
+an ordered pair \(d,e\in D\) satisfying
+\[
+    k+d=\ell+e,
+    \qquad\text{equivalently}\qquad
+    d-e=\ell-k.
+\]
+There is exactly one such ordered pair, so the intersection consists of
+exactly one point. Since each \(L_k\) is infinite, this also shows that
+different indices give different lines.
+
+The third assertion follows from the infinitude of \(D\), and the fourth
+from
+\[
+    L_k+s=L_{k+s}.
+\]
+\end{proof}
+
+For distinct integers \(m,n\), write \(L(m,n)\) for their unique common
+line.
+
+\section{Construction and verification of the hyperfield}
+\review{This section should explicitly cite [1] and the 1943 paper ``Projective Geometries as Multigroups'' by Prenowitz. [1] was briefly mentioned (very cryptically) in the introduction, but it should also be mentioned here. The proof here is very similar to the proof in [1], and could have been omitted.}
+
+Let
+\[
+    \HH=\{0\}\sqcup\{t^n:n\in\ZZ\},
+\]
+with multiplication
+\[
+    t^m t^n=t^{m+n},\qquad 0a=a0=0.
+\]
+For distinct nonzero elements \(a=t^m\) and \(b=t^n\), define their line by
+\[
+    \Lambda(a,b)=\{t^r:r\in L(m,n)\}\subseteq\HH^\times.
+\]
+The incidence properties of Lemma~\ref{lem:incidence} hold equally for these
+lines in \(\HH^\times\).
+
+Define hyperaddition by
+\[
+    0\boxplus a=a\boxplus 0=\{a\}
+\]
+and, for \(a,b\neq 0\), by
+\begin{equation}\label{eq:addition}
+    a\boxplus b=
+    \begin{cases}
+        \{0,a\},&a=b,\\[2mm]
+        \Lambda(a,b)\setminus\{a,b\},&a\neq b.
+    \end{cases}
+\end{equation}
+
+\begin{proposition}\label{prop:hyperfield}
+These operations make \(\HH\) a commutative hyperfield. Its additive
+negation is the identity map.
+\end{proposition}
+
+\begin{proof}
+The nonzero elements form an infinite cyclic multiplicative group with
+identity \(1=t^0\). Zero is absorbing by definition.
+
+\medskip
+\noindent
+\textbf{Nonempty sums, commutativity, and the neutral element.}
+Every line is infinite, so all sums in \eqref{eq:addition} are nonempty.
+Commutativity and the additive neutral-element axiom follow directly from
+the definition.
+
+\medskip
+\noindent
+\textbf{Additive inverses and reversibility.}
+For all \(a,b\in\HH\), the definition gives
+\begin{equation}\label{eq:inverse}
+    0\in a\boxplus b
+    \quad\Longleftrightarrow\quad a=b.
+\end{equation}
+Consequently, every element has a unique additive inverse, namely
+\[
+    -a=a.
+\]
+
+To verify reversibility, first suppose that \(a,b,c\) are all nonzero.
+Then \(c\in a\boxplus b\) holds precisely when either all three elements
+coincide, or they are pairwise distinct and lie on a common line.
+Both conditions are symmetric in \(a,b,c\).
+If at least one element is zero, membership holds precisely when the
+other two elements are equal, again a symmetric condition. Hence
+\[
+    c\in a\boxplus b
+    \quad\Longleftrightarrow\quad
+    b\in c\boxplus a
+    \quad\Longleftrightarrow\quad
+    b\in c\boxplus(-a),
+\]
+as required.
+
+\medskip
+\noindent
+\textbf{Associativity.}
+If one of the three elements is zero, associativity follows from the
+neutral-element rule. We therefore consider nonzero elements.
+
+If all three elements equal \(a\), then
+\[
+    (a\boxplus a)\boxplus a
+    =\{0,a\}\boxplus a
+    =\{0,a\}.
+\]
+
+Suppose next that the multiset of the three elements is
+\(\{a,a,b\}\), where \(a\neq b\), and let
+\(\Lambda=\Lambda(a,b)\). Then
+\[
+    (a\boxplus a)\boxplus b
+    =\{b\}\cup\bigl(\Lambda\setminus\{a,b\}\bigr)
+    =\Lambda\setminus\{a\}.
+\]
+Also, uniqueness of the line through two distinct points gives
+\[
+\begin{split}
+    (a\boxplus b)\boxplus a
+    &=
+    \bigcup_{s\in\Lambda\setminus\{a,b\}}
+        \bigl(\Lambda\setminus\{s,a\}\bigr)\\
+    &=\Lambda\setminus\{a\}.
+\end{split}
+\]
+For the last equality, given \(v\in\Lambda\setminus\{a\}\), choose
+\(s\in\Lambda\setminus\{a,b,v\}\), which is possible because
+\(\Lambda\) is infinite.
+
+Now suppose that \(a,b,c\) are pairwise distinct and lie on one line
+\(\Lambda\). We claim that
+\begin{equation}\label{eq:collinear}
+    (a\boxplus b)\boxplus c=\{0\}\cup\Lambda.
+\end{equation}
+Every summand on the left is contained in \(\{0\}\cup\Lambda\).
+Choosing the intermediate element \(c\in a\boxplus b\) produces both
+\(0\) and \(c\). Given \(v\in\Lambda\setminus\{c\}\), choose
+\[
+    s\in\Lambda\setminus\{a,b,c,v\}.
+\]
+Then \(s\in a\boxplus b\) and \(v\in s\boxplus c\), proving
+\eqref{eq:collinear}.
+
+Finally, suppose that \(a,b,c\) are noncollinear. In this case
+\begin{equation}\label{eq:noncollinear}
+\begin{split}
+    (a\boxplus b)\boxplus c
+    =\HH^\times\setminus
+    \bigl(
+       \Lambda(a,b)\cup\Lambda(a,c)\cup\Lambda(b,c)
+    \bigr).
+\end{split}
+\end{equation}
+To prove the forward inclusion, take
+\[
+    s\in\Lambda(a,b)\setminus\{a,b\}.
+\]
+Since \(c\notin\Lambda(a,b)\), the elements \(s,c\) are distinct.
+The line \(\Lambda(s,c)\) meets \(\Lambda(a,b)\) only at \(s\), and
+meets each of \(\Lambda(a,c)\) and \(\Lambda(b,c)\) only at \(c\).
+Therefore
+\[
+    s\boxplus c=\Lambda(s,c)\setminus\{s,c\}
+\]
+avoids all three lines on the right of \eqref{eq:noncollinear}, as well
+as the hyperfield zero.
+
+Conversely, let \(v\) lie outside those three lines.
+The line \(\Lambda(c,v)\) meets \(\Lambda(a,b)\) in a unique point \(s\).
+This point is neither \(a\) nor \(b\), since otherwise \(v\) would belong
+to \(\Lambda(a,c)\) or \(\Lambda(b,c)\). Also \(v\neq s,c\).
+Thus
+\[
+    s\in a\boxplus b,\qquad v\in s\boxplus c,
+\]
+proving the reverse inclusion.
+
+The formulas just established are independent of the order in which the
+three elements are listed. Together with commutativity, they imply
+\[
+    (a\boxplus b)\boxplus c=a\boxplus(b\boxplus c)
+\]
+in every case. Associativity for subsets follows by taking unions over
+their elements; hence finite hypersums can be parenthesized freely.
+
+\medskip
+\noindent
+\textbf{Distributivity.}
+Multiplication by \(t^k\) acts on nonzero elements by translating their
+exponents by \(k\). By Lemma~\ref{lem:incidence}, it carries lines to
+lines, and in particular
+\[
+    t^k\Lambda(t^m,t^n)
+    =\Lambda(t^{m+k},t^{n+k})
+    \qquad(m\neq n).
+\]
+It follows from \eqref{eq:addition}, including its equal-argument and
+zero-argument cases, that
+\[
+    t^k(a\boxplus b)=t^ka\boxplus t^kb.
+\]
+For multiplication by zero, both sides are \(\{0\}\), since
+\(a\boxplus b\) is nonempty. Thus distributivity holds for all scalars.
+All hyperfield axioms have now been verified.
+\end{proof}
+
+\section{Failure of the cubic implication}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Use the hyperfield constructed above and set
+\[
+    x=1,\qquad y=t,\qquad z=t^6.
+\]
+The integers \(0,1,6\) all belong to \(D\). Consequently,
+\[
+    t^6\in\Lambda(1,t)\setminus\{1,t\}=1\boxplus t.
+\]
+It follows that
+\[
+    0\in t^6\boxplus t^6
+      \subseteq (1\boxplus t)\boxplus t^6.
+\]
+Thus the hypothesis in the question is satisfied.
+
+Consider the line
+\[
+    \Lambda=\{t^r:r\in D-20\}.
+\]
+Because \(20,23,27\in D\), this line contains
+\[
+    1,\qquad t^3,\qquad t^7.
+\]
+On the other hand,
+\[
+    t^{18}\notin\Lambda,
+\]
+because \(18\in D-20\) would imply \(38\in D\), contrary to
+Lemma~\ref{lem:difference-set}.
+
+Write
+\[
+    u=1,\qquad v=t^3,\qquad w=t^{18},\qquad q=t^7,
+    \qquad A=u\boxplus v\boxplus w.
+\]
+The points \(u,v,w\) are noncollinear, and
+\(\Lambda(u,v)=\Lambda\). Formula~\eqref{eq:noncollinear} therefore gives
+\[
+    A\subseteq\HH^\times\setminus\Lambda.
+\]
+In particular,
+\begin{equation}\label{eq:excluded}
+    0\notin A,\qquad q\notin A.
+\end{equation}
+
+The repeated sum of \(q\) satisfies
+\[
+    q\boxplus q\boxplus q
+    =\{0,q\}\boxplus q
+    =\{0,q\}.
+\]
+Hence
+\[
+\begin{split}
+    u\boxplus v\boxplus w\boxplus q\boxplus q\boxplus q
+    &=A\boxplus\{0,q\}\\
+    &=A\cup\bigcup_{a\in A}(a\boxplus q).
+\end{split}
+\]
+The first set on the last line does not contain zero by
+\eqref{eq:excluded}. By \eqref{eq:inverse}, a set \(a\boxplus q\)
+contains zero exactly when \(a=q\); this is also excluded by
+\eqref{eq:excluded}. Therefore
+\[
+    0\notin
+    1\boxplus t^3\boxplus t^{18}
+      \boxplus t^7\boxplus t^7\boxplus t^7.
+\]
+
+Finally, multiplication and negation in this hyperfield give
+\[
+    x^3=1,\qquad y^3=t^3,\qquad z^3=t^{18},
+    \qquad -xyz=xyz=t^7.
+\]
+Thus the last displayed nonmembership is precisely the failure of the
+conclusion asked about in the question.
+\end{proof}
+
+\begin{thebibliography}{9}
+
+\bibitem{CC}
+A.~Connes and C.~Consani,
+\emph{The hyperring of ad\`ele classes},
+Journal of Number Theory \textbf{131} (2011), no.~2, 159--194.
+
+\end{thebibliography}
+
+\end{document}

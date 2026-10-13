@@ -1,0 +1,54 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fp-review}[2026/10/06 First Proof Batch 3 review theme (from the Batch 2 template)]
+%% Palette from the First Proof brand assets: slate #171313, warm-gray #69626D, sand #F2ECE9
+\RequirePackage{xcolor}
+\RequirePackage{graphicx}
+\RequirePackage{tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{FPslate}{HTML}{171313}
+\definecolor{FPwarmgray}{HTML}{69626D}
+\definecolor{FPsand}{HTML}{F2ECE9}
+%% \review{...}: a reviewer comment set directly beside (inline with) the text it refers to,
+%% as a sand box with a warm-gray rule and the reviewer number.
+\newtcolorbox{reviewbox}{
+  breakable, enhanced, sharp corners,
+  colback=FPsand, colframe=FPwarmgray,
+  coltext=FPslate, boxrule=0pt, leftrule=2.5pt,
+  left=8pt, right=8pt, top=14pt, bottom=5pt,
+  before skip=6pt, after skip=6pt,
+  fontupper=\small,
+  overlay unbroken and first={
+    \node[anchor=north east, font=\bfseries\footnotesize\sffamily,
+          text=FPwarmgray, inner sep=0pt]
+      at ([xshift=-8pt,yshift=-4pt]frame.north east) {\reviewtag};}
+}
+\newcommand{\review}[1]{\begin{reviewbox}#1\end{reviewbox}}
+%% theorem fallbacks for solutions that use an environment they never declared
+\AtBeginDocument{%
+  \@ifundefined{theorem}{\newtheorem{theorem}{Theorem}}{}%
+  \@ifundefined{lemma}{\newtheorem{lemma}{Lemma}}{}%
+  \@ifundefined{proposition}{\newtheorem{proposition}{Proposition}}{}%
+  \@ifundefined{corollary}{\newtheorem{corollary}{Corollary}}{}%
+  \@ifundefined{definition}{\newtheorem{definition}{Definition}}{}%
+  \@ifundefined{remark}{\newtheorem{remark}{Remark}}{}%
+  \providecommand{\mathscr}{\mathcal}% a submission uses \mathscr without loading mathrsfs
+}
+\renewcommand{\maketitle}{%
+  \noindent
+  \begin{minipage}[t]{0.68\textwidth}
+    \vspace{20pt}\raggedright
+    {\LARGE\bfseries \fptitle\par}\vspace{0.35em}
+    {\large First Proof Third Batch \\ \reviewtag\par}\vspace{0.35em}
+    {\normalsize October 8--9, 2026\par}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.25\textwidth}
+    \vspace{0pt}\raggedleft
+    \raisebox{\dimexpr-\height+\ht\strutbox+0.225in\relax}{\includegraphics[height=1.35in]{Logo-slate.png}}
+  \end{minipage}
+  \par\vspace{2em}}
+%% characters and a macro used inside referee comments (pdflatex rejects them otherwise)
+\providecommand{\rel}{\mathrel{\mathrm{rel}}}
+\DeclareUnicodeCharacter{2080}{\ensuremath{{}_0}}\DeclareUnicodeCharacter{2081}{\ensuremath{{}_1}}\DeclareUnicodeCharacter{2082}{\ensuremath{{}_2}}\DeclareUnicodeCharacter{2083}{\ensuremath{{}_3}}\DeclareUnicodeCharacter{2212}{\ensuremath{-}}\DeclareUnicodeCharacter{03B3}{\ensuremath{\gamma}}\DeclareUnicodeCharacter{2032}{\ensuremath{{}^{\prime}}}
+%% keep build paths and engine banners out of the PDF
+\ifdefined\pdfsuppressptexinfo\pdfsuppressptexinfo=-1\relax\fi
+\endinput

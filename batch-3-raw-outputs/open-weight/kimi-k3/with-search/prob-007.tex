@@ -1,0 +1,403 @@
+% Web-source links in the requested markdown form:
+% [ar5iv.labs.arxiv.org](https://ar5iv.labs.arxiv.org/html/1602.07378)
+% [aimsciences.org](https://www.aimsciences.org/article/doi/10.3934/jmd.2017016)
+% [ar5iv.labs.arxiv.org](https://ar5iv.labs.arxiv.org/html/1606.00723)
+% [math.ksu.edu](https://www.math.ksu.edu/~tanyaf/FKS.pdf)
+
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\TT}{\mathcal T}
+\newcommand{\Mod}{\operatorname{Mod}}
+\newcommand{\PMod}{\operatorname{PMod}}
+\newcommand{\Def}{\operatorname{Def}}
+\newcommand{\Stab}{\operatorname{Stab}}
+\newcommand{\Per}{\operatorname{Per}}
+
+\title{A Dehn Twist with an Infinite Orbit on a Deformation Space}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Statement of the result}
+
+Let \(f:\mathbb P^1\to \mathbb P^1\) be a quadratic rational map with critical
+points \(c_1,c_2\).  Assume that
+\[
+c_1\longmapsto f(c_1)\longmapsto f^{\circ2}(c_1)
+ \longmapsto f^{\circ3}(c_1)\longmapsto c_1
+\]
+is a cycle of exact period \(4\), and that the other critical value
+\[
+v:=f(c_2)
+\]
+is not in this cycle.  Thus \(f\) represents a point of
+\(\Per_4(0)^*\) in the usual notation.
+
+Put
+\[
+a_j:=f^{\circ j}(c_1),\qquad j\in\mathbb Z/4\mathbb Z,
+\]
+and
+\[
+A:=\{a_0,a_1,a_2,a_3\},\qquad B:=A\cup\{v\}.
+\]
+Since \(f(A)=A\) and \(V(f)=\{f(c_1),v\}\subset B\), the deformation space
+\[
+\Def_B^A(f)
+ :=\{\tau\in\TT(\mathbb P^1,B):f^*(\tau)=i_*(\tau)\}
+\]
+is defined, where \(i_*:\TT(B)\to\TT(A)\) forgets \(v\).  The local theory of
+deformation spaces identifies it as a smooth one-dimensional analytic
+submanifold of the two-dimensional Teichm\"uller space \(\TT(B)\); see
+\cite[Theorem~1.2]{KL-arxiv}.  In this example it is nonempty: the tautological
+marking of the given rational map belongs to it.
+
+The purpose of this note is to describe an explicit curve whose squared Dehn
+twist stabilizes \(\Def_B^A(f)\), and whose powers give an infinite orbit in
+\(\pi_0(\Def_B^A(f))\).
+
+\begin{definition}[The curve]
+Choose an embedded closed disk \(\Delta\subset\mathbb P^1\) such that
+\[
+\Delta\cap B=\{c_1,v\},
+\]
+and let
+\[
+\gamma:=\partial\Delta.
+\]
+Thus \(\gamma\) separates
+\[
+\{c_1,v\}
+\quad\text{from}\quad
+\{f(c_1),f^{\circ2}(c_1),f^{\circ3}(c_1)\}.
+\]
+Both sides contain at least two points of \(B\), so \(\gamma\) is essential in
+\(\mathbb P^1\setminus B\).
+\end{definition}
+
+Equivalently, after a M\"obius change of coordinates we may normalize
+\[
+c_1=0,\qquad f(c_1)=1,\qquad f^{\circ2}(c_1)=\infty,
+\qquad f^{\circ3}(c_1)=\rho.
+\]
+Then
+\[
+B=\{0,1,\infty,\rho,v\},
+\]
+and \(\gamma\) is any simple closed curve separating
+\[
+\{0,v\}\quad\text{from}\quad\{1,\infty,\rho\}.
+\]
+
+Let \(T_\gamma\in\PMod(\mathbb P^1,B)\) denote the positive Dehn twist about
+\(\gamma\).  The main result is the following.
+
+\begin{theorem}\label{T:main}
+Let \(f,A,B,\gamma\) be as above.
+\begin{enumerate}
+\item The squared twist \(T_\gamma^2\) preserves the deformation space:
+\[
+T_\gamma^2\cdot\Def_B^A(f)=\Def_B^A(f).
+\]
+More precisely, for every \(\tau\in\TT(B)\),
+\[
+f^*(T_\gamma^2\cdot\tau)=f^*(\tau),
+\qquad
+i_*(T_\gamma^2\cdot\tau)=i_*(\tau).
+\]
+
+\item If \(C_0\) is a connected component of \(\Def_B^A(f)\), then the
+components
+\[
+T_\gamma^{2n}\cdot C_0,\qquad n\in\mathbb Z,
+\]
+are pairwise distinct.  Consequently, the action of \(T_\gamma^2\) on
+\(\pi_0(\Def_B^A(f))\) has an infinite, indeed free, orbit.
+\end{enumerate}
+\end{theorem}
+
+The first assertion is a direct annular lifting computation.  The second is the
+stronger component-stabilizer statement proved in the course of the proof of
+the disconnectedness theorem of Koch--Lodge; see \cite[proof of
+Theorem~1.3]{KL-arxiv} and \cite{KL-published}.
+
+\section{The annular lift}
+
+Write
+\[
+\Delta\cap B=\{a_0,v\},\qquad a_0=c_1.
+\]
+The only critical value of \(f\) contained in \(\Delta\) is \(v\): the other
+critical value is \(f(c_1)=a_1\), which lies outside \(\Delta\).
+
+\begin{lemma}\label{L:preimage-disk}
+The preimage \(f^{-1}(\Delta)\) is a single closed disk \(\widetilde\Delta\),
+and
+\[
+f|_{\widetilde\Delta}:\widetilde\Delta\longrightarrow\Delta
+\]
+is a degree-two disk map branched over \(v\).  In particular,
+\(\beta:=\partial\widetilde\Delta\) is connected and
+\(f|_\beta:\beta\to\gamma\) has degree \(2\).
+
+Moreover,
+\[
+\widetilde\Delta\cap A=\{a_3\}.
+\]
+\end{lemma}
+
+\begin{proof}
+Since \(v\) is a simple critical value of a degree-two branched cover, its full
+preimage is the critical point \(c_2\), counted with local degree \(2\).  Every
+component of \(f^{-1}(\Delta)\) therefore contains \(c_2\), so there is only
+one such component.  Riemann--Hurwitz shows that it is a disk and that its
+boundary \(\beta\) maps to \(\gamma\) with degree \(2\).
+
+If \(x\in A\cap\widetilde\Delta\), then \(f(x)\in\Delta\cap B=\{a_0,v\}\).
+But \(f(A)=A\) and \(v\notin A\), so \(f(x)=a_0\).  On the four-cycle
+\(a_0\mapsto a_1\mapsto a_2\mapsto a_3\mapsto a_0\), the unique preimage of
+\(a_0\) lying in \(A\) is \(a_3\).  Hence
+\(\widetilde\Delta\cap A=\{a_3\}\).
+\end{proof}
+
+\begin{lemma}\label{L:twist-lift}
+The square \(T_\gamma^2\) lifts under \(f\) to a Dehn twist about \(\beta\),
+up to sign.  After the points in \(f^{-1}(B)\setminus A\) are erased, this
+lift induces the identity on \(\TT(A)\).
+\end{lemma}
+
+\begin{proof}
+Choose an annular neighborhood \(N\) of \(\gamma\).  Its preimage is an
+annular neighborhood \(\widetilde N\) of \(\beta\), and
+\(\widetilde N\to N\) has degree \(2\) on the core curves.  The standard Dehn
+twist lifting formula therefore says that \(T_\gamma^2\) lifts to
+\(T_\beta^{\pm1}\).  More generally, if the preimage components of a curve map
+with degrees \(d_j\), and \(m\) is divisible by every \(d_j\), then
+\[
+f^*(T_\gamma^m)=\prod_j T_{\beta_j}^{\pm m/d_j};
+\]
+see the pullback computation in \cite{FKS-arxiv,FKS-pdf}.
+
+By Lemma~\ref{L:preimage-disk}, the disk bounded by \(\beta\) contains only
+the point \(a_3\) of \(A\).  Hence \(\beta\) is peripheral in
+\(\mathbb P^1\setminus A\).  Its Dehn twist is trivial in
+\(\PMod(\mathbb P^1,A)\), and therefore acts trivially on \(\TT(A)\).
+\end{proof}
+
+\begin{lemma}\label{L:forget-trivial}
+Forgetting \(v\) sends \(\gamma\) to a peripheral curve in
+\((\mathbb P^1,A)\).  Consequently,
+\[
+i_*(T_\gamma^{2}\cdot\tau)=i_*(\tau)
+\]
+for every \(\tau\in\TT(B)\).
+\end{lemma}
+
+\begin{proof}
+After deleting \(v\), the disk \(\Delta\) contains only \(c_1\) among the
+points of \(A\).  Thus \(\gamma\) bounds a once-punctured disk in
+\(\mathbb P^1\setminus A\), and its Dehn twist is trivial in
+\(\PMod(\mathbb P^1,A)\).
+\end{proof}
+
+Equivalently, in the Birman point-pushing interpretation, \(T_\gamma^2\)
+represents the point-push of \(v\) around \(c_1\), up to twists about
+peripheral curves.  Those peripheral twists are trivial in the pure mapping
+class group.
+
+\section{Stabilization of the deformation space}
+
+We use the right action of the pure mapping class group on Teichm\"uller
+space.
+
+\begin{proposition}\label{P:stable}
+For every \(\tau\in\TT(B)\),
+\[
+f^*(T_\gamma^2\cdot\tau)=f^*(\tau)
+\quad\text{and}\quad
+i_*(T_\gamma^2\cdot\tau)=i_*(\tau).
+\]
+In particular, \(T_\gamma^2\) preserves \(\Def_B^A(f)\).
+\end{proposition}
+
+\begin{proof}
+The pullback map is equivariant with respect to lifts of mapping classes.
+By Lemma~\ref{L:twist-lift}, the lift of \(T_\gamma^2\) induces the identity
+on \(\TT(A)\).  Therefore
+\[
+f^*(T_\gamma^2\cdot\tau)=f^*(\tau).
+\]
+Lemma~\ref{L:forget-trivial} gives
+\[
+i_*(T_\gamma^2\cdot\tau)=i_*(\tau).
+\]
+If \(\tau\in\Def_B^A(f)\), then \(f^*(\tau)=i_*(\tau)\), so
+\[
+f^*(T_\gamma^2\cdot\tau)=i_*(T_\gamma^2\cdot\tau).
+\]
+Thus \(T_\gamma^2\cdot\tau\in\Def_B^A(f)\).
+\end{proof}
+
+This proves the first part of Theorem~\ref{T:main}.
+
+\section{The component-stabilizer computation}
+
+Fix
+\[
+\tau_0=[\mathrm{id}]\in\Def_B^A(f),
+\]
+the tautological Teichm\"uller point determined by the given rational map.
+Let \(C_0\) be the component of \(\Def_B^A(f)\) containing \(\tau_0\).
+
+Define
+\[
+S_f:=\{g\in\PMod(\mathbb P^1,B):g\cdot\Def_B^A(f)=\Def_B^A(f)\},
+\]
+and let
+\[
+E_f:=\{g\in S_f:g\cdot C_0=C_0\}.
+\]
+Thus \(E_f\) is the stabilizer in \(S_f\) of the chosen component.
+
+The disconnectedness theorem of Koch--Lodge states that
+\(\Def_B^A(f)\) has infinitely many connected components
+\cite[Theorem~1.3]{KL-arxiv}.  The proof establishes the following sharper
+statement, which is exactly what is needed here.
+
+\begin{theorem}[Koch--Lodge component-stabilizer computation]
+\label{T:KL-orbit}
+Let \(\gamma\) be the curve separating \(\{c_1,v\}\) from the other three
+points of \(B\), and let \(\delta=T_\gamma^2\).  Then
+\[
+\delta\in S_f,
+\]
+but
+\[
+\delta^n\notin E_f\qquad(n\neq0).
+\]
+More precisely, the cosets
+\[
+\delta^nE_f\subset S_f,\qquad n\in\mathbb Z,
+\]
+are pairwise distinct.
+\end{theorem}
+
+\begin{proof}
+The containment \(\delta\in S_f\) was proved directly in
+Proposition~\ref{P:stable}.  The non-containment statement is the explicit
+coset computation in the proof of Theorem~1.3 of Koch--Lodge
+\cite{KL-arxiv}; see also the published version \cite{KL-published}.
+In that proof, \(\delta\) is identified with the point-push of \(v\) around
+the distinguished periodic critical point \(c_1\).  The equalizer fundamental
+group is then compared with the stabilizer of the deformation space: every
+element of the component stabilizer has zero \(c_1\)-winding number, whereas
+\(\delta^n\) has \(c_1\)-winding number \(n\).  Hence
+\(\delta^nE_f\neq E_f\) for \(n\neq0\), and the cosets
+\(\delta^nE_f\) are distinct.
+
+This is stronger than the stated conclusion that the deformation space has
+infinitely many components: it is precisely the infinite-coset argument used
+to deduce that conclusion.
+\end{proof}
+
+\begin{corollary}\label{C:free-orbit}
+The components
+\[
+T_\gamma^{2n}\cdot C_0,\qquad n\in\mathbb Z,
+\]
+are pairwise distinct.
+\end{corollary}
+
+\begin{proof}
+Suppose that
+\[
+T_\gamma^{2n}\cdot C_0=T_\gamma^{2m}\cdot C_0.
+\]
+Then
+\[
+T_\gamma^{2(n-m)}\cdot C_0=C_0,
+\]
+so \(T_\gamma^{2(n-m)}\in E_f\).  Theorem~\ref{T:KL-orbit} forces
+\(n-m=0\).  Therefore the components are pairwise distinct.
+\end{proof}
+
+This completes the proof of Theorem~\ref{T:main}.
+
+\section{Explicit coordinate description}
+
+Normalize the marked points as
+\[
+c_1=0,\quad f(c_1)=1,\quad f^{\circ2}(c_1)=\infty,
+\quad f^{\circ3}(c_1)=\rho.
+\]
+Then
+\[
+B=\{0,1,\infty,\rho,v\}.
+\]
+The required curve is
+\[
+\gamma=\partial\Delta,
+\]
+where \(\Delta\) is a disk containing \(0\) and \(v\) and none of
+\(1,\infty,\rho\).  Thus \(\gamma\) separates
+\[
+\{0,v\}
+\quad\text{from}\quad
+\{1,\infty,\rho\}.
+\]
+Its square \(T_\gamma^2\):
+\begin{enumerate}
+\item lifts under \(f\) to a twist about a curve peripheral relative to \(A\);
+\item becomes peripheral after forgetting \(v\);
+\item consequently preserves \(\Def_B^A(f)\);
+\item permutes its components with a free infinite orbit.
+\end{enumerate}
+
+\begin{thebibliography}{99}
+
+\bibitem{KL-arxiv}
+S.~Koch and R.~Lodge,
+\emph{A disconnected deformation space of rational maps},
+arXiv:1602.07378.
+HTML version:
+\href{https://ar5iv.labs.arxiv.org/html/1602.07378}%
+{\texttt{ar5iv.labs.arxiv.org}}.
+
+\bibitem{KL-published}
+S.~Koch and R.~Lodge,
+\emph{A disconnected deformation space of rational maps},
+\emph{Journal of Modern Dynamics} \textbf{11} (2017),
+DOI: \href{https://www.aimsciences.org/article/doi/10.3934/jmd.2017016}%
+{\texttt{10.3934/jmd.2017016}}.
+
+\bibitem{FKS-arxiv}
+T.~Firsova, J.~Kahn, and N.~Selinger,
+\emph{On deformation spaces of quadratic rational functions},
+arXiv:1606.00723.
+HTML version:
+\href{https://ar5iv.labs.arxiv.org/html/1606.00723}%
+{\texttt{ar5iv.labs.arxiv.org}}.
+
+\bibitem{FKS-pdf}
+T.~Firsova, J.~Kahn, and N.~Selinger,
+\emph{On deformation spaces of quadratic rational functions},
+\href{https://www.math.ksu.edu/~tanyaf/FKS.pdf}{\texttt{math.ksu.edu}}.
+
+\end{thebibliography}
+
+\end{document}

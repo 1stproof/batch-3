@@ -1,0 +1,242 @@
+
+
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,amsfonts}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{equation}{section}
+
+\title{Tame almost complex structures and local holomorphic equations\\ for symplectic simple normal crossings divisors}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove that, after an allowed cohomologous deformation of the symplectic form, every closed symplectic manifold with a symplectic simple normal crossings divisor admits a tame almost complex structure for which the divisor is locally cut out by $J$-holomorphic functions.  The proof uses the standard symplectic normal-form theorem for simple normal crossings divisors together with the relative Moser stability theorem and the extension theorem for tame almost complex structures.  We also record a cautionary remark concerning the stronger requirement that all local coordinates be $J$-holomorphic.
+\end{abstract}
+
+\section{Introduction and statement of the result}
+
+Throughout, all manifolds are smooth, closed unless otherwise stated, and all symplectic forms are assumed to be nondegenerate closed $2$-forms.  We use the following standard terminology.
+
+\begin{definition}\label{def:SNC}
+Let $(M,\omega)$ be a symplectic manifold.  A \emph{symplectic simple normal crossings divisor} is a closed subset
+\[
+D=\bigcup_{i=1}^N D_i\subset M
+\]
+such that:
+\begin{enumerate}[label=(\alph*)]
+\item each $D_i$ is a smooth closed symplectic submanifold of real codimension $2$;
+\item the $D_i$ intersect transversely;
+\item every nonempty intersection
+\[
+D_I:=\bigcap_{i\in I}D_i,\qquad I\subset\{1,\dots,N\},
+\]
+is a symplectic submanifold of $(M,\omega)$.
+\end{enumerate}
+At a point $p\in D$, the integer $r(p)$ is the number of components $D_i$ containing $p$.
+\end{definition}
+
+The purpose of this note is to prove the following theorem.  The phrase ``smooth complex coordinates'' below means smooth $\mathbb C$-valued coordinate functions; only the first $r$ coordinates are required to be $J$-holomorphic.
+
+\begin{theorem}\label{thm:main}
+Let $(M,\omega)$ be a closed symplectic manifold and let $D\subset M$ be a symplectic simple normal crossings divisor.  Then there exists a smooth path of symplectic forms $\{\omega_t\}_{t\in[0,1]}$ such that:
+\begin{enumerate}[label=(\roman*)]
+\item $[\omega_t]=[\omega]\in H^2(M;\mathbb R)$ for all $t$;
+\item $D$ is a symplectic simple normal crossings divisor for every $\omega_t$;
+\item there is an $\omega_1$-tame almost complex structure $J$ on $M$ such that for every $p\in M$ there are local smooth coordinates
+\[
+(z_1,\dots,z_n):U\longrightarrow \mathbb C^n
+\]
+and an integer $0\le r\le n$ such that
+\[
+z_1,\dots,z_r\quad\text{are $J$-holomorphic on $U$},
+\]
+and
+\[
+D\cap U=\{z_1\cdots z_r=0\}.
+\]
+Equivalently, near a point lying on exactly $r$ components of $D$, the divisor is locally the union of the coordinate hyperplanes $\{z_i=0\}$, and each local defining function $z_i$ is $J$-holomorphic.
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}
+If one insists that all coordinate functions $z_1,\dots,z_n$ be $J$-holomorphic, then $J$ is integrable near $D$, and the statement is false in general.  For example, take $M=X\times S^2$ with $X$ a closed symplectic manifold admitting no integrable complex structure and $D=X\times\{pt\}$.  A cohomologous deformation of the symplectic form does not change the smooth manifold $X$, so $D$ cannot become a complex submanifold of an integrable complex structure.  The theorem above is the standard flexible almost-complex version, where only the normal defining functions are required to be holomorphic.
+\end{remark}
+
+The proof is divided into several standard pieces.  We state and prove the linear-algebraic and extension lemmas in detail, and we quote the relative symplectic normal-form theorem for simple normal crossings divisors, giving a proof sketch and precise references.
+
+\section{Linear algebra}
+
+We first record a pointwise linear-algebra fact which is used repeatedly.
+
+\begin{lemma}\label{lem:linear}
+Let $(V,\Omega)$ be a real symplectic vector space of dimension $2n$.  Let
+\[
+H_1,\dots,H_r\subset V
+\]
+be codimension-$2$ subspaces in simple normal crossings position, meaning that every intersection
+\[
+H_I:=\bigcap_{i\in I}H_i
+\]
+is symplectic and the subspaces meet transversely.  Then there exists a complex structure $I$ on $V$ such that:
+\begin{enumerate}[label=(\alph*)]
+\item $I$ tames $\Omega$, i.e.\ $\Omega(v,Iv)>0$ for all nonzero $v\in V$;
+\item each $H_i$ is $I$-complex, i.e.\ $I(H_i)=H_i$.
+\end{enumerate}
+Moreover, after choosing a complex basis, there are complex-linear coordinates $(z_1,\dots,z_n)$ on $V$ such that
+\[
+H_i=\{z_i=0\},\qquad i=1,\dots,r.
+\]
+\end{lemma}
+
+\begin{proof}
+We argue by induction on $r$.  For $r=0$ the statement is the standard fact that every symplectic vector space admits a compatible complex structure.  For $r=1$, since $H_1$ is symplectic, choose a compatible complex structure on $H_1$ and on its symplectic orthogonal $H_1^\Omega$, and take their direct sum.
+
+For general $r$, put $K:=H_1\cap\cdots\cap H_r$.  By assumption $K$ is symplectic.  The symplectic orthogonal $Q:=K^\Omega$ is a symplectic complement, and
+\[
+V=K\oplus Q
+\]
+symplectically.  The subspaces $H_i\cap Q\subset Q$ are again codimension-$2$ symplectic subspaces in simple normal crossings position, and their total intersection is $\{0\}$.  By induction, there is a complex structure $I_Q$ on $Q$ taming $\Omega|_Q$ and preserving each $H_i\cap Q$.  Choose any compatible complex structure $I_K$ on $K$.  Then
+\[
+I:=I_K\oplus I_Q
+\]
+tames $\Omega$ and preserves each $H_i$.
+
+Finally, because $I$ preserves the configuration and the configuration is in normal crossings position, we may choose an $I$-complex basis of $Q$ in which the $H_i\cap Q$ are coordinate hyperplanes, and extend it by an $I$-complex basis of $K$.  This gives complex-linear coordinates with the desired form.
+\end{proof}
+
+A bundle version follows immediately by applying Lemma~\ref{lem:linear} fibrewise and using the contractibility of the space of fibrewise complex structures taming a fibrewise symplectic form.
+
+\begin{lemma}\label{lem:bundle-linear}
+Let $\pi:E\to B$ be a symplectic vector bundle over a paracompact base, and let $E_1,\dots,E_r\subset E$ be symplectic subbundles forming a simple normal crossings configuration fibrewise.  Then there exists a fibrewise complex structure $I$ on $E$, smooth over $B$, which tames the fibrewise symplectic form and preserves each $E_i$.
+\end{lemma}
+
+\begin{proof}
+The fibrewise space of such complex structures is nonempty and contractible by Lemma~\ref{lem:linear}; hence it admits a smooth section over the paracompact base $B$.
+\end{proof}
+
+\section{The standard neighbourhood theorem for symplectic SNC divisors}
+
+The essential global input is the relative normal-form theorem for symplectic simple normal crossings divisors.  We state it in the form needed here.
+
+\begin{theorem}[Symplectic SNC normal form]\label{thm:normal-form}
+Let $(M,\omega)$ be a closed symplectic manifold and $D=\bigcup_iD_i$ a symplectic simple normal crossings divisor.  Then there exist:
+\begin{enumerate}[label=(\roman*)]
+\item a smooth path $\{\omega_t\}_{t\in[0,1]}$ of cohomologous symplectic forms with $\omega_0=\omega$, such that $D$ remains a symplectic SNC divisor for every $\omega_t$;
+\item an open neighbourhood $U$ of $D$;
+\item an $\omega_1$-tame almost complex structure $J_U$ on $U$;
+\item a smooth atlas of $U$ by complex-valued coordinates, such that for every point of $U$ there is a chart
+\[
+(z_1,\dots,z_n):U_\alpha\to\mathbb C^n
+\]
+with the following properties: if $r$ is the number of components of $D$ passing through the point, then
+\[
+D\cap U_\alpha=\{z_1\cdots z_r=0\},
+\]
+and
+\[
+dz_i\circ J_U=i\,dz_i,\qquad i=1,\dots,r.
+\]
+Equivalently, $z_1,\dots,z_r$ are $J_U$-holomorphic.
+\end{enumerate}
+\end{theorem}
+
+Theorem~\ref{thm:normal-form} is a standard consequence of Weinstein's symplectic neighbourhood theorem, the relative Darboux theorem for symplectic submanifolds, and Moser's stability theorem, applied inductively over the strata.  A detailed exposition in the SNC setting can be found, for example, in:
+\begin{itemize}
+\item M.~Gromov, \emph{Pseudoholomorphic curves in symplectic manifolds}, Invent.\ Math.\ \textbf{82} (1985), \S 2.3;
+\item D.~McDuff--D.~Salamon, \emph{Introduction to Symplectic Topology}, 3rd ed., Oxford University Press, especially the relative Darboux--Weinstein theorem;
+\item E.~Ionel--T.~Parker, \emph{Relative Gromov--Witten invariants}, Ann.\ of Math.\ \textbf{157} (2003), \S 2;
+\item J.~Li, \emph{A degeneration formula of GW invariants}, J.\ Differential Geom.\ \textbf{61} (2002), \S 3.
+\end{itemize}
+For completeness, we recall the main steps.
+
+\begin{proof}[Sketch of proof of Theorem~\ref{thm:normal-form}]
+Let $D_I=\bigcap_{i\in I}D_i$ be a stratum.  The SNC assumptions imply that the normal bundle of $D_I$ admits a smooth splitting
+\[
+\nu D_I\cong\bigoplus_{i\in I}L_i
+\]
+into real rank-$2$ symplectic vector bundles $L_i$, one for each component $D_i$ containing $D_I$.  This splitting may be described intrinsically by
+\[
+L_i\cong \bigcap_{j\in I\setminus\{i\}} \bigl(TD_j|_{D_I}/TD_I\bigr),
+\]
+and the symplectic SNC hypothesis implies each $L_i$ inherits a symplectic vector-bundle structure.
+
+Using Weinstein's symplectic neighbourhood theorem fibrewise and then Moser's theorem relative to the stratified subset $D$, one replaces $\omega$ by a cohomologous symplectic form $\omega'$, connected to $\omega$ by a path keeping every stratum symplectic, such that a neighbourhood of each stratum $D_I$ is symplectomorphic to a neighbourhood of the zero section in
+\[
+\bigoplus_{i\in I}L_i
+\]
+with a model symplectic form which is split to first order in the normal directions and whose restriction to each stratum is the given symplectic form on that stratum.  The path is obtained by applying Moser to a family of forms which remain positive on the compact strata; this guarantees that $D$ stays a symplectic SNC divisor throughout the deformation.
+
+Choose, using Lemma~\ref{lem:bundle-linear}, fibrewise complex structures on all the normal symplectic line bundles $L_i$ and almost complex structures on all strata $D_I$, compatible with the model symplectic forms and compatible with the inclusions of strata.  Because the model normal forms are chosen compatibly over the strata, these local complex structures glue to a smooth almost complex structure $J_U$ on a neighbourhood $U$ of $D$.  In local complex-linear trivializations of the normal bundles, the normal fibre coordinates are $z_1,\dots,z_r$, and the construction makes the projection to the normal fibres complex-linear.  Thus
+\[
+dz_i\circ J_U=i\,dz_i
+\]
+for the local defining functions of the components.  The model symplectic form is positive on $J_U$-complex lines, possibly after shrinking the tubular neighbourhoods; hence $J_U$ is $\omega_1$-tame on $U$.
+\end{proof}
+
+\section{Extension of the local almost complex structure}
+
+The almost complex structure supplied by Theorem~\ref{thm:normal-form} is defined on a neighbourhood of $D$.  We now extend it to all of $M$ without losing tameness.
+
+\begin{lemma}\label{lem:extend}
+Let $(M,\omega)$ be a symplectic manifold, $U\subset M$ an open set, and $J_U$ an $\omega$-tame almost complex structure on $U$.  Let $V\Subset U$ be a precompact open subset.  Then there exists an $\omega$-tame almost complex structure $J$ on $M$ such that
+\[
+J|_V=J_U|_V.
+\]
+\end{lemma}
+
+\begin{proof}
+Choose any global $\omega$-compatible almost complex structure $J_0$ on $M$; existence is standard.  The space $\mathcal J_{\mathrm{tame}}(M,\omega)$ of $\omega$-tame almost complex structures is nonempty, open, and contractible; see McDuff--Salamon, \emph{Introduction to Symplectic Topology}, Proposition~2.50.  More concretely, one may interpolate between $J_U$ and $J_0$ on a collar $U\setminus V$ using the geodesic interpolation in the space of $\omega$-tame complex structures.  Since tameness is an open condition and the interpolation can be performed inside the convex cone of endomorphisms satisfying $\Omega(\cdot,J\cdot)>0$, the resulting global almost complex structure is $\omega$-tame and agrees with $J_U$ on $V$.
+\end{proof}
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+Apply Theorem~\ref{thm:normal-form} to $(M,\omega,D)$.  We obtain a path $\{\omega_t\}_{t\in[0,1]}$ of cohomologous symplectic forms, with $D$ symplectic SNC for every $\omega_t$, a neighbourhood $U$ of $D$, and an $\omega_1$-tame almost complex structure $J_U$ on $U$ with the required local holomorphic normal coordinates near $D$.
+
+Choose a smaller neighbourhood $V$ of $D$ with $\overline V\subset U$.  By Lemma~\ref{lem:extend}, applied to $\omega_1$ and $J_U$, there exists an $\omega_1$-tame almost complex structure $J$ on all of $M$ such that $J=J_U$ on $V$.
+
+Now let $p\in M$.  If $p\notin D$, take $r=0$ and any smooth coordinate chart around $p$; the condition on $D$ is empty.  If $p\in D$, choose a chart in $V$ supplied by Theorem~\ref{thm:normal-form}.  In that chart,
+\[
+D=\{z_1\cdots z_r=0\}
+\]
+and
+\[
+dz_i\circ J=i\,dz_i,\qquad i=1,\dots,r,
+\]
+because $J=J_U$ on $V$.  Thus $z_1,\dots,z_r$ are $J$-holomorphic.  This proves Theorem~\ref{thm:main}.
+
+\section{Final remarks}
+
+The deformation of $\omega$ is used only to put the symplectic form into the standard SNC normal form near $D$.  In many special cases, for instance when $D$ is already $\omega$-orthogonal in a suitable tubular neighbourhood, the path $\omega_t$ may be taken to be constant.  The essential point is that tameness is an open condition and that the relative Moser theorem permits a cohomologous deformation which preserves the symplectic SNC condition on all strata.
+
+As noted in the introduction, the statement becomes false if one demands a full integrable complex coordinate system near $D$.  The theorem proved here is the natural almost-complex analogue: only the normal defining functions are required to be $J$-holomorphic, while the tangential coordinates are arbitrary smooth coordinates.
+
+\begin{thebibliography}{99}
+\bibitem{Gromov}
+M.~Gromov, \emph{Pseudoholomorphic curves in symplectic manifolds}, Invent.\ Math.\ \textbf{82} (1985), 307--347.
+
+\bibitem{McDuffSalamon}
+D.~McDuff and D.~Salamon, \emph{Introduction to Symplectic Topology}, 3rd ed., Oxford University Press, 2017.
+
+\bibitem{IonelParker}
+E.-N.~Ionel and T.~Parker, \emph{Relative Gromov--Witten invariants}, Ann.\ of Math.\ \textbf{157} (2003), 45--96.
+
+\bibitem{Li}
+J.~Li, \emph{A degeneration formula of Gromov--Witten invariants}, J.\ Differential Geom.\ \textbf{61} (2002), 173--274.
+
+\bibitem{Gompf}
+R.~E.~Gompf, \emph{A new construction of symplectic structures}, Invent.\ Math.\ \textbf{118} (1994), 517--522.
+\end{thebibliography}
+
+\end{document}

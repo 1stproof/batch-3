@@ -1,0 +1,123 @@
+%% 5/31/06
+%% ver. 7/21/06
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,amsfonts,amssymb,amscd,amsthm,amsbsy,epsf}
+%%%%%%%  PAGE STYLE/SIZING  %%%%%%%%%%%%
+\textwidth=6.25truein
+\textheight=8.5truein
+\hoffset=-.5truein
+\voffset=-.5truein
+\pagestyle{plain}
+\footskip=36pt
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheorem*{thm}{Theorem} % [subsection]
+\newtheorem*{cor}{Corollary} % [subsection]
+\newtheorem*{Lem}{Lemma}
+\def\Int{\operatorname{int}}
+\def\R{{\mathbb  R}}
+\def\zed{{\mathbb Z}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{center}
+{\large Cameron Gordon}
+\end{center}
+We will prove that the answer is affirmative.
+\medskip
+
+We will denote $p/q$-Dehn surgery on a knot $K$ in $S^3$ by $K(p/q)$. It is known that if $K(p/q)$ is reducible then $q = 1$ [GL], and $K$ is either hyperbolic or a cable knot (this includes torus knots) [S]. Furthermore, if $K$ is a cable knot then $K(p)$ has at most two prime summands [GL]. It is also known that if $K(p)$ has more than two prime summands then it has exactly three, and is of the form $L_1 \# L_2 \# Q$, where $L_1$ and $L_2$ are lens spaces and $Q$ is a homology sphere (see [H, Corollary 5.3]).
+\medskip
+
+The following is the main result of [HLZ].
+\medskip
+
+\noindent{\bf Theorem 1.} (Hom, Lidman, and Zufelt).
+{\it If $K$ is a hyperbolic L-space knot and $K(p)$ is reducible then $p = 2g(K) - 1$.}
+\medskip
+
+If $M$ is a connected 3-manifold, $\tilde M$ will denote the universal abelian covering of $M$. If $G$ is a finitely generated group, $\rho (G)$ will denote the minimal number of generators of $G$.
+
+The following is contained in [GS, Proof of Proposition 1.4].
+\medskip
+
+\noindent{\bf Lemma 2.} (Gonz\'alez-Acu\~na and Short). {\it If $K$ is a fibered knot of genus $g$ then $\rho (\pi_1(\widetilde{K(p/q)}) \le 2g$.}
+
+\begin{proof}
+
+  Let $\pi(K) = \pi_1(S^3 \setminus K)$. Since $\pi(K)$ maps onto $\pi_1(K(p/q))$, the commutator subgroup $\pi(K)'$ maps onto $\pi_1(K(p/q))' = \pi_1(\widetilde{K(p/q)})$. Since $\pi(K)'$ is free of rank $2g$, we have $\rho(\pi_1(\widetilde{K(p/q)}))) \le \rho(\pi(K)') = 2g$.
+\end{proof}
+
+\medskip
+
+\noindent{\bf Lemma 3.}
+{\it Let $M$ and $N$ be connected 3-manifolds with $H_1(M) \cong \zed_m$ and $H_1(N) \cong \zed_n$. Then
+
+$$\widetilde{M\#N} \cong (\#_{(m-1)(n-1)} S^1 \times S^2) \# (\#_{n} \tilde {M}) \# (\#_{m} \tilde{N})$$}
+
+\begin{proof}
+
+  Let $M_0$ ($N_0$) denote $M$ ($N$) with an open 3-ball removed. Then $M\#N \cong M_0 \;\cup\; S^2 \times I\; \cup\; N_0$. Under the covering projection $\widetilde{M\#N} \to M\#N$, the inverse image of $M_0$ is $n$ disjoint copies of $\tilde{M}_0 = \tilde{M}$ with $m$ disjoint open 3-balls removed, the inverse image of $N_0$ is $m$ disjoint copies of $\tilde{N}_0 = \tilde{N}$ with $n$ disjoint open 3-balls removed, and the inverse image of $S^2 \times I$ is $mn$ copies of $S^2 \times I$, joining each copy of $\tilde{M}_0$ to each copy of $\tilde{N}_0$. If $\Gamma$ is the graph with vertices in 1-1 correspondence with the copies of $\tilde{M}_0$ and $\tilde{N}_0$ and edges in 1-1 correspondence with the copies of $S^2 \times I$, then $\chi(\Gamma) = (m+n) - mn$, and hence the first Betti number $b_1(\Gamma) = 1 - \chi(\Gamma) = (m-1)(n-1)$. This gives the stated form of $\widetilde{M\#N}$.
+\end{proof}
+
+\smallskip
+
+\noindent{\bf Corollary 4.}
+{\it Let $M$ and $N$ be lens spaces $L(m,s)$ and $L(n,t)$, respectively, and let $Q$ be a homology 3-sphere. Then 
+
+$$\widetilde{M\#N\#Q} \cong (\#_{(m-1)(n-1)} S^1 \times S^2) \# (\#_{mn} Q)$$}
+
+\begin{proof}
+
+  Since $\tilde M \cong S^3$ and $\widetilde{N\#Q} \cong \#_{n} Q$, the result follows from Lemma 3.
+\end{proof}
+\medskip
+
+
+\noindent{\it Proof that the answer to the Question is affirmative.}
+\medskip
+
+  Suppose for contradiction that $K$ is an L-space knot of genus $g$ such that $K(p)$ has more than two prime summands. Then $K$ is hyperbolic, so $p = 2g - 1$ by Theorem 1. Also, $K(p) \cong L(m,s) \# L(n,t) \# Q$, where $H_1(Q) = 0$. Therefore $p = mn$ and
+
+  $$\widetilde{K(p)} \cong (\#_{(m-1)(n-1)} S^1 \times S^2) \# (\#_{p} Q)$$
+
+  by Corollary 4. Hence
+
+  $$\pi_1(\widetilde{K(p)}) \cong F_{(m-1)(n-1)} \ast (\ast_{p} \pi_1(Q))$$
+  \medskip
+  
+  By Grushko's Theorem
+
+ $$\rho(F_{(m-1)(n-1)} \ast (\ast_{p} \pi_1(Q))) = (m-1)(n-1) + p \rho(\pi_1(Q))$$
+ \medskip
+
+  Since $H_1(Q) = 0$ and $Q$ is not $S^3$,  $\rho(\pi_1(Q)) \ge 2$. Therefore
+
+  $$\rho(\pi_1(\widetilde{K(p)})) \ge (m-1)(n-1) + 2p = 3mn + 1 - (m + n)$$
+  \medskip
+  
+  By [N] $K$ is fibered, and hence by Lemma 2, $3mn + 1 - (m + n) \le 2g = mn + 1$, giving $2mn - (m + n) \le 0$. But $2mn - (m + n) = (mn - 1) + (m - 1)(n - 1) > 0$ since $m,n \ge 2$, a contradiction.
+
+\bigskip
+ 
+ 
+\begin{thebibliography}{HLZ}
+
+
+\bibitem[GS]{GS}
+F. Gonz\'alez-Acu\~na and H. Short, {\em Knot surgery and primeness}, Math. Proc. Camb. Phil. Soc. {\bf 99} (1986), 89--102.
+
+\bibitem[GL]{GL}
+C. McA. Gordon and J. Luecke, {\em Only integral Dehn surgeries can yield reducible manifolds}, Math. Proc. Camb. Phil. Soc. {\bf 102} (1987), 97--101. 
+
+\bibitem[HLZ]{HLZ}
+  J. Hom, T. Lidman and N. Zufelt, {\em Reducible surgeries and Heegaard Floer homology}, Math. Res. Lett. {\bf 22} (2015), 763--788.
+
+\bibitem[H]{H}
+  J. Howie, {\em A proof of the Scott-Wiegold conjecture on free products of cyclic groups}, J. Pure Appl. Algebra {\bf 173} (2002), 167--176.
+
+\bibitem[N]{N} Y. Ni, {\em Knot Floer homology detects fibered knots }, Invent. Math. {\bf 170} (2007), 577--608.
+
+\bibitem[S]{S} M. Scharlemann, {\em Producing reducible 3-manifolds by surgery on a knot}, Topology {\bf 29} (1990), 481--500. 
+
+\end{thebibliography}
+\end{document}

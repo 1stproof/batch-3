@@ -1,0 +1,41 @@
+MerLean
+Copyright 2026 Jinzheng Li, Zeru Zhu and Yuanjie Ren
+
+This product includes software developed as part of the following projects.
+
+-------------------------------------------------------------------------------
+Design acknowledgement: Humanfia Humanize2 and Flowverse
+https://github.com/humanfia/humanize2
+https://github.com/humanfia/flowverse
+
+MerLean's optional research checkpoint layer was informed by Humanfia's durable
+proof checkpoints, dependency-aware work organization, and separation of proof
+repair from integration repair. We acknowledge the Humanfia authors for these
+design examples. The inspected revisions were Humanize2
+3e0e6edf1d47ae27a70c1a334ee6cf364d05f59b and Flowverse
+1dd53c4437e62934ed053bf28fbcdfd0ffa6bbcd (September 10, 2026).
+
+This is a design-inspiration acknowledgement, not a claim that those ideas were
+first introduced by Humanfia. No Humanize implementation is vendored in this
+checkpoint layer. MerLean implements the feature with its own offline plan lock,
+evidence journal, research-scope rules, and unchanged Silver/Gold trust gates.
+The upstream runtime's license is Apache-2.0; this acknowledgement does not
+relicense upstream material or imply upstream endorsement.
+-------------------------------------------------------------------------------
+LeanSearch v2 (https://github.com/frenzymath/LeanSearch-v2)
+Licensed under the Apache License, Version 2.0.
+
+The two-stage retrieval design used by the plan graph — an embedding stage that
+recalls candidates, followed by a reranking stage that scores each (query,
+candidate) pair — follows the shape introduced by LeanSearch v2. The reranker
+instruction in `src/plan_store/rerank.py` is adapted from theirs.
+
+Changes: the cross-encoder reranker (Qwen3-Reranker) is replaced with an OpenAI
+LLM scoring candidates 0-10; the instruction is rewritten for plan-graph nodes
+(informal content plus a formal anchor) rather than Mathlib declarations; and a
+second instruction variant for informal research notes was added.
+
+Paper: Gao, Sun, Jiang, Wang, Xu, Wu, Dai, Dong.
+"LeanSearch v2: Global Premise Retrieval for Lean 4 Theorem Proving."
+arXiv:2605.13137
+-------------------------------------------------------------------------------

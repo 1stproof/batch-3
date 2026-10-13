@@ -1,0 +1,224 @@
+```latex
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amsthm,amssymb,mathrsfs}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\begin{document}
+
+\title{Local holomorphic defining coordinates for symplectic simple normal crossings divisors}
+\author{}
+\date{}
+\maketitle
+
+\begin{abstract}
+We prove that a symplectic simple normal crossings divisor admits, after a deformation of the ambient symplectic form through cohomologous symplectic forms preserving the divisor, an almost complex structure which is tame (indeed compatible) and for which the divisor is locally given by the vanishing of a product of $J$--holomorphic coordinate functions.
+The key input is the existence of $(\omega,J)$--regularizations of symplectic normal crossings divisors established by Farajzadeh Tehrani and Zinger.
+\end{abstract}
+
+\section{Statement of the main result}
+
+Let $(M,\omega)$ be a closed symplectic manifold of real dimension $2n$.
+
+\begin{definition}[Symplectic simple normal crossings divisor]\label{def:scdiv}
+A \emph{symplectic simple normal crossings divisor} (abbreviated \emph{symplectic SNC divisor}) in $(M,\omega)$ is a finite union
+\[
+D=\bigcup_{i=1}^N D_i
+\]
+of closed embedded symplectic hypersurfaces $D_i\subset M$ such that for every subset $I\subset\{1,\dots,N\}$ the intersection
+\[
+D_I \coloneqq \bigcap_{i\in I} D_i
+\]
+is transverse (hence a smooth submanifold of codimension $2|I|$ whenever nonempty) and $\omega|_{D_I}$ is nondegenerate.  We write $D_\varnothing=M$.
+\end{definition}
+
+\begin{definition}[$\omega$--tame and $\omega$--compatible almost complex structures]
+An almost complex structure $J$ on $M$ is \emph{$\omega$--tame} if $\omega(v,Jv)>0$ for all nonzero $v\in TM$, and \emph{$\omega$--compatible} if, in addition, $\omega(Jv,Jw)=\omega(v,w)$ for all $v,w$ and $g(\cdot,\cdot)\coloneqq \omega(\cdot,J\cdot)$ is a Riemannian metric.
+\end{definition}
+
+\begin{theorem}\label{thm:main}
+Let $(M,\omega)$ be a closed symplectic $2n$--manifold and let $D\subset M$ be a symplectic SNC divisor.
+Then there exist
+\begin{enumerate}
+\item a smooth path $\{\omega_t\}_{t\in[0,1]}$ of symplectic forms on $M$ such that $\omega_0=\omega$, $[\omega_t]=[\omega]\in H^2(M;\mathbb R)$ for all $t$, and $D$ is a symplectic SNC divisor in $(M,\omega_t)$ for every $t$;
+\item an $\omega_1$--compatible (hence $\omega_1$--tame) almost complex structure $J$ on $M$;
+\end{enumerate}
+such that for every point $p\in M$ there exists a neighborhood $U\ni p$ and a smooth coordinate chart
+\[
+(z_1,\dots,z_n):U\longrightarrow \mathbb C^n
+\]
+with the following property: if $p$ lies on exactly $r$ local branches of $D$ (equivalently, $p\in D_I$ for a unique $I\subset\{1,\dots,N\}$ with $|I|=r$ and $p\notin D_j$ for $j\notin I$), then
+\begin{enumerate}
+\item the functions $z_1,\dots,z_r:U\to\mathbb C$ are $J$--holomorphic, and
+\item $D\cap U$ is given by the equation $z_1\cdots z_r=0$.
+\end{enumerate}
+\end{theorem}
+
+The conclusion answers the question in the affirmative (with $\omega$ replaced by $\omega_1$, which is connected to $\omega$ through cohomologous symplectic forms preserving the SNC property).
+
+\section{Regularizations and compatible almost complex structures}
+
+The proof uses the notion of \emph{regularization} of a symplectic normal crossings divisor.  We will not reproduce the full (rather elaborate) definition here, but we record the two features we need: (i) a regularization provides compatible tubular neighborhood identifications of all strata $D_I$ with neighborhoods of the zero sections in their normal bundles split as direct sums of complex line bundles corresponding to the branches; (ii) one can choose $\omega$ and $J$ so that in these identifications the almost complex structure is split and standard in the normal directions.
+These objects are constructed in \cite{FTZ}.
+
+\begin{theorem}[Existence of regularizations and compatible $J$]\label{thm:FTZ}
+Let $(M,\omega)$ be a symplectic manifold and let $D\subset M$ be a symplectic SNC divisor.
+Then there exists a deformation of $\omega$ through symplectic forms $\omega_t$ with $[\omega_t]=[\omega]$ and with $D$ remaining a symplectic SNC divisor for all $t$, such that $(M,\omega_1,D)$ admits an $\omega_1$--regularization in the sense of \cite{FTZ}.
+Moreover, for such an $\omega_1$--regularization, the space of $\omega_1$--compatible almost complex structures on $M$ which are compatible with that regularization is nonempty (indeed contractible).
+\end{theorem}
+
+\begin{proof}[Proof (citation)]
+This is proved in Farajzadeh Tehrani--Zinger \cite{FTZ}.
+More precisely:
+\begin{itemize}
+\item The existence of an $\omega_1$--regularization after deforming $\omega$ by a path of symplectic forms supported near $D$ (hence cohomologous to $\omega$) is established in \cite[Theorem~2.17]{FTZ}.
+\item Given an $\omega_1$--regularization, the existence (and contractibility) of the space of $\omega_1$--compatible almost complex structures compatible with the regularization is established in \cite[Proposition~3.11]{FTZ}.
+\end{itemize}
+The deformation $\omega_t$ in \cite{FTZ} is constructed by adding exact $2$--forms supported in a neighborhood of $D$ (see the proof of \cite[Theorem~2.17]{FTZ}), so $[\omega_t]=[\omega]$ for all $t$.
+\end{proof}
+
+\section{Holomorphic normal coordinates from a compatible regularization}
+
+We extract from a compatible regularization the local coordinate statement in Theorem~\ref{thm:main}.
+The following elementary lemma is the analytic core.
+
+\begin{lemma}\label{lem:prodhol}
+Let $(X,J_X)$ be an almost complex manifold and let $\mathbb C^r$ carry its standard complex structure $i$.
+On $X\times \mathbb C^r$ equip the product almost complex structure $J_X\oplus i$.
+Then each coordinate projection
+\[
+\pi_j : X\times\mathbb C^r \to \mathbb C,\qquad \pi_j(x,w_1,\dots,w_r)=w_j,
+\]
+is $(J_X\oplus i,i)$--holomorphic.
+\end{lemma}
+
+\begin{proof}
+Fix $j\in\{1,\dots,r\}$.
+For $(x,w)\in X\times\mathbb C^r$ and $(\xi,\eta)\in T_xX\oplus T_w\mathbb C^r$ we have
+\[
+d\pi_j(\xi,\eta)=d(\mathrm{pr}_j)(\eta),
+\]
+where $\mathrm{pr}_j:\mathbb C^r\to\mathbb C$ is the $j$th coordinate projection.
+Thus
+\[
+d\pi_j\bigl( (J_X\oplus i)(\xi,\eta)\bigr)
+= d\pi_j(J_X\xi, i\eta)
+= d(\mathrm{pr}_j)(i\eta)
+= i\, d(\mathrm{pr}_j)(\eta)
+= i\, d\pi_j(\xi,\eta).
+\]
+This is exactly the Cauchy--Riemann equation $d\pi_j\circ (J_X\oplus i) = i\, d\pi_j$.
+\end{proof}
+
+We now state the local normal form consequence of a compatible regularization.  (This is essentially unpacking the definition of compatibility in \cite{FTZ}.)
+
+\begin{proposition}\label{prop:coordsfromreg}
+Let $(M,\omega_1)$ be a symplectic manifold, $D\subset M$ a symplectic SNC divisor, and let $(\mathcal R,J)$ be an $(\omega_1,J)$--regularization of $D$ in the sense of \cite{FTZ}.
+Fix $p\in D$ and let $I\subset\{1,\dots,N\}$ be the set of indices with $p\in D_i$; put $r=|I|$.
+Then there exists a neighborhood $U\ni p$ and a smooth coordinate chart
+\[
+(z_1,\dots,z_n):U\to\mathbb C^n
+\]
+such that $z_1,\dots,z_r$ are $J$--holomorphic on $U$ and $D\cap U=\{z_1\cdots z_r=0\}$.
+\end{proposition}
+
+\begin{proof}
+Let $I$ and $r$ be as in the statement; then $p\in D_I$ and $p\notin D_j$ for $j\notin I$.
+By the definition of an $\omega_1$--regularization (see \cite[Definition~2.1]{FTZ}), there is a neighborhood of $D_I$ in $M$ identified via a diffeomorphism
+\[
+\Psi_I: \mathcal N_I(\varepsilon) \longrightarrow U\subset M
+\]
+with a neighborhood of the zero section in the vector bundle
+\[
+\mathcal N_I \;=\; \bigoplus_{i\in I} \mathcal N_{D_{I\setminus\{i\}}} D_I,
+\]
+whose fibers are real $2r$--dimensional and are canonically split into the $r$ summands corresponding to the branches $D_i$ through points of $D_I$.
+Each summand is a symplectic rank--$2$ vector bundle and, in the regularization, is equipped with a chosen fiberwise complex structure (thus a complex line bundle structure); see \cite[Section~2.1]{FTZ}.
+
+Shrinking around $p$ if necessary, choose:
+\begin{enumerate}
+\item a coordinate chart $\phi:V\to \mathbb R^{2(n-r)}$ on the stratum $D_I$ with $p\in V\subset D_I$;
+\item complex line bundle trivializations of each summand of $\mathcal N_I|_V$,
+so that over $V$ we obtain an identification of bundles
+\[
+\mathcal N_I|_V \;\cong\; V\times \mathbb C^r
+\]
+with fiber coordinates $(w_1,\dots,w_r)$ on $\mathbb C^r$.
+\end{enumerate}
+In these identifications the embedding $\Psi_I$ restricts to a diffeomorphism from a neighborhood of $(p,0)\in V\times \mathbb C^r$ onto $U$.
+Let $(u_1,\dots,u_{2(n-r)})$ be the real coordinates on $V$ given by $\phi$, and group them into complex coordinates
+\[
+\zeta_{r+1}=u_1+i u_2,\;\;\zeta_{r+2}=u_3+i u_4,\;\;\dots,\;\;\zeta_n=u_{2(n-r)-1}+i u_{2(n-r)}.
+\]
+Define on $U$ complex-valued functions
+\[
+z_j \coloneqq w_j\circ \Psi_I^{-1}\qquad (j=1,\dots,r),
+\qquad
+z_k \coloneqq \zeta_k\circ \mathrm{pr}_V \circ \Psi_I^{-1}\qquad (k=r+1,\dots,n),
+\]
+where $\mathrm{pr}_V:V\times\mathbb C^r\to V$ is the projection.
+
+By construction, $(z_1,\dots,z_n)$ are smooth complex coordinates on $U$ (for a smaller neighborhood if necessary).
+
+\smallskip
+\noindent\emph{Holomorphicity of $z_1,\dots,z_r$.}
+Compatibility of $J$ with the regularization $\mathcal R$ means that, after pulling back by $\Psi_I$, the almost complex structure $J$ on $U$ is the product almost complex structure $J_{D_I}\oplus i$ on $V\times \mathbb C^r$ (where $J_{D_I}$ is $J$ restricted to $D_I$), in the sense of \cite[Definition~3.1]{FTZ}.
+In particular, $\Psi_I$ is an isomorphism of almost complex manifolds between $(V\times\mathbb C^r, J_{D_I}\oplus i)$ and $(U,J)$.
+Thus, by Lemma~\ref{lem:prodhol}, each $w_j$ is $(J_{D_I}\oplus i)$--holomorphic, and therefore each
+\[
+z_j=w_j\circ \Psi_I^{-1}
+\]
+is $J$--holomorphic on $U$.
+
+\smallskip
+\noindent\emph{Equation for $D$.}
+In the model $V\times\mathbb C^r$, the divisor $D$ corresponds (by the defining properties of the regularization, cf.\ \cite[Definition~2.1]{FTZ}) to the union of the coordinate hyperplane subbundles $\{w_j=0\}$ for $j=1,\dots,r$.
+Therefore, in $U$ we have
+\[
+D\cap U \;=\; \bigcup_{j=1}^r \{z_j=0\}
+\;=\; \{z_1\cdots z_r=0\}.
+\]
+This completes the proof.
+\end{proof}
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Apply Theorem~\ref{thm:FTZ} to obtain a path $\omega_t$ of symplectic forms with $\omega_0=\omega$, $[\omega_t]=[\omega]$, and such that $D$ remains a symplectic SNC divisor for all $t$, together with an $\omega_1$--regularization $\mathcal R$ and an $\omega_1$--compatible almost complex structure $J$ compatible with $\mathcal R$.
+
+Let $p\in M$.
+If $p\notin D$, take $r=0$ and any smooth complex coordinate chart near $p$; then $D\cap U=\varnothing$ and the conclusion is immediate.
+
+If $p\in D$, let $I=\{i\mid p\in D_i\}$ and $r=|I|$.
+Then Proposition~\ref{prop:coordsfromreg} provides a neighborhood $U\ni p$ and smooth complex coordinates $(z_1,\dots,z_n)$ on $U$ such that $z_1,\dots,z_r$ are $J$--holomorphic and $D\cap U=\{z_1\cdots z_r=0\}$.
+
+Since $J$ is $\omega_1$--compatible, it is in particular $\omega_1$--tame.
+This proves the theorem.
+\end{proof}
+
+\begin{thebibliography}{99}
+
+\bibitem{FTZ}
+S.~Farajzadeh Tehrani and A.~Zinger,
+\emph{Regularizations for symplectic configurations},
+J.\ Symplectic Geom.\ \textbf{20} (2022), no.~4, 943--1036.
+\newblock \href{https://arxiv.org/abs/1503.07826}{arXiv:1503.07826}.
+
+\bibitem{MS}
+D.~McDuff and D.~Salamon,
+\emph{$J$--holomorphic curves and symplectic topology},
+2nd ed., American Mathematical Society Colloquium Publications, Vol.~52,
+American Mathematical Society, Providence, RI, 2012.
+
+\end{thebibliography}
+
+\end{document}
+```

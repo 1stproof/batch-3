@@ -1,0 +1,353 @@
+kind: attempt
+Open question attempted: MS4 (ledger entry 17), the problem's claim in reduced form, via its strongest known sufficient condition. The approach: rigidity of the surfaces V_t through Kobayashi-extremality and length-spectrum domination, transported from Teichmüller curves to surfaces.
+
+## Task
+Prove MS4 (stated below) by showing that the family is trivial near t = 0, i.e. closure(V_t) = closure(V_0) for small |t|. By PR-1 and the identity theorem this gives MS4. Or prove MS4 directly by a variant of this approach, or show why the approach fails.
+
+**Background: McMullen's rigidity argument for a Teichmüller curve F_0.**
+1. A deformation F_t of the curve, homotopic in M_g, has hyperbolic length spectrum ℓ_{F_t}(γ) ≥ τ_T(ρ(γ)) = ℓ_{F_0}(γ). The inequality is Royden plus Schwarz–Pick; the equality holds because F_0 is Kobayashi-isometric.
+2. Thurston's minimal-stretch theorem then forces F_t ≅ F_0.
+3. Imayoshi–Shiga rigidity over a fixed base (PR-4) then forces the maps to agree.
+
+**Suggested transport to the surface V_0.**
+- V_0 is filled by Teichmüller discs: through every point and every tangent direction of the lift Ṽ_0 ⊂ T_g there is a Teichmüller disc contained in Ṽ_0. So k_{Ṽ_0} = d_T on Ṽ_0, and for every t one has d_T ≤ k_{Ṽ_t} on the lift of V_t (Royden).
+- Every γ ∈ π_1(V_0) whose image ρ(γ) is a pseudo-Anosov stabilizing a Teichmüller disc in Ṽ_0 therefore satisfies: Kobayashi translation length of γ on Ṽ_t ≥ τ_T(ρ(γ)) = Kobayashi translation length of γ on Ṽ_0.
+- What is missing is a "domination ⇒ equality" mechanism for 2-dimensional bases. Candidates, as suggestions only:
+  - Restrict to closed Teichmüller curves T ⊂ V_0, which are dense in many totally geodesic surfaces; check whether they are dense in all. Show that each such T forces a holomorphic curve T_t ⊂ V_t homotopic to T, for instance as a holomorphic or harmonic representative of the class in V_t realizing the minimal Kobayashi or energy length. Then apply the curve argument (Thurston + Imayoshi–Shiga) to conclude T_t = T ⊂ V_t. Density then gives V_0 ⊂ V_t.
+  - A Kobayashi–Eisenman volume comparison: is the Kobayashi–Eisenman volume of V_t bounded below by an invariant that is topological and attained at t = 0?
+  - Area or energy of the equivariant map Ṽ_t → T_g with respect to a natural metric, giving a calibration-type inequality with equality only for totally geodesic surfaces.
+- The boundary behaviour along closure(V_t) is controlled topologically by (R2). Use it for the cusps.
+
+A proof only for some V_0 (e.g. covering constructions) does not answer the question; report it labelled as partial if that is all you find.
+
+## The statement
+**Missing statement (MS4, entry 17, wording unchanged).** Let g ≥ 2. Let V_0 ⊂ M_g be a smooth 2-dimensional complex subvariety, totally geodesic for the Teichmüller metric. Let 𝒱 ⊂ M_g × Δ be a complex submanifold with V_t = ψ(φ^{-1}(t)), satisfying hypotheses (i) and (ii) of the problem, and read as follows:
+- (R1) closure(𝒱) ⊂ M̄_g × Δ is analytic, with fibre closure(V_t) over t;
+- (R2) there is a homeomorphism closure(V_0) × Δ → closure(𝒱) over Δ, smooth on V_0 × Δ, mapping (closure(V_0) ∩ Δ_G) × Δ onto closure(𝒱) ∩ (Δ_G × Δ) for every stratum Δ_G.
+
+Let Δ_Γ ≅ ∏_j M_{g_j,n_j} be a product boundary stratum. Suppose that for every t the set ∂V_t := closure(V_t) ∩ Δ_Γ has dimension 1 and π_i(∂V_t) = {Y_t} for one fixed index i. Then the holomorphic map Δ → M_{g_i,n_i}, t ↦ Y_t, is constant.
+
+## How the statement completes the problem (the chain)
+1. By PR-1 below, t ↦ Y_t is a holomorphic map from the disc into M_{g_i,n_i}.
+2. The problem's conclusion, π_i(∂V_t) = {Y_0} for all t, is therefore literally the statement that this map is constant. By the identity theorem, it is enough to show that Y is constant on some nonempty open set of t.
+3. So the statement above IS the problem's claim, under readings (R1) and (R2) of the hypotheses. Every earlier attempt adopted these readings.
+4. If you think the derivation is flawed, or a reading is unjustified, say so explicitly. If your proof needs a further reading of the hypotheses, state it and argue that the problem's hypotheses mean it.
+
+## Prior results (spliced verbatim from earlier answer files)
+They rely on (R1) and (R2). Results marked "cited from memory" there are not verified; re-check anything you use. Labels inside them such as "P-a", "P-b", "P-d" refer to still earlier files. What you need from P-a and P-b:
+- P-a Lemma 1 is holomorphy (PR-1 gives a cleaner proof).
+- P-b Lemma 1 says the closure of ∂V_t = {Y_t} × C_t in deeper strata is {Y_t} × closure(C_t), so every point of it keeps the smooth component Y_t at vertex i.
+
+### PR-1. Holomorphy of Y_t (from round4_q3, verbatim)
+## (A) Lemma 1 (holomorphy of Y_t), proved from (R1) and (R2)
+
+**Lemma 1.** t -> Y_t is a holomorphic map Delta -> M_{g_i,n_i}.
+
+*Proof.*
+1. **Continuity.** Fix p in dV_0. By (R2), Phi(p,t) lies in dV_t for every t, so Y_t = pi_i(Phi(p,t)). This is continuous in t because Phi is continuous.
+2. **The analytic set A.** Let A = closure(calV) cap (Delta_Gamma x Delta). By (R1), A is a closed analytic subset of the complex manifold Delta_Gamma x Delta. By (R2), A is homeomorphic to dV_0 x Delta. The set dV_0 is a 1-dimensional analytic set, so every nonempty open subset of A has real topological dimension 4. Hence A has pure complex dimension 2.
+3. **The projection to Delta.** Each fibre A_t = dV_t has dimension 1. So no irreducible component of A lies in a fibre of phi : A -> Delta.
+4. **The bad set.** Let B be the union of Sing(A) and the critical set of phi restricted to Reg(A). Then B is a closed analytic subset of dimension at most 1.
+   - It is a proper subset in each component. Otherwise phi would be locally constant on an open subset of Reg(A), and that would force a component into a fibre.
+   - The 1-dimensional irreducible components of B form a locally finite family. Those contained in fibres of phi lie over a discrete set D in Delta.
+   - For t not in D, the fibre A_t (dimension 1) is not contained in B. Indeed, the intersection of A_t with B is a union of fibre-contained components of B, which do not occur over such t, and of finitely many points locally.
+5. **Local sections.** For t_0 not in D, pick a in A_{t_0} \ B. Near a, A is a manifold and phi is a submersion. So there is a holomorphic local section s of phi with s(t_0) = a, and Y_t = pi_i(s(t)) is holomorphic near t_0.
+6. **Conclusion.** Y is continuous on Delta and holomorphic on Delta \ D with D discrete. By the removable singularity theorem (in local coordinates of M_{g_i,n_i}, which is an orbifold, so work in a local manifold chart / finite cover near Y_{t_0}), Y is holomorphic on Delta. ∎
+
+**Corollary.** MS4 is equivalent to "Y_t = Y_0 for all t in some neighbourhood of 0", by the identity theorem.
+
+---
+
+
+### PR-2. Pinning theorem (from round4_q3, verbatim)
+## (B) Pinning theorem (rigorous)
+
+**Theorem B.** Suppose there exist:
+- a stratum Delta_{G'} contained in closure(Delta_Gamma);
+- a point P_0 in closure(dV_0) cap Delta_{G'};
+- a stratum Delta_G with Delta_{G'} contained in closure(Delta_G);
+
+such that:
+- (a) P_0 is an isolated point of closure(V_0) cap Delta_{G'};
+- (b) P_0 lies in closure(E_0), where E_t := closure(V_t) cap Delta_G and dim E_0 = 1;
+- (c) the family E_t is "closure-constant" near t = 0, i.e. closure(E_t) = closure(E_0) for t small.
+
+Then Y_t = Y_0 for all t in Delta.
+
+*Proof.*
+1. **Definition of P_t.** Put P_t = Phi(P_0, t).
+   - Phi_t is a homeomorphism from closure(V_0) onto closure(V_t) mapping the Delta_Gamma-part onto the Delta_Gamma-part. So it maps closure(dV_0) onto closure(dV_t), and P_t lies in closure(dV_t) cap Delta_{G'}.
+   - P_t is continuous in t.
+2. **The i-th component of P_t is Y_t.**
+   - The gluing map from (product of the closures of M_{g_j,n_j}) to the closure of M_g is proper and continuous. So the closure of {Y_t} x C_t equals the image of {Y_t} x closure(C_t).
+   - Every point of it is a stable curve having the smooth pointed curve Y_t as the component at vertex i.
+   - In particular, P_t determines Y_t: it is the vertex-i component of P_t.
+3. **Applying (ii).** Choose a neighbourhood U of P_0 such that closure(V_0) cap Delta_{G'} cap U = {P_0}, which is possible by (a).
+   - Then closure(E_0) cap Delta_{G'} cap U is contained in {P_0} and contains P_0, by (b).
+   - So the hypothesis of (ii) holds for (Delta_G, Delta_{G'}, U), and (ii) yields, for all t, closure(E_t) cap Delta_{G'} cap U = closure(V_t) cap Delta_{G'} cap U.
+   - For t small, P_t lies in U and in closure(V_t) cap Delta_{G'}, hence P_t lies in closure(E_t) = closure(E_0), by (c).
+4. **Finiteness.** closure(E_0) cap Delta_{G'} is finite.
+   - closure(V_0) cap closure(Delta_G) is a compact analytic set. closure(E_0) is the union of those of its irreducible components that meet Delta_G. These have dimension 1, since E_0 is dense open in them and dim E_0 = 1.
+   - Delta_{G'} is disjoint from Delta_G. So closure(E_0) cap Delta_{G'} lies in closure(E_0) \ E_0, which is a proper closed analytic subset of a compact 1-dimensional analytic set, hence finite.
+5. **Conclusion.** t -> P_t is continuous with values in a finite set for small t, so it is constant there. By step 2, Y_t = Y_0 for small t, and by the Corollary of Lemma 1, for all t. ∎
+
+**Remarks.**
+- (c) is the only non-formal input. It holds, for example, if the boundary curve E_0 is *rigid*: every deformation of it as a 1-dimensional subvariety of Delta_G, with fixed topological type, is trivial.
+- Isolatedness (a) holds automatically when dim Delta_{G'} cap closure(V_0) = 0 near P_0. For a 2-dimensional V_0 this is the generic situation for codimension-3 or deeper strata, but it is not guaranteed.
+- If (a) fails, the same proof works whenever the hypothesis of (ii) can be verified on some U.
+
+---
+
+### PR-3. Incidence transport, cusp structure, a Hodge-theoretic rigidity of merged boundary curves, conditional theorem (from round4_q7, verbatim; Proposition D rests on results cited from memory)
+## A. Correction to the prior results
+
+The task's prior results say, in the paragraph after Proposition A of the spliced partial result: "0-dimensional strata of closure(V_t) are finite and continuous in t, hence constant." This is **false** as stated.
+- A 0-dimensional piece closure(V_t) ∩ Δ_G is a finite set that moves continuously in t.
+- It is constant only if it lies in a fixed finite set independent of t. That happens, for example, when Δ_G is itself a point (all vertices of type (0,3)), or when the points lie in closure(E_0) for a curve E_0 that does not move, as in Lemma B.
+
+So the "induction on codimension terminating at 0-dimensional strata" does not close by itself. Lemma B is unaffected.
+
+## B. Under (R2), incidences are transported automatically
+
+**Lemma B′.** Let H : closure(V_0) × Δ → closure(𝒱) be the stratified homeomorphism of (R2). Let E_0 be a 1-dimensional piece of closure(V_0) ∩ Δ_{G''}, and let P_0 ∈ closure(E_0) ∩ closure(∂V_0) ∩ Δ_{G'}. Put E_t := H(E_0 × {t}) and P_t := H(P_0, t). Then:
+- E_t ⊂ Δ_{G''};
+- P_t ∈ closure(E_t) ∩ closure(∂V_t) ∩ Δ_{G'};
+- t ↦ P_t is continuous.
+
+*Proof.*
+1. H is a homeomorphism over Δ that maps (closure(V_0) ∩ Δ_G) × Δ onto closure(𝒱) ∩ (Δ_G × Δ) for every G.
+2. A homeomorphism commutes with closures. Hence H(closure(E_0) × {t}) = closure(E_t), and H(closure(∂V_0) × {t}) = closure(∂V_t).
+3. Continuity of P_t follows from continuity of H. ∎
+
+So neither hypothesis (ii) nor the "isolated point" condition in (H1) is needed under (R2). Under a weaker reading one would fall back on (ii) as in P-d. By P-b, the component of P_t at the vertex i of G' is Y_t: the vertex i stays intact because π_i is constant along ∂V_t.
+
+## C. Local structure at a cusp of ∂V_t (partial (H1))
+
+Fix t and a point P ∈ closure(∂V_t) \ ∂V_t. Then P lies in some Δ_{G'}, where G' degenerates Γ: it has edge set E(Γ) ∪ X with X ≠ ∅, and vertex i is intact. Let S be the germ of closure(V_t) at P. It is pure 2-dimensional, because V_t is dense in it.
+
+**Lemma C1.** S has a 1-dimensional boundary branch b through P, other than the branches of closure(∂V_t), such that some edge e ∈ X is pinched along b.
+
+*Proof.*
+1. closure(∂V_t) \ ∂V_t is a proper analytic subset of a 1-dimensional analytic set, hence discrete.
+2. So a branch β of closure(∂V_t) at P satisfies β \ {P} ⊂ Δ_Γ. Let X_S be an irreducible component of S containing β.
+3. Take e ∈ X. On β \ {P} exactly the edges of Γ are pinched, so s_e ≠ 0 there. Hence s_e|_{X_S} is a non-unit that is not identically zero on the irreducible 2-dimensional germ X_S.
+4. Its zero set is therefore of pure dimension 1 (Krull's principal ideal theorem / Weierstrass preparation; standard).
+5. That zero set meets β only at P. So it contains a branch b ≠ β, and b lies in the boundary with s_e ≡ 0 on b. ∎
+
+**Definition (merge property).** Let b be a boundary branch at P, and let G_b be the dual graph of a generic point of b. Equivalently, G_b is G' with the edges unpinched along b contracted. Let v be the vertex of G_b containing vertex i of G'. Say b has the *merge property* if v is strictly bigger than {i}, that is, some edge of G' incident to i is unpinched along b.
+
+**Lemma C2 (merging forces variation).** Suppose b has the merge property. Let E be the 1-dimensional piece of closure(V_t) ∩ Δ_{G_b} containing b. Then π_v(E) is not a point. Moreover, the limit Q of π_v along b at P is a boundary point of M̄_{h,m}, where M_{h,m} is the factor of vertex v. The dual graph of Q is the subgraph of G' contracted into v, and its component at vertex i is Y_t.
+
+*Proof.*
+1. As a point of b tends to P, the edges of G' inside v get pinched. So π_v tends to the stable curve Q described in the statement. Q lies in ∂M̄_{h,m}, because v contains at least one such edge.
+2. Its component at vertex i is the component of P at vertex i, which is Y_t.
+3. If π_v were constant on E, equal to some Z ∈ M_{h,m}, then its limit along b would be Z ∈ M_{h,m}, not a boundary point. Contradiction. ∎
+
+**What C1 does not give.** C1 produces a branch b on which an extra edge e is pinched. It does not control the edges at vertex i. The merge property fails exactly when every edge of G' incident to i is pinched along b. Lemma C1 cannot exclude this. Example: in local coordinates (u,v) on a smooth germ, s_γ = uv and s_e = v, with β = {u=0} and b = {v=0} ⊂ Δ_{G'}. Nothing in (i), (ii), (R1) or (R2) rules out a surface whose boundary branches all look like this at every cusp of ∂V_0; compare Observation 4 of P-a. Define:
+
+**(C-merge)** There is a cusp P_0 of ∂V_0 and a boundary branch b of closure(V_0) at P_0 with the merge property.
+
+(C-merge) is the precise residue of (H1). It is not proved in general.
+
+## D. Rigidity of the varying factor without Möller's zero condition
+
+**Möller's characterization, as I recall it** (from memory, Möller, *Variations of Hodge structures of a Teichmüller curve*, JAMS 19 (2006); flagged as uncertain):
+- A curve C → M_g is a Teichmüller curve (generated by an abelian differential) **iff** the VHS of the family contains a rank-2 sub-VHS L with maximal Higgs field, **and** the zeros of a generating section ω of L^{1,0} are horizontal: after a finite base change they form sections.
+- I believe the second condition is genuinely needed. Shimura-type families with a maximal-Higgs rank-2 piece are not Teichmüller curves; compare Möller's paper on Shimura- and Teichmüller curves (J. Mod. Dyn. 2011), from memory.
+- I see no reason why topological transport would preserve that zero condition. So step 5 of Proposition A, as written, is unjustified. I bypass it as follows.
+
+**Setting.**
+- F_t := π_v(E_t) ⊂ M_{h,m}, where E_t = H(E_0 × {t}), so that E_t ⊂ Δ_{G_b} for all t.
+- Pass to a finite level cover, so that the universal family of genus-h curves exists over F_t (normalized), with local system R^1_t of rank 2h.
+- By (R2), the classifying maps are homotopic. So there is an orientation-preserving homeomorphism of punctured curves h_t : F_0 → F_t with R^1_t ∘ h_t ≅ R^1_0 as local systems.
+
+**(H2′)** R^1_0 contains a real rank-2 sub-VHS L_0 whose Higgs field is maximal. Equivalently (Arakelov equality), its period map F̃_0 → ℍ is a biholomorphism.
+
+This holds if F_0 is a Teichmüller curve generated by an abelian differential (Möller, cited from memory). It does **not** hold for curves in M_{0,m}, where h = 0, nor in general for Teichmüller curves generated by quadratic differentials.
+
+**Proposition D.** Under (R2) and (H2′), F_t = F_0 for all t, as subsets of M_{h,m}. This uses two cited results, (K) and (Ct) below.
+
+*Proof.*
+
+*Step 1 (the monodromy of L is Fuchsian).*
+- Maximal Higgs at t = 0 means the ρ_0-equivariant period map φ_0 : F̃_0 → ℍ is a biholomorphism.
+- So the monodromy ρ_0 of L_0 is a discrete faithful representation onto a lattice Λ ⊂ SL_2(ℝ) (up to ±1), and in particular Zariski dense. Then L_0 is absolutely irreducible.
+- Let L_t ⊂ R^1_t be the transported sub-local system, with ρ_t = ρ_0 ∘ (h_t)_*^{-1}.
+
+*Step 2 (L_t is a sub-VHS, including multiplicity > 1).*
+- By Deligne's semisimplicity and the isotypic decomposition of a polarizable VHS (cited from memory: Deligne, *Un théorème de finitude pour la monodromie*, §1), the ρ_t-isotypic component of R^1_t ⊗ ℂ is L_t ⊗ W_t.
+- Here L_t carries a VHS that is unique up to shift of the Hodge types, and W_t is a Hodge structure.
+- ρ_t has non-compact Zariski closure. So L_t is not unitary, and its two Hodge types are adjacent, say {q, q−1}.
+- If W_t had two types s < s′, the tensor product would have at least three distinct types among q−1+s, q+s, q−1+s′, q+s′. A weight-1 VHS has only the types 1 and 0. Hence W_t is pure, of one type.
+- So for any real w ≠ 0 in W_t, the rank-2 local system L_t ⊗ w ≅ L_t is a real sub-VHS of R^1_t of types (1,0)+(0,1).
+- This settles the multiplicity worry (H2) of the earlier answer.
+
+*Step 3 (maximality transports).*
+- For a rank-2 real VHS on a punctured curve with quasi-unipotent local monodromy, 2·deg L^{1,0} of the Deligne extension equals the Toledo invariant T(ρ) (up to a fixed normalization). This is cited from memory, e.g. from the theory of maximal representations of Burger–Iozzi–Wienhard and Koziarz–Maubon.
+- The Toledo invariant is natural under orientation-preserving homeomorphisms, so T(ρ_t) = T(ρ_0) = |χ(F_0)| = |χ(F_t)|.
+- Hence L_t is maximal Higgs. Equivalently, its period map φ_t : F̃_t → ℍ is a local isometry of complete hyperbolic disks, hence an isometry. (Pointwise Schwarz–Pick inequality plus equality of total integrals forces pointwise equality.)
+
+*Step 4 (Kobayashi isometry; proved here).*
+- On F̃_t the local system is trivial. So L := L_t is a fixed real symplectic plane in V = H^1(S_h, ℝ), and V = L ⊕ L^⊥ (symplectic orthogonal).
+- Choose a symplectic basis adapted to this splitting. The map Ξ : ℍ_h → ℍ, τ ↦ τ_{11} (the upper-left entry, i.e. the L-block) is holomorphic. Its imaginary part is positive, as a principal minor of Im τ > 0.
+- At points where L is a sub-Hodge structure, τ is block diagonal, so Ξ(τ) is the period of L.
+- Hence φ_t = Ξ ∘ Per ∘ f_t, where f_t : F̃_t → T_{h,m} is the lift of the classifying map, and Per : T_{h,m} → T_h → ℍ_h is the period map after forgetting the marked points.
+- All maps are holomorphic and do not increase Kobayashi distances. By Royden's theorem (cited), k_{T_{h,m}} = d_T. Therefore
+  k_ℍ(φ_t x, φ_t y) ≤ k_{ℍ_h} ≤ d_T(f_t x, f_t y) ≤ k_{F̃_t}(x,y) = k_ℍ(φ_t x, φ_t y).
+- So f_t is a holomorphic Kobayashi-isometric embedding of the disk into T_{h,m}.
+
+*Step 5 (cited).*
+- **(K)** A holomorphic isometric disk in T_{h,m} for the Teichmüller metric is a Teichmüller disk. Cited from memory, in the form I believe McMullen proves it in *Rigidity of Teichmüller curves* (Math. Res. Lett. 2009); not checked.
+- Hence F_t is a Teichmüller curve, possibly generated by a quadratic differential.
+- **(Ct)** Teichmüller curves in M_{h,m} form a countable set. Cited from memory: they are defined over ℚ̄ / rigid (Möller, McMullen), or alternatively by Eskin–Mirzakhani–Mohammadi.
+
+*Step 6 (constancy).*
+- t ↦ closure(F_t) is continuous in the Hausdorff metric on compact subsets of M̄_{h,m}, by (R2).
+- A connected subset of a countable metric space is a point: the distance to a fixed point takes countably many values on a connected set, hence is constant.
+- So closure(F_t) is constant, and F_t = F_0. ∎
+
+## E. Conditional theorem
+
+**Theorem E.** Assume (R1) and (R2). Assume also:
+- (C-merge) holds, with merged vertex v carrying the factor M_{h,m};
+- (H2′) holds for F_0 = π_v(E_0);
+- the cited results (K) and (Ct) hold.
+
+Then π_i(∂V_t) = {Y_0} for all t.
+
+*Proof.*
+1. Take E_t and P_t as in Lemma B′.
+2. By Lemma C2, F_t = π_v(E_t) is a curve, and its limit Q_t at P_t lies in closure(F_t) ∩ ∂M̄_{h,m}. Its component at vertex i is Y_t.
+3. By Proposition D, closure(F_t) = closure(F_0). This is a compact curve, so its intersection with ∂M̄_{h,m} is a finite set.
+4. Q_t depends continuously on t, through P_t. So Q_t is constant.
+5. Its component at vertex i is determined up to the finite ambiguity of graph automorphisms, and depends continuously on t. Hence Y_t is constant. ∎
+
+This replaces the earlier conditional theorem: (H3) is removed and (H2) is weakened to (H2′), at the price of the cited results (K) and (Ct).
+
+## F. Second pinning mechanism (when the merge property fails)
+
+Suppose that at cusps of ∂V_0 there are boundary branches b without the merge property. Then vertex i is a vertex of G_b. Let E_0 ⊃ b be the corresponding boundary piece. Then π_i(E_0) is either the point Y_0, or a curve through Y_0.
+
+**Lemma F.** Suppose there are two such pieces E_0, E′_0, with E_t, E′_t transported as in Lemma B′, such that:
+- F_t := π_i(E_t) and F′_t := π_i(E′_t) are curves;
+- (H2′) holds for both;
+- closure(F_0) and closure(F′_0) have no common irreducible component through Y_0.
+
+Then Y_t is constant.
+
+*Proof.*
+1. By Proposition D, F_t = F_0 and F′_t = F′_0.
+2. Y_t is the limit of π_i along E_t at P_t, so Y_t ∈ closure(F_0) ∩ M_{g_i,n_i}. Likewise Y_t ∈ closure(F′_0). For E′_t, P′_t is its own transported cusp, and the component of P′_t at vertex i is again Y_t.
+3. Y_t therefore lies in the finite set closure(F_0) ∩ closure(F′_0) near Y_0. It is continuous in t, hence constant. ∎
+
+If π_i(E_0) = {Y_0}, then E_0 is another boundary piece that is constant on factor i, and the problem recurs for E_0. Such recursions cannot be ruled out by the local data.
+
+
+### PR-4. Rigidity over a fixed base: Imayoshi–Shiga (from round4_q9, verbatim)
+## Cited theorem (from memory)
+**Rigidity theorem (Arakelov–Parshin; Imayoshi–Shiga 1988, "A finiteness theorem for holomorphic families of Riemann surfaces"; McMullen's Bull. AMS survey states it in this form).** Let S be a Riemann surface of finite type, i.e. a compact Riemann surface minus finitely many points. Then:
+- a homotopy class of maps S -> M_g contains only finitely many non-constant holomorphic maps;
+- in particular, a non-constant holomorphic map S -> M_g is rigid.
+
+The original statement is for holomorphic families. It says that two locally non-trivial holomorphic families of genus-g curves over S that are topologically equivalent are holomorphically equivalent. To pass from families to maps into the coarse space one goes to a finite level cover M_g[m], m ≥ 3. I take this reduction as standard and do not re-prove it here. (Caveat: if one insists on orbifold homotopy classes, the continuous families below give orbifold-homotopic maps as long as the homotopy lifts. For the families below the homotopy is a continuous family of holomorphic maps, and I take that to suffice.)
+
+**Lemma 0.** Let F_t : S -> M_g, t ∈ Δ, be holomorphic maps with (s,t) -> F_t(s) continuous, and suppose F_0 is non-constant. Then F_t = F_0 for all t.
+
+*Proof.*
+1. Suppose F_t were constant for some t. Since F_t is homotopic to F_0, the map F_0 would induce the trivial orbifold-monodromy class. Then F_0 would lift, on a finite cover S' of S (also of finite type), to a holomorphic map into Teichmüller space T_g.
+2. T_g is a bounded domain (Bers embedding). Bounded holomorphic functions extend over punctures, so the lift extends to the compact surface S̄'. A holomorphic map from a compact Riemann surface into a bounded domain is constant (maximum principle applied to the coordinate functions). So F_0 would be constant, a contradiction.
+3. Hence every F_t is non-constant and homotopic to F_0. By the rigidity theorem, the set Φ of non-constant holomorphic maps homotopic to F_0 is finite.
+4. The map t -> F_t is continuous into C(S, M_g) with the compact-open topology, which is Hausdorff. So it is a continuous map from the connected set Δ into the finite, hence discrete, set Φ. It is therefore constant. ∎
+
+## Theorem A (pinning by a rigid test curve)
+Suppose there are:
+- a compact Riemann surface S̄, a finite set P ⊂ S̄, S = S̄ \ P, and a point p ∈ P;
+- continuous maps h : S̄ × Δ -> M̄_g with each h_t := h(·,t) holomorphic;
+
+such that h_t(S) ⊂ V_t, h_0|_S is non-constant, and h_t(p) ∈ ∂V_t for all t. Then Y_t = Y_0 for all t.
+
+*Proof.* Lemma 0 applied to F_t = h_t|_S (which maps into V_t ⊂ M_g) gives h_t|_S = h_0|_S. By continuity h_t(p) = h_0(p) for every t. This point lies in ∂V_t, so it lies in Δ_Γ, and π_i of it is Y_t. Hence Y_t = π_i(h_0(p)) = Y_0. ∎
+
+## Theorem B (constant complex structure ⇒ V_t = V_0)
+Suppose there are biholomorphisms Φ_t : V_0 -> V_t with (x,t) -> Φ_t(x) continuous and Φ_0 = id. This holds, for instance, if 𝒱 -> Δ is holomorphically locally trivial. Then V_t = V_0 for all t, and hence Y_t = Y_0.
+
+*Proof.*
+1. V_0 is quasi-projective (R1 and Chow's theorem). Fix x ∈ V_0.
+2. A general complete-intersection curve through x in a projective closure gives an irreducible algebraic curve C ⊂ V_0 through x that is smooth at x (Bertini).
+3. Let ν : S -> C be its normalization, with finitely many points removed so that S is of finite type and still contains a point s_x with ν(s_x) = x.
+4. F_t := Φ_t ∘ ν : S -> M_g is a continuous family of holomorphic maps. F_0 = ν is non-constant.
+5. Lemma 0 gives Φ_t(x) = F_t(s_x) = F_0(s_x) = x.
+6. Since x was arbitrary, V_t = Φ_t(V_0) = V_0. So closure(V_t) = closure(V_0), ∂V_t = ∂V_0 and Y_t = Y_0. ∎
+
+**Corollary B'.** Suppose the closures form a smooth proper family of log pairs (V̄_t, D_t) (simple normal crossing boundary) and H^1(V̄_0, T_{V̄_0}(-log D_0)) = 0. Then the claim holds. The same is true if all the pairs (V̄_t, D_t) are biholomorphic to one another.
+- *Proof sketch.* Kodaira–Spencer–Kuranishi theory for log pairs, or the Fischer–Grauert theorem in the second case (both cited from memory), makes the family locally holomorphically trivial near t = 0. Then Theorem B applies near 0. The identity theorem for the holomorphic map t -> Y_t (P-a Lemma 1) extends constancy to the whole disc.
+- *Status.* This is conditional on the extra hypotheses: that the family is log-smooth, and that the H^1 vanishes or the pairs are isomorphic. These are not part of the problem.
+
+
+### PR-5. Douady-space rigidity at t = 0 suffices (from round4_q8, verbatim)
+## §A. Infinitesimal rigidity at t = 0 suffices for all t
+**Setting.**
+- Let p: M̂ → M̄_g be a finite Galois cover by a smooth projective variety, with group G. Such covers exist via level structures (Looijenga; Boggi–Pikaart; cited from memory).
+- Let 𝒱̂ be the closure in M̂ × Δ of (p × id)^{-1}(𝒱), with its reduced structure.
+- Every irreducible component of 𝒱̂ dominates Δ. Indeed, φ: 𝒱 → Δ is a submersion, every component of (p×id)^{-1}(𝒱) has 2-dimensional fibres over every t, and taking closure adds no component.
+- So t is a non-zero-divisor on O_{𝒱̂}, and 𝒱̂ is flat over Δ. Let Ẑ_t be its scheme-theoretic fibre. Ẑ_t is a compact subspace of M̂, and its support is p^{-1}(closure V_t), using (R1) and the fact that p is finite and open.
+
+**Proposition A.** Suppose the Zariski tangent space of the Douady space D(M̂) at [Ẑ_0] vanishes, i.e.
+  Hom_{O_{Ẑ_0}}(I/I², O_{Ẑ_0}) = 0, where I is the ideal of Ẑ_0.
+Then Y_t = Y_0 for all t ∈ Δ.
+
+*Proof.*
+1. Ẑ is a flat family of compact subspaces of M̂ over Δ. By the universal property of the Douady space (Douady, cited from memory) it is classified by a holomorphic map τ: Δ → D(M̂) with τ(t) = [Ẑ_t].
+2. Let m be the maximal ideal of the local ring of D(M̂) at [Ẑ_0]. That local ring is a noetherian analytic algebra, and the Zariski tangent space is (m/m²)^∨. If this vanishes then m = m², so m = 0 by Nakayama. Hence the germ (D(M̂), [Ẑ_0]) is a reduced point.
+3. Therefore τ is constant near 0. So Ẑ_t = Ẑ_0 for |t| < ε, and hence closure V_t = p(supp Ẑ_t) = closure V_0.
+4. So ∂V_t = ∂V_0 and Y_t = Y_0 for |t| < ε. By §0, Y_t = Y_0 for all t. ∎
+
+**Remarks.**
+- If Ẑ_0 is reduced, i.e. equals p^{-1}(closure V_0) (a natural strengthening of (R1)), the hypothesis reads H^0(p^{-1} closure V_0, N) = 0, where N is the normal sheaf.
+- This is a condition at t = 0 only, where V_0 is totally geodesic and all its structure (the orbit closure, the rank-4 sub-VHS W) is available.
+- The point is that rigidity of the *whole* germ is first-order checkable. Rigidity of the single function Y on the germ is not, which is the t²v issue raised in the task.
+- I have not proved the vanishing. It is a form of the missing lemma (§D).
+
+
+### PR-6. Converse: stratum-preserving log flows give counterexamples (from round4_q1, verbatim)
+## 2. Theorem B (a conditional counterexample) — proved, given its hypothesis
+
+**Theorem B.** Let U be an open neighbourhood of K_0 := closure(V_0) in M̄_g, working in an orbifold chart or on a smooth level cover as in §1. Let ξ be a holomorphic vector field on U with two properties:
+- (a) ξ is tangent to every boundary stratum Δ_G, that is, logarithmic;
+- (b) near closure(∂V_0) ∩ U, ξ restricted to the product Δ_Γ ≅ ∏_j M_{g_j,n_j} has product form ξ = (v(y), w(y, z)). Here v is a holomorphic vector field on the i-th factor, with v(Y_0) ≠ 0.
+
+Let Φ_s be the flow of ξ. Then for ε > 0 small, the sets V_t := Φ_{εt}(V_0), t ∈ Δ, satisfy all of the problem's hypotheses, together with (R1) and (R2). Moreover Y_t = φ_{εt}(Y_0), where φ is the flow of v. In particular Y_t is non-constant.
+
+*Proof.*
+1. **The flow exists on the whole disc.** K_0 is compact, so Φ_s is defined on a neighbourhood of K_0 for |s| < 2ε, by the ODE existence theorem. Each Φ_s is a biholomorphism onto its image. By (a), Φ_s maps each stratum into itself, because a logarithmic vector field is tangent to every stratum closure.
+2. **Each V_t is an algebraic subvariety of M_g.**
+   - Since Φ is a homeomorphism, closure(V_t) = Φ_{εt}(K_0). This is a compact set, locally analytic at each of its points, so it is a closed analytic subset of M̄_g.
+   - By Chow's theorem (GAGA, cited from memory) it is algebraic.
+   - Since Φ preserves M_g, V_t = closure(V_t) ∩ M_g. So V_t is a smooth closed subvariety of M_g, being biholomorphic to V_0.
+3. **The family is a smooth trivial family of submanifolds.** The total space 𝒱 = {(Φ_{εt}(x), t) : x ∈ V_0, t ∈ Δ} is a complex submanifold of M_g × Δ. The map (x, t) ↦ (Φ_{εt}(x), t) trivializes it. This proves (R2) and the footnote condition.
+4. **Hypothesis (i).** closure(V_t) ∩ Δ_G = Φ_{εt}(K_0 ∩ Δ_G), which is trivialized by the same map.
+5. **Hypothesis (ii).** Φ_{εt} is a homeomorphism that preserves every stratum. Therefore it commutes with taking closures and intersections. Let U' be any open set for which the incidence in (ii) holds at t = 0. Then the same incidence holds at time t with U' replaced by Φ_{εt}(U').
+
+   (ii) is stated for the *same* U at all times, so it needs one more remark. By (b), Φ preserves the product structure near Δ_Γ. Taking U' to be a small product-type neighbourhood, Φ moves it only slightly for small ε. Since (ii) is local, one can cover U by such sets.
+
+   **Possible gap.** This last reduction is only sketched. If (ii) is read literally for an arbitrary fixed U, I have not checked that every U can be handled this way.
+6. **The boundary and the constant factor.**
+   - ∂V_t = Φ_{εt}({Y_0} × C_0) = {φ_{εt}(Y_0)} × (curve), by (b). So it is constant on the i-th factor with Y_t = φ_{εt}(Y_0).
+   - Y_t is non-constant because v(Y_0) ≠ 0.
+   - dim ∂V_t = 1.
+   - V_0 is totally geodesic by assumption. Nothing is asserted about V_t for t ≠ 0, and the problem asks for nothing. ∎
+
+**Consequence.**
+- The problem's claim for a given V_0 fails if and only if V_0 can be moved in a way that moves Y_0 (Theorem A in the contrapositive, with Theorem B).
+- Theorem B produces such motions from logarithmic vector fields near closure(V_0) of the stated product form.
+- So the claim is equivalent to a *global rigidity* property of the compact surface closure(V_0) ⊂ M̄_g. Hypotheses (i) and (ii) are automatically satisfied by any stratum-preserving ambient flow. This confirms and sharpens Observation 4 of P-a and Lemma 1 of P-b: no argument based only on (i), (ii), the monodromy or the local geometry near Δ_Γ can work.
+
+**Open question.** I do not know whether any totally geodesic surface V_0 admits a vector field as in Theorem B. More generally, I do not know whether any admits a nonzero log normal section with nonzero Y-component at ∂V_0. So Theorem B does not give an actual counterexample.
+
+Constraints I found while looking for one:
+- **Genus 2.** Every product stratum carrying a 1-dimensional ∂V that is constant on a positive-dimensional factor is a quotient stratum, which the problem excludes. So genus 2 gives nothing.
+- **Covering constructions over M_{0,5} or M_{0,6}.** I tried the loci of 6 points with an involution, inside covering loci over M_{0,6}. In every case I checked, the constant factor Y_0 is a cover of a 3-pointed sphere, and it stays such in any family that remains inside the covering locus. A deformation that breaks the symmetry runs into the fact that the normal bundle of the symmetric locus has monodromy −1. Then a symmetric level-set deformation becomes a branched double cover, which is not smoothly trivial. **Not a counterexample.**
+
+---
+
+

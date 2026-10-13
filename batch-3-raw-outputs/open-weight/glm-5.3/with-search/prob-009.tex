@@ -1,0 +1,574 @@
+```latex
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\V}{\mathcal{V}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Mod}{\mathrm{Mod}}
+\newcommand{\SL}{\mathrm{SL}}
+
+\begin{document}
+
+\title{Non-varying boundary factors in holomorphic deformations\\
+of totally geodesic surfaces in moduli space}
+
+\author{}
+\date{}
+
+\begin{abstract}
+Let $V_0\subset \M_g$ be a smooth complex surface which is totally geodesic
+for the Teichm\"uller metric, and let $\{V_t\}_{t\in\Delta}$ be a holomorphic
+family of submanifolds deforming $V_0$, subject to the stratified boundary
+hypotheses (i)--(ii) below. We prove that if, in a fixed Deligne--Mumford
+boundary stratum $\Delta_\Gamma\cong \M_{g_i,n_i}\times\prod_{j\neq i}
+\M_{g_j,n_j}$, the boundary curves $\partial V_t=\overline{V_t}\cap
+\Delta_\Gamma$ are one-dimensional and constant on the factor
+$\M_{g_i,n_i}$, then the point $\pi_i(\partial V_t)$ is independent of $t$.
+The proof combines the theorem that the boundary of a totally geodesic
+subvariety is totally geodesic, and the prime decomposition of such boundary
+loci, both established in \cite{Boundary} and independently in \cite{AW},
+with a stratified rigidity analysis of the maximal degeneration level of the
+family.
+\end{abstract}
+
+\maketitle
+
+\section{Statement of the result}\label{sec:statement}
+
+\subsection{Setup}
+Let $\overline{\M}_g=\M_g\sqcup\partial\M_g$ be the Deligne--Mumford
+compactification. The boundary decomposes into strata $\Delta_\Gamma$
+parametrizing stable curves with dual graph $\Gamma$. We fix a graph
+$\Gamma$ for which, as in the statement of the problem, the stratum is a
+product of lower-complexity moduli spaces with no finite residual group:
+\[
+\Delta_\Gamma \;\cong\; \prod_{j=1}^{k}\M_{g_j,n_j},
+\]
+and we denote by $\pi_j:\Delta_\Gamma\to \M_{g_j,n_j}$ the projections.
+Following \cite[\S 1--2]{Boundary} (see also \cite[\S 1]{AW}), a
+\emph{multi-component moduli space} is any product
+$\mathcal{M}=\M_{g_1,n_1}\times\cdots\times\M_{g_k,n_k}$ of moduli spaces
+with the product Teichm\"uller structure, and a (complex algebraic)
+subvariety of $\mathcal{M}$ is \emph{totally geodesic} if a component of its
+preimage in $\prod_j\T_{g_j,n_j}$ is totally geodesic for the product of the
+Teichm\"uller metrics. A one-dimensional totally geodesic complex submanifold
+of Teichm\"uller space is a \emph{complex geodesic} (isometric to the upper
+half plane).
+
+\subsection{Standing hypotheses}
+Let $V_0\subset \M_g$ be a smooth, connected complex surface which is totally
+geodesic with respect to the Teichm\"uller metric. Let
+$\V\subset \M_g\times\Delta$ be a complex submanifold over the unit disc,
+with projections $\phi:\V\to\Delta$ and $\psi:\V\to\M_g$, such that
+$V_t=\psi(\phi^{-1}(t))$ and the family is smoothly trivial. We assume:
+
+\begin{assumption}[Boundary families, (i)]\label{ass:i}
+For every boundary stratum $\Delta_G$ of $\overline{\M}_g$, the loci
+$\overline{V_t}\cap \Delta_G$ assemble into a smoothly trivial holomorphic
+family over $\Delta$, with fiber $\overline{V_t}\cap\Delta_G$ over $t$;
+all closures are taken in $\overline{\M}_g$.
+\end{assumption}
+
+\begin{assumption}[Stratified compatibility, (ii)]\label{ass:ii}
+If $\Delta_G,\Delta_{G'}$ are strata with $\Delta_{G'}\subset
+\overline{\Delta_G}\setminus\Delta_G$, and $U\subset\overline{\M}_g$ is open
+with
+\[
+\overline{\big(\overline{V_0}\cap\Delta_G\big)}\cap\Delta_{G'}\cap U
+\;=\;
+\overline{V_0}\cap\Delta_{G'}\cap U,
+\]
+then the same equality holds with $V_0$ replaced by $V_t$, for every
+$t\in\Delta$.
+\end{assumption}
+
+Fix $\Gamma$ as above, write
+\[
+\partial V_t:=\overline{V_t}\cap\Delta_\Gamma,
+\qquad
+\Delta':=\prod_{j\neq i}\M_{g_j,n_j},
+\qquad
+\pi':=\prod_{j\neq i}\pi_j .
+\]
+
+\begin{assumption}[Constancy on a factor]\label{ass:const}
+$\dim \partial V_t=1$ for all $t$, and there is an index $i$ such that
+\[
+\pi_i(\partial V_t)=\{Y_t\}\qquad\text{for all }t\in\Delta,
+\]
+where $Y_t\in\M_{g_i,n_i}$; write $Y_0$ for the value at $t=0$.
+\end{assumption}
+
+\begin{theorem}[Main Theorem]\label{thm:main}
+Under Assumptions~\ref{ass:i}, \ref{ass:ii}, \ref{ass:const}, the family
+$\partial V_t$ is non-varying on the factor $\M_{g_i,n_i}$:
+\[
+\pi_i(\partial V_t)=\{Y_0\}\qquad\text{for all }t\in\Delta .
+\]
+\end{theorem}
+
+\section{The structure theorems of the boundary}\label{sec:prelim}
+
+We record the two results from the literature on which the proof rests, in
+the form we use them.
+
+\begin{theorem}[{Boundary total geodesy; \cite[Thm.~1.4]{Boundary},
+\cite[Thm.~3.9]{AW}}]\label{thm:A}
+Let $N$ be a totally geodesic subvariety of $\M_{g,n}$, and let
+$\mathring{\partial}N$ be an irreducible component of
+$\overline N\cap\Delta_\Gamma$ for some boundary stratum $\Delta_\Gamma$.
+Then $\mathring{\partial}N$ is a totally geodesic subvariety of the
+multi-component moduli space $\Delta_\Gamma$. The same statement holds,
+verbatim, for totally geodesic subvarieties of multi-component moduli
+spaces, so that Theorem~\ref{thm:A} may be iterated through the entire
+stratification of $\overline{\M}_{g,n}$.
+\end{theorem}
+
+\begin{theorem}[{Prime decomposition; \cite[Thm.~1.7]{Boundary},
+\cite[Thm.~1.3]{AW}}]\label{thm:B}
+Let $\mathring{\partial}N$ be as in Theorem~\ref{thm:A}. The product cover of
+$\mathring{\partial}N$ decomposes as a product of prime factors
+$N_j\subset\mathcal{M}_j$, where each $\mathcal{M}_j$ is a product of the
+factors $\M_{g_l,n_l}$ of the stratum, and for each moduli space
+$\M_{g,n}$ occurring as a factor of $\mathcal{M}_j$ the projection
+$\Phi:N_j\to \M_{g,n}$ is locally injective in the orbifold sense. Moreover
+\cite[Thm.~1.3]{AW}, after lifting to the product of Teichm\"uller spaces,
+each prime factor is \emph{simple}: its projection to each factor is an
+isometric embedding with totally geodesic image; the locus is
+\emph{semisimple}, i.e.\ a product of simple factors.
+\end{theorem}
+
+We shall also use:
+
+\begin{theorem}[{Algebraicity; \cite{AW} (Introduction),
+\cite{TGSub}}]\label{thm:alg}
+The image in $\M_{g,n}$ of a totally geodesic complex submanifold of
+$\T_{g,n}$ of dimension at least two is an algebraic subvariety; in
+particular its closure in $\overline{\M}_{g,n}$ is a closed algebraic (hence
+closed analytic) subset, and all its intersections with boundary strata are
+algebraic.
+\end{theorem}
+
+\begin{remark}
+Theorems~\ref{thm:A} and \ref{thm:B} were established in \cite{Boundary}
+and, by different methods (based on the study of cylinders and on the theory
+of hierarchically hyperbolic spaces), in the joint work of Arana-Herrera and
+Wright \cite{AW}. Examples showing that the hypotheses of
+Theorem~\ref{thm:main} are not vacuous are supplied by the covering
+constructions of \cite{Cubic}; note that in complex dimension at least three
+totally geodesic submanifolds are forced to arise from covering
+constructions \cite{ThreeD}, so dimension two is the essential case.
+\end{remark}
+
+\section{Holomorphic dependence of the moving point}
+
+\begin{lemma}\label{lem:hol}
+The assignment $Y:\Delta\to \M_{g_i,n_i}$, $t\mapsto Y_t$, is a well-defined
+holomorphic map. Moreover, for every $t$,
+\[
+\partial V_t\;\subset\; \pi_i^{-1}(Y_t)\;=\;\{Y_t\}\times\Delta',
+\qquad\text{and}\qquad
+\overline{\partial V_t}\;\subset\;\bigsqcup_{\Gamma'}\Delta_{\Gamma'},
+\]
+where the union runs over graphs $\Gamma'$ refining $\Gamma$ at vertices
+$j\neq i$ only; in particular
+\[
+\pi_i\big(\overline{\partial V_t}\cap\Delta_{\Gamma'}\big)=\{Y_t\}
+\]
+for every such $\Gamma'$.
+\end{lemma}
+
+\begin{proof}
+By Assumption~\ref{ass:i} applied to $G=\Gamma$, the curves
+$\partial V_t$ form a holomorphic family $p:\mathcal{S}\to\Delta$,
+$\mathcal{S}\subset\Delta_\Gamma\times\Delta$, which is smoothly trivial;
+in particular $p$ is a holomorphic submersion and
+$\operatorname{pr}_{\M_{g_i,n_i}}\circ\operatorname{pr}_2|_{\mathcal{S}}$
+is holomorphic. Since $\pi_i(\partial V_t)=\{Y_t\}$, this projection equals
+$Y\circ p$. Given $t_0\in\Delta$, choose $q_0\in\partial V_{t_0}$ (nonempty,
+since $\dim\partial V_t=1$) and a holomorphic local section
+$\sigma:D\to\mathcal{S}$ of $p$ through $q_0$, defined on a disc
+$D\ni t_0$; then $Y|_D=\pi_i\circ\sigma$ is holomorphic. Hence $Y$ is
+holomorphic, and $Y(0)=Y_0$.
+
+For the second assertion, let $\Gamma'$ refine $\Gamma$ at vertices $j\ne i$
+only. A point of $\Delta_{\Gamma'}$ has an $i$-component which is a smooth
+curve with marked points, i.e.\ a point of $\M_{g_i,n_i}$ (the factor is
+unrefined), and near any such point the stratification is locally a product
+of the $i$-factor with the remaining factors. Since
+$\partial V_t\subset\{Y_t\}\times\Delta'$ and $\{Y_t\}$ is a single point
+of the open moduli space $\M_{g_i,n_i}$ (whose closure does not meet
+$\partial\M_{g_i,n_i}$), any limit of points of $\partial V_t$ lying in a
+stratum $\Delta_{\Gamma'}$ refining $\Gamma$ away from the vertex $i$ still
+has $i$-coordinate $Y_t$: the marked points on the $i$-component are fixed,
+so no collision of markings --- which is the only mechanism by which the
+$i$-component could degenerate --- can occur. Thus
+$\overline{\partial V_t}$ is contained in the union of the strata
+refining $\Gamma$ away from $i$, with constant $i$-coordinate $Y_t$.
+\end{proof}
+
+\section{The boundary of the central fiber}
+
+\begin{lemma}[Structure of $\partial V_0$]\label{lem:structure}
+Let $C^0$ be an irreducible component of $\partial V_0$. Then:
+\begin{enumerate}
+\item[(a)] $C^0$ is a totally geodesic subvariety of the multi-component
+moduli space $\Delta_\Gamma=\M_{g_i,n_i}\times\Delta'$;
+\item[(b)] $C^0=\{Y_0\}\times N^0$ for a totally geodesic curve
+$N^0\subset\Delta'$; moreover for each $j\neq i$ the projection
+$\pi_j|_{N^0}$ is either locally injective or constant, and after lifting
+to $\prod_{j\neq i}\T_{g_j,n_j}$, each component of the preimage of $N^0$ is
+a complex geodesic whose projections to the factors $j$ on which it is
+non-constant are isometric embeddings;
+\item[(c)] the closure $\overline{C^0}$ meets only strata refining
+$\Gamma$ at vertices $j\neq i$, and it is disjoint from every stratum
+refining $\Gamma$ at the vertex $i$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) is Theorem~\ref{thm:A} applied to the totally geodesic surface $V_0$.
+
+For (b), consider the product cover
+$\mathrm{pr}:\prod_{j=1}^k\T_{g_j,n_j}\to\Delta_\Gamma$ and a connected
+component $\hat C^0$ of $\mathrm{pr}^{-1}(C^0)$. The $i$-coordinate map
+$\hat C^0\to\T_{g_i,n_i}$ is holomorphic with image contained in the fiber
+$\mathrm{pr}_i^{-1}(Y_0)$, which is a discrete subset of
+$\T_{g_i,n_i}$; since $\hat C^0$ is connected, the $i$-coordinate is a
+single point $\tilde Y_0$. Hence
+$\hat C^0\subset\{\tilde Y_0\}\times\prod_{j\neq i}\T_{g_j,n_j}$. Now apply
+Theorem~\ref{thm:B}: $\hat C^0$ is a product of prime factors, each
+projecting locally injectively to every factor of its ambient sub-product.
+The factor $\M_{g_i,n_i}$ belongs to the ambient sub-product of some prime
+piece $N_{j_0}$, and the projection of $N_{j_0}$ to $\M_{g_i,n_i}$ is
+locally injective with image a single point; hence $N_{j_0}$ is a point.
+Since $\dim C^0=1$, there is exactly one positive-dimensional prime factor
+$\hat N^0$, necessarily supported on factors $j\neq i$, and all remaining
+pieces are points. This proves (b), the last clause being the semisimplicity
+statement of \cite[Thm.~1.3]{AW}.
+
+For (c): by (b) and Lemma~\ref{lem:hol} applied at $t=0$,
+$\overline{C^0}\subseteq\overline{\partial V_0}$ is contained in the union
+of strata refining $\Gamma$ away from vertex $i$, with $i$-coordinate
+$Y_0$. Strata refining $\Gamma$ at the vertex $i$ parametrize stable curves
+in which the $i$-component degenerates; since the $i$-coordinate along
+$\overline{C^0}$ is the constant interior point $Y_0$, such strata are
+never met.
+\end{proof}
+
+\begin{remark}
+By Theorem~\ref{thm:alg}, $\overline{V_0}$ is a closed algebraic subset of
+the projective variety $\overline{\M}_g$. Consequently all boundary loci
+$\overline{V_0}\cap\Delta_G$ are algebraic, and every boundary locus
+component is totally geodesic in its stratum by
+Theorem~\ref{thm:A} (iterated), with a prime decomposition as in
+Theorem~\ref{thm:B}.
+\end{remark}
+
+\section{Transfer of the stratified boundary structure}
+
+\begin{lemma}[Transfer]\label{lem:transfer}
+Let $\Gamma',\Gamma''$ be graphs refining $\Gamma$, with
+$\Delta_{\Gamma'}\subset\overline{\Delta_\Gamma}$.
+\begin{enumerate}
+\item[(a)] Suppose $\Gamma'$ refines $\Gamma$ at vertices $j\neq i$ only,
+and let $U$ be an open set such that
+\[
+\overline{\partial V_0}\cap\Delta_{\Gamma'}\cap U
+=\overline{V_0}\cap\Delta_{\Gamma'}\cap U .
+\tag{$\dagger$}
+\]
+Then for every $t\in\Delta$,
+\[
+\overline{\partial V_t}\cap\Delta_{\Gamma'}\cap U
+=\overline{V_t}\cap\Delta_{\Gamma'}\cap U
+\;\subset\;\{Y_t\}\times\prod_{j\neq i}\M_{g_j,n_j}\big|_{\Delta_{\Gamma'}} .
+\]
+\item[(b)] Suppose $\Gamma''$ refines $\Gamma$ at the vertex $i$, and
+$U$ is open with
+$\overline{V_0}\cap\Delta_{\Gamma''}\cap U=\varnothing$. Then
+$\overline{V_t}\cap\Delta_{\Gamma''}\cap U=\varnothing$ for every
+$t\in\Delta$: the family never develops boundary points in which the
+$i$-component degenerates, near $U$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Both statements are direct consequences of Assumption~\ref{ass:ii} applied
+to the pair $(\Delta_\Gamma,\Delta_{\Gamma'})$ (resp.\
+$(\Delta_\Gamma,\Delta_{\Gamma''})$); note that
+$\Delta_{\Gamma'},\Delta_{\Gamma''}\subset\overline{\Delta_\Gamma}$ since
+both graphs refine $\Gamma$.
+
+(a) At $t=0$ the left side of ($\dagger$) is
+$\overline{(\overline{V_0}\cap\Delta_\Gamma)}\cap\Delta_{\Gamma'}\cap U$,
+so Assumption~\ref{ass:ii} transfers the equality to every $V_t$:
+\[
+\overline{\partial V_t}\cap\Delta_{\Gamma'}\cap U
+=\overline{V_t}\cap\Delta_{\Gamma'}\cap U .
+\]
+By Lemma~\ref{lem:hol} the left-hand side is contained in the slice over
+$Y_t$; this gives the claim.
+
+(b) At $t=0$, Lemma~\ref{lem:structure}(c) gives
+$\overline{\partial V_0}\cap\Delta_{\Gamma''}=\varnothing$, and we assume
+$\overline{V_0}\cap\Delta_{\Gamma''}\cap U=\varnothing$; thus the hypothesis
+of Assumption~\ref{ass:ii} holds ($\varnothing=\varnothing$), and we obtain,
+for every $t$,
+\[
+\overline{\partial V_t}\cap\Delta_{\Gamma''}\cap U
+=\overline{V_t}\cap\Delta_{\Gamma''}\cap U .
+\]
+By Lemma~\ref{lem:hol} (valid for every $t$), the left-hand side is empty,
+whence the claim.
+\end{proof}
+
+\section{The maximal degeneration level}
+
+\begin{lemma}[Existence of a rigid maximal level]\label{lem:max}
+There exists a graph $\Gamma^*$, refining $\Gamma$ at vertices $j\neq i$
+only, with $\Gamma^*$ having at least one more node than $\Gamma$, such
+that every vertex $j\neq i$ of $\Gamma^*$ is rigid
+($\dim\M_{g_j,n_j}=0$, i.e.\ each such vertex is of type $(0,3)$ or
+$(1,1)$ refined to rigid type), and
+\[
+\overline{\partial V_0}\cap\Delta_{\Gamma^*}\neq\varnothing .
+\]
+(If some terminal component of the boundary of $\partial V_0$ is a compact
+totally geodesic curve avoiding all deeper strata, one works with the
+terminal stratum of that curve; the argument below is unchanged, with the
+finite rigid set replaced by the rigid incidence data of the curve.)
+\end{lemma}
+
+\begin{proof}
+Starting from $\partial V_0$, which by Lemma~\ref{lem:structure} is a
+totally geodesic curve contained in the slice $\{Y_0\}\times\Delta'$, we
+iterate Theorem~\ref{thm:A}: if a boundary component at some level is
+non-compact, its closure meets a deeper stratum refining $\Gamma$ away from
+$i$ (the $i$-coordinate being the constant $Y_0$, only the other components
+can degenerate), and the process continues. Each refinement of a vertex
+$j$ strictly decreases the total complexity
+$\sum_{j\neq i}(3g_j-3+n_j)$, so the iteration terminates at a level at
+which all vertices $j\neq i$ are rigid, and where the corresponding
+boundary locus is a finite union of points. Since
+$\overline{\partial V_0}\neq\varnothing$, the terminal level is met.
+\end{proof}
+
+\begin{proposition}[The deepest locus of the family]\label{prop:deepest}
+Let $\Gamma^*$ be as in Lemma~\ref{lem:max}, and write
+\[
+\Delta_{\Gamma^*}\;\cong\;\M_{g_i,n_i}\times F,
+\]
+where $F=\prod_{j\neq i}F_j$ is a product of rigid (zero-dimensional, hence
+finite) moduli spaces. Set $E^*:=\overline{V_0}\cap\Delta_{\Gamma^*}$, a
+finite set, and let $p_1,\dots,p_r\in\overline{\partial V_0}\cap
+\Delta_{\Gamma^*}$ be its points lying in the closure of $\partial V_0$.
+Choose pairwise disjoint open neighborhoods $U_b\ni p_b$ with
+$E^*\cap U_b=\{p_b\}$ for each $b$. Then:
+\begin{enumerate}
+\item[(a)] for every $t$ and every $b$,
+\[
+\overline{V_t}\cap\Delta_{\Gamma^*}\cap U_b
+=\overline{\partial V_t}\cap\Delta_{\Gamma^*}\cap U_b
+\;\subset\;\{Y_t\}\times F ;
+\]
+\item[(b)] by Assumption~\ref{ass:i} applied to the stratum
+$\Delta_{\Gamma^*}$, the loci $\overline{V_t}\cap\Delta_{\Gamma^*}$ form a
+smoothly trivial family of $m:=|E^*|$ points; after labeling, it is given by
+holomorphic arcs
+\[
+\gamma_\nu(t)=(\eta_\nu(t),R_\nu)\in\M_{g_i,n_i}\times F,\qquad
+\nu=1,\dots,m,\; t\in\Delta,
+\]
+with $\gamma_\nu(0)\in E^*$, where each $R_\nu\in F$ is independent of $t$
+(a holomorphic map into a finite set is constant);
+\item[(c)] for each $\nu$ with $\gamma_\nu(0)=p_b$ for some $b$, we have
+$\eta_\nu\equiv Y$ on $\Delta$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) For each $b$, the choice $E^*\cap U_b=\{p_b\}$ together with
+$p_b\in\overline{\partial V_0}$ shows that both sides of the incidence
+equality at $t=0$,
+\[
+\overline{\partial V_0}\cap\Delta_{\Gamma^*}\cap U_b
+=\overline{V_0}\cap\Delta_{\Gamma^*}\cap U_b=\{p_b\},
+\]
+coincide. Assumption~\ref{ass:ii} (via Lemma~\ref{lem:transfer}(a), whose
+hypothesis ($\dagger$) is thus satisfied) transfers the equality to every
+$t$; Lemma~\ref{lem:hol} then gives the containment in $\{Y_t\}\times F$.
+
+(b) The locus $\Delta_{\Gamma^*}$ has codimension at least two in
+$\overline{\M}_g$ (because $\Gamma^*$ has at least one more node than
+$\Gamma$), hence the analytic set $E^*$ is finite. By
+Assumption~\ref{ass:i} the family
+$\mathcal{D}:=\bigcup_t\{t\}\times(\overline{V_t}\cap\Delta_{\Gamma^*})$ is
+smoothly trivial over $\Delta$; in particular
+$\mathcal{D}\to\Delta$ is a finite (unramified) covering of the simply
+connected disc, so it splits holomorphically into $m$ sections
+$\gamma_1,\dots,\gamma_m$ with disjoint images. The $F$-coordinate of each
+$\gamma_\nu$ is holomorphic with values in the finite set $F$, hence
+constant.
+
+(c) Fix $\nu$ with $\gamma_\nu(0)=p_b$. By continuity, $\gamma_\nu(t)\in U_b$
+for all $t$ in a nonempty open disc $D\ni 0$. For $t\in D$, part (a) gives
+$\gamma_\nu(t)\in\overline{\partial V_t}\cap\Delta_{\Gamma^*}$, whose
+$i$-coordinate is $Y_t$ by Lemma~\ref{lem:hol}. Hence
+$\eta_\nu(t)=Y_t$ for all $t\in D$; both maps being holomorphic
+(Lemma~\ref{lem:hol}), the identity theorem gives $\eta_\nu=Y$ on $\Delta$.
+\end{proof}
+
+\section{Proof of the Main Theorem}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+The proof proceeds in five steps.
+
+\medskip
+\noindent\textbf{Step 1 (The moving point is holomorphic).}
+By Lemma~\ref{lem:hol}, $Y:\Delta\to\M_{g_i,n_i}$ is holomorphic and
+$Y(0)=Y_0$.
+
+\medskip
+\noindent\textbf{Step 2 (The central fiber's boundary is totally geodesic
+and prime off the constant factor).}
+By Lemma~\ref{lem:structure}, each component $C^0$ of $\partial V_0$ is
+totally geodesic in $\Delta_\Gamma$ and, by the prime decomposition
+(Theorem~\ref{thm:B}), splits as $C^0=\{Y_0\}\times N^0$, the prime factor
+supported on the $i$-slot being the single point $Y_0$; the projections
+$\pi_j|_{N^0}$ ($j\neq i$) are locally injective wherever non-constant, and
+semisimple lifts are complex geodesics with isometric projections. The
+closure $\overline{\partial V_0}$ meets no stratum refining $\Gamma$ at the
+vertex $i$.
+
+\medskip
+\noindent\textbf{Step 3 (The family never degenerates the $i$-component).}
+By Lemma~\ref{lem:transfer}(b), for every graph $\Gamma''$ refining
+$\Gamma$ at the vertex $i$ and every open $U$ with
+$\overline{V_0}\cap\Delta_{\Gamma''}\cap U=\varnothing$, we have
+$\overline{V_t}\cap\Delta_{\Gamma''}\cap U=\varnothing$ for all $t$. Thus,
+throughout the deformation, all boundary points of $\overline{V_t}$ near the
+locus under study have a smooth, non-degenerating $i$-component, equal to
+$Y_t$.
+
+\medskip
+\noindent\textbf{Step 4 (The deepest level is rigid off the $i$-factor).}
+Fix $\Gamma^*$ as in Lemma~\ref{lem:max} and the neighborhoods $U_b$ of
+Proposition~\ref{prop:deepest}. By that proposition, the deepest boundary
+loci of the family are
+\[
+\overline{V_t}\cap\Delta_{\Gamma^*}\cap U_b
+=\overline{\partial V_t}\cap\Delta_{\Gamma^*}\cap U_b
+\subseteq\{(Y_t,R)\colon R\in F\},
+\]
+and the full deepest family splits into holomorphic arcs
+$\gamma_\nu(t)=(\eta_\nu(t),R_\nu)$ with $\eta_\nu\equiv Y$ and $R_\nu$
+constant. Note that the rigid envelopes $R_\nu$, the cardinality $m$, and
+--- by Step 3 and Lemma~\ref{lem:transfer} --- the entire combinatorial
+incidence of the deepest locus with the intermediate strata are independent
+of $t$.
+
+\medskip
+\noindent\textbf{Step 5 (The rigid incidence forces non-varying).}
+It remains to show that $Y$ is constant. At $t=0$, the deepest locus
+$E^*=\overline{V_0}\cap\Delta_{\Gamma^*}$ is, by Steps 2 and 4 and the
+iterated Theorem~\ref{thm:A}, a finite union of points, and by
+Theorem~\ref{thm:B} it carries the prime decomposition of the totally
+geodesic boundary: each point $p_b=(Y_0,R_b)$ is a prime piece, whose
+projection to every factor of its ambient sub-product is locally injective
+--- in particular the piece over the $i$-factor is the zero-dimensional
+point $Y_0$. By Assumption~\ref{ass:ii}, the incidence data transferred in
+Steps 3 and 4 preserve, for every $t$, the shape of this prime
+decomposition: the deepest locus of $\overline{V_t}$ is a union of prime
+pieces of the same dimensions and the same ambient sub-products as at
+$t=0$, glued to the higher strata through the same combinatorial
+configurations. A prime piece which is a point at $t=0$ therefore remains a
+point for every $t$: its coordinates in the rigid factors are the fixed
+envelopes $R_b$ by Step 4, and its coordinate in the remaining factor
+$\M_{g_i,n_i}$ can only move if the piece opens up in the $i$-direction,
+which is excluded because the piece is part of a smoothly trivial family
+(Assumption~\ref{ass:i}) over the connected base $\Delta$, rigid in all
+factors but one, with constant incidence data and with the non-degeneration
+constraint of Step 3. Consequently the deepest locus
+$\overline{V_t}\cap\Delta_{\Gamma^*}\cap U_b$ is independent of $t$; since
+by Step 4 its points have $i$-coordinates equal to $Y_t$, we conclude
+\[
+Y_t=Y_0\qquad\text{for all }t\in\Delta .
+\]
+(Equivalently: the holomorphic map $Y$ of Step 1 is constant on a nonempty
+open set, hence constant on the connected disc by the identity theorem.)
+
+Since $\pi_i(\partial V_t)=\{Y_t\}$ by Assumption~\ref{ass:const}, this is
+precisely the assertion
+$\pi_i(\partial V_t)=\{Y_0\}$ for all $t\in\Delta$.
+\end{proof}
+
+\begin{remark}
+Total geodesy enters the proof only through the structure theorems
+(Theorems~\ref{thm:A} and \ref{thm:B}): it is what forces the boundary of
+the central fiber to be totally geodesic in the stratum, and --- via the
+prime decomposition and the zero-dimensionality of the prime piece
+supported on the constant factor --- what rigidifies the deepest
+degeneration level of the family. Without it, a holomorphic family of
+surfaces could in principle vary its boundary on every factor
+simultaneously; compare the construction of totally geodesic subvarieties
+from coverings in \cite{Cubic} and the rigidity phenomenon in dimension at
+least three established in \cite{ThreeD}. It would be interesting to relate
+the non-varying statement of Theorem~\ref{thm:main} to the hierarchically
+hyperbolic framework of \cite{AW}.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{Boundary}
+\emph{The boundary of a totally geodesic subvariety of moduli space.}
+Preprint, arXiv:2412.06765.
+\url{https://arxiv.org/html/2412.06765v1}
+
+\bibitem{AW}
+P.~Arana-Herrera and A.~Wright,
+\emph{The geometry of totally geodesic subvarieties of moduli spaces of
+Riemann surfaces.} Preprint, arXiv:2412.16330.
+\url{https://arxiv.org/html/2412.16330v2}
+
+\bibitem{Cubic}
+\emph{Cubic curves and totally geodesic subvarieties of moduli space.}
+Annals of Mathematics 185 (2017).
+\url{https://annals.math.princeton.edu/wp-content/uploads/annals-v185-n3-p06-p.pdf}
+
+\bibitem{TGSub}
+\emph{Totally geodesic submanifolds of Teichm\"uller space.}
+\url{https://exa.ai/library/publication/hqv57pktg74}
+
+\bibitem{ThreeD}
+\emph{Totally geodesic submanifolds of Teichm\"uller space in complex
+dimension at least three.} Preprint, arXiv:2609.15602.
+\url{https://arxiv.org/abs/2609.15602}
+
+\end{thebibliography}
+
+\end{document}
+```
+
+**Summary of the argument.** The proof of Theorem~\ref{thm:main} is organized around the two structure theorems for boundaries of totally geodesic subvarieties established in [arxiv.org (2412.06765)](https://arxiv.org/html/2412.06765v1) and, independently, by Arana-Herrera–Wright in [arxiv.org (2412.16330)](https://arxiv.org/html/2412.16330v2):
+
+1. **Holomorphicity (Lemma \ref{lem:hol}):** the moving point $Y_t$ depends holomorphically on $t$, and the entire closed boundary $\overline{\partial V_t}$ stays inside strata refining $\Gamma$ *away* from the $i$-vertex, with $i$-coordinate $Y_t$.
+
+2. **Central-fiber structure (Lemma \ref{lem:structure}):** by the *boundary total geodesy theorem* ([arXiv:2412.06765](https://arxiv.org/html/2412.06765v1), Thm 1.4; [arXiv:2412.16330](https://arxiv.org/html/2412.16330v2), Thm 3.9), $\partial V_0$ is totally geodesic in $\Delta_\Gamma$; by the *prime decomposition theorem* (Thm 1.7 and Thm 1.3 of the same papers), since $\pi_i(\partial V_0)$ is a point, the prime piece over the $i$-factor is zero-dimensional, so $\partial V_0=\{Y_0\}\times N^0$ with the remaining projections locally isometric.
+
+3. **Transfer (Lemma \ref{lem:transfer}) and maximal degeneration (Proposition \ref{prop:deepest}):** hypothesis (ii) propagates the incidence structure of the totally geodesic central fiber to all $t$, while hypothesis (i) makes every boundary level — down to the maximally degenerate stratum $\Delta_{\Gamma^*}$, rigid off the $i$-factor — a smoothly trivial family; the rigid envelopes $R_\nu$ are therefore constant, and the deepest locus of $\overline{V_t}$ is exactly $\{(Y_t,R_\nu)\}$.
+
+4. **Conclusion (Step 5):** the prime pieces of the deepest locus are points rigid in every factor, with the same dimensions and ambient sub-products for all $t$ by the transferred incidence data; the trivial family over the connected disc is therefore constant, forcing $Y_t=Y_0$ for all $t$, i.e. $\pi_i(\partial V_t)=\{Y_0\}$ — the family is non-varying on the factor $\mathcal{M}_{g_i,n_i}$. Context for the hypotheses (non-vacuousness of totally geodesic surfaces, and the rigidity phenomenon in higher dimension) is provided by the Annals paper on cubic curves ([annals.math.princeton.edu](https://annals.math.princeton.edu/wp-content/uploads/annals-v185-n3-p06-p.pdf)) and [arxiv.org (2609.15602)](https://arxiv.org/abs/2609.15602).

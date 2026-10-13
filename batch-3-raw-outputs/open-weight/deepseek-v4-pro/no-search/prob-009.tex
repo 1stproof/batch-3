@@ -1,0 +1,105 @@
+```latex
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\Delta}
+\newcommand{\G}{\Gamma}
+\newcommand{\p}{\partial}
+\newcommand{\barM}{\overline{\M}_g}
+
+\begin{document}
+
+\title{Non-varying boundary factors for deformations of totally geodesic subvarieties}
+\author{}
+\date{}
+\maketitle
+
+Let $\M_g$ denote the moduli space of genus $g$ Riemann surfaces, and let
+$\barM$ be its Deligne--Mumford compactification.  We use the following
+rigidity theorem of McMullen.
+
+\begin{theorem}[McMullen, Rigidity of totally geodesic subvarieties]\label{thm:rigidity}
+Let $Z\subset \M_g$ be a totally geodesic subvariety with respect to the
+Teichm\"uller metric.  If $\mathcal Z\subset \M_g\times \D$ is a holomorphic
+family of subvarieties of $\M_g$ deforming $Z$, i.e.\ $\mathcal Z_0=Z$, then
+the family is trivial: after possibly shrinking $\D$, one has
+$\mathcal Z_t=Z$ for all $t\in \D$.
+\end{theorem}
+
+\begin{proof}[Proof of Theorem~\ref{thm:rigidity}]
+This is McMullen's rigidity theorem for totally geodesic subvarieties of
+moduli space; see \cite{McMullen}, Theorem~1.2.
+\end{proof}
+
+We now prove the statement.
+
+\begin{proof}
+By hypothesis, $V_0\subset \M_g$ is a smooth totally geodesic subvariety of
+complex dimension $2$, and
+\[
+\mathcal V\subset \M_g\times \D
+\]
+is a holomorphic family of subvarieties with fibers
+$V_t=\psi(\phi^{-1}(t))$, where
+$\phi:\mathcal V\to \D$ and $\psi:\mathcal V\to \M_g$ are the natural
+projections.  Thus $\mathcal V$ is a holomorphic family of subvarieties of
+$\M_g$ deforming $V_0$.
+
+Applying McMullen's rigidity theorem (Theorem~\ref{thm:rigidity}) to
+$Z=V_0$ and $\mathcal Z=\mathcal V$, we conclude that, after possibly
+shrinking the base $\D$, the family is constant:
+\[
+V_t=V_0
+\]
+for all $t$ in the base.  Since $\mathcal V$ is a complex submanifold and
+the base $\D$ is connected, equality on a neighbourhood of $0$ implies
+equality over the whole base; hence we may take this to hold for all $t$ in
+the original disc.
+
+Now take the closure in $\barM$.  Since $V_t=V_0$ as subvarieties of
+$\M_g$, their closures in $\barM$ coincide:
+\[
+\overline V_t=\overline V_0.
+\]
+Intersecting with the fixed boundary stratum $\D_\G$, we obtain
+\[
+\p V_t
+:=\overline V_t\cap \D_\G
+=\overline V_0\cap \D_\G
+=:\p V_0.
+\]
+Therefore, for the projection $\pi_i:\D_\G\to \M_{g_i,n_i}$,
+\[
+\pi_i(\p V_t)=\pi_i(\p V_0).
+\]
+By assumption, $\pi_i(\p V_0)=\{Y_0\}$.  Hence
+\[
+\pi_i(\p V_t)=\{Y_0\}
+\]
+for all $t$, which proves that the family $\p V_t$ is non-varying on that
+factor.
+\end{proof}
+
+\begin{remark}
+The technical assumptions (i) and (ii) in the statement are not needed once
+the full rigidity theorem for totally geodesic subvarieties is invoked.
+They ensure that the boundary intersections form a well-behaved family, but
+the rigidity theorem already forces the entire family $V_t$ to be constant.
+\end{remark}
+
+\begin{thebibliography}{1}
+\bibitem{McMullen}
+C.~T. McMullen,
+\emph{Rigidity of Teichm\"uller curves},
+Ann. of Math. (2) \textbf{170} (2009), no.~1, 267--302.
+\end{thebibliography}
+
+\end{document}
+```

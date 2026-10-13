@@ -1,0 +1,520 @@
+```latex
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Sthree}{S^{3}}
+\newcommand{\HFhat}{\widehat{HF}}
+\newcommand{\SpinC}{\mathrm{Spin}^{c}}
+\newcommand{\ZZ}{\mathbb Z}
+
+\title{Reducible surgeries on \texorpdfstring{$L$}{L}-space knots have at
+most two prime summands}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We prove that every manifold obtained by Dehn surgery on an $L$-space knot
+in $S^{3}$ has at most two prime summands.  In particular, a reducible
+surgery on an $L$-space knot has exactly two prime summands.  The proof
+combines the general three-summands theorem for Dehn surgery, the
+Matignon--Sayari slope bound, the Hom--Lidman--Zufelt lower bound for
+reducing slopes on $L$-space knots, and a correction-term obstruction at the
+critical slope $2g(K)-1$.
+\end{abstract}
+
+\section{Statement and conventions}
+
+For a knot $K\subset \Sthree$ and a slope $r\in \mathbb Q\cup\{\infty\}$,
+write
+\[
+K(r)=\Sthree_r(K)
+\]
+for $r$-framed Dehn surgery on $K$.  All $3$-manifolds are closed and
+oriented.  We use the convention that a \emph{positive $L$-space knot} is a
+knot admitting a positive-slope surgery which is a Heegaard Floer $L$-space.
+If a knot admits a negative $L$-space surgery, its mirror is a positive
+$L$-space knot.  Since
+\[
+\Sthree_{-r}(\overline K)\cong -\Sthree_r(K),
+\]
+this operation preserves the number of prime summands.  Consequently, there
+is no loss in proving the result for positive $L$-space knots.
+
+The unknot is immediate: every surgery on it is $S^3$, $S^1\times S^2$, or a
+lens space, and hence is prime.  Throughout the proof, $K$ is therefore a
+nontrivial positive $L$-space knot of genus $g=g(K)$.
+
+\begin{theorem}\label{thm:main}
+Let $K\subset \Sthree$ be an $L$-space knot and let $r$ be any Dehn-surgery
+slope.  Then $K(r)$ has at most two prime summands.  Equivalently, if
+$K(r)$ is reducible, then it has exactly two prime summands.
+\end{theorem}
+
+This theorem does not assert the full cabling conjecture for $L$-space
+knots: it controls only the number of prime summands, not the isotopy type
+of $K$.
+
+\section{Topological reduction theorems}
+
+We first record the classical restrictions on reducible Dehn surgeries.
+
+\begin{lemma}[Gordon--Luecke integrality theorem]
+\label{lem:GL}
+If Dehn surgery on a nontrivial knot in $\Sthree$ is reducible, then the
+surgery slope is an integer.  Moreover, after mirroring if necessary, the
+surgery may be assumed to have positive integral slope, and the surgered
+manifold contains a lens-space summand.
+\end{lemma}
+
+\begin{proof}
+These are the principal reducible-surgery results of Gordon and Luecke
+\cite{GLReducible}.
+\end{proof}
+
+The next theorem is the general three-summands reduction theorem for Dehn
+surgery.
+
+\begin{lemma}[Howie--Sayari--Valdez S\'anchez]
+\label{lem:three-summands}
+Let $K$ be a knot in $\Sthree$ for which $K(r)$ is reducible.  Then $K(r)$
+has at most three prime summands.  If it has exactly three prime summands,
+then, after orienting so that $r=n>0$,
+\[
+K(n)\cong L(p,a)\# L(q,b)\# Y,
+\]
+where $p,q>1$ are relatively prime, $Y$ is a prime integer homology sphere,
+and
+\[
+n=pq.
+\]
+\end{lemma}
+
+\begin{proof}
+This is the combined three-summands theorem of Howie, Sayari, and Valdez
+S\'anchez.  A precise statement and discussion of the original papers
+appears in the introduction to Howie's article
+\emph{Can Dehn surgery yield three connected summands?}
+\cite{HowieThree}; an accessible HTML rendering is at
+\href{https://ar5iv.labs.arxiv.org/html/0908.2697}{ar5iv.labs.arxiv.org}.
+The equality $n=pq$ follows by comparing first homology:
+\[
+\ZZ/n\cong H_1(K(n);\ZZ)
+       \cong \ZZ/p\oplus \ZZ/q.
+\]
+\end{proof}
+
+We also need the standard description of surgery at the cabling slope.
+
+\begin{lemma}[Cabling-slope decomposition]
+\label{lem:cable-decomposition}
+Let $K=C_{p,q}(J)$ be a nontrivial $(p,q)$-cable of a knot $J\subset
+\Sthree$, where $p>1$ is the winding number.  At the cabling slope $pq$,
+\[
+K(pq)\cong J(q/p)\#L(p,q),
+\]
+up to the conventional relabeling of the lens-space parameter.  In
+particular, $K(pq)$ has at most two prime summands.
+\end{lemma}
+
+\begin{proof}
+The cabling annulus splits the exterior of $K$ into the companion exterior
+and a solid-torus piece.  Filling along the cabling slope produces the
+displayed connected-sum decomposition; see Gordon's treatment of satellite
+surgeries \cite{GordonSatellite}.
+
+For the last assertion, the lens-space factor is prime.  If $J$ is the
+unknot, then $J(q/p)$ is also a lens space, hence prime.  If $J$ is
+nontrivial and $J(q/p)$ were reducible, Lemma~\ref{lem:GL} would imply that
+$q/p$ is integral, contradicting $\gcd(p,q)=1$ and $p>1$.  Thus $J(q/p)$ is
+irreducible.  Since it has finite first homology, it is not $S^1\times S^2$,
+and hence it is prime.  Therefore the displayed manifold has at most two
+prime summands.
+\end{proof}
+
+\section{The slope bounds}
+
+The following theorem of Matignon and Sayari is the topological upper bound
+for a non-cabling reducing slope.
+
+\begin{lemma}[Matignon--Sayari]
+\label{lem:MS}
+Let $K$ be a nontrivial knot of genus $g$, and suppose that $K(n)$ is
+reducible for an integer $n>0$.  Then either
+\begin{enumerate}
+\item $K$ is a cable knot and $n$ is its cabling slope, or
+\item
+\[
+n\le 2g(K)-1.
+\]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+This is Theorem~1.1 of Matignon--Sayari \cite{MatignonSayari}.  The
+statement is also quoted and placed in the context of the cabling
+conjecture in \cite{LSGB}; see the publication record at
+\href{https://exa.ai/library/publication/zl1m8jt741b}{exa.ai}.
+\end{proof}
+
+For $L$-space knots there is a Heegaard Floer lower bound in the opposite
+direction.
+
+\begin{lemma}[Hom--Lidman--Zufelt]
+\label{lem:HLZ}
+Let $K$ be a positive $L$-space knot of genus $g$.  If $K(r)$ is reducible,
+then $r$ is an integer and
+\[
+r\ge 2g-1.
+\]
+\end{lemma}
+
+\begin{proof}
+Integrality is Lemma~\ref{lem:GL}.  The lower bound is the
+Hom--Lidman--Zufelt reducible-surgery theorem for $L$-space knots
+\cite{HLZ15}.  Their argument uses the knot Floer surgery formula together
+with the Gordon--Luecke lens-space summand.  The result and its role in the
+cabling conjecture are also discussed in the recent treatment
+\cite{RecentObstructions}, rendered at
+\href{https://ar5iv.labs.arxiv.org/html/2209.01672}{ar5iv.labs.arxiv.org}.
+\end{proof}
+
+Combining the two bounds gives the critical slope.
+
+\begin{corollary}\label{cor:critical-slope}
+Suppose that $K$ is a positive $L$-space knot of genus $g$ and that $K(n)$
+has three prime summands.  Then
+\[
+n=2g-1.
+\]
+\end{corollary}
+
+\begin{proof}
+By Lemma~\ref{lem:HLZ}, $n\ge 2g-1$.  If $K$ were a cable knot and $n$ its
+cabling slope, Lemma~\ref{lem:cable-decomposition} would imply that $K(n)$
+has at most two prime summands, contrary to hypothesis.  Hence the second
+alternative of Lemma~\ref{lem:MS} holds, giving $n\le 2g-1$.
+\end{proof}
+
+\section{Correction-term preliminaries}
+
+Let $K$ be a positive $L$-space knot of genus $g$.  For $s\ge 0$, let
+$V_s(K)$ denote the Ozsv\'ath--Szab\'o--Rasmussen integer surgery
+invariants.  For an $L$-space knot these equal the torsion coefficients of
+the Alexander polynomial.  The standard identities we need are
+\begin{equation}\label{eq:V-identities}
+V_0(K)=g,\qquad V_g(K)=0,\qquad V_{g-1}(K)=1.
+\end{equation}
+Indeed, the normalized Alexander polynomial of an $L$-space knot has
+rank-one knot Floer groups in every supporting Alexander grading, and its
+top Alexander coefficient is $1$; the displayed identities are then the
+standard torsion-coefficient formulas \cite{OSLens,NiWu}.
+
+For a positive integer $n$, label the $\SpinC$ structures on $K(n)$ by
+$i\in\ZZ/n$.  The absolutely graded surgery formula gives
+\begin{equation}\label{eq:surgery-d}
+d\bigl(K(n),\mathfrak s_i\bigr)
+=
+d\bigl(L(n,1),i\bigr)
+-
+2\max\{V_i(K),V_{n-i}(K)\},
+\qquad 0\le i<n,
+\end{equation}
+where
+\begin{equation}\label{eq:lens-d}
+d\bigl(L(n,1),i\bigr)
+=
+\frac{(2i-n)^2-n}{4n}.
+\end{equation}
+See Ozsv\'ath--Szab\'o and Rasmussen \cite{OSAbs,OSLens}, and Ni--Wu
+\cite{NiWu}.
+
+We need only the following elementary universal bound for arbitrary lens
+spaces.
+
+\begin{lemma}\label{lem:lens-bound}
+For every lens space $L(m,a)$ and every $\mathfrak s\in\SpinC(L(m,a))$,
+\[
+\left|d(L(m,a),\mathfrak s)\right|\le \frac m4.
+\]
+\end{lemma}
+
+\begin{proof}
+This is the standard correction-term estimate for lens spaces, obtained
+from the continued-fraction plumbing formula for lens-space $d$-invariants
+\cite{OSAbs}.
+\end{proof}
+
+Finally, correction terms are additive under connected sum:
+\begin{equation}\label{eq:connected-sum-d}
+d(Y_1\#Y_2,\mathfrak s_1\#\mathfrak s_2)
+=
+d(Y_1,\mathfrak s_1)+d(Y_2,\mathfrak s_2).
+\end{equation}
+See \cite{OSAbs}.
+
+\section{The three-summand obstruction}
+
+The following lemma is the new numerical step in the argument.
+
+\begin{lemma}\label{lem:d-obstruction}
+Let $K$ be a positive $L$-space knot of genus $g$, and put $n=2g-1$.
+There do not exist integers $p,q>1$, a homology sphere $Y$, and lens-space
+parameters $a,b$ such that
+\[
+K(n)\cong L(p,a)\#L(q,b)\#Y
+\qquad\text{and}\qquad
+n=pq.
+\]
+\end{lemma}
+
+\begin{proof}
+Suppose such a decomposition exists.  Since $n=2g-1$ is odd and $n=pq$,
+both $p$ and $q$ are odd and hence
+\begin{equation}\label{eq:pq-lower}
+p,q\ge 3.
+\end{equation}
+
+Let $\mathfrak s_Y$ be the unique $\SpinC$ structure on the homology sphere
+$Y$, and write
+\[
+d_Y=d(Y,\mathfrak s_Y).
+\]
+Every $\SpinC$ structure on $K(n)$ is a connected sum
+\[
+\mathfrak s=\mathfrak s_p\#\mathfrak s_q\#\mathfrak s_Y,
+\]
+and \eqref{eq:connected-sum-d} gives
+\[
+d(K(n),\mathfrak s)
+=
+d(L(p,a),\mathfrak s_p)
++
+d(L(q,b),\mathfrak s_q)
++
+d_Y.
+\]
+
+First consider the surgery label $i=0$.  By
+\eqref{eq:V-identities}--\eqref{eq:lens-d},
+\[
+\begin{aligned}
+d(K(n),\mathfrak s_0)
+&=
+\frac{n-1}{4}-2V_0(K)\\
+&=
+\frac{n-1}{4}-2g.
+\end{aligned}
+\]
+Since $n=2g-1$, this becomes
+\begin{equation}\label{eq:d0}
+d(K(n),\mathfrak s_0)
+=
+\frac{n-1}{4}-(n+1)
+=
+-\frac{3n+5}{4}.
+\end{equation}
+Under the connected-sum identification, $\mathfrak s_0$ corresponds to some
+pair $(\mathfrak s_p^0,\mathfrak s_q^0)$.  Thus
+\[
+d_Y
+=
+d(K(n),\mathfrak s_0)
+-
+d(L(p,a),\mathfrak s_p^0)
+-
+d(L(q,b),\mathfrak s_q^0).
+\]
+Lemma~\ref{lem:lens-bound} and \eqref{eq:d0} yield the upper bound
+\begin{equation}\label{eq:dY-upper}
+d_Y
+\le
+-\frac{3n+5}{4}+\frac p4+\frac q4
+=
+\frac{p+q-3n-5}{4}.
+\end{equation}
+
+Next consider the surgery label $i=g$.  Since $n-g=g-1$,
+\[
+\max\{V_g(K),V_{n-g}(K)\}
+=
+\max\{0,V_{g-1}(K)\}
+=
+1
+\]
+by \eqref{eq:V-identities}.  Moreover, because $2g-n=1$,
+\[
+d(L(n,1),g)
+=
+\frac{1-n}{4n}
+>
+-\frac14.
+\]
+Consequently \eqref{eq:surgery-d} gives
+\begin{equation}\label{eq:dg-lower}
+d(K(n),\mathfrak s_g)
+>
+-\frac14-2
+=
+-\frac94.
+\end{equation}
+If $\mathfrak s_g$ corresponds to
+$(\mathfrak s_p^g,\mathfrak s_q^g)$, then
+\[
+d_Y
+=
+d(K(n),\mathfrak s_g)
+-
+d(L(p,a),\mathfrak s_p^g)
+-
+d(L(q,b),\mathfrak s_q^g).
+\]
+Using \eqref{eq:dg-lower} and Lemma~\ref{lem:lens-bound}, we obtain
+\begin{equation}\label{eq:dY-lower}
+d_Y
+>
+-\frac94-\frac p4-\frac q4
+=
+-\frac{p+q+9}{4}.
+\end{equation}
+
+Comparing \eqref{eq:dY-lower} and \eqref{eq:dY-upper} would imply
+\[
+-\frac{p+q+9}{4}
+<
+d_Y
+\le
+\frac{p+q-3n-5}{4},
+\]
+and therefore
+\[
+3n-4<2p+2q.
+\]
+But $n=pq$ and $p,q\ge3$, so
+\[
+\begin{aligned}
+3n-4-2p-2q
+&=
+3pq-4-2p-2q\\
+&=
+p(3q-2)-2q-4\\
+&\ge 3(3q-2)-2q-4\\
+&=7q-10\ge 11>0.
+\end{aligned}
+\]
+This contradiction proves the lemma.
+\end{proof}
+
+\section{Proof of the theorem}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+If $K$ is the unknot, every surgery is prime.  Hence assume that $K$ is a
+nontrivial positive $L$-space knot.
+
+If $K(r)$ is irreducible, it has one prime summand.  Suppose instead that
+$K(r)$ is reducible.  By Lemma~\ref{lem:GL} and Lemma~\ref{lem:HLZ}, $r$
+is a positive integer, say $r=n$, and
+\[
+n\ge 2g-1.
+\]
+By Lemma~\ref{lem:three-summands}, $K(n)$ has at most three prime summands.
+Assume for contradiction that it has exactly three.  Then
+\[
+K(n)\cong L(p,a)\#L(q,b)\#Y,
+\]
+where $p,q>1$ are relatively prime, $Y$ is a prime integer homology sphere,
+and $n=pq$.
+
+By Corollary~\ref{cor:critical-slope},
+\[
+n=2g-1.
+\]
+Thus all the hypotheses of Lemma~\ref{lem:d-obstruction} are satisfied.
+That lemma says that no such connected-sum decomposition exists.  This is a
+contradiction.  Therefore $K(n)$ does not have three prime summands, and
+hence has at most two.
+
+Since a reducible manifold has at least two prime summands, a reducible
+surgery on an $L$-space knot has exactly two.
+\end{proof}
+
+\begin{remark}
+The correction-term argument rules out a three-summand decomposition at the
+critical slope $2g-1$.  The argument above does not prove that a
+two-summand surgery is necessarily the surgery predicted by the full
+cabling conjecture.
+\end{remark}
+
+\begin{thebibliography}{99}
+
+\bibitem{GLReducible}
+C.~McA. Gordon and J.~Luecke,
+\emph{Reducible manifolds and Dehn surgery},
+Topology \textbf{35} (1996), 385--409.
+
+\bibitem{GordonSatellite}
+C.~McA. Gordon,
+\emph{Dehn surgery and satellite knots},
+Transactions of the American Mathematical Society \textbf{275} (1983),
+687--708.
+
+\bibitem{HowieThree}
+J.~Howie,
+\emph{Can Dehn surgery yield three connected summands?},
+arXiv:0908.2697.  Accessible rendering:
+\href{https://ar5iv.labs.arxiv.org/html/0908.2697}{ar5iv.labs.arxiv.org}.
+
+\bibitem{MatignonSayari}
+D.~Matignon and N.~Sayari,
+\emph{Longitudinal slope and Dehn fillings},
+Hiroshima Mathematical Journal \textbf{33} (2003), 127--136.
+
+\bibitem{LSGB}
+\emph{L-space surgeries, genus bounds, and the cabling conjecture}.
+Publication record and quoted Matignon--Sayari theorem:
+\href{https://exa.ai/library/publication/zl1m8jt741b}{exa.ai}.
+
+\bibitem{HLZ15}
+J.~Hom, T.~Lidman, and N.~Zufelt,
+\emph{Reducible surgeries and Heegaard Floer homology},
+Mathematical Research Letters \textbf{22} (2015).
+
+\bibitem{RecentObstructions}
+\emph{Obstructing Reducible Surgeries: Slice Genus and Thickness Bounds},
+arXiv:2209.01672.  Accessible rendering:
+\href{https://ar5iv.labs.arxiv.org/html/2209.01672}{ar5iv.labs.arxiv.org}.
+
+\bibitem{OSAbs}
+P.~Ozsv\'ath and Z.~Szab\'o,
+\emph{Absolutely graded Floer homologies and intersection forms for
+four-manifolds with boundary},
+Advances in Mathematics \textbf{173} (2003), 179--261.
+
+\bibitem{OSLens}
+P.~Ozsv\'ath and Z.~Szab\'o,
+\emph{On knot Floer homology and lens space surgeries},
+Topology \textbf{44} (2005), 1281--1300.
+
+\bibitem{NiWu}
+Y.~Ni and Z.~Wu,
+\emph{Cosmetic surgeries on knots in $S^3$},
+Journal f\"ur die reine und angewandte Mathematik \textbf{706} (2015),
+1--17.
+
+\end{thebibliography}
+
+\end{document}
+```

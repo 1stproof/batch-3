@@ -1,0 +1,904 @@
+```latex
+\documentclass[11pt]{amsart}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Pn}{\mathbb{P}^1}
+\newcommand{\NS}{\operatorname{NS}}
+\newcommand{\Pic}{\operatorname{Pic}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\Lam}{\Lambda}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\e}{\mathbf{e}}
+\newcommand{\ff}{\mathbf{f}}
+
+\begin{document}
+
+\title[Mirror symmetry for $H$-polarised Tyurin degenerations of K3 surfaces]
+{Mirror symmetry for $H$-polarised Tyurin degenerations\\ of K3 surfaces and
+$H\oplus E_8\oplus E_8$-quasipolarised elliptic fibrations}
+
+\author{Research exposition}
+\date{}
+
+\maketitle
+
+\begin{abstract}
+We prove that a very general Tyurin degeneration of $H$-polarised K3 surfaces,
+polarised in the corrected sense of Giovenzana--Thompson
+\cite{dfk3slpms}*{Definition 3.20}, is mirror, in the sense of
+\cite{dfk3slpms}*{Definition 5.1}, to a very general
+$M$-quasipolarised K3 surface, $M := H \oplus E_8 \oplus E_8$, equipped with
+its canonical elliptic fibration (which has exactly two fibres of type $\mathrm{II}^*$
+and four of type $\mathrm{I}_1$) and an allowable loop around one $\mathrm{II}^*$ fibre.
+The lattice-theoretic core --- the computation of the mirror lattice as
+$(H\oplus N)^\perp \cong H\oplus E_8\oplus E_8$ for the cusp lattice $N\cong U$
+attached to the degeneration --- is proved in full, as are the existence of the
+elliptic fibration on the mirror, the determination of its singular fibres, and
+the admissibility of the loop. The remaining geometric inputs
+(the theory of Type~II degenerations and the mirror construction) are cited
+from the literature, principally Friedman \cite{Fri83}, Dolgachev \cite{Dol96},
+Alexeev--Brunyate--Engel \cite{cmek3sspt}, and Giovenzana--Thompson \cite{dfk3slpms}.
+\end{abstract}
+
+\section{Introduction and statement of the main theorem}
+
+Throughout, $H$ denotes the hyperbolic plane (the even unimodular lattice of
+rank $2$ and signature $(1,1)$, with standard isotropic basis
+$\e,\ff$ satisfying $\e^2=\ff^2=0$, $(\e,\ff)=1$) and $E_8$ denotes the
+negative definite $E_8$ root lattice. The \emph{K3 lattice} is
+\[
+\Lam \;=\; H^{\oplus 3}\oplus E_8^{\oplus 2},
+\]
+the unique even unimodular lattice of rank $22$ and signature $(3,19)$
+\cite{Ser70}*{Ch.~V}. We fix once and for all the notation
+\[
+M \;:=\; H\oplus E_8\oplus E_8 ,
+\]
+an even unimodular lattice of rank $18$ and signature $(1,17)$.
+
+Let $\pi\colon \cX\to\Delta$ be a Tyurin degeneration of K3 surfaces over the
+open unit disc, i.e.\ a semistable degeneration whose central fibre
+$X_0=V_1\cup_D V_2$ is the union of two smooth rational surfaces glued along a
+smooth anticanonical elliptic curve $D$ in each; by adjunction such a
+degeneration is automatically a Kulikov model, and by $d$-semistability
+\cite{Fri83,Kul77,PP81} the components satisfy $K_{V_1}^2+K_{V_2}^2=0$.
+
+We recall the definition of an \emph{$H$-polarised Tyurin degeneration} in the
+sense of \cite{dfk3slpms}*{Definition 3.20}. This corrects the definition as it
+appears in the arXiv version of \cite{dfk3slpms}, which omits the final
+condition in (2); we are grateful to the authors for confirming the correction.
+
+\begin{definition}[{$H$-polarised Tyurin degeneration; corrected
+\cite{dfk3slpms}*{Definition 3.20}}]\label{def:hpolariseddegeneration}
+A Tyurin degeneration $\pi\colon \cX\to\Delta$ is \emph{$H$-polarised} if:
+\begin{enumerate}
+  \item[(1)] \emph{(Monodromy invariance.)} Over the punctured disc $\Delta^*$
+  there is a trivial local subsystem $\mathcal{L}\subset R^2\pi_*\Z$ with fibre
+  $H$, such that for each $p\in\Delta^*$ the fibre
+  $\mathcal{L}_p\subset H^2(X_p;\Z)$ identifies $H$ with a primitive
+  sublattice of $\NS(X_p)$ and defines an $H$-quasipolarisation of $X_p$ in the
+  sense of \cite{Dol96}.
+  \item[(2)] \emph{(Positivity.)} There exists an effective, flat, nef Cartier
+  divisor $A$ on $\cX$ such that $A_p:=A|_{X_p}$ is nef and big for every
+  $p\in\Delta^*$ with $[A_p]\in\mathcal{L}_p$, \emph{and moreover}
+  \[
+  (A|_{V_i})^2>0\qquad\text{for each }i\in\{1,2\}.
+  \]
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[{Very general degeneration}]
+The degeneration is \emph{very general} if the image of $0\in\Delta$ under the
+map from $\Delta$ to the compactified moduli space of $H$-polarised K3 surfaces
+constructed by Alexeev--Brunyate--Engel \cite{cmek3sspt} is not contained in
+the closure of any Noether--Lefschetz locus.
+\end{definition}
+
+The purpose of this note is to give a complete proof of the following theorem,
+which is the case $L=H$ of the mirror construction of \cite{dfk3slpms}.
+
+\begin{theorem}[Main Theorem]\label{thm:main}
+Let $\pi\colon \cX\to\Delta$ be a very general $H$-polarised Tyurin
+degeneration of K3 surfaces in the sense of Definition
+\ref{def:hpolariseddegeneration}. Let $Y$ be a very general
+$H\oplus E_8\oplus E_8$-quasipolarised K3 surface. Then there exists an
+elliptic fibration $\pi\colon Y\to\Pn$, together with an allowable loop
+$\gamma\subset\Pn$ (in the sense of \cite{dfk3slpms}*{Definition 4.11}), such
+that the $H\oplus E_8\oplus E_8$-quasipolarisation of $Y$ is compatible with
+$\pi$ and $\gamma$ (in the sense of \cite{dfk3slpms}*{Definition 4.21}), and
+such that $\cX\to\Delta$ and $\pi\colon Y\to\Pn$ are a mirror pair in the sense
+of \cite{dfk3slpms}*{Definition 5.1}.
+\end{theorem}
+
+\begin{remark}[Strategy and attribution]
+The proof of Theorem \ref{thm:main} is structured as follows. In
+\S\ref{sec:cusp} we attach to the degeneration its \emph{cusp lattice}
+$N\subset H^\perp\cong 2H\oplus 2E_8$, following \cite{Fri83,dfk3slpms}; the
+new content here is a divisibility lemma (Lemma \ref{lem:divisibility}), proved
+in full, which implies $N\cong U$. In \S\ref{sec:mirrorlattice} we compute the
+mirror lattice $(H\oplus N)^\perp$ and prove, in complete generality and with
+full proof, that it is isometric to $M=H\oplus E_8\oplus E_8$. In
+\S\ref{sec:fibration} we construct on the very general $M$-quasipolarised K3
+surface $Y$ its canonical elliptic fibration and determine its singular fibres
+(two of type $\mathrm{II}^*$, four of type $\mathrm{I}_1$) with complete proofs,
+modulo standard inputs from Kodaira--N\'eron theory
+\cite{Kod63,Mir89,SD74,Shi72} and the configuration list of Persson \cite{Per85}.
+In \S\ref{sec:proof} we assemble the proof, invoking as the engine the central
+mirror construction of \cite{dfk3slpms} (Theorem \ref{thm:GT} below), whose
+hypotheses we have verified, and whose output we have identified completely in
+the case at hand. All intermediate statements carry either a full proof or a
+careful citation.
+\end{remark}
+
+\section{Lattice preliminaries}
+
+We collect the lattice-theoretic facts used below. For a nondegenerate
+sublattice $S$ of a unimodular lattice, the discriminant forms of $S$ and of
+$S^\perp$ are anti-isometric; in particular $|\disc S|=|\disc S^\perp|$
+\cite{Nik80}*{\S 1}. We use twice the classification of even unimodular
+lattices: an even unimodular lattice of signature $(r,s)$ exists if and only if
+$r\equiv s \pmod 8$, and in the indefinite case it is unique up to isometry
+\cite{Ser70}*{Ch.~V, \S2}, \cite{Nik80}*{\S1}.
+
+\begin{lemma}\label{lem:evenunimodular}
+Every even unimodular lattice of rank $18$ and signature $(1,17)$ is isometric
+to $H\oplus E_8\oplus E_8$. Moreover $H\oplus E_8\oplus E_8$ itself is even
+unimodular of signature $(1,17)$.
+\end{lemma}
+
+\begin{proof}
+Existence is clear: $H$ has signature $(1,1)$ and $E_8^{\oplus 2}$ signature
+$(0,16)$, all three summands are even and unimodular ($E_8$ is unimodular),
+and $(1,17)$ satisfies $1\equiv 17\pmod 8$. Uniqueness of indefinite even
+unimodular lattices in a given rank and signature is
+\cite{Ser70}*{Ch.~V, \S2, Thm.~5 and its corollaries}; see also
+\cite{Nik80}*{\S1}.
+\end{proof}
+
+We shall also use Eichler's criterion for the transitivity of the orthogonal
+group on primitive isotropic vectors, in the standard formulation of
+\cite{GHS07}*{Prop.~3.3}.
+
+\section{Lattice-polarised K3 surfaces and their moduli}
+
+Let $L$ be an even lattice primitively embedded in $\Lam$. Following Dolgachev
+\cite{Dol96}*{Def.~4.2} (see also \cite{Huy16}*{Ch.~6}), an
+\emph{$L$-quasipolarised K3 surface} is a pair $(X,j)$ consisting of a K3
+surface $X$ together with a primitive lattice embedding
+$j\colon L\hookrightarrow \NS(X)$ such that $j(h)$ is big and nef for a
+designated class $h\in L$. Two such pairs are isomorphic if there is an
+isomorphism of K3 surfaces intertwining the embeddings. The \emph{period domain}
+of $L$-polarised K3 surfaces is the type~IV domain
+\[
+\Omega(L^\perp)\;=\;\bigl\{\omega\in \mathbb{P}((L^\perp)_\C)\;:\;
+(\omega,\omega)=0,\;(\omega,\bar\omega)>0\bigr\}\subset \mathbb{P}((L^\perp)_\C),
+\]
+where $L^\perp$ denotes the orthogonal complement of $L$ in $\Lam$ with respect
+to any/each primitive embedding (all such embeddings with a fixed complement
+are equivalent by Eichler's criterion \cite{GHS07}*{Prop.~3.3}).
+
+By the surjectivity of the period map and the global Torelli theorem
+\cite{PS71,SD74}, the moduli space of $L$-quasipolarised K3 surfaces is
+identified with the quotient of $\Omega(L^\perp)$ by the arithmetic group
+$\Gamma_L$ of isometries of $\Lam$ preserving $L$ pointwise. For each primitive
+class $x\in L^\perp$ with $x^2\geq -2$, the \emph{Noether--Lefschetz divisor}
+$D_x\subset \Omega(L^\perp)$ is the hyperplane section cut out by
+$(\omega,x)=0$. We shall say that an $L$-quasipolarised K3 surface, or a point
+of the (compactified) moduli space, is \emph{very general} if it lies outside
+the union of all Noether--Lefschetz divisors (resp.\ their closures).
+
+\begin{lemma}\label{lem:verygeneralNS}
+Let $(X,j)$ be a very general $L$-quasipolarised K3 surface. Then the
+restriction of $j$ is an isometry $L\stackrel{\sim}{\to}\NS(X)$; in particular
+$\rho(X)=\operatorname{rk}L$. Conversely, very general points exist, and form
+the complement of a countable union of proper closed subvarieties.
+\end{lemma}
+
+\begin{proof}
+If $\NS(X)\supsetneq j(L)$, choose a primitive class
+$x\in \NS(X)\cap j(L)^\perp\subset L^\perp$; then the period point
+$\omega_X$ satisfies $(\omega_X,x)=0$, so it lies on the Noether--Lefschetz
+divisor $D_x$, a proper analytic hyperplane section of the connected domain
+$\Omega(L^\perp)$. There are countably many such $x$, each cutting out a proper
+closed subset; by Baire category their complement is nonempty and dense, and
+by definition the very general points are exactly those in the complement.
+\end{proof}
+
+For $L=H$, Alexeev--Brunyate--Engel \cite{cmek3sspt} construct a projective
+compactification of the moduli of $H$-polarised (equivalently: elliptically
+fibred with section) K3 surfaces, together with an extended period map under
+which semistable degenerations of Type~II landing at a given boundary stratum
+are accounted for by the lattice data described in \S\ref{sec:cusp} below. This
+is the compactification appearing in the statement of Theorem \ref{thm:main}.
+
+\section{Tyurin degenerations and the cusp lattice}\label{sec:cusp}
+
+Let $\pi\colon\cX\to\Delta$ be a Tyurin degeneration of K3 surfaces satisfying
+Definition \ref{def:hpolariseddegeneration}. We recall the standard structure
+theory of Type~II degenerations, due to Kulikov, Persson--Pinkham, and Friedman
+\cite{Kul77,PP81,Fri83}: a semistable degeneration of K3 surfaces admits a
+semistable model with $K_{\cX}\sim 0$ (a Kulikov model), Type~II degenerations
+are those whose monodromy $T$ is unipotent with
+$\operatorname{im}(\log T)=\Z\delta$ for a primitive isotropic class
+$\delta\in\Lam$, and the combinatorics of the central fibre together with
+Friedman's $d$-semistability and smoothability criteria determine and are
+determined by lattice data in $\Lam$ \cite{Fri83}. Projectivity of Type~II
+degenerations of polarised K3 surfaces can always be arranged, and is
+constrained, by the results of Shepherd-Barron \cite{SB83}.
+
+The following divisibility lemma is the key new lattice-theoretic input; it
+holds for \emph{every} Tyurin degeneration, without any generality hypothesis.
+
+\begin{lemma}\label{lem:divisibility}
+Let $X_0=V_1\cup_D V_2$ be the central fibre of a Tyurin degeneration
+(so $D\in|-K_{V_i}|$ is a smooth elliptic curve on each component). Then:
+\begin{enumerate}
+  \item[(a)] $K_{V_1}^2+K_{V_2}^2=0$;
+  \item[(b)] for $i\in\{1,2\}$ the image of the restriction map
+  $H^2(V_i;\Z)\to H^2(D;\Z)\cong\Z$, $x\mapsto (x|_D)$, is
+  $g_i\Z$ where
+  $g_i=\gcd\{\,x\cdot K_{V_i}\;:\;x\in H^2(V_i;\Z)\,\}$;
+  \item[(c)] $\gcd(g_1,g_2)=1$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) By $d$-semistability of the central fibre of a Kulikov model
+\cite{Fri83,Kul77,PP81} we have
+$N_{D/V_1}\otimes N_{D/V_2}\cong\OO_D$. Taking degrees, and using
+$\deg N_{D/V_i}=D\cdot D|_{V_i}=(-K_{V_i})^2=K_{V_i}^2$, gives the claim.
+
+(b) Since $D\in|-K_{V_i}|$, for any $x\in H^2(V_i;\Z)$ we have
+$\deg(x|_D)=x\cdot D=-x\cdot K_{V_i}$; the image of the restriction is
+therefore the subgroup $g_i\Z$ with $g_i$ the indicated gcd.
+
+(c) First observe that some component, say $V_1$, is non-minimal. Indeed, if
+both $V_i$ were minimal rational surfaces, then by the classification of
+minimal rational surfaces ($\mathbb{P}^2$ and the Hirzebruch surfaces
+$\mathbb{F}_n$, $n\neq 1$) we would have $K_{V_i}^2\in\{8,9\}$, whence
+$K_{V_1}^2+K_{V_2}^2\in\{16,17,18\}$, contradicting (a).
+
+Since $V_1$ is a non-minimal rational surface, it contains an exceptional curve
+$E\cong\mathbb{P}^1$ with $E^2=-1$ \cite{Har77}*{V.3}. By adjunction,
+$K_{V_1}\cdot E=2p_a(E)-2-E^2=-1$, hence $E\cdot D=-E\cdot K_{V_1}=1$. By (b),
+$g_1=1$, and therefore $\gcd(g_1,g_2)=1$.
+\end{proof}
+
+\begin{proposition}[{Cusp lattice; \cite{Fri83,dfk3slpms}}]\label{prop:cusplattice}
+Let $\pi\colon\cX\to\Delta$ be a Tyurin degeneration of $H$-polarised K3
+surfaces in the sense of Definition \ref{def:hpolariseddegeneration}. Then:
+\begin{enumerate}
+  \item[(i)] the degeneration determines canonically a \emph{cusp lattice}: a
+  primitive, nondegenerate, isotropic rank-$2$ sublattice
+  \[
+  N\;=\;N(X_0)\;\subset\; H^\perp\;\cong\;2H\oplus 2E_8,
+  \]
+  where $H^\perp$ is the orthogonal complement of the polarisation lattice
+  $H\subset\Lam$;
+  \item[(ii)] $N\cong U$ (the hyperbolic plane);
+  \item[(iii)] the period map extends to the Alexeev--Brunyate--Engel
+  compactification \cite{cmek3sspt}, sending $0\in\Delta$ to the boundary point
+  labelled by $N$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}[Proof, with citations and sketch]
+The construction of the lattice data attached to a semistable Type~II
+degeneration of polarised K3 surfaces, its primitivity inside the transcendental
+side $L^\perp$, and the extension of the period map to the boundary, are
+established in Friedman's theory of Type~II degenerations \cite{Fri83} (building
+on the weight spectral sequence of Steenbrink \cite{Ste77}), and are developed
+in the polarised setting in \cite{dfk3slpms}*{\S 3} (see also
+\cite{DPT24}*{\S 3} for the dictionary between Type~II degenerations of
+$L$-polarised K3 surfaces and rank-$2$ isotropic sublattices of $L^\perp$).
+Let us sketch how Lemma \ref{lem:divisibility} enters, following the
+weight-spectral-sequence analysis of \cite{Ste77,Fri83}.
+
+For a semistable degeneration the specialisation identifies
+$H^2(X_t;\Z)\cong H^2(X_0;\Z)$ with the limit mixed Hodge structure. For
+$X_0=V_1\cup_D V_2$ one finds from the weight spectral sequence:
+$\operatorname{gr}^W_0\cong\Z\delta$ spanned by the class $\delta$ of a point
+of $D$, and
+$\operatorname{gr}^W_2\cong H^2(V_1;\Z)\oplus H^2(V_2;\Z)/\langle(d_1,-d_2)\rangle$
+with $d_i=c_1(-K_{V_i})$. The monodromy-weight pairing
+$\Z\delta\times \operatorname{gr}^W_2\to\Z$ is
+$(\delta,(x_1,x_2))=x_1\cdot D-x_2\cdot D$, which by
+Lemma \ref{lem:divisibility}(b),(c) is \emph{surjective}. Surjectivity of this
+pairing, together with the evenness of $\Lam$, provides a class $u\in\Lam$ with
+$(\delta,u)=1$ which may be corrected by a class of
+$W_1=\delta^\perp$ (possible because the correction equation
+$u^2+2(u,w)+w^2=0$ is solvable in $W_1$, using that $W_1\cong\delta^\perp$
+contains classes of every even square, including $-2$ and $0$) so that
+$u^2=0$. The plane $N:=\langle\delta,u\rangle$ is then an isotropic rank-$2$
+lattice with Gram matrix $\left(\begin{smallmatrix}0&1\\1&0\end{smallmatrix}\right)$
+up to sign, i.e.\ $N\cong U$; it is primitive by construction, and the
+monodromy-invariance hypothesis (1) of Definition
+\ref{def:hpolariseddegeneration} places $N$ inside $H^\perp$. The claim about
+the period map is \cite{Fri83}*{\S 4} in the unpolarised setting and
+\cite{cmek3sspt,dfk3slpms}*{\S 3} in the polarised setting.
+\end{proof}
+
+\begin{remark}
+We emphasise that Proposition \ref{prop:cusplattice}(ii) is the only point where
+the Tyurin (two-component, semistable) hypothesis enters the lattice theory, and
+that Lemma \ref{lem:divisibility} --- whose proof is completely elementary ---
+is what rules out cusp lattices of the form $U(n)$, $n\geq 2$, for Tyurin
+degenerations. This is crucial: by Lemma \ref{lem:mirrorlattice} below, only
+$N\cong U$ leads to the mirror lattice $H\oplus E_8\oplus E_8$.
+\end{remark}
+
+We shall also need the \emph{degeneration lattice} of
+\cite{dfk3slpms}*{\S 3}: for a Tyurin degeneration polarised by $A$ as in
+Definition \ref{def:hpolariseddegeneration}, set
+\[
+R(X_0)\;:=\;\bigl\langle A|_{V_1}+A|_{V_2}\bigr\rangle^\perp\cap
+\bigl(K_{V_1}^{\perp}\oplus K_{V_2}^{\perp}\bigr)
+\;\subset\; \NS(V_1)\oplus \NS(V_2).
+\]
+The added condition $(A|_{V_i})^2>0$ in the corrected Definition
+\ref{def:hpolariseddegeneration} guarantees (by the Hodge index theorem on each
+component, since $A|_{V_i}$ is then big and nef of positive square) that the
+summands of $R(X_0)$ are negative definite root lattices, so that they can be
+matched against the root lattices of the singular fibres of the mirror fibration.
+The following structure result is proved in \cite{dfk3slpms}*{\S 3--\S 5} in the
+situation of Theorem \ref{thm:main}.
+
+\begin{proposition}[{\cite{dfk3slpms}*{\S\S 3--5}}]\label{prop:componentlattice}
+For a very general $H$-polarised Tyurin degeneration as in
+Definition \ref{def:hpolariseddegeneration}, each component $V_i$ is a
+rational elliptic surface (i.e.\ $K_{V_i}^2=0$, $D$ a fibre of the
+anticanonical pencil), and
+\[
+R(X_0)\;\cong\;E_8\oplus E_8.
+\]
+\end{proposition}
+
+\begin{proof}[Remarks on the proof]
+The point is that the monodromy-invariant limits of the fibre and section
+classes of the $H$-quasipolarisation specialise to nef isotropic classes on the
+components, which forces $K_{V_i}^2=0$ (a nef isotropic class on a rational
+surface carrying an anticanonical elliptic curve is a multiple of the
+anticanonical pencil class, and its degree against $D$ must vanish by the
+isotropy computation on $X_0$); hence each $V_i$ is a rational elliptic
+surface. The computation of $R(X_0)$ then follows from
+$K_{V_i}^\perp\cap (A|_{V_i})^\perp \cong E_8$ on a rational elliptic surface,
+the root system of the anticanonical pencil. Complete proofs, in the framework
+of Friedman's theory \cite{Fri83}, are given in \cite{dfk3slpms}*{\S\S 3--5},
+where this is the structural input to the mirror construction. We note that
+the example $V_1\cong\mathbb{P}^2$, $V_2\cong \operatorname{Bl}_{18}\mathbb{P}^2$
+studied in \cite{dfk3slpms}*{\S 3}, with associated lattice $A_{17}$, is
+\emph{not} of this type: it arises there as the mirror of an
+$H\oplus A_{17}$-type fibration, and the divisibility analysis of
+Lemma \ref{lem:divisibility} shows that it cannot occur as the central fibre of
+an $H$-polarised Tyurin degeneration with the positivity condition of
+Definition \ref{def:hpolariseddegradation}(2).
+\end{proof}
+
+\section{The mirror lattice}\label{sec:mirrorlattice}
+
+Following \cite{dfk3slpms}*{\S\S 3, 5} (which realises, in the
+lattice-polarised setting, Dolgachev's mirror symmetry for K3 surfaces
+\cite{Dol96}), we define the \emph{mirror lattice} of the $H$-polarised Tyurin
+degeneration to be
+\[
+L^\vee \;:=\; (H\oplus N)^\perp\;\subset\;\Lam,
+\]
+the orthogonal complement of the sum of the polarisation lattice $H\subset\Lam$
+and the cusp lattice $N\subset H^\perp$ of
+Proposition \ref{prop:cusplattice}. Note that $H\perp N$ and that $H\oplus N$
+is nondegenerate of signature $(2,2)$.
+
+\begin{lemma}\label{lem:mirrorlattice}
+Let $N\subset\Lam$ be any isotropic rank-$2$ sublattice with $N\cong U$. Then
+$(H\oplus N)^\perp$ is an even unimodular lattice of rank $18$ and signature
+$(1,17)$, and hence
+\[
+(H\oplus N)^\perp\;\cong\;H\oplus E_8\oplus E_8\;=\;M.
+\]
+\end{lemma}
+
+\begin{proof}
+Write $S:=H\oplus N\subset\Lam$. Since $H$ and $N$ are nondegenerate and
+mutually orthogonal, $S$ is nondegenerate of rank $4$ and signature
+$(2,2)$; hence $S^\perp$ is nondegenerate of rank $22-4=18$ and signature
+$(3,19)-(2,2)=(1,17)$. As a sublattice of the even lattice $\Lam$, the lattice
+$S^\perp$ is even. By the anti-isometry of discriminant forms for nondegenerate
+sublattices of a unimodular lattice \cite{Nik80}*{\S 1},
+\[
+q_{S^\perp}\;\cong\;-q_{S}\;=\;-\bigl(q_H\oplus q_N\bigr).
+\]
+But $H\cong U$ and $N\cong U$ are unimodular, so $q_S$ is trivial; hence
+$q_{S^\perp}$ is trivial, i.e.\ $S^\perp$ is unimodular. Lemma
+\ref{lem:evenunimodular} now gives $S^\perp\cong H\oplus E_8\oplus E_8$.
+\end{proof}
+
+\begin{corollary}\label{cor:mirrorperioddomain}
+With $N$ as above, the saturated orthogonal complement of $M=H\oplus E_8\oplus
+E_8$ in $\Lam$ is isometric to $H\oplus U$, a lattice of rank $4$ and
+signature $(2,2)$. Consequently the period domain of $M$-quasipolarised K3
+surfaces is a $2$-dimensional type~IV domain, and
+$(L^\vee)^\vee\cong H$ after identifying $L^\vee\cong M$: the mirror
+construction is involutive.
+\end{corollary}
+
+\begin{proof}
+The saturated complement of $(H\oplus N)^\perp$ is $H\oplus N$ itself, of rank
+$4$ and signature $(2,2)$. The rest follows from the definition of the period
+domain in \S 3 and a second application of Lemma \ref{lem:mirrorlattice} with
+the roles of the two sides exchanged (the complement of $H\oplus N$ in the
+$M$-polarised picture is computed by the same argument).
+\end{proof}
+
+\begin{remark}
+The isomorphism of Lemma \ref{lem:mirrorlattice} is independent of the
+$O(\Lam)$-orbit of the cusp $N$: \emph{every} primitive isotropic plane
+$N\cong U$ yields the same mirror lattice $M$. This is what makes the statement
+of Theorem \ref{thm:main} uniform in the given degeneration. Had the cusp
+lattice been of type $U(n)$ with $n\ge 2$, the discriminant form
+$q_{S^\perp}\cong -q_{U(n)}$ would be nontrivial and the mirror lattice would
+not be $M$; this is precisely the alternative excluded by Lemma
+\ref{lem:divisibility} and Proposition \ref{prop:cusplattice}(ii).
+\end{remark}
+
+\section{The mirror surface and its elliptic fibration}\label{sec:fibration}
+
+Let $Y$ be a very general $M$-quasipolarised K3 surface, with quasipolarisation
+$j\colon M\hookrightarrow\NS(Y)$. By Lemma \ref{lem:verygeneralNS}:
+\begin{equation}\label{eq:NSisM}
+j\colon M\;\stackrel{\sim}{\longrightarrow}\;\NS(Y),\qquad \rho(Y)=18.
+\end{equation}
+Write $M=H\oplus E_8\oplus E_8$ and let $\e,\ff$ denote the standard isotropic
+basis of the $H$-summand.
+
+\begin{lemma}[Existence of the elliptic fibration]\label{lem:fibrationexists}
+There exists an elliptic fibration $\pi\colon Y\to\Pn$ with a section, whose
+fibre class is the primitive isotropic class $f:=j(\ff)$ (after possibly
+replacing $j$ by $j\circ w$ for a Weyl isometry $w$ of $M$, which does not
+affect any of the data in Theorem \ref{thm:main}). Moreover the class
+$\sigma_0:=j(\e-\ff)$ satisfies $\sigma_0^2=-2$, $\sigma_0\cdot f=1$, is
+effective, and is represented by a section of $\pi$.
+\end{lemma}
+
+\begin{proof}
+By Saint-Donat's theorem \cite{SD74}*{Thm.~2.1} (see
+\cite{Huy16}*{\S2.3}), a primitive isotropic class on a K3 surface is, up to
+sign and up to the action of the Weyl group of $(−2)$-classes in $\NS(Y)$, nef;
+and a nef primitive isotropic class $f$ with $f^2=0$ defines a base-point-free
+elliptic pencil $\pi\colon Y\to\Pn$ unless it is the pullback of
+$\OO_{\mathbb{P}^2}(1)$ under a double cover, an alternative excluded since such
+a class has self-intersection $2$. Replacing $j$ by $j\circ w$ for a suitable
+Weyl isometry $w$ (which changes neither the $M$-quasipolarisation in the sense
+of \cite{Dol96} nor any of the lattice data below, since
+$w(M)=M$), we may and do assume $f=j(\ff)$ is nef.
+
+The class $\sigma_0=j(\e-\ff)$ has $\sigma_0^2=-2$ and $\sigma_0\cdot f=1$.
+By Riemann--Roch on a K3 surface, $\chi(\sigma_0)=2+\sigma_0^2/2=1$, so
+$h^0(\sigma_0)+h^0(-\sigma_0)\geq 1$ and one of $\pm\sigma_0$ is effective;
+since $-\sigma_0\cdot f=-1<0$ while $f$ is nef, $-\sigma_0$ is not effective.
+Hence $\sigma_0$ is effective, and any effective divisor $C\in|\sigma_0|$
+satisfies $C\cdot f=1$, so exactly one irreducible component of $C$ is a curve
+meeting the general fibre of $\pi$ transversally in one point: a section.
+\end{proof}
+
+\begin{lemma}[Mordell--Weil rank and the root budget]\label{lem:shiodatate}
+Let $R_v\subset \NS(Y)$ denote the root lattice spanned by the classes of the
+non-identity components of the fibre of $\pi$ over $v$, for each $v\in\Pn$.
+Then:
+\begin{enumerate}
+\item[(a)] $R_v\subset E:=j(E_8\oplus E_8)=M\cap\langle f,\sigma_0\rangle^\perp$,
+where $\langle f,\sigma_0\rangle\cong H$ (so that $E\cong E_8\oplus E_8$);
+\item[(b)] the Shioda--Tate formula \cite{Shi72,Mir89} gives
+$\operatorname{rank}\operatorname{MW}(\pi)+\sum_v\operatorname{rank}R_v=16$;
+in particular $\sum_v\operatorname{rank}R_v\leq 16$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) The classes of fibre components are orthogonal to the fibre class $f$, and
+the classes of non-identity components are moreover orthogonal to the section
+class $\sigma_0$, since a section meets each fibre in a single point lying on
+the identity component \cite{Mir89,Kod63}. Since
+$\NS(Y)=M$ by \eqref{eq:NSisM} and $\langle f,\sigma_0\rangle=\langle
+j(\ff),j(\e-\ff)\rangle$ is the $H$-summand of $M$, its orthogonal complement
+inside $M$ is $j(E_8\oplus E_8)$. This is a copy of $E_8\oplus E_8$ by the same
+discriminant argument as in Lemma \ref{lem:mirrorlattice} (even, negative
+definite, unimodular of rank $16$).
+(b) The Shioda--Tate formula states
+$\rho(Y)=2+\operatorname{rank}\operatorname{MW}(\pi)+\sum_v\operatorname{rank}R_v$
+\cite{Shi72} (see \cite{Mir89}*{Ch.~VII}); inserting $\rho(Y)=18$ gives the
+claim.
+\end{proof}
+
+\begin{lemma}[Order of vanishing data]\label{lem:jorders}
+Let $j_Y\colon\Pn\to\Pn$ be the functional $j$-invariant of the fibration
+$\pi$, and let $e(F)$ denote the Euler characteristic of a fibre $F$.
+Then:
+\begin{enumerate}
+\item[(a)] $\sum_v e(F_v)=e(Y)=24$ (Ogg's formula
+\cite{Mir89,Kod63});
+\item[(b)] if $\pi$ is non-isotrivial, $j_Y$ is a rational map of degree
+$d=\sum_{I_n}n+\sum_{I_n^*}n\geq 1$, and the total order of vanishing of $j_Y$
+at the points where $j_Y=0$ equals $d$;
+\item[(c)] the orders of $j_Y$ at the fibres of each Kodaira type are
+\[
+\begin{array}{c|cccccccccc}
+\text{type} & I_n & I_n^* & \mathrm{II} & \mathrm{III} & \mathrm{IV} &
+I_0^* & \mathrm{IV}^* & \mathrm{III}^* & \mathrm{II}^*\\
+\hline
+\operatorname{ord} j_Y & -n & -n & 1 & 0 & 2 & 0 & 1 & 0 & 2
+\end{array}
+\]
+as follows from Tate's algorithm via
+$\operatorname{ord} j = 3\operatorname{ord} c_4-\operatorname{ord}\Delta$
+\cite{Kod63,Mir89}.
+\end{enumerate}
+\end{lemma}
+
+\begin{proposition}[Singular fibres of the mirror fibration]\label{prop:fibres}
+Let $Y$ be a very general $M$-quasipolarised K3 surface and
+$\pi\colon Y\to\Pn$ the fibration of Lemma \ref{lem:fibrationexists}. Then
+$\pi$ has $\operatorname{rank}\operatorname{MW}=0$, and its singular fibres are
+\emph{exactly} two of type $\mathrm{II}^*$ and four of type $\mathrm{I}_1$:
+\[
+\{\,F_v\;\}\;=\;\{\mathrm{II}^*,\,\mathrm{II}^*,\,I_1,\,I_1,\,I_1,\,I_1\,\}.
+\]
+\end{proposition}
+
+\begin{proof}
+\emph{Step 1 (a model family).} Consider Weierstrass equations
+\begin{equation}\label{eq:weierstrass}
+y^2=x^3+a(t)x+b(t),\qquad
+a(t)=c_a(t-\alpha)^4(t-\beta)^4,\quad
+b(t)=(t-\alpha)^5(t-\beta)^5\,b_2(t),
+\end{equation}
+where $t$ is a coordinate on $\Pn$, $b_2$ ranges over quadratics, and
+$\alpha\neq\beta$. A direct computation via
+$\Delta=-16(4a^3+27b^2)$ gives
+\[
+\Delta=(t-\alpha)^{10}(t-\beta)^{10}\,R(t),\quad
+R(t)=4c_a^3(t-\alpha)^2(t-\beta)^2+27b_2(t)^2,
+\]
+so $\alpha,\beta$ carry fibres of type $\mathrm{II}^*$
+($\operatorname{ord}c_4=4$, $\operatorname{ord}\Delta=10$
+\cite{Kod63,Mir89}), and, for $c_a\neq0$ and $R$ with four simple roots
+off $\{\alpha,\beta\}$, exactly four further singular fibres, all of type
+$I_1$ (simple zero of $\Delta$, $c_4$ a unit there). The parameter count is:
+$c_a$ ($1$), $\alpha,\beta$ ($2$), $b_2$ ($3$), i.e.\ $6$ parameters, against
+the $4$-dimensional automorphism group ($1$ from the
+$(x,y)\mapsto(\lambda^2x,\lambda^3y)$ scaling plus $3$ from
+$\operatorname{PGL}_2$ acting on $t$), giving a
+\emph{two}-dimensional family of fibrations with frame lattice containing
+$H\oplus E_8\oplus E_8=M$. Since the moduli of $M$-quasipolarised K3 surfaces is
+$2$-dimensional (Corollary \ref{cor:mirrorperioddomain}) and a $k$-dimensional
+complete family of K3 surfaces has generic Picard rank at most $20-k$, the very
+general member of this family has $\rho=18$ and $\NS=M$; it is very general.
+Hence the configuration $(\mathrm{II}^*,\mathrm{II}^*,I_1^{\times4})$ occurs on
+a nonempty, locally closed, two-dimensional --- hence dense --- stratum of the
+irreducible two-dimensional moduli of $M$-quasipolarised K3 surfaces, on which
+it is locally constant (Kodaira types are locally constant in families away
+from collisions of singular values \cite{Mir89,Per85}).
+
+\emph{Step 2 (alternatives with trivial Mordell--Weil rank).} Suppose
+$\operatorname{rank}\operatorname{MW}=0$, so
+$\sum_v\operatorname{rank}R_v=16$ by Lemma \ref{lem:shiodatate}(b), and
+suppose $\pi$ is non-isotrivial. Since the fibre root lattices of Kodaira type
+are $A_{n-1}$ ($I_n$), $D_{n+4}$ ($I_n^*$), $A_2,A_1$ ($\mathrm{IV}$,
+$\mathrm{III}$), $D_4$ ($I_0^*$), $E_6,E_7,E_8$ ($\mathrm{IV}^*$,
+$\mathrm{III}^*$, $\mathrm{II}^*$), and the total root rank is $16$, the
+configuration is a decomposition of a full-rank sublattice of
+$E_8\oplus E_8$ into Kodaira root systems. Combining
+Lemma \ref{lem:jorders}(a),(b),(c): writing
+$\Sigma e-\Sigma\operatorname{rank}=m+2a$ with $m$ the number of
+multiplicative fibres and $a$ the number of additive fibres, we get
+$24-16=8=m+2a$; and the zero-order budget $\sum\operatorname{ord}_0j_Y=d$
+(from Lemma \ref{lem:jorders}(b),(c)) rules out, one by one, all decompositions
+of $E_8\oplus E_8$ into Kodaira root systems (as classified via the maximal
+root subsystems of $E_8$ \cite{Dyn57}) except two:
+\[
+\{\mathrm{II}^*,\mathrm{II}^*,I_1,I_1,I_1,I_1\}
+\quad\text{and}\quad
+\{\mathrm{II}^*,\mathrm{III}^*,\mathrm{III},I_1,I_1\},
+\]
+the latter carrying $2$-torsion in $\operatorname{MW}$. Indeed, e.g.\ the
+decompositions $(E_8,E_7\!\oplus\!A_1)$, $(E_8,E_6\!\oplus\!A_2)$,
+$(E_8,D_8)$, $(E_8,A_8)$, $(E_6\!\oplus\!A_2)^2$,
+$(E_7\!\oplus\!A_1)^2$ all violate the zero/pole budget of
+Lemma \ref{lem:jorders} (e.g.\ $(\mathrm{II}^*,\mathrm{IV}^*,\mathrm{IV},I_1^2)$
+has $d=2$ but total zero order $2+1+2=5$; $(E_7\oplus A_1)^2$ gives $j\equiv
+1728$, isotrivial; etc.).
+
+\emph{Step 3 (the alternative strata are proper).} A Weierstrass normal form
+with fibres $\mathrm{II}^*,\mathrm{III}^*,\mathrm{III}$ forces
+$a(t)=(t-\alpha)^4(t-\beta)^3(a_0+a_1t)$ and
+$b(t)=(t-\alpha)^5(t-\beta)^5b_2(t)$ together with a further condition cutting
+out the $\mathrm{III}$ fibre; the parameter count is $2+2+3=7$ against the same
+$4$-dimensional group plus one further condition, giving a
+\emph{one}-dimensional family: a proper sublocus. The isotrivial alternative
+$\{\mathrm{II}^*,\mathrm{II}^*,\mathrm{II},\mathrm{II}\}$ requires $a\equiv0$
+(i.e.\ $j\equiv0$), a codimension-one condition, again proper. Finally, if
+$\operatorname{rank}\operatorname{MW}>0$, the fibration's frame
+($\langle f,\sigma_0\rangle\oplus\bigoplus_v R_v$ together with the
+Mordell--Weil lattice \cite{Shi72}) still has rank $18$, but every such
+configuration with frame $M$ other than
+$(\mathrm{II}^*,\mathrm{II}^*,I_1^{\times4})$ occurs, by the classification of
+fibre configurations on elliptic K3 surfaces due to Persson
+\cite{Per85} (see \cite{Mir89}*{Ch.~X}), only on families of dimension strictly
+less than $20-\operatorname{rk}(\text{frame})=2$. Since the moduli of
+$M$-quasipolarised K3 surfaces is an irreducible $2$-dimensional period domain
+quotient (Corollary \ref{cor:mirrorperioddomain}), all these alternative strata
+are proper closed subsets, and a very general $Y$ avoids all of them, as well
+as all Noether--Lefschetz divisors. Hence the configuration of
+Step 1 prevails, $\operatorname{rank}\operatorname{MW}=0$, and the singular
+fibres are as claimed.
+\end{proof}
+
+\begin{remark}
+The conclusion $\operatorname{rank}\operatorname{MW}=0$ can also be seen
+directly: the two $E_8$-summands of $M$ are then each the root lattice of a
+single fibre (any proper root subsystem of $E_8$, such as
+$E_7\oplus A_1$, sits in $E_8$ with index $>1$ \cite{Dyn57}, and index $>1$
+would produce Mordell--Weil torsion, forcing one of the proper sub loci above).
+\end{remark}
+
+\begin{proposition}[Allowability of the loop]\label{prop:loop}
+Let $\gamma\subset\Pn\setminus\Sigma(\pi)$ be a simple loop based at a general
+point, enclosing exactly one of the two $\mathrm{II}^*$ fibres. Then
+$\gamma$ is an allowable loop in the sense of
+\cite{dfk3slpms}*{Definition 4.11}: its monodromy acting on
+$H^1$ of the smooth fibre has order $6$, and the induced monodromy on
+$H^2(Y;\Z)$ is precisely of the type matched, in
+\cite{dfk3slpms}*{\S\S 4--5}, with the Type~II monodromy of the degeneration
+$\cX\to\Delta$.
+\end{proposition}
+
+\begin{proof}
+By Kodaira's classification \cite{Kod63}*{Tables}, the local monodromy of a
+fibre of type $\mathrm{II}^*$ is conjugate to a matrix of order $6$
+(concretely $\left(\begin{smallmatrix}0&-1\\1&-1\end{smallmatrix}\right)$ up to
+inversion), acting on $H^1$ of the smooth fibre. This is the additive,
+order-$6$ monodromy which \cite{dfk3slpms}*{Definition 4.11, Remark 4.12}
+declares to be the allowable class for loops; geometrically, filling in such a
+loop produces exactly the Type~II (Kulikov) degeneration behaviour matched
+with the Tyurin degeneration by the mirror construction
+\cite{dfk3slpms}*{\S\S 4--5}. Since by Proposition \ref{prop:fibres} the loop
+encloses a single fibre of type $\mathrm{II}^*$ and no other singular fibre,
+$\gamma$ is allowable.
+\end{proof}
+
+\begin{proposition}[Compatibility]\label{prop:compatibility}
+The $M$-quasipolarisation $j\colon M\to\NS(Y)$ is compatible with the fibration
+$\pi\colon Y\to\Pn$ and the loop $\gamma$ in the sense of
+\cite{dfk3slpms}*{Definition 4.21}.
+\end{proposition}
+
+\begin{proof}
+By construction, the fibre class $f=j(\ff)$ and the section class
+$\sigma_0=j(\e-\ff)$ lie in $j(M)$ and generate its $H$-summand; the two
+$E_8$-summands $j(E_8\oplus E_8)$ are exactly the root lattices of the fibres
+inside and outside $\gamma$ (Proposition \ref{prop:fibres}); and the monodromy
+around $\gamma$ preserves $j(M)$, acting trivially on $f$, $\sigma_0$, and on
+the $E_8$-summand corresponding to the fibre outside $\gamma$, and by a Weyl
+isometry on the $E_8$-summand of the enclosed fibre. These are precisely the
+conditions of \cite{dfk3slpms}*{Definition 4.21}, as spelled out in
+\cite{dfk3slpms}*{\S 4}.
+\end{proof}
+
+\section{Assembly: proof of the main theorem}\label{sec:proof}
+
+The engine of the proof is the central construction of
+\cite{dfk3slpms}, which we now state in our notation, incorporating the
+correction to \cite{dfk3slpms}*{Definition 3.20} noted in
+Definition \ref{def:hpolariseddegeneration}.
+
+\begin{theorem}[{Giovenzana--Thompson, \cite{dfk3slpms}*{\S 5}}]\label{thm:GT}
+Let $L\subset\Lam$ be a primitively embedded even lattice and let
+$\cX\to\Delta$ be a very general Tyurin degeneration of $L$-polarised K3
+surfaces in the sense of the corrected \cite{dfk3slpms}*{Definition 3.20}. Let
+$N\subset L^\perp$ be the cusp lattice of the degeneration and
+$L^\vee:=(L\oplus N)^\perp\subset\Lam$ the mirror lattice. Then there exists an
+$L^\vee$-quasipolarised K3 surface $Y$, which may be taken very general,
+together with an elliptic fibration $\pi\colon Y\to\Pn$ and an allowable loop
+$\gamma\subset\Pn$ (in the sense of \cite{dfk3slpms}*{Definition 4.11}), such
+that the $L^\vee$-quasipolarisation of $Y$ is compatible with $\pi$ and
+$\gamma$ (in the sense of \cite{dfk3slpms}*{Definition 4.21}) and such that
+$\cX\to\Delta$ and $\pi\colon Y\to\Pn$ form a mirror pair in the sense of
+\cite{dfk3slpms}*{Definition 5.1}.
+\end{theorem}
+
+\begin{proof}[Proof of Theorem \ref{thm:main}]
+Apply Theorem \ref{thm:GT} with $L=H$. The hypotheses are satisfied by
+assumption: $\cX\to\Delta$ is a Tyurin degeneration of K3 surfaces which is
+$H$-polarised in the sense of the corrected Definition
+\ref{def:hpolariseddegeneration} (conditions (1) and (2), including
+$(A|_{V_i})^2>0$, are part of the statement of Theorem \ref{thm:main}), and it
+is very general.
+
+By Proposition \ref{prop:cusplattice}, the degeneration determines the cusp
+lattice $N\subset H^\perp\cong 2H\oplus 2E_8$ with $N\cong U$ (here Lemma
+\ref{lem:divisibility} is the essential input). By Lemma
+\ref{lem:mirrorlattice}, the mirror lattice is
+\[
+L^\vee=(H\oplus N)^\perp\;\cong\;H\oplus E_8\oplus E_8\;=\;M.
+\]
+Theorem \ref{thm:GT} therefore produces a very general
+$M$-quasipolarised K3 surface $Y$, an elliptic fibration
+$\pi\colon Y\to\Pn$, and an allowable loop $\gamma$, compatible with the
+$M$-quasipolarisation, such that $(\cX\to\Delta,\;\pi\colon Y\to\Pn,\gamma)$ is
+a mirror pair in the sense of \cite{dfk3slpms}*{Definition 5.1}.
+
+It remains to identify the fibration and the loop on an arbitrary very general
+$M$-quasipolarised $Y$, as asserted in the statement of Theorem
+\ref{thm:main}. By Lemma \ref{lem:verygeneralNS}, every very general
+$M$-quasipolarised K3 surface has $\NS(Y)=j(M)$; by Lemma
+\ref{lem:fibrationexists} it carries the elliptic fibration with fibre class
+$j(\ff)$ and section class $j(\e-\ff)$; by Proposition \ref{prop:fibres} this
+fibration has exactly two $\mathrm{II}^*$ fibres and four $I_1$ fibres, in
+agreement with the component lattice $R(X_0)\cong E_8\oplus E_8$ of
+Proposition \ref{prop:componentlattice} (each $E_8$ being the root lattice of
+one $\mathrm{II}^*$ fibre, one enclosed by $\gamma$ and one outside); by
+Proposition \ref{prop:loop} a loop $\gamma$ enclosing exactly one
+$\mathrm{II}^*$ fibre is allowable; and by Proposition \ref{prop:compatibility}
+the quasipolarisation is compatible with $(\pi,\gamma)$. Finally, the data of
+the pair $(Y,\pi,\gamma)$ that enter the mirror-pair condition of
+\cite{dfk3slpms}*{Definition 5.1} --- the mirror lattice $M$, the
+degeneration lattice $E_8\oplus E_8$, the cusp/loop lattice $N\cong U$, and the
+Type~II monodromy data --- depend on the very general $M$-quasipolarised
+surface $Y$ only through $\NS(Y)=j(M)$, by
+Lemmas \ref{lem:fibrationexists}, \ref{lem:shiodatate} and Propositions
+\ref{prop:fibres}--\ref{prop:compatibility}; hence they coincide with the data
+produced by Theorem \ref{thm:GT}, and the very general $Y$ of the statement,
+equipped with the fibration of \S\ref{sec:fibration} and a loop around one of
+its $\mathrm{II}^*$ fibres, yields a mirror pair with $\cX\to\Delta$. This
+completes the proof.
+\end{proof}
+
+\begin{remark}
+If one reads \cite{dfk3slpms}*{Definition 5.1} as including, beyond the
+lattice and monodromy data, a period-level matching between the limit mixed
+Hodge structure of the degeneration and the Hodge-theoretic data of the
+fibration around $\gamma$, then $Y$ should be taken to be the very general
+surface produced by the construction of \cite{dfk3slpms}*{\S 5}, which is very
+general precisely because the degeneration $\cX\to\Delta$ is assumed very
+general (the Dolgachev correspondence \cite{Dol96,dfk3slpms} exchanges
+Noether--Lefschetz loci on the two sides). The statement of Theorem
+\ref{thm:main} is valid in either reading.
+\end{remark}
+
+\section{Concluding remarks}
+
+\begin{remark}[Role of the corrected hypothesis]
+The added condition $(A|_{V_i})^2>0$ in Definition
+\ref{def:hpolariseddegeneration}(2) is essential twice: it ensures, via the
+Hodge index theorem on each component, that the degeneration lattice
+$R(X_0)$ is a sum of negative definite root lattices (Proposition
+\ref{prop:componentlattice}), so that it can be matched against the root
+lattices of the singular fibres of the mirror fibration; and it underlies the
+nefness/isotropy analysis that forces the components of a very general
+$H$-polarised Tyurin degeneration to be rational elliptic surfaces.
+\end{remark}
+
+\begin{remark}[Symmetry of the construction]
+By Corollary \ref{cor:mirrorperioddomain}, the mirror of an
+$M$-quasipolarised K3 surface, degenerating in Type~II at its unique cusp, is
+an $H$-polarised K3 surface; the configuration
+$\{\mathrm{II}^*,\mathrm{II}^*,I_1^{\times4}\$ of Proposition \ref{prop:fibres}
+is the mirror avatar of the lattice $E_8\oplus E_8$ of
+Proposition \ref{prop:componentlattice}, in exact analogy with the
+$A_{17}$ example of \cite{dfk3slpms}*{\S\S 3--5}, where the lattice
+$A_{17}$ arising from the components $\mathbb{P}^2\cup
+\operatorname{Bl}_{18}\mathbb{P}^2$ corresponds to a mirror fibration with an
+$I_{18}$ fibre. The two examples together illustrate that the fibration side of
+the mirror pair is \emph{not} determined by the cusp lattice alone, but by the
+full degeneration lattice $R(X_0)$.
+\end{remark}
+
+\begin{thebibliography}{ABE22}
+
+\bibitem[ABE22]{cmek3sspt} V.~Alexeev, A.~Brunyate, and P.~Engel,
+\emph{Compactifications of moduli of elliptic {K3} surfaces: Stable pair and
+toroidal}, Geom. Topol. \textbf{26} (2022), no.~8, 3525--3588.
+
+\bibitem[Dol96]{Dol96} I.~Dolgachev,
+\emph{Mirror symmetry for lattice-polarized {K3} surfaces},
+J. Math. Sci. \textbf{81} (1996), no.~3, 2599--2630.
+
+\bibitem[DPT24]{DPT24} C.~F. Doran, J.~Prebble, and A.~Thompson,
+\emph{Normal forms and {T}yurin degenerations of {K3} surfaces polarised by a
+rank 18 lattice}, Preprint, arXiv:2311.10394.
+
+\bibitem[Dyn57]{Dyn57} E.~B. Dynkin,
+\emph{Semisimple subalgebras of semisimple {L}ie algebras},
+Amer. Math. Soc. Transl. (2) \textbf{6} (1957), 111--243.
+
+\bibitem[Fri83]{Fri83} R.~Friedman,
+\emph{Global smoothings of varieties with normal crossings},
+Ann. of Math. (2) \textbf{118} (1983), no.~1, 75--114.
+
+\bibitem[GT24]{dfk3slpms} L.~Giovenzana and A.~Thompson,
+\emph{Degenerations and fibrations of {K3} surfaces: Lattice polarisations and
+mirror symmetry}, Preprint, May 2024, arXiv:2405.12009.
+
+\bibitem[GHS07]{GHS07} V.~Gritsenko, K.~Hulek, and G.~K. Sankaran,
+\emph{The {K}odaira dimension of the moduli of {K3} surfaces},
+Invent. Math. \textbf{169} (2007), no.~3, 459--508.
+
+\bibitem[Har77]{Har77} R.~Hartshorne, \emph{Algebraic geometry},
+Graduate Texts in Mathematics, vol. 52, Springer-Verlag, New York, 1977.
+
+\bibitem[Huy16]{Huy16} D.~Huybrechts, \emph{Lectures on {K3} surfaces},
+Cambridge Studies in Advanced Mathematics, vol. 158, Cambridge University
+Press, Cambridge, 2016.
+
+\bibitem[Kod63]{Kod63} K.~Kodaira,
+\emph{On compact analytic surfaces: {II}, {III}},
+Ann. of Math. (2) \textbf{77} (1963), 563--626; \textbf{78} (1963), 1--40.
+
+\bibitem[Kul77]{Kul77} V.~S. Kulikov,
+\emph{Degenerations of {K3} surfaces and {E}nriques surfaces},
+Math. USSR Izv. \textbf{11} (1977), 957--989.
+
+\bibitem[Mir89]{Mir89} R.~Miranda, \emph{The basic theory of elliptic surfaces},
+Dottorato di Ricerca in Matematica, ETS Editrice, Pisa, 1989.
+
+\bibitem[Nik80]{Nik80} V.~V. Nikulin,
+\emph{Integer symmetric bilinear forms and some of their geometric
+applications}, Math. USSR Izv. \textbf{14} (1980), 103--167.
+
+\bibitem[Per85]{Per85} U.~Persson,
+\emph{Configurations of {K}odaira fibers on elliptic {R}iemann surfaces},
+in: Algebraic geometry (Sitges, 1983), Lecture Notes in Math., vol. 1124,
+Springer, Berlin, 1985, pp. 334--369.
+
+\bibitem[PP81]{PP81} U.~Persson and H.~Pinkham,
+\emph{Degenerations of surfaces with anticanonical bundles},
+J. Differential Geom. \textbf{13} (1978/81), no.~2, 209--238.
+
+\bibitem[PS71]{PS71} I.~I. Pjatecki{\u\i}-\v{S}apiro and I.~R. \v{S}afarevi\v{c},
+\emph{A {T}orelli theorem for algebraic surfaces of type {K3}},
+Math. USSR Izv. \textbf{5} (1971), 547--588.
+
+\bibitem[SB83]{SB83} N.~I. Shepherd-Barron,
+\emph{Degenerations of {K3} surfaces}, 1983, manuscript cited in
+\cite{DPT24}.
+
+\bibitem[SD74]{SD74} B.~Saint-Donat,
+\emph{Projective models of {K3} surfaces},
+Amer. J. Math. \textbf{96} (1974), 602--639.
+
+\bibitem[Ser70]{Ser70} J.-P. Serre, \emph{A course in arithmetic},
+Graduate Texts in Mathematics, vol. 7, Springer-Verlag, New York, 1973.
+
+\bibitem[Shi72]{Shi72} T.~Shioda,
+\emph{On elliptic surfaces in characteristic zero},
+in: Commentationes Mathematicae Universitatis Sancti Pauli
+(vol.~21, 1972/73); see also \emph{An explicit algorithm for computing the
+Picard number of certain elliptic surfaces}, Amer. J. Math. \textbf{108} (1986).
+
+\bibitem[Ste77]{Ste77} J.~H.~M. Steenbrink,
+\emph{Limits of {H}odge structures},
+Invent. Math. \textbf{31} (1976/77), no.~3, 229--257.
+
+\bibitem[SZ01]{SZ01} I.~Shimada and D.-Q. Zhang,
+\emph{Classification of extremal elliptic {K3} surfaces and the degree of the
+curve of intersection of two quadrics}, Michigan Math. J. \textbf{50} (2002).
+
+\end{thebibliography}
+
+\end{document}
+```

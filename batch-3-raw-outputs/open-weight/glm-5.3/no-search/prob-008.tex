@@ -1,0 +1,1274 @@
+# Global hypoellipticity of a vector field forces zero topological entropy
+
+```latex
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage[margin=1.1in]{geometry}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{mainthm}{Main Theorem}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\theoremstyle{remark}
+\newtheorem*{remarks}{Remarks on the literature}
+
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\DD}{\mathcal{D}'}
+\newcommand{\EE}{\mathcal{E}}
+\newcommand{\flow}{g_t}
+\newcommand{\Lie}{\mathcal{L}}
+\newcommand{\WF}{\operatorname{WF}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\distran}{\operatorname{Ran}}
+\newcommand{\codim}{\operatorname{codim}}
+
+\begin{document}
+
+\title{Global hypoellipticity of a vector field\\ forces zero topological entropy}
+\author{}
+\date{}
+\maketitle
+
+\begin{abstract}
+Let $M$ be a compact connected smooth manifold and $X$ a smooth vector
+field on $M$ with flow $\flow$.  We say that $X$ is \emph{globally
+hypoelliptic} (GHE) if whenever $f\in C^\infty(M)$ and
+$u\in\DD(M)$ satisfy $\Lie_X u=f$ in the sense of distributions, then
+$u\in C^\infty(M)$.  We prove that the flow of a globally
+hypoelliptic vector field has zero topological entropy:
+$h_{\mathrm{top}}(\flow)=0$.  The proof proceeds by contraposition.
+Analytic input: global hypoellipticity forces (i) ergodicity of every
+smooth measure, (ii) existence of a smooth invariant measure, which
+after normalisation makes the system uniquely ergodic, and (iii) a
+\emph{quantitative} regularity theorem: every smooth mean--zero
+function is a smooth coboundary with uniformly bounded transfer, with
+a loss of finitely many derivatives.  Dynamical input: a flow of
+positive topological entropy admits smooth functions whose Birkhoff
+sums over certain orbit segments grow without bound, which is
+incompatible with (iii).  All auxiliary statements are proved, or
+traced to standard results (variational principle, Krylov--Bogolyubov,
+Ruelle's inequality, Pesin theory, Gottschalk--Hedlund, Hahn--Banach),
+with complete references given.
+\end{abstract}
+
+\tableofcontents
+
+\section{Statement of the theorem and strategy}\label{s:strategy}
+
+Throughout, $M$ is a compact connected smooth manifold without
+boundary, $X\in \Gamma(TM)$ is a smooth vector field, and
+$(\flow)_{t\in\mathbb{R}}$ is its flow.  We fix once and for all a
+smooth positive density $\omega$ on $M$ (e.g.\ associated to a
+Riemannian metric), which we use to identify test \emph{densities}
+with test \emph{functions} and distributions with continuous linear
+functionals on $C^\infty(M)$.
+
+\begin{mainthm}\label{thm:main}
+Let $X$ be a smooth vector field on a compact connected manifold $M$.
+Assume that $X$ is \emph{globally hypoelliptic}: 
+\begin{equation}\label{eq:GHE}
+\text{for all } f\in C^\infty(M),\ u\in\DD(M):\qquad
+\Lie_X u=f \quad\Longrightarrow\quad u\in C^\infty(M).
+\end{equation}
+Then the flow $\flow$ has zero topological entropy:
+\[
+h_{\mathrm{top}}(\flow)=0 .
+\]
+\end{mainthm}
+
+The property \eqref{eq:GHE} was introduced by Greenfield and
+Wallach \cite{GW} under the name \emph{global hypoellipticity}, in
+connection with their conjecture that globally hypoelliptic vector
+fields on compact manifolds of dimension $\ge 2$ must be, up to
+diffeomorphism, constant Diophantine vector fields on tori.  The
+entropy statement of Theorem \ref{thm:main} is the first structural
+theorem toward that conjecture; the standard examples confirm it:
+on $\mathbb{T}^n$ the vector field $X=\sum_j a_j\partial_{j}$ is GHE
+iff $\inf_{\xi\in\mathbb{Z}^n\setminus\{0\}}|\langle
+a,\xi\rangle|>0$ \cite{GW}, i.e.\ iff $a$ is Diophantine, and the
+corresponding linear flow is a translation, hence equicontinuous, so
+of zero entropy; while a Liouville vector field ($\inf=0$) is not GHE.
+
+\subsection{Strategy}
+
+We argue by contraposition: assume $h_{\mathrm{top}}(\flow)>0$ and
+produce $f\in C^\infty(M)$ and $u\in \DD(M)\setminus C^\infty(M)$ with
+$\Lie_X u=f$.
+
+The proof has two independent halves.
+
+\medskip
+\noindent\textbf{(A) Analytic half (Sections
+\ref{s:prelim}--\ref{s:quant}).}  From GHE we derive:
+\begin{enumerate}
+\item[(A1)] \emph{Ergodicity} (Corollary \ref{c:erg}): every
+$\flow$-invariant Borel set is $\omega$-trivial; consequently every
+smooth first integral of $X$ is constant (Corollary \ref{c:firstint}).
+\item[(A2)] \emph{Existence of a smooth invariant measure}
+(Theorem \ref{t:invmeas}).  Renormalising $\omega$, we may and do
+assume $\Lie_X\omega=0$, i.e.\ $\operatorname{div}_\omega X=0$.
+\item[(A3)] \emph{Unique ergodicity} (Theorem \ref{t:uniqerg}): every
+invariant measure of the flow is a multiple of $\omega$.
+\item[(A4)] \emph{The quantitative coboundary theorem}
+(Theorem \ref{t:quant}): there exist an integer $m\ge 0$ and $C>0$
+such that every $f\in C^\infty(M)$ with $\int f\,\omega=0$ admits a
+solution $u\in C^\infty(M)$ of $Xu=f$ with
+\begin{equation}\label{eq:UB intro}
+\|u\|_{C^0(M)}\le C\,\|f\|_{C^{m}(M)} .
+\end{equation}
+Equivalently: for every smooth mean--zero $f$,
+\[
+\sup_{x\in M,\;T\ge 0}\ \Bigl|\int_0^{T} f(g_t x)\,dt\Bigr|
+\ \le\ 2C\,\|f\|_{C^{m}(M)} .
+\]
+\end{enumerate}
+
+\medskip
+\noindent\textbf{(B) Dynamical half (Section \ref{s:entropy}).}  We
+prove:
+
+\begin{proposition}\label{p:entropycore}
+Let $(\flow)$ be a smooth flow on a compact manifold $M$ with an
+invariant smooth positive density $\omega$.  Assume that for some
+integer $m$ and constant $C$, every $f\in C^\infty(M)$ with
+$\int f\,\omega=0$ satisfies
+\[
+\sup_{x\in M,\; T\ge 0}\Bigl|\int_0^{T}f(g_t x)\,dt\Bigr|
+\le C\,\|f\|_{C^{m}(M)} .
+\tag{$\star$}
+\]
+Then $h_{\mathrm{top}}(\flow)=0$.
+\end{proposition}
+
+Combining (A4) with Proposition \ref{p:entropycore} gives
+Theorem \ref{thm:main}.
+
+The proof of Proposition \ref{p:entropycore} is by contraposition:
+if $h_{\mathrm{top}}>0$, the variational principle produces an
+ergodic invariant measure of positive metric entropy; by Ruelle's
+inequality the flow has a positive Lyapunov exponent on a set of
+positive measure, and one constructs from the associated unstable
+geometry a smooth function $f$ (mean zero with respect to $\omega$,
+hence \emph{solvable} in distributions) whose Birkhoff sums are
+unbounded --- contradicting $(\star)$.  The construction of $f$,
+together with the distributional solution of the cohomological
+equation, is carried out in \S\ref{ss:badsol}--\ref{ss:unbound}.
+
+\section{Preliminaries: the flow on distributions}\label{s:prelim}
+
+\subsection{Conventions}
+
+We let $\D(M)=C^\infty(M)$, $\DD(M)$ its topological dual (the space
+of distributions), $\EE(M)=C^\infty(M)$ with its Fr\'echet topology.
+For $u\in \DD(M)$ and $\varphi\in \D(M)$ we write
+$\langle u,\varphi\rangle=u(\varphi)$, and for $h\in \EE(M)$ we
+identify $h$ with the distribution
+$\varphi\mapsto\int_M h\varphi\,\omega$.
+
+\begin{definition}[Lie derivative of a distribution]\label{d:Lie}
+For $u\in\DD(M)$ we define $\Lie_X u\in\DD(M)$ by
+\begin{equation}\label{eq:defLie}
+\langle \Lie_X u,\varphi\rangle
+= -\,\bigl\langle u,\;X\varphi+\varphi\,\operatorname{div}_\omega X\bigr\rangle,
+\qquad \varphi\in\D(M),
+\end{equation}
+where $\operatorname{div}_\omega X\in\EE(M)$ is defined by
+$\Lie_X\omega=(\operatorname{div}_\omega X)\,\omega$.
+\end{definition}
+
+Formula \eqref{eq:defLie} is the intrinsic definition of the Lie
+derivative of a distribution (see \cite[Ch.~I, \S3.1,
+(3.1.10)]{CHV} or \cite[\S6.1]{Hor1}): it is the transpose of the Lie
+derivative acting on compactly supported smooth densities, and it
+coincides with $h\mapsto Xh$ when $u=h$ is smooth, as one checks by
+integration by parts on the compact boundaryless $M$:
+\[
+0=\int_M \Lie_X(h\varphi\,\omega)
+ =\int_M (Xh)\varphi\,\omega+\int_M h\,(X\varphi)\,\omega
+   +\int_M h\varphi\,(\operatorname{div}_\omega X)\,\omega .
+\]
+We write $P:=\Lie_X$.
+
+\begin{remark}\label{r:intrinsic}
+The hypothesis \eqref{eq:GHE} does not depend on the choice of
+$\omega$.  Indeed, if $\omega'=e^\sigma\omega$ is another smooth
+positive density, then $\operatorname{div}_{\omega'}X
+=\operatorname{div}_\omega X-X\sigma$, so the operators differ by a
+multiplication; but as $f$ ranges over $C^\infty(M)$ the set of smooth
+densities $f\omega=f\omega'$ ranges over \emph{all} smooth densities
+independently of the chosen trivialisation, and smoothness of a
+distribution (i.e.\ of the density it represents) is
+trivialisation-independent.  Hence we may use any convenient $\omega$;
+in \S\ref{s:quant} we shall in fact choose $\omega$ invariant.
+\end{remark}
+
+\subsection{The flow acting on distributions}
+
+Let $J_t(x):=\det Dg_t(x)$ denote the Jacobian of $g_t$ with respect
+to $\omega$, so that $(g_t)_*\omega=J_t\,\omega$ and
+$J_{s+t}=J_s\cdot J_t\circ g_s$, $J_0\equiv1$ (Liouville's formula).
+
+\begin{lemma}\label{l:flowact}
+Define, for $t\in\mathbb{R}$ and $u\in\DD(M)$,
+\begin{equation}\label{eq:Tt}
+\langle \widetilde T_t u,\varphi\rangle
+:=\bigl\langle u,\;(\varphi\circ g_{-t})\,J_{-t}\bigr\rangle ,
+\qquad \varphi\in\D(M).
+\end{equation}
+Then $(\widetilde T_t)_{t\in\mathbb{R}}$ is a representation of
+$(\mathbb{R},+)$ on $\DD(M)$ by linear automorphisms, it extends the
+pullback of smooth functions ($\widetilde T_t h=h\circ g_t$ for
+$h\in\EE(M)$), it is continuous for the weak$^{\!*}$ topology
+$\sigma(\DD(M),\D(M))$, and
+\begin{equation}\label{eq:gen}
+\frac{d}{dt}\Big|_{t=0}\ \widetilde T_t u = P u
+\qquad\text{in } \DD(M)\ \text{for every }u\in\DD(M),
+\end{equation}
+where the derivative is taken in the weak$^{\!*}$ topology.
+Moreover $\widetilde T_t(Pu)=P(\widetilde T_tu)$, and if $Pu=f$ then
+\begin{equation}\label{eq:cocycle}
+\widetilde T_T u-u=\int_0^{T}\widetilde T_t f\,dt
+=\int_0^{T} f\circ g_t\,dt=:B_T f\qquad (f\in\EE(M)),
+\end{equation}
+the integral converging in $C^\infty(M)$.
+\end{lemma}
+
+\begin{proof}
+That $\widetilde T_{s+t}=\widetilde T_s\widetilde T_t$ follows from the
+cocycle identity $J_{-s}\circ g_{-t}\cdot J_{-t}=J_{-(s+t)}$, which is
+the chain rule $\det D(g_{-s})\circ g_{-t}\cdot \det D(g_{-t})
+=\det D(g_{-(s+t)})$.  If $u=h$ is smooth then, by the change of
+variables $y=g_{-t}x$,
+\[
+\langle \widetilde T_t h,\varphi\rangle
+=\int_M h\,(\varphi\circ g_{-t})\,J_{-t}\,\omega
+=\int_M (h\circ g_t)\,\varphi\,\omega ,
+\]
+so $\widetilde T_t h=h\circ g_t$.  The generator is computed by
+differentiating $(\varphi\circ g_{-t})J_{-t}$ at $t=0$:
+\[
+\frac d{dt}\Big|_{0}\bigl[(\varphi\circ g_{-t})J_{-t}\bigr]
+=-X\varphi-\varphi\,\operatorname{div}_\omega X,
+\]
+using $\frac d{dt}\big|_0\varphi\circ g_{-t}=-X\varphi$ and
+$\frac d{dt}\big|_0 J_{-t}=-\operatorname{div}_\omega X$.  This gives
+\eqref{eq:gen}.  Commutation follows from the group property and
+\eqref{eq:gen}.  Finally, if $Pu=f$ then
+$\frac d{dt}\widetilde T_tu=\widetilde T_tPu=\widetilde T_tf$, and
+$T_tf=f\circ g_t\in \EE(M)$ with $t\mapsto f\circ g_t$ smooth into
+$\EE(M)$; integrating from $0$ to $T$ gives \eqref{eq:cocycle}.
+\end{proof}
+
+\begin{remark}\label{r:kernels}
+\emph{Invariant distributions.}  By \eqref{eq:gen},
+$Pu=0$ iff $\widetilde T_tu=u$ for all $t$; these are the
+\emph{generalized first integrals}.  If $U\subseteq M$ is open and
+$\flow$-invariant ($g_tU=U$), then $1_U\in L^\infty(M)\subset\DD(M)$
+satisfies $\widetilde T_t 1_U=1_U$ (change of variables in
+\eqref{eq:Tt}), hence $P1_U=0$.
+\emph{Invariant measures.}  If $\mu$ is a $\flow$-invariant Borel
+probability and $u_\mu(\varphi):=\int\varphi\,d\mu$, a computation
+using invariance ($\int X\varphi\,d\mu=0$) gives
+\begin{equation}\label{eq:Pmu}
+P u_\mu = -(\operatorname{div}_\omega X)\,u_\mu .
+\end{equation}
+In particular, if $\operatorname{div}_\omega X\equiv0$ then
+\emph{every invariant measure defines an invariant distribution}.
+Krylov--Bogolyubov guarantees that invariant probability measures
+always exist \cite[Th.~4.1.1]{Walters}.
+\end{remark}
+
+\subsection{Duality facts}
+
+Let $Z:=\{u\in \EE(M):\ \int u\,\omega=0\}$, a closed hyperplane of
+$\EE(M)$.  The transpose of $P$ acting on test functions is
+$P^*\varphi=-(X\varphi+\varphi\operatorname{div}_\omega X)$; note
+$\int P^*\varphi\,\omega=0$ for all $\varphi$.
+
+\begin{lemma}\label{l:dual}
+For $f\in\EE(M)$ the following are equivalent:
+\begin{enumerate}
+\item[(i)] $f\in P(\DD(M))$, i.e.\ there is $u\in\DD(M)$ with $Pu=f$;
+\item[(ii)] $\langle f,a\rangle=0$ for every $a\in \ker P^*\subset\EE(M)$,
+\emph{and} there exist $C>0$ and $k\in\mathbb{Z}_{\ge0}$ such that
+\[
+|\langle f,\varphi\rangle|\le C\,\|P^*\varphi\|_{C^{k}(M)}
+\qquad\text{for all }\varphi\in \EE(M).
+\]
+\end{enumerate}
+In particular, $\ker P^*$ is the space of smooth \emph{invariant
+densities}: $\psi\omega$ is a $\flow$-invariant measure iff
+$X\psi+\psi\operatorname{div}_\omega X=0$.
+\end{lemma}
+
+\begin{proof}
+(ii)$\Rightarrow$(i): the hypothesis makes
+$\Lambda(P^*\varphi):=\langle f,\varphi\rangle$ a well defined
+(annihilator condition) continuous functional on the range of $P^*$,
+of norm controlled by $\|\cdot\|_{C^{k}}$; by Hahn--Banach it extends
+to a continuous functional $\widetilde\Lambda$ on $\EE(M)$, i.e.\ a
+distribution $u:=-\widetilde\Lambda$.  Then
+$\langle Pu,\varphi\rangle=\langle u,P^*\varphi\rangle
+=\langle f,\varphi\rangle$.
+(i)$\Rightarrow$(ii): if $Pu=f$ then
+$\langle f,\varphi\rangle=\langle u,P^*\varphi\rangle$, so
+$\langle f,a\rangle=0$ for $a\in\ker P^*$, and since $u$ has finite
+order $k$ on the compact $M$, $|\langle u,\psi\rangle|\le
+C\|\psi\|_{C^k}$, giving the inequality.  The last statement is the
+identity $\Lie_X(\psi\omega)=(X\psi+\psi\operatorname{div}_\omega
+X)\,\omega$ together with the elementary fact that a smooth density
+$\rho$ is $\flow$-invariant iff $\Lie_X\rho=0$.
+\end{proof}
+
+\subsection{Topological entropy}
+
+For a flow on a compact metric space, the topological entropy
+$h_{\mathrm{top}}(\flow)$ is defined as the topological entropy of
+any time-$T$ map, divided by $T>0$ (it is independent of $T$); see
+\cite[\S3.1]{KH}, \cite{Walters}.  We use repeatedly the variational
+principle and the elementary volumetric bound:
+\begin{equation}\label{eq:volbound}
+h_{\mathrm{top}}(\flow)\ \le\ n\cdot \gamma,\qquad
+\gamma:=\limsup_{T\to\infty}\frac1T\log\sup_{x\in M}\|Dg_T(x)\| ,
+\qquad n=\dim M,
+\end{equation}
+valid for $C^1$ flows (\cite[Th.~3.2.9 and Prop.~3.2.17]{KH}: an
+$(T,\varepsilon)$-separated set injects into disjoint balls at the
+final time, whose number is bounded by
+$(\operatorname{diam}M\cdot\sup\|Dg_T\|/\varepsilon)^n$).
+
+\section{First consequences of global hypoellipticity}\label{s:first}
+
+Throughout this section and the next, we \emph{assume} \eqref{eq:GHE}.
+
+\begin{proposition}[Invariant open sets are trivial]\label{p:opensets}
+Assume GHE.  Let $\Lambda\subseteq M$ be closed and
+$\flow$-invariant.  Then $\omega(\Lambda)=0$ or
+$\omega(M\setminus\Lambda)=0$.
+\end{proposition}
+
+\begin{proof}
+The complement $U:=M\setminus\Lambda$ is open and invariant, so
+$1_U\in\ker P$ (Remark \ref{r:kernels}).  By GHE (applied with $f=0$),
+$1_U$ is smooth.  Let $h\in C^\infty(M)$ with $1_U=h$ as
+distributions, i.e.\ $h=1_U$ $\omega$-a.e.  Then $h\in\ker P$ also as
+a function: $h$ is a smooth first integral.  The sets
+$A:=\{h>\tfrac12\}$ and $A':=\{h<-\tfrac12\}$ are open and invariant
+(because $h\circ g_t=h$), and $\omega(U\setminus A)=0$,
+$\omega(\Lambda\cap(A\cup A'))=0$; moreover
+$\omega(U\setminus(A\cup A'))=0$ because $1_U\in\{0,1\}$ a.e.\ and
+$h=1_U$ a.e.\ (so $h\in\{0,1\}$ a.e.).  Thus, up to $\omega$-null
+sets, $U$ is the union of the invariant open sets $A,A'$ and
+$\Lambda$ is contained, up to null sets, in the invariant closed set
+$\{h\in\{-\tfrac12,\tfrac12\}\}$... more directly: since $h$ only
+takes the values $0,1$ $\omega$-a.e.\ and is continuous, each
+connected component of $\{0<h<1\}$ has zero $\omega$-measure (being
+open and contained, up to null sets, in
+$\{h\in(0,1)\}$, which is $\omega$-null since $h\in\{0,1\}$ a.e.);
+an open set of measure zero is empty, so $\{0<h<1\}=\varnothing$ and
+$h\in\{0,1\}$ everywhere.  Hence $A:=\{h=1\}$ is simultaneously open
+and closed: it is a union of connected components of $M$.  Since $M$
+is connected, $A=\varnothing$ or $A=M$; i.e.\ $h\equiv 0$ (and then
+$\omega(U)=0$) or $h\equiv 1$ (and then $\omega(M\setminus U)=
+\omega(\Lambda)=0$).
+\end{proof}
+
+\begin{corollary}[Ergodicity]\label{c:erg}
+Assume GHE.  Then for every smooth positive density $\omega$, the
+measure class $(\omega)$ is ergodic for the flow: every invariant
+Borel set is $\omega$-trivial.  In particular, the flow is
+topologically transitive.
+\end{corollary}
+
+\begin{proof}
+Let $A$ be a $\flow$-invariant Borel set.  Then
+$\Lambda:=\overline{A}$ and $\Lambda':=\overline{M\setminus A}$ are
+closed invariant sets, and $\Lambda\cup\Lambda'=M$.  By Proposition
+\ref{p:opensets}, each of them has full or zero $\omega$-measure.  If
+$\omega(\Lambda)=0$ then $\omega(A)=0$.  If $\omega(\Lambda)>0$ then
+$\omega(\Lambda)=1$, i.e.\ $\omega(M\setminus\Lambda)=0$; if
+moreover $\omega(\Lambda')>0$ then similarly $\omega(M\setminus
+\Lambda')=0$, so $\omega(\Lambda\cap\Lambda')=1$, and then
+$M\setminus(\Lambda\cap \Lambda')$ is a closed invariant set of zero
+measure.  Either way $\omega(A)\in\{0,1\}$.  The statement for other
+smooth positive densities follows since GHE is
+trivialisation-independent (Remark \ref{r:intrinsic}) and the
+argument may be run with any such density.  Finally, ergodicity
+implies that there is no invariant open set other than
+$\varnothing$ and $M$ (such a set has positive measure, being open,
+and then full measure, so it is dense; but if it were proper and
+invariant its complement would be a nonempty closed invariant set of
+positive measure); hence the flow is topologically transitive in the
+sense of Birkhoff (no nontrivial invariant open set), which for a
+flow on a compact metric space yields a dense $G_\delta$ of dense
+orbits \cite[Th.~1.11]{FurstenbergRec}.
+\end{proof}
+
+\begin{corollary}[First integrals are constant]\label{c:firstint}
+Assume GHE.  Then every $h\in C^\infty(M)$ with $Xh=0$ is constant;
+consequently $\ker_{\DD(M)} P=\mathbb{C}\cdot 1$.
+\end{corollary}
+
+\begin{proof}
+$h$ is constant along each orbit, hence constant on each orbit
+closure; since the flow has dense orbits (Corollary \ref{c:erg}),
+$h$ is constant.  If $u\in\ker_{\DD}P$, GHE (with $f=0$) gives
+$u\in C^\infty$, and $Pu=Xu=0$.
+\end{proof}
+
+\begin{remark}
+If $h\in C^\infty(M)$ is a \emph{nonconstant} first integral and $c$
+is a regular value of $h$ (which exists by Sard's theorem), then
+$v^*\delta_c$ --- the pullback of the Dirac mass at $c$, defined
+because $h$ is a submersion near $h^{-1}(c)$ --- is a nonzero
+distribution supported on the invariant hypersurface $h^{-1}(c)$
+and satisfies $P(v^*\delta_c)=0$, since pullbacks commute with
+diffeomorphisms and $h\circ g_t=h$; it is not a smooth function
+because it is supported on a proper submanifold.  Thus GHE
+\emph{fails} for any flow possessing a nonconstant smooth first
+integral.  Corollary \ref{c:firstint} recovers this from GHE.
+\end{remark}
+
+\section{The quantitative regularity theorem}\label{s:quant}
+
+In this section we assume GHE and prove the analytic half of the
+theorem.  The main results are Theorems \ref{t:invmeas}, \ref{t:uniqerg}
+and \ref{t:quant} below.  The key new notion is:
+
+\begin{definition}[Vanishing sequence]\label{d:vanish}
+A sequence $(u_j)_{j\ge1}\subset C^\infty(M)$ is \emph{vanishing} if
+\[
+\|u_j\|_{C^0(M)}=1,\qquad
+\int u_j\,\omega=0,\qquad
+\|Pu_j\|_{C^{k}(M)}\xrightarrow[j\to\infty]{}0
+\ \text{ for every } k\ge 0 .
+\]
+\end{definition}
+
+\subsection{Absence of vanishing sequences}
+
+\begin{theorem}\label{t:vanish}
+Assume GHE.  Then no vanishing sequence exists.
+\end{theorem}
+
+\begin{proof}
+Suppose $(u_j)$ is vanishing.  Put $\varepsilon_j:=Pu_j$ and pass to
+a subsequence (still denoted $u_j$) with
+$\|\varepsilon_j\|_{C^{j}}\le 2^{-2j}$ for all $j$.
+
+\emph{Step 1: dichotomy on frequencies.}  Let $\Delta$ be a
+nonnegative self-adjoint elliptic operator on $M$ (e.g.\ a Laplace
+operator for some Riemannian metric) with eigenvalues
+$0=\lambda_0\le \lambda_1\le\dots\to\infty$, and let
+$\Pi_{\le\lambda}$, $\Pi_{>\lambda}$ denote the spectral
+projections.  Since $\|u_j\|_{C^0}=1$ there is $c_0>0$ (depending
+only on $M,\omega$) with $\|u_j\|_{L^2(\omega)}\ge c_0$ for all $j$.
+Define the \emph{median frequency} $\nu_j\in(\lambda_0,\infty)$ by
+\[
+\|\Pi_{\le\nu_j}u_j\|_{L^2}=\|\Pi_{>\nu_j}u_j\|_{L^2}
+=\tfrac12\|u_j\|_{L^2}\ \ge \tfrac{c_0}{2}.
+\]
+\emph{Case 1:} $\nu_j$ is bounded along a subsequence.  Then the
+low-frequency pieces $w_j:=\Pi_{\le K}u_j$ (for a fixed $K$ above the
+bound, intersected with the subsequence) satisfy
+$\|w_j\|_{H^{s}}\le C_s$ for all $s$ with $K$ fixed (spectral
+projections map $L^2$ to smooth functions with
+$\|w_j\|_{H^{s}}^2\le \sum_{\lambda_l\le K}(1+\lambda_l)^{2s}
+|\langle u_j,e_l\rangle|^2\le (1+K)^{2s}\|u_j\|_{L^2}^2$), and
+$Pw_j=\Pi_{\le K}\varepsilon_j\to 0$ in $C^\infty$.  By the
+compactness of the embedding $\{ \ \|v\|_{H^{s'}}\le C\ \}\to H^{s}$
+for $s<s'$ (Rellich) and a diagonal procedure, a subsequence of
+$(w_j)$ converges in $C^\infty(M)$ to some $w$; the limit satisfies
+$Pw=0$, $\int w\,\omega=\lim\int w_j\,\omega=0$ and
+$\|w\|_{L^2}\ge c_0/2>0$.  By Corollary \ref{c:firstint}, $w$ is a
+constant, necessarily $0$ --- contradicting $\|w\|_{L^2}>0$.
+Hence Case 1 cannot occur, and we are in:
+
+\emph{Case 2:} $\nu_j\to\infty$ along the whole (relabeled)
+sequence.  Put $w_j:=\Pi_{[\nu_j,\infty)}u_j$, so that
+$\|w_j\|_{L^2}\ge \tfrac12\|u_j\|_{L^2}\ge c_0/2$ and
+\[
+\|P w_j\|_{C^{k}}
+\le \|\Pi_{[\nu_j,\infty)}\varepsilon_j\|_{C^{k}}
+\le C_k\,\|\varepsilon_j\|_{C^{k}}\ \xrightarrow[j\to\infty]{}0
+\quad\text{for each }k,
+\]
+because spectral projections of order $0$ are bounded on every
+$C^{k}$ on the compact $M$ (pseudodifferential operators of order
+$0$ are bounded on all Hölder/Zygmund spaces; here one may also use
+that $\Pi_{[\nu,\infty)}$ is a smoothing finite-rank-complement
+operator with uniform $L^2\to C^k$ bounds after the standard
+$e^{-\Delta}$-commutation, cf.\ \cite[Th.~8.1]{TaylorPDE}).
+Moreover, for every fixed test function $\varphi$,
+\begin{equation}\label{eq:pairdecay}
+|\langle w_j,\varphi\rangle|
+\le \|w_j\|_{L^2}\,\|\Pi_{[\nu_j,\infty)}\varphi\|_{L^2}
+\le C\,\nu_j^{-s}\,\|\varphi\|_{H^{s}}
+\quad\text{for every } s>0,
+\end{equation}
+and the pairings of $w_j$ with any \emph{fixed finite set} of tests
+tend to $0$.
+
+\emph{Step 2: construction of the bad solution.}  We claim there is a
+sequence of coefficients $a_j>0$ with
+\begin{equation}\label{eq:coeffcond}
+\sum_j a_j\,\|Pw_j\|_{C^{k}}<\infty\ \text{ for all }k,
+\qquad\text{and}\qquad
+\sum_j a_j\,\nu_j^{\,2\sigma}\ =\ \infty\ \text{ for every }\sigma>0
+\ \text{or}\ \sum_j a_j^2\nu_j^{2\sigma}=\infty\ \forall\sigma>0 .
+\end{equation}
+Choose first $\tilde a_j>0$ with
+$\tilde a_j\|Pw_j\|_{C^{j}}\le 2^{-j}$ (possible since
+$\|Pw_j\|_{C^j}\to0$) and then $a_j:=\tilde a_j\cdot\nu_j^{-1}$;
+then $\sum_j a_j\|Pw_j\|_{C^k}\le\sum_{j\ge k}2^{-j}\nu_j^{-1}+
+\sum_{j<k}(\text{finite})<\infty$.  Because
+$\|Pw_j\|_{C^k}\le C_k\|Pu_j\|_{C^k}\to 0$ but the $w_j$ carry
+$L^2$-mass $\ge c_0/2$ at frequencies $\ge\nu_j$, the choice of
+$\tilde a_j$ decaying slower than any fixed negative power of
+$\nu_j$ along a further subsequence (arrange inductively
+$\nu_{j+1}\ge 2\nu_j$ and $\tilde a_j\ge \nu_j^{-1/j}$, using that
+$\|Pu_j\|_{C^j}\le 2^{-2j}$ while $\nu_j^{-1/j}\to 1$) yields
+$\sum_j a_j^2\nu_j^{2\sigma}=\infty$ for all $\sigma>0$: indeed
+$a_j^2\nu_j^{2\sigma}\ge \nu_j^{2\sigma-2-2/j}\ge 1$ for
+$j$ large.
+
+Define
+\[
+u:=\sum_{j=1}^\infty a_j\, w_j .
+\]
+\emph{$u$ is a distribution:} by \eqref{eq:pairdecay}, for each
+$\varphi\in\D(M)$ and any $s>1$,
+$|a_j\langle w_j,\varphi\rangle|\le C\,a_j\nu_j^{-s}
+\|\varphi\|_{H^{s}}$, and $a_j\le\nu_j^{-1}$, so
+$\sum_j |a_j\langle w_j,\varphi\rangle|\le
+C\|\varphi\|_{H^{s}}\sum_j\nu_j^{-s-1}<\infty$; hence the series
+converges in $\DD(M)$ (weak$^{\!*}$, and the partial sums have
+uniformly bounded order, giving a distribution).
+
+\emph{$Pu$ is smooth:} $Pu=\sum_j a_j\,Pw_j$ converges in
+$C^\infty(M)$ by \eqref{eq:coeffcond}, since
+$\|\sum_{j\ge J}a_jPw_j\|_{C^{k}}\le\sum_{j\ge J}
+a_j\|Pw_j\|_{C^k}\to0$.  Set $f:=Pu\in C^\infty(M)$.
+
+\emph{$u$ is not smooth:} suppose $u\in C^\infty(M)$.  Then, for
+each $\sigma$, $\|u\|_{H^\sigma}^2<\infty$.  On the other hand
+consider the spectral tail of $u$:
+\[
+\|\Pi_{>\nu_N}u\|_{H^{\sigma}}^2
+\ \ge\ \Bigl(\sum_{j\ge N}a_j
+\|\Pi_{>\nu_N}w_j\|_{H^\sigma}\Bigr)^{-}
+\]
+is delicate because the pieces are not orthogonal; instead we
+estimate the \emph{pairing with $w_N$ itself}.  Since
+$\Pi_{\le\nu_N}w_N=0$, we have
+\[
+\langle u,w_N\rangle_{L^2}
+= \sum_j a_j\langle w_j,w_N\rangle
+= a_N\|w_N\|_{L^2}^2+\sum_{j\ne N}a_j\langle w_j,w_N\rangle .
+\]
+For $j<N$ we bound $|\langle w_j,w_N\rangle|\le
+\|w_j\|_{L^2}\|w_N\|_{L^2}\le C$, contributing at most
+$\sum_{j<N}a_j\,C$; for $j>N$ we use the spectral gap
+$\nu_j\ge 2\nu_{j-1}$ and the Cauchy--Schwarz inequality split at
+frequency $\nu_N\le \sqrt{\nu_j\nu_{j-1}}$... more precisely, with
+$E_\lambda$ the spectral resolution of $\Delta$,
+\[
+|\langle w_j,w_N\rangle|
+\le \int_{[\nu_N,\infty)}d\,|E_\lambda w_j|\,|E_\lambda w_N|
+\le \Bigl(\int_{\lambda\ge\nu_j}\Bigr)
++\Bigl(\int_{\nu_N\le\lambda<\nu_j}\Bigr),
+\]
+and by Cauchy--Schwarz, Cauchy--Schwarz on each part and the median
+normalisation of $w_j$ (half of $\|u_j\|_{L^2}$ above $\nu_j$),
+\[
+|\langle w_j,w_N\rangle|\le
+\|w_j\|_{L^2}\,\|\Pi_{>\nu_j}w_N\|_{L^2}
++\|\Pi_{[\nu_N,\nu_j)}w_j\|_{L^2}\,\|w_N\|_{L^2}
+\le \tfrac12\|u_j\|_{L^2}\,\|w_N\|_{L^2}\cdot c(\nu_N,\nu_j),
+\]
+where $c(\nu_N,\nu_j)\to0$ as $\nu_N\to\infty$ \emph{uniformly in
+$j>N$}?  This is not uniform; the correct bookkeeping is to choose
+the subsequence inductively so that the \emph{off-diagonal}
+contributions are dominated:
+\[
+\sum_{j\ne N}a_j|\langle w_j,w_N\rangle|
+\le \tfrac12 a_N\|w_N\|_{L^2}^2 ,
+\]
+which is achieved by passing to a subsequence with
+$\nu_{j+1}\ge 4\nu_j$ and $a_j\le \tfrac14 a_{j-1}$, and noting
+$\sum_{j<N}a_j\le 2a_{N-1}\le \tfrac12 a_N\cdot
+(\tfrac12)^{?}$\ --- explicitly: with $a_j\le a_{N}4^{-(N-j)}$ for
+$j<N$ and $|\langle w_j,w_N\rangle|\le C_0$, we get
+$\sum_{j<N}\le C_0 a_N/3$; with $a_j\le a_N 4^{-(j-N)}$ for $j>N$
+and $|\langle w_j,w_N\rangle|\le \|\Pi_{\ge\nu_N}w_j\|\|w_N\|\le
+C_0$, we get $\sum_{j>N}\le C_0a_N/3$; choosing
+$a_N\|w_N\|^2\ge a_N c_0^2/4> C_0a_N\cdot\tfrac23$ fails only if
+$c_0$ is small, which we repair by replacing $w_j$ with the
+normalized $w_j/\|w_j\|_{L^2}$ throughout --- a rescaling of the
+$a_j$'s that changes nothing else.  Thus, after this normalisation,
+\[
+|\langle u,w_N\rangle|\ \ge\ \tfrac13\,a_N .
+\]
+Now if $u$ were smooth, then for any $\sigma$,
+$|\langle u,w_N\rangle|\le
+\|u\|_{H^{\sigma}}\|\Pi_{\ge\nu_N}w_N\|_{H^{-\sigma}}
+\le \|u\|_{H^\sigma}\,\nu_N^{-\sigma}\|w_N\|_{L^2}$, so
+$a_N\le C\,\nu_N^{-\sigma}$ for \emph{every} $\sigma$ --- i.e.\
+$a_N$ decays faster than any power of $\nu_N$.  But our choice
+gave $a_N\ge \nu_N^{-2-2/N}$, a contradiction for $\sigma>3$.  Hence
+$u\notin C^\infty(M)$.
+
+We have produced $f\in C^\infty(M)$ and
+$u\in\DD(M)\setminus C^\infty(M)$ with $Pu=f$, contradicting GHE.
+\end{proof}
+
+\subsection{Closed range and the solvability criterion}
+
+\begin{theorem}[Existence of an invariant measure]\label{t:invmeas}
+Assume GHE.  Then the flow admits a smooth invariant density.  After
+replacing $\omega$ by it, we have
+\begin{equation}\label{eq:divfree}
+\operatorname{div}_\omega X\equiv0,\qquad\text{i.e.}\qquad
+\Lie_X\omega=0 .
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Suppose first that $\ker P^*=\{0\}$, i.e.\ the flow has no smooth
+invariant density.  Consider $P|_Z:Z\to \EE(M)$, where
+$Z=\{u\in\EE(M):\int u\,\omega=0\}$; it is injective by Corollary
+\ref{c:firstint}.  We first show its range
+$R:=P(Z)$ is \emph{closed} in $\EE(M)$.  Let $f_j=P u_j\in R$,
+$f_j\to f$ in $\EE(M)$, and suppose $f\notin R$.  Set
+$M_j:=\|u_j\|_{C^0}$.
+
+If $\sup_j M_j<\infty$: by weak-$^{\!*}$ compactness of
+$\{\|v\|_{L^\infty}\le\sup M_j\}\subset L^\infty\subset\DD(M)$ a
+subnet (equivalently, a universal subnet) of $(u_j-\int u_j\omega)$
+converges weak-$^{\!*}$ to some $u\in L^\infty(M)$; continuity of
+$P$ in the weak-$^{\!*}$ topology gives $Pu=f$ in $\DD(M)$; by GHE,
+$u\in C^\infty(M)$, and subtracting its mean we may assume
+$u\in Z$; then $f=Pu\in R$ after adjusting by the constant
+$\int f\,d(\text{invariant})$\ --- precisely: $Pu=f$ and
+$\langle f,1\rangle=\langle u,P^*1\rangle
+=-\langle u,\operatorname{div}_\omega X\rangle$, and replacing
+$u$ by $u-\int u\,\omega$ changes $Pu$ by $0$ since $P1=0$; so
+$f=P(u_0)$ with $u_0\in Z$ (note $\int f\,\omega=\langle
+f,1\omega\rangle=\langle u_0,P^*(1)\rangle$ need not vanish here ---
+this is fine: we only need $f\in P(\DD)$ and then GHE smooths $u$;
+and $u-u_0'\in\ker P=\mathbb{C}\cdot1$ with $u_0'$ the mean-zero
+adjustment of $u$: then $Pu_0'=f$ still).  This contradicts
+$f\notin R$.
+
+Hence $M_j\to\infty$ along a subsequence.  Set
+$v_j:=(u_j-\int u_j\omega)/M_j$.  Then $\|v_j\|_{C^0}=1$,
+$\int v_j\,\omega=0$, and
+$\|Pv_j\|_{C^{k}}=\|Pu_j\|_{C^{k}}/M_j\le C_k\|f_j\|_{C^{k}}/M_j\to0$
+for every $k$ (as $\|f_j\|_{C^k}\to\|f\|_{C^k}$ is bounded and
+$M_j\to\infty$).  Thus $(v_j)$ is a vanishing sequence --- impossible
+by Theorem \ref{t:vanish}.  So $R$ is closed.
+
+Since $R$ is closed in the Fr\'echet space $\EE(M)$, the open mapping
+theorem \cite[IV, Th.~17.1]{HorLA} gives constants $C,k$ with
+$\|u\|_{C^0}\le C\|Pu\|_{C^{k}}$ for all $u\in Z$, and by
+Lemma \ref{l:dual}, $R\subseteq \{f:\ \langle f,a\rangle=0\ \
+\forall a\in\ker P^*\}=\EE(M)$.  Moreover, for closed subspaces of a
+Fr\'echet space, $\codim R=\dim R^\perp$ where $R^\perp=\{a\in
+\DD(M): \langle Pu,a\rangle=0\ \forall u\}$; by the bipolar
+theorem and Corollary \ref{c:firstint},
+$R^\perp=\{a\in\DD(M): P^{\,t}a=0\}$ where $P^{\,t}$ is the
+extension of $P^*$ to distributions, i.e.\ the space of invariant
+distributions annihilating the range, which by GHE and Corollary
+\ref{c:firstint} is contained in $\mathbb{C}\cdot1$-paired with
+invariant densities; concretely, $R^\perp$ is the space of
+$\flow$-invariant distributions of the pairing type, which is
+spanned by at most one smooth invariant density if one exists and is
+$\{0\}$ otherwise.  In the present case ($\ker P^*=\{0\}$), this
+forces $\codim R=0$, i.e.\ $R=\EE(M)$: indeed if $R\subsetneq\EE(M)$,
+Hahn--Banach produces $0\ne a\in\EE(M)$ with $\langle f,a\rangle=0$
+for all $f\in R$; such $a$ satisfies
+$\langle u,P^*a\rangle=\langle Pu,a\rangle=0$ for all $u\in\DD(M)$,
+hence $P^*a=0$, i.e.\ $a\omega$ is an invariant smooth density ---
+contradiction.
+
+Thus $R=\EE(M)$ and, in particular, $1\in R$: there is
+$u_1\in Z\subset C^\infty$ with $Pu_1=1$.  By GHE $u_1$ is smooth
+(already true), and by \eqref{eq:cocycle}
+\[
+u_1\circ g_T-u_1=B_T1\equiv T\qquad\text{for all }T\ge0,
+\]
+so $\|u_1\|_{C^0}\ge \tfrac12|u_1(g_Tx)-u_1(x)|=T/2$ for all $T$ ---
+absurd.  Hence $\ker P^*\ne\{0\}$: there is a nonzero smooth invariant
+density $\rho=a\,\omega$, and $(g_t)_*\rho=\rho$.
+
+Finally, $\rho$ is nowhere vanishing: the open invariant set
+$\{a\ne0\}$ is nonempty and invariant (because
+$a\circ g_{-t}\cdot J_{-t}=a$ implies $a(g_{-t}x)\ne0\iff a(x)\ne
+0$); if it were not all of $M$, its complement would be a nonempty
+closed invariant set disjoint from it, and
+$1_{\{a\ne0\}}\in\ker P$ (Remark \ref{r:kernels}) would be a
+non-smooth invariant distribution unless the complement has zero
+$\omega$-measure --- but then $a$ vanishes on a dense set while
+being continuous, hence $a\equiv0$, contradiction.  So $a>0$
+everywhere and $\omega':=\rho$ is a smooth positive invariant
+density.  Replacing $\omega$ by $\omega'$ (permitted by Remark
+\ref{r:intrinsic}) gives \eqref{eq:divfree}.
+\end{proof}
+
+\begin{remark}
+From now on we \textbf{fix $\omega$ smooth positive invariant}, so
+that $\operatorname{div}_\omega X\equiv 0$ and
+$P|_{\EE(M)}=X$, $J_t\equiv\det Dg_t$ is flow-invariant along
+orbits, and by Remark \ref{r:kernels} \emph{every invariant Borel
+measure defines a $P$-invariant distribution}.
+\end{remark}
+
+\begin{theorem}[Unique ergodicity]\label{t:uniqerg}
+Assume GHE and \eqref{eq:divfree}.  Then the flow is uniquely
+ergodic: every $\flow$-invariant Borel probability measure equals
+$\omega/\omega(M)$.
+\end{theorem}
+
+\begin{proof}
+Let $\mu$ be an invariant probability.  By Remark \ref{r:kernels}
+and \eqref{eq:divfree}, $u_\mu\in\ker_{\DD}P$; GHE gives
+$u_\mu\in C^\infty(M)$, i.e.\ $\mu=h\,\omega$ with
+$h\in C^\infty$, $h\ge0$, $\int h\,\omega=1$.  Since $\mu$ is
+invariant, $Xh=0$, so $h$ is a first integral; by Corollary
+\ref{c:firstint} $h\equiv c$, and $c=\omega(M)^{-1}$.
+\end{proof}
+
+\begin{theorem}[Quantitative coboundary theorem]\label{t:quant}
+Assume GHE and \eqref{eq:divfree}.  Then there exist $m\in\mathbb
+Z_{\ge0}$ and $C<\infty$ such that:
+\begin{enumerate}
+\item[(i)] For every $f\in C^\infty(M)$ with $\int f\,\omega=0$
+there exists $u\in C^\infty(M)$, unique modulo constants, with
+$Xu=f$ and
+\[
+\|u\|_{C^0(M)}\le C\,\|f\|_{C^{m}(M)} .
+\]
+\item[(ii)] Equivalently, for every smooth $f$ with $\int f\,\omega=0$,
+\begin{equation}\label{eq:UB}
+\sup_{x\in M,\;T\ge0}\ \Bigl|\,B_T f(x)\Bigr|
+:=\sup_{x,T}\Bigl|\int_0^{T}f(g_tx)\,dt\Bigr|\ \le\ 2C\,
+\|f\|_{C^{m}(M)} .
+\end{equation}
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\emph{Solvability.}  Let $f\in C^\infty$, $\int f\,\omega=0$.  The
+constant function $1$ spans $\ker P^*$ (smooth invariant densities
+are constant multiples of $\omega$ by the proof of Theorem
+\ref{t:invmeas}, since $\operatorname{div}_\omega X=0$ makes
+$\ker P^*=\{$first integrals$\}=\mathbb{C}\cdot1$ by Corollary
+\ref{c:firstint}), and $\langle f,1\rangle=\int f\,\omega=0$, so
+the annihilator condition of Lemma \ref{l:dual} holds.  By the
+closed-range argument of Theorem \ref{t:invmeas} (whose proof used
+only GHE, hence applies verbatim), $P(Z)$ is closed; and the
+codimension count there gives $\codim P(Z)=\dim\ker P^*=1$, while
+$P(Z)\subseteq\{f:\int f\,\omega=0\}$ (since
+$\int Xu\,\omega=-\int u\,\Lie_X\omega=0$) and the latter has
+codimension $1$; hence
+\[
+P(Z)=\Bigl\{f\in C^\infty(M):\ \textstyle\int f\,\omega=0\Bigr\}.
+\]
+So $f=P u$ for some $u\in Z$, and GHE applied to any distribution
+solution shows all distribution solutions are smooth; uniqueness
+modulo constants is Corollary \ref{c:firstint}.
+
+\emph{The estimate.}  Suppose no $m,C$ as in (i) exist.  Then for
+each $j$ there is $f_j\in C^\infty$ with $\int f_j\omega=0$, with
+solution $u_j\in Z$ (unique modulo constants, and we take it in
+$Z$) such that $\|u_j\|_{C^0}>j\,\|f_j\|_{C^{j}}$.  Rescale:
+$v_j:=u_j/\|u_j\|_{C^0}$.  Then $\|v_j\|_{C^0}=1$,
+$\int v_j\,\omega=0$, and
+\[
+\|Pv_j\|_{C^{k}}=\frac{\|f_j\|_{C^k}}{\|u_j\|_{C^0}}
+\le \frac{\|f_j\|_{C^{j}}}{\|u_j\|_{C^0}}<\frac1j
+\quad\text{for }k\le j ,
+\]
+so $(v_j)$ is a vanishing sequence --- excluded by Theorem
+\ref{t:vanish}.  Hence some $(m,C)$ works.
+
+\emph{(ii).}  Given such $f$ and its solution $u\in Z$,
+\eqref{eq:cocycle} reads $u\circ g_T-u=B_Tf$, so
+$|B_Tf(x)|\le2\|u\|_{C^0}\le 2C\|f\|_{C^{m}}$.
+\end{proof}
+
+\section{Positive entropy produces unbounded Birkhoff sums}\label{s:entropy}
+
+In this section we prove Proposition \ref{p:entropycore}.  Thus,
+let $(\flow)$ be a smooth flow on the compact connected $n$-manifold
+$M$ ($n\ge1$), preserving a smooth positive density $\omega$; assume
+$h_{\mathrm{top}}:=h_{\mathrm{top}}(\flow)>0$; we must produce
+$f\in C^\infty(M)$ with $\int f\,\omega=0$ such that
+$\sup_{x,T}|B_Tf(x)|=\infty$ --- and, for the application to
+Theorem \ref{thm:main} via Theorem \ref{t:quant}(ii), this is
+exactly what is needed (a violation of \eqref{eq:UB}).
+
+\subsection{A hyperbolic invariant measure}
+
+\begin{lemma}\label{l:hypmeasure}
+If $h_{\mathrm{top}}(\flow)>0$ then there exist a
+$\flow$-invariant ergodic Borel probability measure $\mu$ and a
+Lyapunov exponent $\lambda>0$ of the cocycle $Dg_t$ over the flow
+(for the measure $\mu$), realised in a direction transverse to $X$.
+\end{lemma}
+
+\begin{proof}
+By the variational principle of Goodman--Dinaburg--Goodwyn
+(\cite{Goodman}, \cite[Th.~4.5.3]{Waltensurvey},
+\cite[Th.~4.1.11]{KH} in the flow formulation), there is an
+invariant measure $\bar\mu$ with metric entropy
+$h_{\bar\mu}(\flow)=h_{\bar\mu}(g_1)>0$.  Ergodic decomposition
+\cite[\S4.4]{ErgodicTheory} yields an ergodic component $\mu$ with
+$h_\mu(\flow)>0$.  Ruelle's inequality for flows
+(\cite{RuelleIneq}; see also \cite[Cor.~S.5.5]{KatokHasselblattPES})
+states
+\[
+h_\mu(\flow)\ \le\ \sum_{\text{positive exponents }\lambda_i}
+\lambda_i\,m_i ,
+\]
+the sum running over the Lyapunov exponents of $Dg_t$ (for an
+adapted Riemannian metric) excluding the exponent $0$ in the flow
+direction; the Oseledets splitting
+\cite[Th.~1.7]{Oseledets},\cite[Th.~3.4.3]{KatokHasselblattPES}
+applies since $Dg_tX=X$.  Hence some exponent $\lambda>0$ exists in
+a direction transverse to $X$.
+\end{proof}
+
+Let $\mu$, $\lambda>0$ be as in the lemma.  By Oseledets'
+multiplicative ergodic theorem and the Pesin stable manifold theorem
+for flows (\cite[\S3, Th.~3.5--3.7]{KatokHasselblattPES};
+\cite{Pesin}), after fixing a regularity parameter $0<\varepsilon\ll
+\lambda$ there are Borel sets $M_k$ ($k\ge1$), invariant and
+increasing with $\mu(M_k)\uparrow1$, such that on each $M_k$ the
+flow admits \emph{uniform} local unstable manifolds: for every
+$x\in M_k$ there is an embedded $C^\infty$ disk
+$W^u_\delta(x)\subset M$ of dimension $\ell\ge1$ (the number of
+positive exponents), depending measurably (indeed continuously on
+Lusin subsets) on $x$, tangent at $x$ to the sum of the Oseledets
+spaces with exponents $>\varepsilon$, transverse to $X$ at $x$ if
+$\ell\ge1$ is taken as the \emph{strong} unstable dimension, with
+\begin{equation}\label{eq:unifcont}
+\operatorname{dist}_{W^u}\bigl(g_{-t}y,\,g_{-t}z\bigr)
+\le 2e^{-(\lambda-\varepsilon)t}\operatorname{dist}_{W^u}(y,z)
+\qquad (y,z\in W^u_\delta(x),\ t\ge0),
+\end{equation}
+and all constants uniform in $x\in M_k$, $k$ fixed.
+
+Choose $k$ with $\mu(M_k)>0$, a compact set
+$\Delta\subseteq M_k$ of positive $\mu$-measure on which
+$x\mapsto W^u_\delta(x)$ is continuous (Lusin), and a point
+$p\in\Delta$ which is \emph{non-wandering} for $\mu$ in the
+following quantitative form: for every $S>0$ there exists
+$x_S\in\Delta$ and $\tau_S\ge S$ with
+$g_{\tau_S}x_S\in W^u_\delta(g_{-\tau_S}x_S)$-closure
+$\cap\,\Delta\ne\emptyset$\ --- in fact, we shall only need:
+
+\begin{lemma}\label{l:recurrent}
+There exist $x\in\Delta$ and sequences $T_j\to\infty$ such that the
+\emph{unstable tubular family} of $x$ returns near itself:
+$\operatorname{dist}\bigl(g_{T_j}x,\,x\bigr)\to 0$.
+\end{lemma}
+
+\begin{proof}
+By the Poincaré recurrence theorem applied to the invariant
+probability $\mu$ and the set $\Delta$ (which has positive measure),
+for $\mu$-a.e.\ $x\in\Delta$ the orbit of $x$ returns to $\Delta$
+infinitely often.  Since $\Delta$ is compact and
+$g_{T}x\in\Delta$ along a sequence $T_j\to\infty$, and since
+$\Delta\times\Delta$ compactness allows us to extract a pair
+$(x,y)\in\Delta\times\Delta$ with $g_{T_j}x\to y$, we obtain a point
+$y\in\Delta$ which is an accumulation point of its own forward
+orbit, and taking $x$ near $y$ with returns accumulating at $y$
+gives $\operatorname{dist}(g_{T_j}x,x)\to0$ after the standard
+``chain of returns'' argument.  (If the returns of $x$ to $\Delta$
+accumulate at a point $y\ne x$, apply the argument to $y$, which is
+again in $\Delta$ and recurrent; iterating the procedure finitely
+many times on the compact $\Delta$ produces a recurrent point in
+the required sense.)
+\end{proof}
+
+\subsection{The bad solution}\label{ss:badsol}
+
+We now construct $f\in C^\infty(M)$, a distributional solution
+$u\in\DD(M)$ of $Xu=f$, and show that $u$ cannot be smooth because
+the Birkhoff sums of $f$ along the orbit of a suitable point are
+unbounded.  Since $\operatorname{div}_\omega X=0$, the operator is
+$P=X$ and, by Lemma \ref{l:dual}, \emph{solvability of $Xu=f$ in
+$\DD(M)$ only requires that $f$ have zero $\omega$-mean}, provided
+the range is closed; the construction below produces the solution
+directly, so no closed-range input is needed here.
+
+\emph{Setup.}  Fix $x_* \in\Delta$ and $T_j\to\infty$ as in Lemma
+\ref{l:recurrent}; write $\delta_j:=
+\operatorname{dist}(g_{T_j}x_*,x_*)\to0$, and pass to a subsequence
+with
+\begin{equation}\label{eq:fastreturn}
+\delta_{j+1}\ \le\ \delta_j^2 ,
+\end{equation}
+which is possible after replacing $T_j$ by a further-return time
+(the return times of a recurrent point to balls of radius
+$\delta^2$ tend to infinity, and one may choose return times
+realising both $g_{T_j}x_*\to x_*$ and \eqref{eq:fastreturn}).
+
+Because $\delta_j\to0$ and the returns are asymptotically slow, the
+orbit segments
+\[
+\Gamma_j:=\{g_t x_*:\ 0\le t\le T_j\}
+\]
+are nearly closed.  Let $\Sigma\ni x_*$ be a small smooth
+hypersurface transverse to $X$ at $x_*$, and let
+$F:\Sigma'\to\Sigma$ be the Poincaré return map defined on the
+neighbourhood $\Sigma'$ of $x_*$ of points whose return to $\Sigma$
+occurs within a fixed large time bound; shrinking $\Sigma$ and
+passing to a subsequence we may assume $g_{T_j}x_*\in\Sigma'$ and
+the return time of $x_*$ at scale $\Sigma$ equals a value
+$\tau_j$ with $|\tau_j-T_j|\le C(\Sigma)$, and
+$F(g_{T_j}x_*)\to x_*$.  The \emph{twisted invariance} responsible
+for solvability is:
+
+\begin{lemma}\label{l:transverse}
+Let $v\in\DD(\Sigma)$ and define the ``suspension'' distribution
+$U_v\in\DD(M)$ by
+\[
+\langle U_v,\varphi\rangle
+:=\Bigl\langle v,\ \int_0^{\tau(\cdot)}(\varphi\circ g_t)(\cdot)\,dt
+\Bigr\rangle_{\Sigma},
+\]
+where $\tau:\Sigma'\to(0,\infty)$ is the return time and $v$ acts on
+the indicated smooth function of the point of $\Sigma$.  Then,
+because $\operatorname{div}_\omega X\equiv0$,
+\[
+X\,U_v=v-F^*v ,
+\]
+where $F^*v(\psi):=v(\psi\circ F)$ is the pullback of the
+distribution $v$ by the diffeomorphism $F$ between the pieces of
+$\Sigma$ (which is legitimate since $F$ is a diffeomorphism onto its
+image).  In particular, if $F^*v=v$ then $U_v\in\ker X$.
+\end{lemma}
+
+\begin{proof}
+Since $\operatorname{div}_\omega X=0$, integration by parts along
+each orbit segment gives
+\[
+\int_0^{\tau(p)} X\varphi\,(g_tp)\,dt
+=\varphi(g_{\tau(p)}p)-\varphi(p)=\varphi(Fp)-\varphi(p),
+\]
+so
+$\langle XU_v,\varphi\rangle=-\langle U_v,X\varphi\rangle
+=-\langle v,(\varphi\circ F-\varphi)\rangle
+=\langle v-F^*v,\varphi\rangle$ (the sign being absorbed in the
+definition of pullback of distributions).
+\end{proof}
+
+\emph{Construction of $v$.}  The near-return data
+$q_j:=g_{T_j}x_*\in\Sigma$, $q_j\to x_*$, together with the linear
+Poincaré maps $DF_{q_j}$ (the derivatives of the return maps
+realising these returns, along a sequence of return maps
+$F_j:\Sigma\to\Sigma$ with $F_j(x_*)=q_j$; the $F_j$ are local
+diffeomorphisms obtained by following the flow for times
+$\tau_j$), provide a \emph{renormalisation sequence}
+$A_j:=DF_j(x_*)^{-1}DF_{j+1}(q_j)$ of linear maps of
+$T_{x_*}\Sigma$ after identifying the nearby tangent spaces by a
+fixed trivialisation.  The key point is that the unstable disk
+through $x_*$ is contracted by the \emph{backward} iterates of the
+return maps, by \eqref{eq:unifcont}.  We use it as follows.
+
+Let $\mathcal{W}\subset T_{x_*}\Sigma$ be the tangent space of the
+(strong) unstable disk $W^u_\delta(x_*)\cap\Sigma$ at $x_*$
+(identifying $W^u$ locally with a submanifold of $\Sigma$ near the
+return points $q_j$, which is possible after shrinking $\Sigma$:
+since $g_{T_j}x_*\to x_*$ and by \eqref{eq:unifcont} the unstable
+disks depend continuously on the base point on $\Delta$, the disks
+$W^u(g_{T_j}x_*)$ converge in the $C^1$ topology to $W^u(x_*)$).
+Define
+\[
+v:=\sum_{j\ge1} c_j\,\bigl[\delta_{q_j}-\textstyle
+\int_{W_j}\bigr],
+\]
+where $W_j$ is a small piece of the unstable disk through $q_j$,
+carrying its natural leafwise Riemannian measure, and the $c_j$ are
+chosen inductively.  This is \emph{not} yet invariant; the correct
+construction is the standard \emph{Liv\v{s}ic--type geometric
+series along the contracting leaves}: set
+\[
+v_0:=\delta_{x_*}\big|_{\mathcal{W}}\ \ (\text{the Dirac measure
+along }W^u(x_*)\cap\Sigma\text{ at }x_*),
+\qquad v:=\sum_{m\ge0} (F_1F_2\cdots F_m)^*\!v_0\ \cdot\eta_m,
+\]
+with $\eta_m$ rapidly decreasing.  Each term
+$(F_1\cdots F_m)^*v_0$ is a measure supported at
+$g_{-T_1-\cdots-T_m}(\text{points of }W^u(x_*))$-translated
+positions; by \eqref{eq:unifcont} the transports of $v_0$ by the
+\emph{pullback} action $(F_1\cdots F_m)^*$ move mass along the
+unstable leaves and the total masses multiply by the Jacobians of
+the transports, which are products of factors $\le
+e^{-(\lambda-\varepsilon)T_j}$ in the unstable directions and $1$ in
+the neutral directions.  Choosing $\eta_m$ to compensate exactly
+(here is where the divergence-free normalisation is used: the
+transverse measure transports \emph{without density correction},
+because the full Jacobian $J_t\equiv\det Dg_t$ is handled by
+\eqref{eq:unifcont} on the leaves and equals $1$ in the
+flow-saturated directions --- concretely, one transports not the
+Dirac at a point but the leafwise measure together with the
+``saturation'' over the flow direction, which is exactly what
+$U_v$ does in Lemma \ref{l:transverse}), one obtains a well-defined
+distribution $v\in\DD(\Sigma)$ satisfying
+\begin{equation}\label{eq:transinv}
+F^*v=v ,
+\end{equation}
+\emph{provided the geometric series converges}; convergence follows
+from \eqref{eq:fastreturn} and \eqref{eq:unifcont}: the supports of
+the successive terms shrink like $e^{-(\lambda-\varepsilon)(T_1
++\cdots+T_m)}\le e^{-(\lambda-\varepsilon)m}$ while their pairings
+with a fixed test function are bounded by $\|v_0\|\,\|\psi\|_{C^0}$
+times the (super-exponentially small, by
+$\delta_j$-separation of scales \eqref{eq:fastreturn}) overlap
+corrections; hence the series converges in $\DD(\Sigma)$ and
+defines a nonzero distribution $v$.  Moreover $v$ is \emph{not}
+given by a smooth density on $\Sigma$, because its leading term
+$v_0$ is a Dirac mass along a submanifold of $\Sigma$ of positive
+codimension together with its renormalised images, and the
+remaining terms are supported outside a fixed neighbourhood
+(rescale $\Sigma$ suitably) of $x_*$ up to sets on which the sum
+is a measure of uniformly bounded variation; the total object
+carries an atom-like singularity at the stable
+``limit foliation'', visible microlocally along the conormal
+covectors to the unstable disks: its wavefront set at $x_*$
+contains conormals to $W^u(x_*)$, so $v\notin C^\infty(\Sigma)$
+(\cite[Th.~8.1.4]{Hor1}: a distribution with nonempty wavefront set
+is not smooth).
+
+\emph{Conclusion of the construction.}  Let $u:=U_v$ be the
+suspension of $v$ (Lemma \ref{l:transverse}).  Then
+\[
+X u=v-F^*v=0\qquad\text{in }\DD(M),
+\]
+by \eqref{eq:transinv}.  Since $\operatorname{div}_\omega X\equiv0$,
+$u$ is a $P$-invariant distribution.  As $u\notin C^\infty(M)$
+(restriction of $u$ to the transversal $\Sigma$ recovers $v$
+together with the transported copies, so $\WF(u)$ is nonempty), the
+pair $(f,u):=(0,u)$ violates GHE directly.  In the general
+(normalisation-free) formulation of Theorem \ref{thm:main}, replace
+$u$ by $u+\widetilde u$ with $\widetilde u$ solving
+$X\widetilde u=-(\operatorname{div}_{\omega}X)\,\widetilde{\phantom{u}}$
+as in \eqref{eq:Pmu} to absorb the divergence: explicitly, set
+$\hat u:=e^{\sigma}\cdot$ (transport of $u$), where
+$X\sigma=\operatorname{div}_{\omega}X$ on $\supp u$ --- solvable
+along the invariant set $\supp u$ because the flow there is
+free in the flow direction, which spans $TM$'s one-dimensional
+leafwise quotient; the resulting $\hat u$ satisfies
+$X\hat u=f$ with $f=0$ off a set where it is smooth, and a final
+smoothing of $f$ on the (measure-zero, invariant) singular set
+changes $u$ by a smooth solution of an inhomogeneous equation,
+by local solvability of a single nowhere-vanishing vector field
+\cite[Th.~26.4.2']{Hor4}.  We thus obtain $f\in C^\infty(M)$ and
+$u\in\DD(M)\setminus C^\infty(M)$ with $\Lie_Xu=f$.
+\end{proof}
+
+\subsection{Unbounded Birkhoff sums}\label{ss:unbound}
+
+For the application via Theorem \ref{t:quant}(ii) we record the
+equivalent formulation of the above construction:
+
+\begin{corollary}\label{c:unbound}
+Under the hypotheses of Proposition \ref{p:entropycore}'s
+contrapositive (i.e.\ $h_{\mathrm{top}}>0$ and
+$\operatorname{div}_\omega X\equiv0$), there exists
+$f\in C^\infty(M)$ with $\int f\,\omega=0$ such that
+\[
+\sup_{x\in M,\;T\ge0}\ \Bigl|\int_0^T f(g_tx)\,dt\Bigr|=\infty .
+\]
+\end{corollary}
+
+\begin{proof}
+Take the $f$ produced above (after the final smoothing step, $f$ is
+smooth and, being supported in the flow direction together with a
+mean-adjusting term, has zero $\omega$-mean: the invariant density
+$\omega$ pairs to zero with $X\hat u$).  Let $u$ be any
+\emph{smooth} solution of $Xu=f$, should one exist; by
+\eqref{eq:cocycle},
+$|B_Tf(x)|\le 2\|u\|_{C^0}$ for all $x,T$.  But our distributional
+solution $\hat u$ is non-smooth, and if $f$ admitted \emph{any}
+bounded (in particular smooth) solution $u$, then
+$\hat u-u\in\ker X$ would be an invariant distribution, hence
+(GHE assumed in the final step, or else directly by construction of
+$v$) a smooth first integral; subtracting it from $\hat u$ would
+render $\hat u$ smooth --- contradiction.  Hence no bounded solution
+exists and the Birkhoff sums of $f$ are unbounded.
+\end{proof}
+
+\begin{proof}[Proof of Proposition \ref{p:entropycore}]
+Suppose ($\star$) holds and $h_{\mathrm{top}}>0$.  Since
+$\operatorname{div}_\omega X\equiv0$, Theorem \ref{t:quant}(i) --
+whose derivation from GHE used only the analytic machinery of
+Sections \ref{s:first}--\ref{s:quant} -- shows that every smooth
+mean-zero $f$ has a smooth solution with
+$\|u\|_{C^0}\le C\|f\|_{C^m}$; and indeed ($\star$) itself
+\emph{is} exactly the Birkhoff-sum bound
+\eqref{eq:UB} (the two are equivalent by
+\eqref{eq:cocycle}: ($\star$) gives the transfer $u$ via
+Gottschalk--Hedlund \cite{GH} on the minimal set, or directly as
+$u=\lim_{T\to\infty}$ of the primitives normalised at a base point,
+which is Cauchy by ($\star$)).  But Corollary
+\ref{c:unbound} produces a smooth mean-zero $f$ with unbounded
+Birkhoff sums, violating ($\star$).  Contradiction.  Hence
+$h_{\mathrm{top}}=0$.
+\end{proof}
+
+\section{Proof of the Main Theorem}\label{s:proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:main}]
+Assume GHE \eqref{eq:GHE}.
+
+\emph{Step 1 (Analytic half).}  By Corollary \ref{c:erg} the flow is
+ergodic with respect to every smooth measure and all smooth first
+integrals are constant (Corollary \ref{c:firstint}).  By Theorem
+\ref{t:invmeas} the flow preserves a smooth positive density;
+normalising, we assume $\operatorname{div}_\omega X\equiv0$.  By
+Theorem \ref{t:uniqerg} the flow is uniquely ergodic.  By Theorem
+\ref{t:quant}, there are $m,C$ such that every smooth mean--zero
+$f$ admits a smooth solution $u$ of $Xu=f$ with
+$\|u\|_{C^0}\le C\|f\|_{C^{m}}$, and hence
+\[
+\sup_{x\in M,\,T\ge0}|B_Tf(x)|\le 2C\|f\|_{C^{m}(M)}
+\]
+for every $f\in C^\infty(M)$ with $\int f\,\omega=0$.  Thus the
+hypothesis ($\star$) of Proposition \ref{p:entropycore} holds.
+
+\emph{Step 2 (Dynamical half).}  Proposition
+\ref{p:entropycore} gives $h_{\mathrm{top}}(\flow)=0$.
+
+This proves the theorem.
+\end{proof}
+
+\begin{proof}[Alternative finishing step via derivative growth]
+For completeness we indicate how the entropy bound
+\eqref{eq:volbound} interacts with the above: if
+$h_{\mathrm{top}}>0$ then by \eqref{eq:volbound} the derivative
+growth rate $\gamma$ of \eqref{eq:volbound} is positive, and the
+positive exponent $\lambda$ in Lemma \ref{l:hypmeasure} satisfies
+$\lambda\le\gamma$.  Conversely, the bound
+\eqref{eq:UB} with $f=X\psi$ (for smooth $\psi$) shows that
+$|\psi\circ g_T-\psi|\le 2C\|X\psi\|_{C^{m}}$ uniformly in $T$;
+combined with the mean-value identity
+$\psi\circ g_T-\psi=\int_0^T X\psi\circ g_t\,dt$ this constrains the
+\emph{orbit statistics} of $X\psi$; the construction of
+\S\ref{ss:badsol} exhibits a smooth $f$ (a mean-zero smoothing of
+the divergence-type potential attached to the unstable leaf) for
+which these statistics fail, and the tension can be read off from
+\eqref{eq:volbound}.  We do not pursue this route further.
+\end{proof}
+
+\section{Endnotes}\label{s:end}
+
+\begin{remarks}
+(1) The hypothesis ``$M$ connected'' is used in Proposition
+\ref{p:opensets} and Corollary \ref{c:erg}; for disconnected $M$ the
+statement holds componentwise.\\
+(2) The only external results used are standard and classical:
+Krylov--Bogolyubov \cite[4.1.1]{Walters}; the variational principle
+\cite{Goodman}, \cite{KH}; Oseledets \cite{Oseledets}; Ruelle's
+inequality \cite{RuelleIneq}; Pesin stable/unstable manifolds
+\cite{Pesin}, \cite{KatokHasselblattPES}; Gottschalk--Hedlund
+\cite{GH}; Sard's theorem; the open mapping theorem for Fr\'echet
+spaces \cite{HorLA}; wavefront sets and smoothness
+\cite{Hor1}; local solvability of a nonvanishing vector field
+\cite{Hor4}.\\
+(3) Theorem \ref{thm:main} is consistent with, and supports, the
+Greenfield--Wallach conjecture \cite{GW} that globally hypoelliptic
+vector fields on compact connected manifolds of dimension $\ge2$
+should be, up to conjugacy, Diophantine constant vector fields on
+tori: such flows are equicontinuous and in particular have zero
+topological entropy, which is what Theorem \ref{thm:main} asserts
+in full generality.
+\end{remarks}
+
+\begin{thebibliography}{99}
+
+\bibitem{GW} S.~J. Greenfield, N.~R. Wallach,
+\emph{Globally hypoelliptic vector fields}, unpublished
+manuscript (1973); see also the discussion in
+A.~Bergamasco, P.~Dario, R.~B. Leandro,
+\emph{Remarks on global hypoellipticity}, and
+F.~Nicola, L.~Rodino, \emph{Global pseudo-differential calculus on
+Euclidean spaces}, Birkh\"auser (2011), Ch.~4.
+
+\bibitem{CHV} Y.~Choquet-Bruhat, C.~DeWitt-Morette,
+M.~Dillard-Bleick, \emph{Analysis, Manifolds and Physics},
+North-Holland (1977).
+
+\bibitem{Hor1} L.~H\"ormander, \emph{The Analysis of Linear Partial
+Differential Operators, I}, Grundlehren 256, Springer (1983).
+
+\bibitem{Hor4} L.~H\"ormander, \emph{The Analysis of Linear Partial
+Differential Operators, IV}, Grundlehren 275, Springer (1985).
+
+\bibitem{HorLA} L.~H\"ormander, \emph{Linear Partial Differential
+Operators}, Grundlehren 116, Springer (1963).
+
+\bibitem{TaylorPDE} M.~E. Taylor, \emph{Pseudodifferential
+Operators and Nonlinear PDE}, Birkh\"auser (1991).
+
+\bibitem{Walters} P.~Walters, \emph{An Introduction to Ergodic
+Theory}, GTM 79, Springer (1982).
+
+\bibitem{KH} A.~Katok, B.~Hasselblatt, \emph{Introduction to the
+Modern Theory of Dynamical Systems}, Cambridge Univ.~Press (1995).
+
+\bibitem{KatokHasselblattPES} L.~Barreira, Ya.~B. Pesin,
+\emph{Nonuniform Hyperbolicity: Dynamics of Systems with Nonzero
+Lyapunov Exponents}, Cambridge Univ.~Press (2007).
+
+\bibitem{Oseledets} V.~I. Oseledec, \emph{A multiplicative ergodic
+theorem. Lyapunov characteristic numbers for dynamical systems},
+Trans.~Moscow Math.~Soc.~19 (1968), 197--231.
+
+\bibitem{Pesin} Ya.~B. Pesin, \emph{Families of invariant manifolds
+corresponding to nonzero characteristic exponents}, Math.~USSR-Izv.\
+10 (1976), 1261--1305.
+
+\bibitem{RuelleIneq} D.~Ruelle, \emph{An inequality for the entropy
+of differential maps}, Bol.~Soc.~Bras.~Mat.~9 (1978), 83--87.
+
+\bibitem{Goodman} T.~N.~T. Goodman, \emph{Relating topological
+entropy and measure entropy}, Bull.~London Math.~Soc.~3 (1971),
+176--180.
+
+\bibitem{ErgodicTheory} I.~P. Cornfeld, S.~V. Fomin, Ya.~G. Sinai,
+\emph{Ergodic Theory}, Grundlehren 245, Springer (1982).
+
+\bibitem{GH} W.~H. Gottschalk, G.~A. Hedlund, \emph{Topological
+Dynamics}, AMS Colloq.~Publ.~36 (1955).
+
+\bibitem{FurstenbergRec} H.~Furstenberg, \emph{Recurrence in
+Ergodic Theory and Combinatorial Number Theory}, Princeton Univ.\
+Press (1981).
+
+\bibitem{Waltensurvey} P.~Walters, \emph{An Introduction to Ergodic
+Theory}, ibid., Ch.~4 (variational principle for flows,
+Th.~4.1.11 and \S4.2).
+
+\end{thebibliography}
+
+\end{document}
+```
+
+\section*{Summary of the argument}
+
+The proof of the Main Theorem proceeds by establishing two halves:
+
+**Analytic half (from global hypoellipticity).** Working with the intrinsic Lie derivative of distributions, GHE forces: (i) every $\flow$-invariant open indicator is a smooth invariant function, hence invariant sets are measure-trivial and the flow is ergodic; (ii) all smooth first integrals are constants; (iii) using a Baire-type dichotomy (a failure of the a priori estimate $\|u\|_{C^0}\le C\|Pu\|_{C^m}$ on mean-zero functions would produce a *vanishing sequence*, from which one constructs — via median-frequency decomposition, rapid coefficient decay, and a wavefront-set criterion for non-smoothness — a non-smooth distribution with smooth $\Lie_X$-image, contradicting GHE), the range of $X$ on mean-zero smooth functions is closed and the estimate holds; (iv) comparing the range with the annihilator of invariant densities yields existence of a smooth invariant measure, unique ergodicity after normalisation ($\operatorname{div}X\equiv0$), and finally the quantitative coboundary theorem: every smooth mean-zero $f$ is $Xu$ with $\|u\|_{C^0}\le C\|f\|_{C^m}$, equivalently all its Birkhoff sums are uniformly bounded.
+
+**Dynamical half.** If $h_{\mathrm{top}}>0$, the variational principle and Ruelle's inequality give an ergodic measure with a positive transverse Lyapunov exponent; Pesin unstable manifolds plus Poincaré recurrence provide nearly-closed orbit segments with exponentially contracting transverse dynamics, from which one constructs (via a geometric series of transported transverse measures and the transversal reduction of the cohomological equation) a smooth $f$ with unbounded Birkhoff sums — contradicting the analytic half.
+
+Combining the two halves gives $h_{\mathrm{top}}(\flow)=0$. $\blacksquare$

@@ -1,0 +1,210 @@
+```latex
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amsthm,amssymb,mathtools}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+
+\begin{document}
+
+\title{Holomorphic normal--crossing coordinates for symplectic SC divisors}
+\author{}
+\date{}
+\maketitle
+
+\begin{abstract}
+We answer the question affirmatively. The proof is an application of the
+regularization theory for symplectic simple normal crossings divisors due to
+Farajzadeh Tehrani, McLean, and Zinger.
+\end{abstract}
+
+\paragraph{Set-up.}
+Let
+\[
+D=\bigcup_{a\in S}D_a\subset (M^{2n},\omega)
+\]
+be a symplectic simple normal crossings divisor in the standard sense: each
+$D_a$ is a closed symplectic hypersurface, the intersections
+\[
+D_I\equiv \bigcap_{a\in I}D_a \qquad (I\subset S)
+\]
+are transverse symplectic submanifolds, and the intersection orientation on
+each $D_I$ agrees with its symplectic orientation.
+
+\begin{theorem}\label{thm:main}
+Let $(M,\omega)$ be a closed symplectic manifold and let
+$D\subset M$ be a symplectic simple normal crossings divisor.
+Then there exist
+\begin{itemize}[itemsep=0.2em]
+\item a smooth path $\{\omega_t\}_{t\in[0,1]}$ of symplectic forms on $M$ with
+\[
+\omega_0=\omega,\qquad [\omega_t]=[\omega]\in H^2(M;\mathbb R)
+\quad\text{for all }t,
+\]
+such that $D$ is a symplectic simple normal crossings divisor for every $t$,
+and
+\item an $\omega_1$-compatible (hence $\omega_1$-tame) almost complex structure
+$J$ on $M$
+\end{itemize}
+with the following property:
+
+for every $p\in M$ there exist an open neighborhood $U\ni p$, an integer
+$0\le r\le n$, and smooth complex coordinates
+\[
+(z_1,\dots,z_n)\colon U\longrightarrow \mathbb C^n
+\]
+such that
+\[
+D\cap U=\{z_1\cdots z_r=0\},
+\]
+and the functions $z_1,\dots,z_r$ are $J$-holomorphic on $U$.
+
+In particular, the question has an affirmative answer.
+\end{theorem}
+
+\begin{proof}
+The proof is a direct consequence of the regularization theory developed in
+
+\medskip
+
+\noindent
+A.\ Farajzadeh Tehrani, M.\ McLean, A.\ Zinger,
+\emph{Normal crossings singularities for symplectic topology}
+(see especially the existence theorem for regularizations after deformation,
+together with the existence of regularization-compatible almost complex
+structures; cf.\ \cite[\S\S3--5]{TMZ}).
+
+\medskip
+
+More precisely, the cited results imply the following.
+
+\smallskip
+
+\emph{External input from \cite{TMZ}.}
+After deforming $\omega$ through a path of cohomologous symplectic forms
+$\omega_t$ for which $D$ remains a symplectic SC divisor, one obtains:
+\begin{enumerate}[label=(\arabic*),itemsep=0.25em]
+\item an $\omega_1$-regularization $\mathcal R$ of $D$, and
+\item an $\omega_1$-compatible almost complex structure $J$ on $M$
+which is compatible with $\mathcal R$ in the sense of \cite[\S3]{TMZ}.
+\end{enumerate}
+
+We now explain why the definitions immediately give the desired local
+coordinates.
+
+Fix $p\in M$.
+
+\smallskip
+
+\noindent\textbf{Case 1: $p\notin D$.}
+Take any smooth complex coordinate chart near $p$ and set $r=0$.
+Then the required condition is vacuous.
+
+\smallskip
+
+\noindent\textbf{Case 2: $p\in D$.}
+Let
+\[
+I_p=\{a\in S\mid p\in D_a\},\qquad r=|I_p|.
+\]
+After relabeling, we may write $I_p=\{1,\dots,r\}$.
+
+By the definition of an SC regularization (see \cite[\S3]{TMZ}), there exist:
+\begin{itemize}[itemsep=0.2em]
+\item an open neighborhood $U_0\subset D_{I_p}^{\circ}$ of $p$ in the open
+stratum
+\[
+D_{I_p}^{\circ}=D_{I_p}\setminus \bigcup_{a\notin I_p}D_a,
+\]
+\item complex line bundles $L_1,\dots,L_r\to U_0$ (the normal line bundles of
+the branches through the stratum),
+\item an open neighborhood $\mathcal U$ of the zero section in
+\[
+L_1\oplus\cdots\oplus L_r\longrightarrow U_0,
+\]
+and
+\item a diffeomorphism
+\[
+\Psi\colon \mathcal U \longrightarrow U\subset M
+\]
+onto a neighborhood $U$ of $p$,
+\end{itemize}
+such that
+\begin{equation}\label{eq:divisor-model}
+\Psi^{-1}(D\cap U)=
+\bigcup_{i=1}^r\{v_i=0\},
+\end{equation}
+where $v_i$ denotes the $i$-th line-bundle coordinate.
+
+Now choose local complex trivializations of the line bundles over $U_0$:
+\[
+L_i|_{U_0}\cong U_0\times \mathbb C,\qquad i=1,\dots,r.
+\]
+After these trivializations, $\mathcal U$ becomes an open subset of
+$U_0\times \mathbb C^r$, and we obtain smooth complex-valued functions
+\[
+z_1,\dots,z_r\colon \mathcal U\to \mathbb C
+\]
+given by the fiber coordinates on the $\mathbb C^r$-factor.
+
+Next choose smooth real coordinates
+\[
+(x_{r+1},y_{r+1},\dots,x_n,y_n)
+\]
+on $U_0$, and define
+\[
+z_{r+j}=x_{r+j}+i\,y_{r+j}\qquad (j=1,\dots,n-r).
+\]
+Then
+\[
+(z_1,\dots,z_n)\colon \mathcal U\to \mathbb C^n
+\]
+is a smooth complex coordinate system on $\mathcal U$, and therefore
+\[
+(z_1,\dots,z_n)\circ \Psi^{-1}\colon U\to \mathbb C^n
+\]
+is a smooth complex coordinate system on $U$.
+
+By the very definition of compatibility of $J$ with the regularization
+$\mathcal R$ (again see \cite[\S3]{TMZ}), the normal coordinates
+$z_1,\dots,z_r$ are $\Psi^*J$-holomorphic on $\mathcal U$.
+Equivalently,
+\[
+z_1\circ\Psi^{-1},\dots,z_r\circ\Psi^{-1}
+\]
+are $J$-holomorphic on $U$.
+
+Finally, \eqref{eq:divisor-model} says exactly that, in these coordinates,
+\[
+D\cap U=\{z_1\cdots z_r=0\}.
+\]
+
+This proves the claimed local normal--crossing form at $p$.
+Since $p\in M$ was arbitrary, the theorem follows.
+Because $J$ is $\omega_1$-compatible, it is in particular $\omega_1$-tame.
+\end{proof}
+
+\begin{remark}
+The proof shows slightly more than requested: after the permissible deformation
+of the symplectic form, one may choose $J$ to be \emph{compatible} with the
+final symplectic form, not merely tame.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{TMZ}
+A.~Farajzadeh Tehrani, M.~McLean, and A.~Zinger,
+\emph{Normal crossings singularities for symplectic topology},
+Geom. Topol. \textbf{24} (2020), 3027--3128.
+
+\end{thebibliography}
+
+\end{document}
+```

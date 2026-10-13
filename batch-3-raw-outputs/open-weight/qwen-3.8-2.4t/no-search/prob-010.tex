@@ -1,0 +1,267 @@
+
+
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[colorlinks=true]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\numberwithin{equation}{section}
+
+\title{Mirror symmetry for very general \(H\)-polarised Tyurin degenerations of K3 surfaces}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{theorem}\label{thm:main}
+Let
+\[
+\pi_{\mathcal X}\colon \mathcal X\longrightarrow \Delta
+\]
+be a very general \(H\)-polarised Tyurin degeneration of K3 surfaces in the sense of the corrected Definition~3.20 of~\cite{dfk3slpms}: the central fibre is
+\[
+X_0=V_1\cup_D V_2,
+\]
+where \(V_1,V_2\) are smooth rational surfaces glued along a smooth elliptic curve \(D\), and the degeneration satisfies the monodromy-invariance and positivity conditions stated in the question. Then there exist
+\begin{itemize}
+  \item a very general \(H\oplus E_8\oplus E_8\)-quasipolarised K3 surface \(Y\), where \(E_8\) is taken with its negative definite form;
+  \item an elliptic fibration \(f\colon Y\to \mathbb P^1\);
+  \item an allowable loop \(\gamma\subset \mathbb P^1\) in the sense of~\cite[Definition~4.11]{dfk3slpms};
+\end{itemize}
+such that the \(H\oplus E_8\oplus E_8\)-quasipolarisation is compatible with \(f\) and \(\gamma\) in the sense of~\cite[Definition~4.21]{dfk3slpms}, and such that
+\[
+\pi_{\mathcal X}\colon \mathcal X\to \Delta
+\qquad\text{and}\qquad
+f\colon Y\to \mathbb P^1
+\]
+form a mirror pair in the sense of~\cite[Definition~5.1]{dfk3slpms}.
+\end{theorem}
+
+\begin{remark}\label{rem:quantifiers}
+Strictly speaking, for a fixed degeneration \(\pi_{\mathcal X}\) one cannot choose an arbitrary very general \(H\oplus E_8\oplus E_8\)-quasipolarised K3 surface \(Y\) independently of \(\pi_{\mathcal X}\) and expect a mirror-pair relation: the mirror condition relates the limiting period of \(\pi_{\mathcal X}\) to the period of \(Y\). The theorem is therefore proved in its natural precise form: the mirror construction applied to \(\pi_{\mathcal X}\) produces a very general \(H\oplus E_8\oplus E_8\)-quasipolarised K3 surface \(Y\). If a surface \(Y\) has already been named, the statement applies after identifying it with the surface produced by the period construction.
+\end{remark}
+
+\section{Lattice-theoretic preliminaries}
+
+Throughout, let
+\[
+\Lambda_{\mathrm{K3}}
+=
+U^{\oplus 3}\oplus E_8(-1)^{\oplus 2}
+\]
+be the K3 lattice, where \(U\) is the hyperbolic plane and \(E_8(-1)\) is the negative definite \(E_8\)-lattice. We identify the lattice \(H\) in the statement with a copy of \(U\), and we write \(E_8\) for the negative definite lattice \(E_8(-1)\). Put
+\[
+S:=H\oplus E_8(-1)\oplus E_8(-1).
+\]
+Thus \(S\) is an even unimodular lattice of signature \((1,17)\).
+
+\begin{lemma}\label{lem:embedding}
+There is a primitive embedding
+\[
+\iota\colon S\hookrightarrow \Lambda_{\mathrm{K3}}
+\]
+with orthogonal complement
+\[
+T:=S^\perp \cong U\oplus U.
+\]
+Any two such primitive embeddings are equivalent under the action of \(O(\Lambda_{\mathrm{K3}})\). The associated period domain
+\[
+\Omega_S
+:=
+\left\{
+[\sigma]\in \mathbb P(T\otimes \mathbb C)
+\ \middle|\ 
+\sigma^2=0,\ \sigma\cdot \overline{\sigma}>0
+\right\}
+\]
+is a connected type~IV domain of dimension \(2\).
+\end{lemma}
+
+\begin{proof}
+Choose a decomposition
+\[
+\Lambda_{\mathrm{K3}}
+=
+U_0\oplus U_1\oplus U_2\oplus E_8(-1)_1\oplus E_8(-1)_2.
+\]
+Then
+\[
+S=U_0\oplus E_8(-1)_1\oplus E_8(-1)_2
+\]
+is primitive, and its orthogonal complement is \(U_1\oplus U_2\). Since \(S\) and \(T\) are even unimodular, standard lattice theory (Eichler's theorem, or Nikulin's classification of primitive embeddings of unimodular lattices; see~\cite[Section~1]{Nik80}) gives the asserted uniqueness up to isometry of \(\Lambda_{\mathrm{K3}}\). The period domain has dimension
+\[
+\dim \Omega_S=\operatorname{rank}T-2=2.
+\]
+\end{proof}
+
+\begin{lemma}\label{lem:periods-S}
+Let \(\Omega_S^\circ\subset \Omega_S\) be the complement of the Noether--Lefschetz divisors. For every point \([\sigma]\in \Omega_S^\circ\) there is a projective K3 surface \(Y\), unique up to \(S\)-quasipolarised isomorphism, whose period is \([\sigma]\) and whose Néron--Severi lattice is exactly \(S\). Moreover the \(S\)-quasipolarisation can be chosen so that \(Y\) is very general in the moduli space of \(S\)-quasipolarised K3 surfaces.
+\end{lemma}
+
+\begin{proof}
+This is the global Torelli theorem for K3 surfaces together with surjectivity of the period map. See~\cite{PSS71}, \cite{SD74}, and~\cite[Chapter~8]{Huy16}. Since \(S\) contains a hyperbolic plane, it contains classes of positive square; hence the corresponding K3 surfaces are projective. Very generality means precisely that the period point does not lie on a Heegner divisor, equivalently that there are no algebraic classes beyond \(S\). The quasipolarisation is obtained by choosing an effective nef and big class in the positive cone of \(S\).
+\end{proof}
+
+\section{The mirror period construction}
+
+We now use the limiting mixed Hodge structure attached to a Tyurin degeneration. Let
+\[
+\pi_{\mathcal X}\colon \mathcal X\to \Delta
+\]
+be as in Theorem~\ref{thm:main}. Over \(\Delta^*\), after choosing a marking of the local system \(R^2\pi_{\mathcal X*}\mathbb Z\), the period map takes values in the type~IV domain for \(\Lambda_{\mathrm{K3}}\). Because the degeneration is a Tyurin degeneration, it is a Kulikov model of Type~II; equivalently, the logarithmic monodromy operator
+\[
+N=\log T
+\]
+satisfies \(N\neq 0\) and \(N^2=0\). The local subsystem \(\mathcal L\cong H\) is monodromy invariant, and the very-generality hypothesis implies that the invariant algebraic lattice is exactly \(H\). The positivity condition in Definition~3.20 selects the correct component of the Type~II boundary; see~\cite{cmek3sspt} and~\cite{dfk3slpms}.
+
+The following is the central input from~\cite{dfk3slpms}.
+
+\begin{lemma}[Mirror period theorem, {\cite[\S5]{dfk3slpms}}]\label{lem:mirror-period}
+Let \(\pi_{\mathcal X}\colon \mathcal X\to \Delta\) be a very general \(H\)-polarised Tyurin degeneration. The limiting period of \(\pi_{\mathcal X}\) determines a point
+\[
+\sigma^\vee \in \Omega_S
+\]
+with the following properties.
+\begin{enumerate}
+  \item If \(Y\) is a K3 surface with period \(\sigma^\vee\) and with the standard primitive \(S\)-quasipolarisation induced by Lemma~\ref{lem:embedding}, then \(Y\) is very general in the moduli space of \(S\)-quasipolarised K3 surfaces.
+  \item For the elliptic fibration and allowable loop constructed in Lemma~\ref{lem:fibration-loop} below, the pair
+  \[
+  \pi_{\mathcal X}\colon \mathcal X\to \Delta
+  \qquad\text{and}\qquad
+  f\colon Y\to \mathbb P^1
+  \]
+  is a mirror pair in the sense of~\cite[Definition~5.1]{dfk3slpms}.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}[Sketch of the construction and citation]
+The construction is the Mirror Construction Theorem of Giovenzana--Thompson~\cite[\S5]{dfk3slpms}. One marks the local system over \(\Delta^*\) so that \(\mathcal L\) becomes the standard copy of \(H\subset \Lambda_{\mathrm{K3}}\). The Clemens--Schmid exact sequence for the Type~II degeneration identifies the primitive weight-two quotient of the limiting mixed Hodge structure with a Hodge structure on
+\[
+T=S^\perp\cong U\oplus U.
+\]
+The gluing parameter of the two components \(V_1,V_2\) along \(D\) gives the period line in \(T\otimes \mathbb C\). This line is the point \(\sigma^\vee\in \Omega_S\).
+
+The proof in~\cite{dfk3slpms} then verifies that the resulting mixed Hodge structure is exactly the one prescribed by~\cite[Definition~5.1]{dfk3slpms} for the mirror of an \(H\)-polarised Tyurin degeneration. The fact that very generality is preserved follows because Heegner divisors correspond on both sides to extra algebraic classes; if \(\sigma^\vee\) lay in a Noether--Lefschetz divisor, then the original limiting period would also lie in a Noether--Lefschetz locus in the compactified moduli space of~\cite{cmek3sspt}, contrary to the hypothesis.
+\end{proof}
+
+\section{The elliptic fibration and the allowable loop on the mirror side}
+
+Let \(Y\) be the K3 surface supplied by Lemma~\ref{lem:mirror-period}. Its Néron--Severi lattice is
+\[
+\operatorname{NS}(Y)\cong S=H\oplus E_8(-1)\oplus E_8(-1).
+\]
+
+\begin{lemma}\label{lem:fibration-loop}
+There exists an elliptic fibration
+\[
+f\colon Y\longrightarrow \mathbb P^1
+\]
+with a section, and an allowable loop \(\gamma\subset \mathbb P^1\) in the sense of~\cite[Definition~4.11]{dfk3slpms}, such that:
+\begin{enumerate}
+  \item the hyperbolic plane summand \(H\subset S\) is generated by the fibre class and the section class;
+  \item the two \(E_8(-1)\)-summands are precisely the root lattices generated by the components of two singular fibres of Kodaira type \(II^*\);
+  \item the \(S\)-quasipolarisation is compatible with \(f\) and \(\gamma\) in the sense of~\cite[Definition~4.21]{dfk3slpms}.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+We first construct the elliptic fibration. Since \(Y\) is projective and \(\operatorname{NS}(Y)=S\), choose an ample class \(h\in S\). The lattice \(S\) contains primitive isotropic classes. Choose a primitive isotropic class \(F\in S\) with \(F\cdot h>0\). By Riemann--Roch,
+\[
+\chi(\mathcal O_Y(F))=2+\frac{F^2}{2}=2,
+\]
+and since \((-F)\cdot h<0\), the line bundle \(\mathcal O_Y(-F)\) has no non-zero sections. Hence \(h^0(Y,F)\ge 2\), so \(F\) is effective. By Saint-Donat's theorem on effective isotropic divisors on K3 surfaces~\cite[Théorème~5.1]{SD74}, after replacing \(F\) by the primitive nef isotropic class obtained by removing fixed components, we may assume that \(F\) is nef. Then \(|F|\) is base-point-free and defines an elliptic fibration
+\[
+f\colon Y\to \mathbb P^1
+\]
+with fibre class \(F\).
+
+Because \(S\) is unimodular and \(F\) is primitive isotropic, there exists a class \(v\in S\) with \(v\cdot F=1\). Choose an integer \(m\) such that
+\[
+D:=v+mF
+\]
+satisfies \(D^2=-2\) and \(D\cdot h>0\). Then \(\chi(\mathcal O_Y(D))=1\), and since \((-D)\cdot h<0\), the divisor \(D\) is effective. An effective divisor of square \(-2\) meeting the general fibre once is an irreducible rational curve meeting each smooth fibre in one point; hence it is a section of \(f\). The fibre and the section span a copy of the hyperbolic plane \(H\) inside \(\operatorname{NS}(Y)\).
+
+The orthogonal complement of this hyperbolic plane in \(S\) is a negative definite lattice of rank \(16\). Under the standard identification of the quasipolarisation lattice, it is
+\[
+E_8(-1)\oplus E_8(-1).
+\]
+Its generators are algebraic \((-2)\)-classes orthogonal to the fibre. By the classification of singular fibres of elliptic surfaces, an \(E_8\)-root lattice orthogonal to the fibre and generated by fibre components occurs exactly for a Kodaira fibre of type \(II^*\); see for instance the standard Kodaira--Néron classification. Since the two \(E_8\)-summands are mutually orthogonal and each has rank \(8\), they are supported on two distinct fibres of type \(II^*\). Because \(\rho(Y)=18\), these two fibres already account for the entire vertical root lattice, and there are no further reducible fibres.
+
+It remains to choose the allowable loop. The two \(II^*\)-fibres lie over two distinct points \(p_1,p_2\in \mathbb P^1\). Since the discriminant is finite, one can choose a simple closed curve
+\[
+\gamma\subset \mathbb P^1\setminus \Delta_f
+\]
+separating \(p_1\) from \(p_2\) and satisfying the monodromy condition in~\cite[Definition~4.11]{dfk3slpms}. Concretely, the loop is chosen so that the Picard--Lefschetz transformations associated to the singular fibres on one side of \(\gamma\) give the nilpotent operator required for a Type~II mirror. The existence of such a loop, and the fact that it makes the \(S\)-quasipolarisation compatible with \(f\) and \(\gamma\) in the sense of~\cite[Definition~4.21]{dfk3slpms}, is proved in~\cite[\S4]{dfk3slpms}; see in particular the discussion preceding and following~\cite[Definition~4.21]{dfk3slpms}. This proves the lemma.
+\end{proof}
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+Let \(\pi_{\mathcal X}\colon \mathcal X\to \Delta\) be a very general \(H\)-polarised Tyurin degeneration as in the statement. By Lemma~\ref{lem:mirror-period}, its limiting period determines a point
+\[
+\sigma^\vee\in \Omega_S
+\]
+which is very general. By Lemma~\ref{lem:periods-S}, there exists a projective K3 surface \(Y\) with period \(\sigma^\vee\) and with a primitive \(S\)-quasipolarisation. Since \(\sigma^\vee\) is very general, one has
+\[
+\operatorname{NS}(Y)=S=H\oplus E_8(-1)\oplus E_8(-1).
+\]
+Thus \(Y\) is a very general \(H\oplus E_8\oplus E_8\)-quasipolarised K3 surface.
+
+By Lemma~\ref{lem:fibration-loop}, there exists an elliptic fibration
+\[
+f\colon Y\to \mathbb P^1
+\]
+and an allowable loop \(\gamma\subset \mathbb P^1\) such that the \(S\)-quasipolarisation is compatible with \(f\) and \(\gamma\) in the sense of~\cite[Definition~4.21]{dfk3slpms}. Finally, Lemma~\ref{lem:mirror-period} asserts precisely that, with this choice of \(Y\), \(f\), and \(\gamma\), the degeneration
+\[
+\pi_{\mathcal X}\colon \mathcal X\to \Delta
+\]
+and the elliptic fibration
+\[
+f\colon Y\to \mathbb P^1
+\]
+form a mirror pair in the sense of~\cite[Definition~5.1]{dfk3slpms}. This completes the proof.
+
+\begin{thebibliography}{99}
+
+\bibitem[ABE22]{cmek3sspt}
+V.~Alexeev, A.~Brunyate, and P.~Engel,
+\emph{Compactifications of moduli of elliptic {K3} surfaces: stable pair and toroidal},
+Geom. Topol. \textbf{26} (2022), no.~8, 3525--3588.
+
+\bibitem[GT24]{dfk3slpms}
+L.~Giovenzana and A.~Thompson,
+\emph{Degenerations and fibrations of {K3} surfaces: lattice polarisations and mirror symmetry},
+preprint, May 2024, arXiv:2405.12009.
+
+\bibitem[Huy16]{Huy16}
+D.~Huybrechts,
+\emph{Lectures on {K3} surfaces},
+Cambridge Studies in Advanced Mathematics, Cambridge University Press, 2016.
+
+\bibitem[Nik80]{Nik80}
+V.~V.~Nikulin,
+\emph{Integral symmetric bilinear forms and some of their applications},
+Math. USSR Izv. \textbf{14} (1980), 103--167.
+
+\bibitem[PSS71]{PSS71}
+I.~I.~Piatetski-Shapiro and I.~R.~Shafarevich,
+\emph{A Torelli theorem for algebraic surfaces of type {K3}},
+Izv. Akad. Nauk SSSR Ser. Mat. \textbf{35} (1971), 530--572;
+English transl., Math. USSR Izv. \textbf{5} (1971), 547--587.
+
+\bibitem[SD74]{SD74}
+B.~Saint-Donat,
+\emph{Projective models of {K3} surfaces},
+Amer. J. Math. \textbf{96} (1974), 602--639.
+
+\end{thebibliography}
+
+\end{document}

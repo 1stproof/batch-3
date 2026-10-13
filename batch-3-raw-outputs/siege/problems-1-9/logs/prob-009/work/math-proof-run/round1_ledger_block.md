@@ -1,0 +1,1 @@
+OPEN: [GOAL] For the holomorphic family V_t deforming the 2-dimensional totally geodesic V_0 under hypotheses (i),(ii), if dim ∂V_t = 1 and π_i(∂V_t) = {Y_t} for all t, then Y_t = Y_0 for all t (the claim exactly as posed) — round1_plan

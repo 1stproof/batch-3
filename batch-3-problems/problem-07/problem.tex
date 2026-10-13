@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath,amssymb,amsxtra,tikz,stackengine,bm,mathrsfs,bbm,tikz-cd,comment,combelow,amsopn}
+\usepackage{amsthm}
+\usetikzlibrary{arrows.meta}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{amscd}
+\usepackage{url}
+
+\title{Dehn Twists and Deformation Spaces.}
+
+\begin{document}
+\newcommand{\aaa}{\mathfrak{a}}
+\newcommand{\cc}{\mathfrak{c}}
+\newcommand{\bb}{\mathfrak{b}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\CP}{\mathbb{CP}^1}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\W}{\mathcal{W}}
+\newcommand{\U}{\mathcal{U}}
+\newcommand{\V}{\mathcal{V}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Q}{\mathcal{Q}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Pf}{\mathcal{P}}
+\newcommand{\Def}{\mathcal{D}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\e}{\varepsilon}
+\newcommand{\s}{\mathfrak{s}}
+\newcommand{\Per}{\operatorname{Per}}
+\newcommand{\Mod}{\operatorname{Mod}}
+\newcommand{\Mapp}{\operatorname{MCG}}
+\newcommand{\Teich}{\operatorname{Teich}}
+
+%\newtheorem*{theorem*}{Theorem}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{question}[theorem]{Question}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{construction}[theorem]{Construction}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+
+\numberwithin{equation}{section}
+\section{Problem Statement}
+Let $f:\S^2\to \S^2$ be a branched cover, $V(f)$ be the set of its critical values,  and $A, B\subset \S^2$ be  finite sets. 
+\begin{enumerate}
+\item If $f(A)\cup V(f)\subset B$, then every complex structure on $(\S^2, B)$ can be pulled back to a complex structure on $(\S^2, A)$, and this induces the map 
+$f^*:\Teich(B)\to \Teich(A)$. 
+\item If $A\subset B$, then forgetting the points $B\backslash A$ induces the map $i_*:\Teich(B)\to \Teich(A)$.  
+\end{enumerate}
+If $f(A)\cup V(f)\cup A\subset B,$ then the deformation space is defined by
+$$\D_f:=\{\tau\in \Teich(B): f^*(\tau)=i_*(\tau)\}.$$ 
+
+Consider a quadratic rational map $f$ with critical points $c_1$ and $c_2$. Assume that  $c_1$ belongs to a cycle of length $4$, and the critical value $v=f(c_2)$ does not belong to the cycle. By taking 
+$$A=\{c_1, f(c_1), f^{\circ 2}(c_1), f^{\circ 3}(c_1)\}, \quad B=A\cup \{v\},$$ we get a deformation space $\D_f\subset \Teich(B)$. Its image in the moduli space is the set of conjugacy classes of quadratic rational maps with the properties described above. 
+
+Explicitly describe a simple closed curve $\gamma\subset (\S^2, B)$ such that a power of the Dehn twist around this curve preserves the deformation space, and its action on the set of connected components of $\D_f$ has an infinite orbit. 
+\end{document}

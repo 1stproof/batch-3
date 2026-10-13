@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+"""Record host-reported usage or display a local API-equivalent cost ledger."""
+import argparse
+import json
+from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+from api_accounting import APIAccountingLedger
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--db", required=True, help="Project-local SQLite ledger")
+    parser.add_argument("--price-card", required=True, help="Frozen verified price-card JSON")
+    commands = parser.add_subparsers(dest="command", required=True)
+    record = commands.add_parser("record", help="Read one host usage event from JSON stdin")
+    record.add_argument("--event-file", help="Read JSON from this file instead of stdin")
+    summary = commands.add_parser("summary", help="Report costs by module, model, and total")
+    summary.add_argument("--equivalent-tier", action="append", default=[],
+                         help="Additional equivalent pricing scenario, e.g. fast")
+    args = parser.parse_args()
+    try:
+        ledger = APIAccountingLedger(args.db, args.price_card)
+        if args.command == "record":
+            text = Path(args.event_file).read_text() if args.event_file else sys.stdin.read()
+            event = json.loads(text)
+            if not isinstance(event, dict):
+                raise ValueError("usage event must be a JSON object")
+            ledger.record(**event)
+        result = ledger.summary(equivalent_service_tiers=getattr(args, "equivalent_tier", []))
+        print(json.dumps(result, indent=2, ensure_ascii=False))
+    except (ValueError, TypeError, OSError) as exc:
+        print("merlean-cost: " + str(exc), file=sys.stderr)
+        return 2
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

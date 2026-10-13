@@ -1,0 +1,51 @@
+[project]
+name = "proofcouncil"
+version = "0.1.0"
+description = "ProofCouncil math-research agent system."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.12"
+dependencies = [
+    "aristotlelib",
+    "anthropic>=0.84.0",
+    "axiom-axle>=1.1.0",
+    "flask>=3.1.0",
+    "loguru>=0.7.3",
+    "mcp>=1.28,<2",
+    "numpy>=2.1.0",
+    "openai>=1.102.0",
+    "pillow>=11.0.0",
+    "psutil>=5.9.0",
+    "pydantic>=2.10",
+    "PyMuPDF>=1.26.7",
+    "pyyaml>=6.0",
+    "regex>=2024.11.6",
+    "requests>=2.32.3",
+    "sympy>=1.13.1",
+    "together>=1.3.14",
+    "tqdm>=4.67.0",
+    "transformers>=4.55.0",
+    "uvicorn>=0.30,<1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mathagents", "src/proofstack"]
+
+[tool.pytest.ini_options]
+# Make ``pytest`` / ``uv run pytest`` work without a manual PYTHONPATH.
+# - ``src`` for the layout (mathagents, proofstack packages live there).
+# - ``.`` for the repo-root ``app/`` package (some tests import
+#   ``app.dev_data``); without this on path bare ``uv run pytest`` would
+#   require ``env PYTHONPATH=.:src`` to find it.
+pythonpath = [".", "src"]
+testpaths = ["tests"]
+
+[dependency-groups]
+dev = [
+    "playwright>=1.61.0",
+    "pytest>=8.3.0",
+]

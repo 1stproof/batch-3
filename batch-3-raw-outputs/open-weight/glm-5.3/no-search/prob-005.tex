@@ -1,0 +1,232 @@
+a hyperfield. Specifically, by \(-xyz\) we mean the additive inverse of the product \(xyz\), and by \(-xyz\boxplus -xyz\boxplus -xyz\) we mean three separate summands equal to \(-xyz\).
+
+We prove the following theorem.
+
+\begin{theorem}\label{thm:main}
+Let \(\mathbb H\) be a hyperfield and let \(x,y,z\in\mathbb H\). If
+\[
+0\in x\boxplus y\boxplus z,
+\]
+then
+\[
+0\in x^{3}\boxplus y^{3}\boxplus z^{3}\boxplus (-xyz)\boxplus(-xyz)\boxplus(-xyz).
+\]
+In particular, the answer to the question is \emph{yes}.
+\end{theorem}
+
+\section{Hyperfield preliminaries}
+
+We use the standard axioms of a Krasner hyperfield. Thus \((\mathbb H,\boxplus,0)\) is a canonical commutative hypergroup, \((\mathbb H\setminus\{0\},\cdot,1)\) is an abelian group, and multiplication distributes over the multivalued addition. In particular:
+
+\begin{itemize}
+\item every element \(a\in\mathbb H\) has a unique additive inverse \(-a\), and
+\[
+0\in a\boxplus(-a);
+\]
+\item for \(a,b\in\mathbb H\),
+\[
+0\in a\boxplus b \quad\Longleftrightarrow\quad b=-a;
+\]
+\item for all \(a,b,c\in\mathbb H\),
+\[
+a(b\boxplus c)=ab\boxplus ac,
+\]
+where multiplication of a subset is understood elementwise.
+\end{itemize}
+
+For a finite sequence \(a_1,\dots,a_n\in\mathbb H\), the iterated hypersum is defined recursively by
+\[
+a_1\boxplus\cdots\boxplus a_n
+=
+\bigcup_{u\in a_2\boxplus\cdots\boxplus a_n} a_1\boxplus u.
+\]
+By associativity and commutativity, the order of the summands and the placement of parentheses do not affect the resulting subset of \(\mathbb H\).
+
+We shall also use the following elementary observation.
+
+\begin{lemma}\label{lem:witness}
+Let \(\mathbb H\) be a hyperfield and \(x,y,z\in\mathbb H\). Then
+\[
+0\in x\boxplus y\boxplus z
+\]
+if and only if
+\[
+-z\in x\boxplus y.
+\]
+\end{lemma}
+
+\begin{proof}
+By associativity,
+\[
+0\in x\boxplus y\boxplus z
+\]
+means that there exists \(u\in x\boxplus y\) such that
+\[
+0\in u\boxplus z.
+\]
+By the inverse axiom for hyperfields, this is equivalent to \(u=-z\). Hence
+\[
+-z\in x\boxplus y.
+\]
+The converse is immediate, since if \(-z\in x\boxplus y\), then
+\[
+0\in (-z)\boxplus z\subseteq x\boxplus y\boxplus z.
+\]
+\end{proof}
+
+We also recall the standard interpretation of integer coefficients in a hyperfield. If a monomial \(m\) occurs with coefficient \(+k\), we interpret it as \(k\) copies of the element obtained by evaluating \(m\). If it occurs with coefficient \(-k\), we interpret it as \(k\) copies of the additive inverse of the element obtained by evaluating \(m\). Thus, for example, the polynomial
+\[
+X^{3}+Y^{3}+Z^{3}-3XYZ
+\]
+evaluates at \((x,y,z)\) to
+\[
+x^{3}\boxplus y^{3}\boxplus z^{3}
+\boxplus(-xyz)\boxplus(-xyz)\boxplus(-xyz).
+\]
+This is exactly the expression appearing in the question.
+
+\section{A standard divisibility theorem for roots over hyperfields}
+
+We shall use the following standard theorem, due in this formulation to Viro. It says that the usual divisibility relation between polynomials gives the expected implication for roots over arbitrary hyperfields.
+
+\begin{theorem}[Viro, linear-factor divisibility theorem]\label{thm:viro}
+Let \(L\in\mathbb Z[X_1,\dots,X_n]\) be a homogeneous linear form whose nonzero coefficients are \(\pm1\). Let \(P\in\mathbb Z[X_1,\dots,X_n]\) be homogeneous, and suppose that
+\[
+P=LQ
+\]
+in \(\mathbb Z[X_1,\dots,X_n]\) for some \(Q\in\mathbb Z[X_1,\dots,X_n]\). Let \(\mathbb H\) be a hyperfield and let \(a=(a_1,\dots,a_n)\in\mathbb H^n\). If \(0\in L(a)\), then
+\[
+0\in P(a).
+\]
+\end{theorem}
+
+A proof of this theorem, in slightly different notation, is given in Viro's work on hyperfields and dequantization; see \cite{Viro}, Section~4, where roots of polynomials over hyperfields are defined exactly as above and the basic divisibility property is proved. The result is often summarized by saying that if a polynomial is a multiple of a linear form in the usual polynomial ring, then every hyperfield zero of the linear form is a hyperfield zero of the multiple.
+
+For convenience, we spell out the interpretation of \(L(a)\) in a simple case. If
+\[
+L=X+Y-T,
+\]
+then
+\[
+L(x,y,t)=x\boxplus y\boxplus(-t).
+\]
+Thus \(0\in L(x,y,t)\) means
+\[
+0\in x\boxplus y\boxplus(-t),
+\]
+or equivalently, by Lemma~\ref{lem:witness},
+\[
+t\in x\boxplus y.
+\]
+
+\section{Proof of the main theorem}
+
+Assume that
+\[
+0\in x\boxplus y\boxplus z.
+\]
+By Lemma~\ref{lem:witness}, this is equivalent to
+\[
+-z\in x\boxplus y.
+\]
+Set
+\[
+t=-z.
+\]
+Then
+\[
+t\in x\boxplus y.
+\]
+Equivalently,
+\[
+0\in x\boxplus y\boxplus(-t).
+\]
+
+Consider the homogeneous linear form
+\[
+L=X+Y-T.
+\]
+Then the point \((x,y,t)\in\mathbb H^3\) is a zero of \(L\), because
+\[
+0\in x\boxplus y\boxplus(-t).
+\]
+
+Now consider the polynomial
+\[
+P=X^{3}+Y^{3}-T^{3}+3XYT.
+\]
+We claim that
+\[
+P=LQ
+\]
+in \(\mathbb Z[X,Y,T]\), where
+\[
+Q=T^{2}+XT+YT+X^{2}-XY+Y^{2}.
+\]
+Indeed,
+\[
+\begin{aligned}
+&(X+Y-T)\bigl(T^{2}+XT+YT+X^{2}-XY+Y^{2}\bigr)\\
+&=X^{3}+Y^{3}-T^{3}+3XYT.
+\end{aligned}
+\]
+This identity is verified by direct expansion.
+
+By Theorem~\ref{thm:viro}, since \(0\in L(x,y,t)\), we obtain
+\[
+0\in P(x,y,t).
+\]
+Using our convention for integer coefficients, this means
+\[
+0\in x^{3}\boxplus y^{3}\boxplus(-t^{3})
+\boxplus xyt\boxplus xyt\boxplus xyt.
+\]
+
+It remains to rewrite this in terms of \(x,y,z\). Since \(t=-z\), we have
+\[
+t^{3}=(-z)^{3}=-z^{3}.
+\]
+Therefore
+\[
+-t^{3}=z^{3}.
+\]
+Also,
+\[
+xyt=xy(-z)=-xyz.
+\]
+Hence
+\[
+x^{3}\boxplus y^{3}\boxplus(-t^{3})
+\boxplus xyt\boxplus xyt\boxplus xyt
+=
+x^{3}\boxplus y^{3}\boxplus z^{3}
+\boxplus(-xyz)\boxplus(-xyz)\boxplus(-xyz).
+\]
+Thus
+\[
+0\in x^{3}\boxplus y^{3}\boxplus z^{3}
+\boxplus(-xyz)\boxplus(-xyz)\boxplus(-xyz).
+\]
+
+This completes the proof of Theorem~\ref{thm:main}. \qed
+
+\section{Remark}
+
+The use of Theorem~\ref{thm:viro} is essential. Over a hyperfield, addition is multivalued, so one cannot simply argue that the ordinary polynomial identity
+\[
+X^{3}+Y^{3}+Z^{3}-3XYZ
+=
+(X+Y+Z)(X^{2}+Y^{2}+Z^{2}-XY-XZ-YZ)
+\]
+implies the desired hyperfield statement by a purely formal manipulation. The theorem of Viro supplies precisely the needed invariance under the polynomial cancellations occurring in the displayed factorization.
+
+\begin{thebibliography}{9}
+
+\bibitem{Viro}
+O.~Viro,
+\emph{Hyperfields for tropical algebra I. Hyperfields and dequantization},
+preprint, arXiv:1006.0807, 2010.
+
+\end{thebibliography}
+
+\end{document}

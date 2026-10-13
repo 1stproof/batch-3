@@ -1,0 +1,325 @@
+```latex
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\cC}{\mathbb{C}}
+\newcommand{\cN}{\mathcal N}
+\newcommand{\cU}{\mathcal U}
+\newcommand{\cA}{\mathcal A}
+\newcommand{\cJ}{\mathcal J}
+\newcommand{\Symp}{\operatorname{Symp}}
+\newcommand{\Aux}{\operatorname{Aux}}
+\newcommand{\AK}{\operatorname{AK}}
+\newcommand{\id}{\mathrm{id}}
+
+\begin{document}
+
+\title{Holomorphic branch coordinates near symplectic normal crossings divisors}
+\author{}
+\date{}
+\maketitle
+
+\begin{abstract}
+We prove that every symplectic simple normal crossings divisor admits, after the
+usual cohomologous regularizing deformation, a tame almost complex structure
+with locally holomorphic defining equations for the branches.
+\end{abstract}
+
+\section{Statement}
+
+Let \((M,\omega)\) be a closed symplectic \(2n\)-manifold and let
+\[
+D=\bigcup_{a=1}^{N}D_a
+\]
+be a symplectic simple normal crossings divisor. For
+\(I\subseteq\{1,\ldots,N\}\), write
+\[
+D_I=\bigcap_{a\in I}D_a .
+\]
+
+For a complex-valued smooth function \(f\) on an almost complex manifold
+\((M,J)\), we say that \(f\) is \(J\)-holomorphic if
+\[
+df\circ J=i\,df .
+\]
+
+\begin{theorem}\label{thm:main}
+There is a smooth path \((\omega_t)_{0\leq t\leq1}\) of symplectic forms on \(M\)
+such that
+\begin{enumerate}
+\item \([\omega_t]=[\omega]\in H^2(M;\mathbb R)\) for every \(t\);
+\item \(D\) is a symplectic simple normal crossings divisor for every
+\(\omega_t\);
+\item there is an \(\omega_1\)-tame almost complex structure \(J\) with the
+following property: for every \(p\in M\), there are a neighborhood \(U\ni p\),
+smooth complex coordinates
+\[
+(z_1,\ldots,z_n):U\longrightarrow \cC^n,
+\]
+and an integer \(0\leq r\leq n\) such that
+\[
+dz_a\circ J=i\,dz_a,\qquad 1\leq a\leq r,
+\]
+and
+\[
+D\cap U=\{z_1\cdots z_r=0\}.
+\]
+\end{enumerate}
+Here \(r=0\) is used at points of \(M\setminus D\); the empty product is \(1\).
+\end{theorem}
+
+Since \(D\) is a proper divisor, at a point of depth \(r\) one necessarily has
+\(r<n\) unless one is considering the empty divisor.
+
+\section{Regularization}
+
+We use the standard terminology of symplectic normal crossings divisors,
+\(\omega\)-regularizations, and almost K\"ahler data. Let
+\(\Symp^+(M,D)\) denote the space of symplectic forms for which \(D\) is a
+positively symplectic SC divisor, and let \(\Aux(M,D)\) denote the space of
+pairs \((\omega,\mathcal R)\), where \(\mathcal R\) is an
+\(\omega\)-regularization of \(D\).
+
+\begin{theorem}[Tehrani--McLean--Zinger]\label{thm:TMZ}
+For every \(\omega\in\Symp^+(M,D)\), there is a path
+\[
+(\omega_t)_{0\leq t\leq1}\subset\Symp^+(M,D)
+\]
+with \(\omega_0=\omega\), \([\omega_t]=[\omega]\) for every \(t\), and such that
+\(D\) admits an \(\omega_1\)-regularization.
+
+Equivalently, by the Moser isotopy theorem, every SC symplectic divisor is
+isotopic through SC symplectic divisors, inside a cohomologous family of
+symplectic forms, to one admitting a regularization.
+\end{theorem}
+
+\begin{proof}
+This is Theorem~7 and the conclusion immediately following it in
+\cite{TMZ-CR}; the underlying normal-crossings regularization theorem is
+Theorem~2.17 in \cite{TMZ-structures}.
+\end{proof}
+
+A regularization gives compatible tubular models for the strata \(D_I\). In
+particular, for each \(I\) there is a direct sum of complex line bundles
+\[
+E_I=\bigoplus_{a\in I}L_a\longrightarrow D_I
+\]
+and a local identification of a disk subbundle of \(E_I\) with a neighborhood
+of \(D_I\), under which the \(a\)-th branch is the zero locus of the
+\(a\)-th fiber coordinate. These identifications satisfy the usual normal
+crossings compatibility conditions on overlaps. A regularization also gives
+complex line bundles \(\mathcal O_{\mathcal R}(D_a)\) with canonical sections
+whose zero loci are \(D_a\); see \cite[Proposition~1.1 and \S2]{TMZ-structures}.
+
+\section{The straightened almost K\"ahler normal form}
+
+We need a slightly more explicit formulation of the usual existence theorem for
+regularized almost K\"ahler data.
+
+\begin{definition}\label{def:straight-chart}
+An \emph{\(\mathcal R\)-straight chart} around \(p\in D_I\), where
+\(I=\{1,\ldots,r\}\) after relabelling, consists of a neighborhood \(U\ni p\),
+complex-valued functions \(z_1,\ldots,z_r\) on \(U\), a splitting
+\[
+TM|_U=H\oplus L_1\oplus\cdots\oplus L_r,
+\]
+and complex structures \(i_a\) on \(L_a\), such that
+\begin{enumerate}
+\item \(H=\ker dz_1\cap\cdots\cap\ker dz_r\);
+\item \(z_a\) is a complex coordinate on the fibers of \(L_a\);
+\item \(D_a\cap U=\{z_a=0\}\) for \(1\leq a\leq r\);
+\item no branch \(D_b\) with \(b\notin I\) meets \(U\).
+\end{enumerate}
+An almost complex structure \(J\) on \(U\) is \emph{straight} in this chart if
+it preserves \(H\) and every \(L_a\), and if \(J|_{L_a}=i_a\).
+\end{definition}
+
+\begin{proposition}[Straightened AK normal form]\label{prop:straight-AK}
+Suppose that \(D\) admits an \(\omega\)-regularization \(\mathcal R\). Then
+there are an \(\omega\)-tame almost complex structure \(J\) on \(M\) and an
+\(\mathcal R\)-straight chart around every point of \(D\) in which \(J\) is
+straight.
+\end{proposition}
+
+\begin{proof}
+The argument is the connection-straight form of the construction of almost
+K\"ahler data in \cite[\S2]{TMZ-structures} and \cite[\S2]{Tehrani-compact}.
+
+Over a regularizing neighborhood of \(D_I\), identify \(M\) locally with an
+open disk bundle in
+\[
+E_I=\bigoplus_{a\in I}L_a\longrightarrow D_I .
+\]
+Choose an \(\omega|_{D_I}\)-tame almost complex structure \(J_I\) on \(D_I\),
+the given complex structures \(i_a\) on \(L_a\), and a horizontal distribution
+\(H_I\). On the corresponding local trivialization, form the block-diagonal
+almost complex structure
+\[
+J_I^{\mathrm{mod}}=J_I\oplus\bigoplus_{a\in I}i_a .
+\]
+
+The symplectic normal-form part of an \(\omega\)-regularization identifies
+\(\omega\), after shrinking the disk bundle, with a form which is positive on
+this horizontal--vertical splitting. More precisely, at the zero section the
+horizontal part is \(\omega|_{D_I}\) and the vertical part is the positive
+standard form on the symplectic normal lines; the remaining terms are
+small on a sufficiently small disk bundle. Hence
+\(J_I^{\mathrm{mod}}\) is \(\omega\)-tame after shrinking.
+
+If \(z_a\) is the fiber coordinate associated with \(L_a\), then the horizontal
+distribution is chosen to be \(\ker dz_a\) for every \(a\). Thus for
+\(X\in H_I\),
+\[
+dz_a(J_I^{\mathrm{mod}}X)=0=i\,dz_a(X),
+\]
+while for \(v\in L_a\),
+\[
+dz_a(J_I^{\mathrm{mod}}v)=dz_a(i_av)=i\,dz_a(v).
+\]
+Consequently
+\[
+dz_a\circ J_I^{\mathrm{mod}}=i\,dz_a.
+\]
+Moreover,
+\[
+D_a\cap U=\{z_a=0\}.
+\]
+
+These local models are patched exactly as in the construction of
+\(\AK(M,D)\). For a fixed \(\mathcal R\)-adapted chart, the conditions
+\[
+dz_a\circ J=i\,dz_a
+\]
+are affine in \(J\), and the \(\omega\)-tame condition is convex. The
+compatibility conditions in the definition of a regularization identify the
+indexed normal-line summands and their coordinate projections on overlaps.
+Therefore convex combinations preserve the straight condition. A finite
+partition of unity, followed by extension over \(M\), gives a global
+\(\omega\)-tame \(J\). This is the same affine patching and contractibility
+argument that shows that the projection from almost K\"ahler data to
+regularization data is a weak homotopy equivalence; see
+\cite[discussion after Theorem~7]{TMZ-CR} and
+\cite[\S\S1--2]{Tehrani-compact}.
+\end{proof}
+
+\begin{remark}
+It is important here that \(J\) be chosen in the connection-straight part of
+the almost K\"ahler construction. Merely requiring \(D_I\) to be
+\(J\)-holomorphic, or even requiring only the normal component of the
+Nijenhuis tensor to vanish along \(D_I\), is the first-order condition commonly
+used in relative pseudoholomorphic curve theory. Proposition
+\ref{prop:straight-AK} records the additional local product normal form that
+follows from regularized coordinates.
+\end{remark}
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+We now complete the proof.
+
+\subsection*{Step 1: Deform to a regularized pair}
+
+Apply Theorem~\ref{thm:TMZ}. This gives a cohomologous path
+\((\omega_t)_{0\leq t\leq1}\) through symplectic forms for which \(D\) remains
+an SC symplectic divisor, such that \(D\) admits an \(\omega_1\)-regularization.
+
+Rename \(\omega_1\) as \(\omega\). Since the question permits the preliminary
+cohomologous deformation, this causes no loss of generality.
+
+\subsection*{Step 2: Choose straight almost K\"ahler data}
+
+By Proposition~\ref{prop:straight-AK}, choose an \(\omega\)-tame almost complex
+structure \(J\) and \(\mathcal R\)-straight charts in which \(J\) is straight.
+
+Let \(p\in D\), and put
+\[
+I(p)=\{a:p\in D_a\},\qquad r=|I(p)|.
+\]
+After relabelling, \(I(p)=\{1,\ldots,r\}\). By the definition of an SC divisor,
+there is a neighborhood of \(p\) meeting no branch \(D_b\) with \(b>r\).
+Shrinking the straight chart if necessary, we may assume that it has this
+property.
+
+The straight chart supplies complex functions \(z_1,\ldots,z_r\) with
+\[
+dz_a\circ J=i\,dz_a,\qquad 1\leq a\leq r,
+\]
+and
+\[
+D\cap U
+ =\bigcup_{a=1}^r(D_a\cap U)
+ =\{z_1\cdots z_r=0\}.
+\]
+
+\subsection*{Step 3: Complete to a coordinate system}
+
+Let
+\[
+(w_1,\ldots,w_{n-r})
+\]
+be any smooth complex coordinates on the stratum \(D_I\) near \(p\); no
+holomorphicity is required of them. Pull them back to the regularizing tubular
+neighborhood. The differentials
+\[
+dz_1,\ldots,dz_r,dw_1,\ldots,dw_{n-r}
+\]
+are complex-linearly independent at \(p\), because the first \(r\) differentials
+are independent in the normal directions and the remaining ones restrict to a
+coordinate coframe on \(D_I\). Therefore
+\[
+(z_1,\ldots,z_r,w_1,\ldots,w_{n-r})
+\]
+are smooth complex coordinates near \(p\). Relabel \(w_j\) as \(z_{r+j}\).
+Then only \(z_1,\ldots,z_r\) are asserted to be \(J\)-holomorphic, and
+\[
+D\cap U=\{z_1\cdots z_r=0\}.
+\]
+
+If \(p\notin D\), choose a neighborhood \(U\subset M\setminus D\), take \(r=0\),
+and choose arbitrary smooth complex coordinates on \(U\). This completes the
+proof of Theorem~\ref{thm:main}. \qed
+
+\begin{thebibliography}{9}
+
+\bibitem{TMZ-CR}
+M.~F. Tehrani, M.~McLean, and A.~Zinger,
+\emph{Singularities and semistable degenerations for symplectic topology},
+C.~R. Acad. Sci. Paris, Ser.~I \textbf{356} (2018), 420--432.
+\href{https://www.numdam.org/item/10.1016/j.crma.2018.02.009.pdf}{numdam.org}.
+
+% Required web-source link:
+% [numdam.org](https://www.numdam.org/item/10.1016/j.crma.2018.02.009.pdf)
+
+\bibitem{TMZ-structures}
+M.~F. Tehrani, M.~McLean, and A.~Zinger,
+\emph{Normal crossings singularities for symplectic topology: structures},
+arXiv:2112.13125.
+\href{https://ar5iv.labs.arxiv.org/html/2112.13125}{ar5iv.labs.arxiv.org}.
+
+% Required web-source link:
+% [ar5iv.labs.arxiv.org](https://ar5iv.labs.arxiv.org/html/2112.13125)
+
+\bibitem{Tehrani-compact}
+M.~F. Tehrani,
+\emph{Pseudoholomorphic curves relative to a normal crossings symplectic
+divisor: compactification},
+arXiv:1710.00224.
+\href{https://ar5iv.labs.arxiv.org/html/1710.00224}{ar5iv.labs.arxiv.org}.
+
+% Required web-source link:
+% [ar5iv.labs.arxiv.org](https://ar5iv.labs.arxiv.org/html/1710.00224)
+
+\end{thebibliography}
+
+\end{document}
+```

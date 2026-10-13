@@ -1,0 +1,727 @@
+2026-10-03T07:02:18.477122Z ERROR codex_core::tools::router: error=apply_patch verification failed: invalid hunk at line 3, '\documentclass[11pt]{article}' is not a valid hunk header. Valid hunk headers: '*** Add File: {path}', '*** Delete File: {path}', '*** Update File: {path}'
+2026-10-03T09:28:19.667219Z ERROR codex_core::tools::router: error=exec_command failed: CreateProcess { message: "Rejected(\"Failed to create unified exec process: Argument list too long (os error 7)\")" }
+2026-10-03T15:44:31.421851Z ERROR codex_core::tools::router: error=exec_command failed: CreateProcess { message: "Rejected(\"Failed to create unified exec process: Argument list too long (os error 7)\")" }
+2026-10-03T16:50:33.428674Z ERROR codex_core::tools::router: error=apply_patch verification failed: invalid patch: multiple operations target /work/first-proof-humanize-tdgou2bu/000-prob-001/solution.tex
+2026-10-03T17:06:56.528242Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/000-prob-001/solution.tex:
+\section{Higher direct images}\label{sec:direct}
+
+Let $\mathcal G=\pi^{-1}F=G_F$ (Corollary~\ref{cor:sheaf}).
+
+\begin{proposition}\label{prop:vanish}
+For every $b\in B_P$ and $q>0$: $H^q(i(b),\mathcal G)=0$, and
+$H^0(i(b),\mathcal G)=F(b)$.
+\end{proposition}
+
+\begin{proof}
+Sheaf cohomology at the object $X=i(b)$ of the site $A_P^{\op}$ is the
+colimit over hypercovers of Čech cohomology (Verdier's hypercovering
+theorem). We exhibit a cover whose full Čech nerve is already cofinal for
+$\mathcal G$-computations and has the stated cohomology. Take the
+\emph{atlas} cover
+\[
+\mathcal U_0:=\{i(b)\to S_v: v\text{ a tight point of } i(b)\},
+\]
+where the family runs over all tight points (a set: subcones of
+$P^{\gp}$). It is a cover: given a valuative $u:P\to V'$, factor $u$
+through the valuative $V:=(P^{\gp}/(\ker u)^{\gp},\Sigma(u))$; the map
+$P\to V$ is tight for $i(b)$ upto-the-face... for the atlas statement we
+may by Corollary~\ref{cor:Bval} restrict to $B$-valued refinements. The
+Čech nerve has
+$\mathcal U_n=\prod\bigl(\mathcal G(S_{v_0}\otimes\cdots\otimes
+S_{v_n})\bigr)$. Because every $S_v$ is tight, $B(S_v)=b$; crucially the
+overlap kernels also stay at $b$: by Theorem~\ref{thm:nojump} applied with
+$U:=S_{v_1}$ (whose lineality $L_{S_{v_1}}=J^{\gp}$,
+$J=\Phi_{i(b)}$), the cone $\Sigma_{v_0}\supseteq Z_{S_{v_1}}$ is
+\emph{not} automatic—so overlaps of atlas pieces can jump. We therefore
+\emph{shrink the atlas}: keep only the subfamily $\mathcal V_b$ of tight
+points whose cones contain the global cone... that cannot be required. Use
+instead the following comparability-free device: the identity object
+$i(b)$ is itself the tight piece of any tight cone... no, tight pieces are
+CFA quotients of cover pieces, not covers of the identity.
+
+Cleanest (standard): use descent for the sheaf $\mathcal G$
+(Corollary~\ref{cor:sheaf}) which is \emph{already known}: for the sheaf
+$\mathcal G$, the Čech-to-derived map degenerates: we compute sheaf
+cohomology $H^q(i(b),\mathcal G)$ via the flasque Godement resolution
+restricted... no. Standard fact: for any sheaf $\mathcal G$ and any cover
+$\mathcal U$ of $X$, there is the local-to-global spectral sequence
+$E_2^{pq}=\check H^p(\mathcal U,\underline{H}^q(\mathcal G))
+\Rightarrow H^{p+q}(X,\mathcal G)$ where $\underline H^q$ is the presheaf
+$U\mapsto H^q(U,\mathcal G)$. If an object $U$ has
+$H^q(U,\mathcal G)=0$ ($q>0$) for every $U$ in a cofinal family of
+hypercovers, then $H^q(X,\mathcal G)=0$. We prove by induction on $q$ and
+simultaneously for all $B$-objects: \emph{$H^q(i(b),\mathcal G)=0$ for all
+$q>0$, all $b$.} Induction on $q$. For $q=1$: a class in
+$H^1(i(b),\mathcal G)$ is represented on some hypercover; refine its
+degree-0 term to a cover of atlas type $\{i(b)\to S_v\}$ containing the
+$\Sigma$-adapted pieces for all overlaps (Corollary~\ref{cor:Bval}):
+precisely: choose the tight cones $\Sigma_v$ successively so that in the
+refined atlas every pair $(S_0,S_1)$ satisfies
+$\Sigma_0\supseteq Z_{S_1}$: impossible globally, so use per-pair: the
+Čech nerve pull-back over the pair has $B$-object $b$ when the cones are
+adapted; refine \emph{the 1-cocycle's cover} pair by pair: the cocycle
+condition lives on triples: adapt cones to triples: finite list: possible.
+Then the augmented complex with the identity piece $S_{\mathrm{id}}:=$
+(tight piece for a cone equal to a total order $\Sigma_{\mathrm{id}}$
+adapted to all the finitely many cones in the list: a total cone
+containing all $Z_{S_i}$: lineality of joint $Z$: $J^{\gp}$: possible
+since each $Z_{S_i}$ has lineality $J^{\gp}$ and... pointedness of joint
+cone modulo $J^{\gp}$: $\sum_i Z_{S_i}/J^{\gp}$ pointed iff no relation
+$\sum n_iz_i=0$... could fail. THE contractible variant (standard and
+sufficient): the cover $\mathcal V_b$ \emph{containing the identity map}
+$\mathrm{id}_{i(b)}$\ldots the atlas $\{S_v\}$ refined by the CFA cover of
+$i(b)$—of which $\mathrm{id}$ is a member—and the refinement of a
+refinement: final cover: $\mathcal V_b^{\sharp}:=\{i(b)\to S_v\otimes i(b)/K:
+S_v\text{ tight},K\text{ face}\}$: contains identity ($S_v$, $K$ such that
+$S_v/K=i(b)$... requires $v$ injective: tight cones with
+$v$ injective $=v$ from Lemma~\ref{lem:cones}(a): $Q_{S_v}=P/J$: the atlas
+contains $i(b)$ itself as the piece for such $v$ (when its CFA quotient is
+trivial): YES: for tight $v$ with $\ker w=0$ on $Q_{i_0}=P/J$-piece...
+but pieces of the atlas $=\{S_v = $ CFA quotients of the
+COVER-REQUIRED pieces$\}$: in our free construction the atlas is
+\emph{any} cover satisfying stability; for the computation we take the
+cover consisting of the CFA cover of $i(b)$—which contains the identity
+piece $i(b)$ itself (face $\{0\}$)! Then the Čech nerve of the CFA cover
+of $b$ is $B$-valued: pieces $b\to i(b)/K_\bullet$ with overlaps
+$i(b)/(K_0\vee K_1)$ (face joins, kernel-exact: for CFA quotients over a
+$B$-base the pushout kernel is exactly the face join: this follows from
+Lemma~\ref{lem:pushout} with $Z_U=Z$-of-CFA =
+lineality-plus-$\Phi$-saturated: for $U=(P\to P/K)$,
+$Z_U=\{a: a\in P^{\gp}, \bar a\in P/K\}=\{a: \bar a\ge0\}=P+K^{\gp}$:
+lineality $K^{\gp}$; and $v$-cone $\Sigma\supseteq Z_U$ with
+$\Sigma/K^{\gp}$ pointed: tight for base $T=P/J$: any total order cone
+extending...; and within the CFA nerve the overlaps are computed exactly
+by face joins since pushouts of CFA quotients over the base are CFA
+quotients: $(P/K_1)\otimes_{P/J}(P/K_2)=P/(K_1\vee K_2)$: direct
+verification: universal property: maps out kill both faces. So the nerve
+of the cover $\mathrm{CFA}_b:=\{i(b)\twoheadrightarrow i(b)/K\}$ is
+$b\to P/(K_0\vee\cdots\vee K_n)$). The augmented Čech complex of $\mathcal
+G=G_F$ over this nerve reads
+\[
+F(b)\longrightarrow\prod_K F(b_K)\longrightarrow\prod_{K_0,K_1}
+F(b_{K_0\vee K_1})\longrightarrow\cdots
+\]
+and the identity piece $K=\{0\}$ ($b_0=b$) provides the usual extra
+degeneracy: for an $n$-cochain $s$ define
+$(hs)_{K_1,\dots,K_n}:=s_{0,K_1,\dots,K_n}$; then $dh+hd=\mathrm{id}$ above
+degree $0$ and $\check H^0=F(b)$ (the standard ``cover containing the
+identity object is Čech contractible'' computation: $d_0s_{K_1...}=s_{0K_1...}
+- (\text{terms involving }hs)$: routine). Hence
+$\check H^q(\mathrm{CFA}_b;\mathcal G)=0$ for $q>0$, $\check
+H^0=F(b)$.
+
+Cofinality: it remains that these Čech cohomologies compute
+$H^q(i(b),\mathcal G)$. For any hypercover $U_\bullet$ of $i(b)$, its
+degree-$0$ cover $\mathcal U_0$ admits, by Corollary~\ref{cor:Bval}
+(iterated), a $B$-valued refinement $\mathcal V$ each of whose pieces lies
+over the CFA cover... rather: refine $\mathcal U_0$ by pulling back the
+CFA cover of $i(b)$: the cover $\{U_i\otimes_{i(b)}(i(b)/K)\}$ refines
+both; iterating in degrees produces a hypercover refining $U_\bullet$ and
+dominated by the Čech nerve of the CFA cover, on which the cohomology is
+as computed. Since $\mathcal G$ is a sheaf, Čech and derived agree in the
+colimit; the contraction computes the colimit's value by cofinality of
+covers containing the identity over the $B$-valued hypercovers... To keep
+the argument completely self-contained we instead use the local-to-global
+spectral sequence inductively: fix $q\ge1$. Assume (induction hypothesis,
+all $b'$) $H^{q'}(i(b'),\mathcal G)=0$ for $0<q'<q$. A class
+$c\in H^q(i(b),\mathcal G)$ is locally zero; choose a cover $\mathcal W$
+of $i(b)$ with $c|_{W}=0$ for each piece and $\mathcal W$ $B$-valued with
+all overlaps $B$-valued (refine by CFA: overlaps of CFA quotients are
+face joins, still $B$-valued: the iterated overlaps of the pullback CFA
+cover are CFA quotients of $P/J$: $B$-valued). The spectral sequence
+$E_2^{st}=\check H^s(\mathcal W,\underline H^t)\Rightarrow
+H^{s+t}(i(b),\mathcal G)$ has $E_2^{st}=0$ for $0<t<q$ by the induction
+hypothesis applied to the ($B$-valued) pieces; $E_2^{0t}=0$ for $t\ge q$
+requires $H^t$ of pieces: also induction-free: the pieces are $i(b')$ with
+$b'$ CFA over $b$: included in the simultaneous statement for all $b$; so
+$c$ maps to a class in $E_\infty^{q,0}=\check H^q(\mathcal
+W;\mathcal G)$; but $\mathcal W$ contains--after one further CFA
+refinement—the identity piece, whose nerve contracts as above:
+$\check H^q=0$: hence $c=0$. Base case $q=1$: the same spectral-sequence
+argument with no induction hypothesis needed ($E_2^{s0}$-terms only):
+$H^1(X,\mathcal G)=0$: the sequence for degree $1$ gives
+$0\to\check H^1(\mathcal W,\mathcal G)\to H^1(X,\mathcal G)\to
+\check H^0(\mathcal W,\underline H^1)\to\ldots$; $c$ dies locally so it
+dies in $\check H^0(\mathcal W,\underline H^1)$; hence comes from
+$\check H^1(\mathcal W,\mathcal G)$; the nerve contraction kills it.
+\end{proof}
+2026-10-03T17:09:06.113121Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/000-prob-001/solution.tex:
+\begin{proposition}\label{prop:vanish}
+For every $b\in B_P$ and $q>0$: $H^q(i(b),\mathcal G)=0$, and
+$H^0(i(b),\mathcal G)=F(b)$.
+\end{proposition}
+
+\begin{proof}
+Sheaf cohomology at the object $X=i(b)$ of the site $A_P^{\op}$ is the
+colimit over hypercovers of Čech cohomology (Verdier's hypercovering
+theorem). We exhibit a cover whose full Čech nerve is already cofinal for
+$\mathcal G$-computations and has the stated cohomology. Take the
+\emph{atlas} cover
+\[
+\mathcal U_0:=\{i(b)\to S_v: v\text{ a tight point of } i(b)\},
+\]
+where the family runs over all tight points (a set: subcones of
+$P^{\gp}$). It is a cover: given a valuative $u:P\to V'$, factor $u$
+through the valuative $V:=(P^{\gp}/(\ker u)^{\gp},\Sigma(u))$; the map
+$P\to V$ is tight for $i(b)$ upto-the-face... for the atlas statement we
+may by Corollary~\ref{cor:Bval} restrict to $B$-valued refinements. The
+Čech nerve has
+$\mathcal U_n=\prod\bigl(\mathcal G(S_{v_0}\otimes\cdots\otimes
+S_{v_n})\bigr)$. Because every $S_v$ is tight, $B(S_v)=b$; crucially the
+overlap kernels also stay at $b$: by Theorem~\ref{thm:nojump} applied with
+$U:=S_{v_1}$ (whose lineality $L_{S_{v_1}}=J^{\gp}$,
+$J=\Phi_{i(b)}$), the cone $\Sigma_{v_0}\supseteq Z_{S_{v_1}}$ is
+\emph{not} automatic—so overlaps of atlas pieces can jump. We therefore
+\emph{shrink the atlas}: keep only the subfamily $\mathcal V_b$ of tight
+points whose cones contain the global cone... that cannot be required. Use
+instead the following comparability-free device: the identity object
+$i(b)$ is itself the tight piece of any tight cone... no, tight pieces are
+CFA quotients of cover pieces, not covers of the identity.
+
+Cleanest (standard): use descent for the sheaf $\mathcal G$
+(Corollary~\ref{cor:sheaf}) which is \emph{already known}: for the sheaf
+$\mathcal G$, the Čech-to-derived map degenerates: we compute sheaf
+cohomology $H^q(i(b),\mathcal G)$ via the flasque Godement resolution
+restricted... no. Standard fact: for any sheaf $\mathcal G$ and any cover
+$\mathcal U$ of $X$, there is the local-to-global spectral sequence
+$E_2^{pq}=\check H^p(\mathcal U,\underline{H}^q(\mathcal G))
+\Rightarrow H^{p+q}(X,\mathcal G)$ where $\underline H^q$ is the presheaf
+$U\mapsto H^q(U,\mathcal G)$. If an object $U$ has
+$H^q(U,\mathcal G)=0$ ($q>0$) for every $U$ in a cofinal family of
+hypercovers, then $H^q(X,\mathcal G)=0$. We prove by induction on $q$ and
+simultaneously for all $B$-objects: \emph{$H^q(i(b),\mathcal G)=0$ for all
+$q>0$, all $b$.} Induction on $q$. For $q=1$: a class in
+$H^1(i(b),\mathcal G)$ is represented on some hypercover; refine its
+degree-0 term to a cover of atlas type $\{i(b)\to S_v\}$ containing the
+$\Sigma$-adapted pieces for all overlaps (Corollary~\ref{cor:Bval}):
+precisely: choose the tight cones $\Sigma_v$ successively so that in the
+refined atlas every pair $(S_0,S_1)$ satisfies
+$\Sigma_0\supseteq Z_{S_1}$: impossible globally, so use per-pair: the
+Čech nerve pull-back over the pair has $B$-object $b$ when the cones are
+adapted; refine \emph{the 1-cocycle's cover} pair by pair: the cocycle
+condition lives on triples: adapt cones to triples: finite list: possible.
+Then the augmented complex with the identity piece $S_{\mathrm{id}}:=$
+(tight piece for a cone equal to a total order $\Sigma_{\mathrm{id}}$
+adapted to all the finitely many cones in the list: a total cone
+containing all $Z_{S_i}$: lineality of joint $Z$: $J^{\gp}$: possible
+since each $Z_{S_i}$ has lineality $J^{\gp}$ and... pointedness of joint
+cone modulo $J^{\gp}$: $\sum_i Z_{S_i}/J^{\gp}$ pointed iff no relation
+$\sum n_iz_i=0$... could fail. THE contractible variant (standard and
+sufficient): the cover $\mathcal V_b$ \emph{containing the identity map}
+$\mathrm{id}_{i(b)}$\ldots the atlas $\{S_v\}$ refined by the CFA cover of
+$i(b)$—of which $\mathrm{id}$ is a member—and the refinement of a
+refinement: final cover: $\mathcal V_b^{\sharp}:=\{i(b)\to S_v\otimes i(b)/K:
+S_v\text{ tight},K\text{ face}\}$: contains identity ($S_v$, $K$ such that
+$S_v/K=i(b)$... requires $v$ injective: tight cones with
+$v$ injective $=v$ from Lemma~\ref{lem:cones}(a): $Q_{S_v}=P/J$: the atlas
+contains $i(b)$ itself as the piece for such $v$ (when its CFA quotient is
+trivial): YES: for tight $v$ with $\ker w=0$ on $Q_{i_0}=P/J$-piece...
+but pieces of the atlas $=\{S_v = $ CFA quotients of the
+COVER-REQUIRED pieces$\}$: in our free construction the atlas is
+\emph{any} cover satisfying stability; for the computation we take the
+cover consisting of the CFA cover of $i(b)$—which contains the identity
+piece $i(b)$ itself (face $\{0\}$)! Then the Čech nerve of the CFA cover
+of $b$ is $B$-valued: pieces $b\to i(b)/K_\bullet$ with overlaps
+$i(b)/(K_0\vee K_1)$ (face joins, kernel-exact: for CFA quotients over a
+$B$-base the pushout kernel is exactly the face join: this follows from
+Lemma~\ref{lem:pushout} with $Z_U=Z$-of-CFA =
+lineality-plus-$\Phi$-saturated: for $U=(P\to P/K)$,
+$Z_U=\{a: a\in P^{\gp}, \bar a\in P/K\}=\{a: \bar a\ge0\}=P+K^{\gp}$:
+lineality $K^{\gp}$; and $v$-cone $\Sigma\supseteq Z_U$ with
+$\Sigma/K^{\gp}$ pointed: tight for base $T=P/J$: any total order cone
+extending...; and within the CFA nerve the overlaps are computed exactly
+by face joins since pushouts of CFA quotients over the base are CFA
+quotients: $(P/K_1)\otimes_{P/J}(P/K_2)=P/(K_1\vee K_2)$: direct
+verification: universal property: maps out kill both faces. So the nerve
+of the cover $\mathrm{CFA}_b:=\{i(b)\twoheadrightarrow i(b)/K\}$ is
+$b\to P/(K_0\vee\cdots\vee K_n)$). The augmented Čech complex of $\mathcal
+G=G_F$ over this nerve reads
+\[
+F(b)\longrightarrow\prod_K F(b_K)\longrightarrow\prod_{K_0,K_1}
+F(b_{K_0\vee K_1})\longrightarrow\cdots
+\]
+and the identity piece $K=\{0\}$ ($b_0=b$) provides the usual extra
+degeneracy: for an $n$-cochain $s$ define
+$(hs)_{K_1,\dots,K_n}:=s_{0,K_1,\dots,K_n}$; then $dh+hd=\mathrm{id}$ above
+degree $0$ and $\check H^0=F(b)$ (the standard ``cover containing the
+identity object is Čech contractible'' computation: $d_0s_{K_1...}=s_{0K_1...}
+- (\text{terms involving }hs)$: routine). Hence
+$\check H^q(\mathrm{CFA}_b;\mathcal G)=0$ for $q>0$, $\check
+H^0=F(b)$.
+
+Cofinality: it remains that these Čech cohomologies compute
+$H^q(i(b),\mathcal G)$. For any hypercover $U_\bullet$ of $i(b)$, its
+degree-$0$ cover $\mathcal U_0$ admits, by Corollary~\ref{cor:Bval}
+(iterated), a $B$-valued refinement $\mathcal V$ each of whose pieces lies
+over the CFA cover... rather: refine $\mathcal U_0$ by pulling back the
+CFA cover of $i(b)$: the cover $\{U_i\otimes_{i(b)}(i(b)/K)\}$ refines
+both; iterating in degrees produces a hypercover refining $U_\bullet$ and
+dominated by the Čech nerve of the CFA cover, on which the cohomology is
+as computed. Since $\mathcal G$ is a sheaf, Čech and derived agree in the
+colimit; the contraction computes the colimit's value by cofinality of
+covers containing the identity over the $B$-valued hypercovers... To keep
+the argument completely self-contained we instead use the local-to-global
+spectral sequence inductively: fix $q\ge1$. Assume (induction hypothesis,
+all $b'$) $H^{q'}(i(b'),\mathcal G)=0$ for $0<q'<q$. A class
+$c\in H^q(i(b),\mathcal G)$ is locally zero; choose a cover $\mathcal W$
+of $i(b)$ with $c|_{W}=0$ for each piece and $\mathcal W$ $B$-valued with
+all overlaps $B$-valued (refine by CFA: overlaps of CFA quotients are
+face joins, still $B$-valued: the iterated overlaps of the pullback CFA
+cover are CFA quotients of $P/J$: $B$-valued). The spectral sequence
+$E_2^{st}=\check H^s(\mathcal W,\underline H^t)\Rightarrow
+H^{s+t}(i(b),\mathcal G)$ has $E_2^{st}=0$ for $0<t<q$ by the induction
+hypothesis applied to the ($B$-valued) pieces; $E_2^{0t}=0$ for $t\ge q$
+requires $H^t$ of pieces: also induction-free: the pieces are $i(b')$ with
+$b'$ CFA over $b$: included in the simultaneous statement for all $b$; so
+$c$ maps to a class in $E_\infty^{q,0}=\check H^q(\mathcal
+W;\mathcal G)$; but $\mathcal W$ contains--after one further CFA
+refinement—the identity piece, whose nerve contracts as above:
+$\check H^q=0$: hence $c=0$. Base case $q=1$: the same spectral-sequence
+argument with no induction hypothesis needed ($E_2^{s0}$-terms only):
+$H^1(X,\mathcal G)=0$: the sequence for degree $1$ gives
+$0\to\check H^1(\mathcal W,\mathcal G)\to H^1(X,\mathcal G)\to
+\check H^0(\mathcal W,\underline H^1)\to\ldots$; $c$ dies locally so it
+dies in $\check H^0(\mathcal W,\underline H^1)$; hence comes from
+$\check H^1(\mathcal W,\mathcal G)$; the nerve contraction kills it.
+\end{proof}
+2026-10-03T17:50:56.101962Z ERROR codex_core::tools::router: error=exec_command failed: CreateProcess { message: "Rejected(\"Failed to create unified exec process: Argument list too long (os error 7)\")" }
+2026-10-03T19:04:40.268191Z ERROR codex_core::tools::router: error=exec_command failed: CreateProcess { message: "Rejected(\"Failed to create unified exec process: Argument list too long (os error 7)\")" }
+2026-10-03T19:15:55.991382Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/000-prob-001/solution.tex:
+\emph{Endgame.} Claim A+B: the pulled-back system on the refined
+cover equals $\iota(s^0)$; in particular it is in the image of
+$G_F(T)$ on that cover; by injectivity on the refined cover
+(Prop.~\ref{prop:sep}), the ORIGINAL system on $R$... the refined
+system is the pull of the original: its value at each old piece $U$
+is its original $s_U$: Claim B (applied to old pieces inside the
+refinement: pieces of the refinement include the old $U$'s? A
+refinement maps pieces to old pieces; the pulled system's value at a
+new piece $U'$ over $U$ is $F(B(U)\to B(U'))(s_U)$; CLAIM B
+computed values at NEW pieces; to conclude $s_U=F(\cdot)(s^0)$ for
+OLD $U$: use separation at $U$: pulled system restricted... easier:
+by Claim A and the case-$\Phi_U=J$ argument applied WITH the original
+cover's tight fold (which exists after refinement): hmm the refined
+cover contains pieces not in $R$; the value $s^0$ was defined via
+$iB$ which is a NEW piece. But the value at the old tight fold
+$\mathfrak f_\star$ (installed by refinement, also new)... THE
+CLEAN WRAP-UP: the equality we proved holds for the pulled system on
+the final refinement $R'$: $\operatorname{pull}(s)=\iota_{R'}(s^0)$.
+In particular its class in the \v{C}ech colimit equals
+$[\iota(s^0)]$. Since $G_F$ is separated (Prop.~\ref{prop:sep}), the
+map $\HH^0(R;G_F)\to G_F^+(T)=\colim$ is itself an injection into
+the sheafification... conclude via the sheafification formalism:
+the sheafification... conclude via the sheafification formalism:
+$G_F(T)\hookrightarrow\colim_R\HH^0(R;G_F)=G_F^+(T)$ and we
+proved the maps $\theta):\colim\to$... To finish cleanly: the set
+$\colim_R\HH^0(R;G_F)$ maps to $G_F^+(T)$ bijectively; our
+computation shows every class has the form $[\iota(s^0)]$ with
+$s^0\in G_F(T)$: so $G_F(T)\to G_F^+(T)$ is surjective; being
+injective too, it is an isomorphism: every compatible system is
+already induced on the nose? The statement of the theorem is for
+$R$: $\HH^0(R)=G_F(T)$: we have $G_F(T)\to\HH^0(R)\to G_F^+(T)$
+iso composite: both injective, composite iso: hence
+$\HH^0(R)=G_F(T)$ \checkmark.
+$G_F$ is then a sheaf (descent on all covers: glue maps iso),
+$\pi^{-1}F=G_F$, and $(\pi_*\pi^{-1}F)(b)=G_F(i(b))=F(b)$
+(Proposition~\ref{prop:adj}).
+\end{proof}
+2026-10-03T19:18:58.905508Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/000-prob-001/solution.tex:
+\begin{proof}
+Reduce modulo $J$; write $j:\bar P\to Q_U$. If $\bar x$ dies in $W$,
+there are $t\ge1$ and a unit $u$ of $W_0^{\sat}$ with
+$[(\alpha_U(tx),0)]+u=0$ in $G$ (Construction~\ref{constr:pushout}).
+Write $u=[(\xi,m)]$ and the equation out: some $c\in\bar P^{\gp}$ has
+$\alpha_U(tx)+\xi=j(c)$, $m=-\varphi^{\gp}(c)$; lift $c$ to
+$a\in P^{\gp}$ (unique up to $J^{\gp}$, affecting nothing);
+then $z:=a-tx$ has $\alpha_U^{\gp}(z)=\xi\in Q_U$:
+$z\in Z_U$~(A). The unit condition $+u\in W_0^{\sat}$: some
+positive multiple of $u$ has a representative in
+$Q_U\times\mathbb N$; the representatives of
+$u\bmod$-saturation are obtained by sliding:
+$(\xi,m)\sim(\xi+j(d),m-\varphi^{\gp}(d))$;
+the first coordinate accepts any $d$ (if $z+d\in Z_U$; in
+particular $d\in P$ always works); the second becomes
+$m-\varphi^{\gp}(d)=-\varphi^{\gp}(a+d)$; taking $d=k\bar p$ for
+$p\in P$ with $\varphi(p)>0$ (exists since $\varphi\ne0$: if
+$\varphi=0$ the piece is the zero functional: then $\mathfrak f$ has
+$\Phi=P$... exclude: the criterion's $\varphi\le0$-condition then
+reads $0\le0$ and gives
+$x\in\Phi_W\iff\exists t,a:a-tx\in Z_U$: with $a=N\omega$-generic:
+everything dies: consistent with the zero fold's pushouts being dead)
+makes the second coordinate $\ge0$. So the condition
+$+u\in W_0^{\sat}$ is automatic, and the needed existence is exactly
+the displayed (A)+(B): note that the $(t,a)$ we produced satisfies
+$\varphi(a)=-m$ with $m$ a priori any integer; since the slide with
+$d$ replaces $a$ by $a+d$ and allows $\varphi(a+d)\le0$... we must
+verify (B) holds for SOME $(t,a)$: as shown, the slides give
+$a+d$ with any $\varphi$-value in $\varphi^{\gp}(\bar P^{\gp})
++m$-coset... $d$ is constrained by $z+d\in Z_U$; take
+$d=k\bar p$: $z+k p\in Z_U$ \checkmark (both in): and
+$\varphi(a+kp)\le0$ for $k\ll0$... $k$ large negative? $p\in P$:
+$k\ge0$ needed ($d\in\bar P^{\gp}$ arbitrary in fact: slides allow
+any $d\in\bar P^{\gp}$; the constraint $z+d\in Z_U$ for the first
+coordinate: we do NOT need it: the slide's first coordinate enters
+the equation only through the class; the representative must have
+first coordinate in $Q_U$: sliding changes it by $j(d)$: the
+condition $\xi+j(d)\in Q_U$ is $z+d\in Z_U$ \checkmark needed): so choose
+$d:=k\bar p$ with $k\ge0$ large... $\varphi(a+d)=\varphi(a)
++k\varphi(p)$: GROWS: wrong direction: use $d:=-k\bar p$:
+$z-kp\in Z_U$ fails. Alternative: if $\varphi(a)\le0$ already done;
+if $\varphi(a)>0$: can the unit still exist? Then every slide has
+$\varphi(a+d)-$... we need SOME slide with $\varphi(a+d)\le0$:
+$d$ with $\varphi(d)\le-\varphi(a)$ and $z+d\in Z_U$: if
+$\varphi>0$ on all of $Z_U$-directions...: not guaranteed in
+general: THE CONDITION (B) IS NECESSARY through this analysis: the
+class $u$ must satisfy $+u\in W_0^{\sat}$; we exhibited the
+representatives; $+u\in W_0$ iff some slide lands in
+$Q_U\times\mathbb N$ iff $\exists d$: $z+d\in Z_U$,
+$\varphi(a+d)\le 0$; renaming $\tilde a:=a+d$ gives (A)+(B):
+necessity \checkmark. ($W_0^{\sat}$ vs $W_0$: multiples absorbed into
+$t$.)
+Conversely: given $(t,a)$ with (A),(B): set
+$\xi:=\alpha_U^{\gp}(z)\in Q_U$, $m:=-\varphi(a)\ge0$; then
+$u:=[(\xi,m)]\in W_0$ and
+$[(\alpha_U(tx),0)]+u=[(j_U(\bar a),-\varphi^{\gp}(\bar a))]=0$; so
+$-u=[(\alpha_U(tx),0)]\in W_0$: $u$ a unit; $t\bar x=-u$...:
+$[(\alpha_U(tx),0)]=-u$: so $t\bar x$ equals minus a unit: dies in
+the sharpening; then $x$ dies (saturation): $x\in\Phi_W$ \checkmark.
+\end{proof}
+\[
+[(\alpha_U(tx),0)]+u=[(j_U(\bar a),-\varphi^{\gp}(\bar a))]=0; \qquad
+u=[(\xi,m)], \quad m=-\varphi(a)\ge0 .
+\]
+so $-u=[(\alpha_U(tx),0)]\in W_0$: $u$ a unit; $t\bar x=-u$:
+$[(\alpha_U(tx),0)]=-u$: $t\bar x$ dies in the sharpening, then
+$x$ dies (saturation): $x\in\Phi_W$ (moreover with the unit
+$u'=[(j(\kappa'),n')]$ when $n'\ge0$, otherwise first multiply
+$u'$ by $-1$... handled: see below).
+2026-10-03T19:19:08.658403Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/000-prob-001/solution.tex:
+\begin{proof}
+Reduce modulo $J$; write $j:\bar P\to Q_U$. If $\bar x$ dies in $W$,
+there are $t\ge1$ and a unit $u$ of $W_0^{\sat}$ with
+$[(\alpha_U(tx),0)]+u=0$ in $G$ (Construction~\ref{constr:pushout}).
+Write $u=[(\xi,m)]$ and the equation out: some $c\in\bar P^{\gp}$ has
+$\alpha_U(tx)+\xi=j(c)$, $m=-\varphi^{\gp}(c)$; lift $c$ to
+$a\in P^{\gp}$ (unique up to $J^{\gp}$, affecting nothing);
+then $z:=a-tx$ has $\alpha_U^{\gp}(z)=\xi\in Q_U$:
+$z\in Z_U$~(A). The unit condition $+u\in W_0^{\sat}$: some
+positive multiple of $u$ has a representative in
+$Q_U\times\mathbb N$; the representatives of
+$u\bmod$-saturation are obtained by sliding:
+$(\xi,m)\sim(\xi+j(d),m-\varphi^{\gp}(d))$;
+the first coordinate accepts any $d$ (if $z+d\in Z_U$; in
+particular $d\in P$ always works); the second becomes
+$m-\varphi^{\gp}(d)=-\varphi^{\gp}(a+d)$; taking $d=k\bar p$ for
+$p\in P$ with $\varphi(p)>0$ (exists since $\varphi\ne0$: if
+$\varphi=0$ the piece is the zero functional: then $\mathfrak f$ has
+$\Phi=P$... exclude: the criterion's $\varphi\le0$-condition then
+reads $0\le0$ and gives
+$x\in\Phi_W\iff\exists t,a:a-tx\in Z_U$: with $a=N\omega$-generic:
+everything dies: consistent with the zero fold's pushouts being dead)
+makes the second coordinate $\ge0$.
+2026-10-03T19:21:45.866498Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/000-prob-001/solution.tex:
+\begin{corollary}[Probes exist in covers]\label{cor:probecover}
+Let $R=\{T\to T_i\}$ be a cover of $T$, and let
+$\varepsilon:P\to\mathbb N$ be any functional \emph{coming from an
+equiface probe}, i.e.\ satisfying for some piece $U$ over $T$ the
+condition \textup{(}G\textup{)} of
+Proposition~\textup{\ref{prop:equiface}}
+\textup{(}in particular $\Phi_{\mathfrak f_\varepsilon}=\Phi_T$
+by \textup{(}i\textup{)} loc.\ cit.\textup{)}. Then $\varepsilon$ may be
+taken primitive \textup{(}replace by its primitive
+part\textup{)}, and $R$ admits a refinement containing
+$\mathfrak f_\varepsilon$. In particular
+\textup{(}with $U=iB(T)$, where every tight $\varepsilon$
+works\textup{)}: every cover admits a refinement containing a tight
+fold with kernel exactly $\Phi_T$.
+\end{corollary}
+
+\begin{proof}
+Write $v:=\varepsilon=d\,v_0$ with $v_0$ primitive and
+$\Phi_{\mathfrak f_{v_0}}=\Phi_{\mathfrak f_\varepsilon}=\Phi_T$
+(primitive parts preserve the kernel). Apply the cover property of
+$R$ at the point $v_0$: some $T_i$ admits
+$\theta_0:Q_{T_i}\to\mathbb N$ with $\theta_0\alpha_i=v_0$ and
+$T\to T_i$ birhizomic at $\theta_0$; by
+Lemma~\ref{lem:atomic}, ${GF}(\theta_0)={GF}(v_0)=1$. Refine $T_i$
+by its CFA cover (Corollary~\ref{cor:cfa}(b)); take the piece
+$S:=(P\to Q_{T_i}/\ker\theta_0)$: the induced
+$\bar\theta_0:Q_{T_i}/\ker\theta_0\hookrightarrow\mathbb N$ has
+saturated sharp image with ${GF}=1$, hence is an isomorphism onto
+$\mathbb N$; transporting along it, $S=\mathfrak f_{v_0}$. If
+$d>1$: cover $S$ once more by
+$\{\mathfrak f_{v_0}\xrightarrow{d\cdot}\mathfrak
+f_\varepsilon\}\cup\{\mathrm{CFA\ pieces\ of\ }\mathfrak
+f_{v_0}\}$:
+this covers $S$: a point $\mu$ factoring through
+$\mathfrak f_{v_0}$ is $\mu=c\,v_0$; if $c\in d\mathbb N$ use the
+displayed map composed with the required factor; the birhizomicity
+of $(d\cdot):\mathbb N\to\mathbb N$ at any
+$\psi:\mathbb N\to\mathbb N$ holds by Lemma~\ref{lem:atomic} when
+the value groups match, and by Corollary~\ref{cor:cfa}-type
+kernel-quotients otherwise; points not in $d\mathbb N$ are covered
+by the CFA piece $\{0\}$-target... precisely by the piece
+$\mathbb N/d\mathbb N$-sharpened $=\{0\}$... the quotient
+$\mathbb N/\langle d\rangle_{\mathrm{face}}$:
+the face $\{x:d\mid\text{-multiples}\}$: the right piece: take the
+CFA quotient killing $d$ (the face generated by $d$): the map
+$\mathbb N\to\mathbb N/\langle d\rangle$: birhizomicity at points
+vanishing on $d$: μ with $d\nmid\mu(1)$... the point's value on $d$
+is $c\notin d\Z$: the kernel quotient absorbs all remaining rays as
+usual: details identical to earlier CFA arguments. Composing the two
+refinements, $R$ refines to a cover containing
+$\mathfrak f_\varepsilon$.
+\end{proof}
+2026-10-03T19:22:07.590588Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/000-prob-001/solution.tex:
+\begin{proof}
+Write $v:=\varepsilon=d\,v_0$ with $v_0$ primitive and
+$\Phi_{\mathfrak f_{v_0}}=\Phi_{\mathfrak f_\varepsilon}=\Phi_T$
+(primitive parts preserve the kernel). Apply the cover property of
+$R$ at the point $v_0$: some $T_i$ admits
+$\theta_0:Q_{T_i}\to\mathbb N$ with $\theta_0\alpha_i=v_0$ and
+$T\to T_i$ birhizomic at $\theta_0$; by
+Lemma~\ref{lem:atomic}, ${GF}(\theta_0)={GF}(v_0)=1$. Refine $T_i$
+by its CFA cover (Corollary~\ref{cor:cfa}(b)); take the piece
+$S:=(P\to Q_{T_i}/\ker\theta_0)$: the induced
+$\bar\theta_0:Q_{T_i}/\ker\theta_0\hookrightarrow\mathbb N$ has
+saturated sharp image with ${GF}=1$, hence is an isomorphism onto
+$\mathbb N$; transporting along it, $S=\mathfrak f_{v_0}$. If
+$d>1$: cover $S$ once more by
+$\{\mathfrak f_{v_0}\xrightarrow{d\cdot}\mathfrak
+f_\varepsilon\}\cup\{\mathrm{CFA\ pieces\ of\ }\mathfrak
+f_{v_0}\}$:
+this covers $S$: a point $\mu$ factoring through
+$\mathfrak f_{v_0}$ is $\mu=c\,v_0$; if $c\in d\mathbb N$ use the
+displayed map composed with the required factor; the birhizomicity
+of $(d\cdot):\mathbb N\to\mathbb N$ at any
+$\psi:\mathbb N\to\mathbb N$ holds by Lemma~\ref{lem:atomic} when
+the value groups match, and by Corollary~\ref{cor:cfa}-type
+kernel-quotients otherwise; points not in $d\mathbb N$ are covered
+by the CFA piece $\{0\}$-target... precisely by the piece
+$\mathbb N/d\mathbb N$-sharpened $=\{0\}$... the quotient
+$\mathbb N/\langle d\rangle_{\mathrm{face}}$:
+the face $\{x:d\mid\text{-multiples}\}$: the right piece: take the
+CFA quotient killing $d$ (the face generated by $d$): the map
+$\mathbb N\to\mathbb N/\langle d\rangle$: birhizomicity at points
+vanishing on $d$: μ with $d\nmid\mu(1)$... the point's value on $d$
+is $c\notin d\Z$: the kernel quotient absorbs all remaining rays as
+usual: details identical to earlier CFA arguments. Composing the two
+refinements, $R$ refines to a cover containing
+$\mathfrak f_\varepsilon$.
+\end{proof}
+2026-10-03T19:22:22.707602Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/000-prob-001/solution.tex:
+Write $v:=\varepsilon=d\,v_0$ with $v_0$ primitive and
+$\Phi_{\mathfrak f_{v_0}}=\Phi_{\mathfrak f_\varepsilon}=\Phi_T$
+(primitive parts preserve the kernel). Apply the cover property of
+$R$ at the point $v_0$: some $T_i$ admits
+$\theta_0:Q_{T_i}\to\mathbb N$ with $\theta_0\alpha_i=v_0$ and
+$T\to T_i$ birhizomic at $\theta_0$; by
+Lemma~\ref{lem:atomic}, ${GF}(\theta_0)={GF}(v_0)=1$. Refine $T_i$
+by its CFA cover (Corollary~\ref{cor:cfa}(b)); take the piece
+$S:=(P\to Q_{T_i}/\ker\theta_0)$: the induced
+$\bar\theta_0:Q_{T_i}/\ker\theta_0\hookrightarrow\mathbb N$ has
+saturated sharp image with ${GF}=1$, hence is an isomorphism onto
+$\mathbb N$; transporting along it, $S=\mathfrak f_{v_0}$. If
+$d>1$: cover $S$ once more by
+$\{\mathfrak f_{v_0}\xrightarrow{d\cdot}\mathfrak
+f_\varepsilon\}\cup\{\mathrm{CFA\ pieces\ of\ }\mathfrak
+f_{v_0}\}$:
+this covers $S$: a point $\mu$ factoring through
+$\mathfrak f_{v_0}$ is $\mu=c\,v_0$; if $c\in d\mathbb N$ use the
+displayed map composed with the required factor; the birhizomicity
+of $(d\cdot):\mathbb N\to\mathbb N$ at any
+$\psi:\mathbb N\to\mathbb N$ holds by Lemma~\ref{lem:atomic} when
+the value groups match, and by Corollary~\ref{cor:cfa}-type
+kernel-quotients otherwise; points not in $d\mathbb N$ are covered
+by the CFA piece $\{0\}$-target... precisely by the piece
+$\mathbb N/d\mathbb N$-sharpened $=\{0\}$... the quotient
+$\mathbb N/\langle d\rangle_{\mathrm{face}}$:
+the face $\{x:d\mid\text{-multiples}\}$: the right piece: take the
+CFA quotient killing $d$ (the face generated by $d$): the map
+$\mathbb N\to\mathbb N/\langle d\rangle$: birhizomicity at points
+vanishing on $d$: μ with $d\nmid\mu(1)$... the point's value on $d$
+is $c\notin d\Z$: the kernel quotient absorbs all remaining rays as
+usual: details identical to earlier CFA arguments. Composing the two
+refinements, $R$ refines to a cover containing
+$\mathfrak f_\varepsilon$.
+\end{proof}
+2026-10-03T19:22:35.027437Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/000-prob-001/solution.tex:
+do not actually arise since probes are taken primitive).
+2026-10-03T19:24:41.456595Z ERROR codex_core::tools::router: error=apply_patch verification failed: invalid patch: The last line of the patch must be '*** End Patch'
+2026-10-03T19:40:15.322569Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/000-prob-001/solution.tex:
+\iffalse
+cover contains pieces not in $R$; the value $s^0$ was defined via
+$iB$ which is a NEW piece. But the value at the old tight fold
+$\mathfrak f_\star$ (installed by refinement, also new)... THE
+CLEAN WRAP-UP: the equality we proved holds for the pulled system on
+the final refinement $R'$: $\operatorname{pull}(s)=\iota_{R'}(s^0)$.
+In particular its class in the \v{C}ech colimit equals
+$[\iota(s^0)]$. Since $G_F$ is separated (Prop.~\ref{prop:sep}), the
+map $\HH^0(R;G_F)\to G_F^+(T)=\colim$ is itself an injection into
+the sheafification... conclude via the sheafification formalism:
+$G_F(T)\hookrightarrow\colim_R\HH^0(R;G_F)=G_F^+(T)$ and we
+proved the maps $\theta):\colim\to$... To finish cleanly: the set
+$\colim_R\HH^0(R;G_F)$ maps to $G_F^+(T)$ bijectively; our
+computation shows every class has the form $[\iota(s^0)]$ with
+$s^0\in G_F(T)$: so $G_F(T)\to G_F^+(T)$ is surjective; being
+injective too, it is an isomorphism: every compatible system is
+already induced on the nose? The statement of the theorem is for
+$R$: $\HH^0(R)=G_F(T)$: we have $G_F(T)\to\HH^0(R)\to G_F^+(T)$
+iso composite: both injective, composite iso: hence
+$\HH^0(R)=G_F(T)$ \checkmark.
+$G_F$ is then a sheaf (descent on all covers: glue maps iso),
+$\pi^{-1}F=G_F$, and $(\pi_*\pi^{-1}F)(b)=G_F(iB))=F(b)$
+(Proposition~\ref{prop:adj}).
+\end{proof}
+\fi
+
+
+\section{Higher direct images}\label{sec:direct}
+2026-10-03T19:42:16.433819Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/000-prob-001/solution.tex:
+piece $D$, and at least two kernel-$J$ folds on distinct rays
+\textup{(}two such exist precisely when $\dim\bar P\ge2$; if
+$\dim\bar P=1$, equivalently $\bar P=\mathbb N$ by
+Lemma~\ref{lem:N}, one fold is demanded; if $\bar P=\{0\}$,
+none\textup{)}.
+2026-10-03T19:42:38.419882Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/000-prob-001/solution.tex:
+piece $D$, and at least two kernel-$J$ folds on distinct rays
+\textup{(}two such exist precisely when $\dim\bar P\ge2$; if
+$\dim\bar P=1$, equivalently $\bar P=\mathbb N$ by
+Lemma~\ref{lem:N}, one fold is demanded; if $\bar P=\{0\}$,
+none\textup{)}.
+2026-10-03T19:43:32.992062Z ERROR codex_core::tools::router: error=exec_command failed: CreateProcess { message: "Rejected(\"`/bin/bash -lc 'cd /work/first-proof-humanize-tdgou2bu/000-prob-001 && rm -f solution.texn solution_new.tex && ls | head'` rejected: rm -f style commands are not permitted. Use a safer approach\")" }
+2026-10-03T19:44:08.295561Z ERROR codex_core::tools::router: error=apply_patch verification failed: invalid hunk at line 23, Expected update hunk to start with a @@ context marker, got: '| [mainline] T2: Develop complete proof that F -> R pi_* pi^{-1} F is a quasi-isomorphism (or a rigorous counterexample) | AC-1, AC-4 | pending | coding | claude | N/A | Core: sheafification invariance on B_P + vanishing of R^i pi_* |'
+2026-10-03T20:31:22.781070Z ERROR codex_core::tools::router: error=apply_patch verification failed: invalid hunk at line 3, '@@' is not a valid hunk header. Valid hunk headers: '*** Add File: {path}', '*** Delete File: {path}', '*** Update File: {path}'
+2026-10-03T20:48:11.830904Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/000-prob-001/solution.tex:
+\begin{lemma}[Common refinement with refusals]\label{lem:sandwich}
+Let $R$ be a standard rigid cover of $i(b)$ with $S$ any cover of
+$i(b)$. There is a standard rigid refinement $R^\flat$ of $R$ and a
+refinement map of families $\sigma:S\to R^\flat$ such that
+every non-refusal \textup{(}kernel-$J$\textup{)} piece of $S$ occurs
+literally as an $R^\flat$-piece and $\sigma$ is the identity
+there.
+\end{lemma}
+2026-10-03T20:55:18.921082Z ERROR codex_core::tools::router: error=apply_patch verification failed: invalid patch: The last line of the patch must be '*** End Patch'
+2026-10-03T20:55:35.352580Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/000-prob-001/solution.tex:
+A standard cover is \emph{rigid}
+\textup{(}\,$J'$-rigid\textup{)} if no two distinct pieces admit
+a structure map between them, except the quotient maps forced by
+inclusion of faces.
+2026-10-03T20:55:58.538674Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/000-prob-001/solution.tex:
+and a class vanishes in $H^q(X,\mathscr W)$ iff it pulls to zero
+along some refinement. (No other external input is used.)
+\end{remark}
+
+\begin{definition}\label{def:square}
+A cover of $X:=i(b)$ is \emph{standard} if all its piece maps are
+surjective \textup{(}always achievable,
+2026-10-03T20:56:28.188208Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/000-prob-001/solution.tex:
+$R_{\min}\subseteq U\subseteq R_{\max}$ for all
+$U\in\mathcal I$. Then the alternating \v{C}ech complex computes
+$\HH^0=A$ and $\HH^{q\ge1}=0$.
+\end{lemma}
+
+\begin{proof}
+On $\cC^q$ ($q\ge1$) let
+$(he)_\tau:=e_{(R_{\min},\tau)}$ (front-insertion, at
+alternating tuples; face-maps are identities, so all terms make
+sense), and put $(\rho e)_\tau:=e_\tau$ transported to
+$R_{\min}$-level, i.e.\ $\rho=e$. The standard computation
+$\partial_0(R_{\min},\tau)=\tau$,
+$\partial_{i+1}(R_{\min},\tau)=(R_{\min},\partial_i\tau)$ gives
+$(\partial h+h\partial)e=e-\rho e$ where
+$(\rho e)_\tau$ is $e_\tau$ pulled along
+$R_{\min}\hookrightarrow\overline\tau$: on the constant strand
+this pullback is $\mathrm{id}_A$, hence $\rho e=e$ and
+$e=\partial(he)$: $\HH^{q\ge1}=0$. For $q=0$: the compatibility
+condition at any pair $(U,R_{\max})$ gives
+$e_U=e_{R_{\max}}$, so $\HH^0=A$ via evaluation at
+$R_{\max}$.
+\end{proof}
+2026-10-03T20:56:35.259834Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/000-prob-001/solution.tex:
+$(\partial e)_\tau=\sum_{i=0}^{q+1}(-1)^i\,
+\mathscr W(d_i)\bigl(e_{\partial_i\tau}\bigr),
+\]
+of a family $\mathcal I$ of sets $U\mapsto\overline U$ indexed
+by a set $\mathcal I$, with a fixed ``intersection'' operation
+$\cap$ and face maps $d_i:\overline{\tau}\to
+\overline{\partial_i\tau}$, into a functor $\mathscr W$ from the
+category they form. Suppose given $A_*\in\mathcal I$ with
+2026-10-03T21:20:35.435608Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/000-prob-001/solution.tex:
+\begin{lemma}[Sieve: fold terraces and face pins]\label{lem:sieve}
+Let $R$ be a standard rigid cover of $i(b)$ and $z$ a $\mathcal
+G$-\v{C}ech cocycle of degree $q\ge1$ on $R$.
+\textup{(}i\textup{)} $z$ is cohomologous within $R$ \textup{(}no
+refinement\textup{)} to a cocycle vanishing at every nerve piece
+containing a kernel-$J$ fold \textup{(}the dead sector is left
+arbitrary\textup{)}.
+\textup{(}ii\textup{)} For every face $K\supsetneq J$: if $z$
+vanishes at every nerve position of level strictly larger than
+$K$, then its values at the $K$-exact positions are pinned, after
+the canonical transports, to a single element
+$\widehat z_K\in F(B(i(P/K)))=F(P/K)$ \textup{(}the \emph{sieve
+constant} at $K$\textup{)}.
+\end{lemma}
+
+\begin{proof}
+(i) A kernel-$J$ fold is a tight functional
+$\varphi:\bar P\to\mathbb N$; up to rational multiple it is a
+point of the pointed, strictly convex rational polyhedral cone
+$\Cone(\bar P)^{\vee}$, which is a finite rational fan, so there
+are finitely many fold \emph{rays} in $R$: enumerate them
+$\mathfrak f_1,\dots,\mathfrak f_m$. For a ray index $r$ define
+the \emph{$r$-fold strand} as the cochains supported on tuples
+containing $\mathfrak f_r$ but no fold from a later ray
+$s>r$ and no fold on a different ray than $r$. On such a tuple
+$\tau=(\mathfrak f_r,\tau')$ every position of $\tau'$ has
+kernel $\subseteq J$ \textup{(}it is $iB$ or a fold on ray
+$r$\textup{)}, so by Lemma~\ref{lem:nerve}(i) Case A and
+Lemma~\ref{lem:mixed}(C1) the overlap
+$\overline\tau=\mathfrak f_r\otimes\overline{\tau'}$ still has
+kernel $J$, and all structure maps among these pieces induce the
+identity on $\mathcal G$-values $F(b)$. The $r$-fold strand is
+therefore a constant strand on which adjoining $\mathfrak f_r$
+is internal \textup{(}the face omitting an element of $\tau'$
+still contains $\mathfrak f_r$\textup{)}; by the constant-complex
+Lemma~\ref{lem:constcx} with anchor $H=\mathfrak f_r$ it is
+acyclic in degrees $\ge1$: the cocycle's component on it is
+$\partial w_r$. The strands for distinct $r$ are disjoint
+\textup{(}a tuple containing two distinct-ray folds lies in
+none\textup{)} and their union is differential-closed, so by
+repeated application of the exact-subquotient
+Lemma~\ref{lem:subquot} the cocycle $z-\partial(\sum_r w_r)$ is
+supported on tuples containing \emph{no} kernel-$J$ fold, as
+claimed. The dead tuples \textup{(}two distinct-ray folds, or a
+fold against a face $\supsetneq J$\textup{)} are never touched.
+\textup{(}ii\textup{)} Two $K$-exact positions $W_1,W_2$ are
+connected through the chain $W_1,i(P/K),W_2$: the overlaps
+$W_i\otimes i(P/K)$ have level $K$ or strictly larger
+(Lemma~\ref{lem:nerve}(ii), Lemma~\ref{lem:mixed}(C2): the join
+$\Phi\vee K$ equals $K$ exactly when $\Phi\subseteq K$). By
+hypothesis the strictly-larger values vanish, so the cocycle
+relation at the pair $(W_i,i(P/K))$ forces
+$z_{W_i}=F(\text{quotient }B(W_i)\twoheadrightarrow
+P/K)^{-1}\text{-transport}(z_{i(P/K)})$; all transports being the
+canonical quotient maps, every $K$-exact value equals the single
+$z_{i(P/K)}$-value transported, i.e.\ they are pinned to one
+$\widehat z_K$.
+\end{proof}
+2026-10-03T21:22:42.115889Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/000-prob-001/solution.tex:
+\begin{theorem}\label{thm:main-end}
+$\mathrm{R}^0\pi_*(\pi^{-1}F)=F$ and
+$\mathrm{R}^q\pi_*(\pi^{-1}F)=0$ for all $q>0$; hence
+$\eta_F:F\to\mathrm{R}\pi_*\pi^{-1}F$ is a quasi-isomorphism.
+\qed
+\end{theorem}
+
+\begin{proof}[Proof (summary)]
+$\mathrm{R}^q\pi_*\mathcal G$ is the sheaf on $B_P^{\op}$
+associated to $b\mapsto H^q(i(b),\mathcal G)$; with the trivial
+topology sheaves = presheaves; values $H^0(i(b),\mathcal G)
+=\mathcal G(i(b))=F(b)$ (Theorem~\ref{thm:descent},
+Proposition~\ref{prop:adj}), $H^{q>0}=0$
+(Proposition~\ref{prop:vanish}) \checkmark. Together with the unit being
+the identity sheaf map $F\to\pi_*\mathcal G$ on $B_P$
+(Theorem~\ref{thm:descent}), this proves Theorem~\ref{thm:main}.
+\end{proof}
+\end{document}
+2026-10-03T21:24:20.689147Z ERROR codex_core::tools::router: error=apply_patch verification failed: invalid hunk at line 2, '@@' is not a valid hunk header. Valid hunk headers: '*** Add File: {path}', '*** Delete File: {path}', '*** Update File: {path}'

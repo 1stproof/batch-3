@@ -1,0 +1,272 @@
+```latex
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\title{Local $J$-holomorphic equations for symplectic simple normal crossings divisors}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We give a complete proof that, after passing to a cohomologous symplectic form along a path preserving a given symplectic simple normal crossings divisor, there exists a tame almost complex structure for which the divisor admits local smooth complex coordinates with each defining function $J$-holomorphic.
+\end{abstract}
+
+\section{Statement of the result}
+
+Let $(M,\omega)$ be a closed symplectic manifold and let
+\[
+D=\bigcup_{i=1}^{N}D_i\subset M
+\]
+be a symplectic simple normal crossings divisor. We take the standard definition: each $D_i$ is a closed symplectic submanifold of real codimension $2$, all intersections
+\[
+D_I:=\bigcap_{i\in I}D_i,\qquad I\subset \{1,\dots,N\},
+\]
+are transverse and symplectic, and near every point of $D_I$ there are Darboux coordinates in which the branches $D_i$ are coordinate hyperplanes. See \cite{FZ17} for this definition and for the associated space of compatible almost complex structures.
+
+The question is whether one can find an $\omega$-tame almost complex structure $J$ such that, locally on $M$, there are smooth complex coordinates $(z_1,\dots,z_n)$ with
+\[
+D=\{z_1\cdots z_r=0\}
+\]
+for some $0\le r\le n$, and such that $z_1,\dots,z_r$ are $J$-holomorphic. As the question allows, we may first replace $\omega$ by a symplectic form joined to it by a path of cohomologous symplectic forms along which $D$ remains a symplectic simple normal crossings divisor.
+
+The answer is affirmative.
+
+\begin{theorem}\label{thm:main}
+Let $(M,\omega)$ be a closed symplectic manifold and $D\subset M$ a symplectic simple normal crossings divisor. Then there exists a smooth path
+\[
+\{\omega_t\}_{t\in[0,1]},\qquad [\omega_t]=[\omega]\in H^2_{\mathrm{dR}}(M),
+\]
+such that $D$ is a symplectic simple normal crossings divisor for every $\omega_t$, and an $\omega_1$-compatible almost complex structure $J$ on $M$ with the following property. For every $p\in M$, letting
+\[
+I(p):=\{i\in\{1,\dots,N\}:p\in D_i\},\qquad r:=|I(p)|,
+\]
+there are smooth complex coordinates $(z_1,\dots,z_n)$ on a neighborhood of $p$ such that
+\[
+D\cap U=\{z_1\cdots z_r=0\},
+\]
+and the functions $z_1,\dots,z_r$ are $J$-holomorphic:
+\[
+dz_i(Jv)=i\,dz_i(v)
+\]
+for every tangent vector $v$.
+\end{theorem}
+
+Thus, in the sense allowed by the question, such a $J$ exists. Since an $\omega_1$-compatible almost complex structure is in particular $\omega_1$-tame, the theorem answers the question affirmatively.
+
+\section{Regularizations and almost K\"ahler data}
+
+The proof uses the regularization theorem for symplectic simple normal crossings divisors due to Farajzadeh Tehrani--McLean--Zinger. We recall the part of that theory needed here; the full definitions are in \cite{TMZ21}, and the existence theorem is proved in \cite{TMZ18} and \cite{NSF}.
+
+\begin{definition}[Almost K\"ahler data]\label{def:AK}
+Let $D\subset(M,\omega)$ be a symplectic simple normal crossings divisor. An \emph{$\omega$-regularization} $\mathcal R$ of $D$ consists, in particular, of the following data. For each $I\subset\{1,\dots,N\}$, let
+\[
+\mathcal N_I:=\bigoplus_{i\in I}N_MD_i\big|_{D_I}
+\]
+be the symplectic normal bundle of $D_I$. The regularization gives a complex structure on each normal line bundle $N_MD_i$, a neighborhood $\mathcal O_I\subset\mathcal N_I$ of the zero section, and a diffeomorphism
+\[
+\Psi_I:\mathcal O_I\to U_I\subset M
+\]
+onto a tubular neighborhood of $D_I$. The splitting
+\[
+T\mathcal O_I=\pi_I^*TD_I\oplus \bigoplus_{i\in I}N_MD_i\big|_{D_I}
+\]
+is $\omega$-orthogonal, where $\pi_I:\mathcal N_I\to D_I$ is the bundle projection.
+
+An almost complex structure $J$ is \emph{$\mathcal R$-compatible} if the triple $(\omega,\mathcal R,J)$ belongs to the space $AK(M,D)$ of almost K\"ahler data defined in \cite{TMZ18}. In particular, for every $I$,
+\begin{enumerate}
+\item $D_I$ is $J$-holomorphic;
+\item on each fiber $F$ of $\pi_I\big|_{\mathcal O_I}$, the pullback of $J$ by $\Psi_I$ is the standard fiberwise complex structure on $\bigoplus_{i\in I}\mathbb C$;
+\item the map
+\[
+\pi:=\pi_I\circ \Psi_I^{-1}:U_I\to D_I
+\]
+is $(J,J|_{D_I})$-holomorphic, i.e.
+\[
+d\pi\circ J=J|_{D_I}\circ d\pi.
+\]
+\end{enumerate}
+\end{definition}
+
+The existence of such data is the main point of the regularization theorem.
+
+\begin{theorem}[Regularization existence, {\cite[Theorem 7]{TMZ18}}]\label{thm:reg}
+Let $(M,\omega)$ be a closed symplectic manifold and $D\subset M$ a symplectic simple normal crossings divisor. Then there exists a smooth path $\{\omega_t\}_{t\in[0,1]}$ of cohomologous symplectic forms on $M$, with $\omega_0=\omega$, such that $D$ is a symplectic simple normal crossings divisor with respect to each $\omega_t$, and such that $D$ admits an $\omega_1$-regularization $\mathcal R$. Moreover, there exists an $\omega_1$-compatible, $\mathcal R$-compatible almost complex structure $J$ on $M$; in the notation of \cite{TMZ18},
+\[
+(\omega_1,\mathcal R,J)\in AK(M,D).
+\]
+\end{theorem}
+
+\begin{remark}
+The theorem is proved in \cite{TMZ18} and is also presented in \cite{NSF}. The construction of the space $AK(M,D)$ and the proof that the forgetful projection from $AK(M,D)$ to the auxiliary data is a weak homotopy equivalence imply the existence of the compatible $J$ above.
+\end{remark}
+
+\section{Local $J$-holomorphic defining functions}
+
+We now prove the key local lemma: an $\mathcal R$-compatible $J$ gives rise to the desired coordinates.
+
+\begin{lemma}\label{lem:local}
+Let $(\omega,\mathcal R,J)\in AK(M,D)$. For every $p\in D$, with
+\[
+I:=\{i:p\in D_i\},\qquad r:=|I|,
+\]
+there exist a neighborhood $U$ of $p$ and smooth complex coordinates
+\[
+(z_1,\dots,z_r,w_1,\dots,w_{n-r})
+\]
+on $U$ such that
+\[
+D_i\cap U=\{z_i=0\}\quad (1\le i\le r),
+\]
+and each $z_i$ is $J$-holomorphic. In particular,
+\[
+D\cap U=\{z_1\cdots z_r=0\}.
+\]
+\end{lemma}
+
+\begin{proof}
+Let $p\in D_I$. By Definition~\ref{def:AK}, the $\omega$-regularization gives a neighborhood $\mathcal O_I$ of the zero section in
+\[
+\mathcal N_I=\bigoplus_{i\in I}N_MD_i\big|_{D_I},
+\]
+together with a diffeomorphism
+\[
+\Psi_I:\mathcal O_I\to U_I\subset M.
+\]
+Shrinking $U_I$ if necessary, we may assume that $U_I$ is disjoint from every $D_j$ with $j\notin I$.
+
+Choose a neighborhood $W$ of $p$ in $D_I$ and smooth complex coordinates $(w_1,\dots,w_{n-r})$ on $W$. Since each $N_MD_i$ is a complex line bundle, shrinking $W$ if necessary we may trivialize
+\[
+N_MD_i\big|_W\cong W\times\mathbb C
+\]
+and denote the fiber coordinate by $z_i$. Thus, on
+\[
+\mathcal O_I\cap \pi_I^{-1}(W),
+\]
+we have smooth complex coordinates
+\[
+(z_1,\dots,z_r,w_1,\dots,w_{n-r}).
+\]
+Because $\Psi_I$ is a diffeomorphism, these pull back to smooth complex coordinates on
+\[
+U:=\Psi_I\bigl(\mathcal O_I\cap\pi_I^{-1}(W)\bigr)\subset U_I.
+\]
+We abuse notation and denote the pulled-back functions again by $z_i,w_j$.
+
+By construction,
+\[
+D_i\cap U=\{z_i=0\}\qquad (1\le i\le r),
+\]
+and therefore
+\[
+D\cap U=\bigcup_{i=1}^r D_i\cap U=\{z_1\cdots z_r=0\}.
+\]
+
+It remains to show that each $z_i$ is $J$-holomorphic. Let
+\[
+\pi:=\pi_I\circ\Psi_I^{-1}:U\to D_I
+\]
+and let
+\[
+V:=\ker d\pi\subset TU
+\]
+be the vertical tangent subbundle. In the coordinates above, $V$ is the tangent bundle of the fibers of the normal bundle. By Definition~\ref{def:AK}(2), $J$ preserves $V$ and, on each fiber, is the standard complex structure on $\mathbb C^r$. Hence, for $v\in V$,
+\[
+dz_i(Jv)=i\,dz_i(v).
+\]
+
+Since $\mathcal R$ is an $\omega$-regularization, the horizontal subbundle
+\[
+H:=V^{\perp_\omega}
+\]
+is precisely the tangent bundle to the base $D_I$ in the product decomposition. In particular,
+\[
+dz_i\big|_H=0.
+\]
+Moreover, because $J$ is $\omega$-compatible and $J(V)=V$, we have $J(H)=H$. Indeed, if $h\in H$ and $v\in V$, then
+\[
+\omega(Jh,v)=\omega(Jh,J(-Jv))=\omega(h,-Jv)=0,
+\]
+so $Jh\in V^{\perp_\omega}=H$.
+
+Now every tangent vector $v\in TU$ decomposes as
+\[
+v=v_H+v_V,\qquad v_H\in H,\quad v_V\in V.
+\]
+If $v\in H$, then $Jv\in H$, and since $dz_i|_H=0$,
+\[
+dz_i(Jv)=0=i\,dz_i(v).
+\]
+If $v\in V$, the standard fiberwise action of $J$ gives
+\[
+dz_i(Jv)=i\,dz_i(v).
+\]
+By linearity,
+\[
+dz_i(Jv)=i\,dz_i(v)
+\]
+for all $v\in TU$. Thus
+\[
+\bar\partial_J z_i=0,
+\]
+so $z_i$ is $J$-holomorphic.
+\end{proof}
+
+\begin{remark}
+The lemma uses only the two special properties of an $\mathcal R$-compatible $J$ stated in Definition~\ref{def:AK}. These are the properties isolated in \cite{TMZ18}: the normal directions are modeled on the standard complex structure fiberwise, and the projection to each stratum is $J$-holomorphic. This is also consistent with the general discussion in \cite{MO}: for an arbitrary almost complex structure, finding local $J$-holomorphic defining functions is overdetermined and is controlled by the Nijenhuis tensor. In the almost K\"ahler data above, the Nijenhuis tensor of $J$ has image in the tangent directions of the strata, so the normal direction obstructions vanish; see \cite{TMZ18}.
+\end{remark}
+
+\section{Conclusion}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+By the regularization existence theorem, Theorem~\ref{thm:reg}, after passing along a path of cohomologous symplectic forms we may assume that $D$ admits an $\omega_1$-regularization $\mathcal R$ and that there exists
+\[
+(\omega_1,\mathcal R,J)\in AK(M,D).
+\]
+The almost complex structure $J$ is $\omega_1$-compatible, hence $\omega_1$-tame.
+
+Fix $p\in M$. If $p\notin D$, choose a neighborhood disjoint from $D$; then the required condition is vacuous with $r=0$. If $p\in D$, Lemma~\ref{lem:local} gives the desired smooth complex coordinates. Therefore the theorem follows.
+\end{proof}
+
+Thus the answer to the original question is yes: after replacing $\omega$ by a cohomologous symplectic form along a path preserving $D$ as a symplectic simple normal crossings divisor, there exists a tame almost complex structure for which the divisor is locally defined by $J$-holomorphic functions.
+
+\begin{thebibliography}{TMZ21}
+
+\bibitem{TMZ18}
+M. Farajzadeh Tehrani, M. McLean, A. Zinger,
+\href{https://www.numdam.org/item/10.1016/j.crma.2018.02.009.pdf}{numdam.org},
+\textit{Singularities and semistable degenerations for symplectic topology},
+C. R. Acad. Sci. Paris, Ser. I \textbf{356} (2018), 420--432.
+
+\bibitem{TMZ21}
+M. Farajzadeh Tehrani, M. McLean, A. Zinger,
+\href{https://ar5iv.labs.arxiv.org/html/2112.13125}{ar5iv.labs.arxiv.org},
+\textit{Normal crossings singularities for symplectic topology: structures},
+arXiv:2112.13125.
+
+\bibitem{FZ17}
+M. Farajzadeh Tehrani, A. Zinger,
+\href{https://ar5iv.labs.arxiv.org/html/1710.00224}{ar5iv.labs.arxiv.org},
+\textit{Pseudoholomorphic curves relative to a normal crossings symplectic divisor: compactification},
+arXiv:1710.00224.
+
+\bibitem{NSF}
+\href{https://par.nsf.gov/servlets/purl/10430629}{par.nsf.gov},
+NSF public access repository copy of \cite{TMZ18}.
+
+\bibitem{MO}
+\href{https://mathoverflow.net/questions/154302/local-holomorphic-equations-for-symplectic-divisors}{mathoverflow.net},
+\textit{Local holomorphic equations for symplectic divisors}.
+
+\end{thebibliography}
+
+\end{document}
+```

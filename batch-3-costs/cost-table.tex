@@ -1,0 +1,28 @@
+\begin{table}[ht]
+\centering\small
+\caption{Cost per problem. Dollars, with input/output tokens in millions. Basis differs by system; see notes.}
+\label{tab:batch3-costs}
+\begin{tabular}{lrrrrrrrrrr}
+\toprule
+ & \multicolumn{2}{c}{GPT-6 Astra} & \multicolumn{2}{c}{Siege} & \multicolumn{2}{c}{ProofCouncil} & \multicolumn{2}{c}{MerLean} & \multicolumn{2}{c}{Humanize} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}\cmidrule(lr){10-11}
+Problem & \$ & in/out & \$ & in/out & \$ & in/out & \$ & in/out & \$ & in/out \\
+\midrule
+P1 & \$4.64 & 0.15/0.06 & \$56 & 16.4/1.44 & \$105 & 7.77/0.85 & \$160 & 74.8/0.55 & \$288 & 85.8/4.12 \\
+P2 & \$3.75 & 0.10/0.06 & \$24 & 7.32/0.58 & \$119 & 8.81/1.26 & \$190 & 88.5/0.65 & \$375 & 134/1.14 \\
+P3 & \$3.54 & 0.13/0.05 & \$85 & 23.5/2.23 & \$171 & 11.8/1.50 & \$951 & 444/3.27 & \$740 & 263/2.61 \\
+P4 & \$3.77 & 0.13/0.05 & \$15 & 5.10/0.35 & \$105 & 6.30/0.98 & \$176 & 81.9/0.60 & \$87 & 27.1/1.02 \\
+P5 & \$3.21 & 0.14/0.04 & \$79 & 20.0/1.96 & \$67 & 4.79/0.52 & \$197 & 92.1/0.68 & \$172 & 59.4/0.91 \\
+P6 & \$3.06 & 0.14/0.03 & \$53 & 17.1/1.24 & \$107 & 10.8/0.73 & \$1{,}372 & 640/4.71 & \$32 & 9.56/0.43 \\
+P7 & \$3.99 & 0.14/0.05 & \$33 & 12.2/0.75 & \$145 & 7.77/1.52 & \$126 & 58.9/0.43 & \$197 & 56.3/3.27 \\
+P8 & \$2.28 & 0.13/0.02 & \$442 & 172/9.00 & \$332 & 36.5/2.75 & \$689 & 321/2.37 & \$9.60 & 1.95/0.31 \\
+P9 & \$4.29 & 0.14/0.06 & \$534 & 222/10.2 & \$594 & 28.9/6.51 & \$803 & 375/2.76 & \$196 & 69.0/0.79 \\
+P10 & \$3.53 & 0.128/0.045 & -- & -- & \$149.35 & 8.245/1.308 & -- & -- & \$30.56 & 9.470/0.367 \\
+\midrule
+Total & \$36.06 & 1.320/0.462 & \$1320.50 & 495.651/27.722 & \$1892.25 & 131.822/17.925 & \$4664.09 & 2175.679/16.021 & \$2127.03 & 715.554/14.969 \\
+\bottomrule
+\end{tabular}
+\par\medskip\begin{minipage}{0.95\linewidth}\footnotesize
+\textbf{Notes.} Superseded P10 costs were removed and totals recomputed from the displayed rows; P10 uses corrected-run Astra token pricing (excluding any separate web-search fee) and ProofCouncil logs, retains Humanize, and has no Siege or MerLean figure. Siege and MerLean totals cover P1--P9 only; corrected MerLean metering is unavailable. GPT-6 Astra: the submitted one-shot run with web search, OpenAI list prices applied to logged tokens, with Problems 1--9 matching the original metering and corrected P10 priced from logged tokens only. Siege: Claude Opus 5.5 (with a few Opus 5 sub-agent calls) tokens from the run log, priced at published rates and scaled to the Anthropic bill for the original run; only P1--P9 are included, among them P3, P4, P8 and P9, where the system declined to submit. Input counts cache reads and writes. ProofCouncil: the system\textquotesingle s own per-call cost log across OpenAI (GPT-6 Astra), Anthropic (Fable 5.1, Sonnet 5) and Google (Gemini 3.1 Pro); its Anthropic token counts omit cache traffic, so token totals understate. MerLean: OpenAI bill for the run window (metered tokens, list prices; GPT-6 Astra, GPT-6.1 Sol and web search), split across problems in proportion to MerLean\textquotesingle s own token log; per-problem figures are estimates. Humanize (Humanfia): Kimi K3 was self-served on 16 rented GPUs (about 400 GPU-hours, about \$1{,}960); the figures shown are the equivalent cost at DeepInfra\textquotesingle s Kimi K3 API price (\$2.85 input, \$0.285 cached input, \$14.25 output per million tokens, checked 2026-10-10). The run log records no cached tokens; the team\textquotesingle s server counters show about 6.8\% of input tokens served from prefix cache, applied uniformly across problems.
+\end{minipage}
+\end{table}

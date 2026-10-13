@@ -1,0 +1,3 @@
+1. OPEN: [GOAL] For every alpha>1, d>=2 and every sufficiently small fixed r in (0,1), the minimax L^2-risk inf_{hat f} sup_{f in F(alpha,r)} E||hat f - f||_{L^2(D)}^2 equals n^{-2alpha/(2alpha+d+3)} up to logarithmic factors (lower bound and matching upper bound) — round1_plan
+2. OPEN: Lower bound: the minimax risk is >= c n^{-2alpha/(2alpha+d+3)}, via Assouad perturbations oscillating at frequency 2^j in angular directions and smooth radially, for which ||u_{f+h}-u_f||_{L^2} ~ 2^{-2j}||h||_{L^2} — round1_plan
+3. OPEN: Upper bound: some estimator attains n^{-2alpha/(2alpha+d+3)} up to logs uniformly over F(alpha,r) (heuristic: linearized forward symbol ~ (1+|xi_radial|)/|xi|^2) — round1_plan

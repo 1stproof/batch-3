@@ -1,0 +1,1 @@
+1. OPEN: [GOAL] For every monoid P (integral, saturated, sharp) and every presheaf of abelian groups F on B_P^op, the morphism F -> R pi_* pi^{-1} F is a quasi-isomorphism (to be proved, or refuted by a counterexample) — round1_plan

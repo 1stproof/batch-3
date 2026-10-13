@@ -1,0 +1,91 @@
+# Minimal subscription example: solve one problem end-to-end on a Claude
+# subscription (the `claude` CLI) — NO API key, NO Docker.
+#
+# This is the smallest illustration of ProofCouncil's "subscription CLI" path:
+# a single node drives the headless `claude` CLI, which solves the problem and
+# writes answer.tex. Two things make the subscription path work:
+#   1. The subprocess sandbox pins HOME to the sandbox root by default, so a
+#      coding CLI can't find the subscription login. Setting HOME: "{env:HOME}"
+#      exposes the login to the CLI itself, while --safe-mode ignores user
+#      customizations and --tools Write removes all read/shell tools from the
+#      model. The worker can only create the requested files in its workspace.
+#   2. `--output-format stream-json` reports token usage per turn, so even a
+#      timed-out call is metered against max_tokens. A pure-subscription run
+#      spends $0 — the real limit is the token window, not USD.
+#
+# Run it:
+#   uv run python scripts/run_workflow.py --workflow claude_subscription_min \
+#     --problem "Prove that there are infinitely many primes."
+workflow: proofstack.agents.dag_workflow.DAGWorkflow
+description: Minimal single-node Claude subscription solver (no API key, no Docker).
+
+budget:
+  max_usd: 0.0           # pure subscription run spends $0 (no paid API calls)
+  max_tokens: 4000000    # token backstop (subscription window); see metered_tokens in events
+  max_tool_calls: 4
+  max_wallclock_s: 1800  # 30 min compute backstop
+
+inputs:
+  problem: ''
+  claude_model: sonnet   # sonnet | opus (serious) | haiku (cheap test)
+
+components:
+  claude_solver:
+    cache_enabled: true   # replay this node from disk on resume (durable runs)
+    cmd:
+      - claude
+      - -p                  # headless: read the piped prompt from stdin, print, exit
+      - --output-format
+      - stream-json         # per-turn usage; a timed-out node is still metered
+      - --verbose           # required with stream-json in -p mode
+      - --model
+      - "{claude_model}"
+      - --permission-mode
+      - acceptEdits         # auto-approve file writes (so it can create answer.tex)
+      - --safe-mode         # ignore user hooks, plugins, instructions, and MCP config
+      - --strict-mcp-config # do not load MCP servers from the real home
+      - --no-session-persistence
+      - --tools
+      - Write               # no Read, Bash, web, subagent, or other model tools
+    soft_timeout_s: 780     # 13 min: graceful completion nudge
+    sandbox:
+      backend: subprocess   # host, not Docker
+      timeout_s: 900        # 15 min: hard kill ceiling for this call
+      provider_keys: []     # do not let an API key override subscription login
+    env:
+      HOME: "{env:HOME}"    # point at real home so the CLI finds the subscription login
+    usage:
+      type: claude_json     # meter full token throughput (incl. cache) vs max_tokens
+    # Delivery mechanics are auto-appended: the model writes output files plus a
+    # done.json completion record using the Write tool, with no shell access.
+    contract: auto
+    completion_signal: file
+    prompt: |
+      You are a research mathematician. Solve the problem below with a complete,
+      rigorous proof, written as a self-contained LaTeX document.
+
+      Problem:
+      {problem}
+    input_schema:
+      problem: string
+      workspace: string
+    output_schema:
+      workspace: string
+      answer_tex: string
+      status: string
+    output_files:
+      answer_tex: answer.tex
+    done_outputs:
+      status: status
+
+dag:
+  nodes:
+    - id: solve
+      kind: agent
+      agent: proofstack.agents.configurable_cli.ConfigurableCLIAgent
+      name: claude_solver
+      inputs:
+        problem: $input.problem
+  outputs:
+    answer_tex: $node.solve.answer_tex
+    status: $node.solve.status

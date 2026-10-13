@@ -1,0 +1,417 @@
+
+
+The exact minimax rate for recovering the conductivity \(f\) in this Darcy problem is **not currently established** in the literature. The best rigorously proved upper bound is
+\[
+n^{-\frac{2(\alpha-1)}{2\alpha+2+d}}
+\]
+(up to logarithmic factors), and this is the conjectured minimax rate. However, no matching minimax lower bound for \(f\) is available in the cited references; only the prediction problem for \(u_f\) is known to be minimax optimal.
+
+Sources:
+- [iopscience.iop.org](https://google.iopscience.iop.org/article/10.1088/1361-6420/ab7d2a)
+- [exa.ai](https://exa.ai/library/publication/rj7jk1yjt53)
+- [arxiv.org](https://arxiv.org/html/2601.09007)
+- [arxiv.org](https://export.arxiv.org/pdf/1809.08818v3.pdf)
+- [arxiv.org](https://arxiv.org/html/2409.03417)
+
+Below is a compilable LaTeX document giving the rigorous upper bound and explaining why the minimax statement is presently open.
+
+```latex
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm,mathtools,hyperref}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\E}{\mathbb E}
+\newcommand{\1}{\mathbf 1}
+\newcommand{\F}{\mathcal F}
+\newcommand{\D}{D}
+\DeclareMathOperator{\divg}{div}
+
+\title{On the minimax rate for a Darcy conductivity inverse problem in Gaussian white noise}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We consider the inverse problem of estimating the conductivity \(f\) in
+\[
+\divg(f\nabla u_f)=1 \quad\text{in }D,\qquad u_f|_{\partial D}=0,
+\]
+from Gaussian white-noise observations of \(u_f\). We show that the best currently proved statistical upper bound for the \(L^2\)-risk is
+\[
+n^{-\frac{2(\alpha-1)}{2\alpha+2+d}}
+\]
+(up to logarithmic factors), under the natural smoothness assumption \(f\in C^\alpha\), \(\alpha>1\), and for conductivities sufficiently close to \(1\). We also explain that a matching minimax lower bound for \(f\) is not presently available in the literature; consequently the exact minimax rate is open. The conjectured minimax rate is the above upper bound.
+\end{abstract}
+
+\section{Problem and main conclusion}
+
+Let \(D\subset \R^d\), \(d\ge 2\), be the Euclidean unit ball. For \(f>0\), let \(u_f\) be the unique weak solution of
+\[
+\divg(f\nabla u_f)=1 \quad\text{in }D,\qquad u_f|_{\partial D}=0.
+\]
+We observe
+\[
+Y_n = u_f + n^{-1/2}\mathbb W,
+\]
+where \(\mathbb W\) is Gaussian white noise on \(L^2(D)\). For \(\alpha>1\) and fixed small \(r\in(0,1)\), consider
+\[
+\F(\alpha,r)
+=
+\left\{
+h\in C^\alpha(D): \|h-\1\|_{C^\alpha(D)}\le r
+\right\}.
+\]
+The minimax risk is
+\[
+R_n^*(\alpha,r)
+=
+\inf_{\hat f_n}
+\sup_{f_0\in \F(\alpha,r)}
+\E_{f_0}\bigl[\|\hat f_n-f_0\|_{L^2(D)}^2\bigr].
+\]
+
+The central rigorous conclusion is the following.
+
+\begin{theorem}[State of the art]
+\label{thm:state}
+Let \(\alpha>1\), and let \(r>0\) be sufficiently small. Then there exists an estimator \(\hat f_n\) such that, as \(n\to\infty\),
+\[
+\sup_{f_0\in\F(\alpha,r)}
+\E_{f_0}\bigl[\|\hat f_n-f_0\|_{L^2(D)}^2\bigr]
+\le
+C\, n^{-\frac{2(\alpha-1)}{2\alpha+2+d}}
+\]
+(up to logarithmic factors if the smoothness is unknown). Here \(C\) depends only on \(d,\alpha,r\).
+
+At present, no matching minimax lower bound for estimating \(f\) in \(L^2(D)\) is known in general for this model. The prediction problem,
+\[
+\inf_{\tilde u_n}
+\sup_{f_0\in\F(\alpha,r)}
+\E_{f_0}\bigl[\|\tilde u_n-u_{f_0}\|_{L^2(D)}^2\bigr],
+\]
+is known to have minimax rate
+\[
+n^{-\frac{2(\alpha+1)}{2\alpha+2+d}}.
+\]
+Thus the conjectured minimax rate for estimating \(f\) is
+\[
+R_n^*(\alpha,r)
+\asymp
+n^{-\frac{2(\alpha-1)}{2\alpha+2+d}}
+\]
+(up to logarithmic factors), but this is not presently a theorem in full generality.
+\end{theorem}
+
+The remainder gives a proof of the upper bound and discusses the lower-bound status.
+
+\section{Preliminaries}
+
+We collect the analytic facts needed for the proof.
+
+\begin{lemma}[Uniform ellipticity and well-posedness]
+\label{lem:wellposed}
+If \(f\in \F(\alpha,r)\) with \(r<1\), then
+\[
+1-r \le f(x)\le 1+r\qquad x\in D.
+\]
+Hence for every \(f\in\F(\alpha,r)\) the boundary value problem
+\[
+\divg(f\nabla u_f)=1\quad\text{in }D,\qquad u_f|_{\partial D}=0
+\]
+has a unique weak solution \(u_f\in H^1_0(D)\), and the solution depends continuously on \(f\).
+\end{lemma}
+
+\begin{proof}
+This is the standard Lax--Milgram theory for uniformly elliptic divergence-form equations. The uniform ellipticity follows from \(\|f-\1\|_{L^\infty}\le r<1\).
+\end{proof}
+
+\begin{lemma}[Elliptic regularity]
+\label{lem:reg}
+Let \(\alpha>1\). There exists \(M=M(d,\alpha,r)\) such that
+\[
+\sup_{f\in\F(\alpha,r)}\|u_f\|_{C^{\alpha+1}(\overline D)}
+\le M.
+\]
+In particular, the forward image
+\[
+\mathcal U(\alpha,r):=\{u_f:f\in\F(\alpha,r)\}
+\]
+is contained in a fixed Hölder--Zygmund ball \(C^{\alpha+1}(\overline D)\).
+\end{lemma}
+
+\begin{proof}
+Since \(f\in C^\alpha\) and \(f\ge 1-r>0\), the equation can be written locally in non-divergence form as
+\[
+f\Delta u_f + \nabla f\cdot \nabla u_f = 1.
+\]
+Because \(\alpha>1\), \(\nabla f\in C^{\alpha-1}\). Standard Schauder estimates for uniformly elliptic equations with Hölder continuous coefficients give \(u_f\in C^{\alpha+1}\), uniformly over the class \(\F(\alpha,r)\). See, for example, the classical theory in Ladyzhenskaya--Ural'tseva or Gilbarg--Trudinger. The boundary is smooth, and the boundary data are zero, so the estimate holds up to the boundary.
+\end{proof}
+
+\begin{lemma}[One-measurement stability for Darcy]
+\label{lem:stability}
+There exist constants \(r_0>0\) and \(C=C(d,\alpha,r_0)\) such that, for every \(r\le r_0\) and every \(f_1,f_2\in\F(\alpha,r)\),
+\[
+\|f_1-f_2\|_{L^2(D)}
+\le
+C\|u_{f_1}-u_{f_2}\|_{H^2(D)}.
+\]
+\end{lemma}
+
+\begin{proof}
+This is a standard stability estimate for the Darcy inverse problem with one interior measurement and known source. It follows by subtracting the two equations,
+\[
+\divg(f_1\nabla u_{f_1})=1,
+\qquad
+\divg(f_2\nabla u_{f_2})=1,
+\]
+and using that, for conductivities sufficiently close to \(1\), the linearized map
+\[
+h\mapsto v,\qquad
+\Delta v + \divg(h\nabla u_{\1})=0,
+\]
+has a stable inverse from \(H^2\) to \(L^2\). A complete proof is given in the PDE-constrained inverse problem literature; see for instance the stability verification for the divergence-form Darcy problem in
+\href{https://export.arxiv.org/pdf/1809.08818v3.pdf}{arxiv.org}
+and related references therein.
+\end{proof}
+
+\section{Estimation of \(u_f\) in \(H^2\)}
+
+The following lemma is the nonparametric regression ingredient.
+
+\begin{lemma}
+\label{lem:u-h2-rate}
+Let \(\beta>2\). Suppose \(u\) belongs to a bounded subset of \(C^\beta(D)\). In the white-noise model
+\[
+Y_n = u + n^{-1/2}\mathbb W,
+\]
+there exists an estimator \(\tilde u_n\) such that
+\[
+\sup_{u\in C^\beta,\ \|u\|_{C^\beta}\le M}
+\E\bigl[\|\tilde u_n-u\|_{H^2(D)}^2\bigr]
+\le
+C n^{-\frac{2(\beta-2)}{2\beta+d}}.
+\]
+If \(\beta\) is unknown, the same rate holds up to logarithmic factors.
+\end{lemma}
+
+\begin{proof}
+Use a compactly supported wavelet basis adapted to the smooth domain \(D\). Let \(P_J\) denote the \(L^2\)-orthogonal projection onto wavelet levels \(j\le J\). Define
+\[
+\tilde u_n=P_JY_n.
+\]
+Write
+\[
+\tilde u_n-u = P_J(u+n^{-1/2}\mathbb W)-u
+= -(I-P_J)u + n^{-1/2}P_J\mathbb W.
+\]
+
+For \(u\in C^\beta=B_{\infty,\infty}^\beta\), the wavelet coefficients satisfy
+\[
+|\langle u,\psi_{j,k}\rangle|
+\lesssim
+2^{-j(\beta+d/2)}.
+\]
+Using the wavelet characterization of \(H^2\),
+\[
+\|v\|_{H^2}^2
+\asymp
+\sum_{j,k}2^{4j}|\langle v,\psi_{j,k}\rangle|^2,
+\]
+we obtain the bias bound
+\[
+\|(I-P_J)u\|_{H^2}^2
+\lesssim
+\sum_{j>J}2^{4j}2^{jd}2^{-2j(\beta+d/2)}
+=
+\sum_{j>J}2^{-2j(\beta-2)}
+\lesssim
+2^{-2J(\beta-2)}.
+\]
+
+For the stochastic term,
+\[
+\E\|P_J\mathbb W\|_{H^2}^2
+\asymp
+\sum_{j\le J}2^{4j}2^{jd}
+\lesssim
+2^{J(d+4)}.
+\]
+Therefore
+\[
+\E\|\tilde u_n-u\|_{H^2}^2
+\lesssim
+2^{-2J(\beta-2)} + n^{-1}2^{J(d+4)}.
+\]
+Choosing
+\[
+2^{J_n}\asymp n^{1/(2\beta+d)}
+\]
+balances the two terms and gives
+\[
+\E\|\tilde u_n-u\|_{H^2}^2
+\lesssim
+n^{-\frac{2(\beta-2)}{2\beta+d}}.
+\]
+If \(\beta\) is unknown, a standard Lepski or thresholding procedure yields the same rate up to logarithmic factors.
+\end{proof}
+
+Applying Lemma~\ref{lem:u-h2-rate} with \(\beta=\alpha+1\) gives the following.
+
+\begin{corollary}
+\label{cor:u-h2}
+There exists an estimator \(\tilde u_n\) such that
+\[
+\sup_{f_0\in\F(\alpha,r)}
+\E_{f_0}\bigl[\|\tilde u_n-u_{f_0}\|_{H^2(D)}^2\bigr]
+\le
+C n^{-\frac{2(\alpha-1)}{2\alpha+2+d}},
+\]
+up to logarithmic factors if \(\alpha\) is unknown.
+\end{corollary}
+
+\section{Upper bound for estimating \(f\)}
+
+We now construct an estimator of \(f\) from the estimator \(\tilde u_n\).
+
+Let
+\[
+G:\F(\alpha,r)\to H^2(D),\qquad G(f)=u_f.
+\]
+By Lemma~\ref{lem:reg} and standard compactness arguments, \(G(\F(\alpha,r))\) is relatively compact in \(H^2(D)\). Define \(\hat f_n\in\F(\alpha,r)\) as an approximate minimizer of
+\[
+f\mapsto \|u_f-\tilde u_n\|_{H^2(D)}.
+\]
+More precisely, choose \(\hat f_n\) such that
+\[
+\|u_{\hat f_n}-\tilde u_n\|_{H^2}
+\le
+\inf_{f\in\F(\alpha,r)}\|u_f-\tilde u_n\|_{H^2}
++ n^{-1}.
+\]
+
+\begin{theorem}[Achievable rate]
+\label{thm:upper}
+Let \(\alpha>1\) and let \(r>0\) be sufficiently small. The estimator \(\hat f_n\) satisfies
+\[
+\sup_{f_0\in\F(\alpha,r)}
+\E_{f_0}\bigl[\|\hat f_n-f_0\|_{L^2(D)}^2\bigr]
+\le
+C n^{-\frac{2(\alpha-1)}{2\alpha+2+d}},
+\]
+up to logarithmic factors.
+\end{theorem}
+
+\begin{proof}
+Fix \(f_0\in\F(\alpha,r)\). By the approximate minimizing property,
+\[
+\|u_{\hat f_n}-\tilde u_n\|_{H^2}
+\le
+\|u_{f_0}-\tilde u_n\|_{H^2}+n^{-1}.
+\]
+Therefore
+\[
+\|u_{\hat f_n}-u_{f_0}\|_{H^2}
+\le
+\|u_{\hat f_n}-\tilde u_n\|_{H^2}
++
+\|\tilde u_n-u_{f_0}\|_{H^2}
+\le
+2\|\tilde u_n-u_{f_0}\|_{H^2}+n^{-1}.
+\]
+Using the stability estimate Lemma~\ref{lem:stability},
+\[
+\|\hat f_n-f_0\|_{L^2}
+\le
+C\|u_{\hat f_n}-u_{f_0}\|_{H^2}
+\le
+C\left(2\|\tilde u_n-u_{f_0}\|_{H^2}+n^{-1}\right).
+\]
+Squaring and taking expectation,
+\[
+\E_{f_0}\|\hat f_n-f_0\|_{L^2}^2
+\le
+C\E_{f_0}\|\tilde u_n-u_{f_0}\|_{H^2}^2
++
+C n^{-2}.
+\]
+Taking the supremum over \(f_0\in\F(\alpha,r)\) and applying Corollary~\ref{cor:u-h2} yields the result.
+\end{proof}
+
+\section{Lower bounds and minimax status}
+
+For the prediction problem, the minimax rate is known. In the present notation,
+\[
+\inf_{\tilde u_n}
+\sup_{f_0\in\F(\alpha,r)}
+\E_{f_0}\bigl[\|\tilde u_n-u_{f_0}\|_{L^2(D)}^2\bigr]
+\asymp
+n^{-\frac{2(\alpha+1)}{2\alpha+2+d}}.
+\]
+This follows from the PDE-constrained regression theory for divergence-form equations; see
+\href{https://exa.ai/library/publication/rj7jk1yjt53}{exa.ai}
+and
+\href{https://export.arxiv.org/pdf/1809.08818v3.pdf}{arxiv.org}.
+
+For the recovery of \(f\) itself, however, a matching lower bound is not available in the cited literature. In particular, the Bayesian inverse-problem analysis in
+\href{https://google.iopscience.iop.org/article/10.1088/1361-6420/ab7d2a}{iopscience.iop.org}
+explicitly notes that no matching lower bounds are known for the conductivity recovery rates. Likewise, the later computational/statistical analysis in
+\href{https://arxiv.org/html/2601.09007}{arxiv.org}
+obtains the same upper rate and notes that its interpretation as a minimax rate is heuristic.
+
+Thus, at present,
+\[
+R_n^*(\alpha,r)
+\le
+C n^{-\frac{2(\alpha-1)}{2\alpha+2+d}}
+\]
+is rigorously known, while the reverse inequality remains open. The conjectured minimax rate is
+\[
+R_n^*(\alpha,r)
+\asymp
+n^{-\frac{2(\alpha-1)}{2\alpha+2+d}}
+\]
+up to logarithmic factors.
+
+\begin{remark}
+If future work proves a matching lower bound for the conductivity recovery problem, then Theorem~\ref{thm:state} would upgrade from ``best known upper bound'' to the exact minimax rate.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{IOP}
+Consistency of Bayesian inference with Gaussian process priors in an elliptic inverse problem.
+\href{https://google.iopscience.iop.org/article/10.1088/1361-6420/ab7d2a}{iopscience.iop.org}.
+
+\bibitem{NSS}
+Convergence rates for penalized least squares estimators in PDE constrained regression problems.
+\href{https://export.arxiv.org/pdf/1809.08818v3.pdf}{arxiv.org}.
+
+\bibitem{MAP}
+Convergence rates for the MAP estimator in PDE-regression models with random design.
+\href{https://arxiv.org/html/2409.03417}{arxiv.org}.
+
+\bibitem{GLOBAL}
+Global polynomial-time estimation in statistical nonlinear inverse problems via generalized stability.
+\href{https://arxiv.org/html/2601.09007}{arxiv.org}.
+
+\bibitem{EXA}
+Convergence rates for penalized least squares estimators in PDE constrained regression problems.
+\href{https://exa.ai/library/publication/rj7jk1yjt53}{exa.ai}.
+
+\end{thebibliography}
+
+\end{document}
+```

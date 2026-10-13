@@ -1,0 +1,20 @@
+Review complete. Findings written to `.humanize/rlcr/2026-10-03_01-18-59/round-0-review-result.md` (248 lines), goal tracker updated (mutable section only). Summary:
+
+## Verification performed
+- Read plan, problem, all round files, full `solution.tex`, worker scratch; recompiled log (6 pp, clean — AC-5 OK).
+- Independently re-derived every SK channel computation in Prop 3.3 and Lemma 1.2 from the paper's own axioms, twice, plus a scratch-file audit (`double3.py` hard-codes the desired [E,F] at line 33 and never derives it from its implemented pairing — the "exact symbolic verification" claim is inaccurate).
+
+## Blocking findings (mainline path)
+- **A1 (fatal):** Proposition 3.3, the *only* nontrivial quantum-double content, is unsupported: Δ²(E)'s first tensorand is mis-copied (should be E, not EK); S⁻¹(F) = −FK is mis-stated as −FK⁻¹; honest channel evaluation of the printed (SK)+(PA) gives **FE = EF + θK⁻¹**, not (H2). The "global sign convention E ↔ −F" patch is void ([E,F] is invariant under the double negation). The repair is a convention fix: the S-version cross formula yields exactly [E,F] = θ(K−K⁻¹) = (H2) — verified explicitly.
+- **A2:** Lemma 1.2 ("grouplikes commute across the double") is false — cross-conjugation φ(E_r, K_j) = q^{a_r(j)}K_jE_r; breaks Definition 2.1(C) and all of §4's Cartan/Ω bookkeeping (the quotient anti-identifies the Cartan lattices; the ω_i centrality and rank analysis is never done).
+- **A3:** Definition 2.1 leaves (MX) literally undefined ("(diagonal arc factors)_{arc form}" placeholder); S_n(B*) is identified with the bigon algebra only via "the standard construction" (AC-2 negative test verbatim); Prop 3.1 patches reciprocal exponents with "our q is the inverse of the RTT parameter".
+- **A4:** Theorem 4.2 concludes circularly via Lemma 4.1; Lemma 4.2 states one grading and proves with the opposite one (as stated, Υ sends every ω_i ↦ 1, so cannot be an isomorphism).
+
+Full directive Round-1 implementation plan (D1–D4) is in the review file.
+
+```
+ACs: 1/5 fully met (AC-5) | Forgotten items: 0 | Unjustified deferrals: 2
+Capability anchor: N/A | Dependency gaps: 0 | Scope drift: no
+```
+
+**Mainline Progress Verdict: STALLED**

@@ -1,0 +1,295 @@
+```latex
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\pr}{\mathrm{pr}}
+
+\title{A negative answer for symplectic normal crossings divisors}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We show that the answer is negative. There is a closed symplectic
+$4$-manifold with a symplectic simple normal crossings divisor consisting of
+two transversely intersecting symplectic surfaces whose oriented intersection
+is negative. No almost complex structure tamed by the symplectic form can make
+both surfaces pseudoholomorphic at their intersection. Moreover, the sign of
+this crossing is invariant under any homotopy of symplectic forms for which
+the two surfaces remain symplectic, so the obstruction persists after the
+deformation allowed in the question.
+\end{abstract}
+
+\section{The oriented crossing obstruction}
+
+We use the standard meaning of a symplectic simple normal crossings divisor:
+it is a finite union of embedded symplectic hypersurfaces intersecting
+transversely, with all intersections symplectic. Positive oriented
+intersections are not part of this definition.
+
+\begin{lemma}\label{lem:tame-orientation}
+Let $(V,\omega)$ be a symplectic vector space and let $J$ be an
+$\omega$-tame complex structure on $V$.
+\begin{enumerate}
+\item The orientation induced by $\omega^{\dim V/2}$ agrees with the complex
+orientation induced by $J$.
+\item If $L\subset V$ is a $J$-invariant real $2$-plane, then the
+orientation induced by $\omega|_L$ agrees with the $J$-complex orientation
+of $L$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Choose a $J$-linear identification $V\cong \C^n$ and let $\omega_0$ be the
+standard constant symplectic form compatible with $J$. Define the positive
+definite inner product
+\[
+g_0(u,v)=\omega_0(u,Jv).
+\]
+There is a unique $g_0$-skew-adjoint endomorphism $A$ such that
+\[
+\omega(u,v)=g_0(Au,v).
+\]
+Tameness of $J$ gives, for every $v\neq 0$,
+\[
+g_0(-JAv,v)=g_0(Av,Jv)=\omega(v,Jv)>0.
+\]
+Set
+\[
+A_t=(1-t)A+tJ,\qquad
+\omega_t(u,v)=g_0(A_tu,v).
+\]
+Then
+\[
+g_0(-JA_tv,v)
+=(1-t)g_0(-JAv,v)+t\,g_0(v,v)>0
+\]
+for every $v\neq0$. In particular $A_t$ is invertible, so $\omega_t$ is
+symplectic for every $t$. The sign of $\omega_t^n$ is therefore constant.
+At $t=1$, $\omega_1=\omega_0$ induces the $J$-complex orientation. Hence
+$\omega=\omega_0$ also induces the $J$-complex orientation.
+
+For the second statement, if $v\in L\setminus\{0\}$, then $(v,Jv)$ is a
+complex-oriented basis of $L$, and
+\[
+\omega(v,Jv)>0.
+\]
+Thus the symplectic orientation of $L$ is its $J$-complex orientation.
+\end{proof}
+
+\begin{lemma}\label{lem:positive-crossing}
+Let $(V,\omega)$ be a four-dimensional symplectic vector space. Suppose that
+$L_1,L_2\subset V$ are transverse $J$-invariant $2$-planes for an
+$\omega$-tame complex structure $J$. Then the orientation of
+\[
+L_1\oplus L_2,
+\]
+where each $L_i$ is oriented by $\omega|_{L_i}$, agrees with the orientation
+of $V$ induced by $\omega^2$.
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:tame-orientation}, the symplectic orientation of each
+$L_i$ agrees with its $J$-complex orientation. Hence the product orientation
+on $L_1\oplus L_2$ is the $J$-complex orientation of $V$. By the first part
+of Lemma~\ref{lem:tame-orientation}, this agrees with the orientation
+induced by $\omega^2$.
+\end{proof}
+
+\section{Invariance of the crossing sign}
+
+Let $(M,\omega)$ be a symplectic $4$-manifold, and let $D_1,D_2$ be two
+transverse symplectic surfaces meeting at $x$. Orient each $T_xD_i$ by
+$\omega|_{T_xD_i}$ and orient $T_xM$ by $\omega^2$. Define the oriented
+crossing sign
+\[
+\epsilon_x(D_1,D_2;\omega)\in\{\pm1\}
+\]
+to be $+1$ if the direct sum orientation on
+\[
+T_xD_1\oplus T_xD_2=T_xM
+\]
+agrees with the $\omega^2$-orientation, and $-1$ otherwise.
+
+\begin{lemma}\label{lem:homotopy-invariance}
+Let $\omega_t$, $0\le t\le1$, be a smooth path of symplectic forms on $M$.
+Suppose that the fixed surfaces $D_1$ and $D_2$ are transverse and are
+$\omega_t$-symplectic for every $t$. Then
+\[
+\epsilon_x(D_1,D_2;\omega_t)
+\]
+is independent of $t$.
+\end{lemma}
+
+\begin{proof}
+Because $\omega_t|_{T_xD_i}$ is nondegenerate for every $t$, its induced
+orientation on the fixed oriented-plane set $T_xD_i$ cannot change along the
+connected interval $[0,1]$. Similarly, $\omega_t^2$ is nowhere zero, so its
+induced orientation on $T_xM$ cannot change. Therefore the comparison
+between the direct sum orientation and the ambient orientation is constant.
+\end{proof}
+
+\section{An explicit negative crossing}
+
+Let $S^2$ be the unit sphere with its standard oriented area form $\sigma$.
+Let
+\[
+f\colon S^2\longrightarrow S^2,\qquad f(x)=-x
+\]
+be the antipodal map. It reverses orientation, and in fact
+\[
+f^*\sigma=-\sigma.
+\]
+Choose $0<a<1$ and equip
+\[
+M=S^2\times S^2
+\]
+with the product symplectic form
+\[
+\omega=\pr_1^*\sigma+a\,\pr_2^*\sigma.
+\]
+
+Fix $q\in S^2$, put $p=-q$, and define
+\[
+D_1=S^2\times\{q\},
+\qquad
+D_2=\Gamma_f=\{(x,f(x)):x\in S^2\}.
+\]
+
+\begin{proposition}\label{prop:example}
+The divisor $D=D_1\cup D_2$ is a symplectic simple normal crossings divisor.
+Its two branches meet transversely at exactly one point, and at that point
+\[
+\epsilon_x(D_1,D_2;\omega)=-1.
+\]
+\end{proposition}
+
+\begin{proof}
+The restriction of $\omega$ to $D_1$ is $\sigma$, so $D_1$ is symplectic.
+For $D_2$, let
+\[
+F(x)=(x,f(x)).
+\]
+Then
+\[
+F^*\omega=\sigma+a f^*\sigma=(1-a)\sigma,
+\]
+which is an area form because $0<a<1$. Thus $D_2$ is symplectic.
+
+The two surfaces intersect only when $f(x)=q$. Since $f$ is a diffeomorphism,
+this happens at the unique point
+\[
+x=(p,q).
+\]
+At this point,
+\[
+T_xD_1=T_pS^2\oplus 0,
+\qquad
+T_xD_2=\{(v,df_p(v)):v\in T_pS^2\}.
+\]
+Because $df_p$ is invertible, these planes intersect only in $0$, so the
+crossing is transverse. It is therefore an ordinary simple normal crossings
+crossing.
+
+Choose a $\sigma$-positive basis $(e_1,e_2)$ of $T_pS^2$, and write
+\[
+\bar e_i=df_p(e_i).
+\]
+Since $f$ reverses orientation,
+\[
+\sigma_q(\bar e_1,\bar e_2)<0.
+\]
+A symplectically positive basis of $T_xD_1$ is
+\[
+B_1=\bigl((e_1,0),(e_2,0)\bigr),
+\]
+and a symplectically positive basis of $T_xD_2$ is
+\[
+B_2=\bigl((e_1,\bar e_1),(e_2,\bar e_2)\bigr).
+\]
+Replacing $(e_i,\bar e_i)$ by $(e_i,\bar e_i)-(e_i,0)=(0,\bar e_i)$ does not
+change the orientation of the concatenated basis. Hence the orientation of
+$B_1\cup B_2$ equals that of
+\[
+\bigl((e_1,0),(e_2,0),(0,\bar e_1),(0,\bar e_2)\bigr).
+\]
+Since $(\bar e_1,\bar e_2)$ is negative for the orientation of the second
+sphere, this basis is negative for the product orientation
+$\sigma\wedge\sigma$. Finally,
+\[
+\omega^2=2a\,\pr_1^*\sigma\wedge\pr_2^*\sigma
+\]
+induces precisely the product orientation. Therefore
+\[
+\epsilon_x(D_1,D_2;\omega)=-1.
+\]
+\end{proof}
+
+\section{Conclusion}
+
+\begin{theorem}\label{thm:negative-answer}
+For the example $(M,D,\omega)$ above, there is no symplectic form $\omega'$
+connected to $\omega$ through a path of cohomologous symplectic forms along
+which $D$ remains a symplectic simple normal crossings divisor, and no
+$\omega'$-tame almost complex structure $J$, such that near the crossing
+point there are $J$-holomorphic local coordinates $(z_1,z_2)$ with
+\[
+D=\{z_1z_2=0\}.
+\]
+\end{theorem}
+
+\begin{proof}
+Suppose such a path $\omega_t$ and such an $\omega'=\omega_1$-tame almost
+complex structure $J$ existed. At the unique crossing point $x$, the two
+branches would be $\{z_1=0\}$ and $\{z_2=0\}$, possibly after interchanging
+the coordinates. Because $z_i$ is $J$-holomorphic,
+\[
+dz_i\circ J=i\,dz_i.
+\]
+Consequently
+\[
+T_x\{z_i=0\}=\ker dz_i(x)
+\]
+is $J$-invariant. Thus both $T_xD_1$ and $T_xD_2$ are $J$-invariant
+$2$-planes. Lemma~\ref{lem:positive-crossing} then gives
+\[
+\epsilon_x(D_1,D_2;\omega')=+1.
+\]
+Interchanging the two branches does not change the sign, since each branch
+has real dimension $2$.
+
+On the other hand, $D_1$ and $D_2$ remain $\omega_t$-symplectic for every
+$t$. By Proposition~\ref{prop:example},
+\[
+\epsilon_x(D_1,D_2;\omega_0)=-1,
+\]
+and Lemma~\ref{lem:homotopy-invariance} therefore gives
+\[
+\epsilon_x(D_1,D_2;\omega')=-1.
+\]
+This is a contradiction.
+\end{proof}
+
+Thus the answer to the question is \textbf{no}. The cohomological condition
+on the deformation plays no role in the argument: the crossing sign is
+already invariant under any homotopy of symplectic forms for which the two
+branches remain symplectic.
+
+\end{document}
+```

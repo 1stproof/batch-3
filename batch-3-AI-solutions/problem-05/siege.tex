@@ -1,0 +1,292 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{enumitem}
+\usepackage[pdfauthor={},pdftitle={Solution},pdfcreator={},pdfproducer={}]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{question}{Question}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\bp}{\boxplus}
+\DeclareMathOperator{\Ln}{L}
+
+\title{Problem 5 -- Siege}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{The problem}
+
+\begin{question}\label{ques:main}
+Let $\HH$ be a hyperfield with multivalued addition operator $\bp$. Let $x,y,z\in\HH$ be elements. Suppose that $0\in x\bp y\bp z$. Does it then follow that
+\[
+0\in x^3\bp y^3\bp z^3\bp -xyz\bp -xyz\bp -xyz\,?
+\]
+\end{question}
+
+\section{The result}
+
+The answer is \emph{no}.
+
+\begin{theorem}\label{thm:main}
+There is a hyperfield $\HH$ with elements $x,y,z$ such that
+\[
+0\in x\bp y\bp z
+\qquad\text{but}\qquad
+0\notin x^3\bp y^3\bp z^3\bp(-xyz)\bp(-xyz)\bp(-xyz).
+\]
+One may take $\HH$ infinite, with multiplicative group $\HH^\times=\langle t\rangle\cong\Z$ infinite cyclic, and $x=t$, $y=t^4$, $z=1$.
+\end{theorem}
+
+\paragraph{Conventions.} ``Hyperfield'' is meant in the standard sense of Krasner \cite{Kr57,Kr83}; see also \cite{Viro,BB}. Thus a hyperfield is a set $\HH$ with a distinguished element $0$ and the following structure:
+\begin{itemize}[nosep]
+\item a commutative, associative hyperoperation $\bp$ with nonempty values, for which $0$ is neutral;
+\item unique negatives: for each $a$ there is exactly one $b$, denoted $-a$, with $0\in a\bp b$;
+\item reversibility: $c\in a\bp b\Rightarrow a\in c\bp(-b)$;
+\item a multiplication making $\HH\setminus\{0\}$ an abelian group, with $0\cdot h=h\cdot 0=0$ and $w(a\bp b)=wa\bp wb$.
+\end{itemize}
+Sums of sets are taken elementwise, $A\bp B=\bigcup_{a\in A,\,b\in B}a\bp b$, and $a\bp B:=\{a\}\bp B$. By associativity, iterated sums do not depend on the bracketing (nor, by commutativity, on the order of the summands).
+
+\section{Overview of the proof}
+
+When $\HH$ is a quotient $F/K^\times$ of a field, the answer is yes, because of the identity $X^3+Y^3+Z^3-3XYZ=(X+Y+Z)(X^2+Y^2+Z^2-XY-YZ-ZX)$ (Remark~\ref{rem:quotient}). A counterexample must therefore come from a hyperfield that is not of this kind, and we use hyperfields built from projective planes.
+
+Given an abelian group $G$ acting regularly on the points of a projective plane by collineations, with at least five points on each line, set $\HH=G\cup\{0\}$, $a\bp a=\{0,a\}$ and $a\bp b=\Ln(a,b)\setminus\{a,b\}$ for $a\neq b$, where $\Ln(a,b)$ is the line through $a$ and $b$. This is a hyperfield in which every element is its own negative (Proposition~\ref{prop:hyperfield}); a construction of this kind appears in the work of Connes and Consani \cite{CC}. In such an $\HH$, with $z=1$, the hypothesis $0\in x\bp y\bp 1$ holds as soon as $1,x,y$ are distinct and collinear, while the six-term sum equals $(\mathcal M\cup\{0\})\bp 1$, where $\mathcal M$ is the line through $x^3,y^3,xy$ (if these are distinct). This sum avoids $0$ whenever $1\notin\mathcal M$ (Lemma~\ref{lem:sixterm}). So we need a plane in which $1,x,y$ are collinear but $1$ is not on the line through $x^3,y^3,xy$; by the remark above, no quotient of a field can serve here.
+
+Such a plane is obtained on the point set $\Z$ (written additively, so that $n$ stands for $t^n$) from an infinite perfect difference set $D\subset\Z$, whose translates $g+D$ serve as lines (Lemma~\ref{lem:plane}). A greedy construction (Lemma~\ref{lem:diffset}), in the spirit of M.~Hall's infinite cyclic planes \cite{Hall}, produces such a $D$ containing the seed $\{0,1,4,103,105,112\}$ and not containing $100$. Then $0,1,4$ lie on the line $D$, the points $3,12,5$ (corresponding to $x^3,y^3,xy$) lie on the line $-100+D$, and $0$ does not.
+
+All arguments below are given in full; the only external input is the definition of a hyperfield.
+
+\section{Hyperfields from projective planes with a regular abelian group}\label{sec:planes}
+
+Let $G$ be an abelian group, written multiplicatively. Consider an incidence structure with point set $G$ and a family of subsets of $G$, called \emph{lines}, satisfying:
+\begin{enumerate}[label=\textup{(P\arabic*)},nosep]
+\item\label{P1} any two distinct points lie on exactly one line;
+\item\label{P2} any two distinct lines meet;
+\item\label{P3} every line has at least $5$ points;
+\item\label{P4} for every $w\in G$, multiplication by $w$ maps lines to lines.
+\end{enumerate}
+By \ref{P1} two distinct lines have at most one common point, and by \ref{P2} they have at least one; so two distinct lines meet in exactly one point. For distinct points $a,b$ we write $\Ln(a,b)$ for the line through $a$ and $b$.
+
+\begin{definition}\label{def:H}
+Put $\HH=G\cup\{0\}$. Let $0$ be neutral: $0\bp a=a\bp 0=\{a\}$ for all $a\in\HH$ (so $0\bp0=\{0\}$). For $a,b\in G$ set
+\[
+a\bp a=\{0,a\},\qquad a\bp b=\Ln(a,b)\setminus\{a,b\}\quad(a\neq b).
+\]
+Multiplication is the group law on $G$, extended by $0\cdot h=h\cdot 0=0$.
+\end{definition}
+
+\begin{proposition}\label{prop:hyperfield}
+$\HH$ is a hyperfield, and $-a=a$ for every $a\in\HH$.
+\end{proposition}
+
+\begin{proof}
+\emph{Commutativity and nonempty values.} Commutativity is clear. For $a\neq b$ in $G$, the set $a\bp b$ has at least $3$ points by \ref{P3}, so every value is nonempty.
+
+\emph{Negatives.} Let $a\neq0$. For $b\in G$ with $b\neq a$ we have $a\bp b\subseteq G$, so $0\notin a\bp b$. Also $0\bp a=\{a\}$ does not contain $0$, while $0\in a\bp a$. Hence $a$ is the unique negative of $a$. The element $0$ is its own unique negative.
+
+\emph{Reversibility.} Since $-b=b$, we must show $c\in a\bp b\Rightarrow a\in c\bp b$.
+\begin{itemize}[nosep]
+\item If $a=0$, then $c=b$ and $0\in b\bp b$; this includes the case $b=0$.
+\item If $b=0$, then $c=a$ and $a\in a\bp 0$.
+\item If $a=b\neq0$, then $c\in\{0,a\}$. If $c=0$, then $a\in 0\bp a$. If $c=a$, then $a\in a\bp a$.
+\item If $a\neq b$, both nonzero, then $c\in\Ln(a,b)\setminus\{a,b\}$. Since $c\neq b$, $\Ln(c,b)=\Ln(a,b)$, so $c\bp b=\Ln(a,b)\setminus\{c,b\}$. This set contains $a$, because $a\neq c$ and $a\neq b$.
+\end{itemize}
+
+\emph{Distributivity.} The case $w=0$ is trivial, so let $w\in G$. Multiplication by $w$ is a bijection of $G$ that maps lines to lines by \ref{P4}. Hence $w\Ln(a,b)$ is a line through $wa$ and $wb$, i.e.\ $w\Ln(a,b)=\Ln(wa,wb)$, and so $w(\Ln(a,b)\setminus\{a,b\})=\Ln(wa,wb)\setminus\{wa,wb\}$. Also $w\{0,a\}=\{0,wa\}=wa\bp wa$, and the cases involving $0$ are trivial.
+
+\emph{Associativity.} If one of $a,b,c$ is $0$, both $(a\bp b)\bp c$ and $a\bp(b\bp c)$ equal the sum of the other two, because $0$ is neutral.
+
+Now let $a,b,c$ be nonzero and put $S(a,b,c):=(a\bp b)\bp c$. We show that $S$ depends only on the multiset $\{a,b,c\}$. Then, using commutativity,
+\[
+a\bp(b\bp c)=(b\bp c)\bp a=S(b,c,a)=S(a,b,c)=(a\bp b)\bp c.
+\]
+\begin{enumerate}[label=\textup{Case \arabic*.},ref=\arabic*,leftmargin=*]
+\item\label{case1} $a=b=c$. Then $S=(0\bp a)\cup(a\bp a)=\{0,a\}$.
+
+\item\label{case2} The multiset is $\{a,a,c\}$ with $a\neq c$; let $L=\Ln(a,c)$. Up to commutativity there are two orderings.
+\begin{itemize}[nosep]
+\item $(a\bp a)\bp c=(0\bp c)\cup(a\bp c)=\{c\}\cup(L\setminus\{a,c\})=L\setminus\{a\}$.
+\item $(a\bp c)\bp a=\bigcup_{p\in L\setminus\{a,c\}}(p\bp a)=\bigcup_{p\in L\setminus\{a,c\}}(L\setminus\{p,a\})$. The point $a$ lies in none of these sets. A point $q\in L\setminus\{a\}$ is missing from $L\setminus\{p,a\}$ only when $p=q$, and there are at least $3$ choices of $p$. So the union is $L\setminus\{a\}$.
+\end{itemize}
+
+\item\label{case3} $a,b,c$ are distinct and lie on a common line $L$. Here $a\bp b=L\setminus\{a,b\}$, which contains $c$. Then
+\[
+S=(c\bp c)\cup\bigcup_{p\in L\setminus\{a,b,c\}}(L\setminus\{p,c\})=\{0,c\}\cup(L\setminus\{c\})=L\cup\{0\},
+\]
+where we used that $L\setminus\{a,b,c\}$ has at least $2$ points, by \ref{P3}. The result is symmetric in $a,b,c$.
+
+\item\label{case4} $a,b,c$ are not collinear. We claim
+\[
+S=G\setminus\bigl(\Ln(a,b)\cup\Ln(b,c)\cup\Ln(a,c)\bigr),
+\]
+which is symmetric in $a,b,c$. By definition,
+\[
+S=\bigcup_{p\in\Ln(a,b)\setminus\{a,b\}}\bigl(\Ln(p,c)\setminus\{p,c\}\bigr);
+\]
+here $p\neq c$ because $c\notin\Ln(a,b)$. Also $\Ln(p,c)\neq\Ln(a,b)$, so $\Ln(p,c)\cap\Ln(a,b)=\{p\}$.
+\begin{itemize}[nosep]
+\item $0\notin S$, and $c\notin S$.
+\item \emph{Points of $\Ln(a,b)$ are not in $S$} (including $a$ and $b$): such a point lies in $\Ln(p,c)$ only if it equals $p$, and $p$ is excluded.
+\item \emph{Points $q\in\Ln(a,c)\setminus\{a,c\}$ are not in $S$.} If $q\in\Ln(p,c)\setminus\{p,c\}$, then $\Ln(p,c)=\Ln(q,c)=\Ln(a,c)$. So $p\in\Ln(a,c)\cap\Ln(a,b)=\{a\}$, since these lines are distinct; this contradicts $p\neq a$.
+\item \emph{Points $q\in\Ln(b,c)\setminus\{b,c\}$ are not in $S$}, by the same argument with $b$ in place of $a$.
+\item \emph{Every other point $q$ of $G$ is in $S$.} Such a $q$ lies on none of the three lines. The lines $\Ln(q,c)$ and $\Ln(a,b)$ are distinct because $c\notin\Ln(a,b)$, so by \ref{P2} they meet in a point $p$. Then $p\neq a$, since otherwise $q\in\Ln(a,c)$; likewise $p\neq b$. Also $p\neq q$, since $q\notin\Ln(a,b)$, and $p\neq c$. So $q\in\Ln(p,c)\setminus\{p,c\}$ with $p\in\Ln(a,b)\setminus\{a,b\}$, hence $q\in S$.
+\end{itemize}
+\end{enumerate}
+These cases cover every multiset of three nonzero elements, so $\bp$ is associative.
+\end{proof}
+
+\section{The six-term sum in such a hyperfield}
+
+\begin{lemma}\label{lem:sixterm}
+Let $\HH$ be as in Section~\ref{sec:planes}, and let $x,y\in G$ satisfy:
+\begin{enumerate}[label=\textup{(\roman*)},nosep]
+\item the points $1,x,y$ are distinct and collinear;
+\item the points $x^3,y^3,xy$ are distinct and lie on a line $\mathcal M$ with $1\notin\mathcal M$.
+\end{enumerate}
+Then with $z=1$ we have $0\in x\bp y\bp z$, but $0\notin x^3\bp y^3\bp z^3\bp(-xyz)\bp(-xyz)\bp(-xyz)$.
+\end{lemma}
+
+\begin{proof}
+\emph{The hypothesis holds.} Since $1,x,y$ are distinct and collinear, $1\in\Ln(x,y)\setminus\{x,y\}=x\bp y$. Hence $(x\bp y)\bp 1\supseteq 1\bp 1\ni 0$.
+
+\emph{The conclusion fails.} Every element is its own negative (Proposition~\ref{prop:hyperfield}), so $-xyz=xy$; also $z^3=1$. The six-term sum is therefore $T\bp 1$, where
+\[
+T:=x^3\bp y^3\bp xy\bp xy\bp xy .
+\]
+First, $xy\bp xy\bp xy=\{0,xy\}\bp xy=\{xy\}\cup\{0,xy\}=\{0,xy\}$. So
+\[
+T=(x^3\bp y^3)\bp\{0,xy\}=(x^3\bp y^3)\cup\bigl((x^3\bp y^3)\bp xy\bigr).
+\]
+The first part is $\mathcal M\setminus\{x^3,y^3\}$. The second part is $\mathcal M\cup\{0\}$, by Case~\ref{case3} of the proof of Proposition~\ref{prop:hyperfield}, since $x^3,y^3,xy$ are distinct and lie on $\mathcal M$. Hence $T=\mathcal M\cup\{0\}$.
+
+Finally, $T\bp 1=\bigcup_{u\in T}u\bp 1$. By uniqueness of negatives, $0\in u\bp 1$ if and only if $u=-1=1$. Since $1\notin\mathcal M$ and $1\neq0$, we have $1\notin T$, so $0\notin T\bp 1$.
+\end{proof}
+
+\section{A plane containing the required configuration}
+
+From now on $G=\Z$, written additively: the integer $n$ stands for the group element $t^n$, so the identity element $1$ of $G$ corresponds to $0\in\Z$, and multiplication in $G$ corresponds to addition in $\Z$.
+
+\begin{definition}
+A set $D\subset\Z$ is a \emph{perfect difference set} if every nonzero integer has exactly one representation $d-d'$ with $d,d'\in D$. A set $D\subset\Z$ is \emph{Sidon} if every nonzero integer has at most one such representation.
+\end{definition}
+
+\begin{lemma}\label{lem:plane}
+If $D\subset\Z$ is an infinite perfect difference set, then the lines $\{g+D:g\in\Z\}$ on the point set $\Z$ satisfy \ref{P1}--\ref{P4}.
+\end{lemma}
+
+\begin{proof}
+\ref{P1}: Distinct points $p,q$ lie on $g+D$ if and only if $p-g=d_1$ and $q-g=d_2$ for some $d_1,d_2\in D$. Then $p-q=d_1-d_2$. This representation of the nonzero integer $p-q$ exists and is unique, so $g=p-d_1$ exists and is unique.
+
+\ref{P2}: Distinct lines are $g+D$ and $h+D$ with $g\neq h$. Let $h-g=d_1-d_2$ be the representation. Then both lines contain the point $g+d_1=h+d_2$.
+
+\ref{P3}: Every line is infinite.
+
+\ref{P4}: Translating $g+D$ by $w$ gives $(g+w)+D$, which is again a line.
+\end{proof}
+
+\begin{lemma}\label{lem:diffset}
+There is an infinite perfect difference set $D\subset\Z$ with
+\[
+D\supseteq D_0:=\{0,1,4,103,105,112\}\qquad\text{and}\qquad 100\notin D.
+\]
+\end{lemma}
+
+\begin{proof}
+\emph{$D_0$ is Sidon.} Its $15$ positive differences are
+\[
+\begin{gathered}
+1-0=1,\quad 4-0=4,\quad 4-1=3,\quad 103-0=103,\quad 103-1=102,\quad 103-4=99,\\
+105-0=105,\quad 105-1=104,\quad 105-4=101,\quad 105-103=2,\\
+112-0=112,\quad 112-1=111,\quad 112-4=108,\quad 112-103=9,\quad 112-105=7,
+\end{gathered}
+\]
+that is, $1,2,3,4,7,9,99,101,102,103,104,105,108,111,112$. These are pairwise distinct.
+
+\emph{Inductive step.} Let $D_k$ be a finite Sidon set of nonnegative integers, and let
+\begin{itemize}[nosep]
+\item $m$ be the least positive integer that is not a difference of two elements of $D_k$;
+\item $R=\max D_k$;
+\item $N$ be an integer with $N>3R+m$.
+\end{itemize}
+Put $D_{k+1}=D_k\cup\{N,N+m\}$. These are new elements, since $N>R$. The new positive differences are $m=(N+m)-N$, the numbers $N-d$, and the numbers $N+m-d$, for $d\in D_k$. We check that all positive differences of $D_{k+1}$ (counted with their representations) are distinct:
+\begin{itemize}[nosep]
+\item Old positive differences are at most $R$. Every $N-d$ and every $N+m-d$ is at least $N-R>2R+m$. So these exceed both the old differences and $m$.
+\item The values $N-d$ ($d\in D_k$) are pairwise distinct, and so are the values $N+m-d$.
+\item If $N-d=N+m-d'$, then $d'-d=m$, which would make $m$ a difference of $D_k$; this is impossible.
+\item $m$ itself is not an old difference, by its choice.
+\end{itemize}
+So $D_{k+1}$ is a Sidon set of nonnegative integers, and $m$ is now a difference.
+
+\emph{Covering.} Every difference of $D_k$ remains a difference of $D_{k+1}$, and $m$ becomes one. So the least positive non-difference strictly increases at each step. Hence every positive integer is eventually a difference, and by symmetry so is every negative integer.
+
+\emph{The limit set.} Let $D=\bigcup_k D_k$. It is infinite. Any two representations of the same nonzero integer as a difference of elements of $D$ already lie in a common $D_k$, so they coincide. By covering, every nonzero integer has at least one representation. So $D$ is a perfect difference set.
+
+\emph{$100\notin D$.} We have $100\notin D_0$, and every element added at a later step is at least $N>3R\ge3\cdot112>100$, as $R\ge\max D_0=112$ at every step.
+\end{proof}
+
+\section{The counterexample}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Let $D$ be as in Lemma~\ref{lem:diffset}. By Lemma~\ref{lem:plane}, the lines $g+D$ on $\Z$ satisfy \ref{P1}--\ref{P4}, so Proposition~\ref{prop:hyperfield} gives a hyperfield $\HH=\langle t\rangle\cup\{0\}$. Take $x=t$, $y=t^4$, $z=1$; in additive notation $x\leftrightarrow1$, $y\leftrightarrow4$ and $1_{\HH}\leftrightarrow0$. We check the hypotheses of Lemma~\ref{lem:sixterm}.
+\begin{itemize}[nosep]
+\item The points $1_{\HH},x,y$ are $0,1,4$. They are distinct and all lie on the line $D$.
+\item The points $x^3,y^3,xy$ are $3,12,5$. They are distinct and lie on the line $\mathcal M=-100+D$, because $103,112,105\in D$.
+\item $1_{\HH}$ is not on $\mathcal M$: the point $0$ lies on $\mathcal M$ if and only if $100\in D$, which is false.
+\end{itemize}
+By Lemma~\ref{lem:sixterm}, $0\in x\bp y\bp z$ but $0\notin x^3\bp y^3\bp z^3\bp(-xyz)\bp(-xyz)\bp(-xyz)$. This proves Theorem~\ref{thm:main}, so the answer to Question~\ref{ques:main} is no.
+\end{proof}
+
+\begin{remark}\label{rem:quotient}
+The following observation is not used in the proof; it explains why a counterexample cannot be of the most familiar type. Let $F$ be a commutative field and $K^\times$ a subgroup of $F^\times$, and consider Krasner's quotient hyperfield $F/K^\times$ \cite{Kr83}, with classes $[X]=XK^\times$ and $[X]\bp[Y]=\{[X'+Y']:X'\in[X],\,Y'\in[Y]\}$. Suppose $0\in x\bp y\bp z$ there. Then some $w\in x\bp y$ satisfies $0\in w\bp z$, so $w=-z$; hence there are representatives $X\in x$, $Y\in y$ with $X+Y\in -z$, and $Z:=-(X+Y)$ is a representative of $z$ with $X+Y+Z=0$. The identity
+\[
+X^3+Y^3+Z^3-3XYZ=(X+Y+Z)(X^2+Y^2+Z^2-XY-YZ-ZX)
+\]
+shows that $X^3+Y^3+Z^3+(-XYZ)+(-XYZ)+(-XYZ)=0$, and $X^3,Y^3,Z^3,-XYZ$ are representatives of $x^3,y^3,z^3,-xyz$; so $0$ lies in the six-term sum. Heuristically, this is why the counterexample above uses a projective plane that is not of field origin. We do not prove here that the plane of Lemma~\ref{lem:diffset} is non-Desarguesian, and nothing depends on it.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{BB}
+M.~Baker and N.~Bowler,
+Matroids over partial hyperstructures,
+\emph{Adv.\ Math.} \textbf{343} (2019), 821--863.
+
+\bibitem{CC}
+A.~Connes and C.~Consani,
+The hyperring of ad\`ele classes,
+\emph{J. Number Theory} \textbf{131} (2011), 159--194.
+
+\bibitem{Hall}
+M.~Hall, Jr.,
+Cyclic projective planes,
+\emph{Duke Math.\ J.} \textbf{14} (1947), 1079--1090.
+
+\bibitem{Kr57}
+M.~Krasner,
+Approximation des corps valu\'es complets de caract\'eristique $p\neq0$ par ceux de caract\'eristique $0$,
+in: \emph{Colloque d'alg\`ebre sup\'erieure (Bruxelles, 1956)}, 1957.
+
+\bibitem{Kr83}
+M.~Krasner,
+A class of hyperrings and hyperfields,
+\emph{Internat.\ J. Math.\ Math.\ Sci.} \textbf{6} (1983), 307--311.
+
+\bibitem{Viro}
+O.~Viro,
+Hyperfields for tropical geometry I. Hyperfields and dequantization,
+preprint, arXiv:1006.3034 (2010).
+
+\end{thebibliography}
+
+\end{document}

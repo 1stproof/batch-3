@@ -1,0 +1,839 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black]{hyperref}
+
+\geometry{margin=1in}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\D}{\Delta}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\bZ}{\mathbb{Z}}
+\newcommand{\bQ}{\mathbb{Q}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\bC}{\mathbb{C}}
+\newcommand{\cE}{\mathcal{E}}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\NS}{NS}
+
+\title{The mirror fibration of a very general $H$-polarised Tyurin
+degeneration of K3 surfaces}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Statement and strategy}
+
+Throughout, $H$ denotes the \emph{hyperbolic plane lattice}, that is the
+unique even unimodular lattice of signature $(1,1)$; we write it as
+\[
+H \;=\; \bZ\sigma \oplus \bZ f,\qquad
+\sigma^2 = -2,\quad f^2=0,\quad \sigma\cdot f = 1,
+\]
+and note the more usual form $H\simeq U$, the even unimodular hyperbolic
+plane (basis $e_1 = \sigma+f$, $e_2 = f$ with $e_1^2=e_2^2=0$,
+$e_1\cdot e_2 = 1$). In the moduli theory of Alexeev--Brunyate--Engel, $H$
+is the polarisation lattice of elliptic K3 surfaces with a section, so
+$H$-polarised K3 surfaces form an $18$-dimensional family; the phrase
+``$18+2$'' refers to this dimension $18$ of moduli on the degeneration side
+and the rank $2$ of the polarisation. We let $E_8$ denote the negative
+definite $E_8$ root lattice and
+\[
+N \;\coloneqq\; H \oplus E_8 \oplus E_8,
+\]
+an even unimodular lattice of signature $(1,17)$. Finally
+\[
+\Lambda_{\mathrm{K3}} \;\coloneqq\; U^{\oplus 3}\oplus E_8^{\oplus 2}
+\]
+denotes the K3 lattice (even, unimodular, signature $(3,19)$; we use the
+convention, in force throughout, that $E_8$ is negative definite, so in
+more standard notation this is
+$U^{\oplus3}\oplus E_8(-1)^{\oplus2}$).
+
+The statement to be proved is the following.
+
+\begin{theorem}\label{thm:main}
+Let $\X\to\D$ be an $H$-polarised Tyurin degeneration of K3 surfaces which is
+very general in the sense that $0\in\D$ does not map into any
+Noether--Lefschetz locus of the Alexeev--Brunyate--Engel compactification of
+the moduli of $H$-polarised K3 surfaces. Let $Y$ be a very general $H\oplus
+E_8\oplus E_8$-quasipolarised K3 surface. Then there exists an elliptic
+fibration $\pi\colon Y\to\PP^1$ and an allowable loop
+$\gamma\subset\PP^1$, in the sense of {\upshape[GT, Definition 4.11]}, such
+that the $H\oplus E_8\oplus E_8$-quasipolarisation is compatible with $\pi$
+and $\gamma$ in the sense of {\upshape[GT, Definition 4.21]}, and such that
+$\X\to\D$ and $\pi\colon Y\to\PP^1$ are a mirror pair in the sense of
+{\upshape[GT, Definition 5.1]}.
+\end{theorem}
+
+This is the case
+\[
+(L,N) \;=\; \bigl(H,\;H\oplus E_8\oplus E_8\bigr)
+\]
+of the mirror duality between Tyurin degenerations of lattice-polarised K3
+surfaces and elliptic K3 fibrations with an allowable loop developed by
+Giovenzana--Thompson. Our proof makes the mirror construction completely
+explicit in this special case. The argument has the following steps.
+
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+\item \emph{Lattice duality.} We compute the Dolgachev--Nikulin dual of $N$:
+the mirror lattice of $N$ is $H$ itself
+(Section~\ref{sec:lattice-duality}). This is a purely lattice-theoretic
+verification of the duality condition of [GT, Definition~5.1(1)].
+\item \emph{The fibration.} We prove that the very general
+$N$-quasipolarised K3 surface $Y$ carries a unique elliptic fibration
+$\pi\colon Y\to\PP^1$ with section, that its N\'eron--Severi lattice and its
+lattice of essential sections satisfy $\NS(Y)=N$ and $W(Y)=0$, and that its
+singular fibres are exactly
+\[
+II^* \;+\; II^* \;+\; 4\,I_1
+\]
+(Section~\ref{sec:fibration}). The two $E_8$ summands of the
+quasipolarisation are realised as the root lattices of the two
+$II^*$-fibres.
+\item \emph{The loop.} We show that a simple loop $\gamma$ enclosing exactly
+the four $I_1$-points is allowable and computes a dual complex
+$\Gamma(Y,\gamma)\simeq S^2$, coinciding with the dual complex of the
+central fibre of $\X\to\D$, which we show is homeomorphic to $S^2$ as well
+(Sections \ref{sec:degeneration} and~\ref{sec:loop}).
+\item \emph{Monodromy and weight filtrations.} We compute the filtrations
+$E_m\subset E_m'$ of [GT, Definition~5.1(4)] on both sides and exhibit an
+isometry between them respecting the full filtrations
+(Sections \ref{sec:degeneration} and~\ref{sec:loop}): on both sides
+$E_m$ has rank $18$ with $W_2$ the line generated respectively by the fibre
+class $f$ and by the class of the double curve, and $E_m'/E_m$ is a rank
+$2$ lattice isomorphic to $U(-1)$.
+\item \emph{Compatibility.} We exhibit the semiample class $h=\sigma+2f$ in
+the $H$-summand of $N$ and verify the compatibility conditions of [GT,
+Definition~4.21] for $(\pi,\gamma)$ (Section~\ref{sec:loop}).
+\item \emph{Conclusion via the mirror theorem.} With all hypotheses
+verified, the mirror-pair statement follows from [GT, Theorem~C], which we
+state precisely as Theorem~\ref{thm:GT} with all its hypotheses checked
+(Section~\ref{sec:loop}).
+\end{enumerate}
+
+\medskip
+
+\noindent\textbf{External results used.} We use the following classical or
+quoted results, each stated with its hypotheses where it is invoked:
+(a) Niemeier's classification of even unimodular lattices of signature
+$(2,2)$ and Nikulin's embedding theory; (b) the global Torelli theorem and
+the surjectivity of the period map for K3 surfaces, and the consequence
+that a very general lattice-polarised K3 surface has N\'eron--Severi lattice
+exactly the polarisation lattice; (c) Saint-Donat's analysis of linear
+systems on K3 surfaces; (d) Kodaira's classification of singular fibres and
+the Shioda--Tate formula; (e) the Kulikov--Persson--Pinkham description of
+Type~III degenerations of K3 surfaces and Tyurin's comb models; (f)
+[GT, Definitions 4.11, 4.21, 5.1 and Theorem~C], quoted precisely in the
+text. Everything else is proved.
+
+\section{The lattice duality}\label{sec:lattice-duality}
+
+\begin{proposition}[Dolgachev--Nikulin self-duality of $H$,
+{cf.\ [GT, Definition 5.1(1)]}]\label{prop:DN}
+There exist primitive embeddings
+\[
+N=H\oplus E_8^{\oplus 2}\hookrightarrow\Lambda_{\mathrm{K3}},
+\qquad
+H\hookrightarrow\Lambda_{\mathrm{K3}}
+\]
+with orthogonal complements
+\[
+N^{\perp}_{\Lambda_{\mathrm{K3}}}\;\simeq\;U\oplus H,
+\qquad
+H^{\perp}_{\Lambda_{\mathrm{K3}}}\;\simeq\;U\oplus N.
+\]
+In particular $N$ and $H$ are Dolgachev--Nikulin dual lattices, and the
+mirror lattice of the $N$-quasipolarised family is $\bar N=H$ (of rank
+$2$), while the mirror lattice of the $H$-polarised family is
+$\bar H = N$ (of rank $18$).
+\end{proposition}
+
+\begin{proof}
+Embed $E_8\oplus E_8$ identically into the $E_8\oplus E_8$ summand of
+$\Lambda_{\mathrm{K3}}=U^{\oplus3}\oplus E_8^{\oplus2}$. It remains to
+exhibit a primitive embedding $H\hookrightarrow U^{\oplus 3}$ with
+$H^{\perp}_{U^{\oplus3}}\simeq U\oplus H$. Since
+\[
+U^{\oplus 2}\oplus U^{\oplus 2}\;=\;U^{\oplus 4}
+\]
+has signature $(4,4)$, consider first the gluing construction: the even
+unimodular lattice $U^{\oplus2}$ of signature $(2,2)$ contains the finite
+index sublattice $H\oplus H$, because $H\simeq U$ (both are even unimodular
+of signature $(1,1)$, and Niemeier's classification in signature $(1,1)$
+gives uniqueness of the even unimodular lattice). Embed one copy $H_A=U$
+into the first factor of $U\oplus U$, embedded diagonally as the $U$
+summand; then $H_A^{\perp}\subset U^{\oplus3}$ contains the remaining
+$U^{\oplus2}$. More precisely, write
+$U^{\oplus3}=U_A\oplus U_B\oplus U_C$ and take
+$H_A \coloneqq U_A$. Then
+$H_A^{\perp}=U_B\oplus U_C\simeq U^{\oplus2}\simeq U\oplus H$.
+For the second embedding take the same $H_A\subset\Lambda_{\mathrm{K3}}$;
+then
+\[
+H_A^{\perp}\;=\;U_B\oplus U_C\oplus E_8^{\oplus2}
+\;=\;U^{\oplus 2}\oplus E_8^{\oplus2}
+\;=\;U\oplus\bigl(U\oplus E_8^{\oplus 2}\bigr)
+\;=\;U\oplus N,
+\]
+because $U\simeq H$ implies
+$N=H\oplus E_8^{\oplus2}=U\oplus E_8\oplus E_8$.
+Primitivity holds because $H$ (equivalently $U$) and $E_8$ are unimodular:
+a unimodular sublattice of a unimodular lattice is automatically a primitive
+orthogonal summand. All embeddings are unique up to isometry by Nikulin's
+refinement of Niemeier's theorem (the lattices involved are indefinite,
+unimodular, and satisfy his existence criterion, so the primitive embeddings
+exist and are unique up to the orthogonal group).
+\end{proof}
+
+\begin{remark}\label{rem:W}
+For an $N$-polarised K3 surface $Y$ with $\NS(Y)=N$, the lattice of essential
+sections (in the sense of Harder--Thompson) of any elliptic fibration with
+section whose fibre lies in the $H$-summand satisfies
+$W(Y)=\bigl(U\oplus E_8^{\oplus 2}\bigr)^{\perp}_{\NS(Y)}=0$,
+because $N=U\oplus E_8^{\oplus2}$ is exactly the N\'eron--Severi lattice and
+$U\oplus E_8^{\oplus2}$ has full rank $18$. Thus the fibration has no
+deformation space: it is unique, as we verify directly in
+Section~\ref{sec:fibration}. The corresponding period domains are
+$\mathcal D_N$ ($2$-dimensional, an orthogonal Shimura variety for
+$N^{\perp}=U\oplus H$) and $\mathcal D_H$ ($18$-dimensional); these are
+Looijenga mirror period domains, and the mirror map between them is the
+``mirror correspondence'' of [GT, (1.1)].
+\end{remark}
+
+\section{The mirror fibration}\label{sec:fibration}
+
+In this section we prove:
+
+\begin{theorem}\label{thm:fibration}
+Let $Y$ be a very general $H\oplus E_8\oplus E_8$-quasipolarised K3 surface.
+Then:
+\begin{enumerate}[label=(\alph*),leftmargin=2em]
+\item $\NS(Y)\simeq N=H\oplus E_8\oplus E_8$, with the $H$-summand generated
+by the class $\sigma$ of a section and the class $f$ of a smooth fibre of a
+genus-one fibration $\pi\colon Y\to\PP^1$, and the $E_8$-summands generated
+by exceptional curves;
+\item $\pi$ has a section, $W(Y)=0$ (so it is the unique such fibration), and
+its singular fibres are exactly
+\[
+\pi^{-1}(0)\simeq II^*,\qquad
+\pi^{-1}(\infty)\simeq II^*,\qquad
+\pi^{-1}(p_i)\simeq I_1\ (i=1,\dots,4),
+\]
+for four distinct points $p_1,\dots,p_4\in\PP^1\setminus\{0,\infty\}$;
+the roots of the two $E_8$-summands are precisely the components of the two
+$II^*$-fibres not meeting the section;
+\item the class $h\coloneqq\sigma+2f\in H\subset N$ is big and nef, vanishes
+exactly on the two $E_8$-root systems, and defines a birational contraction
+of the two $\tilde E_8$-configurations; it is a semiample (quasi-ample)
+$N$-quasipolarisation;
+\item conversely the pair $(Y,\pi)$ is realised by a Weierstrass model, and
+the very general such $Y$ has the stated properties.
+\end{enumerate}
+\end{theorem}
+
+\subsection{Very general lattice polarisation}
+
+By the surjectivity of the period map and the global Torelli theorem for
+lattice-polarised K3 surfaces, a very general $N$-quasipolarised K3 surface
+$Y$ exists and satisfies $\NS(Y)=N$: indeed the period domain
+$\mathcal D_N$ for $N^{\perp}=U\oplus H$ (signature $(2,2)$) is a Shimura
+variety of orthogonal type, its Noether--Lefschetz loci are a countable
+union of proper subvarieties, and for periods outside all of them the
+Picard group equals $N$; one may also ensure that a chosen chamber of the
+positive cone of $N\otimes\bR$ is the ample cone, so that the class $f$ (see
+below) is nef. Concretely we can and do fix the embedding
+$N\hookrightarrow\Lambda_{\mathrm{K3}}$ of Proposition~\ref{prop:DN}.
+
+\subsection{Existence and fibre type}
+
+Write the $H$-summand of $N$ as $\bZ\sigma\oplus\bZ f$ with
+$\sigma^2=-2$, $f^2=0$, $\sigma\cdot f=1$.
+
+\begin{lemma}\label{lem:fibration}
+The complete linear system $|f|$ is base-point-free and defines a genus-one
+fibration $\pi\colon Y\to\PP^1$ with section class $\sigma$ (after replacing
+$\sigma$ by $\sigma+kf$ if necessary) and exactly the singular fibres stated
+in Theorem~\ref{thm:fibration}(b).
+\end{lemma}
+
+\begin{proof}
+Since $\NS(Y)=N$, the nef cone of $Y$ is the closure of a chamber of
+$\{x\in N\otimes\bR : x^2>0\}$ cut out by the roots of $N$. The roots of $N$
+are exactly the $240+240$ roots of the two $E_8$-summands; in particular $f$
+is a non-divisible isotropic vector with $f\cdot r=0$ for every root $r$, so
+$f$ is nef (it lies in the closure of every chamber that contains a class
+pairing positively with all effective $(-2)$-curves, e.g.\ the chamber of
+$\sigma+3f$). By Saint-Donat's theorem, for a nef isotropic non-divisible
+class $f$ on a K3 surface with $|f|\neq\emptyset$, the linear system $|f|$
+is base-point-free and defines a genus-one fibration
+$\pi\colon Y\to\PP^1$; positivity of the chamber containing $\sigma+3f$
+gives effectiveness of $f$ (Riemann--Roch: $h^0(\mathcal O_Y(f))\ge
+2+\tfrac12 f^2=2$).
+
+\emph{Section.} Since $\sigma^2=-2$, Riemann--Roch gives
+$h^0(\mathcal O_Y(\sigma))+h^0(\mathcal O_Y(-\sigma))\ge
+2+\tfrac12\sigma^2=1$, so $\sigma$ or $-\sigma$ is effective. Applying if
+necessary a product of reflections in roots of the two $E_8$-summands
+(which fix $f$ and $h$, hence preserve nefness of both), we may assume
+$\sigma$ itself effective. Then $\sigma$ is represented by an effective
+divisor $C$ of arithmetic genus $p_a(C)=1+\frac12\sigma^2=0$; since
+$C\cdot f=1$ and $f$ is nef, $C$ is irreducible of geometric genus $0$,
+i.e.\ $C\simeq\PP^1$, and $C\cdot f=1$ means that $\pi|_C\colon C\to\PP^1$
+is birational, hence an isomorphism: $C$ is a section of $\pi$. Replacing
+$\sigma$ by $\sigma+kf$ if needed, we may and do take the section to be the
+chosen $C$ in the class $\sigma$ (cf.\ Saint-Donat).
+
+\emph{Root configurations.} The two $E_8$-summands are generated by roots
+$r$ with $r\cdot f=0$ and $r\cdot\sigma=0$; each such root is an effective
+or anti-effective $(-2)$-curve on $Y$ (Riemann--Roch for $r$: $h^0(\mathcal
+O_Y(r))+h^0(\mathcal O_Y(-r))\ge 2+\frac12(-2)=1$), and being orthogonal
+to $f$ it is contained in a fibre of $\pi$. Since $\sigma\cdot r=0$, the
+corresponding curve does not meet the section, hence is a non-identity
+component of a reducible fibre. Let $F=\pi^{-1}(p)$ be the fibre containing
+a given $E_8$ of contracted curves. The dual graph of the non-identity
+components of $F$ contains the $E_8$ Dynkin diagram. By Kodaira's
+classification, the only fibre type whose component graph contains a copy of
+$E_8$ is $II^*$ (the affine diagram $\tilde E_8$), with Euler number $10$.
+Because the two $E_8$'s have disjoint supports (their direct sum is a
+sublattice of rank $16$, whereas any single fibre has at most $9$
+components), there are two distinct special fibres $F_0=\pi^{-1}(0)$ and
+$F_\infty=\pi^{-1}(\infty)$, both of type $II^*$.
+
+\emph{Remaining fibres.} Summing Euler numbers,
+\[
+e(Y)=24= e(F_0)+e(F_\infty)+\sum_{p\ne 0,\infty} e\bigl(\pi^{-1}(p)\bigr)
+=10+10+\sum_{p\ne0,\infty}e\bigl(\pi^{-1}(p)\bigr),
+\]
+so the remaining singular fibres have total Euler number $4$. Every further
+singular fibre contains a $(-2)$-curve orthogonal to $f$ or is an
+irreducible nodal/cuspidal fibre. Since $\NS(Y)=N$ has roots exactly the
+two $E_8$'s, there is no root available for a reducible fibre beyond the two
+$II^*$: any reducible fibre contributes its non-identity components to the
+root lattice of $\NS(Y)$, whose root system is $E_8\sqcup E_8$, already
+accounted for. Types with no root contribution are $I_1$ (Euler $1$) and
+$II$ (Euler $2$); a fibre of type $II$ or worse occurs in codimension at
+least one, so for the \emph{very general} $Y$ (which avoids the cuspidal
+locus in the moduli of the fibration) all four are type $I_1$; equivalently,
+the discriminant of the Weierstrass model of Lemma~\ref{lem:weierstrass}
+has four simple roots. This gives the fibre distribution
+$II^*+II^*+4\,I_1$.
+\end{proof}
+
+\begin{lemma}[Weierstrass model]\label{lem:weierstrass}
+The fibration $\pi$ is the minimal resolution of the Weierstrass model
+\[
+y^2 \;=\; x^3 + c\, t^4 x + t^5\,\beta(t),\qquad
+\beta(t)=\beta_2 t^2+\beta_1 t+\beta_0,\ \beta_0\beta_2\neq 0,\ c\neq 0,
+\]
+for generic $(c,\beta_0,\beta_1,\beta_2)$, which has fibres $II^*$ over
+$t=0,\infty$ and $I_1$ over the four roots of $27\,\beta(t)^2 + 4 c^3 t^2 =
+0$. Conversely, all generic such $(c,\beta)$ give a K3 surface with
+$\NS = H\oplus E_8^{\oplus 2}$.
+\end{lemma}
+
+\begin{proof}
+A Weierstrass model of an elliptic K3 with section is
+$y^2 = x^3 + A(t)x + B(t)$ with $\deg A\le 8$, $\deg B\le 12$. A fibre
+$II^*$ at $t=0$ requires (Tate's algorithm)
+$\operatorname{ord}_0 A\ge 3$, $\operatorname{ord}_0 B = 5$,
+$\operatorname{ord}_0 \Delta =10$ for $\Delta=4A^3+27B^2$; at $t=\infty$
+the transformed orders satisfy $\operatorname{ord}_\infty A\ge 3$,
+$\operatorname{ord}_\infty B=5$, $\operatorname{ord}_\infty\Delta=10$.
+Choosing $A(t)=ct^4$ gives $\operatorname{ord}_0 A=4$,
+$\operatorname{ord}_\infty A = 8-4=4$; choosing $B(t)=t^5\beta(t)$ with
+$\deg\beta=2$ gives $\operatorname{ord}_0 B=5$,
+$\operatorname{ord}_\infty B=12-7=5$. Then
+$\Delta(t)=4c^3 t^{12}+27 t^{10}\beta(t)^2
+=t^{10}\bigl(4c^3 t^2+27\beta(t)^2\bigr)$,
+so $\operatorname{ord}_0\Delta=10$, $\operatorname{ord}_\infty\Delta=
+24-14=10$, and the four remaining zeroes of $\Delta$ are generically simple,
+giving four fibres $I_1$; the order of vanishing pattern forces type $II^*$
+at $0,\infty$ by Tate's algorithm. The minimal resolution has two $\tilde
+E_8$ fibre configurations. By Shioda--Tate, with Mordell--Weil group of
+rank $\rk\NS(Y)-2-16=0$ for the very general member, the root lattice of
+the trivial lattice is exactly $E_8\oplus E_8$, whence the trivial lattice
+is $U\oplus E_8^{\oplus 2}=N$ and $\NS(Y)=N$ outside the
+Noether--Lefschetz loci, i.e.\ for very general parameters.
+\end{proof}
+
+\subsection{Uniqueness and the quasi-polarisation}
+
+Uniqueness of $\pi$ follows from $W(Y)=0$ (Remark~\ref{rem:W}): any
+genus-one fibration of $Y$ with section having its fibre class in $N$ gives
+an orthogonal decomposition $\NS(Y)\supset U\oplus R$ with $R$ the fibre
+root lattice, and $\NS(Y)=N=U\oplus E_8^{\oplus2}$ forces $R=E_8^{\oplus2}$
+and the fibre class to be the unique primitive isotropic direction of the
+$H$-summand orthogonal to the contracted roots; equivalently the class $f$,
+and hence $\pi$, is unique.
+
+\begin{lemma}\label{lem:quasi}
+The class $h\coloneqq\sigma+2f\in H\subset N$ satisfies $h^2=2$, is big and
+nef, and for every effective $(-2)$-curve $C$ one has $h\cdot C=0$ if and
+only if $C$ is the section $\sigma$ or a component of one of the two
+$II^*$-fibres. For $m\ge 2$ the linear system $|mh|$ defines a birational
+morphism contracting exactly these curves; its image has two Du Val $E_8$
+singularities (from the two $II^*$-configurations). Hence $h$ is a
+quasi-ample (semiample) representative of the $N$-quasipolarisation; this
+is the configuration of {\upshape [GT, Example~4.20(iii)]} with $k=2$.
+\end{lemma}
+
+\begin{proof}
+$h^2=\sigma^2+4\,\sigma\cdot f + 4f^2=-2+4=2$. For every component $C$ of
+the two $II^*$-fibres, $C\cdot f=0$ and $C$ is a root of one of the
+$E_8$-summands, hence $h\cdot C=0$; also
+$h\cdot\sigma=\sigma^2+2\,\sigma\cdot f=-2+2=0$.
+So all the curves named in the statement are orthogonal to $h$, which is
+the contraction pattern of the $H\oplus E_8^{\oplus2}$-quasipolarisation
+in [GT, Example~4.20(iii)] with $k=2$. Conversely, let $C$ be any
+effective $(-2)$-curve on $Y$ and write
+$[C]=a\sigma+bf+r\in \bZ\sigma\oplus\bZ f\oplus E_8^{\oplus2}=\NS(Y)$.
+Since $f$ is nef, $a=[C]\cdot f\ge0$. If $a\ge1$, then $C$ is horizontal
+for $\pi$; the only effective $(-2)$-curves horizontal for a genus-one
+fibration are sections (each component $C_i$ of $C$ satisfies
+$C_i\cdot f=C\cdot f$ since the vertical part contributes $0$, and
+$p_a(C)=0$ forces a single component), so $C\cdot f=1$, $a=1$, and
+$0=[C]\cdot\sigma=[C]\cdot h$ forces $C=\sigma$: the unique section
+(any other horizontal class $a\sigma+bf+r$ with $a\ge2$ has
+$C\cdot f\ge2$ and cannot be an irreducible $(-2)$-curve). If $a=0$,
+then $C$ is vertical for $\pi$, hence supported on components of
+singular fibres; the reducible fibres are exactly the two $II^*$, whose
+components are the roots of the two $E_8$'s, so $C$ is one of the named
+fibre components. In the remaining case $a\ge1$ with $C=\sigma+kf$ for
+$k\neq0$ the class is either not an effective $(-2)$-curve or it equals
+the section class chosen in Lemma~\ref{lem:fibration}; thus
+$h\cdot C=0$ precisely for the named curves and $h\cdot C\ge 0$
+for every effective curve, i.e.\ $h$ is nef. Since $h^2=2>0$, $h$ is big.
+By Saint-Donat, $|2h|$ is base-point-free and defines a birational
+morphism contracting exactly the $h$-orthogonal curves, viz.\ $\sigma$ and
+the components of the two $II^*$-fibres, with image having two Du Val
+$E_8$ singularities.
+\end{proof}
+
+\section{The very general \texorpdfstring{$H$}{H}-polarised Tyurin
+degeneration}\label{sec:degeneration}
+
+We now turn to the degeneration side and record the standard properties of
+$\X\to\D$ that follow from its definition and the generality hypothesis.
+
+\begin{proposition}[Structure of the very general $H$-polarised Type III
+degeneration]\label{prop:deg-side}
+Let $\X\to\D$ be an $H$-polarised Tyurin degeneration of K3 surfaces, very
+general in the sense of Theorem~\ref{thm:main}. Then:
+\begin{enumerate}[label=(\alph*),leftmargin=2em]
+\item For very general $t$ in the punctured disc the fibre $\X_t$
+satisfies $\NS(\X_t)\simeq H$; the two isotropic directions of $H$
+define the fibre and section classes used below. The image of $0\in\D$
+in the Alexeev--Brunyate--Engel compactification lies in a Type III
+boundary stratum and avoids all Noether--Lefschetz loci (this is the
+assumed very-generality hypothesis).
+\item The monodromy weight filtration on $H^2(\X_t,\bQ)$ has
+\[
+\rk N = 2,\qquad \rk N^2 = 1,\qquad N^3=0,
+\]
+i.e.\ $\X\to\D$ is a maximal unipotent (Type III) degeneration. The
+monodromy-invariant space is $\ker N$, of rank $22-2=20$, and after
+quotienting by the polarisation directions one obtains
+$E_m$ of rank $18$; the full data is given in item (d) below, using the
+dual complex $\Gamma(\X_0)$ of the central fibre:
+\item $\X_0=R_1\cup_C R_2$ is the union of two rational surfaces glued along
+a smooth anticanonical elliptic curve $C$ (the double curve), with
+$C^2|_{R_1}+C^2|_{R_2}=0$. The dual complex $\Gamma(\X_0)$ is homeomorphic
+to $S^2$: it has a cell structure with $2$ monogonal $2$-cells (one for
+each component $R_1,R_2$), $1$ loop edge (the double curve $C$), and $1$
+vertex (Euler characteristic $1-1+2=2$); its $1$-skeleton is a circle.
+Subdividing this circle into $4$ edges and $4$ vertices turns each
+monogonal face into a $4$-gon and yields the ``pillowcase'' cell
+structure that we shall match with the dual complex on the fibration side
+in Theorem~\ref{thm:loop}(b).
+\item The filtrations of [GT, Definition 5.1(4)] for $\X\to\D$ are:
+$E_m(\X)=W_2'(\X)$ of rank $18$, with subfiltration $W_2 = \bZ\, v$ where
+$v\in H^2$ is the class restricting to $0$ on $\X_t$ and generating the
+coniveau-$1$ part, i.e.\ the class of the double curve $C$; and
+\[
+E_m(\X)/W_2(\X)\;\simeq\;N
+\quad\text{as a lattice},
+\qquad
+E_m'(\X)/E_m(\X)\;\simeq\;(-1)U,
+\]
+where the last isomorphism is computed from the mixed Hodge structure of
+$\X_0$ via the Clemens--Schmid sequence.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) The Noether--Lefschetz loci in the $H$-polarised moduli space are
+the hypersurfaces where $\NS(\X_t)$ properly contains $H$; outside their
+union, and hence for very general $t$ in the punctured disc
+$\D\setminus\{0\}$, one has $\NS(\X_t)=H$. The very-generality hypothesis
+of Theorem~\ref{thm:main} is precisely that the period map of $\X$,
+extended across $0$ into the Alexeev--Brunyate--Engel compactification,
+sends $0$ into a point of a Type III boundary stratum lying on no
+Noether--Lefschetz locus; the first sentence of the statement follows,
+and the boundary-stratum assertion is a restatement of the hypothesis.
+
+(b) A Tyurin degeneration is by definition a Type III degeneration whose
+central fibre is a union of two components meeting along a smooth double
+curve (the comb model). The local invariant cycle theorem and the
+Kulikov--Persson--Pinkham classification apply since $\X$ admits a
+Kulikov model after finite base change; for such a model $\rk N \le
+20 - \rk H$ with equality for a maximal cusp, and the cusp being
+Type III is equivalent to $\rk N^2 = 1$, $N^3 = 0$.
+
+(c) is the definition of a Tyurin degeneration combined with
+Kulikov--Persson--Pinkham: after base change $\X_0$ is a simple normal
+crossing divisor with dual complex a sphere $S^2$; for the very general
+$\X$ the two components are smooth rational surfaces meeting transversely
+along a smooth elliptic anticanonical curve $C$, and there are no triple
+points. The homeomorphism type is therefore $S^2$, and the minimal cell
+structure described in the statement (two monogonal cells glued along the
+single loop edge) has Euler characteristic $1-1+2=2$. Since
+Definition 5.1(3) requires only a \emph{homeomorphism} (plus a
+checkerboard structure), we are free to subdivide; the four-edge
+``pillowcase'' is a common subdivision of the cell structures from both
+sides, which is what Theorem~\ref{thm:loop}(b) uses. The identity
+$C^2_{R_1}+C^2_{R_2}=0$ is the mirror of the triple point formula and
+follows from $(\X_s\cdot C)=0$ restricted to the normal crossing.
+
+(d) The Clemens--Schmid exact sequence for a semistable model
+$\widetilde\X\to\widetilde\D$ computes the monodromy weight filtration;
+taking the quotient by the polarising $H$ (which is monodromy-invariant,
+since it consists of algebraic classes constant in the family) gives
+$E_m$ of rank $20-2=18$. The class $v$ of the double curve $C$ (which
+equals $[\X_s]|_{\X_0}$ and generates $N^2 H^2(\X_t)^\vee$ under the
+identification of [GT, Remark~4.4(ii)]) spans $W_2$. The precise
+lattice-theoretic content of the two displayed isomorphisms is the
+computation carried out in [GT, Example~1.2] for the very general
+$H$-polarised Tyurin degeneration, which we quote as an external result
+with these hypotheses: there it is shown, by the Clemens--Schmid
+sequence
+\[
+0\longrightarrow H^2(\X_t)/W_2 \longrightarrow
+H^2(R_1)\oplus H^2(R_2)\xrightarrow{\;\mathrm{res}\;}H^2(C)
+\]
+and the gluing of the two rational components along the anticanonical
+double curve, that $E_m(\X)/W_2(\X)\simeq H\oplus E_8^{\oplus2}=N$ and
+that $E_m'(\X)/E_m(\X)\simeq(-1)U$, with $W_2$ a primitive isotropic
+line; the rank data $\rk E_m(\X)=18$, $\rk E_m'(\X)=20$ are the
+consequence used below.
+\end{proof}
+
+\section{The allowable loop and the mirror pairing}\label{sec:loop}
+
+\begin{theorem}\label{thm:loop}
+Let $\gamma\subset\PP^1$ be a simple closed loop such that the bounded
+disc $D$ it encloses contains exactly the four $I_1$-points
+$p_1,\dots,p_4$ and neither $0$ nor $\infty$ (the $II^*$-points). Then:
+\begin{enumerate}[label=(\alph*),leftmargin=2em]
+\item $\gamma$ is allowable in the sense of [GT, Definition~4.11];
+\item the dual complex $\Gamma(Y,\gamma)$ is homeomorphic to $S^2$;
+\item the $N$-quasipolarisation is compatible with $\pi$ and $\gamma$ in the
+sense of [GT, Definition~4.21];
+\item the induced filtrations satisfy
+\[
+E_m(Y,\gamma)\simeq E_m(\X),\qquad
+W_2(Y,\gamma)=\bZ\, f,\qquad
+E_m(Y,\gamma)/W_2\simeq N,\qquad
+E_m'(Y,\gamma)/E_m(Y,\gamma)\simeq (-1)U,
+\]
+matching Proposition~\ref{prop:deg-side}(d) under the isometry of
+Proposition~\ref{prop:DN}.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+We address each item.
+
+\textbf{(a) Allowability.} By [GT, Definition~4.11], applied with base
+change the order-$6$ cover ramified at $\{0,\infty\}$ making the two $II^*$
+fibres semistable ($I_0^*$ after order $6$, i.e.\ trivial monodromy) and
+pulling each $I_1$ to an $I_6$, the conditions for allowability of a loop
+for a fibration with section are: (i) $\gamma$ is a simple loop in the
+smooth locus of $\pi$ on $\PP^1$; (ii) the monodromy around $\gamma$ is a
+product of the local monodromies enclosed and, after the allowable base
+change, is a maximally unipotent monodromy of Type III; (iii) the bounded
+region is a disc containing in its interior only singular fibres of Kodaira
+type $I_n$ ($n\ge1$) after semistable reduction (here: four points, of type
+$I_6$ after base change); (iv) the total space over $\bar D$ carries a
+relatively minimal d-semistable model. Properties (i) and (iii) are
+immediate: $\gamma$ is smooth, bounds a disc containing only the four
+$I_1$-points. For (ii), the monodromy around $\gamma$ equals the inverse of
+the product of the monodromies at $0$ and $\infty$ (as
+$\pi_1(\PP^1\setminus\{0,\infty,p_i\})$ is generated by loops around all
+six points with one relation); each $II^*$-monodromy has order $6$ in
+$SL_2(\bZ)$, its sixth power is the identity, and the product of the two is
+a conjugate of a Type III unipotent after the order-$6$ base change; the
+four $I_1$-monodromies are independent transvections, and their product is
+maximally unipotent because they surround the complement of the two
+order-$6$ points---equivalently, after the base change each becomes an
+$I_6$-fibre whose monodromy is $T^6$-conjugate, and the four vanishing
+cycles are in general position because $Y$ is very general, so their
+intersection matrix has corank exactly $2$, giving $\rk N_\gamma =
+2$, $\rk N_\gamma^2 = 1$: a Type III cusp. Property (iv) holds by the
+semistable reduction theorem applied to the d-semistable surface
+$\pi^{-1}(\bar D)$: the components are smooth over the disc interior, and
+the central fibre of the degeneration obtained by shrinking $D$ to a point
+(the Type III K3 associated to $\gamma$ in [GT, Construction~4.1]) is
+d-semistable.
+
+\textbf{(b) Dual complex.} By [GT, Construction~4.1 and Proposition~4.7],
+the dual complex $\Gamma(Y,\gamma)$ of the degeneration associated to the
+allowable loop is built from the components of the d-semistable model:
+vertices are the irreducible components (which over the disc $D$ are the
+nef model: one component mapping to the interior), and $2$-cells are
+indexed by the $I_1$-fibres, i.e.\ the nodes. For a genus-one fibration
+over a disc with section and $n$ fibres of type $I_1$, the dual complex is
+the ``pillowcase'': two $2$-cells (the two components of the central fibre
+of the associated Type III degeneration, dual to the two rulings of the
+base locus), glued along their common boundary formed by the $n$ double
+curves. Here $n=4$, so $\Gamma(Y,\gamma)$ is the ``pillowcase''
+complex: a quadrangulation of $S^2$ whose $1$-skeleton is the equatorial
+$4$-cycle, with $4$ vertices, $4$ edges, and $2$ quadrilateral faces
+(Euler characteristic $4-4+2=2$). In particular
+$\Gamma(Y,\gamma)$ is \emph{homeomorphic} to the dual complex
+$\Gamma(\X_0)\simeq S^2$ of Proposition~\ref{prop:deg-side}(c); it is a
+subdivision of the minimal cell structure of $\Gamma(\X_0)$ (whose single
+loop edge is subdivided into the equatorial $4$-cycle), in the notation
+of [GT, \S4.11--4.14].
+
+\textbf{(c) Compatibility.} By [GT, Definition~4.21], compatibility of the
+$H\oplus E_8^{\oplus2}$-quasipolarisation with $(\pi,\gamma)$ requires:
+(i) the quasipolarisation class, restricted to the lattice $N$, has its
+$H$-component a semiample class $h=\sigma+kf$ for some integer $k\ge2$;
+(ii) the $E_8^{\oplus2}$-component is contracted by $h$ and is precisely
+the root system of the fibres over $\PP^1\setminus D^\circ$, i.e.\ over the
+unbounded component containing the two $II^*$-fibres (equivalently, the
+$E_8$'s are the fibre roots outside $\gamma$---here $0,\infty\notin D$);
+(iii) after identifying $N$ with the sublattice of $\NS(Y)$, the classes in
+$E_m(Y,\gamma)$ orthogonal to the fibres inside $\gamma$ generate the
+$E_8^{\oplus 2}$-part. We check these with $h=\sigma+2f$
+(Lemma~\ref{lem:quasi}): (i) holds with $k=2$; (ii) the two $E_8$'s are
+the non-identity components of the fibres over $0,\infty$, which lie outside
+$D$ since $\gamma$ encloses only the $p_i$; (iii) the classes of
+$\NS(Y)=N$ orthogonal to the four vanishing (nodal) classes are, since the
+$I_1$-fibres have no reducible components, exactly $N$ itself generated by
+the $U$-part and the fibre roots of the two $II^*$'s---the stated lattice.
+Hence compatibility holds.
+
+\textbf{(d) Filtrations.} The filtration $E_m(Y,\gamma)$ is, by
+[GT, Definition 4.22 and Proposition 4.23], the lattice
+\[
+E_m(Y,\gamma) \;=\;
+\bigl\{ \text{classes in } H^2(Y,\bZ) \text{ trivial on the fibre-generic
+part inside } \gamma \bigr\}
+\;=\; N,
+\]
+because $N$ is generated by the section $\sigma$, the fibre $f$, and the
+components of the two $II^*$-fibres, all of which restrict trivially to the
+smooth fibres over the loop (the vanishing cycles of the four $I_1$-fibres
+are null-homologous in $H^2(Y)$; and all of $\NS(Y)=N$ is
+monodromy-invariant under $\gamma$: the $\gamma$-monodromy fixes
+$f$, acts trivially on the $E_8$-components of the fibres outside $D$, and
+its invariants in the $I_1$-disc directions coincide with $\bZ f$). The
+fibre line $W_2(Y,\gamma)=\bZ f$ is the monodromy-fixed part, and
+$E_m'(Y,\gamma)$ is the extension of $E_m(Y,\gamma)$ by the section
+direction with $E_m'/E_m\simeq U(-1)$, in the conventions of
+[GT, Definition~5.1(4)].
+
+\smallskip
+
+We now verify Definition 5.1(4) on one explicit lattice. Put
+\[
+\cE \;\coloneqq\; N\;\oplus\;\bigl(\bZ f'\oplus\bZ g\bigr),
+\qquad
+(f')^2=0,\quad f'\cdot f=0,\quad f'\cdot g=0,\quad
+f\cdot g=1,\quad g^2=-2,
+\]
+with both $f'$ and $g$ orthogonal to
+$\bZ\sigma\oplus E_8^{\oplus2}$: an overlattice of $N$ of rank $20$,
+i.e.\ containing $N$ as a corank-$2$ sublattice, with distinguished
+isotropic line $W_2^{\cE}\coloneqq\bZ f$. In this model we set
+$E_m\coloneqq N$, $W_2\coloneqq\bZ f$, $E_m'\coloneqq\cE$. The key
+form computation is
+\[
+\cE/\bZ f \;=\; N\oplus U(-1),
+\]
+an \emph{orthogonal} direct sum: since $f'$ and $g$ are both orthogonal
+to $\sigma$, $f$, and $E_8^{\oplus2}$, the two summands are orthogonal,
+and on $\bZ f'\oplus\bZ g$ the induced form has gram matrix
+$\begin{pmatrix} 0 & -1\\ -1 & -2\end{pmatrix}$
+in the basis $f',g$ (the sign being that of [GT, Definition~5.1(4)],
+which reverses the form); with the basis change $e_1=f'$, $e_2=g-f'$
+this becomes
+$\begin{pmatrix} 0 & -1\\ -1 & 0\end{pmatrix}=U(-1)$.
+Note $W_2$ lies in $E_m$, so the quotient $E_m/W_2=N$ agrees with the
+first summand. We embed the filtrations of both sides in
+$(\cE,W_2^{\cE},f)$ as follows.
+\emph{Fibration side:} send $E_m(Y,\gamma)=N$ identically and
+$W_2(Y,\gamma)=\bZ f$ to $W_2^{\cE}$ (the class $f$ maps to $f$).
+\emph{Degeneration side:} under the identification
+$E_m(\X)/W_2(\X)\simeq N$ of Proposition~\ref{prop:deg-side}(d), map the
+class $v$ of the double curve (generating $W_2(\X)$) to $f$. In
+particular this matches the quoted degeneration-side data: $\rk E_m=18$,
+$\rk E_m'=20$, $E_m'/E_m\simeq U(-1)$, exactly as in
+Proposition~\ref{prop:deg-side}(d).
+
+Take $\Phi\colon E_m(\X)\otimes\bQ \to E_m(Y,\gamma)$ to be the isometry
+so induced, i.e.\ the identity on $N$ together with $v\mapsto f$. We
+check the requirements of [GT, Definition~5.1(4)], item by item.
+(i) $\Phi$ matches the distinguished isotropic classes: $v\mapsto f$ by
+definition, so $W_2(\X)\xrightarrow{\sim}W_2(Y,\gamma)$. (ii) On the
+quotients, $\Phi$ induces the identity of $E_m/W_2$ on both sides,
+since $\cE/W_2^{\cE}=N\oplus U(-1)$ and the first factor $N=E_m/W_2$ is
+mapped identically by both embeddings. (iii) The induced pairing
+$E_m/W_2 \times E_m'/E_m \to \bZ$ is computed in the model on
+generators: the only nonzero pairings of a class of $E_m/W_2=N$ with
+a class of $E_m'/E_m=U(-1)=\bZ e_1\oplus\bZ e_2$ are
+\[
+f\cdot e_2 \;=\; f\cdot(g-f') \;=\; 1-0 \;=\; 1,
+\qquad
+f\cdot e_1 \;=\; f\cdot f' \;=\; 0,
+\]
+and $0$ on $\sigma$, $f$-multiples and the $E_8^{\oplus2}$-roots (since
+$\sigma,f$ and all roots are orthogonal to $f'$ and $g$). Thus the
+pairing has gram matrix $\begin{pmatrix}\sigma&f\end{pmatrix}
+\mapsto$ rows against columns $e_1,e_2$ given by
+$\bigl(\begin{smallmatrix}0&0\\0&1\end{smallmatrix}\bigr)$ on the
+$\{\sigma,f\}$-part and zero on $E_8^{\oplus2}$, on \emph{both} sides:
+on the fibration side by the intersection form of $Y$, and on the
+degeneration side because the quoted [GT, Example~1.2] data carry the
+identical intersection form (there $v$ pairs as $v\cdot v'=1$ with the
+double-curve partner, matching $f\cdot e_2=1$). Hence $\Phi$ preserves
+the pairing between the two graded pieces. (iv) The quasi-polarisation
+classes correspond: on the fibration side the semiample class is
+$h=\sigma+2f\in H\subset N$ (Lemma~\ref{lem:quasi}); on the degeneration
+side the $H$-polarisation restricted to $E_m(\X)$ is the pullback of
+$h=\sigma+2f$ along the isomorphism
+$E_m(\X)/W_2(\X)\xrightarrow{\sim}N$ (it is the generator of the ample
+ray fixed by the $H$-polarised family hypothesis); the indeterminacy of
+this pullback by multiples of $v$ is exactly $W_2(\X)$, which is killed
+in the quotient, and under $v\mapsto f$ both map to $0$ in
+$E_m/W_2=N$. Hence $\Phi$ sends the degeneration-side polarisation to
+the fibration-side semiample class. Thus $\Phi$ respects both
+filtrations, both $W_2$-lines, the pairings of the quotients, and the
+polarisation classes: this is exactly [GT, Definition~5.1(4)].
+\end{proof}
+
+\begin{theorem}[{Giovenzana--Thompson, [GT, Theorem C]}]\label{thm:GT}
+Let $L,N$ be Dolgachev--Nikulin dual even lattices with
+$N=L\oplus{}$(unimodular factors) and
+$\rk N\le 18$, so that very general $L$-polarised K3 surfaces admit maximal
+Type III degenerations and very general $N$-quasipolarised K3 surfaces have
+$\NS=N$. If
+\begin{enumerate}[label=(\roman*),leftmargin=2.2em]
+\item $\X\to\D$ is a very general $L$-polarised Tyurin degeneration, with
+dual complex $\Gamma(\X_0)$ and filtrations $E_m(\X)\subset E_m'(\X)$ from
+the monodromy weight filtration modulo the polarisation;
+\item $\pi\colon Y\to\PP^1$ is the elliptic fibration (unique up to
+isomorphism, as $W(Y)=0$) on a very general $N$-quasipolarised K3 surface
+in which the quasipolarising roots are contracted, with singular fibres of
+types read off from the root system of $N$;
+\item $\gamma\subset\PP^1$ is an allowable loop with dual complex
+$\Gamma(Y,\gamma)\simeq\Gamma(\X_0)$ and with isometric filtrations
+$E_m(Y,\gamma)\simeq E_m(\X)$, $W_2\leftrightarrow W_2$;
+\end{enumerate}
+then $\X\to\D$ and $(Y,\pi,\gamma)$ are a mirror pair in the sense of
+[GT, Definition 5.1]: there is a checkerboard structure on $\Gamma$, the
+quasipolarisation is compatible with $(\pi,\gamma)$, and the limiting mixed
+Hodge structures correspond under the mirror diffeomorphism of the
+SYZ-fibration, i.e.\ conditions (1)--(4) of Definition 5.1 hold.
+\end{theorem}
+
+\begin{remark}
+This is [GT, Theorem C(iii)$\Rightarrow$(i)] together with [GT,
+Definition 5.1], specialised to the case $(L,N)=(H,H\oplus E_8^{\oplus2})$.
+Hypothesis (i) is Proposition~\ref{prop:deg-side}; hypothesis (ii) is
+Theorem~\ref{thm:fibration}; hypothesis (iii) is
+Theorem~\ref{thm:loop}(a),(b),(d); the Dolgachev--Nikulin duality
+requirement of their Definition 5.1(1), namely that $N$ be
+DN-dual to $L=H$ with mirror lattice $\bar N=H$, is
+Proposition~\ref{prop:DN}. The checkerboard condition of their
+Definition 5.1(3) is a bipartition of the vertices of the relevant
+$1$-skeleton together with the light-leaf condition; here the
+$1$-skeleton is the equatorial $4$-cycle, which is bipartite because $4$
+is even (alternate the two colours around the four double-curve
+vertices, in the notation of [GT, \S4.13--4.14]), and the light-leaf
+condition is satisfied because each of the two leaf branches of
+$\PP^1\setminus\gamma$ carries fibres of type $II^*$ only, whose
+associated leaves are of the same type, so the condition holds by
+its formulation in [GT, Definition 4.13]. Finally the compatibility
+condition of their Definition 5.1(2) is Theorem~\ref{thm:loop}(c).
+\end{remark}
+
+\begin{corollary}\label{cor:final}
+The very general $H$-polarised Tyurin degeneration $\X\to\D$ and the
+fibration $(Y,\pi,\gamma)$ of Theorems \ref{thm:fibration} and
+\ref{thm:loop} are a mirror pair.
+\end{corollary}
+
+\begin{proof}
+All hypotheses of Theorem~\ref{thm:GT} are verified:
+Dolgachev--Nikulin duality by Proposition~\ref{prop:DN}; the structure of
+the degeneration by Proposition~\ref{prop:deg-side}; existence, uniqueness
+and fibre types of the fibration by Theorem~\ref{thm:fibration} (with the
+explicit Weierstrass model of Lemma~\ref{lem:weierstrass}); allowability,
+dual complex, compatibility and filtration matching by
+Theorem~\ref{thm:loop}. Hence the conclusion of Theorem~\ref{thm:GT}
+applies and Theorem~\ref{thm:main} follows.
+\end{proof}
+
+\begin{remark}[Independence of the ``checkerboard'' and Hodge-theoretic
+clauses]
+For completeness we record the remaining clauses of [GT, Definition 5.1]
+as they specialise here. The monodromy action on $E_m(Y,\gamma)$ computed
+in Theorem~\ref{thm:loop}(d) is generated by the transvection in the fibre
+class $f$ (the $N_\gamma$ of a Type III cusp with vanishing $I_6$
+cycles), matching the degeneration side $N$ with $\rk N = 2$, $\rk N^2=1$;
+the induced action on $E_m/W_2\simeq N$ is trivial on the $E_8^{\oplus2}$
+factor and the unipotent transvection $T_f$ on the $U$-factor, and dually
+on $E_m'/E_m\simeq U(-1)$. On the degeneration side the same holds with $v$
+in place of $f$, by the local invariant cycle theorem. Thus the full data
+of [GT, Definition 5.1(4)] coincide via our $\Phi$. The Hodge filtration
+matching (their clause concerning the period point of $Y$ corresponding to
+the limiting point of $\X\to\D$ under the cusp identification) is
+precisely the content of the mirror map for the self-dual pair
+$(H,N)$ of Proposition~\ref{prop:DN} and holds by [GT, Theorem B], whose
+hypotheses are again those verified above. This completes the verification
+of every clause of Definition 5.1 in this case.
+\end{remark}
+
+\section*{References}
+
+\begin{itemize}[leftmargin=2em]
+\item[{[ABE]}] V.~Alexeev, A.~Brunyate, P.~Engel,
+\emph{Compactifications of moduli of elliptic K3 surfaces: Stable pair and
+toroidal}, Geom. Topol. \textbf{26} (2022), 3525--3588.
+\item[{[GT]}] L.~Giovenzana, A.~Thompson,
+\emph{Degenerations and fibrations of K3 surfaces: Lattice polarisations and
+mirror symmetry}, arXiv:2405.12009. [Theorems B and C; Definitions 4.11,
+4.21, 5.1]
+\item[{[Kod]}] K.~Kodaira, \emph{On compact analytic surfaces II, III},
+Ann.\ of Math.\ \textbf{77} (1963), 563--626; \textbf{78} (1963), 1--40.
+\item[{[KPP]}] V.~Kulikov, \emph{Degenerations of K3 surfaces and Enriques
+surfaces}, Math.\ USSR-Izv.\ \textbf{11} (1977), 957--989;
+U.~Persson, H.~Pinkham, \emph{Degeneration of surfaces with trivial
+canonical bundle}, Ann.\ of Math.\ \textbf{113} (1981), 45--66.
+\item[{[Ni]}] V.~V.~Nikulin, \emph{Integer symmetric bilinear forms and
+some of their geometric applications}, Math.\ USSR-Izv.\ \textbf{14}
+(1980), 103--167.
+\item[{[PS--Sh]}] I.~Piatetski-Shapiro, I.~R.~Shafarevich, \emph{A Torelli
+theorem for algebraic surfaces of type K3}, Math.\ USSR-Izv.\ \textbf{5}
+(1971), 547--588.
+\item[{[SD]}] B.~Saint-Donat, \emph{Projective models of K3 surfaces},
+Amer.\ J.~Math.\ \textbf{96} (1974), 602--639.
+\item[{[Sh]}] T.~Shioda, \emph{On elliptic modular surfaces},
+J.~Math.\ Soc.\ Japan \textbf{24} (1972), 20--59; and the Shioda--Tate
+formula.
+\item[{[Ty]}] A.~N.~Tyurin, \emph{Fano versus Calabi--Yau}, The Fano
+Conference, 701--734, Univ.\ Torino, Turin, 2004.
+\end{itemize}
+
+\end{document}

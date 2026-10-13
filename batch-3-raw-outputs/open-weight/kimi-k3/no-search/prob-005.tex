@@ -1,0 +1,246 @@
+\documentclass[11pt]{amsart}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\hs}{\boxplus}
+\newcommand{\cP}{\mathcal P}
+
+\title{A Cubic Consequence of a Vanishing Ternary Hypersum}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Conventions and preliminary lemmas}
+
+We use the standard commutative notion of a hyperfield. Thus
+\((\mathbb H,\hs,0)\) is a commutative, associative, reversible hypergroup
+with identity \(0\), the nonzero elements form an abelian group under
+multiplication, multiplication by \(0\) is \(0\), and multiplication
+distributes over hyperaddition:
+\[
+a(b\hs c)=ab\hs ac.
+\]
+The proof below uses only the corresponding inclusion
+\[
+a(b\hs c)\subseteq ab\hs ac,
+\]
+so it also applies under the weaker distributivity convention.
+
+For subsets \(A,B\subseteq\mathbb H\), write
+\[
+A\hs B=\bigcup_{\substack{a\in A\\ b\in B}}a\hs b.
+\]
+Associativity and commutativity make finite hypersums such as
+\(a_1\hs\cdots\hs a_n\) independent of parentheses and ordering.
+
+\begin{lemma}[Additive inverses]
+\label{lem:additive-inverses}
+For every \(a,b\in\mathbb H\),
+\[
+0\in a\hs b
+\quad\Longleftrightarrow\quad
+b=-a.
+\]
+Moreover,
+\[
+-a=(-1)a.
+\]
+In particular, \((-a)^3=-(a^3)\).
+\end{lemma}
+
+\begin{proof}
+If \(0\in a\hs b\), reversibility gives
+\[
+b\in 0\hs(-a)=\{-a\},
+\]
+so \(b=-a\). Conversely, if \(b=-a\), then \(0\in a\hs(-a)=a\hs b\)
+by the inverse axiom.
+
+Next, \(0\in1\hs(-1)\). Multiplication by \(a\), followed by
+distributivity, gives
+\[
+0\in a\bigl(1\hs(-1)\bigr)\subseteq a\hs(-1)a.
+\]
+Hence the first part yields \((-1)a=-a\). Finally,
+\[
+(-a)^3=\bigl((-1)a\bigr)^3=(-1)^3a^3=(-1)a^3=-(a^3).
+\qedhere
+\]
+\end{proof}
+
+\begin{lemma}[Cubic expansion for an element of a binary hypersum]
+\label{lem:cubic-expansion}
+Let \(x,y,s\in\mathbb H\), and suppose that \(s\in x\hs y\). Put
+\[
+T=x^2y\hs xy^2.
+\]
+Then
+\[
+s^3\in x^3\hs y^3\hs T\hs T\hs T.
+\]
+\end{lemma}
+
+\begin{proof}
+Since \(s\in x\hs y\), distributivity gives
+\[
+sx\in x^2\hs xy,
+\qquad
+sy\in xy\hs y^2.
+\]
+Also,
+\[
+s^2\in s(x\hs y)\subseteq sx\hs sy.
+\]
+Consequently,
+\[
+s^2\in (x^2\hs xy)\hs(xy\hs y^2).
+\]
+Multiplying by \(s\) and again applying distributivity yields
+\[
+s^3
+\in
+(sx^2\hs sxy)\hs(sxy\hs sy^2).
+\]
+Using \(s\in x\hs y\) once more, we obtain
+\[
+sx^2\in x^3\hs x^2y,\qquad
+sxy\in x^2y\hs xy^2,\qquad
+sy^2\in xy^2\hs y^3.
+\]
+Therefore
+\[
+s^3
+\in
+(x^3\hs x^2y)
+\hs
+(x^2y\hs xy^2)
+\hs
+(x^2y\hs xy^2)
+\hs
+(xy^2\hs y^3).
+\]
+By associativity and commutativity of hypersaddition, the latter set is
+\[
+x^3\hs y^3
+\hs
+(x^2y\hs xy^2)
+\hs
+(x^2y\hs xy^2)
+\hs
+(x^2y\hs xy^2),
+\]
+which is precisely \(x^3\hs y^3\hs T\hs T\hs T\).
+\end{proof}
+
+\begin{lemma}[The mixed quadratic term]
+\label{lem:mixed-term}
+Suppose that
+\[
+0\in x\hs y\hs z.
+\]
+Then
+\[
+-xyz\in x^2y\hs xy^2.
+\]
+\end{lemma}
+
+\begin{proof}
+Multiplying the given hypersum by \(xy\) and using distributivity gives
+\[
+0\in xy(x\hs y\hs z)
+\subseteq x^2y\hs xy^2\hs xyz.
+\]
+Thus there exists
+\[
+t\in x^2y\hs xy^2
+\]
+such that \(0\in t\hs xyz\). By Lemma~\ref{lem:additive-inverses},
+\(t=-xyz\). Hence
+\[
+-xyz\in x^2y\hs xy^2.
+\qedhere
+\]
+\end{proof}
+
+\section{Main theorem}
+
+\begin{theorem}
+\label{thm:main-cubic}
+Let \(\mathbb H\) be a hyperfield, and let \(x,y,z\in\mathbb H\). If
+\[
+0\in x\hs y\hs z,
+\]
+then
+\[
+0\in
+x^3\hs y^3\hs z^3
+\hs(-xyz)\hs(-xyz)\hs(-xyz).
+\]
+\end{theorem}
+
+\begin{proof}
+By associativity, there exists an element \(s\in x\hs y\) such that
+\[
+0\in s\hs z.
+\]
+Lemma~\ref{lem:additive-inverses} gives \(s=-z\). Hence
+\[
+-z\in x\hs y.
+\]
+
+Let
+\[
+T=x^2y\hs xy^2
+\]
+and
+\[
+C=x^3\hs y^3\hs T\hs T\hs T.
+\]
+Lemma~\ref{lem:cubic-expansion}, applied to \(s=-z\), gives
+\[
+(-z)^3\in C.
+\]
+By Lemma~\ref{lem:additive-inverses}, \((-z)^3=-z^3\), so
+\[
+-z^3\in C.
+\]
+
+Put
+\[
+t=-xyz.
+\]
+Lemma~\ref{lem:mixed-term} gives \(t\in T\). Therefore
+\[
+x^3\hs y^3\hs t\hs t\hs t
+\subseteq
+x^3\hs y^3\hs T\hs T\hs T
+=C.
+\]
+Since \(-z^3\in C\), it follows that
+\[
+-z^3\in x^3\hs y^3\hs t\hs t\hs t.
+\]
+Consequently,
+\[
+0\in(-z^3)\hs z^3
+\subseteq
+x^3\hs y^3\hs z^3\hs t\hs t\hs t.
+\]
+Substituting \(t=-xyz\) yields
+\[
+0\in
+x^3\hs y^3\hs z^3
+\hs(-xyz)\hs(-xyz)\hs(-xyz).
+\qedhere
+\]
+\end{proof}
+
+Thus the answer to the question is affirmative.
+
+\end{document}

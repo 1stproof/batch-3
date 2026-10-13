@@ -1,0 +1,1687 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=0.85in]{geometry}
+\usepackage{enumitem}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\W}{\mathbb{W}}
+\newcommand{\one}{\mathbf{1}}
+\newcommand{\norm}[1]{\lVert #1\rVert}
+\newcommand{\abs}[1]{\lvert #1\rvert}
+\newcommand{\checkK}[1]{\check{#1}}
+\newcommand{\inner}[2]{\langle #1,#2\rangle}
+\newcommand{\SET}[1]{\{#1\}}
+\DeclareMathOperator{\diver}{div}
+\DeclareMathOperator{\supp}{supp}
+
+\newcommand{\fptitle}{Review of Problem 2 -- Humanize}
+\newcommand{\reviewtag}{Reviewer 3}
+\usepackage{fp-review}
+
+\begin{document}
+\maketitle
+
+\section{Review}
+
+\textbf{Summary}
+
+The approach presented here differs substantially from the other AI-based solutions. The presented approach here reconstructs the unknown conductivity $f$ by a least squares procedure after projecting the data onto a finite-dimensional subspace of \(L^2\). The estimation error is analysed using ideas and techniques from multiresolution analysis.
+However, the main result (Theorem 3.1), which claims that
+\[
+cn^{-\frac{2\alpha}{2\alpha+d+2}}
+\leq
+\inf_{\hat f_n}
+\sup_{f_0\in\mathcal F(\alpha,r)}
+\mathbb E_{f_0}\!\left[
+\|\hat f_n-f_0\|_{L^2(D)}^2
+\right]
+\leq
+Cn^{-\frac{2\alpha}{2\alpha+d+2}},
+\]
+is incorrect. The claimed convergence rate is too fast: the denominator should contain \(d+3\), rather than \(d+2\). This error appears to come from a insufficient treatment of the spatially varying ill-posedness of the underlying inverse problem.
+The issue can be traced to equation (19), Lemma 7.2, and Remark 7.4. Although the final sentence of Lemma 7.2 highlights the degeneracy of the transport field for modes localised near the origin, the risk analysis does not adequately account for its effect on the estimation error, which is one of the main key points in this problems.
+Beyond this conceptual issue, the manuscript contains several technical inconsistencies, including in the construction of the wavelet set \(\mathcal F_\delta\). The exposition is often too unclear to guarantee a detailed assessment of the arguments. Moreover, the manuscript makes no substantive attempt to place its contribution within the existing literature. Taken together, the manuscript does not meet the standards of a scientific publication.
+
+\paragraph{Correctness.}
+\begin{itemize}
+	\item  1: essentially flawless mathematical argument
+	\item  0.5: minor errors that are easily corrected
+	\item  0: blank solution, or acknowledged partial result
+	\item  $-0.5$: major errors
+	\item  $-1$: proposed proof makes no progress towards the result.
+\end{itemize}
+Note that points should be docked for wrong statements/ solutions.
+
+\noindent Score: -1 
+
+\paragraph{Exposition.}
+\begin{itemize}
+	\item  1: well-written and clear solution.
+	\item  0: argument that is possible to follow with serious effort
+	\item  $-1$: very poor exposition
+\end{itemize}
+
+\noindent Score: -1
+
+\paragraph{Attributions.}
+\begin{itemize}
+	\item  1: solutions contains fully appropriate attributions
+		to related work and theorems being used.
+	\item  0: moderate issues with missing attributions or hallucinated references
+	\item  $-1$: blatant plagiarism or hallucinations
+\end{itemize}
+
+\noindent Score: 0
+
+\newpage
+\section{Submission with inline comments}
+
+
+\section{Problem and answer}
+
+Let $D\subseteq\R^{d}$, $d\ge2$, be the Euclidean unit ball. For a
+H\"older--Zygmund conductivity $f\in C^{\alpha}(D)$, $\alpha>1$, let
+$u=u_{f}$ solve the Darcy problem
+\[
+\diver(f\nabla u)=1\ \ \text{on }D,\qquad u|_{\partial D}=0 .
+\]
+We observe
+\[
+Y\;=\;u_{f}\;+\;\frac{1}{\sqrt{n}}\,\W ,
+\]
+where $\W$ is Gaussian white noise on $L^{2}(D)$, and we estimate $f$ over
+the class
+\[
+\F(\alpha,r)=\SET{\,h\in C^{\alpha}(D):\ \norm{h-\one}_{C^{\alpha}(D)}\le r\,},
+\qquad r\in(0,1)\ \text{small and fixed}.
+\]
+(The class is contained in $C^{a}$ with the $a$-th derivatives uniformly
+$t$-H\"older, where $\alpha=a+t$, $a=\lceil\alpha\rceil-1\in\mathbb Z_{\ge1}$,
+$t\in(0,1]$, Zygmund if $t=1$; in particular every $f\in\F(\alpha,r)$ is
+continuously differentiable and satisfies $1-r\le f\le1+r$.)
+
+\begin{theorem}\label{thm:main}
+There exist $r_{0}=r_{0}(\alpha,d)\in(0,1]$ and, for every fixed
+$r\in(0,r_{0}]$, constants $c,C>0$ with $C$ depending only on
+$(\alpha,d)$ and $c$ on $(\alpha,d,r)$, such that
+\[
+c\,\Phi_{n}
+\ \le\
+\inf_{\widehat f_{n}}\ \sup_{f_{0}\in\F(\alpha,r)}
+\E_{f_{0}}\!\bigl[\norm{\widehat f_{n}-f_{0}}_{L^{2}(D)}^{2}\bigr]
+\ \le\ C\,\Phi_{n},
+\qquad
+\Phi_{n}=n^{-\frac{2\alpha}{2\alpha+d+2}} .
+\]
+\end{theorem}
+
+\noindent\textbf{Answer.} The minimax rate is
+\[
+\boxed{\ n^{-\frac{2\alpha}{2\alpha+d+2}}\ }
+\qquad\text{up to logarithmic factors.}
+\]
+Both bounds proved below carry this power of $n$; our argument is in fact
+log-free, which is a fortiori ``up to logarithmic factors.'' This is
+\emph{faster} than the
+direct white-noise rate $n^{-2\alpha/(2\alpha+d)}$: the denominator gains
+an additive $+2$, i.e.\ the inverse problem is only \emph{mildly ill-posed
+of degree one}. The mechanism, proved below, is that the linearization $T$
+of $f\mapsto u_{f}$ at $\one$ satisfies $\Delta(Tg)=g+\frac{x\cdot\nabla}{d}g$,
+and the transport-type source $g\mapsto g+\frac{x\cdot\nabla}{d}g$ is
+invertible as an order-zero operator ($L^{-1}=J\in\mathcal B(L^{2}(D))$ with
+$\norm{J}\le2d$, $L\in\mathcal B(H^{1}(D),L^{2}(D))$;
+Lemma~\ref{lem:Linv}); consequently $T$
+behaves like a general (nonlocal) operator of order $-1$, gaining exactly
+one derivative on scale-$\delta$ perturbations, rather than two.
+
+\noindent The lower bound is Proposition~\ref{prop:lower}; the upper bound
+is Proposition~\ref{prop:upper}. Constants implicit in $\lesssim,\asymp$ depend only on
+$(\alpha,d)$ and a fixed bump, never on $f$, $n$, or $\delta$; $C$ is
+uniform in $r\in(0,r_0]$, while the lower-bound $c$ carries the factor
+$r^{2}$ of the shrinking class (Proposition~\ref{prop:lower}).
+
+\section{Preliminaries}\label{sec:prelim}
+
+\subsection{White-noise model and likelihood}
+Gaussian white noise $\W$ on $L^{2}(D)$ is the centred Gaussian process
+indexed by $L^{2}(D)$ with
+$\E\inner{\W}{\phi}=0$ and
+$\E[\inner{\W}{\phi}\inner{\W}{\psi}]=\inner{\phi}{\psi}_{L^{2}(D)}$. Under
+conductivity $f$, the law $P_{f}$ of $Y$ is the Gaussian shift with mean
+$u_{f}$ and covariance $n^{-1}I$ on $L^{2}(D)$. For two conductivities
+$f,f_0$ the Cameron--Martin formula gives
+\begin{equation}\label{eq:KL}
+\operatorname{KL}(P_{f}\,\|\,P_{f_{0}})
+\;=\;\frac{n}{2}\,\norm{u_{f}-u_{f_{0}}}_{L^{2}(D)}^{2}.
+\end{equation}
+All norms $\norm{\cdot}$ are $L^{2}(D)$ unless otherwise indicated;
+$\norm{\cdot}_{p}$ denotes $L^{p}(D)$.
+
+\subsection{External tools (precise statements)}
+We collect the standard results used, with precise hypotheses, so that no
+nonstandard result enters tacitly.
+
+\review{Here, standard results are stated without appropriate references.}
+
+\begin{enumerate}[label=(T\arabic*),itemsep=1pt,leftmargin=2.2em]
+\item\label{T:fano}\textbf{Fano's inequality.} For probability measures
+$P_1,\dots,P_N$ on a common space, any estimator $\widehat\theta$ of the
+index, and any reference $\bar P$,
+$\frac1N\sum_{j} P_j(\widehat\theta\ne j)\ge 1-\frac{\frac1N\sum_j
+\operatorname{KL}(P_j\|\bar P)+\log 2}{\log N}$.
+\item\label{T:VG}\textbf{Varshamov--Gilbert.} For $M\ge1$ there exist
+$N\ge 2^{cM}$ subsets $S\subset\SET{1,\dots,M}$, each of cardinality $M/2$,
+with pairwise Hamming distance $\abs{S\triangle S'}\ge M/8$; $c>0$
+absolute.
+\item\label{T:weyl}\textbf{Weyl's law.} For the Dirichlet Laplacian on the
+bounded smooth domain $D$, $\#\SET{\lambda_\nu\le\Lambda}\sim
+c_d\abs D\Lambda^{d/2}$; hence the span of the eigenfunctions with
+$\lambda_\nu\le M^2$ has dimension $\asymp M^{d}$.
+\item\label{T:CM}\textbf{Cameron--Martin.} For $Y=u+n^{-1/2}\W$ on
+$L^2(D)$, means $u_1,u_0\in L^2(D)$ give laws with
+$\operatorname{KL}(P_{u_1}\|P_{u_0})=\frac{n}{2}\norm{u_1-u_0}_2^2$.
+\item\label{T:wave}\textbf{Wavelet/Besov characterization of $C^\alpha$
+and square function on $D$.} There is a boundary-corrected wavelet frame of
+the smooth domain $D$ (Cohen--Dahmen--DeVore-type) such that for
+$\alpha>0$ (noninteger, with the Zygmund convention at integers),
+$f\in C^\alpha(D)=B^\alpha_{\infty,\infty}(D)$ iff
+$\sup_{\lambda}2^{j_\lambda(\alpha+d/2)}\abs{\inner{f}{\psi_\lambda}}
+<\infty$, comparable to $\norm{f}_{C^\alpha}$; and
+$\norm{f}_{L^2}\asymp\bigl(\sum_j\norm{\Delta_j f}_{L^2}^2\bigr)^{1/2}$ for
+the spectral dyadic pieces $\Delta_j=\varphi_j(\sqrt{-\Delta})$ (the
+Dirichlet-Laplacian smooth functional calculus / heat-kernel Mikhlin
+square-function inequality on the smooth bounded domain).
+\item\label{T:schauder}\textbf{Divergence-form elliptic regularity.} For
+$1-r\le f\le1+r$, $f\in C^\alpha$, $\alpha>1$, $\diver(f\nabla u)=F$ in
+$D$ with $u=0$ on $\partial D$ has a unique solution with
+$\norm{u}_{C^{1,\beta}}\le C(\alpha,d,r)\norm{F}_{L^\infty}$ for some
+$\beta=\beta(\alpha,d)\in(0,1]$; in particular
+$\norm{\nabla u}_{L^\infty}\le C$.
+\item\label{T:hardy}\textbf{Hardy / Ces\`aro.} The Ces\`aro operator
+$(Cf)(t)=\frac1t\int_0^t f(s)\,ds$ has norm $\frac{p}{p-1}$ ($=2$ on $L^2$)
+on $L^p((0,1),dt)$.
+\end{enumerate}
+
+\noindent Every PDE/functional bound below is either derived here or is an
+application of (T1)--(T7).
+
+\subsection{Linearization about the constant conductivity}
+The constant-conductivity solution is explicit:
+\[
+u_{0}(x)=\frac{\abs{x}^{2}-1}{2d},
+\qquad \nabla u_{0}(x)=\frac{x}{d},
+\qquad \Delta u_{0}=1 .
+\]
+For any $\phi\in C^{1}(D)$ one has the pointwise identity
+\begin{equation}\label{eq:u0prop}
+\diver(\phi\nabla u_{0})
+=\nabla\phi\cdot\Bigl(\frac{x}{d}\Bigr)+\phi\,\Delta u_{0}
+=\frac{x\cdot\nabla\phi}{d}+\phi .
+\end{equation}
+
+\begin{lemma}[Linearization]\label{lem:lin}
+For $g\in L^{2}(D)$, let $Tg\in H^{1}_{0}(D)$ be the unique solution of
+$-\diver(\nabla w)=-\diver(g\nabla u_{0})$, $w|_{\partial D}=0$, i.e.\
+$Tg=-\Delta^{-1}\!\bigl(\diver(g\nabla u_{0})\bigr)$ in the
+$H^{-1}(D)$/$H^{1}_{0}(D)$ sense. Then, as distributions,
+\begin{equation}\label{eq:DeltaT}
+\Delta(Tg)=g+\frac{x\cdot\nabla}{d}\,g .
+\end{equation}
+\end{lemma}
+\begin{proof}
+By \eqref{eq:u0prop}, $\diver(g\nabla u_{0})=g+\frac{x\cdot\nabla}{d}g$
+as a distribution of order $\le1$, hence in $H^{-1}(D)$; applying
+$\Delta^{-1}$ gives \eqref{eq:DeltaT}. The Dirichlet Laplacian
+$-\Delta:H^{1}_{0}(D)\to H^{-1}(D)$ is an isomorphism (Lax--Milgram), and
+$\norm{Tg}_{H^{1}}\lesssim\norm{g}_{H^{-1}}$.
+\end{proof}
+
+\begin{remark}[Transport structure of $L$]\label{rem:meanzero}
+Write $A=\frac{x\cdot\nabla}{d}$ and $L=I+A$. Using
+$\diver(xg)=(\diver x)g+x\cdot\nabla g=dg+x\cdot\nabla g$ and
+$x\cdot\nu=\abs{x}=1$ on $\partial D$,
+\[
+Lg=g+\frac{x\cdot\nabla g}{d}
+=\frac1d\bigl(dg+x\cdot\nabla g\bigr)
+=\frac1d\diver(x\,g).
+\]
+Hence $L$ is a pure divergence composed with the vector field $x\mapsto
+x/d$; in particular \emph{if} $\int_D g\,dx=0$ \emph{then}
+$\int_D Lg\,dx=\frac1d\int_{\partial D}g\,dS$ (this vanishes for the
+mean-zero wavelet packets used below since each $\psi_m$ has integral zero
+and is interior). This divergence/transport structure makes $L$ an
+order-zero invertible operator on
+$L^{2}(D)$ (Lemma~\ref{lem:Linv}); the smoothing order of $T=-\Delta^{-1}L$
+is then governed by the dilation generator, giving exactly one degree
+(Lemmas~\ref{lem:fourier}, \ref{lem:scale2}).
+\end{remark}
+
+\subsection{The transport operator $L$ is an invertible order-zero operator}
+
+\review{It is difficult, or even impossible, to verify the correctness of Lemmas 4.3 and 4.5 due to the unclear presentation, lack of justification and missing references.}
+
+\begin{lemma}[$L$ is invertible, $\norm{L^{-1}}\le C_{d}$]\label{lem:Linv}
+Let $A=\frac{x\cdot\nabla}{d}$ and $L=I+A$. For $g\in C^{1}(D)$ define
+\[
+(Jg)(x)\;:=\;d\int_{0}^{1}\tau^{d-1}g(\tau x)\,d\tau ,
+\qquad x\in D\setminus\SET{0}.
+\]
+Then:
+\begin{enumerate}[label=(\roman*),itemsep=1pt]
+\item $LJg=JLg=g$ on $C^{1}(D)$, so $L$ is invertible and $L^{-1}=J$.
+\item $\norm{L^{-1}g}_{L^{2}(D)}\le C_{d}\norm{g}_{L^{2}(D)}$ for every
+$d\ge2$ (in fact $C_d=2d$ suffices).
+\item Consequently $\norm{Lg}_{2}\ge c_d\norm{g}_{2}$ ($c_d=C_d^{-1}>0$).
+Precisely: $J=L^{-1}$ extends to an element of $\mathcal B(L^{2}(D))$,
+$L\in\mathcal B(H^{1}(D),L^{2}(D))$ (since
+$\norm{Lg}_2\le\norm{g}_2+\frac1d\norm{\nabla g}_2$). Moreover, writing
+$Lg=\frac1d\diver(xg)$ and defining $\diver(xg)\in H^{-1}(D)$ for general
+$g\in L^{2}(D)$ by duality, the operator
+$T(g):=-\Delta^{-1}\bigl(\tfrac1d\diver(xg)\bigr)$ extends the
+$\Delta w=Lg$ map of Lemma~\ref{lem:lin} from $C^{1}$ to all of
+$L^{2}(D)$, with
+\[
+T\in\mathcal B\bigl(L^{2}(D),H^{1}_{0}(D)\bigr)
+\cap\mathcal B\bigl(H^{-1}(D),L^{2}(D)\bigr),
+\qquad\norm{T}_{L^{2}\to L^{2}}\le C_{d}\cdot 2C_{P},
+\]
+in particular $\norm{Tg}_{2}\le C_{T}\norm{g}_{2}$ with
+$C_T=C_{T}(d)$, used in the spectral-tail step of
+Lemma~\ref{lem:invert}.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(i) Fix $x\ne0$ and set $\phi(\tau)=g(\tau x)$, so
+$\phi'(\tau)=x\cdot\nabla g(\tau x)$. Then
+\[
+\frac{d}{d\tau}\bigl[\tau^{d}g(\tau x)\bigr]
+=d\tau^{d-1}g(\tau x)+\tau^{d}x\cdot\nabla g(\tau x) .
+\]
+Integrating over $\tau\in[0,1]$ ($\tau^{d}g(\tau x)\to0$ as $\tau\to0$):
+\[
+g(x)=\int_{0}^{1}\Bigl(d\tau^{d-1}g(\tau x)+\tau^{d}x\cdot\nabla g(\tau x)\Bigr)d\tau
+\]
+and, differentiating under the integral in $x$,
+\[
+x\cdot\nabla(Jg)(x)
+=d\int_0^1\tau^{d-1}\bigl(\tau x\cdot\nabla g(\tau x)\bigr)d\tau
+=d\int_0^1\tau^{d}\,x\cdot\nabla g(\tau x)\,d\tau .
+\]
+Adding,
+$d\,(Jg)(x)+x\cdot\nabla(Jg)(x)
+=d\int_0^1\bigl(d\tau^{d-1}g(\tau x)+\tau^{d}x\cdot\nabla g(\tau x)\bigr)d\tau
+=d\,g(x)$ by the previous display; dividing by $d$,
+$L(Jg)(x)=(Jg)(x)+\frac{x\cdot\nabla(Jg)(x)}{d}=g(x)$, i.e.\ $LJ=I$.
+Applying $L$ first and using the same integration with
+$(Lg)(\tau x)=g(\tau x)+\frac{\tau x\cdot\nabla g(\tau x)}{d}$ gives
+$JLg=g$; hence $L^{-1}=J$.
+
+(ii) Polar coordinates $x=\rho\theta$, $dx=\rho^{d-1}d\rho\,d\sigma(\theta)$:
+\[
+\norm{L^{-1}g}_{2}^{2}
+=\int_{\mathbb S^{d-1}}\int_{0}^{1}
+\Bigl|d\int_{0}^{1}\tau^{d-1}g(\tau\rho\theta)d\tau\Bigr|^{2}
+\rho^{d-1}d\rho\,d\sigma(\theta).
+\]
+Substitute $s=\tau\rho$:
+$d\int_0^1\tau^{d-1}g(\tau\rho\theta)d\tau
+=\frac{d}{\rho^{d}}\int_0^{\rho}s^{d-1}g(s\theta)\,ds$. For fixed
+$\theta\in\mathbb S^{d-1}$ set $\gamma(\rho)=g(\rho\theta)$ and equip
+$(0,1)$ with the measure $d\mu(\rho)=\rho^{d-1}d\rho$, so that
+$\mu(0,\rho)=\rho^{d}/d$ and
+$\norm{g}_{L^{2}(D)}^{2}=\int_{\mathbb S^{d-1}}\norm{\gamma}_{L^{2}(d\mu)}^{2}
+d\sigma(\theta)$. The pointwise formula reads
+\[
+(L^{-1}g)(\rho\theta)
+=\frac{d}{\rho^{d}}\int_0^{\rho}\gamma(s)\,d\mu(s)
+=d\,(H\gamma)(\rho),
+\qquad
+(H\gamma)(\rho):=\frac{1}{\mu(0,\rho)}\int_0^{\rho}\gamma\,d\mu .
+\]
+The averaging operator $H$ is bounded on $L^{2}(d\mu)$
+(Hardy's inequality on $((0,1),d\mu)$). To compute a constant, change
+variables $t=\rho^{d}$: then $\rho^{d-1}d\rho=dt/d$, $\mu(0,\rho)=t/d$, and
+with $\beta(t):=d^{-1/2}\gamma(t^{1/d})$ one has the isometry
+$\int_0^1|\beta(t)|^{2}dt=\int_0^1|\gamma(\rho)|^{2}\rho^{d-1}d\rho
+=\norm{\gamma}_{L^{2}(d\mu)}^{2}$, and
+\[
+(H\gamma)(\rho)=\frac{d}{t}\int_{0}^{t^{1/d}}\gamma(s)\,s^{d-1}ds
+=\frac{d}{t}\int_{0}^{t}\gamma(s_1^{1/d})\,\frac{ds_1}{d}
+=\frac{\sqrt d}{t}\int_{0}^{t}\beta(s_1)\,ds_1 ,
+\]
+which is $\sqrt d$ times the Ces\`aro operator in $t$ (of norm
+$\frac{p}{p-1}=2$ on $L^{2}((0,1),dt)$). Therefore
+\[
+\norm{H\gamma}_{L^{2}(d\mu)}^{2}
+=\int_0^1\abs{H\gamma}^{2}\frac{dt}{d}
+=\frac1d\cdot d\int_0^1\Bigl|\frac1t\int_0^t\beta\Bigr|^{2}dt
+\le\frac{d}{d}\cdot4\int_0^1\abs{\beta}^{2}dt
+=4\,\norm{\gamma}_{L^{2}(d\mu)}^{2},
+\]
+so $\norm{H\gamma}_{L^{2}(d\mu)}\le2\norm{\gamma}_{L^{2}(d\mu)}$.
+Therefore
+\[
+\norm{L^{-1}g}_{L^{2}(D)}^{2}
+=d^{2}\!\!\int_{\mathbb S^{d-1}}\!\!\norm{H\gamma}_{L^{2}(d\mu)}^{2}d\sigma
+\le d^{2}\cdot 4\int_{\mathbb S^{d-1}}\norm{\gamma}_{L^{2}(d\mu)}^{2}d\sigma
+=4d^{2}\,\norm{g}_{L^{2}(D)}^{2},
+\qquad
+\norm{L^{-1}g}_{2}\le2d\,\norm{g}_{2}.
+\]
+Thus $\norm{L^{-1}}\le C_{d}$ with $C_d=2d$; any $d$-dependent
+constant suffices here, as all constants below are allowed to depend on
+$(\alpha,d)$. We thus take (ii) in the form
+$\norm{L^{-1}g}_{2}\le C_d\norm{g}_{2}$.
+
+(iii) From $\norm{g}_{2}=\norm{L^{-1}Lg}_{2}\le C_d\norm{Lg}_{2}$,
+$\norm{Lg}_{2}\ge c_d\norm{g}_{2}$. On a dense set ($C^{1}$) $J=L^{-1}$
+with $\norm J\le C_d$, so $J$ extends to $\mathcal B(L^{2}(D))$; and
+$\norm{Lg}_{2}\le\norm{g}_{2}+\frac1d\norm{x\cdot\nabla g}_{2}
+\le(1+\frac1d)\norm{g}_{H^{1}}$, so $L\in\mathcal B(H^{1},L^{2})$ (it is
+\emph{not} bounded on $L^{2}$). For the last claim, map
+$g\in L^{2}$ to the divergence-form distribution $F=\frac1d\diver(xg)\in
+H^{-1}$ ($\norm{F}_{H^{-1}}\le\frac1d\norm{g}_2$) and apply the Dirichlet
+Laplacian inverse: $-\Delta^{-1}:H^{-1}\to H^{1}_{0}$ is bounded, so
+$T:L^{2}\to H^{1}_{0}$ is bounded with
+$\norm{Tg}_{H^{1}}\lesssim\frac1d\norm{g}_2$; by Poincar\'e
+$\norm{Tg}_{2}\lesssim\norm{g}_{2}$. Finally, for $\psi\in L^{2}$ and
+$\phi=-\Delta^{-1}\psi\in H^{2}\cap H^{1}_{0}$
+($\norm{\phi}_{H^{2}}\lesssim\norm{\psi}_2$),
+$\abs{\inner{Tg}{\psi}}=\frac1d\abs{\int_D g\,x\cdot\nabla\phi\,dx}
+\le\frac1d\norm{g}_{H^{-1}}\norm{x\cdot\nabla\phi}_{H^{1}_0}
+\lesssim\norm{g}_{H^{-1}}\norm{\psi}_2$, so
+$T:H^{-1}\to L^{2}$ is bounded.
+On $g\in C^{1}$ the identity $\frac1d\diver(xg)=Lg$ identifies this
+extension with the $T$ of Lemma~\ref{lem:lin}; in particular $Tg$ always
+satisfies the very-weak form of $\Delta w=Lg$. The refined scale-localized
+bound $\norm{Tg}_{2}\lesssim\delta\norm{g}_{2}$ for packets is
+Lemma~\ref{lem:scale2}.
+\end{proof}
+
+\begin{remark}\label{rem:crux}
+Lemma~\ref{lem:Linv} is the analytic crux: by Lemma~\ref{lem:lin},
+$Tg=-\Delta^{-1}Lg$. On a frequency band $\abs{\cdot}\asymp\delta^{-1}$ the
+Dirichlet Laplacian inverts with gain $\delta^{2}$ but the \emph{transport
+source} $L$ is invertible as an order-zero operator (Lemma~\ref{lem:Linv}:
+$L^{-1}=J\in\mathcal B(L^{2})$ and $\norm{Lg}_2\ge c_d\norm{g}_2$), so $T$ gains only
+\emph{one} power of $\delta$. This is made precise in
+Lemma~\ref{lem:scale2}.
+\end{remark}
+
+\begin{lemma}[Elliptic estimate for the harmonic
+part]\label{lem:harmonic}
+Let $F\in H^{-1}(D)$ and decompose the solution $w\in H^{1}_{0}(D)$ of
+$-\Delta w=F$, $w|_{\partial D}=0$, as $w=U-q$ with
+$U=(-\Delta_{\R^{d}})^{-1}F\in H^{1}_{\rm loc}$ (fundamental-solution
+representation on the compactly supported $F$) and $\Delta q=0$ in $D$,
+$q=U$ on $\partial D$. Then
+\[
+\norm{q}_{L^{2}(D)}\ \le\ C_{E}\,\norm{U}_{H^{1}(D)},
+\qquad C_E=C_E(d),
+\]
+and consequently, for $F=\frac1d\diver(xg)$ ($g\in L^{2}$) and
+$w=Tg$,
+$\norm{q}_{2}\le C_E''\norm{g}_{2}$ with $C_E''=C_E''(d)$.
+
+\noindent If moreover $\supp g\subset D_{(\tau)}:=\SET{\abs x\le1-\tau}$
+for some $\tau\in(0,\tfrac12]$, then with $C_E'''=C_E'''(d)$,
+\[
+\norm{U}_{H^{1}(\partial D)}\ \le\ C_E'''\,\tau^{-(d-1)}\norm{g}_2 ,
+\]
+i.e.\ the harmonic trace stays $O(\norm g_2)$ (up to a
+$\tau$-\emph{fixed} factor) and is not amplified as the source recedes from
+$\partial D$.
+\end{lemma}
+\begin{proof}
+Set $\phi:=q-U$, the solution of $-\Delta\phi=F$ in $H^{1}_{0}(D)$
+(since $\Delta q=0$, $-\Delta U=F$, and $\phi=q-U=0$ on $\partial D$);
+$H^{1}_0$ energy theory (Lax--Milgram and Poincar\'e) gives
+$\norm{\phi}_{H^{1}}\le C_P\norm{F}_{H^{-1}}$. Testing against $\phi$,
+\[
+\int_D\abs{\nabla\phi}^{2}
+=\inner{F}{\phi}_{H^{-1},H^{1}_0}
+\le\norm{F}_{H^{-1}}\norm{\phi}_{H^{1}},
+\]
+so $\norm{\phi}_{H^{1}}\le C_P\norm{F}_{H^{-1}}$, and
+$\norm{q}_{L^{2}}\le\norm{U}_{L^{2}}+\norm{\phi}_{L^{2}}
+\le\norm{U}_{L^{2}}+C_P\norm{F}_{H^{-1}}
+\le C_E\norm{U}_{H^{1}}$ after using
+$\norm{F}_{H^{-1}}\lesssim\norm{U}_{H^{1}}$.
+For the specific $F=\frac1d\diver(xg)$,
+$\norm{U}_{H^{1}(D)}\lesssim\norm{F}_{H^{-1}}\le\frac1d\norm g_2$
+(interior elliptic regularity on $D\Subset\tfrac32 D$ for
+$-\Delta_{\R^{d}}U=F$, plus $\norm{F}_{H^{-1}}\le\frac1d\norm g_2$ from
+the divergence form), so $\norm{q}_{2}\le C_E''\norm{g}_{2}$.
+\smallskip
+For the interior claim, use the representation
+$U=(-\Delta_{\R^d})^{-1}\bigl(\tfrac1d\diver(xg)\bigr)
+=-\frac1d(-\Delta_{\R^d})^{-1}\diver(xg)$, i.e.\
+$U(x)=-\frac1d\int\nabla\Phi(x-y)\cdot y\,g(y)\,dy$ with $\Phi$ the
+fundamental solution, $\abs{\nabla\Phi(z)}\lesssim\abs z^{1-d}$
+(integration by parts is unnecessary: this is the convolution of the
+$L^{2}$ field $yg$ with the locally-integrable kernel
+$\nabla\Phi$). For $x\in D\setminus D_{(\tau/2)}$ and
+$y\in D_{(\tau)}$, $\abs{x-y}\ge\tau/2$, so
+$\abs{\nabla\Phi(x-y)}\lesssim\tau^{1-d}$ and
+$\abs{U(x)}\lesssim\tau^{1-d}\norm{g}_1\lesssim\tau^{1-d}\norm g_2$,
+and the same with one more derivative,
+$\abs{\nabla U(x)}\lesssim\tau^{-d}\norm g_2$. Hence for a fixed
+interior/annular collar $D\setminus D_{(\tau/2)}$,
+$\norm{U}_{H^{1}(D\setminus D_{(\tau/2)})}\lesssim\tau^{1-d}\norm g_2$
+and by smooth continuation (interior elliptic regularity on
+$D_{(\tau/2)}$ for the same equation, applied to the patched field)
+$\norm{U}_{H^{1}(D)}\lesssim\tau^{1-d}\norm g_2$; the trace theorem
+$\norm{u}_{L^{2}(\partial D)}\lesssim\norm u_{H^{1}(D)}$ then gives
+$\norm U_{L^{2}(\partial D)}\lesssim\tau^{1-d}\norm g_2$ with $\nabla U$
+similarly bounded, so
+$\norm U_{H^{1}(\partial D)}\lesssim\tau^{1-d}\norm g_2$. The stated
+exponent $\tau^{-(d-1)}$ is not optimal but suffices: any
+$(\tau,d)$-dependent constant works, since $\tau$ is chosen before
+$\delta_0$.
+\end{proof}
+
+\subsection{The forward map: very-weak form, apriori bounds, quadratic
+remainder}\label{sec:forward}
+
+Since $f\in C^{\alpha}$, $\alpha>1$, $f$ is $C^{1}$ and
+$1-r\le f\le1+r$ uniformly. We use the very-weak ($L^{2}$) formulation:
+$u_f\in L^{2}(D)$ satisfies, for all $\phi\in H^{2}(D)\cap H^{1}_{0}(D)$,
+\begin{equation}\label{eq:veryweak}
+\int_D u_f\,\diver(f\nabla\phi)\,dx=\int_D\phi\,dx .
+\end{equation}
+Existence/uniqueness of a very-weak solution follows by transposition:
+since $f\in C^{1}$ and $1-r\le f\le1+r$, the operator
+$-\diver(f\nabla\cdot):H^{1}_0(D)\to H^{-1}(D)$ is an isomorphism
+(Lax--Milgram), so for $\psi\in L^{2}(D)$ the adjoint problem
+$-\diver(f\nabla\phi)=\psi$, $\phi\in H^{1}_0(D)$, has a unique solution
+$\phi\in H^{2}(D)\cap H^{1}_0(D)$; defining $u_f\in L^{2}(D)$ by
+$\langle u_f,\psi\rangle:=\int_D\phi\,dx$ (well-defined, linear, bounded in
+$\psi$ since $\norm{\phi}_{H^{2}}\lesssim\norm{\psi}_2$) gives
+\eqref{eq:veryweak} upon $\diver(f\nabla\phi)=-\psi$, and uniqueness in
+$L^{2}$ follows from the same isomorphy (if $u\in L^{2}$ satisfies
+\eqref{eq:veryweak} with the right side $0$, the density of the adjoint
+solutions $\psi$ in $L^{2}$ forces $u=0$). All subsequent $L^{2}$/weak
+estimates use only ellipticity and boundedness via (T6); we never invoke
+$u_f\in H^{1}_0(D)$ from \eqref{eq:veryweak}.
+
+\begin{lemma}[Apriori estimates]\label{lem:apriori}
+Uniform in $f\in\F(\alpha,r)$:
+(i) $\norm{u_f}_{\infty}+\norm{u_f}_{2}\lesssim1$;
+(ii) $\norm{u_f-u_0}_{2}\lesssim\norm{f-\one}_{2}\le r$;
+(iii) more generally $\norm{u_f-u_0}_{2}\le C_A\norm{(f-\one)\nabla
+u_0}_{H^{-1}(D)}$ with $C_A=C_A(d,r)$, and in particular
+$\norm{u_f-u_0}_2\lesssim\norm{f-\one}_\infty$; if moreover
+$\supp(f-\one)\subset D'$ with $\operatorname{dist}(D',\partial
+D)>\varepsilon_0$, then
+$\norm{u_f-u_0}_2\lesssim_{\varepsilon_0}\norm{f-\one}_{H^{1}(D')}$.
+\end{lemma}
+\begin{proof}
+(i) By the comparison principle with barriers
+$\frac{u_0}{1\mp r}=\frac{\abs{x}^{2}-1}{2d(1\mp r)}$: since
+$1-r\le f\le1+r$ and
+$\diver(f\nabla u_f)=1$, the weak maximum principle for the divergence
+operator $w\mapsto\diver(f\nabla w)$ (with the subsolution/supersolution
+comparison valid in the weak sense) gives, comparing $u_f$ against the
+two radial barriers,
+$\diver\bigl(f\nabla\tfrac{u_0}{1+r}\bigr)
+=\tfrac{f}{1+r}\Delta u_0=\tfrac{f}{1+r}\le1=\diver(f\nabla u_f)$
+with $\tfrac{u_0}{1+r}=0=u_f$ on $\partial D$, so
+$u_f\ge\tfrac{u_0}{1+r}$ in $D$; symmetrically
+$\diver\bigl(f\nabla\tfrac{u_0}{1-r}\bigr)
+=\tfrac{f}{1-r}\ge1$ gives $u_f\le\tfrac{u_0}{1-r}$. Hence
+$\frac{\abs{x}^{2}-1}{2d(1+r)}\le u_f\le\frac{\abs{x}^{2}-1}{2d(1-r)}\le0$
+and
+$\abs{u_f}\le\frac{1}{2d(1-r)}\lesssim1$ on $D$.
+(ii) Testing \eqref{eq:veryweak} for $u_f$ and $u_0$ against
+$\phi=-\Delta^{-1}\psi$ ($\psi\in L^{2}$ arbitrary,
+$\norm{\phi}_{H^{2}}\lesssim\norm{\psi}_{2}$) and subtracting:
+\[
+\inner{u_f-u_0}{\psi}
+=-\int_D(f-\one)\nabla u_0\cdot\nabla\phi\,dx ,
+\]
+so $\abs{\inner{u_f-u_0}{\psi}}\le\norm{f-\one}_{2}\norm{\nabla u_0}_{\infty}
+\norm{\nabla\phi}_{2}\lesssim\norm{f-\one}_{2}\norm{\psi}_{2}$, and (ii)
+follows by duality.
+(iii) Sharpening the same display,
+$\abs{\inner{u_f-u_0}{\psi}}
+\le\norm{(f-\one)\nabla u_0}_{H^{-1}}\norm{\nabla\phi}_{H^{1}_0}
+\le C\norm{(f-\one)\nabla u_0}_{H^{-1}}\norm{\psi}_2$, giving
+$\norm{u_f-u_0}_2\lesssim\norm{(f-\one)\nabla u_0}_{H^{-1}}$.
+Now $(f-\one)\nabla u_0=(f-\one)x/d$. On the full ball
+$\norm{(f-\one)x/d}_{H^{-1}}\le\norm{(f-\one)x/d}_{2}
+\lesssim\norm{f-\one}_\infty$ (since $H^{-1}$ is weaker than $L^{2}$ via
+the embedding of the source as a divergence).
+If $\supp(f-\one)\subset D'\Subset D$, fix a cut-off
+$\chi_0\in C^{\infty}_c(D)$, $\chi_0=1$ on $D'$, and compute
+$\diver\bigl(\chi_0(f-\one)x/d\bigr)
+=(f-\one)\frac{x\cdot\nabla\chi_0}{d}+\chi_0\bigl(f-\one+\frac{x\cdot
+\nabla f}{d}\bigr)$; this is an $H^{-1}$ function of norm
+$\lesssim\norm{f-\one}_{L^{2}(D')}+\norm{\nabla f}_{L^{2}(D')}$, and
+$\norm{(f-\one)x/d}_{H^{-1}}=\norm{\chi_0(f-\one)x/d}_{H^{-1}}
+\lesssim\norm{f-\one}_{H^{1}(D')}$ by Lax--Milgram duality
+(the map $g\mapsto\diver(\chi_0gx/d)$ is bounded
+$H^{1}_{0}(D)\to H^{-1}(D)$ and for $g$ supported in $D'$, $\chi_0g=g$).
+(The gradient term $\nabla f$ is present because the conductivity does
+\emph{not} vanish on $\partial D$; without the interior-support
+hypothesis the map $f\mapsto u_f$ is $C^\alpha\mapsto L^{2}$ bounded only
+with the additive $C(f-\one)$ constant of (ii), which is consistent with
+-- and does not improve -- the radius minimax rate.)
+\end{proof}
+
+\begin{lemma}[Quadratic remainder]\label{lem:quad}
+For $f=\one+h\in\F(\alpha,r)$, write
+$u_f-u_0=Th+R(h)$. Then
+$\norm{R(h)}_{2}\le C\norm{h}_{\infty}\norm{h}_{2}$.
+\end{lemma}
+\begin{proof}
+From the equations for $u_f$ and $u_0$, $w:=u_f-u_0$ satisfies
+$\diver(f\nabla w)=-\diver(h\nabla u_0)$, $w=0$ on $\partial D$. The energy
+identity (test against $w$, justified since $f\in C^{\alpha}$, $\alpha>1$
+gives $w\in H^{1}$) gives
+$(1-r)\norm{\nabla w}_{2}^{2}\le\int_D f\abs{\nabla w}^{2}
+=-\int_D h\nabla u_0\cdot\nabla w
+\le\norm{h}_2\norm{\nabla u_0}_{\infty}\norm{\nabla w}_2$, hence
+$\norm{\nabla w}_2\lesssim\norm{h}_2$. Since
+$R(h)=-\Delta^{-1}\diver(h\nabla w)$, for any $\psi\in L^{2}$ with
+$\phi=-\Delta^{-1}\psi$,
+$\inner{R(h)}{\psi}=-\int_D h\nabla w\cdot\nabla\phi$, so
+$\abs{\inner{R(h)}{\psi}}\le\norm{h}_{\infty}\norm{\nabla w}_2
+\norm{\nabla\phi}_2\lesssim\norm{h}_{\infty}\norm{h}_2\norm{\psi}_2$.
+Duality gives the bound.
+\end{proof}
+
+\begin{remark}[$\alpha>1$ is essential]\label{rem:alpha>1}
+At the minimax scale $\delta_*\asymp n^{-1/(2\alpha+d+2)}$ the wavelet
+perturbations used below have $\norm{h}_{\infty}\lesssim\delta_*^{\alpha}$,
+so
+$\norm{R(h)}_2/(\delta_*\norm{h}_2)\lesssim\delta_*^{\alpha-1}\to0$
+\emph{iff} $\alpha>1$. Thus the linearization is faithful precisely in the
+regime $\alpha>1$, which is why the hypothesis appears.
+\end{remark}
+
+\section{Degree-one smoothing of the linearization}\label{sec:smoothing}
+
+We now make Remark~\ref{rem:crux} precise with an exact Fourier-side
+computation, which shows $T$ is an operator of order exactly $-1$.
+
+\begin{lemma}[Exact smoothing; Fourier form]\label{lem:fourier}
+Let $\chi\in C^{\infty}_c(\R^{d})$, $0\le\chi\le1$, $\chi=1$ on
+$\SET{\abs x\le\tfrac12}$, $\supp\chi\subset\SET{\abs x\le\tfrac34}$. For
+$h\in C^{\alpha}(D)$ set $\tilde h=h\chi$, extended by $0$ to $\R^{d}$.
+Then, as tempered distributions,
+\begin{equation}\label{eq:fourierL}
+\widehat{L\tilde h}(\xi)
+=-\frac{1}{d}\,\xi\cdot\nabla_{\xi}\widehat{\tilde h}(\xi).
+\end{equation}
+Consequently, for a \emph{scale-$\delta$ wavelet packet} $\tilde h$ and
+dyadic shells $S_k=\SET{\xi:\abs\xi\in[2^{k},2^{k+1})}$,
+\begin{equation}\label{eq:shell}
+\norm{\,\abs\xi^{-2}\widehat{L\tilde h}(\xi)\,}_{L^{2}(S_k)}
+\;=\;\frac{1}{d}\,\norm{\abs\xi^{-2}\,\xi\cdot\nabla_\xi
+\widehat{\tilde h}(\xi)}_{L^{2}(S_k)},
+\qquad
+\norm{U\tilde h}_{L^{2}(S_k)}\asymp\delta\norm{\tilde h}_{L^{2}(S_k)}
+\ \ \text{on the loaded shell }2^{k}\asymp\delta^{-1},
+\end{equation}
+the two-sided bound being valid \emph{for packets} (the situation in which
+the lower bound is used below; it is \emph{not} a valid two-sided identity
+for an arbitrary $C^\alpha$ function, whose $\widehat{\tilde h}$ can be
+radially homogeneous and radially annihilate $\xi\cdot\nabla_\xi$).
+\end{lemma}
+\begin{proof}
+Using $\widehat{x_j F}(\xi)=i\,\partial_{\xi_j}\widehat F(\xi)$ and
+$\widehat{\partial_j h}(\xi)=i\xi_j\widehat h(\xi)$,
+\[
+\widehat{x_j\partial_j \tilde h}(\xi)
+=i\,\partial_{\xi_j}\bigl(i\xi_j\widehat{\tilde h}(\xi)\bigr)
+=-\partial_{\xi_j}\bigl(\xi_j\widehat{\tilde h}(\xi)\bigr)
+=-\widehat{\tilde h}(\xi)-\xi_j\partial_{\xi_j}\widehat{\tilde h}(\xi).
+\]
+Summing over $j=1,\dots,d$:
+$\widehat{A\tilde h}(\xi)=\frac1d\sum_j\widehat{x_j\partial_j\tilde h}(\xi)
+=-\frac1d\bigl(d\,\widehat{\tilde h}(\xi)+\xi\cdot\nabla_\xi
+\widehat{\tilde h}(\xi)\bigr)$. Hence
+\[
+\widehat{L\tilde h}(\xi)
+=\widehat{\tilde h}(\xi)+\widehat{A\tilde h}(\xi)
+=-\frac{\xi\cdot\nabla_{\xi}\widehat{\tilde h}(\xi)}{d}.
+\]
+This proves \eqref{eq:fourierL}. For the packet corollary \eqref{eq:shell}
+of a scale-$\delta$ packet $\tilde h(x)=\sum_m\varepsilon_m a_m
+\psi((x-x_m)/\delta)$, one expands
+$\widehat{\tilde h}(\xi)=\delta^{d}\widehat\psi(\delta\xi)\sum_m
+\varepsilon_m a_m e^{-ix_m\cdot\xi}$ and reads off the loaded-shell gain:
+$\xi\cdot\nabla_\xi$ differentiates the phase $e^{-ix_m\cdot\xi}$ to bring
+down a factor $x_m\cdot\xi\asymp\abs{x_m}\delta^{-1}$, and on
+$\abs{x_m}\ge c_0$ this is $\asymp\delta^{-1}$, so
+$\norm{\xi\cdot\nabla_\xi\widehat{\tilde h}}_{L^2(S_k)}
+\asymp\delta^{-1}\norm{\widehat{\tilde h}}_{L^2(S_k)}$; dividing by
+$\abs\xi^2\asymp\delta^{-2}$ gives \eqref{eq:shell} (with the phase
+interference controlled by separation and Lemma~\ref{lem:ao}). The
+\emph{lower} side of this packet estimate in the uniform sense relevant
+for \eqref{eq:scale2} is reproved, with constants, inside
+Lemma~\ref{lem:scale2}'s proof (the display labelled ``Lower bound''
+there); the present form \eqref{eq:shell} records the identity content.
+\end{proof}
+
+\begin{lemma}[Almost-orthogonality of separated exponentials]\label{lem:ao}
+Let $\Lambda=\SET{x_m}\subset\SET{\abs x\le\tfrac12}$ be
+$4\delta$-separated, $\abs{x_m-x_{m'}}\ge4\delta$. For
+$b=(b_m)\in\ell^{2}(\Lambda)$ and $\mathbf a_b(\xi):=\sum_m b_m
+e^{-ix_m\cdot\xi}$, define the frequency-ball average
+$\mathcal M_\rho(b):=\frac{1}{\abs{B_\rho}}\int_{B_\rho}
+\abs{\mathbf a_b(\xi)}^{2}d\xi$ on $B_\rho=\SET{\abs\xi\le\rho}$,
+$\rho=\Theta\delta^{-1}$, $\Theta$ a fixed constant. Then, uniformly in
+$\delta$ and the configuration $\Lambda$,
+\begin{equation}\label{eq:aobound}
+\mathcal M_\rho(b)\ \lesssim\ \sum_m \abs{b_m}^{2},
+\qquad\text{and}\qquad
+\mathcal M_\rho(\SET{x_m\cdot(\cdot)}\,b)\ \lesssim\
+\delta^{-2}\sum_m\abs{b_m}^{2}
+\end{equation}
+where the second statement applies to the weighted coefficients
+$\widetilde b_m=x_m\cdot v\,b_m$ with a fixed unit vector $v$ (so
+$\abs{\widetilde b_m}\le\abs{b_m}\abs{x_m}\le\tfrac12\abs{b_m}$), and the
+corresponding phase function is $(x_m\cdot v)e^{-ix_m\cdot\xi}$.
+\end{lemma}
+\begin{proof}
+Write, with $\chi_\rho=\one_{B_\rho}$ and
+$\checkK{\chi_\rho}$ its inverse Fourier transform,
+$\int_{B_\rho}\abs{\mathbf a_b}^{2}d\xi
+=\sum_{m,m'}b_m\overline{b_{m'}}\,\checkK{\chi_\rho}(x_{m'}-x_m)$. The
+diagonal terms ($m=m'$) give
+$\sum_m\abs{b_m}^2\checkK{\chi_\rho}(0)=\abs{B_\rho}\sum_m\abs{b_m}^2$
+since $\checkK{\chi_\rho}(0)=\abs{B_\rho}$. For the off-diagonal part we
+cannot use the ball indicator's transform (a jinc/Bessel profile decaying
+only as $|y|^{-(d+1)/2}$), whose Schur sum diverges; instead dominate by a
+\emph{smooth majorant}: choose $\varphi_0\in C_c^\infty$ with
+$\varphi_0(\eta)\ge\one_{|\eta|\le1}$ and
+$\abs{\checkK{\varphi_0}(y)}\lesssim(1+\abs y)^{-N}$ for any $N$ (a
+Schwartz function since $\varphi_0$ is smooth compactly supported), set
+$\varphi_\rho(\xi)=\varphi_0(\xi/\rho)$, and note
+$\checkK{\varphi_\rho}(y)=\rho^{d}\checkK{\varphi_0}(\rho y)$ with
+$\checkK{\varphi_\rho}(0)=\rho^{d}\checkK{\varphi_0}(0)\asymp\abs{B_\rho}$
+and $\abs{\checkK{\varphi_\rho}(y)}\lesssim\rho^{d}(1+\rho\abs{y})^{-N}$.
+Because $\one_{B_\rho}\le\varphi_\rho$,
+$\int_{B_\rho}\abs{\mathbf a_b}^{2}d\xi
+\le\int\varphi_\rho\abs{\mathbf a_b}^{2}d\xi
+=\sum_{m,m'}b_m\overline{b_{m'}}\checkK{\varphi_\rho}(x_{m'}-x_m)$, and the
+off-diagonal part is bounded by
+\[
+\sum_{m\ne m'}\abs{b_m}\abs{b_{m'}}\,\rho^{d}
+\bigl(1+\rho\abs{x_{m'}-x_m}\bigr)^{-N}
+\lesssim\rho^{d}\sum_{m,m'}\frac{\abs{b_m}\abs{b_{m'}}}
+{(1+\abs{x_{m'}-x_m}/\delta)^{N}},
+\]
+using $\rho= \Theta\delta^{-1}$ and $\abs{x_{m'}-x_m}\ge4\delta$. The kernel
+$K(x_{m'},x_m)=(1+\abs{x_{m'}-x_m}/\delta)^{-N}$ on the separated set is
+Schur-/Cotlar-summable: $\sup_{m'}\sum_m K\lesssim\sum_{k\ge1}k^{d-1}
+(1+4k)^{-N}<\infty$ for $N>d$, and symmetrically in $m'$; hence the
+off-diagonal quadratic form is $\lesssim\rho^{d}\sum_m\abs{b_m}^{2}$.
+Dividing by $\abs{B_\rho}\asymp\rho^{d}$ gives the first bound of
+\eqref{eq:aobound}. The second (weighted) bound is the first applied to the
+coefficients $b_m^{(j)}=a_m x_{m,j}$ for each coordinate $j$: pointwise,
+$\abs{\sum_m a_m(x_m\cdot\xi)e^{ix_m\cdot\xi}}^{2}
+=\abs{\sum_j\xi_j\sum_m a_m x_{m,j}e^{ix_m\cdot\xi}}^{2}
+\le\abs{\xi}^{2}\sum_j\abs{\sum_m a_m x_{m,j}e^{ix_m\cdot\xi}}^{2}$, and
+averaging each coordinate term over $B_\rho$ with (i), using
+$\abs{x_{m,j}}\le\abs{x_m}\le\tfrac12$ and $\abs\xi\le\rho$,
+\[
+\frac{1}{\abs{B_\rho}}\int_{B_\rho}
+\Bigl|\sum_m a_m(x_m\cdot\xi)e^{ix_m\cdot\xi}\Bigr|^{2}d\xi
+\le\rho^{2}\sum_j\mathcal M_\rho(a\,x_{\cdot,j})
+\lesssim\rho^{2}\sum_j\sum_m a_m^{2}x_{m,j}^{2}
+\le\frac{\rho^{2}}{4}\sum_m a_m^{2}
+\asymp\delta^{-2}\sum_m a_m^{2}.
+\]
+This proves the second bound of \eqref{eq:aobound}.
+\end{proof}
+
+\begin{lemma}[Scale estimate for wavelet packets]\label{lem:scale2}
+Fix $\chi$ as above and $R\in(0,\tfrac18]$. There are $c_1,C_1>0$
+(depending only on $d,\chi,R$) such that the following holds. Let
+$g=\sum_{m}\varepsilon_m a_m\psi\bigl(\tfrac{\cdot-x_m}{\delta}\bigr)$ be a
+wavelet packet built from a fixed $\psi\in C^\infty_c$ with
+$\supp\psi\subset B(0,R)$, $\psi\ne0$, $\int\psi\,dx=0$, where
+$\varepsilon_m\in\{-1,0,1\}$, $a_m\in\R$, and the centres $x_m$ lie in the
+\emph{annulus} $c_0\le\abs{x_m}\le\tfrac12-c_0$ for a fixed constant
+$c_0=c_0(d)\in(0,\tfrac{1}{16}]$ with pairwise separation
+$\abs{x_m-x_{m'}}\ge4\delta$ (so the terms have pairwise disjoint supports,
+all inside $\SET{\abs x\le\tfrac12-c_0/2}$, at distance
+$\ge c_0/2+R\,\delta\ge c_0/2$ from $\partial D$; the support stays in
+$\SET{\abs x\le\tfrac34}$ too). Then for $\delta\in(0,\delta_0]$,
+\begin{equation}\label{eq:scale2}
+c_1\,\delta\,\norm{g}_{L^{2}(D)}
+\ \le\ \norm{Tg}_{L^{2}(D)}
+\ \le\ C_1\,\delta\,\norm{g}_{L^{2}(D)},
+\end{equation}
+with $\norm{g}_2$ computed on $D$ (equivalently $\R^d$, by the support).
+\end{lemma}
+\begin{proof}
+Since $\supp g\subset\SET{\abs x\le\tfrac34}$ and $\chi=1$ there, $g=g\chi$,
+so $\tilde g=g$. Write
+$Tg=U-q$ with $U=-\Delta^{-1}_{\R^d}(Lg)$ and $q$ harmonic in $D$,
+$q=U$ on $\partial D$.
+
+\smallskip
+\noindent\textbf{Whole-space term $U$.} We use the exact identity
+\eqref{eq:fourierL}: with $\Lambda F=\xi\cdot\nabla_\xi F$ the dilation
+generator, $U=\frac1d\abs D^{-2}\Lambda L_{\rm op}\,g$ is a nonlocal
+Fourier operator of order exactly $-1$, and on a scale-$\delta$ packet it
+multiplies the $L^{2}$ norm by $\asymp\delta$ (the content of
+\eqref{eq:shell}). For concreteness and constants we compute directly.
+Write
+$\widehat g(\xi)=\delta^{d}\widehat\psi(\delta\xi)\mathbf a(\xi)$ with
+$\mathbf a(\xi):=\sum_m\varepsilon_m a_m e^{-ix_m\cdot\xi}$. Since the
+packet terms are disjointly supported,
+$\norm{g}_2^{2}=\sum_m a_m^{2}\delta^{d}\norm{\psi}_2^{2}$. With
+dilation generator $\Lambda F=\xi\cdot\nabla_\xi F$ applied to
+$F=\widehat g$, and splitting,
+$\xi\cdot\nabla_\xi\widehat g
+=\delta^{d}\bigl(B_1(\xi)+B_2(\xi)\bigr)$ with
+$B_1(\xi)=(\Lambda\widehat\psi)(\delta\xi)\,\mathbf a(\xi)$,
+$B_2(\xi)=\widehat\psi(\delta\xi)\,\xi\cdot\nabla_\xi\mathbf a(\xi)$, and
+$\xi\cdot\nabla_\xi\mathbf a(\xi)
+=-i\sum_m\varepsilon_m a_m (x_m\cdot\xi)e^{-ix_m\cdot\xi}$.
+Cover the loaded shell $S_k=\SET{\abs\xi\asymp\delta^{-1}}$ by $O(1)$
+balls $B_\rho$, $\rho\asymp\delta^{-1}$, and apply Lemma~\ref{lem:ao}
+(claims (i) and the weighted corollary):
+$\frac1{\abs{B_\rho}}\int_{B_\rho}\abs{\mathbf a}^{2}\lesssim\sum a_m^{2}$
+and
+$\frac1{\abs{B_\rho}}\int_{B_\rho}\abs{\xi\cdot\nabla_\xi\mathbf a}^{2}
+\lesssim\rho^{2}\cdot\tfrac14\sum a_m^{2}\asymp\delta^{-2}\sum a_m^{2}$.
+Since $\abs{\widehat\psi(\delta\xi)},\abs{(\Lambda\widehat\psi)(\delta\xi)}
+\lesssim$ const, squaring and integrating gives, per contributing term,
+\begin{align}\label{eq:uterm}
+\int_{S_k}\abs\xi^{-4}\abs{\xi\cdot\nabla_\xi\widehat g}^{2}d\xi
+&\lesssim\delta^{2d+4}\Bigl[
+\int_{S_k}\abs{B_1}^{2}+\int_{S_k}\abs{B_2}^{2}\Bigr]
+\nonumber\\
+&\lesssim\delta^{2d+4}\cdot\abs{S_k}\,
+\frac1{\abs{B_\rho}}\Bigl[
+\int_{B_\rho}\abs{\mathbf a}^{2}
++\int_{B_\rho}\abs{\xi\cdot\nabla_\xi\mathbf a}^{2}\Bigr]
+\nonumber\\
+&\lesssim\delta^{2d+4}\cdot\delta^{-d}
+\Bigl(\sum a_m^{2}+\delta^{-2}\sum a_m^{2}\Bigr)
+\ \lesssim\ \delta^{2}\cdot\delta^{d}\sum a_m^{2}
+\ =\ C\,\delta^{2}\,\frac{\norm{g}_2^{2}}{\norm{\psi}_2^{2}} .
+\end{align}
+Here the power count is: $\delta^{2d}$ (prefactor) $\times\delta^{4}$
+($|\xi|^{-4}$) $\times\delta^{-d}$ (shell volume) $\times\delta^{-2}$
+(weighted AO, dominant $B_2$ term) $=\delta^{2}$; the $B_1$ term is one
+power of $\delta$ smaller. The constant is uniform in $M$ since there are
+$O(1)$ balls.
+
+For the off-shell shells $S_j$: those with $2^j\gg\delta^{-1}$ use the
+Schwartz decay $\abs{\widehat\psi(\delta\xi)}\lesssim(\delta\abs\xi)^{-N}$
+so each contributes $\delta^{2}\cdot 2^{-N(j-k)}$; those with
+$2^j\ll\delta^{-1}$ use the mean-zero bound
+$\abs{\widehat\psi(\delta\xi)}\lesssim\delta\abs\xi$
+($\int\psi=0$), contributing $\delta^{2}\cdot 2^{-2(k-j)}$. Both tails sum
+geometrically, so the whole-space term satisfies the upper bound
+\begin{equation}\label{eq:Uupper}
+\norm{U}_{L^{2}(\R^{d})}^{2}\ \lesssim\ \delta^{2}\norm{g}_{2}^{2},
+\qquad\text{uniformly in }M,\delta .
+\end{equation}
+
+\noindent\textbf{Lower bound (loaded-shell diagonal dominance).} Retain
+only the loaded shell $S_k=\SET{\abs\xi\asymp\delta^{-1}}$ (all terms
+non-negative on the Fourier side). Since
+$\norm{U}_2^{2}\ge\int_{S_k}\abs\xi^{-4}\abs{\widehat{Lg}}^{2}d\xi
+\asymp\delta^{4}\int_{S_k}\abs{\widehat{Lg}}^2d\xi$ and by
+\eqref{eq:fourierL} $\widehat{Lg}=-\frac1d\xi\cdot\nabla_\xi\widehat g$,
+using $\abs{a+b}^{2}\ge\tfrac12\abs{b}^{2}-\abs{a}^{2}$ with
+$b=\delta^{d}\widehat\psi(\delta\xi)\xi\cdot\nabla_\xi\mathbf a(\xi)$ and
+$a=\delta^{d}(\Lambda\widehat\psi)(\delta\xi)\mathbf a(\xi)$:
+\[
+\norm{U}_2^{2}
+\ge\frac{\delta^{4}}{2d^{2}}\int_{S_k}\delta^{2d}
+\abs{\widehat\psi(\delta\xi)}^{2}\abs{\xi\cdot\nabla_\xi\mathbf a(\xi)}^{2}d\xi
+-\frac{\delta^{4}}{d^{2}}\int_{S_k}\delta^{2d}
+\abs{(\Lambda\widehat\psi)(\delta\xi)}^{2}\abs{\mathbf a(\xi)}^{2}d\xi .
+\]
+Choose once and for all the base profile $\psi$ of the lemma
+statement: a radial $\psi\in C^\infty_c$ with $\supp\psi\subset B(0,R)$,
+$\int\psi=\widehat\psi(0)=0$, and $\widehat\psi$ nonvanishing on the
+closed annulus $\SET{1\le\abs\eta\le2}$ (readily constructed by applying a
+power of $-\Delta$ to a radial $C^\infty_c$-bump and adding a small
+correction). Thus $\abs{\widehat\psi(\delta\xi)}\ge c_\psi>0$ on the
+loaded shell while $\abs{(\Lambda\widehat\psi)(\delta\xi)}\le C_\psi$. Now
+$\xi\cdot\nabla_\xi\mathbf a(\xi)=-i\sum_m\varepsilon_m a_m(x_m\cdot\xi)
+e^{-ix_m\cdot\delta\xi}$; because the centres lie in the annulus
+$\abs{x_m}\ge c_0$, on the shell
+$\abs{x_m\cdot\xi}\asymp\abs{\xi}\abs{x_m}\ge\tfrac{c_0}{2}\delta^{-1}$ (in
+the diagonal/phase-gradient part). Apply Lemma~\ref{lem:ao}'s weighted
+corollary with the \emph{lower} direction: the oscillatory off-diagonals
+are Schur-summable (by the smooth majorant bound of the lemma) and are
+dominated by the diagonal, so
+\[
+\int_{S_k}\abs{\widehat\psi(\delta\xi)}^{2}
+\abs{\xi\cdot\nabla_\xi\mathbf a(\xi)}^{2}d\xi
+\ \ge\ c_\psi^{2}\,\delta^{-d}\,\delta^{-2}\,\frac{c_0^{2}}{4}\sum_m a_m^{2}
+\ \ \bigl(\text{diagonal }m=m'\bigr),
+\]
+the $m=m'$ terms giving
+$\sum_m a_m^{2}\int_{S_k}\abs{x_m\cdot\xi}^{2}d\xi
+\asymp\sum_m a_m^{2}\delta^{-d}\delta^{-2}$ since
+$\int_{S_k}\abs{x_m\cdot\xi}^{2}d\xi\asymp\abs{x_m}^{2}\delta^{-2-d}\cdot
+\delta^{2}=\abs{x_m}^{2}\delta^{-d}\gtrsim c_0^{2}\delta^{-d}$.
+Similarly the second (subtracted) term is bounded above by the
+\emph{unweighted} AO: $\le C_\psi\delta^{-d}\sum a_m^{2}$ (no
+$\delta^{-2}$). Hence
+\[
+\norm{Ug}_2^{2}
+\ \ge\ \delta^{4+2d}\,\delta^{-d}\Bigl(
+\frac{c_\psi^{2}c_0^{2}}{8d^{2}}\,\delta^{-2}\sum a_m^{2}
+-\frac{C_\psi}{d^{2}}\sum a_m^{2}\Bigr)
+\ \ge\ c\,\delta^{d+4}\cdot\delta^{-2}\sum a_m^{2}
+\ =\ c\,\delta^{2}\cdot\delta^{d}\sum a_m^{2}
+\ =\ c\,\delta^{2}\,\frac{\norm{g}_2^{2}}{\norm{\psi}_2^{2}},
+\]
+using $\delta^{4+2d}\delta^{-d}\delta^{-2}=\delta^{d+2}
+=\delta^{2}\cdot\delta^{d}$, and for $\delta\le\delta_0(c_\psi,c_0,C_\psi)$
+the dominant $\delta^{-2}$ term controls the subtracted one. Hence
+$\norm{U}_2\ge c_U'\,\delta\norm{g}_2$ with
+$c_U'=c_U'(d,\psi,c_0)>0$.
+
+\smallskip
+\noindent\textbf{Harmonic correction $q$.} By Lemma~\ref{lem:harmonic}
+(applied with $F=Lg=\frac1d\diver(xg)$, for which the solution $w=Tg$
+splits as $w=U-q$ with exactly the present $U$ and $q$),
+$U=(-\Delta_{\R^d})^{-1}F$ is a convolution with a locally-integrable
+kernel of a field supported in $D_{(\tau_0)}$, $\tau_0=\tfrac18$, and on
+$\partial D$ one has the interior bound
+$\norm{U}_{L^{\infty}(\partial D)}\lesssim\norm g_2$
+(Cauchy--Schwarz in $y$, distance $\ge\tau_0/4$ to the support). Split
+$q=q_0+q_{\rm osc}$ with $q_0=\abs{\partial D}^{-1}\int_{\partial D}q$ the constant Poisson
+mode; the maximum principle gives $\norm{q_0}_{L^{2}}
+\le\abs{\partial D}^{-1}\int_{\partial D}\abs U\lesssim\delta\norm g_2$ by the bump-wise
+multipole expansion of $U|_{\partial D}$ (monopole killed by
+$\int\psi=0$, first-order remainder $O(\delta\norm{\psi_m}_1)$,
+$\sum_m\abs{a_m}\norm{\psi_m}_1\lesssim\norm g_2$), and the
+mean-zero part decays into the interior at the Poisson rate:
+$q_{\rm osc}=\sum_{\Lambda}\rho^{\sqrt\Lambda}\widehat U(\Lambda)$, so
+on $\SET{\abs x\le\tfrac34}$ (which carries the shell mass of $U$)
+$\norm{q_{\rm osc}}_{L^{2}}\le\bigl(\max_\Lambda
+\rho^{2\sqrt\Lambda}\bigr)^{1/2}\norm U_{L^{2}(\partial D)}
+\lesssim e^{-c/\delta}\norm g_2\ll\delta\norm g_2$ (the largest
+$\sqrt\Lambda$ is $\asymp\delta^{-1}$, and
+$\rho^{2\sqrt\Lambda}\le(\frac34)^{2c\delta^{-1}}\le e^{-c'/\delta}$).
+Hence
+\begin{equation}\label{eq:qbound}
+\norm{q}_{L^{2}(\abs x\le\frac34)}\ \lesssim\ \delta\,\norm g_2 ,
+\qquad\text{constant depending on }(d,\psi,c_0,\tau_0),
+\end{equation}
+$\SET{\abs x\le\tfrac34}$ being where the shell mass of $U$ lies
+($\supp g\subset\SET{\abs x\le\tfrac34}$, the $\R^d$ integral
+dominated by its $\SET{\abs x\le\tfrac34}$ part up to the
+$e^{-c/\delta}$ tail already accounted).
+
+\smallskip
+\noindent Combining,
+$\norm{Tg}_2\le\norm{U}_2+\norm{q}_2\lesssim\delta\norm g_2$ and
+$\norm{Tg}_2\ge\norm{U}_{L^{2}(\abs x\le\frac34)}-\norm{q}_{L^{2}(\abs
+x\le\frac34)}\ge(c_U'/2-C_q\delta)\,\delta\norm g_2$ for the
+$\SET{\abs x\le\frac34}$-restricted shell lower bound $c_U'/2$ (same
+argument, all estimates on the shrunk domain) and $C_q$ the constant of
+\eqref{eq:qbound}; with $\delta_0$ shrunk so $C_q\delta_0\le c_U'/4$,
+\[
+\norm{Tg}_2\ \ge\ \tfrac{c_U'}4\,\delta\norm g_2 =:c_1\delta\norm g_2,
+\qquad
+\norm{Tg}_2\ \le\ (C_U+C_q)\delta\norm g_2=:C_1\delta\norm g_2 ,
+\]
+with $c_1,C_1,\delta_0$ depending only on $(d,\psi,c_0)$. (The
+origin-centre modes, excluded here by the annulus hypothesis, are
+treated in Lemma~\ref{lem:invert} via the exact radial computation.)
+\end{proof}
+
+\begin{remark}[Constant bookkeeping in \eqref{eq:scale2}]\label{rem:const}
+Both $C_E''=C_E''(d)$ (trace/elliptic constant of the unit ball) and
+$c_U'=c_U'(d,\psi,c_0)$ are $(\alpha,n,\delta,r)$-independent, so the
+threshold $\delta_0=\delta_0(c_\psi,c_0,C_\psi,C_E'')$ and all constants
+below keep the $(\alpha,d,\psi)$-dependence only; boundary-near bumps are
+\emph{not} asked to be small, the loss being absorbed by shrinking
+$\delta_0$.
+\end{remark}
+
+\begin{remark}[$T$ is a degree-one operator, globally]\label{rem:degree1}
+For a full wavelet expansion $h=\sum_{j\ge j_0}h_j$ with $h_j$ at scale
+$2^{-j}$, applying Lemma~\ref{lem:scale2} to each dyadic piece and summing
+(the pieces are almost orthogonal in $L^2$, and $T$ maps the scale
+$2^{-j}$ piece into functions still almost-orthogonal up to the operator's
+pseudo-local tail) yields
+$\norm{Th}_2^{2}\lesssim\sum_j 2^{-2j}\norm{h_j}_2^{2}
+\lesssim\norm{h}_{H^{-1}}^{2}$, i.e.\ $T$ maps $H^{s}$ into $H^{s+1}$ type
+spaces with exactly one derivative of smoothing, globally on the Besov
+scale. In particular $\norm{Th}_2\le C\norm{h}_2$, the only global fact
+(besides \eqref{eq:scale2}) used below.
+\end{remark}
+
+\section{Lower bound}\label{sec:lower}
+
+\begin{proposition}\label{prop:lower}
+There exist $r_0=r_0(\alpha,d)\in(0,1]$ and $c>0$ such that for all
+$r\in(0,r_0]$ and all large $n$,
+\[
+\inf_{\widehat f_n}\sup_{f_0\in\F(\alpha,r)}
+\E_{f_0}\norm{\widehat f_n-f_0}_{2}^{2}\ \ge\ c\,n^{-\frac{2\alpha}{2\alpha+d+2}} .
+\]
+\end{proposition}
+
+\begin{proof}
+\textbf{Step 1 (wavelet packet).} Fix the single base profile
+$\psi\in C^\infty_c(\R^{d})$ of Lemma~\ref{lem:scale2} (radial,
+$\supp\psi\subset\SET{\abs x\le\tfrac14}$, $\int\psi=\widehat\psi(0)=0$,
+$\widehat\psi$ nonvanishing on $\SET{1\le\abs\eta\le2}$), normalized so
+$\norm{\psi}_{C^\alpha}=1$; then $\norm{\psi}_2>0$ and
+$\norm\psi_{C^\alpha}=1$ are fixed $(\alpha,d)$-constants. For $\delta\in(0,\delta_0]$ choose a maximal
+collection $\SET{x_m}_{m=1}^{M}\subset\SET{c_0\le\abs{x}\le\tfrac12}$ with
+pairwise distance $\ge4\delta$ (hence $M\asymp\delta^{-d}$), and set
+$\psi_m(x)=\psi\bigl(\tfrac{x-x_m}{\delta}\bigr)$. Then
+$\supp\psi_m\subset B(x_m,\delta/4)$,
+$\norm{\psi_m}_\infty=\norm{\psi}_\infty$,
+$\norm{\psi_m}_2=\delta^{d/2}\norm{\psi}_2$,
+$\norm{\psi_m}_{C^\alpha}=\delta^{-\alpha}\norm{\psi}_{C^\alpha}$ (the
+$C^\alpha$ norm is $\asymp\delta^{-\alpha}$ for $\delta\le1$: derivatives
+scale as $\delta^{-j}$ and the top $t$-H\"older/Zygmund seminorm as
+$\delta^{-\alpha}$, dominating the lower-order terms).
+The supports of the $\psi_m$ are pairwise disjoint and contained in
+$\SET{\abs x\le\tfrac34}$, so every partial sum
+$\sum_{m\in S}\pm\psi_m$ is a wavelet packet of the form treated in
+Lemma~\ref{lem:scale2} (fixed base profile $\psi$, centres in
+$\SET{c_0\le\abs{x}\le\tfrac12}$, separation $\ge4\delta$; the annulus
+restriction keeps the two-sided scale estimate of
+Lemma~\ref{lem:scale2}).
+
+\textbf{Step 2 (hypotheses).} By Varshamov--Gilbert, there is a family
+$\mathcal S$ of subsets $S\subset\SET{1,\dots,M}$ with $\abs S=M/2$, each
+pair $S\ne S'$ at Hamming distance $\abs{S\triangle S'}\ge M/8$, and
+$\log\abs{\mathcal S}\ge c_0 M$ for an absolute $c_0>0$. Index hypotheses
+by $S\in\mathcal S$ and a sign/scale parameter $\kappa>0$ (fixed below):
+\[
+f_S=\one+\kappa\delta^{\alpha}\Psi_S,
+\qquad\Psi_S:=\sum_{m\in S}\psi_m .
+\]
+Because the $\psi_m$ have disjoint supports with the same profile,
+$\norm{\Psi_S}_{C^\alpha}\lesssim\max_{m}\norm{\psi_m}_{C^\alpha}
+\asymp\delta^{-\alpha}\norm{\psi}_{C^\alpha}$: the $C^a$ norm of the sum is
+the max over the summands (disjoint supports), and the top
+$t$-H\"older/Zygmund difference quotient satisfies
+$\sup_{x,y}\abs{\nabla^{a}\Psi_S(x)-\nabla^{a}\Psi_S(y)}/\abs{x-y}^{t}
+\le 2^{\,1-t}\delta^{-\alpha}\norm{\nabla^{a}\psi}_{\infty}
++\delta^{-\alpha}[\psi]_{\dot C^{t}}$ — cross-support quotients are the
+same order as single-bump ones, giving comparability with a
+$\psi$-dependent constant $\le 2^{1-t}+1$. Hence
+\[
+\norm{f_S-\one}_{C^\alpha}
+\lesssim\kappa\delta^{\alpha}\cdot\delta^{-\alpha}\norm{\psi}_{C^\alpha}
+=\kappa\norm{\psi}_{C^\alpha}\ \le\ r
+\]
+provided $\kappa\le r\norm{\psi}_{C^\alpha}^{-1}$, i.e.\ $\kappa\le r$
+since $\norm{\psi}_{C^\alpha}=1$ (Step~1). We take the maximal admissible
+$\kappa=r$; the separation below is then $\varepsilon^{2}\asymp
+r^{2}\delta^{2\alpha}$, so the lower-bound constant inherits the factor
+$r^{2}$ of the shrinking class $\F(\alpha,r)$ -- a fixed positive constant
+for every fixed $r\in(0,r_0]$. Thus $f_S\in\F(\alpha,r)$ for all
+$S\in\mathcal S$. Also, by disjoint supports,
+\[
+\norm{\Psi_S}_2^{2}=\abs S\,\norm{\psi_m}_2^{2}\asymp M\,\delta^{d}\asymp1,
+\qquad
+\norm{\Psi_S}_{\infty}=\norm{\psi}_{\infty}.
+\]
+
+\textbf{Step 3 (separation).} For $S\ne S'$,
+$f_S-f_{S'}=\kappa\delta^{\alpha}\sum_{m\in S\triangle S'}\pm\psi_m$, the
+supports disjoint, so
+\[
+\norm{f_S-f_{S'}}_2^{2}
+=\kappa^{2}\delta^{2\alpha}\abs{S\triangle S'}\,\norm{\psi_m}_2^{2}
+\asymp\kappa^{2}\delta^{2\alpha}\cdot M\cdot\delta^{d}
+\asymp\kappa^{2}\delta^{2\alpha}.
+\]
+So the family is $\varepsilon$-separated with
+$\varepsilon^{2}\asymp\kappa^{2}\delta^{2\alpha}$.
+
+\textbf{Step 4 (KL control).} With $g_S:=f_S-\one=\kappa\delta^{\alpha}\Psi_S$:
+$g_S$ is supported in $\SET{\abs x\le\tfrac34}$, is a single-scale packet
+of the form in Lemma~\ref{lem:scale2} (fixed profile $\psi$ with
+$\int\psi=0$, centres in $\SET{\abs x\le\tfrac12}$ separated by
+$\ge4\delta$; each $\psi_m$ has
+$\norm{\nabla\psi_m}_2\asymp\delta^{-1}\norm{\psi_m}_2$), so by
+Lemma~\ref{lem:scale2},
+\[
+\norm{Tg_S}_2\ \asymp\ \delta\norm{g_S}_2
+\ \asymp\ \delta\cdot\kappa\delta^{\alpha}\norm{\Psi_S}_2
+\ \asymp\ \kappa\delta^{\alpha+1}.
+\]
+(Here $\norm{\Psi_S}_2\asymp1$ by Step 2.) The quadratic remainder, by
+Lemma~\ref{lem:quad},
+\[
+\norm{R(g_S)}_2\lesssim\norm{g_S}_\infty\norm{g_S}_2
+=\kappa\delta^{\alpha}\norm{\psi}_\infty\cdot\kappa\delta^{\alpha}\norm{\Psi_S}_2
+\asymp\kappa^{2}\delta^{2\alpha}.
+\]
+Since $\alpha>1$, $\norm{R(g_S)}_2\lesssim\kappa^{2}\delta^{2\alpha}
+\ll\kappa\delta^{\alpha+1}\asymp\norm{Tg_S}_2$ for $\delta$ small (the
+ratio is $\kappa\delta^{\alpha-1}\to0$ --- the decisive use of $\alpha>1$).
+Therefore
+\[
+\norm{u_{f_S}-u_0}_2
+\le\norm{Tg_S}_2+\norm{R(g_S)}_2
+\lesssim\kappa\delta^{\alpha+1},
+\]
+and by \eqref{eq:KL},
+\begin{equation}\label{eq:KLbound}
+\operatorname{KL}(P_{f_S}\,\|\,P_{f_0})
+=\frac{n}{2}\norm{u_{f_S}-u_0}_2^{2}
+\le Cn\kappa^{2}\delta^{2\alpha+2}.
+\end{equation}
+
+\textbf{Step 5 (Fano).} Take
+$\delta=c\,n^{-1/(2\alpha+d+2)}$. Then the balance is
+\[
+n\delta^{2\alpha+2}=c^{2\alpha+2}n^{1-\frac{2\alpha+2}{2\alpha+d+2}}
+=c^{2\alpha+2}n^{\frac{d}{2\alpha+d+2}}
+=c^{2\alpha+2}\delta^{-d}.
+\]
+Choosing $c>0$ small makes $Cn\kappa^{2}\delta^{2\alpha+2}
+\le\frac1{10}\,\delta^{-d}\le\frac1{10}\cdot\frac{\log\abs{\mathcal S}}{c_0}$,
+i.e.\ the average KL is $\le\frac1{10}\log\abs{\mathcal S}$. With
+$\varepsilon^{2}\asymp\kappa^{2}\delta^{2\alpha}
+=\kappa^{2}c^{2\alpha}n^{-\frac{2\alpha}{2\alpha+d+2}}$ and
+$\log\abs{\mathcal S}\ge c_0M\asymp\delta^{-d}$, Fano's inequality
+(Lemma~\ref{lem:fano}) gives
+\[
+\max_{S\in\mathcal S}\E_{f_S}\norm{\widehat f-f_S}_2^{2}
+\ \ge\ \frac{\varepsilon^{2}}{8}\Bigl(1-\frac1{10}-\frac{\log2}{\log\abs{\mathcal S}}\Bigr)
+\ \ge\ c'\,n^{-\frac{2\alpha}{2\alpha+d+2}}
+\]
+for $n$ large. Since $\SET{f_S}\subset\F(\alpha,r)$, the minimax risk over
+$\F(\alpha,r)$ is at least this, proving Proposition~\ref{prop:lower}.
+\end{proof}
+
+\begin{lemma}[Fano, applied form]\label{lem:fano}
+Let $\abs{\Theta}=N\ge2$, $\SET{P_\theta}_{\theta\in\Theta}$ probability
+measures with $\frac1N\sum_\theta\operatorname{KL}(P_\theta\|P_0)\le\beta\log N$,
+$\beta<1$, and parameter values separated:
+$\norm{f_\theta-f_{\theta'}}_2\ge\varepsilon$ for $\theta\ne\theta'$. Then
+\[
+\inf_{\widehat f}\max_{\theta}\E_{\theta}\norm{\widehat f-f_\theta}_2^{2}
+\ \ge\ \frac{\varepsilon^{2}}{4}\Bigl(1-\beta-\frac{\log2}{\log N}\Bigr)\cdot\frac1{2}
+\ \ge\ \frac{\varepsilon^{2}}{8}\Bigl(1-\beta-\frac{\log2}{\log N}\Bigr).
+\]
+\end{lemma}
+\begin{proof}
+Given any estimator $\widehat f$, let
+$\widehat\theta=\arg\min_{\theta\in\Theta}\norm{\widehat f-f_\theta}_2$. By
+$\varepsilon$-separation and the triangle inequality,
+$\norm{\widehat f-f_\theta}_2\ge\varepsilon/2$ whenever
+$\widehat\theta\ne\theta$. Markov gives
+$\E_\theta\norm{\widehat f-f_\theta}_2^{2}\ge\frac{\varepsilon^{2}}{4}
+P_\theta(\widehat\theta\ne\theta)$. Averaging and using
+$\max_\theta\ge\frac1N\sum_\theta$:
+$\max_\theta\E_\theta\norm{\widehat f-f_\theta}_2^{2}
+\ge\frac{\varepsilon^{2}}{4}\cdot\frac1N\sum_\theta
+P_\theta(\widehat\theta\ne\theta)$. Fano's inequality bounds the average
+testing error below by
+$1-\frac{\beta\log N+\log2}{\log N}=\bigl(1-\beta-\frac{\log2}{\log N}\bigr)$.
+Combining gives the claim (Tsybakov, \emph{Introduction to Nonparametric
+Estimation}, Theorem 2.5).
+\end{proof}
+
+\section{Upper bound}\label{sec:upper}
+
+\begin{proposition}\label{prop:upper}
+There is an estimator $\widehat f_n$ with
+\[
+\sup_{f_0\in\F(\alpha,r)}
+\E_{f_0}\norm{\widehat f_n-f_0}_{2}^{2}
+\ \le\ C\,n^{-\frac{2\alpha}{2\alpha+d+2}} .
+\]
+\end{proposition}
+
+The construction: (A) discretize the observation and set up a
+scale-$\delta$ sieve least-squares problem; (B) a discrete
+inf--sup/smoothing inequality inverting $T$ on the sieve; (C) balance
+bias, variance, and the quadratic remainder.
+
+\review{There is no mathematically precise explanation of the objects used, which makes it hard to understand the observation scheme and to construct the estimator.}
+
+\subsection{(A) Observation discretization; sieve least squares}
+Let $V_\delta\subset L^{2}(D)$ be the span of the Dirichlet eigenfunctions
+of $-\Delta$ with eigenvalue $\le C_W\,\delta^{-2}$ ($C_W$ a fixed
+large constant chosen in Lemma~\ref{lem:invert}), i.e.\ the eigenfunctions
+oscillating at frequencies $\lesssim\delta^{-1}$; by Weyl's law
+$\dim V_\delta\asymp\delta^{-d}$ (wavelength-$2^{-j}$ eigenfunctions carry
+eigenvalues $\asymp2^{2j}$, so the cutoff $\lesssim\delta^{-2}$ keeps
+\emph{physical scale $\gtrsim\delta$}). Let $P_\delta$ be the orthogonal
+projection onto $V_\delta$ and set
+\[
+Y_\delta:=P_\delta Y=P_\delta u_{f_0}+n^{-1/2}\xi_\delta,
+\qquad
+\xi_\delta:=P_\delta\W,\quad \E\norm{\xi_\delta}_2^{2}=\dim V_\delta\asymp\delta^{-d}.
+\]
+The sieve must avoid both degeneracies of the transport field
+$\nabla u_0=x/d$: the origin (where it vanishes) and the boundary
+collar (where the H\"older boundary estimate loses one degree). We
+therefore estimate only interior content.
+\review{A more precise presentation and discussion of the set $\mathcal{F}_\delta$ and the properties derived from it (see Equations 13 and 14) is necessary in order to understand the approach and verify its correctness.}
+Let $\F_\delta$ be the span
+of all wavelet packets at scales $\ge\delta$ \emph{whose centres lie
+in the fixed interior} $D_1:=\SET{c_1\le\abs{x}\le\tfrac12}$ for a small
+fixed $c_1=c_1(d)>0$, intersected with $\F(\alpha,r)$. Fix a patch
+$\zeta$, $\equiv1$ on $\operatorname{supp}(\F_\delta-\one)$,
+$\equiv0$ on $B_{c_1/2}\cup\SET{\abs x>\tfrac34}$. For a general
+$f\in\F(\alpha,r)$ write $f=f_{\le\delta}+f_{>\delta}$ (scales
+$\ge\delta$ and $<\delta$; $\supp(f_{\le\delta}-\one)
+\subset\SET{\zeta=1}$) and set
+\begin{equation}\label{eq:Pidelta}
+\Pi_\delta f\ :=\ \one+\bigl(f_{\le\delta}-\one\bigr)\,\zeta ,
+\qquad\text{so }\Pi_\delta f=\one \text{ off }\operatorname{supp}\zeta\ (\text{a ball about }0\text{ and a collar of }\partial D).
+\end{equation}
+Thus $\Pi_\delta f\in\F(\alpha,2r)$, and the comparison point
+$m=\Pi_\delta f_0$ is Dirichlet ($u_m=0$ on $\partial D$, as is
+$u_{f_0}$, by \eqref{eq:veryweak}) and interior-regular. By the standard
+$B^\alpha_{\infty,\infty}=C^\alpha$ wavelet characterization,
+\begin{equation}\label{eq:approx}
+\norm{f_{>\delta}}_{\infty}\le C\delta^{\alpha},
+\quad
+\norm{f_{>\delta}}_{2}\le C\delta^{\alpha},
+\quad
+\norm{f_{\le\delta}}_{C^\alpha}\le C\norm{f}_{C^\alpha},
+\quad
+\dim\F_\delta\lesssim\delta^{-d}.
+\end{equation}
+The \emph{bias} $e=\Pi_\delta f-f=-f_{>\delta}+(f_{\le\delta}-\one)
+(\zeta-\one)$ has $\norm{e}_2\lesssim\delta^{\alpha}$ by
+\eqref{eq:approx}; its dominant content is interior (the
+origin/boundary remainder is handled in the collar split of
+\eqref{eq:finebias}). The projection $P_\delta$ retains the part of
+$u_{f_0}$ oscillating at scales $\gtrsim\delta$ and makes the noise
+finite-dimensional, so the estimator and its risk are well-defined on
+the white-noise model. Define the sieve
+least-squares estimator
+\[
+\widehat f=\arg\min_{g\in\F_\delta}
+\ \norm{P_\delta u_g-Y_\delta}_{2}^{2}.
+\]
+Since $\F_\delta$ is closed and
+$g\mapsto\norm{P_\delta u_g-Y_\delta}_2$ is continuous and coercive
+($\norm{P_\delta u_g}_2\to\infty$ with $\norm g_2$ on the sieve by
+\eqref{eq:infsup} and the apriori bound, Lemma~\ref{lem:apriori}), a
+measurable minimizer $\widehat f$ exists (selection theorem on the
+closed finite-dimensional sieve); only its risk is analyzed below.
+
+\subsection{(B) Discrete inf--sup (scale inversion on the sieve)}
+
+\begin{lemma}\label{lem:invert}
+There are $c,C>0$ such that for all small $\delta$ the following holds.
+Let $h=\sum_{\lambda}h_{\lambda}$ be a wavelet-packet expansion where each
+$h_{\lambda}$ is a packet of Lemma~\ref{lem:scale2}-type with centre
+$x_{\lambda}$ and scale $\delta_\lambda\ge\delta$ (on the sieve of \S(A),
+every packet has its centre in the interior annulus, so the subfamily
+below \emph{is} the whole sieve error). For the subfamily with
+centres in the annulus $c_0\le\abs{x_\lambda}\le\tfrac12$ (notation
+$h^{\rm bulk}=\sum_{\lambda:\,c_0\le\abs{x_\lambda}\le\frac12}h_\lambda$),
+\begin{equation}\label{eq:infsup}
+c\,\delta\norm{h^{\rm bulk}}_{2}
+\ \le\ \norm{P_\delta Th^{\rm bulk}}_{2}
+\ \le\ C\,\delta\norm{h^{\rm bulk}}_{2},
+\qquad\text{and more globally}\qquad
+\norm{Th}_{2}\le C\norm{h}_{2}.
+\end{equation}
+For origin-near modes ($\abs{x_\lambda}\le\rho\delta_\lambda$ for a fixed
+$\rho$) the transport field degenerates and the gain is only
+$\gtrsim\delta_\lambda^{2}$ (Lemma~\ref{lem:origin}); they are
+\emph{excluded} from the sieve of \S(A) and projected into the bias, see
+Remark~\ref{rem:modewise}.
+\end{lemma}
+\begin{lemma}[Exact radial gain near the origin]\label{lem:origin}
+Let $g(x)=\varphi(\abs x/\delta)$ be radial, supported in $B_\delta$ about
+the origin, $\norm{g}_2\asymp\delta^{d/2}$. Then the solution $w=Tg$ of
+the radial part of \eqref{eq:DeltaT} satisfies
+$w(x)=-\frac1d\int_{\abs{x}}^{\delta}s\,g(s)\,ds$ for $\abs x\le\delta$,
+$w\equiv0$ for $\abs x\ge\delta$, and
+$\norm{Tg}_2\asymp\delta^{2}\norm{g}_2$. More generally, for a mode
+centred at distance $\abs{x_\lambda}$ with scale $\delta_\lambda$, the
+mode-wise gain is at least the radial endpoint: for an origin-near
+mode ($\abs{x_\lambda}\le\rho\,\delta_\lambda$, $\rho$ fixed),
+\begin{equation}\label{eq:origingain}
+\norm{Th_\lambda}_2\ \gtrsim\ \delta_\lambda^{2}\,\norm{h_\lambda}_2 .
+\end{equation}
+(used in Remark~\ref{rem:modewise} to record the degeneracy).
+\end{lemma}
+\begin{proof}[Proof of Lemma~\ref{lem:origin}]
+For the radial bump, \eqref{eq:DeltaT} reads $\Delta w=Lg=\frac1d
+\diver(xg)$, i.e.\
+$\frac1{r^{d-1}}\partial_r(r^{d-1}w')=\frac1d\frac1{r^{d-1}}
+\partial_r(r^{d}g)$, so $r^{d-1}w'(r)=\frac1d r^{d}g(r)+C$; regularity at
+$r=0$ forces $C=0$, so $w'(r)=\frac{r}{d}g(r)$ for all $r>0$. On
+$[\delta,1]$ the source $g\equiv0$, hence $w'=0$ there, and the boundary
+condition $w(1)=0$ gives $w\equiv0$ on $[\delta,1]$. Continuity of $w$
+at $r=\delta$ (the flux $w'$ is bounded) then yields
+$w(x)=-\frac1d\int_{\abs x}^{\delta}s\,g(s)\,ds$ for $\abs x\le\delta$, and
+\[
+\norm{w}_2^{2}
+=\abs{\mathbb S^{d-1}}\int_0^{\delta}
+\Bigl|\frac1d\int_r^{\delta}sg(s)\,ds\Bigr|^{2}r^{d-1}dr
+\ \asymp\ \delta^{4}\norm{g}_2^{2}
+\]
+by Cauchy--Schwarz (both sides $\asymp\delta^{4}\norm{g}_2^{2}$, e.g.\ the
+lower bound from profiles with mass near $s=\delta$ and the upper from
+$\abs{\int_r^\delta sg}| \le\delta\norm{g}_{L^2(r,\delta)}$ and the
+$\delta$-length). Thus $\norm{Tg}_2\asymp\delta^{2}\norm{g}_2$.
+
+For the one-sided bound \eqref{eq:origingain}, re-run Lemma~\ref{lem:scale2}'s
+loaded-shell power count; the \emph{only} change is the shift factor
+$\abs{x_m}^{2}$ in the weighted almost-orthogonality. With that proof's
+notation ($\delta=\delta_\lambda$; shell
+$S_k=\SET{\abs\xi\asymp\delta_\lambda^{-1}}$, volume $\asymp\delta_\lambda^{-d}$;
+$\rho_k\asymp\delta_\lambda^{-1}$), the shell integrand
+$\abs\xi^{-4}\abs{\widehat{Lg}}^{2}$ has its dominant
+$\xi\cdot\nabla_\xi\mathbf a$ factor bounded by
+$\abs{S_k}\rho_k^{2}\sum_m\abs{x_m}^{2}a_m^{2}$ (Lemma~\ref{lem:ao},
+weighted part). Annulus centres have $\abs{x_m}\asymp1$; origin-near
+centres have $\abs{x_m}\lesssim\delta_\lambda$, so $\abs{x_m}^{2}
+\lesssim\delta_\lambda^{2}$ contributes one full extra power of
+$\delta_\lambda$: the count is
+\[
+\norm{U}_2^{2}
+\ \gtrsim\ \underbrace{\delta_\lambda^{4}}_{\abs\xi^{-4}}\,
+\underbrace{\delta_\lambda^{2d}}_{\text{prefactor}}\,
+\underbrace{\delta_\lambda^{-d}}_{\abs{S_k}}\,
+\underbrace{\rho_k^{2}}_{\asymp\delta_\lambda^{-2}}\,
+\underbrace{\delta_\lambda^{2}}_{\abs{x_m}^{2}}\sum_m a_m^{2}
+\ \asymp\ \delta_\lambda^{4}\,\bigl(\delta_\lambda^{d}\sum_m a_m^{2}\bigr)
+\ =\ \delta_\lambda^{4}\norm{h_\lambda}_2^{2},
+\]
+using $\norm{h_\lambda}_2^2\asymp\delta_\lambda^{d}\sum a_m^{2}$. The
+subtracted $(\Lambda\widehat\psi)$-term lacks the $\rho_k^{2}$
+amplification and is one power smaller, as in Lemma~\ref{lem:scale2}; the
+harmonic correction $q=O(\delta_\lambda\norm{h_\lambda}_2)$ by
+\eqref{eq:qbound} absorbs into $\delta_0$. Hence
+$\norm{Th_\lambda}_2\gtrsim\delta_\lambda^{2}\norm{h_\lambda}_2$
+(constants depending on $(d,\psi,c_0,\rho)$ only).
+\end{proof}
+
+\begin{proof}[Proof of Lemma~\ref{lem:invert}]
+We prove the two-sided estimate for the bulk subfamily (the whole sieve
+error on the interior sieve of \S(A)) and the global bound; the origin
+modes it excludes are projected into $\Pi_\delta$
+(Remark~\ref{rem:modewise}). Throughout, $P_\delta$ is the spectral
+projection of the Dirichlet Laplacian onto
+$\lambda_\nu\le C_W\,\delta^{-2}$ (spatial frequencies $\lesssim
+\delta^{-1}$, matching the one-degree smoothing; see \S(A)).
+
+\smallskip
+\noindent\emph{(i) Lower bound on $\norm{Th^{\rm bulk}}_2$.} Decompose
+$h^{\rm bulk}=\sum_j h_j$ into wavelet pieces at scales
+$2^{-j}\ge\delta$ with centres in the annulus (each $h_j$ satisfies the
+hypotheses of Lemma~\ref{lem:scale2} with scale $\delta_j=2^{-j}$ and
+annulus centres). By Lemma~\ref{lem:scale2}'s lower bound applied per
+scale, $\norm{Th_j}_2\gtrsim2^{-j}\norm{h_j}_2$, and the cross-terms
+$\inner{Th_j}{Th_{j'}}$ for $j\ne j'$ are almost-orthogonal by
+Lemma~\ref{lem:ao} (each $Th_j$ remains concentrated near scale
+$2^{-j}$, both by the Fourier localization of the source and by the
+Schur-summable interference off the diagonal); hence
+\[
+\norm{Th^{\rm bulk}}_2^{2}\ \gtrsim\ \sum_j 2^{-2j}\norm{h_j}_2^{2}
+\ \ge\ \delta^{2}\sum_j\norm{h_j}_2^{2}
+\ \asymp\ \delta^{2}\norm{h^{\rm bulk}}_2^{2},
+\]
+the last equivalence by the square-function characterization (T5). Hence
+$\norm{Th^{\rm bulk}}_2\ge c\delta\norm{h^{\rm bulk}}_2$.
+
+\smallskip
+\noindent\emph{(ii) Spectral tail $\norm{(I-P_\delta)Th}_2$.} The
+projector cuts at $\abs\xi\asymp\sqrt{C_W}\,\delta^{-1}$, retaining
+scales $\gtrsim\delta$; the mass of $Th^{\rm bulk}$ beyond this is the
+off-shell tail of Lemma~\ref{lem:scale2}. For a single scale-$\delta$
+packet, \eqref{eq:Uupper}'s off-shell shells $S_j$, $2^j\gg\delta^{-1}$,
+contribute a factor $2^{-N(j-k)}$ each via the Schwartz decay
+$\abs{\widehat\psi(\delta\xi)}\lesssim(\delta\abs\xi)^{-N}$ (any fixed
+$N$), so on $\SET{\abs\xi\gtrsim\sqrt{C_W}\delta^{-1}}$ the mass is
+\[
+\norm{P_{\SET{\abs\xi\gtrsim\sqrt{C_W}\delta^{-1}}}\,U}_2^{2}
+\ \lesssim\ \sum_{j:\,2^{j}\gtrsim\sqrt{C_W}\delta^{-1}}2^{-N(j-k)}\,
+\delta^{2}\norm{g}_2^{2}
+\ \lesssim\ C_W^{-N/2}\,\delta^{2}\norm{g}_2^{2},
+\]
+(geometric sum over off-shell shells, $2^{j-k}\gtrsim\sqrt{C_W}$). The
+harmonic correction $q$ is smooth into any Sobolev norm with constant
+$O(\delta\norm g_2)$ by \eqref{eq:qbound}, so its high tail is
+Schwartz-small and absorbs into the same bound. For coarser pieces
+$2^{-j}\in[\delta,1]$ the cutoff $\sqrt{C_W}\delta^{-1}$ sits even
+deeper in the off-shell tail, so the bound is uniform; summing over
+scales as in step~(i),
+\begin{equation}\label{eq:spectail}
+\norm{(I-P_\delta)Th^{\rm bulk}}_2
+\ \le\ \widetilde C\,C_W^{-N/4}\,\delta\norm{h^{\rm bulk}}_2,
+\end{equation}
+with $\widetilde C=\widetilde C(d,\psi,c_0)$. Choosing the fixed constant
+$C_W$ (hence the sieve $V_\delta$) so large that $\widetilde
+C\,C_W^{-N/4}\le c/4$ ($N\ge4$ fixed, $C_W$ independent of $\delta$)
+makes the tail $\le\tfrac{c}{4}\delta\norm{h^{\rm bulk}}_2$.
+
+\smallskip
+\noindent\emph{(iii) Combination.} By the triangle inequality (ordinary
+norm subtraction),
+\[
+\norm{P_\delta Th^{\rm bulk}}_2
+\ \ge\ \norm{Th^{\rm bulk}}_2-\norm{(I-P_\delta)Th^{\rm bulk}}_2
+\ \ge\ c\,\delta\norm{h^{\rm bulk}}_2-\tfrac c4\,\delta
+\norm{h^{\rm bulk}}_2
+\ =\ \tfrac{3c}{4}\,\delta\norm{h^{\rm bulk}}_2 ,
+\]
+combining step~(i) and \eqref{eq:spectail}; both terms are
+$O(\delta\norm{\cdot}_2)$ and the tail constant $c/4<c$, so the
+difference is positive. The upper bound
+$\norm{P_\delta Th^{\rm bulk}}_2\le\norm{Th^{\rm bulk}}_2
+\lesssim\delta\norm{h^{\rm bulk}}_2$ and the global
+$\norm{Th}_2\le C\norm{h}_2$ follow from Lemma~\ref{lem:scale2} /
+Remark~\ref{rem:degree1}.
+\end{proof}
+
+\begin{remark}[Origin content and the interior sieve]\label{rem:modewise}
+Lemma~\ref{lem:origin} records that the transport field's degeneracy makes
+the origin the \emph{least} revealing region (gain only
+$\asymp\delta_\lambda^{2}$ there, versus $\asymp\delta_\lambda$ in the bulk
+annulus). Since an adversarial $h$ could concentrate at the origin ---
+where inversion against the $O(\delta)$ noise/bias terms would lose a
+factor $\delta^{-1}$ --- the sieve $\F_\delta$ is restricted to
+bulk-annulus packets, and the origin/boundary content is projected into
+$\Pi_\delta f_0$ (hence into the bias, whose $u$-image is handled by the
+degree-one gain of \eqref{eq:finebias}). Accordingly, in \S(C) the lower
+bound of \eqref{eq:infsup} is applied to the \emph{whole} sieve error $h$,
+supported in the bulk annulus by construction, and the analysis uses the
+annulus two-sided estimate of Lemma~\ref{lem:scale2}, valid for all
+$\alpha>1$, $d\ge2$ (Lemmas~\ref{lem:scale2}; $c_0,c_\psi,C_E''$
+absorbed).
+\end{remark}
+
+\review{Although Lemma 7.2 and 7.3 recognize that the estimation problem becomes more difficult near the origin, Remark 7.4 does not adequately address this issue. The results are used in Equation 19, which then leads to incorrect convergence rates.}
+
+\subsection{(C) Risk bound}
+Let $\delta=\delta_*$ at the end; for now $\delta>0$ general. Decompose,
+with the comparison point $m:=\Pi_\delta f_0$, the bias $e=m-f_0$, and the
+sieve error $h:=\widehat f-m\in\F_\delta-\F_\delta$,
+\[
+\widehat f-f_0=h+e .
+\]
+\textbf{Bias.} By \eqref{eq:approx}, $\norm{e}_2^{2}\lesssim\delta^{2\alpha}$.
+
+\noindent\textbf{Linearize about the comparison point (multiplicative
+$r$).} Rather than linearize about $\one$ (which produces an
+\emph{additive} remainder $\sim r\norm{h}_2$ that cannot be absorbed at
+fixed $r$), we linearize about $m=\Pi_\delta f_0$. Note
+$1-2r\le m\le1+2r$ and $\norm{\nabla u_m}_{\infty}\lesssim1$ ((T6), since
+$m\in\F(\alpha,2r)\subset C^\alpha$). Write
+$u_{\widehat f}-u_{m}=T_{m}h+\widetilde\rho$, where $T_{m}$ is the
+linearized forward map at $m$ and $\widetilde\rho$ is its quadratic
+remainder. The same energy argument as Lemma~\ref{lem:quad}, with
+$\nabla u_m$ in place of $\nabla u_0$, gives
+$\norm{\widetilde\rho}_2\lesssim\norm{h}_\infty\norm{h}_2$. The
+linearization about $\one$, $T=T_\one$, differs from $T_m$ by an
+operator-difference reflecting the $r$-closeness of $m$ to $\one$; the
+essential point is that this enters \emph{multiplicatively}: for
+wavelet-packet $h$ on the sieve at scale $\delta$ the $h$-dependent part
+of $T_m-T$ satisfies
+\begin{equation}\label{eq:opdiff}
+T_mh-Th=-\Delta^{-1}\diver\bigl(h\nabla(u_m-u_0)\bigr),
+\qquad
+\norm{T_mh-Th}_2\ \lesssim\ r\,\delta\,\norm{h}_2 ,
+\qquad m-\one=O(r)\text{ in }C^\alpha,
+\end{equation}
+To see the identity in \eqref{eq:opdiff}, subtract the linearized
+equations: $\diver(\nabla T_mh)=-\diver(h\nabla u_m)$ and
+$\diver(\nabla Th)=-\diver(h\nabla u_0)$ give
+$\diver\nabla(T_mh-Th)=-\diver\bigl(h\nabla(u_m-u_0)\bigr)$, i.e.\
+$T_mh-Th=-\Delta^{-1}\diver\bigl(h\nabla(u_m-u_0)\bigr)$ (this is a
+first-order expansion of the \emph{difference} $(T_m-T)h$, the
+$h$-independent piece $(T_m-T)0=u_m-u_0$ being exactly accounted for by
+$u_m-u_0=\Delta^{-1}\diver((m-\one)\nabla u_0)$).
+For the bound, the only subtlety is the boundary layer of $m-\one$: by the
+interior Schauder estimate
+$\norm{u_m-u_0}_{C^{2,\beta}(K)}\le C_K\norm{m-\one}_{C^\alpha}$ on
+compact $K\Subset D$ (the right side of
+$\diver(m\nabla(u_m-u_0))=\diver((m-\one)\nabla u_0)$ is the divergence
+of the vector field $(m-\one)x/d$, whose $C^{\alpha-1}(K)$ norm is
+$\lesssim_K r$; (T6) applies) and the packet $h$ is supported in
+$\SET{\abs x\le\tfrac34}=:K$, so
+$\norm{h\nabla(u_m-u_0)}_2\le C_K r\norm h_2$.
+Repeating the
+single-scale Fourier computation of Lemma~\ref{lem:scale2} with the
+vector source $h\nabla(u_m-u_0)$ in place of $xg$ --- for the
+\emph{upper} bound only, where the estimate reduces to
+$\norm{-\Delta^{-1}\diver F}_2\lesssim\delta\norm F_2$ for any vector
+field $F$ whose spatial scale is $\delta$ (Lemma~\ref{lem:scale2}'s
+upper bound \eqref{eq:Uupper} applied componentwise; the slow factor
+$\nabla(u_m-u_0)$ is $O(r)$ in $L^\infty$ and $C^{\alpha-1}$ and does not
+change the scale) --- yields
+\[
+\norm{T_mh-Th}_2
+\ \lesssim\ \delta\,C_r\,\norm{h}_2\ \lesssim\ r\,\delta\,\norm{h}_2
+\]
+(this is the multiplicative $r$: the estimate scales linearly with
+$\norm{m-\one}_{C^\alpha}\lesssim r$, and fails for $r=1$). The remaining
+piece $(u_m-u_0)$ of $(T_m-T)$ is \emph{independent of $h$} and is
+grouped, below, with the bias/discrepancy term (it acts as an additional
+$O(r)$ offset inside $u_m-u_{f_0}$; its contribution to the risk is
+handled with the bias in the accounting display below).
+Consequently the signal satisfies the recoverable lower bound
+\begin{equation}\label{eq:infsupapp}
+\norm{P_\delta T_mh}_2
+\ \ge\ \norm{P_\delta Th}_2-\norm{(T_m-T)h}_2
+\ \ge\ \bigl(c-Cr\bigr)\delta\norm h_2
+\ \ge\ \tfrac c2\,\delta\norm h_2
+\qquad\text{for }r\le r_0:=\tfrac{c}{2C},
+\end{equation}
+by Lemma~\ref{lem:invert} applied to the annulus packet $Th$ and
+\eqref{eq:opdiff}. Since the sieve perturbations $h$ are by
+construction supported in the bulk annulus (no origin-near modes are
+estimated; Lemma~\ref{lem:invert}'s lower bound applies to the
+\emph{whole} $h$), this is the recovery lower bound used in
+\eqref{eq:basic}; on the origin content absorbed into $\Pi_\delta$ see
+Remark~\ref{rem:modewise}.
+
+\par\noindent\textbf{Absorption via per-scale Nikolskii on the compact sieve.}
+On the compact sieve $\F_\delta\subset\SET{\norm{\cdot}_{C^\alpha}\le2r}$,
+a difference $h=\sum_j h_j$ of two sieve elements has
+$\norm{h_j}_{C^\alpha}\le4r$ at each scale $2^{-j}\ge\delta$. The
+per-scale Nikolskii inequality and the $C^\alpha$ class cap give
+$\norm{h_j}_\infty\lesssim\min\bigl(2^{jd/2}\norm{h_j}_2,\,
+2^{-j\alpha}r\bigr)$. Summing over the $\lesssim\log(1/\delta)$ scales
+$2^{-j}\ge\delta$, and using Lemma~\ref{lem:quad}'s
+$\norm{\widetilde\rho}_2\lesssim\norm{h}_\infty\norm{h}_2$ together with
+the pointwise triangle inequality $\norm{h}_\infty\le\sum_j\norm{h_j}_\infty$
+(the pieces are summable in $L^\infty$ since $\norm{h_j}_\infty\lesssim
+2^{-j\alpha}r$ and $\alpha>0$),
+\[
+\frac{\norm{\widetilde\rho}_2}{\delta\norm{h}_2}
+\ \le\ \frac{\norm{h}_\infty}{\delta}
+\ \le\ \delta^{-1}\sum_{2^{-j}\ge\delta}\norm{h_j}_\infty
+\ \lesssim\ \delta^{-1}\sum_{2^{-j}\ge\delta}
+\min\bigl(2^{jd/2}\norm{h_j}_2,\,2^{-j\alpha}r\bigr).
+\]
+Using the bootstrap $\norm{h}_2\le2r$ and the uniform $C^\alpha$ bound,
+each summand is $\lesssim2^{-j\alpha}r$, so
+$\delta^{-1}\sum_{j}2^{-j\alpha}r\lesssim\delta^{-1}r\delta^{\alpha}
+=r\delta^{\alpha-1}\to0$ \emph{because} $\alpha>1$. Hence, at the scale of
+interest and quantitatively (no undefined exponent),
+\begin{equation}\label{eq:absorb}
+\norm{\widetilde\rho}_2\ \le\ r\,\delta^{\alpha-1}\bigl(\delta\norm{h}_2\bigr)
+\ =:\ \omega_\delta\,\delta\norm{h}_2,
+\qquad \omega_\delta:=r\delta^{\alpha-1}\to0\ \ (\alpha>1).
+\end{equation}
+This is the genuine multiplicative absorption, valid for all $\alpha>1$,
+all $d\ge2$.
+
+\par\noindent\textbf{Basic inequality and risk.} Write, abusing notation,
+$\Upsilon(g)=\norm{P_\delta u_g-Y_\delta}_2^{2}$,
+$\Delta Y:=P_\delta(u_{f_0}-Y_\delta)=n^{-1/2}\xi_\delta$ (the projected
+negative noise), and set
+\[
+X\ :=\ P_\delta\bigl(u_{\widehat f}-u_m\bigr),\qquad
+Z\ :=\ P_\delta\bigl(u_{f_0}-u_m\bigr).
+\]
+From $\Upsilon(\widehat f)\le\Upsilon(m)$, expanding the squares as
+$\norm{X-(\Delta Y+Z)}_2^{2}\le\norm{\Delta Y+Z}_2^{2}$ and cancelling
+the common $\norm{\Delta Y+Z}_2^{2}$,
+\[
+\norm{X}_2^{2}\ \le\ 2\,\bigl|\inner{X}{\Delta Y+Z}\bigr|
+\ \le\ 2\norm X_2\bigl(\norm{\Delta Y}_2+\norm Z_2\bigr),
+\]
+so (dividing by $\norm X_2$; if $X=0$ the conclusion is trivial)
+\begin{equation}\label{eq:basic0}
+\norm{X}_2\ \le\ 2\,\norm{\Delta Y}_2+2\,\norm Z_2
+\ =\ 2n^{-1/2}\norm{\xi_\delta}_2+2\norm{P_\delta(u_{f_0}-u_m)}_2 .
+\end{equation}
+On the left, $u_{\widehat f}-u_m=T_mh+\widetilde\rho$ with
+$\norm{\widetilde\rho}_2\le\omega_\delta\,\delta\norm h_2$ by
+\eqref{eq:absorb}, hence by \eqref{eq:infsupapp}
+\[
+\norm{X}_2\ \ge\ \norm{P_\delta T_mh}_2-\norm{\widetilde\rho}_2
+\ \ge\ \tfrac c2\delta\norm h_2-\omega_\delta\delta\norm h_2
+\ \ge\ \tfrac c4\,\delta\norm h_2
+\qquad(\delta\le\delta_0).
+\]
+For the right side of \eqref{eq:basic0}, the \emph{discrepancy}
+$u_{f_0}-u_m$ is the solution error generated by the approximation
+residual $f_0-m=f_0-\Pi_\delta f_0=-e$; by the fine-scale bias bound
+(next paragraph),
+$\norm{u_{f_0}-u_m}_2\lesssim\delta^{1+\alpha}$, i.e.\
+$\norm Z_2=\norm{P_\delta(u_{f_0}-u_m)}_2
+\lesssim\delta^{1+\alpha}$.
+Combining the last two displays with \eqref{eq:basic0},
+\begin{equation}\label{eq:basic}
+\tfrac{c}{4}\delta\norm{h}_2
+\ \lesssim\ n^{-1/2}\norm{\xi_\delta}_2+\delta^{1+\alpha}
++\omega_\delta\,\delta\norm{h}_2 ,
+\end{equation}
+and the $\omega_\delta\delta\norm{h}_2$ term is absorbed on the left for
+$\delta\le\delta_0$ (since $\omega_\delta\to0$).
+
+\par\noindent\textbf{Fine-scale bias.} Write $w:=u_{f_0}-u_m$; both
+$u_{f_0}$ and $u_m$ vanish on $\partial D$ (the Dirichlet condition of
+the very-weak formulation \eqref{eq:veryweak}), so $w\in H^{1}_0$ solves
+$\diver(f_0\nabla w)=\diver G$, $G:=e\nabla u_m$, with
+$\norm{G}_2\le\norm e_2\norm{\nabla u_m}_\infty\lesssim\delta^\alpha$
+by \eqref{eq:approx} and $\norm{\nabla u_m}_\infty\lesssim1$ (T6).
+Split $G=G_{\rm int}+G_{\rm col}$, $G_{\rm col}=G\,\mathbf 1_{S}$ the
+part in a collar $S=\SET{\abs x>1-s}$ of width $s$ around $\partial
+D$. Two points:
+(i) \emph{collar remainder}: by H\"older and \eqref{eq:approx},
+$\norm{e}_{L^{2}(S)}\le\norm{e}_{L^{p}(S)}\abs{S}^{\frac12-\frac1p}
+\lesssim s^{\frac12-\frac1p}\delta^{\alpha}$, with $p>2$ taken large
+(the $C^\alpha$-cap tail is Nikolskii-small,
+$\norm{e}_{L^{p}(S)}\lesssim\delta^{\alpha}$, the projected region
+$O(r)$); for $s\lesssim\delta$ the collar is
+$\lesssim\delta^{\alpha+\frac14}=o(\delta^{\alpha})$, and no
+$r\delta^\alpha$ term appears --- collar content is projected into
+$\Pi_\delta$;
+(ii) \emph{interior gain}: each scale-$\delta$ bump of $e$, at
+distance $\gtrsim s$ from $\partial D$, is mean-zero, so by the exact
+Fourier mechanism of Lemma~\ref{lem:scale2} (the
+$\abs\xi^{-1}$-gain on the loaded shell; the harmonic correction
+\eqref{eq:qbound} applies since $\supp G_{\rm int}$ is interior)
+$\norm{G_{\rm int}}_{H^{-1}}\lesssim\delta\norm e_2\lesssim
+\delta^{\alpha+1}$. Combining, testing
+against $\phi=-\Delta^{-1}_{f_0}\psi$ as in Lemma~\ref{lem:apriori}
+and using Poincar\'e on $w\in H^{1}_0$,
+\begin{equation}\label{eq:finebias}
+\norm{w}_2=\norm{u_{f_0}-u_m}_2
+\ \lesssim\ \norm{G}_{H^{-1}}
+\ \lesssim\ \delta\norm{e}_2+\delta^{\alpha+\frac14}
+\ \lesssim\ \delta^{1+\alpha}.
+\end{equation}
+Thus
+$\norm Z_2=\norm{P_\delta(u_{f_0}-u_m)}_2
+\lesssim\delta^{1+\alpha}$.
+
+\par\noindent\textbf{Noise enters linearly (no union bound necessary).} In the
+comparison inequality the noise appears only through the \emph{linear}
+functional $h\mapsto n^{-1/2}\inner{\xi_\delta}{P_\delta Th}$ evaluated at
+the random point $h=\widehat f-\Pi_\delta f_0$; by Cauchy--Schwarz,
+$n^{-1/2}\abs{\inner{\xi_\delta}{P_\delta Th}}\le
+n^{-1/2}\norm{\xi_\delta}_2\,\norm{P_\delta Th}_2$, and after division by
+$\norm{P_\delta Th}_2$ this contributes $n^{-1/2}\norm{\xi_\delta}_2$ on
+the event $\SET{\widehat f\in\F_\delta}$, uniformly. Because the projected
+model is finite-dimensional and the functional is linear,
+$\E\norm{\xi_\delta}_2^2=\dim V_\delta\asymp\delta^{-d}$, and \emph{no
+supremum / union bound over the sieve is needed here}: a logarithmic factor
+would arise only if one insisted on a \emph{uniform}-in-$g$ comparison,
+which the least-squares basic inequality avoids. Account for every term
+of \eqref{eq:basic}: after absorbing $\omega_\delta\delta\norm h_2$ and
+dividing by $\delta$, $\norm h_2\lesssim\delta^{-1}\bigl(n^{-1/2}
+\norm{\xi_\delta}_2+\delta^{1+\alpha}\bigr)$, so squaring (and using
+$\E\norm{\xi_\delta}_2^2\asymp\delta^{-d}$)
+$\E\norm h_2^2\lesssim\delta^{-d-2}/n+\delta^{2\alpha}$: the
+discrepancy $\delta^{1+\alpha}$ contributes $\delta^{2\alpha}$, not
+$r^{2}\delta^{2\alpha-2}$ --- the boundary collar/collar content
+responsible for the latter has been projected into the bias, whose
+$u$-image uses the interior degree-one gain \eqref{eq:finebias}. With
+the balance
+$\delta=\delta_*=n^{-1/(2\alpha+d+2)}$ chosen so
+$\delta_*^{-d-2}/n=\delta_*^{2\alpha}$, one therefore obtains the
+\emph{log-free} estimate
+\[
+\E\norm{\widehat f-f_0}_2^{2}
+\lesssim\norm{e}_2^{2}+\E\norm{h}_2^{2}
+\lesssim\delta_*^{2\alpha}+\frac{\delta_*^{-d-2}}{n}
+\asymp n^{-\frac{2\alpha}{2\alpha+d+2}} .
+\]
+All contributing terms (bias, discrepancy, noise) are
+$\lesssim\delta_*^{2\alpha}$ at the balance; the upper bound is free of
+logarithmic loss.
+
+\section{Conclusion and consistency checks}
+
+\begin{itemize}[itemsep=2pt]
+\item \textbf{Rate.} Lower bound (Proposition~\ref{prop:lower}):
+$n^{-2\alpha/(2\alpha+d+2)}$ (no log). Upper bound
+(Proposition~\ref{prop:upper}): $n^{-2\alpha/(2\alpha+d+2)}$ (no log:
+the noise enters the least-squares basic inequality only through a
+\emph{linear} functional, so no union bound is needed). The two agree, so
+the minimax rate is $n^{-2\alpha/(2\alpha+d+2)}$ up to logarithmic factors.
+\item \textbf{Interpretation.} The exponent denominator
+$2\alpha+d+2$ exceeds the direct-problem $2\alpha+d$ by exactly $2$,
+reflecting \emph{one} degree of smoothing of the linearized inverse $T$
+(order $-1$), a consequence of the transport structure
+$\Delta T=I+\frac{x\cdot\nabla}{d}$ and the $L^{2}$-invertibility of
+$I+\frac{x\cdot\nabla}{d}$ on $L^{2}(D)$
+(Lemmas~\ref{lem:lin},~\ref{lem:Linv} and the exact Fourier identity
+Lemma~\ref{lem:fourier}).
+\item \textbf{Role of $\alpha>1$.} Used decisively in both bounds to make
+the quadratic remainder $R(h)$
+(Lemma~\ref{lem:quad}) negligible against the linear signal $Th$ at the
+minimax scale (ratio $\asymp\delta_*^{\alpha-1}\to0$), cf.\
+Remark~\ref{rem:alpha>1}. For $\alpha\le1$ the linearization is not
+faithful at scale $\delta_*$; the rate would then require a genuinely
+nonlinear analysis (we make no claim in that regime).
+\item \textbf{Role of small $r$.} $r\le r_0(\alpha,d)$ is used for
+(i) uniform ellipticity $1-r\le f\le1+r$, (ii) absorbing the quadratic
+remainder into the linear signal, and (iii) the uniform apriori bound
+$\norm{u_f}_\infty\lesssim1$. All structural constants and $r_0$ depend only on $(\alpha,d,\psi)$;
+$C$ is uniform in $r\in(0,r_0]$ and $n$; the lower-bound $c$ carries the
+$r^{2}$ factor of the shrinking class.
+\item \textbf{Model handling.} $u_f$ is defined by the very-weak formulation
+\eqref{eq:veryweak}; no $H^1$ membership is asserted
+(Section~\ref{sec:forward}). The white noise is only ever projected onto
+the finite-dimensional sieve $V_\delta$, where it is a well-defined
+Gaussian vector, so the estimator/risk are rigorous on the white-noise
+model.
+\end{itemize}
+
+\end{document}

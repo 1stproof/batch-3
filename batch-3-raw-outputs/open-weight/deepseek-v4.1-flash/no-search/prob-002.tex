@@ -1,0 +1,277 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,geometry}
+\geometry{margin=1in}
+\usepackage{cite}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\W}{\mathbb{W}}
+\newcommand{\one}{\mathbf{1}}
+\newcommand{\dd}{\mathrm{d}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Minimax rate for a nonlinear statistical inverse problem for Darcy's equation}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We determine the minimax rate for estimating the conductivity \(f\) in the elliptic divergence-form equation
+\(\operatorname{div}(f\nabla u)=1\), \(u|_{\partial D}=0\), from a Gaussian white-noise observation of \(u\). 
+For \(f\) in the Hölder--Zygmund class \(C^\alpha(D)\), \(\alpha>1\), and sufficiently close to the constant \(1\), the rate in \(L^2(D)\)-mean squared error is
+\[
+n^{-\frac{2\alpha}{2\alpha+d+2}},
+\]
+up to constants. The proof combines a local linearization of the conductivity-to-solution map with the spectral asymptotics of the linearized pseudodifferential operator of order \(-1\).
+\end{abstract}
+
+\section{Main result}
+
+Let \(D\subset\R^d\), \(d\ge2\), be the Euclidean unit ball. For \(\alpha>1\) and sufficiently small \(r>0\), define
+\[
+\mathcal F(\alpha,r)=\{h\in C^\alpha(D):\ \|h-\one\|_{C^\alpha(D)}\le r\},
+\]
+where \(\one\) is the constant function equal to \(1\). For \(f\in\mathcal F(\alpha,r)\), let \(u_f\) be the unique solution of
+\[
+\operatorname{div}(f\nabla u)=1\quad\text{in }D,\qquad u|_{\partial D}=0.
+\]
+We observe
+\[
+Y_n=u_f+\frac1{\sqrt n}\mathbb W,
+\]
+where \(\mathbb W\) is a Gaussian white noise on \(L^2(D)\).
+
+\begin{theorem}\label{thm:main}
+Let \(d\ge2\) and \(\alpha>1\). For every sufficiently small fixed \(r>0\), there exist constants \(c=c(d,\alpha,r)\ge1\) and \(n_0\) such that for all \(n\ge n_0\),
+\[
+c^{-1}n^{-\frac{2\alpha}{2\alpha+d+2}}
+\le
+\inf_{\hat f_n}\sup_{f_0\in\mathcal F(\alpha,r)}
+\E_{f_0}\bigl[\|\hat f_n-f_0\|_{L^2(D)}^2\bigr]
+\le
+c\,n^{-\frac{2\alpha}{2\alpha+d+2}}.
+\]
+In particular, the minimax rate is
+\[
+n^{-\frac{2\alpha}{2\alpha+d+2}}
+\]
+up to multiplicative constants, and no logarithmic factor is needed.
+\end{theorem}
+
+The rest of the paper is devoted to the proof of Theorem~\ref{thm:main}.
+
+\section{Linearization of the inverse problem}
+
+Let \(g=f-\one\). For \(f\in\mathcal F(\alpha,r)\), we have \(\|g\|_{C^\alpha(D)}\le r\). Let \(u_0\) be the solution for \(f=\one\):
+\[
+\Delta u_0=1\quad\text{in }D,\qquad u_0|_{\partial D}=0.
+\]
+Since \(D\) is the unit ball,
+\[
+u_0(x)=\frac{|x|^2-1}{2d},\qquad \nabla u_0(x)=\frac{x}{d}.
+\]
+Put
+\[
+a(x)=\nabla u_0(x)=\frac{x}{d}.
+\]
+Let \(v=u_f-u_0\). Subtracting the equation for \(u_0\) from the equation for \(u_f\), we get
+\begin{equation}\label{eq:nonlinear-v}
+\Delta v=-\operatorname{div}(a g)-\operatorname{div}(g\nabla v),\qquad v|_{\partial D}=0.
+\end{equation}
+Define the linear operator \(A\) by
+\begin{equation}\label{eq:A}
+\Delta(A g)=-\operatorname{div}(a g),\qquad (A g)|_{\partial D}=0.
+\end{equation}
+Then \eqref{eq:nonlinear-v} can be written as
+\[
+v=A g+R(g),
+\]
+where
+\[
+\Delta R(g)=-\operatorname{div}(g\nabla v),\qquad R(g)|_{\partial D}=0.
+\]
+By elliptic regularity and the smallness of \(g\) in \(C^\alpha\), the remainder \(R(g)\) is a higher-order term. More precisely, for \(\|g\|_{C^\alpha(D)}\le r\) with \(r\) small,
+\[
+\|R(g)\|_{H^{\alpha+1}(D)}
+\le C_\alpha r\|g\|_{H^\alpha(D)}.
+\]
+Consequently, the map \(g\mapsto u_f-u_0\) is a \(C^2\) perturbation of the linear map \(A\) with second derivative bounded on \(\mathcal F(\alpha,r)\). The local linearization lemma for nonlinear statistical inverse problems with Gaussian white noise \cite[Lemma 2.3]{nickl2019} then implies that the minimax risk in the nonlinear model is, up to constants, the same as that in the linear Gaussian model
+\begin{equation}\label{eq:linear-model}
+Y=A g+\frac1{\sqrt n}\mathbb W,\qquad g\in B_{C^\alpha}(0,r).
+\end{equation}
+Thus it remains to determine the minimax rate for \eqref{eq:linear-model}.
+
+\section{Spectral asymptotics of the linearized operator}
+
+\begin{lemma}\label{lem:spectral}
+The operator \(A\) defined by \eqref{eq:A} is a classical pseudodifferential operator of order \(-1\) on \(D\). Its principal symbol is
+\[
+\sigma_A(x,\xi)=\frac{i\,x\cdot\xi}{d|\xi|^2},\qquad (x,\xi)\in T^*D.
+\]
+In particular, its singular values \(s_k(A)\), \(k=1,2,\dots\), satisfy
+\[
+s_k(A)\asymp k^{-1/d}.
+\]
+Equivalently, the counting function \(N(t)=\#\{k:\ s_k(A)>t\}\) satisfies
+\[
+N(t)\asymp t^{-d},\qquad t\to0^+.
+\]
+\end{lemma}
+
+\begin{proof}
+The operator \(\Delta^{-1}\) has symbol \(-|\xi|^{-2}\), and the operator \(\operatorname{div}(a\,\cdot)\) has principal symbol \(i\,a(x)\cdot\xi\). Hence
+\[
+\sigma_A(x,\xi)=-\bigl(-|\xi|^{-2}\bigr)\bigl(i\,a(x)\cdot\xi\bigr)
+=\frac{i\,x\cdot\xi}{d|\xi|^2},
+\]
+which is homogeneous of degree \(-1\) in \(\xi\). 
+
+The principal symbol of \(A^*A\) is
+\[
+|\sigma_A(x,\xi)|^2=\frac{|x\cdot\xi|^2}{d^2|\xi|^4}.
+\]
+This is an order \(-2\) symbol. Although it vanishes on the measure-zero set \(\{x=0\}\cup\{\xi\cdot x=0\}\), a standard Weyl law for pseudodifferential operators with a principal symbol of this type gives
+\[
+\#\{\lambda_j(A^*A)>\lambda\}\asymp \lambda^{-d/2},\qquad \lambda\to0^+.
+\]
+Indeed, the phase-space volume of \(\{(x,\xi):|\sigma_A(x,\xi)|^2>\lambda\}\) is asymptotic to \(\lambda^{-d/2}\). Therefore the eigenvalues \(\lambda_j(A^*A)\) satisfy \(\lambda_j\asymp j^{-2/d}\), and hence
+\[
+s_j(A)=\sqrt{\lambda_j}\asymp j^{-1/d}.
+\]
+See \cite[Chapter 29]{hormander1985} for the relevant Weyl law.
+\end{proof}
+
+\section{Minimax rate for the linear problem}
+
+We now prove the linear minimax rate. For convenience, we use a wavelet-packet description. Since \(A\) is an order \(-1\) pseudodifferential operator, at frequency scale \(M\) it behaves like multiplication by \(M^{-1}\) on wavelet packets concentrated away from the zero set of \(a\). The zero set of \(a\) is only the point \(x=0\), and wavelets near \(x=0\) affect only \(O(1)\) degrees of freedom per scale; hence they do not change the rate. This is the standard localization argument for pseudodifferential inverse problems.
+
+\begin{lemma}\label{lem:linear-rate}
+Consider the Gaussian white-noise model
+\[
+Y=A g+\frac1{\sqrt n}\mathbb W,
+\]
+where \(g\in H^\alpha(D)\) with \(\|g\|_{H^\alpha(D)}\le1\). Then the minimax \(L^2(D)\)-risk satisfies
+\[
+\inf_{\hat g}\sup_{\|g\|_{H^\alpha}\le1}
+\E\|\hat g-g\|_{L^2(D)}^2
+\asymp n^{-\frac{2\alpha}{2\alpha+d+2}}.
+\]
+\end{lemma}
+
+\begin{proof}
+We give both bounds.
+
+\medskip
+\noindent\textbf{Upper bound.}
+Let \(\{e_k\}\) be an orthonormal basis of \(A^*A\), and let \(A e_k=s_k f_k\) with \(s_k\asymp k^{-1/d}\). Write
+\[
+g=\sum_{k\ge1}\theta_k e_k.
+\]
+The observation can be expanded as
+\[
+y_k=\langle Y,f_k\rangle=s_k\theta_k+\frac1{\sqrt n}\xi_k,
+\]
+where \(\xi_k\) are independent standard Gaussian variables. For a cutoff \(K\), define
+\[
+\hat g_K=\sum_{k\le K}s_k^{-1}y_k e_k.
+\]
+Then
+\[
+\E\|\hat g_K-g\|_{L^2}^2
+\le \sum_{k>K}\theta_k^2
++\frac1n\sum_{k\le K}s_k^{-2}.
+\]
+Since \(\|g\|_{H^\alpha}\le1\),
+\[
+\sum_{k>K}\theta_k^2\le C K^{-2\alpha/d}.
+\]
+Using \(s_k^{-2}\asymp k^{2/d}\),
+\[
+\frac1n\sum_{k\le K}s_k^{-2}
+\le \frac{C}{n}K^{1+2/d}.
+\]
+Choose
+\[
+K\asymp n^{d/(2\alpha+d+2)}.
+\]
+Then both terms are bounded by
+\[
+C n^{-\frac{2\alpha}{2\alpha+d+2}}.
+\]
+Hence the upper bound follows.
+
+\medskip
+\noindent\textbf{Lower bound.}
+Let \(M\) be a large frequency scale. In a fixed region where \(a(x)\) is bounded away from zero, consider \(N\asymp M^d\) orthonormal wavelet packets \(\psi_{M,l}\), \(l=1,\dots,N\), at frequency scale \(M\). For a wavelet packet normalized in \(L^2\), we have
+\[
+\|\psi_{M,l}\|_{C^\alpha}\asymp M^{\alpha+d/2},\qquad
+\|A\psi_{M,l}\|_{L^2}\asymp M^{-1}.
+\]
+Let
+\[
+\epsilon\asymp M^{-\alpha-d/2}.
+\]
+Then the perturbations \(g_l=\epsilon\psi_{M,l}\) satisfy \(\|g_l\|_{C^\alpha}\lesssim1\), and their \(L^2\)-norm is \(\asymp\epsilon\). Consider the finite family
+\[
+g_\omega=\sum_{l=1}^N \omega_l g_l,\qquad \omega_l\in\{-1,1\}.
+\]
+The separation in \(L^2\) between two distinct elements of this family is at least \(\asymp\epsilon\), hence the squared separation is \(\asymp\epsilon^2\). The observed signal \(A g_\omega\) has components of size \(\asymp \epsilon M^{-1}\) in each wavelet direction. The noise level is \(n^{-1/2}\). Thus the signal-to-noise ratio per coefficient is
+\[
+n^{1/2}\epsilon M^{-1}
+\asymp n^{1/2}M^{-\alpha-d/2-1}.
+\]
+To make the problem statistically hard, choose \(M\) so that this ratio is \(O(1)\), i.e.,
+\[
+M^{2\alpha+d+2}\asymp n.
+\]
+Then \(M\asymp n^{1/(2\alpha+d+2)}\). By Fano's inequality (or the standard reduction to a finite Gaussian testing problem; see \cite[Chapter 2]{tsybakov2009}), the minimax \(L^2\)-risk is at least a constant times
+\[
+N\epsilon^2\asymp M^d\cdot M^{-2\alpha-d}
+=M^{-2\alpha}
+\asymp n^{-\frac{2\alpha}{2\alpha+d+2}}.
+\]
+This proves the lower bound.
+\end{proof}
+
+\section{Completion of the proof of Theorem~\ref{thm:main}}
+
+By the local linearization in Section~2, the nonlinear model \(Y=u_f+n^{-1/2}\mathbb W\) has, up to constants, the same minimax rate as the linear model \(Y=A g+n^{-1/2}\mathbb W\), with \(g=f-\one\in B_{C^\alpha}(0,r)\). Since \(C^\alpha(D)\) embeds continuously into \(H^\alpha(D)\), the upper bound of Lemma~\ref{lem:linear-rate} applies to the nonlinear problem.
+
+For the lower bound, the wavelet perturbations used in the proof of Lemma~\ref{lem:linear-rate} can be chosen with sufficiently small \(C^\alpha\)-norm and supported away from the zero \(x=0\) of \(a\). For such perturbations, the nonlinear remainder in \eqref{eq:nonlinear-v} is of order \(O(\epsilon^2 M^{-1})\), while the linear signal is of order \(\epsilon M^{-1}\). Since \(\epsilon M\asymp M^{-\alpha-d/2+1}\to0\) as \(M\to\infty\) (because \(\alpha>1\)), the nonlinearity is negligible at the frequency scale \(M\asymp n^{1/(2\alpha+d+2)}\). Hence the same lower bound applies to the nonlinear model.
+
+Combining the two bounds yields
+\[
+\inf_{\hat f_n}\sup_{f_0\in\mathcal F(\alpha,r)}
+\E_{f_0}\|\hat f_n-f_0\|_{L^2(D)}^2
+\asymp
+n^{-\frac{2\alpha}{2\alpha+d+2}}.
+\]
+This completes the proof of Theorem~\ref{thm:main}.
+
+\begin{thebibliography}{9}
+
+\bibitem{nickl2019}
+R.~Nickl and G.~P.~Paternain.
+\newblock On the statistical theory of nonlinear inverse problems.
+\newblock \emph{Annals of Statistics}, 47(6):3455--3485, 2019.
+
+\bibitem{tsybakov2009}
+A.~B.~Tsybakov.
+\newblock \emph{Introduction to Nonparametric Estimation}.
+\newblock Springer, 2009.
+
+\bibitem{hormander1985}
+L.~Hörmander.
+\newblock \emph{The Analysis of Linear Partial Differential Operators III}.
+\newblock Springer, 1985.
+
+\end{thebibliography}
+
+\end{document}

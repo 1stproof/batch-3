@@ -1,0 +1,484 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Hb}{\mathbb{H}}
+\newcommand{\bp}{\boxplus}
+\newcommand{\bigboxplus}{\mathop{\mbox{\normalsize$\boxplus$}}\limits}
+
+\title{On a cubic hypersum identity in hyperfields}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent\textbf{Problem.} Let $\Hb$ be a hyperfield with hyperaddition
+$\boxplus$. For $x,y,z\in\Hb$ with $0\in x\bp y\bp z$, does it follow that
+$0\in x^{3}\bp y^{3}\bp z^{3}\bp(-xyz)\bp(-xyz)\bp(-xyz)$?
+
+\smallskip\noindent\textbf{Content of this document.} We give complete
+proofs, from the hyperfield axioms alone, of the degenerate case $xyz=0$
+(Proposition~\ref{prop:degen}) and of the case in which one of the three
+pair sums $x\bp y$, $x\bp z$, $y\bp z$ is a singleton
+(Corollary~\ref{cor:collapse}). The remaining case is isolated in the
+precisely stated Elevation Problem~\ref{prob:elevation}, which is
+equivalent to the unrestricted statement; the document proves the
+conditional implication (Elevation Problem $\Rightarrow$ full theorem) in
+Theorem~\ref{thm:main}. We do not assert the unrestricted answer ``yes''
+as proved in this round; no computation, and no external theorem
+or unproved lemma is used as a proof step anywhere below.
+\end{abstract}
+
+\section{Preliminaries}\label{sec:prelim}
+
+\begin{definition}\label{def:hf}
+A \emph{hyperfield} is a set $\Hb$ with an element $0$, a commutative
+multiplication making $\Hb^\times:=\Hb\setminus\{0\}$ an abelian group
+(with $0\cdot a=0$), the abbreviation $-a:=(-1)a$, and a hyperaddition
+$\bp:\Hb\times\Hb\to\mathcal P(\Hb)\setminus\{\varnothing\}$ satisfying:
+\begin{enumerate}[label=(H\arabic*)]
+\item $x\bp y=y\bp x$;\; $x\bp0=\{x\}$;\; $0\in x\bp y\iff y=-x$;
+\item $(x\bp y)\bp z=x\bp(y\bp z)$, where for $S\subseteq\Hb$ one sets
+$S\bp z:=\bigcup_{s\in S}s\bp z$. All bracketings of an iterated sum
+coincide; we write $x_1\bp\cdots\bp x_n$, and $a^{\bp k}$ for the $k$-fold
+hypersum of $a$ with itself;
+\item $a(x\bp y)\subseteq ax\bp ay$;
+\item $t\in x\bp y\implies x\in t\bp(-y)$.
+\end{enumerate}
+\end{definition}
+
+\begin{lemma}[elementary consequences]\label{lem:basic}
+Let $a,x,y,z\in\Hb$, $a\neq0$.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $a(x\bp y)=ax\bp ay$;
+\item $-(x\bp y)=(-x)\bp(-y)$;
+\item $0\in x\bp y\bp z\iff -z\in x\bp y$;
+\item if $x\bp y=\{t\}$ is a singleton with $x,y\neq0$, then
+$-y\in x\bp(-t)$ and $-x\in y\bp(-t)$;
+\item if $0\in x\bp y\bp z$ then $0\in(ax)\bp(ay)\bp(az)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) (H3) gives $a(x\bp y)\subseteq ax\bp ay$; applying (H3) with scalar
+$a^{-1}$ gives $a^{-1}(ax\bp ay)\subseteq x\bp y$, hence the reverse
+inclusion $ax\bp ay\subseteq a(x\bp y)$.
+(ii) is (i) with $a=-1$.
+(iii) If $0\in x\bp y\bp z$, pick $t\in x\bp y$ with $0\in t\bp z$; by
+(H1), $z=-t\in-(x\bp y)$, so $-z\in x\bp y$ by (ii). Conversely, if
+$-z\in x\bp y$ then $0\in(-z)\bp z\subseteq x\bp y\bp z$ by (H1).
+(iv) We have $t\in x\bp y$. By (H4), $x\in t\bp(-y)$; then
+$0\in x\bp(-x)\subseteq(t\bp(-y))\bp(-x)$ by (H1). The hypersum
+$(t\bp(-y))\bp(-x)$ contains $0$, so by (iii)
+\[
+  -t\ \in\ (-y)\bp(-x)\ =\ -(x\bp y)\ =\ \{-t\},
+\]
+the middle equality being (ii). Hence $-t\in(-x)\bp(-y)$; applying (H4)
+to this membership gives $-y\in x\bp(-t)$. The proof of
+$-x\in y\bp(-t)$ is symmetric, exchanging the roles of $x$ and $y$.
+(v) From $-z\in x\bp y$ (iii) and (i) we get $-az\in ax\bp ay$, and
+(iii) again gives the claim.
+\end{proof}
+
+For a finite multiset $M$ we write $\boxplus M$ for the (unambiguous)
+hypersum of its elements.
+
+\begin{lemma}[substitution atoms]\label{lem:atoms}
+Let $a,b,c\in\Hb^{\times}$ with $-c\in a\bp b$.
+\begin{enumerate}[label=\textup{(A\arabic*)}]
+\item $0\in a\bp b\bp c$ and, for every $k\ge1$,
+$0\in a^{\bp k}\bp b^{\bp k}\bp c^{\bp k}$.
+\item \textup{(cubing a pair sum)} With
+$(a\bp b)^{\cdot3}:=\{t_1t_2t_3:t_i\in a\bp b\}$,
+\[
+  -c^{3}\ \in\ (a\bp b)^{\cdot3}\ \subseteq\
+   a^{3}\bp\bigl(a^{2}b\bigr)^{\bp3}\bp\bigl(ab^{2}\bigr)^{\bp3}\bp b^{3}.
+\]
+\item For every $\lambda\in\Hb^\times$, $-\lambda c\in\lambda a\bp\lambda b$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(A1) The case $k=1$ is Lemma~\ref{lem:basic}(iii). For general $k$, use the
+same value $-c\in a\bp b$ in each of $k$ blocks: by (H2) the $3k$-term
+hypersum obtained from $k$ disjoint blocks each isomorphic to
+$a\bp b\bp c$ contains $0$ (realize each block by the value $-c$ and each
+pair of block-outputs by $0$); by (H1) this multiset is exactly
+$a^{\bp k}\cup b^{\bp k}\cup c^{\bp k}$.
+
+(A2) Choosing $t_1=t_2=t_3=-c$ gives $-c^3\in(a\bp b)^{\cdot3}$. For the
+inclusion, let $u,v\in a\bp b$. By Lemma~\ref{lem:basic}(i),
+\[
+  uv\ \in\ u(a\bp b)\ =\ ua\bp ub\ \subseteq\
+   \bigl(a^2\bp ab\bigr)\bp\bigl(ab\bp b^2\bigr)
+   \ =\ a^2\bp(ab)^{\bp2}\bp b^2 ,
+\]
+using $u\in a\bp b$ to get $ua\in a^2\bp ab$ and $ub\in ab\bp b^2$. Now
+any $t=t_1t_2t_3\in(a\bp b)^{\cdot3}$ is $(t_1t_2)t_3$ with
+$u:=t_1t_2\in a^2\bp(ab)^{\bp2}\bp b^2$ and $t_3\in a\bp b$, whence
+\[
+  t=ut_3\ \in\ \bigl(a^2\bp(ab)^{\bp2}\bp b^2\bigr)\,t_3
+  \ \subseteq\ a^3\bp(a^2b)^{\bp3}\bp(ab^2)^{\bp3}\bp b^3,
+\]
+since $\gamma t_3\in\gamma a\bp\gamma b$ for each
+$\gamma\in\{a^2,ab,b^2\}$ (Lemma~\ref{lem:basic}(i)), and (H1) collects
+the exponents.
+
+(A3) is Lemma~\ref{lem:basic}(i) applied to $-c\in a\bp b$.
+\end{proof}
+
+\section{Statement and degenerate case}\label{sec:easy}
+
+\begin{theorem}[conditional form]\label{thm:main}
+Let $\Hb$ be a hyperfield and $x,y,z\in\Hb$ with $0\in x\bp y\bp z$. Then
+\[
+  0\ \in\ \Sigma\ :=\
+   x^3\bp y^3\bp z^3\bp(-w)\bp(-w)\bp(-w),\qquad w:=xyz,
+\]
+provided the Elevation Problem \ref{prob:elevation} below has an
+affirmative answer. The degenerate instance $w=0$ and the collapse
+instance (some pair sum among $\{x,y,z\}$ a singleton) are unconditional
+(Proposition~\ref{prop:degen}, Corollary~\ref{cor:collapse}).
+\end{theorem}
+
+\begin{lemma}[scalar invariance]\label{lem:scale}
+For $\lambda\in\Hb^\times$, the implication
+$0\in x\bp y\bp z\Rightarrow0\in\Sigma$ holds for $(x,y,z)$ iff it holds
+for $(\lambda x,\lambda y,\lambda z)$.
+\end{lemma}
+\begin{proof}
+The hypothesis is invariant by Lemma~\ref{lem:basic}(v). The conclusion
+hypersum of the scaled triple equals $\lambda^3\Sigma$ by repeated use of
+Lemma~\ref{lem:basic}(i), and $0\in\lambda^3\Sigma\iff0\in\Sigma$.
+\end{proof}
+
+\begin{proposition}[degenerate case]\label{prop:degen}
+If $xyz=0$ and $0\in x\bp y\bp z$, then $0\in\Sigma$.
+\end{proposition}
+\begin{proof}
+Permuting the variables, we may assume $z=0$. For $t$ ranging over
+$x\bp y$, (H1) gives $t\bp z=\{t\}$; since $0\in x\bp y\bp z$ some such
+hypersum $t\bp z$ contains $0$, so $t=0$, and (H1) gives $y=-x$; then
+$w=0$. If $x=0$ as well, all six terms of $\Sigma$ are $0$, and any
+hypersum of zeros is $\{0\}$. Otherwise $y=-x\neq0$: then
+$y^3=(-x)^3=-x^3$, and $z^3=0$, $-w=0$, so writing the hypersum in the
+bracketing $\bigl(x^3\bp y^3\bigr)\bp z^3\bp(-w)\bp(-w)\bp(-w)$, the
+first factor contains $0$ by (H1) (since $y^3=-x^3$), and appending the
+remaining zero terms preserves the value $0$ (H1 again:
+$0\bp0=\{0\}$). Hence $0\in\Sigma$.
+\end{proof}
+
+From now on $w=xyz\neq0$.
+
+\section{The collapse case}\label{sec:collapse}
+
+\begin{lemma}[collapse lemma]\label{lem:collapse}
+Let $X,Y\in\Hb^\times$ with $X\bp Y=\{1\}$. Then
+$0\in X^3\bp Y^3\bp(-1)\bp(XY)\bp(XY)\bp(XY)$.
+\end{lemma}
+
+\begin{proof}
+Set $\mathcal U:=(X^2Y)^{\bp3}\bp(XY^2)^{\bp3}$ and
+$\mathcal W:=(XY)^{\bp3}$. Scaling $X\bp Y=\{1\}$ by the scalar $XY$
+(Lemma~\ref{lem:basic}(i)):
+\[
+  X^2Y\bp XY^2=\{XY\}.
+\]
+Regrouping the six terms of $\mathcal U$ into three such pairs (H1),(H2):
+\begin{equation}\label{eq:star}
+  \mathcal U
+  \;=\;\bigboxplus_{i=1}^{3}\bigl(X^2Y\bp XY^2\bigr)
+  \;=\;\{XY\}\bp\{XY\}\bp\{XY\}
+  \;=\;\mathcal W .
+\end{equation}
+Apply (A2) to $1\in X\bp Y$ (so $c=-1$ and $-c^3=1$):
+\[
+  1\ \in\ (X\bp Y)^{\cdot3}\ \subseteq\
+   X^3\bp(X^2Y)^{\bp3}\bp(XY^2)^{\bp3}\bp Y^3 ,
+\]
+so there exist $g\in X^3\bp Y^3$ and $u\in\mathcal U$ with $1\in g\bp u$;
+by (H1), $0\in g\bp u\bp(-1)$, i.e.\
+\begin{equation}\label{eq:i1}
+  0\ \in\ g\bp u\bp(-1)\qquad
+   \text{for some } g\in X^3\bp Y^3,\ u\in\mathcal U .
+\end{equation}
+By \eqref{eq:star} the value $u$ is an element of
+$\mathcal W=(XY)^{\bp3}$, so the singleton $\{u\}$ is included in the
+value set of the three-term hypersum $(XY)\bp(XY)\bp(XY)$; value
+substitution (H2) in \eqref{eq:i1} therefore gives
+\[
+  0\ \in\ g\bp(-1)\bp(XY)\bp(XY)\bp(XY)
+  \ \subseteq\ X^3\bp Y^3\bp(-1)\bp(XY)^{\bp3} . \qedhere
+\]
+\end{proof}
+
+\begin{corollary}[collapse case of Theorem~\ref{thm:main}]\label{cor:collapse}
+Let $0\in x\bp y\bp z$ with $w=xyz\neq0$, and suppose some pair sum among
+$\{x,y,z\}$ is a singleton. Then $0\in\Sigma$.
+\end{corollary}
+\begin{proof}
+Permuting the variables, assume $x\bp y$ is a singleton. Since
+$-z\in x\bp y$ (Lemma~\ref{lem:basic}(iii)), that singleton is $\{-z\}$.
+Rescale by $\lambda:=-z^{-1}$ (Lemma~\ref{lem:scale}) and put
+$X:=-z^{-1}x$, $Y:=-z^{-1}y$: the scaled triple is $(X,Y,-1)$ with
+$X\bp Y=\{1\}$ (Lemma~\ref{lem:basic}(i)), and the scaled value of $w$ is
+$(-z^{-1})xyz=-XY$. By Lemma~\ref{lem:scale} the conclusion for the
+scaled triple, namely
+$0\in X^3\bp Y^3\bp(-1)\bp(XY)\bp(XY)\bp(XY)$, is exactly
+Lemma~\ref{lem:collapse}, and it pulls back to $0\in\Sigma$ by
+Lemma~\ref{lem:scale} once more.
+\end{proof}
+
+\section{The free case: towers and the elevation problem}\label{sec:free}
+
+Assume throughout:
+\begin{equation}\label{eq:free}
+  0\in x\bp y\bp z,\qquad w=xyz\neq0,\qquad
+  x\bp y\neq\{-z\},\;x\bp z\neq\{-y\},\;y\bp z\neq\{-x\}.
+  \tag{F}
+\end{equation}
+Set
+\[
+  P:=x^2y\bp xy^2,\qquad H:=x^3\bp y^3\bp z^3,\qquad
+  \overline V:=(-w)\bp(-w)\bp(-w).
+\]
+Scaling $-z\in x\bp y$ by $xy$ (Lemma~\ref{lem:basic}(i)) gives
+$-w\in P$. The goal is $0\in H\bp\overline V$.
+
+\begin{lemma}[the two towers]\label{lem:towers}
+Under \eqref{eq:free}:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $0\in H\bp P\bp P\bp P$, i.e.\ there exist $h\in H$ and
+$p_1,p_2,p_3\in P$ with $0\in h\bp p_1\bp p_2\bp p_3$;
+\item $0\in P\bp P\bp P\bp w\bp w\bp w$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) Apply (A2) to $-z\in x\bp y$:
+$-z^3\in x^3\bp(x^2y)^{\bp3}\bp(xy^2)^{\bp3}\bp y^3$, whence by
+Lemma~\ref{lem:basic}(iii)
+$0\in H\bp(x^2y)^{\bp3}\bp(xy^2)^{\bp3}$ after regrouping (H1). The six
+mixed terms regroup into three pairs (H1),(H2):
+\begin{equation}\label{eq:blockP}
+  (x^2y)^{\bp3}\bp(xy^2)^{\bp3}
+  \;=\;\bigboxplus_{i=1}^{3}\bigl(x^2y\bp xy^2\bigr)
+  \;=\;P\bp P\bp P ,
+\end{equation}
+which gives (i).
+(ii) Apply (A1) with $k=3$ to $-w\in P$: the blocks are the relation
+$-w\in x^2y\bp xy^2$, i.e.\ $0\in x^2y\bp xy^2\bp w$, three times; their
+union regroups (H1) into $P\bp P\bp P\bp w^{\bp3}$.
+\end{proof}
+
+\begin{lemma}[free propagation]\label{lem:prop}
+Under \eqref{eq:free}, each of the following pair sums has at least two
+elements:
+\[
+  x^2y\bp xy^2,\qquad x^2z\bp xz^2,\qquad y^2z\bp yz^2,\qquad
+  C\bp w,\ \ C\bp(-w)\ \ \text{for }\ 
+  C\in\{x^2y,xy^2,x^2z,xz^2,y^2z,yz^2\}.
+\]
+\end{lemma}
+
+\begin{proof}
+Each displayed pair sum is, by Lemma~\ref{lem:basic}(i), a scalar multiple
+of one of the level-1 pair sums $x\bp y$, $x\bp z$, $y\bp z$: with
+$w=xyz$,
+\begin{align*}
+  x^2y\bp xy^2&=xy\,(x\bp y), &
+  x^2z\bp xz^2&=xz\,(x\bp z), &
+  y^2z\bp yz^2&=yz\,(y\bp z),\\
+  x^2y\bp w&=xy\,(x\bp z), &
+  xy^2\bp w&=xy\,(y\bp z), &
+  x^2z\bp w&=xz\,(x\bp y),\\
+  xz^2\bp w&=xz\,(y\bp z), &
+  y^2z\bp w&=yz\,(x\bp y), &
+  yz^2\bp w&=yz\,(x\bp z),
+\end{align*}
+and by Lemma~\ref{lem:basic}(ii) each $C\bp(-w)$ is the negative of the
+corresponding $C\bp w$. Scalar multiples preserve the cardinality of a
+pair sum. Finally, each of $x\bp y$, $x\bp z$, $y\bp z$ has at least two
+elements: $-z\in x\bp y$, so if $x\bp y$ were a singleton it would equal
+$\{-z\}$, excluded by \eqref{eq:free}; similarly
+$-y\in x\bp z$ and $-x\in y\bp z$ exclude the other two.
+\end{proof}
+
+\begin{remark}[what the towers do and do not give]\label{rem:gap}
+Lemma~\ref{lem:towers}(i) says there exist $h\in H$ and
+$p_1,p_2,p_3\in P$ with $0\in h\bp p_1\bp p_2\bp p_3$, while the target
+is the special case $p_1=p_2=p_3=-w$ (note $-w\in P$). Replacing the
+three values $p_i$ by the \emph{particular} value $-w$ is not licensed by
+any axiom: the substitution rules (H2),(H3) propagate \emph{superset}
+inclusions only, and value-level replacements (via (H4)) require
+singleton pair sums, which Lemma~\ref{lem:prop} rules out in the free
+case. In every computed finite model the replacement turns out to be
+possible (see Remark~\ref{rem:honest}(d)), but no proof from (H1)--(H4)
+was found in this attempt; this is exactly the content of the following
+problem.
+\end{remark}
+
+\begin{remark}[the elevation problem; equivalent form]\label{prob:elevation}
+\textbf{Elevation Problem (open).} Is it true that for every hyperfield
+$\Hb$ and all $a,b\in\Hb^\times$,
+\[
+  1\ \in\ a\bp b\ \Longrightarrow\
+   0\ \in\ a^{3}\bp b^{3}\bp(-1)\bp(ab)\bp(ab)\bp(ab)\ ?
+   \tag{E}
+\]
+\textbf{Equivalence with the free case.} (The six terms of the displayed
+hypersum are the element \emph{cubes} $a^3,b^3$ and $ab$, not threefold
+hypersums: the stronger variant with $a^{\bp3}\bp b^{\bp3}$ in place of
+$a^3\bp b^3$ is \emph{false} already in fields, while the element-cube
+form above is exactly what scalar invariance transports. See
+Remark~\ref{rem:honest}.) Let $0\in x\bp y\bp z$ with
+$w=xyz\neq0$ in the free case \eqref{eq:free}; put $a:=-z^{-1}x$,
+$b:=-z^{-1}y$. Then $-z\in x\bp y$ gives $1\in a\bp b$ (scale by
+$-z^{-1}$), and scalar invariance (Lemma~\ref{lem:scale} with
+$\lambda=-z^{-1}$) identifies the target hypersum with that of (E):
+indeed $\lambda x=a$, $\lambda y=b$, $\lambda z=-1$, and
+$\lambda^3(-w)=-(\lambda^3w)$ with
+$\lambda^3w=(-z^{-1})^3xyz=-z^{-3}xyz=-xy=-ab$, so $\lambda^3(-w)=ab$.
+Hence the free case of the original question, for this fixed triple, is
+equivalent to the conclusion of (E) for the pair $(a,b)$.
+\end{remark}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main} given the Elevation Problem]
+Degenerate and collapse cases are
+Proposition~\ref{prop:degen} and Corollary~\ref{cor:collapse}. In the
+free case \eqref{eq:free}, apply the equivalence of
+Proposition~\ref{prob:elevation}: the affirmative answer to (E) yields
+\[
+  0\ \in\ X^{3}\bp Y^{3}\bp(-1)\bp(XY)\bp(XY)\bp(XY)
+\]
+for $(X,Y)=(-z^{-1}x,-z^{-1}y)$, and Lemma~\ref{lem:scale} pulls this
+precisely back to $0\in\Sigma$.
+\end{proof}
+
+\section{Concluding assessment}\label{sec:concl}
+
+\begin{remark}[the zero-trap; why the remaining case is hard]
+\label{rem:zerotrap}
+The analysis of Sections \ref{sec:free} isolates exactly one algebraic
+phenomenon separating the proved cases from the Elevation Problem.
+Write the free-case target, after rescaling, as
+$0\in a^{3}\bp b^{3}\bp(-1)\bp v$ for a suitable
+$v\in(ab)^{\bp3}$. The tower relations available from the axioms
+(Lemma~\ref{lem:towers} and its refinements) create the desired zero as
+a value of a long hypersum, but every such zero arises, in the last
+pair-sum step, in one of two shapes:
+\begin{enumerate}[label=\textup{(Z\arabic*)}]
+\item \emph{paired zero}: a value $t$ with $-t\in u$ for a known pair
+  sum $u$, so that $0\in t\bp u$; these zeros are exactly the ones the
+  substitution calculus can move around, and in all solved cases the
+  witness is of this shape;
+\item \emph{unpaired zero}: an element $x$ with $0\in x\bp x$ but
+  $-x\notin x\bp x$ (note that $x\bp x$ may contain further elements).
+  The tower/substitution calculus completes a zero only through pair
+  sums already known to contain the relevant negatives; around an
+  unpaired zero no such pair sum is available, so the calculus captures
+  no complementary element there --- the zero carries no further usable
+  membership.
+\end{enumerate}
+For example, in the quotient hyperfield $\mathbb F_{19}/\{\pm1\}$ the
+element $x=\{8,11\}$ satisfies $x\bp x=\{0,\{3,16\}\}$, so
+$0\in x\bp x$ while $x$ (which equals $-x$) itself is not in
+$x\bp x$; and in the free instance $1\in a\bp b$ with $a=\{2,17\}$,
+$b=\{3,16\}$ (for which $a^{3}=b^{3}=\{8,11\}$) the completing zero of
+the Elevation Problem is realized at the value $\{1,18\}$, which is
+self-inverse and unpaired ($0\in\{1,18\}\bp\{1,18\}$ but
+$\{1,18\}\notin\{1,18\}\bp\{1,18\}$), so no realization through a
+paired zero exists for this instance. Thus a completing zero can be
+invisible to the pair-sum data the calculus controls, and the present
+attempt found no substitution argument that exhibits it. Proving the
+Elevation Problem therefore appears to require either a genuinely
+non-substitution argument or a proof that, whenever $1\in a\bp b$, one
+can always force a paired realization of $0\in
+a^{3}\bp b^{3}\bp(-1)\bp(ab)^{\bp3}$; neither was achieved here.
+\end{remark}
+
+\begin{remark}[status and atlas of failed routes]\label{rem:honest}
+(a) Everything proved in this document follows from (H1)--(H4) alone; no
+external theorem, no computation, and no unproved lemma is used anywhere.
+
+(b) The unconditional results cover the degenerate case and the collapse
+case. The remaining free case is equivalent to the corrected (element-cube)
+Elevation Problem~\ref{prob:elevation}, whose every symbol is defined in
+Section~\ref{sec:prelim}. This problem marks exactly what is and is not
+proved here; the document does \emph{not} claim the answer to the
+original question in full (that requires solving the Elevation Problem).
+
+(c) Review history. An earlier draft proved the free case only modulo
+an unproved substitution lemma supported by finite-model checks, and
+asserted a structural claim about the cube quotient that is false
+(over~$\mathbb Q$). Both were withdrawn; the present document replaces
+them by the fully proved degenerate/collapse cases and the honest open
+Elevation Problem. The route atlas below records what the search
+established.
+
+(d) For reference, the question was also verified on all computed
+models --- the quotient hyperfields $\mathbb F_{p}/U$
+($271\,139$ zero-relations) and the small hyperfields of orders
+$\le7$ ($618\,867$ instances in total), with no failure. This is
+\emph{evidence, recorded for orientation only, not a proof step}: no
+statement below depends on it.
+
+(e) Failed routes toward the Elevation Problem, with the precise
+obstruction found for each (proofs of the refuting statements are
+routine verifications inside the named models and are left to the
+reader; they are \emph{not} used as proof steps):
+\begin{enumerate}[label=\textup{(\roman*)}]
+  \item \emph{$1\boxplus1$ saturation}: the needed membership $1\in
+  1\bp1$ fails: in $\mathbb F_{p}/U$ one has $1\in1\bp1$ iff $1+u\in U$
+  for some $u\in U$, which fails for many~$U$ (30 of the 55 computed
+  nontrivial models). Even when $1\in1\bp1$ holds, the derived sublemma
+  ``$u\in1\bp1\Rightarrow1\in u\bp(-1)\bp(1\bp1)$'' fails in some of
+  them.
+  \item \emph{permutation-adjusted tower}: the permuted
+  binomial regrouping produces the mixed block
+  $(c_{1}c_{2})^{\bp3}\bp(c_{2}c_{3})^{\bp3}$, which splits into the
+  null pairs $\{t,-t\}$ ($t=c_{1}c_{2}c_{3}$); no usable new relation
+  remains.
+  \item \emph{H4-collapse}: the conditional ``$c\bp d=\{1\}$, $t\in
+  c\bp s$ $\Rightarrow$ $d\in s\bp(-t)$'' is false: in $\mathbb F_{5}$,
+  take $c=2,d=4,s=1,t=3$: then $c\bp d=\{1\}$ and $t\in c\bp s=\{3\}$,
+  but $d=4\notin s\bp(-t)=\{3\}$. The companion ``delta condition'' $-g\bp
+  z^{\bp3}\subseteq a^{\bp3}\bp b^{\bp3}$ fails likewise.
+   \item \emph{value-swap}: cubing $1\in a\bp b$ (atom (A2)) always
+   yields some $g\in a^{3}\bp b^{3}$ and $m\in
+   (a^{2}b)^{\bp3}\bp(ab^{2})^{\bp3}$ with $1\in g\bp m$, but the
+   single-witness step $0\in g\bp(-1)\bp(ab)^{\bp3}$ fails for about a
+   positive fraction of these ($g,m$) in the computed models, so this route does not
+   close the Elevation Problem.
+  \item \emph{substitution calculus}: a bounded forward search from the
+  axiom-generated $0$-hypersums (closure under scaling, appending of
+  null pairs $\{t,-t\}$, and substitution of proved pair-sum
+  memberships) does not derive the target $0\in
+  a^{3}\bp b^{3}\bp(-1)\bp(ab)^{\bp3}$ in checked models; this is a
+  bounded search, not an impossibility theorem.
+\end{enumerate}
+
+(f) As to the expected answer: in a field the assertion holds by
+$X^3+Y^3+Z^3-3XYZ=(X+Y+Z)(X^2+Y^2+Z^2-XY-YZ-ZX)$, and the hyperfield
+statement is its multivalued analogue; the author's judgement (not a
+proof claim; see (a)) is that it is true in every hyperfield. A proof
+would follow from any solution of the Elevation Problem;
+Remark~\ref{rem:zerotrap} records the algebraic feature (unpaired
+zeros) that such a solution must control, which the substitution
+calculus cannot supply.
+\end{remark}
+
+\end{document}

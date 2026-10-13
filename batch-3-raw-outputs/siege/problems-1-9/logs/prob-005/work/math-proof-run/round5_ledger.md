@@ -1,0 +1,8 @@
+14. REFUTED: [GOAL] The implication fails: there is a hyperfield (Krasner-type, from an infinite non-Desarguesian projective plane on Z with lines the translates of a greedy perfect difference set D ⊇ {0,1,4,103,105,112}, 100 ∉ D) with x = t, y = t^4, z = 1 such that 0 ∈ x⊞y⊞z but 0 ∉ x^3⊞y^3⊞z^3⊞-xyz⊞-xyz⊞-xyz — round4_q2
+15. REFUTED: Missing statement N (1 ∈ x⊞y ⇒ 1 ∈ x^3⊞y^3⊞xy⊞xy⊞xy in every hyperfield) is false, by the same counterexample (also round4_q1, round4_q4, round4_q6, round4_q7) — round4_q2
+16. REFUTED: (C) 1 ∈ x⊞y ⇒ 1 ∈ x^3⊞y^3⊞xy fails in a hyperfield with -1 = 1 (the same Krasner-type example) — round4_q1
+17. PROVED: An abelian group G acting regularly by collineations on a projective plane with at least 5 points per line gives a hyperfield H = G ∪ {0} with -1 = 1, a⊞a = {0,a} and a⊞b = ℓ(a,b) \ {a,b}, in which 1 ∈ x⊞y but 1 ∉ x^3⊞y^3⊞xy⊞xy⊞xy whenever 1, x, y are distinct collinear points and x^3, y^3, xy are distinct points on a line M not through 1 (then that sum is M ∪ {0}) — round4_q2
+18. PROVED: Hexagon lemma (the target meets μ(1⊞-1) for each mixed monomial μ) and Helly criterion (if x^2⊞-yz, y^2⊞-zx, z^2⊞-xy have a common point the claim holds); quotients of skew fields and alternative division rings satisfy the claim — round4_q5
+19. PROVED: Up-closure K^↑ of any hyperfield is a hyperfield of class a⊞-a = H, and (N) holds throughout that class iff every hyperfield satisfies the weak form that some nonempty sub-multiset of {x^3,y^3,xy,xy,xy,-1} is a zero-sum — round4_q9
+20. PROVED: (N) holds in hyperfields with -1 = 1 and g^2 = 1 for all g — round4_q3
+21. OPEN: Whether a finite hyperfield counterexample to the claim exists — round4_q2

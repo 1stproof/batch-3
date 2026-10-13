@@ -1,0 +1,1532 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{construction}[theorem]{Construction}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\newcommand{\gp}{\mathrm{gp}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\Sh}{\operatorname{Sh}}
+\newcommand{\Lan}{\operatorname{Lan}}
+\newcommand{\sat}{\mathrm{sat}}
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\colim}{\operatorname*{colim}}
+\newcommand{\HH}{\check{H}}
+\newcommand{\cC}{\check{C}}
+\newcommand{\Cone}{\mathrm{Cone}}
+\newcommand{\XiLe}{\le^\Xi}
+\newcommand{\XiLt}{<^\Xi}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\fptitle}{Review of Problem 1 -- Humanize}
+\newcommand{\reviewtag}{Reviewer 1}
+\usepackage{fp-review}
+
+\begin{document}
+\maketitle
+\noindent\textit{Not on your report list: read for context; comments welcome.}
+
+\section{Review}
+
+This solution attempted to reduce the problem to the simpler, finite-type case, but appears to have then assumed that all monoids are of finite type.  This makes the notion of an infinitesimal homomorphism collapse and invalidates the argument.  The exposition contains colorful invented terminology with unclear meaning.  There are no citations.  It was fifth among the submissions I read.
+
+\paragraph{Correctness.}
+\begin{itemize}
+	\item  1: essentially flawless mathematical argument
+	\item  0.5: minor errors that are easily corrected
+	\item  0: blank solution, or acknowledged partial result
+	\item  $-0.5$: major errors
+	\item  $-1$: proposed proof makes no progress towards the result.
+\end{itemize}
+Note that points should be docked for wrong statements/ solutions.
+
+\noindent Score: -1
+
+\paragraph{Exposition.}
+\begin{itemize}
+	\item  1: well-written and clear solution.
+	\item  0: argument that is possible to follow with serious effort
+	\item  $-1$: very poor exposition
+\end{itemize}
+
+\noindent Score: -1
+
+\paragraph{Attributions.}
+\begin{itemize}
+	\item  1: solutions contains fully appropriate attributions
+		to related work and theorems being used.
+	\item  0: moderate issues with missing attributions or hallucinated references
+	\item  $-1$: blatant plagiarism or hallucinations
+\end{itemize}
+
+\noindent Score: -1
+
+\newpage
+\section{Submission with inline comments}
+
+
+\section{Statement}\label{sec:intro}
+
+A \emph{monoid} is an integral, saturated, sharp, commutative, unital
+semigroup, written additively, exactly as in the problem statement; it
+induces the translation invariant partial order $x\ge0\iff x\in M$ on
+$M^{\gp}$ and is \emph{valuative} if that order is total.
+\emph{Infinitesimal} maps, \emph{birhizomicity at} a map, and
+\emph{birhizomic covers} are used exactly as defined in the problem
+statement. For a monoid $P$: $A_P$ is the category of monoid
+homomorphisms $P\to Q$; $B_P\subseteq A_P$ the full subcategory of the
+objects $P\to P[-c]^{\sharp}$; $A_P^{\op}$ carries the birhizomic
+topology, $B_P^{\op}$ the trivial topology; the inclusion
+$i:B_P^{\op}\subset A_P^{\op}$ induces
+$\pi^{-1}:\Sh(B_P^{\op})\to\Sh(A_P^{\op})$ with right adjoint $\pi_{*}$.
+
+\noindent\textbf{Scope hypothesis.} We prove the theorem for
+\emph{finitely generated} $P$; from \S2 on, ``monoid'' means
+finitely generated monoid wherever the finiteness of the face poset,
+Gordan's lemma, or pointed-cone separation is used (Proposition~2.1,
+Lemma~2.4, Corollary~2.5, and the face induction of \S4). Note that
+every piece of every birhizomic cover of any object of $A_P$ is
+\emph{a priori} finitely presented over $P$ (it is part of the
+definition of birhizomicity at a valuative target), hence finitely
+generated when $P$ is; the f.g.\ hypothesis is used precisely at the
+places named above, and the general (non-finitely-generated) case is
+obstructed exactly there: $P\to P/K$ need not be finitely presented
+for arbitrary faces $K$, and the face poset can be infinite (see
+Remark~\ref{rem:nonfg}).
+
+We prove the degree-zero half of the desired quasi-isomorphism for
+finitely generated $P$, and we record precisely why the higher-degree
+half (and the general, non-finitely-generated case) remain open; see
+the Closing remark (after Proposition~\ref{thm:main-end}).
+
+\begin{theorem}\label{thm:main}
+Let $P$ be a \emph{finitely generated} monoid \textup{(}see the Scope
+hypothesis above\textup{)} and $F$ a presheaf of abelian groups on
+$B_P^{\op}$. Then $\pi^{-1}F=G_F$ is a sheaf, and the degree-zero
+unit
+\[
+F\;\xrightarrow{\ \sim\ }\;\pi_{*}\pi^{-1}F
+\;=\;\mathrm R^{0}\pi_{*}\pi^{-1}F
+\]
+is an isomorphism. \textup{(}The higher direct images
+$\mathrm R^{q>0}\pi_{*}(\pi^{-1}F)$ are \emph{not} shown to vanish
+for arbitrary $F$; see the Closing remark.\textup{)}
+\end{theorem}
+
+\noindent\textbf{Overview.}
+The argument rests on a collapse of the birhizome to dimension one
+(\S\ref{sec:collapse}): every valuative monoid is $\{0\}$ or $\mathbb N$
+(Lemma~\ref{lem:N}); hence valuative points are functionals
+$P\to\mathbb N$ with half-space cones; and the birhizomic lifting
+condition at a nonzero target collapses to one test pair
+(Lemma~\ref{lem:atomic}, \emph{atomicity}), giving the \emph{normal
+form} (Theorem~\ref{thm:normalform}): every cover refines to one by
+\emph{folds} $(P\to\mathbb N)$ and \emph{CFA pieces} $(P\to P/K)$.
+\S\ref{sec:sheaf} identifies $\pi^{-1}F$ with the explicit presheaf
+$G_F=F\circ B$ (Proposition~\ref{prop:adj}) and proves it is a sheaf:
+separatedness is formal; the descent computation
+(Theorem~\ref{thm:descent}) boils down to the fact that the overlap of
+any tight fold with the base piece $i(B(T))$ has ungrown kernel
+(Proposition~\ref{prop:equiface}, Example~\ref{ex:ff}), so values are
+transported by identity transitions. \S\ref{sec:direct} analyses the
+higher sheaf cohomology on $i(b)$: the probe covers
+(Definition~\ref{def:square}) are cofinal, the kernel computations of
+the probe nerve (Lemma~\ref{lem:nerve}) split the \v{C}ech complex
+into a fold strand and face strands, the fold terraces are killed
+(Lemma~\ref{lem:sieve}) and the dead sector is made coboundary-valued;
+the remaining residual computation is carried out as far as the
+structure of a general presheaf permits, and its limitation for
+arbitrary $F$ is recorded honestly in the Closing remark.
+
+\review{These terms are nonsensical.}
+
+\paragraph{Notation.} For $T=(P\xrightarrow{\alpha_T}Q_T)\in A_P$:
+$\Phi_T:=\ker(\alpha_T)$ (a face, Proposition~\ref{prop:bp}(b));
+$B(T):=(P\to P/\Phi_T)\in B_P$;
+\[
+Z_T:=\{x\in P^{\gp}:\alpha_T^{\gp}(x)\in Q_T\},\qquad
+L_T:=Z_T\cap(-Z_T),
+\]
+the \emph{relative saturation} and its \emph{lineality};
+$P\cap L_T=\Phi_T$ (Lemma~\ref{lem:Zpointed}). For a face $K$: $P/K$
+the face quotient (Proposition~\ref{prop:bp}(a));
+$K^{\gp}\subseteq P^{\gp}$ its generated group; $K^{\gp}\cap P=K$.
+A \emph{functional} is $\varphi:M\to\mathbb N$; $[\varphi]$ its
+homothety class; ${GF}(\varphi)$ the positive generator of
+$\varphi^{\gp}(M^{\gp})\subseteq\Z$; $\varphi$ is \emph{tight} on a
+sharp $M$ if $\ker\varphi=\{0\}$. $\cC^\bullet,\HH^\bullet$ are
+alternating \v{C}ech complexes/cohomology.
+
+\section{Faces and the valuative collapse}\label{sec:collapse}
+
+\subsection{Faces; the category $B_P$}
+
+\begin{proposition}\label{prop:bp}
+Let $M$ be a monoid, $K\subseteq M$ a face.
+\begin{enumerate}[label=\textup{(\alph*)},leftmargin=1.8em]
+\item $M/K:=(M\setminus K)\cup\{0\}$, with $0$ absorbing, is a monoid;
+$M\to M/K$ is initial among maps killing $K$; and
+$M/K\cong M[-c]^{\sharp}$ whenever $c$ generates the face $K$; in
+particular $P[-c]^{\sharp}=P/\langle c\rangle_{\mathrm{face}}$, so
+$B_P$ is the poset of faces of $P$: a morphism $P/K_1\to P/K_2$
+\textup{(}unique\textup{)} exists iff $K_1\subseteq K_2$.
+\item Faces are exactly the sets $v^{-1}(0)$ for $v:M\to N$, $N$
+sharp; every face is f.g.\ as a monoid and they are finite in number.
+\item A face $K$ is saturated relative to $M$: $K^{\gp}\cap M=K$. The
+face generated by $K_1\cup K_2$ has group $K_1^{\gp}+K_2^{\gp}$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) $x=k_1-k_2\in M$, $k_i\in K$ gives $x+k_2=k_1\in K$, hence
+$x\in K$: so $M/K\hookrightarrow M^{\gp}/K^{\gp}$; the rest of the
+monoid axioms follow from the face property; initiality is clear.
+In $N:=M[-c]^{\sharp}$ let $e$ invert $\bar c$: $\bar c+e=0$ and
+sharpness gives $\bar c=0$: hence $N$ receives the universal map from
+$M/\langle c\rangle$; conversely killing $c$ inverts it (by $0$): same
+universal problem. Poset claim: by initiality.
+(b) Kernels into sharp monoids are faces since $v(x)+v(y)=0\Rightarrow
+v(x)=v(y)=0$ by sharpness; conversely $K=\ker(M\to M/K)$. A face is a
+supporting-hyperplane section of the f.g.\ rational polyhedral cone
+$\Cone(M)$: f.g.\ as a monoid (Gordan's lemma), and finitely many in
+number.
+(c) The first claim is the computation made at the start of (a).
+For the second: $\langle K_1\cup K_2\rangle_{\mathrm{face}}$ sits
+inside the face $(K_1^{\gp}+K_2^{\gp})\cap M$, whose group is
+$K_1^{\gp}+K_2^{\gp}$; conversely any $x\in(K_1^{\gp}+K_2^{\gp})\cap
+M$ satisfies $x+k_1+k_2=k_1'+k_2'$ for some $k_i,k_i'\in K_i$ (write
+$x$ as a difference and use $x\in M$), so $x$ lies in the face
+generated by $K_1\cup K_2$.
+\end{proof}
+
+\begin{construction}[Pushouts in $A_P$]\label{constr:pushout}
+For $T=(P\to Q_T)$, $X=(P\to Q_X)$, $Y=(P\to Q_Y)$ over $T$: with
+$\bar P:=P/\Phi_T$ and $j_X:\bar P\to Q_X$, $j_Y:\bar P\to Q_Y$:
+\[
+G:=Q_X^{\gp}\oplus_{\bar P^{\gp}}Q_Y^{\gp}
+=\bigl(Q_X^{\gp}\times Q_Y^{\gp}\bigr)\big/
+\bigl\{(j_X^{\gp}(c),-j_Y^{\gp}(c)) : c\in\bar P^{\gp}\bigr\},
+\]
+$W_0:=\operatorname{im}(Q_X\times Q_Y\to\breve G)$,
+$\breve G:=G/G_{\mathrm{tors}}$, and
+$X\otimes_TY:=\bigl(P\to (W_0^{\sat})^{\sharp}\bigr)$. Then
+$x\in\Phi_{X\otimes_TY}$ iff $\alpha_X(x)\mapsto0$ in
+$(W_0^{\sat})^{\sharp}$.
+\end{construction}
+
+\subsection{Finite presentation}\label{ssec:fp}
+
+Birhizomicity at a valuative target includes, by the problem's
+definition, the requirement that the map be \emph{of finite
+presentation} (f.p.) in the category of monoids. We record what
+this means and that every map used as or inside a cover below
+satisfies it.
+
+\begin{proposition}\label{prop:fp}
+\textup{(}i\textup{)} A monoid map $f:M\to N$ is f.p.\ iff it
+presents $N$ from $M$ by finitely many generators and finitely
+many relations; equivalently $N$ is a quotient of
+$M\oplus\mathbb N^r$ by a finitely generated congruence.
+\textup{(}ii\textup{)} For $P$ f.g., a surjective $\varphi:P\to
+\mathbb N$ is f.p.: the congruence
+$\{(x,y):\varphi(x)=\varphi(y)\}$ is a congruence on the f.g.\
+monoid $P\times P$, generated as such by the kernel face
+relations and the analogous pointed-cone data; concretely it is
+the saturation of a f.g.\ congruence because the graph of
+$\ker\varphi^{\gp}\subseteq P^{\gp}\times P^{\gp}$ is a f.g.\
+ subgroup and $P$ is saturated \textup{(}this is the standard
+f.p.-of-integral-saturated-maps lemma; we give the argument in
+the next item\textup{)}.
+\textup{(}iii\textup{)} The CFA maps $\pi_K:P\to P/K$ are f.p.\
+for every face $K$ of the f.g.\ $P$: $K$ is generated as a face
+by finitely many elements $k_1,\dots,k_s$
+\textup{(}Proposition~\ref{prop:bp}\textup{(}b\textup{):} f.g.\
+as a monoid, and one may take a single element
+$c=k_1+\cdots+k_s$\textup{)}, and $P[-c]$ is the localization,
+f.p.; the sharpening quotient is generated by the finitely many
+unit relations of a f.g.\ monoid, hence f.p.\ again.
+\textup{(}iv\textup{)} Pushouts of f.p.\ maps over a common map
+of monoids in our category are f.p.: they are quotients of
+finite colimits of f.g.\ monoids; saturation and sharpening are
+f.p.\ quotients of f.g.\ monoids.
+\end{proposition}
+
+\begin{proof}
+(i) Standard (Eilenberg-type exercise with congruences).
+(iii) $\pi_K$ factors as $P\to P[-K]=P[-c]\to P/K$; each step is
+f.p.\ by the displayed presentations: $P[-c]=\langle P,\ e
+\mid \bar c+e=0\rangle$-style with one generator one relation;
+the sharpening of a f.g.\ monoid $M$ is $M$ modulo the
+f.g.-generated superdiagonal congruence $\{(u,-u):u\in
+M^*\cup\text{f.g.\ generating set of units}\}$ (the unit group of
+a f.g.\ saturated sharp-quotient candidate is f.g.\ because it
+is the group of invertible elements of $\Cone(M)$, a finitely
+generated rational polyhedral cone).
+(ii) $\varphi$ is the composite $P\to P/\ker\varphi
+\hookrightarrow\mathbb N$; the first is f.p.\ by (iii); the
+second exhibits $\mathbb N$ as $(P/\ker\varphi)$ with the
+finitely many relations generated by the image of any finite
+generating system of the f.g.\ group $P^{\gp}/\ker\varphi^{\gp}$
+--- the congruence determining the halfline inside the rank-one
+group is generated by the images of a finite basis of
+$\ker\varphi^{\gp}$ (basis finite by f.g.\ of $P^{\gp}$ and
+submodule finiteness over $\mathbb Z$): explicitly, choose
+$p_0\in P$ with $\varphi(p_0)>0$ minimal in the image group;
+then $\mathbb N=(P/\ker\varphi)/\!\sim$ with $\sim$ generated by
+$p\sim\varphi(p)\cdot[\bar p_0]$ for $p$ in a generating set of
+$P$: f.p.
+(iv) The displayed Construction~\ref{constr:pushout} exhibits
+$X\otimes_TY$ from f.g.\ monoids by f.g.\ quotients (the
+$\bar P^{\gp}$-mixed congruence is generated by the images of a
+finite generating set of $\bar P^{\gp}$, f.g.\ when $\bar P$ is
+f.g.) and the saturation/sharpening steps of (iii).
+\end{proof}
+
+\begin{remark}[Standing hypothesis $P$ f.g.; uses in covers]
+\label{rem:nonfg}
+From here on, $P$ is finitely generated. Consequently: every
+fold $\mathfrak f_\varphi$ and every CFA piece map used in any
+cover below is f.p.\ by Proposition~\ref{prop:fp}(ii),(iii); the
+pushouts of Construction~\ref{constr:pushout} among them are
+f.p.\ by (iv); the test maps $(v/d)$ and
+$(d\cdot\mathrm{id}_{\mathbb N})$ of Lemma~\ref{lem:atomic} are
+f.p.\ (targets $\mathbb N$); and every refinement map inserted
+below (Corollaries~\ref{cor:probecover}, \ref{cor:probecovers},
+Lemma~\ref{lem:sandwich}) is f.p. Without f.g.\ of $P$, the CFA
+family $\{P\to P/K\}$ may fail to be a cover (faces may fail to
+be finitely generated as faces, so $\pi_K$ may fail to be
+f.p.), and the face poset can be infinite; these are the two
+obstructions to the immediate generalization of the argument to
+arbitrary $P$ \textup{(}cf.\ the Scope hypothesis in
+\S\ref{sec:intro}\textup{)}.
+\end{remark}
+
+\begin{lemma}[Covers may be taken surjective]\label{lem:surj}
+Every cover in the slice admits a refinement whose piece maps are
+surjective monoid homomorphisms \textup{(}in particular
+$Z_U=P+\Phi_U^{\gp}$ for every nerve piece, so
+Lemmas~\ref{lem:nerve}, \ref{lem:mixed} apply with the stated
+$Z$-hypotheses\textup{)}.
+\end{lemma}
+
+\begin{proof}
+A fold $\mathfrak f_\varphi$ with non-primitive
+$\varphi=d\varphi_0$ \textup{(}$d={GF}(\varphi)$, $\varphi_0$
+primitive\textup{)} is refined by the singleton piece
+$P\xrightarrow{\varphi_0}\mathbb N$: this covers
+$\mathfrak f_\varphi$: a valuative point factoring through
+$\mathfrak f_\varphi$ has the form $v=c\varphi_0$ with
+$d\mid c$ (both functionals have a common primitive part), and
+then $v=(c/d)\circ\varphi_0$; the structure map $\varphi_0$ is
+birhizomic at the factor $(c/d\cdot):\mathbb N\to\mathbb N$ by
+Lemma~\ref{lem:atomic}, the value groups $(c/d)\Z$ and
+$\bigl((c/d)\circ\varphi_0\bigr){}^{\gp}(P^{\gp})=(c/d)\Z$
+coinciding since $\varphi_0^{\gp}$ is surjective. The new fold
+is surjective. CFA quotient
+maps are surjective by construction. Hence every cover admits a
+refinement---first the normal form
+Theorem~\ref{thm:normalform}, then the primitive reduction of
+its folds---whose piece maps are all surjective. For such $U$:
+$Z_U=\alpha_U^{\gp,-1}(Q_U)=P+\Phi_U^{\gp}$ \textup{(}any
+$q'=\alpha_U^{\gp}(z)$ lifts to $p'\in P$ by surjectivity, and
+$z=p'+(z-p')\in P+\ker\alpha_U^{\gp}$ with
+$\ker\alpha_U^{\gp}=\Phi_U^{\gp}$:
+Lemma~\ref{lem:Zpointed}\textup{)}.
+\end{proof}
+
+\subsection{Valuative monoids}
+
+\begin{lemma}\label{lem:N}
+Every valuative monoid is $\{0\}$ or $\mathbb N$.
+\end{lemma}
+
+\begin{proof}
+Let $V\ne\{0\}$ be valuative; $\Gamma:=V^{\gp}$ with convex chain
+$0=H_0\subsetneq\cdots\subsetneq H_s=\Gamma$.
+
+\emph{Step 1.} An archimedean ordered group order-embeds into
+$(\R,+)$ (H\"older: fix $a>0$; $g\mapsto\sup\{m/n\in\Q:mg\le na\}$);
+a f.g.\ subgroup of $\R$ is cyclic or dense.
+
+\emph{Step 2: $s=1$.} If $s\ge2$, fix $\gamma\in H_1$ positive
+and $\delta\in H_2\setminus H_1$ positive. For every $n\ge0$,
+$\delta-n\gamma\in V$: indeed its image in $\Gamma/H_1$ is
+$\bar\delta>0$ in the induced total order. Set
+$\Lambda:=H_2/H_1\subseteq\Gamma/H_1$. The ordered group $\Lambda$
+has no proper nonzero convex subgroup (the preimage of such a
+subgroup in $H_2$ would be convex in $\Gamma$, hence equal to $H_1$
+or $H_2$ by maximality of the chain), hence is archimedean; so by
+Step 1 it order-embeds in $(\R,+)$. Let $G$ be a finite generating
+set of the monoid $V$, and put
+$c_0:=\min\{\bar g>0:g\in G,\ \bar g\in\Lambda\}$, where the minimum
+over the (finite) set of positive classes exists and is $>0$
+because some generator has positive class (otherwise
+$V\subseteq H_1$).
+Decompose $\delta-n\gamma=\sum_k g_k$ with $g_k\in G$: the
+$\Lambda$-classes of the summands are nonnegative with sum
+$\bar\delta$, so at most $N_0:=\mu_\Lambda(\bar\delta)/c_0$ of them are
+outside $H_1$ (measured through the embedding
+$\mu_\Lambda:\Lambda\hookrightarrow\R$). Hence
+\[
+\delta-n\gamma \;=\; \mathfrak s_n+h_n,\qquad
+\mathfrak s_n\text{ a sum of }\le N_0\text{ generators outside
+}H_1,\quad h_n\in V\cap H_1 .
+\]
+The $\mathfrak s_n$ range in a finite set; fix $\mathfrak s$
+occurring for infinitely many $n$, and set $w:=\delta-\mathfrak
+s\in\Gamma$. Then $w-n\gamma=h_n\in H_1$ for infinitely many $n$;
+taking a difference of two such indices shows $w\in H_1$, and
+$h_n=w-n\gamma\in V\cap H_1$ means $0\le n\gamma\le w$ in the
+archimedean ordered group $H_1$ for infinitely many $n$:
+contradiction.
+
+
+\emph{Step 3: $\Gamma$ not dense.} Suppose $\Gamma$ is dense in
+$\R$; put $E:=\Q\Gamma\subseteq\R$, write $\mu_E$ for the inclusion
+$E\hookrightarrow\R$, set $E^+:=\{e\in E:\mu_E(e)\ge0\}$ and
+$d:=\dim_{\Q}E$, and assume $d\ge2$. Then $V=\Gamma\cap E^+$ and
+$C:=\Q_{\ge0}\cdot V$ is a full-dimensional rational polyhedral
+cone in $E$ with $C\subseteq E^+$ (full-dimensional because
+$\Gamma=V-V$ spans $E$).
+
+\emph{Lemma A: any $\Q$-rational form $\ell$ on $E$ with
+$\ell\ge0$ on $V$ is zero.} First, $\mu_E(V)$ is dense in
+$\R_{\ge0}$: given $r\ge0$, pick $\delta\in\Gamma$ with
+$0<\mu_E(\delta)<1/n$ (dense), and $m\in\N$ with
+$|m\mu_E(\delta)-r|<1/n$ (archimedean division in $\R$); then
+$m\delta\in V$. Hence, viewing $E_{\R}=\R$ via $\mu_E$ and writing
+$\ell_{\R}:=\ell\otimes\R$ (a continuous real form), the
+inequality $\ell_{\R}\ge0$ holds on the dense subset
+$\mu_E(V)$ of $\R_{\ge0}$, hence on all of $\R_{\ge0}$; therefore
+$\ell_{\R}=c\,\mathrm{id}_{\R}$ with $c\ge0$, i.e.\
+$\ell(e)=c\,\mu_E(e)$ for all $e\in E$. If $c>0$, the image
+$\mu_E(E)=c^{-1}\ell(E)\subseteq c^{-1}\Q$ would be a
+$d$-dimensional $\Q$-subspace of $\R$ inside a one-dimensional
+one: impossible as $d\ge2$. Hence $c=0$ and $\ell=0$.
+
+\emph{(3b) $C\ne E^+$.} Write $C=\bigcap_{j=1}^{r}
+\{\ell_j\ge0\}$ with $\Q$-rational $\ell_j$ (a rational
+polyhedral cone in $E$ has rational supporting forms). If
+$C=E^+$, each $\ell_j\ge0$ on $E^+\supseteq V$: Lemma A gives
+$\ell_j=0$ for all $j$, i.e.\ $C=E$: contradicting
+$C\subseteq E^+\subsetneq E$.
+
+\emph{(3c) Conclusion of Step 3.} By (3b) there is
+$v\in E^+\setminus C$; strict separation of the closed cone $C$
+from the point $v$ inside the $\Q$-vector space (finite
+dimensional: standard strict separation applied rationally)
+yields a $\Q$-rational form $\ell$ with $\ell|_C\ge0$ and
+$\ell(v)<0$. Since $V\subseteq C$, $\ell|_V\ge0$: Lemma A gives
+$\ell=0$, contradicting $\ell(v)<0$. Therefore $d=1$: $\Gamma$
+is a f.g.\ subgroup of $\Q$, hence cyclic: $\Gamma=\Z\gamma$,
+and $V=\N\gamma\cong\N$.
+\end{proof}
+
+\begin{corollary}\label{cor:function}
+Valuative points are $0$ or functionals $\varphi:M\to\mathbb N$, with
+kernel face $\{\varphi=0\}$ and half-space cone
+$\{\varphi^{\gp}\ge0\}$. On a sharp $M\ne\{0\}$ tight functionals
+exist \textup{(}strictly positive $\Q$-formals on the pointed cone
+$\Cone(M)$, denominator-cleared\textup{)}.
+\end{corollary}
+
+\subsection{Infinitesimal maps}
+
+\begin{lemma}\label{lem:inj0}
+If $p:M\to N$ is infinitesimal with $N$ sharp then $\ker p=\{0\}$; if
+$N$ is moreover valuative then $p^{\gp}$ is injective.
+\end{lemma}
+
+\review{This suggests that by making a finite generation hypothesis on $P \to Q$, the author also implicitly assumed that \emph{all} monoids are finitely generated.  This makes all of the notions in the question trivial.}
+
+\begin{proof}
+As usual $x\prec y$ means $my\le x\le ny$ for some $m,n\in\Z$.
+First: let $x\in M$, $p(x)=0$; with $X:=-x$, $y:=x$: $X\prec y$;
+$p(X)=0\in N$; $p(y)\prec0$ reads $0\le p(y)\le0$ \checkmark; the condition
+gives $-x\in M$, a unit: $x=0$.
+Second: $X=x_1-x_2\in\ker p^{\gp}$; $y:=x_1+x_2$: $X\prec y$;
+$p(X)=0$; $p(y)\prec0$ gives $p(x_1)+p(x_2)=0$ in $N$; $N$ sharp:
+each $=0$; first part: $x_i=0$.
+\end{proof}
+
+\begin{lemma}\label{lem:infstruct}
+For $p:M\to\mathbb N$ nonzero: $p$ infinitesimal iff $p^{\gp}$
+injective and $M$ conical: $M=\{x\in M^{\gp}:p^{\gp}(x)\ge0\}$; then
+$\pi:=p/{GF}(p):M\cong\mathbb N$.
+\end{lemma}
+
+\begin{proof}
+``If'' is immediate from the premise $p(x)\in\mathbb N$ alone. ``Only
+if'': $\ker p^{\gp}=0$ by Lemma~\ref{lem:inj0}; for conicality let
+$p^{\gp}(x)>0$, write $x=x_1-x_2$, $y:=x_1+x_2$: $x\prec y$;
+$p(y)\prec p(x)$: $\mathbb N$ is archimedean: $p(y)\le kp(x)$ for
+some $k$: premises OK: $x\in M$.
+\end{proof}
+
+\subsection{Atomicity}
+
+\begin{lemma}[Atomicity]\label{lem:atomic}
+Let $f:Q\to Q'$ be f.p.\ \textup{(}this is part of birhizomicity;
+all our applications have it by
+Proposition~\ref{prop:fp}\textup{)} and
+$\psi:Q'\to\mathbb N$ nonzero. Then $f$
+is birhizomic at $\psi$ iff
+$\psi^{\gp}(Q'^{\gp})=(\psi f)^{\gp}(Q^{\gp})$.
+\end{lemma}
+
+\begin{proof}
+\emph{Necessity.} With $v:=\psi f$, $d:={GF}(v)$, test the pair
+$(h,p):=(v/d,\ d\cdot\mathrm{id}_{\mathbb N})$
+\textup{(}infinitesimal by Lemma~\ref{lem:infstruct}; both maps
+are f.p.\ by Proposition~\ref{prop:fp}(ii)/(iv), and the source
+$M=\mathbb N$ is f.g.\textup{)}; a lift $u$ satisfies $du=\psi$, hence
+$\psi^{\gp}(Q'^{\gp})\subseteq d\Z=(\psi f)^{\gp}(Q^{\gp})$; the
+other inclusion is automatic.
+\emph{Sufficiency.} Given $(h,p)$: ${GF}(p)$ divides ${GF}(v)$
+($v^{\gp}=p^{\gp}h^{\gp}$), so $\psi^{\gp}(Q'^{\gp})
+={GF}(v)\Z\subseteq{GF}(p)\Z$; define
+$u^{\gp}:=(\pi^{\gp})^{-1}\circ(\psi^{\gp}/{GF}(p))$ where
+$\pi:=p/{GF}(p)$ (isomorphism, Lemma~\ref{lem:infstruct});
+$u^{\gp}$ maps $Q'$ into $M$ by conicality and
+$p^{\gp}u^{\gp}=\psi^{\gp}$ (so $pu=\psi$ on $Q'$: on the monoid:
+$p^{\gp}u^{\gp}(q')=\psi^{\gp}(q')\in\mathbb N$ \checkmark); and
+$uf=h$: $p^{\gp}u^{\gp}f^{\gp}=\psi^{\gp}f^{\gp}=p^{\gp}h^{\gp}$,
+$p^{\gp}$ injective; uniqueness: same injectivity.
+\end{proof}
+
+\begin{corollary}[CFA pieces and covers]\label{cor:cfa}
+Let $Q$ be a monoid and $K$ a face.
+\textup{(}a\textup{)} $Q\to Q/K$ is birhizomic at every
+$g:Q/K\to V$, $V$ valuative.
+\textup{(}b\textup{)} $\{Q\to Q/K:K\text{ face of }Q\}$ is a
+birhizomic cover \textup{(}the \emph{CFA cover}\textup{)}.
+\end{corollary}
+
+\begin{proof}
+(a) Nonzero $g=\psi$: Lemma~\ref{lem:atomic}: value-group equality
+holds since $\pi_K^{\gp}$ is surjective. Zero $g$: $ph=0$ and
+Lemma~\ref{lem:inj0} give $h=0$; unique lift.
+(b) At $v$: $v=0$: piece $K=Q$ with (a); $v=\varphi\ne0$: piece
+$K=\ker\varphi$ with $\bar\varphi$ and (a).
+\end{proof}
+
+\begin{theorem}[Normal form]\label{thm:normalform}
+Let $T=(P\to Q_T)$. Every birhizomic cover of $T$ admits a refinement
+whose pieces are fold pieces $\mathfrak f_\varphi=
+(P\xrightarrow{\varphi}\mathbb N)$ with $\varphi(\Phi_T)=0$, and CFA
+pieces $(P\to P/K)$ with $K\supseteq\Phi_T$.
+\end{theorem}
+
+\begin{proof}
+For each piece $S=(P\xrightarrow{\alpha}Q)$ of the cover, the family
+\[
+\mathcal N(S)=
+\{\mathfrak f_{\theta\alpha}:\theta:Q\to\mathbb N\}
+\ \cup\ \{Q/\mathfrak k:\mathfrak k\text{ face of }Q\}
+\]
+is a cover of $S$: indeed, let $v:P\to V$ factor through
+$\alpha$ (these are the points covers of $S$ are responsible for).
+If $V=\{0\}$: use $\mathfrak k=Q$. If $v=\theta\alpha$,
+$\theta:Q\to\mathbb N$ nonzero: write $\theta=d\theta_1$ with
+${GF}(\theta_1)=1$; then $v=(d\cdot)\circ(\theta_1\alpha)$ through
+the fold piece $\mathfrak f_{\theta_1\alpha}$; birhizomicity of the
+structure map $\theta_1$ at $g=d\cdot\mathrm{id}$:
+Lemma~\ref{lem:atomic}: the condition
+$g^{\gp}(\Z)=(g\theta_1)^{\gp}(Q^{\gp})$ reads
+$d\Z=\theta^{\gp}(Q^{\gp})=d\Z$ \checkmark. Compose these covers over all
+pieces (transitivity).
+\end{proof}
+
+\begin{remark}\label{rem:cover-points}
+In the slice topology, covers of $T$ only need to answer those
+$v:P\to V$ that factor through $\alpha_T:P\to Q_T$ --- in
+particular $v(\Phi_T)=0$ and $v$ factors through
+$P\to P/\Phi_T$: the problem's definition applied to the object
+$\alpha_T$ quantifies over $v=Q_T\to V$, and such $v$ kill the
+kernel of $\alpha_T$; all our covering constructions
+(Theorem~\ref{thm:normalform}, Corollaries~\ref{cor:cfa},
+\ref{cor:probecover}, \ref{cor:probecovers}) answer such $v$ by
+structure maps killing $\Phi_T$ \emph{because} the pieces used
+(folds with $\varphi(\Phi_T)=0$, quotients $P/K$ with
+$K\supseteq\Phi_T$) receive $\alpha_T$ (they lie over $T$).
+\end{remark}
+
+
+\subsection{Pushout kernels against folds}
+
+Fix $T$, $J:=\Phi_T$, $\bar P:=P/J$.
+
+\begin{lemma}\label{lem:Zpointed}
+For $U$ over $T$: $\alpha_U^{\gp}(L_U)=\{0\}$ and
+$P\cap L_U=\Phi_U$; the induced
+$Z_U/L_U\hookrightarrow Q_U$ is injective with image the sharp
+saturated submonoid $Q_U\cap\alpha_U^{\gp}(P^{\gp})$; the group
+$J^{\gp}$ satisfies $J^{\gp}\subseteq\ker\alpha_U^{\gp}$.
+\end{lemma}
+
+\begin{proof}
+$\lambda\in L_U$: $\pm\alpha_U^{\gp}(\lambda)\in Q_U$; sharp:
+$=0$. Hence $x\in P\cap L_U\Rightarrow\alpha_U(x)=0$:
+$P\cap L_U\subseteq\Phi_U$; conversely $\Phi_U\subseteq L_U$ directly.
+Injectivity of $Z_U/L_U\to Q_U$: $\alpha_U(z_1-z_2)=0$ with
+$z_i\in Z_U$: then $\pm(z_1-z_2)\in Z_U$: $z_1-z_2\in L_U$. For $J$:
+$\alpha_U(J)=0$.
+\end{proof}
+
+\begin{lemma}[Kernel criterion]\label{lem:pushout}
+Let $U$ over $T$ and $\mathfrak f:=\mathfrak f_\varphi$ with
+$\varphi(J)=0$; $W:=U\otimes_T\mathfrak f$. For $x\in P$:
+\[
+x\in\Phi_W\ \Longleftrightarrow\ x\in\Phi_U\ \ \text{or}\ \
+\exists\,t\ge1,\,a\in P^{\gp}:\ a-tx\in Z_U,\ \varphi^{\gp}(a)\le0 .
+\]
+\end{lemma}
+
+\begin{proof}
+Reduce modulo $J$; write $j:\bar P\to Q_U$. By
+Construction~\ref{constr:pushout}, $\bar x$ dies in $W$ iff there
+exist $t\ge1$ and a unit $u$ of $W_0^{\sat}$ with
+$[(\alpha_U(tx),0)]+u=0$ in $G$.
+
+\emph{Necessity: the pair (A)+(B).} Suppose $x\in\Phi_W$; if
+$x\in\Phi_U$ there is nothing to add. Otherwise take $(t,u)$ as
+above. Writing the equality out with a class $u=[(\xi,m)]$: there
+is $c\in\bar P^{\gp}$ with $\alpha_U(tx)+\xi=j(c)$ and
+$m=-\varphi^{\gp}(c)$; lift $c$ to $a_0\in P^{\gp}$ and set
+$z_0:=a_0-tx$: then $\alpha_U^{\gp}(z_0)=\xi$. The condition
+$+u\in W_0^{\sat}$ means that a positive multiple $s u$ has a
+representative in $Q_U\times\mathbb N$; raw representatives of
+$s u$ are $(\alpha_U^{\gp}(s z_0),\,-s\varphi^{\gp}(a_0))$,
+measured up to slides $(\xi,m)\mapsto(\xi+j(d),
+m-\varphi^{\gp}(d))$, $d\in\bar P^{\gp}$: hence for some $d$:
+$\alpha_U^{\gp}(s z_0+d)\in Q_U$ and
+$s\varphi^{\gp}(a_0)+\varphi^{\gp}(d)\le0$. Take
+$(t',a):=(s t,\ s a_0+\hat d)$ with $\hat d$ lifting $d$; then
+$a-t'x=s z_0+\hat d\in Z_U$ \textup{(}condition
+\textup{(A)}\textup{)} and $\varphi^{\gp}(a)\le0$
+\textup{(}condition \textup{(B)}\textup{)}: the required pair
+exists.
+
+\emph{Sufficiency.} Conversely, given $(t,a)$ with (A),(B): set
+$z:=a-tx$, $\xi:=\alpha_U^{\gp}(z)\in Q_U$,
+$m:=-\varphi^{\gp}(a)\ge0$, and $u:=[(\xi,m)]\in W_0$; the
+relation $a=tx+z$ gives
+$[(\alpha_U(tx),0)]+u=[(j(\bar a),-\varphi^{\gp}(\bar a))]=0$ in
+$G$; hence $[(\alpha_U(tx),0)]=-u$ lies in $W_0$ as well, so $u$
+is a unit, $t\bar x$ dies after sharpening, and $x$ dies
+(saturation): $x\in\Phi_W$. That
+$x\in\Phi_U\Rightarrow x\in\Phi_W$ is clear (the structure map of
+$W$ factors through that of $U$). \end{proof}
+
+\begin{example}[Fold vs fold]\label{ex:ff}
+$U=\mathfrak f_\psi$, $\psi$ tight on $\bar P$, and
+$\mathfrak f_\varphi$: the criterion (with
+$Z_U=\{\psi^{\gp}\ge0\}$): if $[\varphi]=[\psi]$:
+(B)$\Rightarrow\psi(a)\le0$, (A): $\psi(a)\ge t\psi(x)\ge1$ for
+$x\ne0$: impossible: $\Phi_W=J$. If $[\varphi]\ne[\psi]$: the open
+rational wedge $\{\varphi\le0<\psi\}$ in $\bar P^{\gp}\otimes\R$ is
+nonempty; scale $a$ in it with $\psi(a)\ge t\psi(x)$: every
+$x\neq0$ in $\bar P$ dies: $\Phi_W=\bar P$.
+\end{example}
+
+\begin{proposition}[Equiface probes]\label{prop:equiface}
+Let $U$ over $T$ and $\varphi:P\to\mathbb N$ satisfy
+\textup{(}G\textup{)}: $\varphi(L_U)=0$ and $\varphi(z)>0$ for
+$z\in Z_U\setminus L_U$ \textup{(}such $\varphi$ exist, and may be
+taken \emph{primitive}: $Z_U/L_U\hookrightarrow Q_U$ is a sharp f.g.\
+monoid by Lemma~\textup{\ref{lem:Zpointed}}, so a strictly positive
+functional on it exists by Corollary~\textup{\ref{cor:function}};
+dividing out the content preserves the vanishing and positivity
+pattern; then automatically
+$\varphi(J)=0$ since $J^{\gp}\subseteq L_U$\textup{)}. Then:
+\textup{(}i\textup{)} $\Phi_{\mathfrak f_\varphi}=\Phi_U$;
+\textup{(}ii\textup{)} $\Phi_{U\otimes_T\mathfrak f_\varphi}=\Phi_U$.
+In particular, for the base piece $iB(T)$ \textup{(}where
+$Z=P+J^{\gp}$, $L=J^{\gp}$\textup{)}, \emph{every} tight functional
+$\varphi$ of $\bar P$ satisfies \textup{(}G\textup{)}, so for every
+tight fold $\mathfrak f$:
+$\Phi_{\mathfrak f}=J$ and
+$\Phi_{\mathfrak f\otimes_T iB(T)}=J$.
+\end{proposition}
+
+\begin{proof}
+(i) $\Phi_{\mathfrak f_\varphi}=\{x\in P:\varphi(x)=0\}$: $x\in P
+\subseteq Z_U$ with $\varphi$-zero: (G): $x\in L_U$: $x\in
+P\cap L_U=\Phi_U$ (Lemma~\ref{lem:Zpointed}) \checkmark.
+(ii) Lemma~\ref{lem:pushout}: suppose $x\notin\Phi_U$ dies: $(t,a)$:
+$z:=a-tx\in Z_U$, $\varphi(a)\le0$. If $\varphi(z)<0$: but $z\in
+Z_U$ and (G) gives $\varphi(z)\ge0$ (with $>0$ off $L_U$):
+contradiction. So $\varphi(z)\ge0$; then
+$\varphi(z)=\varphi(a)-t\varphi(x)$ gives
+$\varphi(a)\ge t\varphi(x)$; with $\varphi(a)\le 0$ and
+$\varphi(x)>0$ (as $x\in P\subseteq Z_U$, $x\notin L_U$ since
+$x\notin\Phi_U=P\cap L_U$): $0\ge\varphi(a)\ge t\varphi(x)\ge1$:
+contradiction. Hence $\Phi_W=\Phi_U$ \checkmark.
+The $iB(T)$-computation: $Z_{iB(T)}=P+J^{\gp}$,
+$L_{iB(T)}=J^{\gp}$ \checkmark (sharpness of $\bar P$: $\pm\bar x\in\bar P\Rightarrow
+\bar x=0$, i.e.\ $x\in J$); (G) for tight $\varphi$:
+$\varphi(J^{\gp})=0$ \checkmark; $z\in Z\setminus L$ has $\bar z\ne0$, so
+$\varphi(\bar z)>0$ \checkmark.
+\end{proof}
+
+\begin{corollary}[Probes exist in covers]\label{cor:probecover}
+Let $R=\{T\to T_i\}$ be a cover of $T$, and let
+$\varepsilon:P\to\mathbb N$ be any functional \emph{coming from an
+equiface probe}, i.e.\ satisfying for some piece $U$ over $T$ the
+condition \textup{(}G\textup{)} of
+Proposition~\textup{\ref{prop:equiface}}
+\textup{(}in particular $\Phi_{\mathfrak f_\varepsilon}=\Phi_T$
+by \textup{(}i\textup{)} loc.\ cit.\textup{)}. Then $\varepsilon$ may be
+taken primitive \textup{(}replace by its primitive
+part\textup{)}, and $R$ admits a refinement containing
+$\mathfrak f_\varepsilon$. In particular
+\textup{(}with $U=iB(T)$, where every tight $\varepsilon$
+works\textup{)}: every cover admits a refinement containing a tight
+fold with kernel exactly $\Phi_T$.
+\end{corollary}
+
+\begin{proof}
+By Proposition~\ref{prop:equiface}, equiface probes may be
+chosen primitive: replace the given $\varepsilon$ by its
+primitive part, which satisfies the same vanishing and
+positivity conditions, hence also defines a fold with kernel
+$\Phi_T$. Apply the cover property of $R$ at the point
+$v:=\varepsilon$: some member $T_i$ admits
+$\theta:Q_{T_i}\to\mathbb N$ with $\theta\alpha_i=v$ and
+$T\to T_i$ birhizomic at $\theta$; by
+Lemma~\ref{lem:atomic},
+$\theta^{\gp}(Q_{T_i}^{\gp})=v^{\gp}(P^{\gp})$, i.e.\
+${GF}(\theta)={GF}(v)=1$. Refine $T_i$ by its CFA cover
+(Corollary~\ref{cor:cfa}(b)) and keep the member over the face
+$\ker\theta$: the induced $\bar\theta:Q_{T_i}/\ker\theta
+\hookrightarrow\mathbb N$ is injective with saturated sharp
+${GF}{=}1$-image in $\mathbb N$, hence an isomorphism; the
+member $S:=(P\to Q_{T_i}/\ker\theta)$ is therefore isomorphic
+over $P$ to $\mathfrak f_\varepsilon$.
+\textup{(}All maps used are f.p.: the slice maps by
+Proposition~\ref{prop:fp}(ii)--(iii), and the refinement
+composites by (iv) therein.\textup{)}
+The composed refinement of
+$R$ contains $\mathfrak f_\varepsilon$.
+\end{proof}
+
+\begin{corollary}[Probe covers]\label{cor:probecovers}
+Let $\bar P\ne\{0\}$ and let $\chi:\bar P\to\mathbb N$ be a primitive
+tight functional. Then the family
+\[
+\square_1\;:=\;\{\mathfrak f_{\chi\bar\pi}\}\ \cup\
+\{(P\to P/K):K\supseteq J\text{ face}\}
+\]
+\textup{(}one tight primitive fold on the ray $[\chi]$, together with
+all CFA pieces\textup{)} already covers $T$.
+\end{corollary}
+
+\begin{proof}
+Let $v=\psi\bar\pi$, $\psi:\bar P\to\mathbb N$ nonzero;
+$\ker\psi=:K^0\supseteq0$ a face of $\bar P$; let
+$K:=$ preimage of $K^0$ in $P$ (a face $\supseteq J$). Use the piece
+$P/K$: $v$ factors $P/K\xrightarrow{\bar\psi}\mathbb N$;
+birhizomicity of the structure map $P\to P/K$ at $\bar\psi$:
+Corollary~\ref{cor:cfa}(a). If $\ker\psi=0$ and $[\psi]=[\chi]$:
+$\psi=d\chi$: use the fold piece and Lemma~\ref{lem:atomic}:
+requires $d\Z=(\psi\bar\pi)^{\gp}(P^{\gp})=d\Z$ \checkmark. The zero point:
+dead piece.
+\end{proof}
+
+
+\section{The inverse image is a sheaf}\label{sec:sheaf}
+
+\begin{proposition}\label{prop:adj}
+$i:B_P\to A_P$ has right adjoint $\varphi_0:A_P\to B_P$,
+$T\mapsto B(T)$; hence the pointwise left Kan extension of $F$ along
+$i$ is $G_F:=F\circ\varphi_0$, and $G_F(i(b))=F(b)$.
+\end{proposition}
+
+\begin{proof}
+$\operatorname{Hom}_{A_P}(i(P\to P/K),T)$ is a singleton iff
+$K\subseteq\Phi_T$, else empty (Proposition~\ref{prop:bp}), matching
+$\operatorname{Hom}_{B_P}((P\to P/K),B(T))$: adjunction. Kan
+extension along a functor with a right adjoint is precomposition with
+the adjoint; pointwise: $(i\downarrow T)$ has terminal object $B(T)$.
+\end{proof}
+
+\begin{proposition}[Separatedness]\label{prop:sep}
+For every cover $R$ of $T$, $G_F(T)\to\prod_{T_i\in
+R}G_F(T_i)$ is injective.
+\end{proposition}
+
+\begin{proof}
+By Theorem~\ref{thm:normalform} and Corollary~\ref{cor:probecover},
+$R$ admits a refinement (pulling back along which the map in question
+factors) containing a tight fold $\mathfrak f$ with
+$\Phi_{\mathfrak f}=J$; the restriction $G_F(T)\to
+G_F(\mathfrak f)$ is $F(\mathrm{id}_{B(T)})$: injective.
+\end{proof}
+
+\begin{theorem}[Descent]\label{thm:descent}
+For every cover $R$ of $T$, $G_F(T)\xrightarrow{\sim}\HH^0(R;G_F)$.
+Hence $G_F$ is a sheaf on $(A_P^{\op})_{\mathrm{birhiz}}$;
+consequently $\pi^{-1}F=G_F$ and
+$F(b)\xrightarrow{\sim}(\pi_*\pi^{-1}F)(b)$, canonically.
+\end{theorem}
+
+\begin{proof}
+Injectivity is Proposition~\ref{prop:sep}. Let
+$(s_U)\in\HH^0(R;G_F)$. By Theorem~\ref{thm:normalform},
+Corollary~\ref{cor:probecover}, and
+Corollary~\ref{cor:probecovers}, we may refine (and pull the system
+back; this does not change its fate for surjectivity) so that $R$
+contains: a tight fold $\mathfrak f_\star$; the base piece
+$iB:=i(B(T))$; all CFA pieces $(P\to P/K)$, $K\supseteq J$; and for
+every piece $U$ of $R$ a (G)-probe $\mathfrak f_{\varepsilon_U}$
+with $\varepsilon_U$ satisfying (G) for $U$
+(Proposition~\ref{prop:equiface}). The nerve of the refined cover
+contains all pushouts of its pieces. Set
+\[
+s^0\;:=\;s_{iB}\in F(B(T)).
+\]
+\emph{Claim A: $s_\star=s^0$.} The kernel of
+$W:=\mathfrak f_\star\otimes_T iB$ is $J$
+(Proposition~\ref{prop:equiface}, $iB$-case: every tight functional
+satisfies (G) for $iB$). Compatibility at $W$: the two restriction
+maps $G_F(\mathfrak f_\star)\to G_F(W)$ and $G_F(iB)\to G_F(W)$ are
+both $F(\mathrm{id}_{B(T)})$ (as $\Phi_\star=\Phi_W=\Phi_{iB}=J$);
+hence $s_\star=s_{iB}=s^0$.
+
+\emph{Claim B: for every piece $U$ of $R$,
+$s_U=F(B(T)\twoheadrightarrow B(U))(s^0)$.}
+\emph{Case $\Phi_U=J$.} The probe piece $\mathfrak
+f_{\varepsilon_U}$ has kernel $J$ (Prop.~\ref{prop:equiface}(i)),
+i.e.\ $\varepsilon_U$ is tight on $\bar P$, hence satisfies (G) for
+$iB$ (Prop.~\ref{prop:equiface}, last clause); so
+$\Phi_{\mathfrak f_{\varepsilon_U}\otimes_T iB}=J$ and the two
+restriction maps into the overlap are
+$F(\mathrm{id}_{B(T)})$: compatibility gives
+$s_{\varepsilon_U}=s_{iB}=s^0$. Also, by
+Prop.~\ref{prop:equiface}(ii),
+$U\otimes_T\mathfrak f_{\varepsilon_U}$ has kernel $\Phi_U=J$
+with identity transitions from both factors, so
+$s_U=s_{\varepsilon_U}=s^0$, the required form since
+$B(U)=B(T)$.
+\emph{Case $\Phi_U=K\supsetneq J$.} The probe piece
+$\mathfrak f_{\varepsilon_U}$ has kernel $K$
+(Prop.~\ref{prop:equiface}(i)), so
+$U\otimes\mathfrak f_{\varepsilon_U}$ has kernel $K$
+(loc.\ cit.\ (ii)) with identity transitions:
+$s_U=s_{\varepsilon_U}$. We now compute the kernel of
+$W:=\mathfrak f_{\varepsilon_U}\otimes_T iB$ via
+Lemma~\ref{lem:pushout} ($Z_{iB}=P+J^{\gp}$; write bars for
+reduction mod $J$, so $Z_{iB}$-membership is
+``$\overline{\,\cdot\,}\in\bar P$'', and
+$\varepsilon_U=\psi\bar\pi$ with $\psi:\bar P\to\mathbb N$ whose
+kernel is exactly the face $K/J$):
+\emph{claim:} $\Phi_W=K$.
+
+If $\bar x\in K/J$: take $t:=1$ and a lift $a$ of $\bar a:=\bar x$;
+then $a-x$ reduces to $0$, hence lies in $J^{\gp}\subseteq
+P+J^{\gp}=Z_{iB}$: (A) holds; and
+$\varepsilon_U(a)=\psi(\bar x)=0$: (B) holds. Hence
+$x\in\Phi_W$, i.e.\ $K\subseteq\Phi_W$.
+
+Conversely let $x\in\Phi_W$ via $(t,a)$: (B): $\psi(\bar a)\le0$,
+with $\bar a=\overline{a-tx}+t\bar x$, where
+$\bar z:=\overline{a-tx}\in\bar P$ by (A). Two cases: if
+$\psi(\bar a)=0$, then $\bar a\in K/J$; the equation
+$t\bar x=\bar a-\bar z$ with $\bar z\in\bar P$ is an equality
+$t\bar x+\bar z=\bar a$ inside $\bar P$, i.e.\ $t\bar x$ and
+$\bar z$ are elements of $\bar P$ whose sum lies in the face
+$K/J\subseteq\bar P$; by the face property, $t\bar x\in K/J$,
+whence $\bar x\in K/J$ (faces are saturated;
+Proposition~\ref{prop:bp}(c)), i.e.\ $x\in K$. If
+$\psi(\bar a)<0$: then
+$t\psi(\bar x)=\psi(\bar a)-\psi(\bar z)\le\psi(\bar a)<0$ while
+$\psi(\bar x)\ge0$: impossible. Hence
+$\Phi_W\subseteq K$: equality.
+Compatibility at $W$: $G_F(\mathfrak f_{\varepsilon_U})\to G_F(W)$
+is $F(\mathrm{id}_{P/K})$ while $G_F(iB)\to G_F(W)$ is
+$F(B(T)\twoheadrightarrow P/K)$; hence
+$s_{\varepsilon_U}=F(B(T)\twoheadrightarrow P/K)(s^0)$, and with
+$s_U=s_{\varepsilon_U}$ above, Claim B follows.
+\emph{Endgame.} Claim A+B: the pulled system on the final refinement
+$R'$ has the form $\iota_{R'}(s^0)$ with $s^0\in F(B(T))=G_F(T)$: it
+lies in the image of $G_F(T)$. Hence every class of
+$\colim_R\HH^0(R;G_F)=G_F^+(T)$ lies in the image of $G_F(T)$, so
+$G_F(T)\to G_F^+(T)$ (injective by Proposition~\ref{prop:sep}) is an
+isomorphism. For the original cover $R$, consider
+\[
+G_F(T)\longrightarrow\HH^0(R;G_F)\longrightarrow G_F^+(T):
+\]
+the composite is bijective and the first map is surjective (a
+constant system is compatible), so the second map is injective; both
+are therefore bijective: $\HH^0(R;G_F)=G_F(T)$ on the nose.
+$G_F$ is then a sheaf (descent on all covers: glue maps iso),
+$\pi^{-1}F=G_F$, and $(\pi_*\pi^{-1}F)(b)=G_F(i(b))=F(b)$
+(Proposition~\ref{prop:adj}).
+\end{proof}
+
+
+\section{Higher direct images}\label{sec:direct}
+
+Let $b=(P\to P/J)$, $\bar P=P/J$, $\mathcal G:=G_F=\pi^{-1}F$ (a
+sheaf by Theorem~\ref{thm:descent}). We now compute
+$H^q(i(b),\mathcal G)$.
+
+\begin{definition}[The \v{C}ech nerve of a cover]\label{def:nerve}
+Let $R=\{i(b)\to T_i\}$ be a cover of $X:=i(b)$ in the sliced site.
+Its \emph{nerve} is the simplicial object of the slice whose degree
+$q$ part is the disjoint family of the iterated pushouts
+$\overline\tau:=\overline{U_0}\cap\cdots\cap
+\overline{U_q}:=U_0\otimes_{i(b)}\cdots\otimes_{i(b)}U_q$
+over alternating tuples $\tau=(U_0,\dots,U_q)$ of pieces
+\textup{(}the pushouts exist and their piece maps are finitely
+presented, by Construction~\ref{constr:pushout} and
+Proposition~\ref{prop:fp}\textup{(}iv\textup{)}\textup{)}; face
+maps are given by forgetting a factor, degeneracies by repeating
+one; the alternating \v{C}ech complex of a presheaf $\mathscr W$
+is
+\[
+\cC^{q}(R;\mathscr W)\;=\!\!\prod_{\tau\text{ alternating}}
+\mathscr W(\overline\tau),\qquad
+(\partial e)_\tau=\sum_{i=0}^{q+1}(-1)^i\,
+\mathscr W(d_i)\bigl(e_{\partial_i\tau}\bigr) ,
+\]
+where $d_i:\overline\tau\to\overline{\partial_i\tau}$ is the
+structure map forgetting the $i$-th factor.
+\end{definition}
+
+\begin{lemma}[Structure maps between nerve pieces]\label{lem:nervemaps}
+For nerve pieces $W_1,W_2$ over $i(b)$ of covers whose pieces
+are folds or CFA-quotients \textup{(}as in all covers used
+below\textup{)}: a structure map $W_1\to W_2$ over $X$ exists iff
+$\Phi_{W_1}\subseteq\Phi_{W_2}$ provided both structure maps are
+surjective; in general the surjective pieces among the nerve
+\textup{(}$iB$, the $i(P/K)$, the folds satisfied
+\textup{)} satisfy the criterion, and the kernel-equal case gives
+the identity transition.
+\end{lemma}
+
+\begin{proof}
+If the structure map of $W_2$ is a face quotient $P/K_2$ or the
+fold $\mathbb N$-projection, a map into it out of $W_1$ is the
+same as a factorization killing the kernel (universal property
+of $P/K_2$: Proposition~\ref{prop:bp}(a); for the folds, maps
+between folds on the same ray are the coordinate projections).
+Killing $\Phi_{W_2}$ in $W_1$ is possible exactly when
+$\Phi_{W_1}\subseteq\Phi_{W_2}$. When the kernels agree, the
+induced map on $B$-levels is the identity of
+$P/\Phi$, i.e.\ $F(\mathrm{id})$.
+\end{proof}
+
+\begin{remark}[The comparison theorem used]\label{rem:verdier}
+We use Verdier's hypercovering theorem (SGA~4,
+Exp.~V, Th\'eor\`eme~7.4.1), in the following consequence:
+on a site with fibre products --- the sliced birhizomic site has
+them by Construction~\ref{constr:pushout} --- the sheaf
+cohomology of an abelian sheaf $\mathscr W$ on $X$ is computed
+by
+$H^q(X,\mathscr W)=\colim_{R}\HH^{q}(R;\mathscr W)$,
+the colimit over all covers of the alternating \v{C}ech
+cohomology of their nerves as in Definition~\ref{def:nerve}; and
+a class vanishes in $H^q(X,\mathscr W)$ iff it pulls to zero
+along some refinement. (No other external input is used.)
+\end{remark}
+
+\subsection{The nerve complex: depth, strands, and transfers}
+\label{ssec:nervetricks}
+
+Throughout, $R$ is a cover of $X$ in the sliced site, and all
+presheaves take values in abelian groups. For an alternating tuple
+$\tau=(U_0,\dots,U_q)$ of pieces write
+$\overline\tau:=U_0\otimes_X\cdots\otimes_X U_q$ for its nerve
+piece (Definition~\ref{def:nerve}), and
+$\partial_i\tau:=(U_0,\dots,\widehat{U_i},\dots,U_q)$.
+
+\begin{remark}[Normalization]\label{rem:normalize}
+Definition~\ref{def:nerve} defined $\cC^\bullet(R;\mathscr W)$
+directly on \emph{alternating} tuples. Equivalently one may start
+from the unreduced complex over all tuples and pass to the quotient
+by the degenerate subcomplex: the two compute the same cohomology
+(the degenerate cochains form an acyclic subcomplex: standard
+normalization of simplicial abelian groups, used here only as this
+identification). We work throughout with alternating tuples.
+\end{remark}
+
+\begin{definition}[$\mathscr W$-strand of a family]\label{def:strand}
+For a subfamily $\mathcal J$ of pieces, the \emph{$\mathcal
+J$-strand} is the subquotient of $\cC^\bullet$ obtained by
+restricting to tuples all of whose pieces lie in $\mathcal J$: it is
+a subcomplex when it is closed under $\partial$ (i.e.\ whenever
+every face of a tuple in $\mathcal J$, with its values transported
+along the structure map, still has its entries in $\mathcal J$);
+more generally, a family of strands is \emph{differential-closed}
+when the differential of a cochain supported on it stays supported
+on it.
+\end{definition}
+
+\begin{lemma}[Constant complexes]\label{lem:constcx}
+Let $\mathcal J$ be a differential-closed family of pieces on
+which $\mathscr W$ takes a constant value $A$ with all structure
+maps inducing $\mathrm{id}_A$, and suppose $\mathcal J$ has a
+minimum piece $H$ \textup{(}$H\subseteq U$, hence
+$\overline H\hookrightarrow\overline U$ and the induced
+$\mathscr W$-map is $\mathrm{id}_A$, for all
+$U\in\mathcal J$\textup{)} so that every nerve piece of
+$\mathcal J$ receives a structure map from $\overline H$.
+Then the $\mathcal J$-strand computes $\HH^0=A$ and
+$\HH^{q\ge1}=0$.
+\end{lemma}
+
+\begin{proof}
+For $q\ge1$ define $(he)_\tau:=e_{(H,\tau)}$ at alternating
+tuples $\tau$ of $\mathcal J$ \textup{(}when $(H,\tau)$ has a
+repetition its entry is $0$, consistent with the alternating
+convention\textup{)}. Since
+$\overline{(H,\tau)}=\overline H\otimes\overline\tau$ receives
+$\overline H$, the value $e_{(H,\tau)}$ is read off along the
+structure map out of the $H$-level, i.e.\ is an element of
+$A$. The face relations
+$\partial_0(H,\tau)=\tau$,
+$\partial_{i+1}(H,\tau)=(H,\partial_i\tau)$ give, with all
+structure maps inducing $\mathrm{id}_A$,
+\[
+(\partial h e)_\tau=\sum_{i=0}^{q}(-1)^i e_{(H,\partial_i\tau)},
+\qquad
+(h\partial e)_\tau=e_\tau-\sum_{i=0}^{q}(-1)^i
+e_{(H,\partial_i\tau)},
+\]
+so $(\partial h+h\partial)e=e$: $\HH^{q\ge1}=0$. For $q=0$: the
+cocycle condition at the pair $(H,U)$ reads
+$e_U=\mathscr W(\overline H\hookrightarrow\overline U)(e_H)=e_H$,
+so $\HH^0=A$ by evaluation at $H$.
+\end{proof}
+
+\begin{lemma}[Exact subquotient and signed transport]\label{lem:subquot}
+Let $\cC^\bullet=\cC'\oplus\cC''$ be a decomposition into
+differential-closed subcomplexes with $\cC'$ acyclic. Then
+$\HH^\bullet(\cC)=\HH^\bullet(\cC'')$; and if
+$z=(z',z'')$ is a degree-$q\ge1$ cocycle, there is a cochain
+$w'\in\cC'^{\,q-1}$ with $z'=\partial w'$, so that
+$z-\partial w'$ is a cocycle supported on $\cC''$ whose
+$\cC''$-component differs from $z''$ by the signed transport
+$z''-(\mathrm{pr}''\circ\partial)w'$ \textup{(}this component is a
+cocycle; if $\cC''$ is closed under $\partial$ on its own it equals
+$z''$\textup{)}.
+\end{lemma}
+
+\begin{proof}
+Acyclicity of $\cC'$ gives $w'$ with $z'=\partial w'$ (the cocycle
+$z$ restricts to a cocycle on $\cC'$ by differential-closedness).
+Then $z-\partial w'=(0,\,z''-\mathrm{pr}''\partial w')$: a cocycle
+supported on $\cC''$, as stated; its cohomology class equals that
+of $z$, and the long exact sequence of
+$0\to\cC''\to\cC\to\cC'\to0$ identifies $\HH^\bullet(\cC)$
+with $\HH^\bullet(\cC'')$ whenever $\cC'$ is acyclic.
+\end{proof}
+
+\begin{lemma}[Depth of nerve pieces]\label{lem:depth}
+Assign to each piece $U$ over $X$ its \emph{depth}: the length of
+a maximal chain in the face poset of $P$ from $J$ up to the kernel
+face $\Phi_U$ \textup{(}well-defined since the face poset is
+finite, Proposition~\ref{prop:bp}\textup{(}b\textup{)}; the actual
+constants never matter\textup{)}; the dead piece $D$
+\textup{(}kernel $P$\textup{)} has maximal depth, a kernel-$J$
+fold or $iB$ depth $0$. Depth is \emph{order-respecting on the
+nerve}: forgetting a factor can only increase depth,
+$\operatorname{depth}(\partial_i\tau)\le\operatorname{depth}(\tau)$, since
+$\overline{\partial_i\tau}$ receives a structure map from
+$\overline\tau$, whence
+$\Phi_{\overline\tau}\subseteq\Phi_{\overline{\partial_i\tau}}$ by
+Lemma~\ref{lem:nervemaps}.
+\end{lemma}
+
+\begin{proof}
+The map $\overline\tau\to\overline{\partial_i\tau}$ forgetting the
+$i$-th factor is a structure map over $X$; a structure map
+$W_1\to W_2$ over $X$ forces $\Phi_{W_1}\subseteq\Phi_{W_2}$
+(Lemma~\ref{lem:nervemaps}). Both claims follow from
+monotonicity of the kernel face along structure maps and the
+definition of depth as poset-length of the kernel.
+\end{proof}
+
+\begin{remark}[Homotopy transfer along refinements]\label{rem:transfer}
+If $R'$ refines $R$ with a choice of refinement map
+$\sigma:R'\to R$ of families (each $R'$-piece factoring through
+its $\sigma$-image), pullback of cochains along $\sigma$ is a
+cochain map on nerves; two choices of $\sigma$ induce cochain
+homotopic maps \textup{(}the standard comparison for \v{C}ech
+refinements; the homotopy inserts at position $i$ the tuple
+$(\sigma U_0,\dots,\sigma U_{i-1},U_i,\dots,U_q)$\textup{)}.
+These comparison maps assemble the colimit of
+Remark~\ref{rem:verdier}; in particular, a class vanishes in
+sheaf cohomology iff it pulls to zero along \emph{some}
+refinement, and any cocycle-level identity established after a
+pullback persists in the colimit.
+\end{remark}
+
+\begin{definition}\label{def:square}
+A cover of $X:=i(b)$ is \emph{standard} if all its piece maps are
+surjective \textup{(}always achievable,
+Lemma~\ref{lem:surj}\textup{)}, it is in the normal
+form of Theorem~\ref{thm:normalform}, and moreover it contains the
+pieces $iB$, $i(P/K)$ for all faces $K\supseteq J$, the dead
+piece $D$, and two kernel-$J$ folds on distinct rays whenever
+$\dim\bar P\ge2$ \textup{(}two nonproportional strictly positive
+rational forms on the pointed cone $\Cone(\bar P)$; when
+$\dim\bar P\le1$ no second fold is demanded, cf.\ the rank-one
+comment in Step~2 of Proposition~\ref{prop:vanish}\textup{)}.
+A standard cover is \emph{rigid} if no two distinct pieces admit
+a structure map between them, except the quotient maps forced by
+inclusion of faces. Every cover admits a standard rigid
+refinement: first refine to normal form
+(Theorem~\ref{thm:normalform}), then intersect objectwise with
+the probe family $\{\mathfrak f\}\cup\{i(P/K)\}\cup\{iB\}\cup
+\{D\}$ of Corollary~\ref{cor:probecovers}
+\textup{(}possibly doubled to two rays; the intersection is a
+cover, and all named pieces occur as their own
+intersections\textup{)}; then delete, inductively, any piece with
+a nonidentity structure map to another surviving piece---a point
+served by the deleted piece is served via the composition, whose
+birhizomicity at the point follows from the deleted map's
+birhizomicity at the target factorization.
+\textup{(}``Refined normal cover'' below means: standard rigid
+cover.\textup{)}
+\end{definition}
+
+\begin{lemma}[Kernels in the probe nerve]\label{lem:nerve}
+In the nerve of $\square_b$:
+\textup{(}i\textup{)} $\Phi_{\,\mathfrak f\otimes P/K}=K$ for every
+face $K\supseteq J$; in particular the overlap $\mathfrak
+f\otimes iB$ has $B$-level $b$, and $\mathfrak f\otimes
+P/K$ is dead for $K\supsetneq J$;
+\textup{(}ii\textup{)} $\Phi_{P/K_1\otimes P/K_2}=K_1\vee K_2$;
+\textup{(}iii\textup{)} consequently every nerve piece's $\mathcal
+G$-value is $F$ of a single face quotient, with canonical
+quotient maps between them.
+\end{lemma}
+
+\begin{proof}
+(ii): quotients compose; by Proposition~\ref{prop:bp}(c) the joint
+face has group $K_1^{\gp}+K_2^{\gp}$ and
+$(K_1\vee K_2)^{\gp}\cap P=K_1\vee K_2$ refines the kernel: the
+pushout of $P/K_1\leftarrow\bar P\to P/K_2$ is a quotient of both:
+kernel exact face $K_1\vee K_2$ \checkmark.
+(i): Lemma~\ref{lem:pushout} with $U=(P\to P/K)$, whence
+$Z_U=P+K^{\gp}$, $L_U=K^{\gp}$: the jump condition reads: some
+$t\ge1$, $a\in P^{\gp}$ with $z:=a-tx\in P+K^{\gp}$ and
+$\chi(a)\le0$. Write everything downstairs:
+$\bar z=\bar a-t\bar x\in\bar P+(K/J)^{\gp}$:
+$\bar\chi(\bar a)-t\bar\chi(\bar x)=\bar\chi(\bar z)$; with
+$\bar\chi$ tight: $\bar\chi(\bar a)\le0$; decompose
+$\bar a=\bar\omega+\bar\kappa$ with $\bar\omega\in\bar P$ and
+$\bar\kappa\in (K/J)^{\gp}$ \textup{(}possible since
+$\bar a\in t\bar x+\bar P+(K/J)^{\gp}\subseteq
+\bar P+(K/J)^{\gp}$\textup{)}. Then
+$0\ge\bar\chi(\bar a)=\bar\chi(\bar\omega)+\bar\chi(\bar\kappa)$
+with $\bar\chi(\bar\omega)\ge0$. Case A: $K=J$: $\bar\kappa=0$:
+gives $\bar\chi(\bar\omega)=0$: $\bar\omega=0$ (tight): then
+$\bar a=0$: jump condition was $-t\bar x\in\bar P$: sharpness:
+$\bar x=0$: $x\in J$: so $\Phi=J$ \checkmark. Case B: $K\supsetneq J$:
+$(K/J)^{\gp}\ne0$; since $\bar\chi$ is a group homomorphism,
+$\bar\chi((K/J)^{\gp})=d\Z$ for some $d\ge1$ (it is nonzero:
+otherwise $K^{\gp}\subseteq\ker\bar\chi^{\gp}$, hence
+$K\cap\bar P=K\subseteq\ker\bar\chi=0$: contradiction with
+$K\ne J$). Pick $\bar\kappa_N\in(K/J)^{\gp}$ with
+$\bar\chi(\bar\kappa_N)=-Nd$. Then for ANY $\bar x\in\bar P$, with
+$a$ defined by $\bar a:=t\bar x+\bar\kappa_N$ ($N$ large so
+$\bar\chi(\bar a)\le0$), we get $\bar a-t\bar x=\bar\kappa_N\in
+(K/J)^{\gp}\subseteq\bar Z$ \checkmark and $\bar\chi(a)\le0$ \checkmark: every $x$
+dies: the piece is dead \checkmark. (For the second clause of (i):
+$\mathfrak f\otimes iB$ is Case A.)
+\end{proof}
+
+\begin{lemma}[Kernels of general nerve pieces]\label{lem:mixed}
+\textup{(}a\textup{)} The overlap of two kernel-$J$ folds has
+kernel $J$ if their functionals are proportional
+\textup{(}same ray\textup{)} and is dead otherwise.
+\textup{(}b\textup{)} Longer overlaps are governed by the two
+exact claims:
+\begin{enumerate}[label=\textup{(}C\arabic*\textup{)}]
+\item If $\Phi_U=J$ and $Z_U=P+J^{\gp}$ \textup{(}as is the case
+for all pieces with surjective structure map,
+Lemma~\ref{lem:Zpointed}\textup{)}, and $\varphi$ is tight on
+$\bar P=P/J$, then $\Phi_{U\otimes\mathfrak f_\varphi}=J$.
+\item If $\Phi_U=K$ and $Z_U=P+K^{\gp}$, and $\varphi$ vanishes
+exactly on the face $K$ \textup{(}tight on $P/K$\textup{)},
+then $\Phi_{U\otimes\mathfrak f_\varphi}=K$ \textup{(}applied
+in the iteration with $K$ replaced by the finer
+join\textup{)}.
+\end{enumerate}
+Consequently: if two positions are kernel-$J$ folds on distinct
+rays, the piece is dead; otherwise its kernel equals the kernel
+of the sub-overlap of its non-fold positions, computed
+inductively by \textup{(}C2\textup{)}.
+\end{lemma}
+
+\begin{proof}
+(a) Example~\ref{ex:ff}.
+(C1) By Lemma~\ref{lem:pushout} a jump requires
+$(t,a)$ with $a-tx\in Z_U=P+J^{\gp}$, i.e.\
+$\bar a\in t\bar x+\bar P\subseteq\bar P$, and
+$\varphi^{\gp}(a)\le0$. Since $\varphi$ is tight on $\bar P$,
+$\bar a\in\bar P$ with $\varphi(\bar a)\le0$ forces
+$\bar a=0$; then $-t\bar x\in\bar P$, and sharpness gives
+$\bar x=0$: $x\in J$: no jump occurs, so the kernel stays $J$.
+(C2) Identical after replacing $J$ by $K$: with
+$\ker\varphi=K$, condition (B) gives
+$\varphi^{\gp}(a)\le0$; write
+everything modulo $J$, with $\bar\varphi:\bar P\to\mathbb N$
+vanishing exactly on the face $K/J$: (A), i.e.\
+$a-tx\in P+K^{\gp}$, gives
+$\bar a\in t\bar x+\bar P+(K/J)^{\gp}$ after reduction;
+absorbing the $(K/J)^{\gp}$-part into $\bar a$ (allowed:
+$\bar\varphi$ vanishes there), (A) reads
+$\overline{a-tx}\in\bar P$, i.e.\ $\bar a\in t\bar x+\bar P$;
+(B) and the face property of $K/J$: if $\bar\varphi(\bar a)=0$
+then $\bar a\in K/J$ and $t\bar x=\bar a-\bar z$ with
+$\bar z\in\bar P$ is an equality inside $\bar P$ with sum in the
+face $K/J$, hence $t\bar x\in K/J$; saturation gives
+$\bar x\in K/J$, i.e.\ $x\in K$. If
+$\bar\varphi(\bar a)<0$: $\bar\varphi(t\bar x)=
+\bar\varphi(\bar a)-\bar\varphi(\bar z)\le\bar\varphi(\bar a)<0$
+while $\bar\varphi(t\bar x)\ge0$: impossible. Conversely every
+$x\in K$ dies via $t=1$, $\bar a=\bar x$ exactly as in the proof
+of Theorem~\ref{thm:descent}, Claim B.
+The final stronger clause is the iteration of (C1) (no fold
+added) together with (C2) applied at the join kernel.
+\end{proof}
+
+\begin{lemma}[Value group on a face quotient]\label{lem:dlemma}
+Let $K\supsetneq J$ be a face strictly larger than $J$, and let
+$\chi:\bar P=P/J\to\mathbb N$ be tight. Then
+$\bar\chi^{\gp}((K/J)^{\gp})=d\Z$ for some integer $d\ge1$
+\textup{(}in particular it is nonzero\textup{)}.
+\end{lemma}
+
+\begin{proof}
+Were it zero, $(K/J)^{\gp}\subseteq\ker\bar\chi^{\gp}$; applying
+Proposition~\ref{prop:bp}(c) gives
+$K/J=(K/J)^{\gp}\cap\bar P\subseteq\ker\bar\chi=\{0\}$ by
+tightness, hence $K=J$: contradiction.
+\end{proof}
+
+\begin{lemma}[Constant strands]\label{lem:const}
+Let $\mathscr W$ take value $A$ on every nerve piece of a cover
+family $\mathcal I$, with every face map $\mathrm{id}_A$, and
+assume the family contains two pieces $R_{\min}\subseteq
+R_{\max}$ with $R_{\min}\subseteq U\subseteq R_{\max}$ for all
+$U\in\mathcal I$. Then the alternating \v{C}ech complex computes
+$\HH^0=A$ and $\HH^{q\ge1}=0$.
+\end{lemma}
+
+\begin{proof}
+This is the constant-complex Lemma~\ref{lem:constcx} applied to
+the family $\mathcal I$: $R_{\min}$ is its minimum piece, every
+piece receives a structure map from it, and all face maps are
+$\mathrm{id}_A$; the conclusion is
+$\HH^0=A$, $\HH^{q\ge1}=0$ (the $\HH^0$-value is read off at any
+piece, e.g.\ at $R_{\max}$).
+\end{proof}
+
+
+\begin{lemma}[The dead level]\label{lem:dead}
+For the dead object $D=(P\to\{0\})$: $\mathcal G$ is constant equal
+to $F(b_P)$ on its slice, every cover's pieces all lie over $D$, and
+$H^0(D,\mathcal G)=F(b_P)$, $H^{q\ge1}(D,\mathcal G)=0$ by
+Lemma~\textup{\ref{lem:const}} applied within each cover
+\textup{(}equivalently: sheaf cohomology on a slice category with an
+initial object, on a constant sheaf, vanishes in positive
+degrees\textup{)}.
+\end{lemma}
+
+\begin{proof}
+Every piece over $D$ has kernel $\supseteq\Phi_D=P$: all dead; the
+slice $A_P/D$ has $D$ initial; compatible systems are pinned by
+identity transitions to constants; the \v{C}ech complexes are the
+constant-strand ones of Lemma~\ref{lem:const}.
+\end{proof}
+
+\begin{lemma}[Filter lemma]\label{lem:filter}
+Let $\Xi$ be a finite poset of levels with a unique largest
+element $\top$, and let $R$ be a cover of $X$ with a presheaf
+$\mathscr W$ whose pieces carry order-respecting
+$\Xi$-labels---every structure map
+$\overline\tau\to\overline{\tau'}$ has
+$\operatorname{lev}(\overline\tau)\XiLe
+\operatorname{lev}(\overline{\tau'})$, so by
+Lemma~\ref{lem:depth} each face of a nerve piece has label
+$\XiLe$ the piece's label. Suppose:
+\textup{(}F1\textup{)} the top level $\top$ is a
+differential-closed constant strand with a minimum piece
+\textup{(}Lemma~\ref{lem:constcx}\textup{)}: $\mathscr W$ is
+constant equal to a single $A$ on $\top$-nerve pieces, all
+structure maps among them inducing $\mathrm{id}_A$, and a fixed
+piece $H_\top$ maps to every $\top$-piece;
+\textup{(}F2\textup{)} every nerve piece labelled $\top$ arises
+by adjoining to a lower-labelled tuple $\tau$ a piece $U$ whose
+structure map factors through $H_\top$, with
+$\overline{(U,\tau)}$ again $\top$-labelled; the piece $U$ is a
+fold whose structure map's image lies in the kernel of the
+transport $\mathscr W(\overline\tau\cup U)\to\mathscr
+W(\overline\tau)$ \textup{(}the \emph{dead-adjunction
+hypothesis}\textup{)}.
+If $z$ is a degree-$q\ge1$ cocycle whose value at every
+$\top$-labelled nerve piece vanishes, then $z$ is cohomologous,
+within the same cover, to a cocycle supported on labels
+$\XiLt\top$ \textup{(}the next-level values being the signed
+transports of Lemma~\ref{lem:subquot}\textup{)}; iterating down
+the finite poset, $z$ pulls \textup{(}after no refinement: at
+the level of cocycles\textup{)} to a cocycle supported at the
+initial level.
+\end{lemma}
+
+\begin{proof}
+Define, for a lower tuple $\tau$ \textup{(}all labels
+$\XiLt\top$\textup{)}, a cochain $h$ on $\top$-pieces by
+$(he)_{(U,\tau)}:=e_{\tau}$ when (F2) applies
+\textup{(}transported: $e_\tau$ lies at the lower level; the
+value is its image at $\overline{(U,\tau)}$, well-defined since
+the map $\overline{(U,\tau)}\to\overline\tau$ has constant
+transport by (F2)'s factoring through $H_\top$
+\textup{)}. Then the cocycle equation
+$(\partial z)_{(U,\tau)}=0$ reads, isolating the face omitting
+$U$,
+\[
+z_\tau\ \text{\textup{(}transported\textup{)}}\ =\
+\sum_{i}(-1)^{i+1}\,\mathscr W(d_i)\bigl(z_{(U,\partial_i\tau)}\bigr)
+\quad\text{on }\top\text{-pieces},
+\]
+whose right side is $(\partial h z)_{(U,\tau)}$: precisely the
+constant-complex contraction of Lemma~\ref{lem:constcx} run
+against the anchor $H_\top$. Subtracting $\partial(hz)$---a
+coboundary supported on $\top$ by (F1)---removes the
+$\top$-component, and by Lemma~\ref{lem:subquot} the cocycle is
+now supported one level lower, the next-level values shifted by
+the signed transport. Finiteness of $\Xi$ terminates the
+descent at the initial level.
+\end{proof}
+
+\begin{lemma}[Sieve: fold terraces]\label{lem:sieve}
+Let $R$ be a standard rigid cover of $i(b)$ and $z$ a $\mathcal
+G$-\v{C}ech cocycle of degree $q\ge1$ on $R$. Then $z$ is
+cohomologous within $R$ \textup{(}no refinement\textup{)} to a
+cocycle vanishing at every nerve piece containing a kernel-$J$
+fold \textup{(}the dead sector is left arbitrary\textup{)}.
+\end{lemma}
+
+\begin{proof}
+A kernel-$J$ fold is a tight functional
+$\varphi:\bar P\to\mathbb N$; up to rational multiple it is a
+point of the pointed, strictly convex rational polyhedral cone
+$\Cone(\bar P)^{\vee}$, so there are finitely many fold
+\emph{rays} in $R$: enumerate them $\mathfrak f_1,\dots,\mathfrak
+f_m$. For a ray index $r$ let the \emph{$r$-fold strand} consist
+of the tuples containing $\mathfrak f_r$ but no fold of a
+different ray. On such a tuple $\tau=(\mathfrak f_r,\sigma)$
+every position of $\sigma$ is $iB$ or a fold on ray $r$, hence
+has kernel $\subseteq J$; by Lemma~\ref{lem:nerve}(i) Case A and
+Lemma~\ref{lem:mixed}(C1) the overlap
+$\overline\tau=\mathfrak f_r\otimes\overline\sigma$ still has
+kernel $J$, so all structure maps among these nerve pieces induce
+the identity on the $\mathcal G$-value $F(b)$. Define a
+$(q-1)$-cochain $w_r$ on the strand by
+\[
+(w_r)_\sigma\;:=\;z_{(\mathfrak f_r,\sigma)}\qquad
+(\text{taken }=0\text{ if }(\mathfrak f_r,\sigma)\text{ has a
+repetition}),
+\]
+which is well-defined because adjoining $\mathfrak f_r$ keeps the
+kernel $J$ \textup{(}above\textup{)}. Then for a strand cocycle
+$z$, $(\partial w_r)_\tau=z_\tau-(w_r\partial)_\tau$: this is the
+constant-strand identity, since with all transports
+$\mathrm{id}_{F(b)}$
+\[
+(\partial w_r)_\tau=\sum_i(-1)^i z_{(\mathfrak
+f_r,\partial_i\tau)},\qquad
+(w_r\partial)_\tau=z_\tau-\sum_i(-1)^i z_{(\mathfrak
+f_r,\partial_i\tau)},
+\]
+so $(\partial w_r+w_r\partial)=z$ on the strand: the strand is
+acyclic in degrees $\ge1$ and the $r$-component of $z$ is
+$\partial w_r$. The strands for distinct $r$ are disjoint
+\textup{(}a tuple with two distinct-ray folds lies in
+none\textup{)} and their union is differential-closed, so by
+repeated application of the exact-subquotient
+Lemma~\ref{lem:subquot} the cocycle $z-\partial(\sum_r w_r)$ is
+supported on tuples containing \emph{no} kernel-$J$ fold, as
+claimed. The dead tuples are never touched.
+\end{proof}
+\begin{lemma}[Common refinement of covers]\label{lem:sandwich}
+Let $R=\{U_\alpha\}$ and $S=\{V_\beta\}$ be covers of $i(b)$ in
+the sliced birhizomic site. Then
+$R^\flat:=\{U_\alpha\otimes_{i(b)}V_\beta\}_{\alpha,\beta}$ is a
+cover of $i(b)$ refining both $R$ and $S$
+\textup{(}via the structure maps to $U_\alpha$ and to
+$V_\beta$\textup{)}; in particular the \v{C}ech colimit of
+Remark~\ref{rem:verdier} is directed.
+\end{lemma}
+
+\begin{proof}
+The birhizomic topology is a pretopology: its coverings are
+stable under pullback and composition
+\textup{(}Remark~\ref{rem:cover-points}; the pushouts exist by
+Construction~\ref{constr:pushout}\textup{)}. For each fixed
+$U_\alpha$ the family $\{U_\alpha\otimes_{i(b)}V_\beta\}_\beta$
+is the pullback of the cover $S$ along $U_\alpha\to i(b)$, hence
+a cover of $U_\alpha$; composing these over the cover
+$R=\{U_\alpha\}$ of $i(b)$, the family
+$\{U_\alpha\otimes_{i(b)}V_\beta\}_{\alpha,\beta}$ covers
+$i(b)$. It refines $R$ and $S$ via the two structure maps
+$U_\alpha\otimes V_\beta\to U_\alpha$ and
+$U_\alpha\otimes V_\beta\to V_\beta$ given by the pushout
+universal property.
+\end{proof}
+
+
+\begin{proposition}\label{prop:vanish}
+\textup{(}a\textup{)} $H^0(i(b),\mathcal G)=F(b)$.
+\textup{(}b\textup{)} For $q\ge1$, every class
+$[z]\in\HH^{q}(R;\mathcal G)$ on a standard rigid cover is, after a
+common refinement, cohomologous to a cocycle that \textup{(}i\textup{)}
+has coboundary values with coefficients in $F(b_P)$ at every nerve
+piece mapping to $D$, and \textup{(}ii\textup{)} vanishes at every
+nerve piece containing a kernel-$J$ fold. The final vanishing
+$H^{q>0}(i(b),\mathcal G)=0$ is \emph{not} proved for arbitrary $F$
+\textup{(}see the Closing remark\textup{)}.
+\end{proposition}
+
+\begin{proof}
+By the comparison theorem (Remark~\ref{rem:verdier}),
+$H^q(i(b),\mathcal G)=\colim_R\HH^q(R;\mathcal G)$ over the nerves
+of Definition~\ref{def:nerve}, the colimit taken over the standard
+rigid covers (cofinal by Definition~\ref{def:square}), which form a
+directed system by the common-refinement
+Lemma~\ref{lem:sandwich}. We prove
+$\HH^0(i(b),\mathcal G)=F(b)$---true already on the nose:
+$\mathcal G$ is a sheaf (Theorem~\ref{thm:descent}) and
+$\mathcal G(i(b))=F(b)$ (Proposition~\ref{prop:adj})---and that
+every class $[z]\in\HH^{q\ge1}(R;\mathcal G)$ pulls to zero on a
+further refinement. We work one degree $q\ge1$ at a time,
+associating to a $q$-cocycle its $(q-1)$-\emph{faces} (the values
+$z_{(U_0,U_1)}$), and use the sheaf axiom at each step to descend.
+For $\bar P=\{0\}$ the slice is the dead level and
+Lemma~\ref{lem:dead} gives the vanishing; for $\dim\bar P\le1$ the
+whole nerve of a standard rigid cover is the constant strand with
+minimum $iB$, so Lemma~\ref{lem:const}
+($R_{\min}=R_{\max}=iB$) gives $\HH^{q\ge1}=0$ directly (these are
+the base cases). Assume now $\dim\bar P\ge2$.
+
+\emph{Step 1 (dead-sector hygiene).} Let $R$ be a standard rigid
+cover. The sifted family $S:=\{U\otimes_{i(b)}D:U\in R\}$ is the
+pullback of $R$ along $D\to i(b)$, hence a cover of $D$
+(Lemma~\ref{lem:sandwich}); pass to the common refinement of $R$
+and $S$ (Lemma~\ref{lem:sandwich} again) and keep the notation
+$R$, $z$. Every nerve piece of $S$ is dead, and on the slice over
+$D$ the sheaf $\mathcal G$ is the constant sheaf $F(b_P)$
+(Lemma~\ref{lem:dead}); by the constant-complex
+Lemma~\ref{lem:constcx} with anchor $H=D$, the restricted cocycle
+is a coboundary: $z|_S=\partial w$ for a $(q-1)$-cochain $w$ on
+$S$. Pulling $w$ back to $R$ along the refinement map, we may
+subtract $\partial w$ from $z$; hence after this refinement
+\[
+\text{the value of }z\text{ at every nerve piece that maps to }D
+\text{ is the value of a coboundary with coefficients in }F(b_P).
+\tag{$\ast$}
+\]
+We assert nothing further about the dead sector; we do not pin it
+to a single constant.
+
+\emph{Step 2 (fold terraces).} Apply Lemma~\ref{lem:sieve} to
+$z$: within the same cover it is cohomologous to a cocycle
+vanishing at every nerve piece containing a kernel-$J$ fold;
+replace $z$ by this representative. In particular
+$z_{\mathfrak f}=0$ for every kernel-$J$ fold $\mathfrak f$ and
+$z_\tau=0$ at every tuple containing one. \textup{(}The
+identification $\bar\chi^{\gp}((K/J)^{\gp})=d\Z$, $d\ge1$, used
+in the kernel computations is Lemma~\ref{lem:dlemma}.\textup{)}
+
+\emph{Step 3 (where the argument stops).} After Step~2, $z$
+vanishes on every tuple containing a kernel-$J$ fold; the surviving
+tuples are built from $iB$ and the CFA pieces $i(P/K)$. The natural
+candidate to conclude $[z]=0$ is the $iB$-contraction: adjoining
+$iB$ is internal on a fold-free tuple, and
+$(hz)_\tau:=z_{(iB,\tau)}$ \textup{(}$=0$ on repetition\textup{)} is
+well-defined with $(\partial hz)_\tau=z_\tau-(h\partial z)_\tau$,
+as in Lemma~\ref{lem:sieve}. However, to have
+$z_\tau=(\partial hz)_\tau$ at a fold-free tuple one uses
+$\partial z=0$ there, and the residual term of $\partial(hz)$ at the
+dead adjacent tuples must then cancel the contraction: this requires
+$\mathcal G$ to agree on the base face and its quotient faces, i.e.\
+the transitions $\mathcal G(i(b))\to\mathcal G(i(P/K))$ to be
+identities. For a general presheaf $F$ these are the quotient maps
+$F(b)\to F(B(i(P/K)))$, which need not be identities, and the
+discrepancy cannot be absorbed into Step~1's $w$
+\textup{(}which lives only on the dead level\textup{)}. The
+vanishing follows in those special cases where $\mathcal G$ agrees
+on base and quotient faces, but not for arbitrary $F$; the document
+therefore does \emph{not} assert $H^{q>0}(i(b),\mathcal G)=0$ in
+general. The degree-$0$ part is Theorem~\ref{thm:descent} and
+Proposition~\ref{prop:adj}.
+\end{proof}
+
+We close by recording exactly what has been proved and what remains
+open, in accordance with the requirement never to present conjecture
+as fact.
+
+\begin{proposition}[The sheaf and the degree-zero unit]\label{thm:main-end}
+For every finitely generated monoid $P$ and every presheaf $F$ of
+abelian groups on $B_P^{\op}$:
+\textup{(}i\textup{)} $\pi^{-1}F=G_F$ is a sheaf
+\textup{(}Theorem~\ref{thm:descent}\textup{)}; \textup{(}ii\textup{)}
+the unit $F\to\pi_*\pi^{-1}F$ is an isomorphism, i.e.\
+$\mathrm R^{0}\pi_*(\pi^{-1}F)=F$.
+\end{proposition}
+
+\begin{proof}
+(i) is Theorem~\ref{thm:descent}. (ii): with the trivial topology on
+$B_P^{\op}$ sheaves equal presheaves, and
+$H^0(i(b),\mathcal G)=\mathcal G(i(b))=F(b)$ by
+Theorem~\ref{thm:descent} and Proposition~\ref{prop:adj}, so the
+degree-zero unit $F\to\pi_*\pi^{-1}F$ is the identity sheaf map.
+\end{proof}
+
+\paragraph{Closing remark: higher direct images and the general
+case.} Two points are deliberately left open, and this note does not
+decide them. \textup{(}1\textup{)} \emph{Higher direct images.}
+Proposition~\ref{prop:vanish} reduces $H^{q>0}(i(b),\mathcal G)$,
+after the fold terraces are killed (Lemma~\ref{lem:sieve}) and the
+dead sector is made coboundary-valued, to an $iB$-contraction on the
+residuum. That contraction requires $\mathcal G$ to agree on the base
+face and its quotient faces; for an \emph{arbitrary} presheaf $F$ the
+structure map $\mathcal G(i(b))\to\mathcal G(i(P/K))$ is the quotient
+map $F(b)\to F(B(i(P/K)))$, which need not be the identity, so the
+residuum argument does not close $H^{q>0}(i(b),\mathcal G)=0$ for all
+$F$, and the document does not claim it does. Consequently the full
+quasi-isomorphism asked in the problem
+\textup{(}$\mathrm R^{q>0}\pi_*(\pi^{-1}F)=0$ for $q>0$\textup{)} is
+\emph{not proved here}. \textup{(}2\textup{)} \emph{Non-finitely
+generated $P$.} As recorded in the Scope hypothesis
+\textup{(}\S\ref{sec:intro}\textup{)} and Remark~\ref{rem:nonfg},
+without finite generation of $P$ the map $P\to P/K$ need not be
+finitely presented and the face poset can be infinite, so the
+birhizomic-cover machinery and the finiteness used in the sieve
+break; the general case is obstructed exactly there and is likewise
+left open. No counterexample to either open point is known to this
+note: as stated, the problem is \emph{open}, with the degree-zero
+part and the sheaf property established above for finitely generated
+$P$.
+
+\end{document}

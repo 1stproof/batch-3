@@ -1,0 +1,44 @@
+Review complete. Everything is verified and recorded. Let me give the final structured summary.
+
+---
+
+## Round 2 Review — Complete
+
+I read `plan.md`, the round-2 prompt, the goal tracker, all round files, the git history, and the current `solution.tex`, then ran **independent verification scripts** rather than trusting the summary.
+
+### Part 1 — Implementation review (verified claims, with my own numbers)
+
+- **Compile**: `pdflatex` ×2 → exit 0, **6 pages (≤16)**, no undefined refs. AC-5 ✓
+- **The headline "critical correction" (hypersum vs element-cube (E))**: independently verified. In fields, `1∈a⊞b` forces `a+b=1`, so element-cube (E) is the identity `a³+b³−1+3ab=0` (always true); the hypersum form needs `3a+3b−1+3ab=0` which fails (e.g. `a=2,b=−1`). Claude's fix is mathematically right and the previous (E) was genuinely over-strong.
+- **My own sweep over `F_q/U`, all subgroups, p≤43**: element-cube (E) 0/925 failures; hypersum form fails 252; original theorem 0/9 441 failures. All consistent.
+- **H4-collapse refutation (F₅)**: `c=2,d=4,s=1,t=3` fails exactly as claimed; 9 such tuples exist in F₅. ✓
+- **Value-swap quantifier**: existential witness always exists (0/925 miss), single-witness swap fails on a positive fraction (~19% my convention; Claude's 24% his). The corrected conclusion is right. ✓
+- **Zero-trap example (F₁₉/{±1})**: reproduced exactly; `F₁₉/{±1}` satisfies all of (H1)–(H4); example is tight. ✓
+- **Proof audit §§1–3**: still line-by-line clean; equivalence in `prob:elevation` arithmetically correct. One queued notation slip (`X³` vs `X^{⊞3}`).
+- Git history matches; `.humanize` is gitignored loop-state by design.
+
+### Part 2 — Goal Alignment Summary
+```
+ACs: 2/5 confirmed this round (AC-3, AC-5) + AC-2, AC-4 maintained; AC-1 FAILS (free case open)
+Forgotten items: 0
+Unjustified deferrals: 1 (Elevation Problem — refuting 4 routes does not discharge it)
+```
+
+### Part 3 — Capability Alignment
+```
+Capability anchor: N/A (plan has no capability map) | Dependency gaps: 0 | Scope drift: no
+```
+
+### Part 4 — Classification
+- **Mainline Gaps (M1)**: AC-1 free case open. Claude settled all four named routes correctly, but refuting dead routes is groundwork, not proof progress. I wrote a **binding ordered Round-3 plan** (prove element-cube (E) in the no-self-inverse case `−1∉U`; else a single-step elevation lemma licensing the `−w∈P` replacement; else classify the zero-trap family and prove the complement).
+- **Blocking Side Issues**: none new.
+- **Queued Side Issues**: Q4 added (`X³`/`X^{⊞3}` notation inconsistency + two smuggled counts in `rem:honest(e)`).
+
+### Part 5 — Tracker updates made
+Fixed the malformed `Completed and Verified` table (two rows crammed on one line), recorded my verification in the evidence column, added the 2R plan-evolution row (STALLED + R3 direction), replaced the completed R2 active-task with the new R3 mainline task, updated the blocking-issue resolution path, and added Q4 to Queued Side Issues.
+
+```
+Mainline Progress Verdict: STALLED
+```
+
+Review written to `.humanize/rlcr/2026-10-03_01-18-59/round-2-review-result.md`. The deliverable is honest, correct, and compiles, but the Elevation Problem remains unproved, so per the protocol this is **not** complete.

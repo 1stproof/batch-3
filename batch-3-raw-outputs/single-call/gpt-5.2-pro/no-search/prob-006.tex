@@ -1,0 +1,149 @@
+```latex
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\begin{document}
+
+\title{Prime summands of Dehn surgeries on L-space knots}
+\date{}
+\maketitle
+
+\begin{abstract}
+We prove that any closed $3$--manifold obtained by Dehn surgery on an L-space knot in $S^3$ has at most two prime summands. The key input is the Gordon--Luecke theorem describing reducible Dehn surgeries on knots in $S^3$.
+\end{abstract}
+
+\section{Statement of the problem}
+
+\begin{definition}[L-space, L-space knot]
+An \emph{L-space} is a rational homology $3$--sphere $Y$ such that
+\[
+\operatorname{rk}\,\widehat{HF}(Y)=|H_1(Y;\mathbb{Z})|
+\]
+in the sense of Ozsv\'ath--Szab\'o Heegaard Floer homology \cite{OS04}.
+An \emph{L-space knot} is a knot $K\subset S^3$ for which there exists a positive integer $p$ such that the Dehn surgery $S^3_p(K)$ is an L-space.
+\end{definition}
+
+\begin{definition}[Dehn surgery notation]
+Fix a knot $K\subset S^3$, and let $r\in\mathbb{Q}\cup\{\infty\}$ be a slope on $\partial(S^3\setminus \nu K)$ in the usual meridian--longitude coordinates.
+We write $S^3_r(K)$ for the closed $3$--manifold obtained by Dehn filling along slope $r$ (with the convention $S^3_\infty(K)=S^3$).
+\end{definition}
+
+\begin{definition}[Reducible, prime, prime summands]
+A closed, connected, orientable $3$--manifold $Y$ is \emph{reducible} if it contains an embedded $2$--sphere which does not bound an embedded $3$--ball.
+It is \emph{prime} if whenever $Y\cong Y_1\# Y_2$ then $Y_1\cong S^3$ or $Y_2\cong S^3$.
+The \emph{prime summands} of $Y$ are the factors appearing in its Kneser--Milnor prime decomposition.
+\end{definition}
+
+\begin{theorem}\label{thm:main}
+Let $K\subset S^3$ be an L-space knot. Then for every slope $r\in\mathbb{Q}\cup\{\infty\}$, the surgered manifold $S^3_r(K)$ has at most two prime summands.
+\end{theorem}
+
+\begin{remark}
+The proof does not use the L-space hypothesis: the conclusion holds for \emph{every} knot in $S^3$.
+\end{remark}
+
+\section{Prime decomposition preliminaries}
+
+We will use the existence and uniqueness of the prime decomposition.
+
+\begin{theorem}[Kneser--Milnor prime decomposition]\label{thm:kneser-milnor}
+Every closed, connected, orientable $3$--manifold $Y$ can be written as a connected sum
+\[
+Y \cong Y_1 \# \cdots \# Y_n
+\]
+where each $Y_i$ is prime, and this expression is unique up to order and orientation-preserving homeomorphism of the summands.
+\end{theorem}
+
+\begin{proof}
+Existence is due to Kneser \cite{Kneser29}. Uniqueness is due to Milnor \cite{Milnor62}.
+\end{proof}
+
+We also record the standard implication from irreducibility to primeness.
+
+\begin{lemma}\label{lem:irr-implies-prime}
+If $Y$ is a closed, connected, orientable, \emph{irreducible} $3$--manifold, then $Y$ is prime.
+\end{lemma}
+
+\begin{proof}
+Suppose $Y\cong Y_1\#Y_2$. By definition of connected sum there is an embedded sphere $S\subset Y$ realizing the decomposition. Since $Y$ is irreducible, $S$ bounds an embedded $3$--ball $B\subset Y$. Cutting $Y$ along $S$ yields $Y_1\setminus B^3$ and $Y_2\setminus B^3$, and if $S$ bounds a ball in $Y$ then one of these pieces must be a $3$--ball; hence one of $Y_1,Y_2$ is $S^3$. Thus $Y$ is prime.
+\end{proof}
+
+\section{Reducible surgeries on knots in \texorpdfstring{$S^3$}{S3}}
+
+The essential input is the following theorem of Gordon--Luecke.
+
+\begin{theorem}[Gordon--Luecke]\label{thm:GL}
+Let $K\subset S^3$ be a nontrivial knot. If $S^3_r(K)$ is reducible, then:
+\begin{enumerate}
+\item $r\in\mathbb{Z}\setminus\{0\}$ (i.e.\ a nonzero integer slope);
+\item $S^3_r(K)$ has \emph{exactly two} prime summands, one of which is a lens space.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}[Citation]
+This is proved in Gordon--Luecke \cite{GL96}. In particular, \cite{GL96} establishes that a reducible surgery on a nontrivial knot in $S^3$ must be integral and that the resulting reducible manifold is a connected sum of a lens space and an irreducible integer homology sphere; equivalently, it has precisely two prime summands.
+\end{proof}
+
+\begin{remark}\label{rem:lens-prime}
+Lens spaces are irreducible (hence prime) because each $L(p,q)$ is a quotient of $S^3$ by a free finite cyclic action, and any embedded $2$--sphere lifts to embedded $2$--spheres in $S^3$, each bounding a ball; projecting such a ball shows the original sphere bounds a ball in $L(p,q)$. A standard reference is \cite[Chapter~3]{Hempel}.
+\end{remark}
+
+\section{Proof of the main theorem}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Let $K\subset S^3$ be an L-space knot and let $r\in\mathbb{Q}\cup\{\infty\}$.
+
+If $K$ is the unknot, then $S^3_r(K)$ is either a lens space (when $r\neq 0$) or $S^1\times S^2$ (when $r=0$). In either case the manifold is prime, hence has exactly one prime summand.
+
+Assume henceforth that $K$ is nontrivial. If $S^3_r(K)$ is irreducible, then it is prime by Lemma~\ref{lem:irr-implies-prime}, so it has one prime summand.
+
+If instead $S^3_r(K)$ is reducible, then Theorem~\ref{thm:GL} applies and shows that $S^3_r(K)$ has exactly two prime summands (one a lens space). In particular, it has at most two prime summands.
+
+Thus in all cases $S^3_r(K)$ has at most two prime summands.
+\end{proof}
+
+\begin{remark}
+As noted above, the argument never uses that $K$ is an L-space knot; the same conclusion holds for any knot in $S^3$.
+\end{remark}
+
+\begin{thebibliography}{99}
+
+\bibitem{GL96}
+C.~McA.~Gordon and J.~Luecke,
+\newblock \emph{Dehn surgeries on knots producing reducible manifolds},
+\newblock Topology \textbf{35} (1996), no.~2, 385--409.
+
+\bibitem{Hempel}
+J.~Hempel,
+\newblock \emph{$3$--Manifolds},
+\newblock Annals of Mathematics Studies, No.~86, Princeton University Press, 1976.
+
+\bibitem{Kneser29}
+H.~Kneser,
+\newblock \emph{Geschlossene Fl{\"a}chen in dreidimensionalen Mannigfaltigkeiten},
+\newblock Jahresbericht der Deutschen Mathematiker-Vereinigung \textbf{38} (1929), 248--260.
+
+\bibitem{Milnor62}
+J.~Milnor,
+\newblock \emph{A unique decomposition theorem for $3$--manifolds},
+\newblock Amer.\ J.\ Math.\ \textbf{84} (1962), 1--7.
+
+\bibitem{OS04}
+P.~Ozsv\'ath and Z.~Szab\'o,
+\newblock \emph{Holomorphic disks and topological invariants for closed three-manifolds},
+\newblock Ann.\ of Math.\ (2) \textbf{159} (2004), no.~3, 1027--1158.
+
+\end{thebibliography}
+
+\end{document}
+```

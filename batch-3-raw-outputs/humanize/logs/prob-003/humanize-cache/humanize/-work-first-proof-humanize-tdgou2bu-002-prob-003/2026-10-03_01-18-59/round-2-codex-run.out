@@ -1,0 +1,13 @@
+Review complete. My findings are written to `round-2-review-result.md` and the goal tracker has been reconciled.
+
+## Summary of the critical review
+
+I built **three independent exact engines from the printed axioms verbatim** (co-op `(PA)`, `(P)`, `(C)`, `(S)`, `(SK)`, rational functions in t with q=t¹²) and re-ran both worker engines. The picture that emerged is precisely calibrated:
+
+**What round 3 got right (verified from axioms):** The entire pairing layer — lem:T, lem:compat including Serre descent, lem:cross(a),(b),(c), and the (bar-ast) sign bookkeeping — is **correct** in the printed co-op world. Notably, the round-1 reviewer's lem:cross(b) flip claim was **wrong**, and the worker's refusal to flip it in round 3 was the correct non-action.
+
+**The fatal finding (A1):** prop:EF's displayed first channel is **false as displayed** under the paper's own printed `(PA)`+`(SK)`. Because S⁻¹(E_r) = −E_r𝒦_r⁻¹ is a *two-letter* word, the first channels pair a two-letter first argument against a two-letter second argument — exactly where the co-op second line of `(PA)` matters. The def:D claim that "the two variants agree on single letters or grouplikes… hence the cross calculus is insensitive" is false. My engine gives ⟨𝒦_s⁻¹F_s, E_r𝒦_r⁻¹⟩ = δθq⁻², so (EF) should carry −θq⁻²𝒦⁽⁻⁾⁻¹, not the displayed −θ𝒦⁽⁻⁾⁻¹. Independent tell: **vrf.py's own EF battery header records −θq⁻² while vcheck asserts (EF') as a step rule — the worker's two engines are internally inconsistent at the one scalar that decides the problem.**
+
+Machine-exact reduction confirms (EF)⇒(EF') is **not valid in D** (the two forms coincide only at q⁰). Consequently (M2), Part-1 well-definedness, and Part 2's lem:diag (H2)-specialization are all unproved.
+
+**Verdict: STALLED.** Not complete. Concrete repair direction (D1a q²-twisted commutator + E-rescaling, or D1b mirrored negative-Borel coproduct) is in section D of the review.

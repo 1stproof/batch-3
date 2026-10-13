@@ -1,0 +1,2746 @@
+=== latexmk ===
+Rc files read:
+  NONE
+Latexmk: This is Latexmk, John Collins, 7 Jan. 2023. Version 4.79.
+No existing .aux file, so I'll make a simple one, and require run of *latex.
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Category 'other':
+  Rerun of 'pdflatex' forced or previously required
+
+------------
+Run number 1 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex -no-shell-escape  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/tmp/first-proof-latex-1xgdm8ex"  "/work/first-proof-humanize-tdgou2bu/002-prob-003/solution.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex)
+entering extended mode
+(/work/first-proof-humanize-tdgou2bu/002-prob-003/solution.tex
+LaTeX2e <2022-11-01> patch level 1
+L3 programming layer <2023-01-16>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mathtools.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(/tmp/first-proof-latex-1xgdm8ex/solution.aux)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+))))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(./solution.out) (./solution.out)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueuf.fd)
+
+LaTeX Warning: Reference `thm:one' on page 1 undefined on input line 56.
+
+
+LaTeX Warning: Reference `thm:two' on page 1 undefined on input line 59.
+
+
+LaTeX Warning: Reference `def:A' on page 1 undefined on input line 64.
+
+
+LaTeX Warning: Reference `relAA' on page 1 undefined on input line 65.
+
+
+LaTeX Warning: Reference `M0' on page 1 undefined on input line 66.
+
+
+LaTeX Warning: Reference `M3' on page 1 undefined on input line 66.
+
+
+LaTeX Warning: Reference `def:D' on page 1 undefined on input line 75.
+
+
+LaTeX Warning: Reference `rem:ext' on page 1 undefined on input line 76.
+
+
+LaTeX Warning: Reference `sec:cross' on page 1 undefined on input line 77.
+
+
+LaTeX Warning: Reference `P0' on page 1 undefined on input line 78.
+
+
+LaTeX Warning: Reference `rem:verify' on page 1 undefined on input line 80.
+
+
+LaTeX Warning: Reference `A2' on page 1 undefined on input line 105.
+
+
+LaTeX Warning: Reference `lem:T' on page 1 undefined on input line 105.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.124 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.124 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.124 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.124 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.130 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.130 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.130 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.130 \begin{equation}
+                      
+
+LaTeX Warning: Reference `H1' on page 2 undefined on input line 136.
+
+
+LaTeX Warning: Reference `S' on page 2 undefined on input line 138.
+
+
+LaTeX Warning: Reference `H1' on page 2 undefined on input line 145.
+
+
+LaTeX Warning: Reference `H3' on page 2 undefined on input line 145.
+
+
+LaTeX Warning: Reference `H1' on page 2 undefined on input line 146.
+
+
+LaTeX Warning: Reference `C' on page 2 undefined on input line 147.
+
+
+LaTeX Warning: Reference `H3' on page 2 undefined on input line 147.
+
+
+LaTeX Warning: Reference `H2' on page 2 undefined on input line 148.
+
+
+LaTeX Warning: Reference `H1' on page 2 undefined on input line 157.
+
+
+LaTeX Warning: Reference `rem:verify' on page 2 undefined on input line 161.
+
+
+LaTeX Warning: Reference `P0' on page 2 undefined on input line 165.
+
+
+LaTeX Warning: Reference `PA' on page 2 undefined on input line 166.
+
+
+LaTeX Warning: Reference `SK' on page 2 undefined on input line 167.
+
+
+LaTeX Warning: Reference `def:phi' on page 2 undefined on input line 171.
+
+
+LaTeX Warning: Reference `relAA' on page 2 undefined on input line 172.
+
+
+LaTeX Warning: Reference `def:A' on page 2 undefined on input line 174.
+
+
+LaTeX Warning: Reference `M0' on page 2 undefined on input line 175.
+
+
+LaTeX Warning: Reference `M3' on page 2 undefined on input line 175.
+
+
+LaTeX Warning: Reference `M2' on page 2 undefined on input line 175.
+
+
+LaTeX Warning: Reference `PA' on page 2 undefined on input line 178.
+
+
+LaTeX Warning: Reference `P' on page 2 undefined on input line 178.
+
+
+LaTeX Warning: Reference `rem:verify' on page 2 undefined on input line 179.
+
+
+LaTeX Warning: Reference `C' on page 2 undefined on input line 190.
+
+[2
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.210 \end{align}
+                 ]
+
+LaTeX Warning: Reference `H1' on page 3 undefined on input line 217.
+
+
+LaTeX Warning: Reference `lem:compat' on page 3 undefined on input line 221.
+
+
+LaTeX Warning: Reference `SK' on page 3 undefined on input line 223.
+
+
+LaTeX Warning: Reference `DE' on page 3 undefined on input line 225.
+
+
+LaTeX Warning: Reference `sec:cross' on page 3 undefined on input line 226.
+
+
+LaTeX Warning: Reference `lem:T' on page 3 undefined on input line 228.
+
+
+LaTeX Warning: Reference `PA' on page 3 undefined on input line 229.
+
+
+LaTeX Warning: Reference `P' on page 3 undefined on input line 229.
+
+
+LaTeX Warning: Reference `C' on page 3 undefined on input line 229.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.235 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.235 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.235 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.235 \begin{equation}
+                      
+
+LaTeX Warning: Reference `S' on page 3 undefined on input line 239.
+
+
+LaTeX Warning: Reference `DE' on page 3 undefined on input line 240.
+
+
+LaTeX Warning: Reference `PA' on page 3 undefined on input line 241.
+
+
+LaTeX Warning: Reference `P' on page 3 undefined on input line 241.
+
+
+LaTeX Warning: Reference `SK' on page 3 undefined on input line 242.
+
+
+LaTeX Warning: Reference `PA' on page 3 undefined on input line 250.
+
+
+LaTeX Warning: Reference `P' on page 3 undefined on input line 250.
+
+
+LaTeX Warning: Reference `H1' on page 3 undefined on input line 250.
+
+
+LaTeX Warning: Reference `H3' on page 3 undefined on input line 250.
+
+
+LaTeX Warning: Reference `lem:compat' on page 3 undefined on input line 251.
+
+
+LaTeX Warning: Reference `SK' on page 3 undefined on input line 252.
+
+
+LaTeX Warning: Reference `lem:cross' on page 3 undefined on input line 253.
+
+
+LaTeX Warning: Reference `prop:EF' on page 3 undefined on input line 253.
+
+
+LaTeX Warning: Reference `def:H' on page 3 undefined on input line 254.
+
+
+LaTeX Warning: Reference `lem:diag' on page 3 undefined on input line 255.
+
+
+LaTeX Warning: Reference `def:phi' on page 3 undefined on input line 260.
+
+
+LaTeX Warning: Reference `def:A' on page 3 undefined on input line 261.
+
+
+LaTeX Warning: Reference `relAA' on page 3 undefined on input line 265.
+
+
+LaTeX Warning: Reference `rem:whyC' on page 3 undefined on input line 266.
+
+
+LaTeX Warning: Reference `rem:verify' on page 3 undefined on input line 266.
+
+
+LaTeX Warning: Reference `PA' on page 3 undefined on input line 270.
+
+
+LaTeX Warning: Reference `P' on page 3 undefined on input line 270.
+
+
+LaTeX Warning: Reference `SK' on page 3 undefined on input line 271.
+
+
+LaTeX Warning: Reference `def:D' on page 3 undefined on input line 273.
+
+
+LaTeX Warning: Reference `lem:compat' on page 3 undefined on input line 275.
+
+
+LaTeX Warning: Reference `PA' on page 3 undefined on input line 276.
+
+
+LaTeX Warning: Reference `def:A' on page 3 undefined on input line 277.
+
+
+LaTeX Warning: Reference `PA' on page 3 undefined on input line 284.
+
+
+LaTeX Warning: Reference `H1' on page 3 undefined on input line 285.
+
+
+LaTeX Warning: Reference `lem:T' on page 3 undefined on input line 289.
+
+
+LaTeX Warning: Reference `lem:T' on page 3 undefined on input line 291.
+
+
+LaTeX Warning: Reference `lem:T' on page 3 undefined on input line 292.
+
+[3]
+
+LaTeX Warning: Reference `A2' on page 4 undefined on input line 298.
+
+
+Overfull \hbox (13.47472pt too wide) in paragraph at lines 296--300
+[]$\OMS/cmsy/m/n/10.95 h[]\OML/cmm/m/it/10.95 ; []\OMS/cmsy/m/n/10.95 i \OT1/cm
+r/m/n/10.95 = \OML/cmm/m/it/10.95 q[] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 
+q[]$\OT1/cmr/m/it/10.95 , where $[] \OT1/cmr/m/n/10.95 = [][] []$\OT1/cmr/m/it/
+10.95 ; by [], $\OMS/cmsy/m/n/10.95 hK[]\OML/cmm/m/it/10.95 ; []\OMS/cmsy/m/n/1
+0.95 i \OT1/cmr/m/n/10.95 =
+
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.327 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.327 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.327 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.327 \begin{equation}
+                      
+
+LaTeX Warning: Reference `A2' on page 4 undefined on input line 336.
+
+
+LaTeX Warning: Reference `PA' on page 4 undefined on input line 340.
+
+
+LaTeX Warning: Reference `P' on page 4 undefined on input line 341.
+
+
+LaTeX Warning: Reference `A2' on page 4 undefined on input line 341.
+
+
+LaTeX Warning: Reference `PA' on page 4 undefined on input line 346.
+
+
+LaTeX Warning: Reference `P' on page 4 undefined on input line 347.
+
+
+LaTeX Warning: Reference `P' on page 4 undefined on input line 351.
+
+
+LaTeX Warning: Reference `PA' on page 4 undefined on input line 353.
+
+
+LaTeX Warning: Reference `P' on page 4 undefined on input line 359.
+
+
+LaTeX Warning: Reference `PA' on page 4 undefined on input line 365.
+
+
+LaTeX Warning: Reference `P' on page 4 undefined on input line 380.
+
+
+LaTeX Warning: Reference `A2' on page 4 undefined on input line 384.
+
+
+LaTeX Warning: Reference `PA' on page 4 undefined on input line 386.
+
+
+LaTeX Warning: Reference `P' on page 4 undefined on input line 386.
+
+
+LaTeX Warning: Reference `C' on page 4 undefined on input line 386.
+
+
+LaTeX Warning: Reference `rem:verify' on page 4 undefined on input line 386.
+
+
+LaTeX Warning: Reference `def:D' on page 4 undefined on input line 393.
+
+
+LaTeX Warning: Reference `lem:compat' on page 4 undefined on input line 394.
+
+[4]
+
+LaTeX Warning: Reference `PA' on page 5 undefined on input line 398.
+
+
+LaTeX Warning: Reference `P' on page 5 undefined on input line 398.
+
+
+LaTeX Warning: Reference `H1' on page 5 undefined on input line 399.
+
+
+LaTeX Warning: Reference `H3' on page 5 undefined on input line 399.
+
+
+LaTeX Warning: Reference `H1' on page 5 undefined on input line 403.
+
+
+LaTeX Warning: Reference `H1' on page 5 undefined on input line 406.
+
+
+LaTeX Warning: Reference `H3' on page 5 undefined on input line 407.
+
+
+LaTeX Warning: Reference `H1' on page 5 undefined on input line 410.
+
+
+LaTeX Warning: Reference `H3' on page 5 undefined on input line 410.
+
+
+LaTeX Warning: Reference `Cist' on page 5 undefined on input line 414.
+
+
+LaTeX Warning: Reference `PA' on page 5 undefined on input line 414.
+
+
+LaTeX Warning: Reference `H1' on page 5 undefined on input line 430.
+
+
+LaTeX Warning: Reference `PA' on page 5 undefined on input line 435.
+
+
+LaTeX Warning: Reference `def:D' on page 5 undefined on input line 438.
+
+
+LaTeX Warning: Reference `Cist2' on page 5 undefined on input line 439.
+
+
+LaTeX Warning: Reference `PA' on page 5 undefined on input line 439.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.443 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.443 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.443 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.443 \begin{equation}
+                      
+
+LaTeX Warning: Reference `lem:T' on page 5 undefined on input line 449.
+
+
+LaTeX Warning: Reference `lem:T' on page 5 undefined on input line 452.
+
+
+Overfull \hbox (23.99179pt too wide) in paragraph at lines 447--455
+\OT1/cmr/m/n/10.95 Lemma [](b) and the sur-viv-ing chan-nel is $\OMS/cmsy/m/n/1
+0.95 h\OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 ; []\OMS/cmsy/m/n/10.95 ih\OML/cm
+m/m/it/10.95 F[]; E[][]\OMS/cmsy/m/n/10.95 i \OT1/cmr/m/n/10.95 = \OMS/cmsy/m/n
+/10.95 h\OML/cmm/m/it/10.95 F[]; E[][]\OMS/cmsy/m/n/10.95 i$\OT1/cmr/m/n/10.95 
+; the lat-ter is Lemma [](d).
+
+LaTeX Warning: Reference `Cist2' on page 5 undefined on input line 460.
+
+
+LaTeX Warning: Reference `H1' on page 5 undefined on input line 461.
+
+
+LaTeX Warning: Reference `auxE' on page 5 undefined on input line 465.
+
+
+LaTeX Warning: Reference `rem:verify' on page 5 undefined on input line 466.
+
+
+LaTeX Warning: Reference `Ci' on page 5 undefined on input line 467.
+
+
+LaTeX Warning: Reference `H1' on page 5 undefined on input line 467.
+
+
+LaTeX Warning: Reference `H3' on page 5 undefined on input line 468.
+
+
+LaTeX Warning: Reference `PA' on page 5 undefined on input line 469.
+
+
+LaTeX Warning: Reference `lem:T' on page 5 undefined on input line 471.
+
+
+LaTeX Warning: Reference `H3' on page 5 undefined on input line 472.
+
+
+LaTeX Warning: Reference `P' on page 5 undefined on input line 474.
+
+
+LaTeX Warning: Reference `lem:T' on page 5 undefined on input line 474.
+
+
+LaTeX Warning: Reference `PA' on page 5 undefined on input line 476.
+
+
+LaTeX Warning: Reference `P' on page 5 undefined on input line 476.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 479.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 479.
+
+[5]
+
+LaTeX Warning: Reference `SK' on page 6 undefined on input line 495.
+
+
+LaTeX Warning: Reference `lem:T' on page 6 undefined on input line 496.
+
+
+LaTeX Warning: Reference `DE' on page 6 undefined on input line 497.
+
+
+LaTeX Warning: Reference `SK' on page 6 undefined on input line 498.
+
+
+Overfull \hbox (18.21974pt too wide) in paragraph at lines 495--501
+[]\OT1/cmr/m/n/10.95 Each claim is a one-channel eval-u-a-tion of []: by the tr
+i-an-gu-lar-ity of the pair-ing (Lemma [](b))
+
+LaTeX Warning: Reference `lem:T' on page 6 undefined on input line 513.
+
+
+LaTeX Warning: Reference `P' on page 6 undefined on input line 514.
+
+
+LaTeX Warning: Reference `lem:T' on page 6 undefined on input line 527.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.531 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.531 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.531 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.531 \begin{equation}
+                      
+
+LaTeX Warning: Reference `SK' on page 6 undefined on input line 542.
+
+
+LaTeX Warning: Reference `P' on page 6 undefined on input line 550.
+
+
+LaTeX Warning: Reference `H1' on page 6 undefined on input line 559.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.564 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.564 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.564 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.564 \begin{equation}
+                       [6]
+
+LaTeX Warning: Reference `SK' on page 7 undefined on input line 574.
+
+
+LaTeX Warning: Reference `SK' on page 7 undefined on input line 591.
+
+
+LaTeX Warning: Reference `DE' on page 7 undefined on input line 593.
+
+
+LaTeX Warning: Reference `lem:T' on page 7 undefined on input line 597.
+
+
+LaTeX Warning: Reference `S' on page 7 undefined on input line 603.
+
+
+LaTeX Warning: Reference `lem:T' on page 7 undefined on input line 606.
+
+
+Overfull \hbox (23.15788pt too wide) in paragraph at lines 601--610
+[]$\OT1/cmr/m/n/10.95 ((\OML/cmm/m/it/10.95 F[]; \OMS/cmsy/m/n/10.95 K[]\OML/cm
+m/m/it/10.95 ; \OMS/cmsy/m/n/10.95 K[]\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ;
+ \OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 E[]; \OT1/cmr/m/n/10.95 1\OML/cmm/m/it
+/10.95 ; \OT1/cmr/m/n/10.95 1))$: first scalar $\OMS/cmsy/m/n/10.95 h\OML/cmm/m
+/it/10.95 F[]; S[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 E[]\OT1/cmr/m/n/10.95
+ )\OMS/cmsy/m/n/10.95 i \OT1/cmr/m/n/10.95 = \OMS/cmsy/m/n/10.95 ^^@h\OML/cmm/m
+/it/10.95 F[]; E[]\OMS/cmsy/m/n/10.95 K[]i \OT1/cmr/m/n/10.95 = \OMS/cmsy/m/n/1
+0.95 ^^@\OML/cmm/m/it/10.95 ^^N[]^^R$ \OT1/cmr/m/n/10.95 by [] ($\OML/cmm/m/it/
+10.95 S[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 E[]\OT1/cmr/m/n/10.95 ) =
+
+LaTeX Warning: Reference `P' on page 7 undefined on input line 622.
+
+
+Overfull \hbox (36.18042pt too wide) in paragraph at lines 619--625
+\OT1/cmr/m/n/10.95 Every other chan-nel con-tains a grou-p-like paired against 
+a charged word | e.g. $((\OML/cmm/m/it/10.95 F[]; \OMS/cmsy/m/n/10.95 K[]\OML/c
+mm/m/it/10.95 ; \OMS/cmsy/m/n/10.95 K[]\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 
+; \OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 K[]\OML/cmm/m/it/10.95 ; \OMS/cmsy/m/
+n/10.95 K[]\OML/cmm/m/it/10.95 ; E[]\OT1/cmr/m/n/10.95 ))$
+
+Overfull \hbox (28.4907pt too wide) in paragraph at lines 619--625
+\OT1/cmr/m/n/10.95 has first scalar $\OMS/cmsy/m/n/10.95 h\OML/cmm/m/it/10.95 F
+[]; S[]\OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 K[]\OT1/cmr/m/n/10.95 )\OMS/cmsy
+/m/n/10.95 i \OT1/cmr/m/n/10.95 = \OMS/cmsy/m/n/10.95 h\OML/cmm/m/it/10.95 F[];
+ \OMS/cmsy/m/n/10.95 K[]i \OT1/cmr/m/n/10.95 = 0$ by [] | or a van-ish-ing $\OM
+L/cmm/m/it/10.95 "$\OT1/cmr/m/n/10.95 -scalar, e.g. $((1\OML/cmm/m/it/10.95 ; \
+OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 ; F[]\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/1
+0.95 ; \OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 K[]\OML/cmm/m/it/10.95 ; E[]; \O
+T1/cmr/m/n/10.95 1))$
+
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.625 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.625 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.625 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.625 \begin{equation}
+                      
+
+LaTeX Warning: Reference `EFraw' on page 7 undefined on input line 630.
+
+
+LaTeX Warning: Reference `H1' on page 7 undefined on input line 633.
+
+
+LaTeX Warning: Reference `def:H' on page 7 undefined on input line 634.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.635 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.635 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.635 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.635 \begin{equation}
+                      
+
+LaTeX Warning: Reference `lem:cross' on page 7 undefined on input line 639.
+
+
+LaTeX Warning: Reference `lem:cross' on page 7 undefined on input line 642.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.644 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.644 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.644 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.644 \begin{equation}
+                      
+
+LaTeX Warning: Reference `A2' on page 7 undefined on input line 649.
+
+
+LaTeX Warning: Reference `EFraw' on page 7 undefined on input line 650.
+
+
+LaTeX Warning: Reference `KE' on page 7 undefined on input line 651.
+
+
+LaTeX Warning: Reference `KF' on page 7 undefined on input line 651.
+
+
+LaTeX Warning: Reference `lem:cross' on page 7 undefined on input line 652.
+
+
+LaTeX Warning: Reference `rem:verify' on page 7 undefined on input line 653.
+
+
+LaTeX Warning: Reference `EFraw' on page 7 undefined on input line 653.
+
+[7]
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.656 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.656 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.656 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.656 \begin{equation}
+                      
+
+LaTeX Warning: Reference `EFrule' on page 8 undefined on input line 660.
+
+
+LaTeX Warning: Reference `EFraw' on page 8 undefined on input line 663.
+
+
+LaTeX Warning: Reference `SK' on page 8 undefined on input line 664.
+
+
+LaTeX Warning: Reference `DE' on page 8 undefined on input line 664.
+
+
+LaTeX Warning: Reference `PA' on page 8 undefined on input line 664.
+
+
+LaTeX Warning: Reference `S' on page 8 undefined on input line 664.
+
+
+LaTeX Warning: Reference `rem:verify' on page 8 undefined on input line 665.
+
+
+LaTeX Warning: Reference `lem:cross' on page 8 undefined on input line 669.
+
+
+LaTeX Warning: Reference `prop:EF' on page 8 undefined on input line 670.
+
+
+LaTeX Warning: Reference `def:A' on page 8 undefined on input line 733.
+
+
+LaTeX Warning: Reference `thm:one' on page 8 undefined on input line 734.
+
+
+LaTeX Warning: Reference `sec:cross' on page 8 undefined on input line 736.
+
+
+LaTeX Warning: Reference `def:phi' on page 8 undefined on input line 736.
+
+
+LaTeX Warning: Reference `arcimg' on page 8 undefined on input line 737.
+
+
+LaTeX Warning: Reference `prop:t' on page 8 undefined on input line 738.
+
+
+LaTeX Warning: Reference `thm:mixed' on page 8 undefined on input line 739.
+
+
+LaTeX Warning: Reference `qmin' on page 8 undefined on input line 746.
+
+
+LaTeX Warning: Reference `prop:t' on page 8 undefined on input line 746.
+
+
+LaTeX Warning: Reference `rem:ext' on page 8 undefined on input line 749.
+
+
+LaTeX Warning: Reference `relAA' on page 8 undefined on input line 752.
+
+
+LaTeX Warning: Reference `qmin' on page 8 undefined on input line 756.
+
+
+LaTeX Warning: Reference `M0' on page 8 undefined on input line 757.
+
+
+LaTeX Warning: Reference `M3' on page 8 undefined on input line 757.
+
+
+LaTeX Warning: Reference `M0' on page 8 undefined on input line 762.
+
+
+LaTeX Warning: Reference `M0' on page 8 undefined on input line 763.
+
+
+LaTeX Warning: Reference `M1' on page 8 undefined on input line 763.
+
+
+LaTeX Warning: Reference `M3' on page 8 undefined on input line 764.
+
+
+LaTeX Warning: Reference `M2' on page 8 undefined on input line 766.
+
+
+LaTeX Warning: Reference `sec:cross' on page 8 undefined on input line 780.
+
+
+LaTeX Warning: Reference `M2' on page 8 undefined on input line 781.
+
+
+LaTeX Warning: Reference `thm:two' on page 8 undefined on input line 789.
+
+
+LaTeX Warning: Reference `def:A' on page 8 undefined on input line 792.
+
+
+LaTeX Warning: Reference `prop:t' on page 8 undefined on input line 794.
+
+
+LaTeX Warning: Reference `thm:mixed' on page 8 undefined on input line 794.
+
+
+LaTeX Warning: Reference `thm:one' on page 8 undefined on input line 795.
+
+[8]
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.801 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.801 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.801 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.801 \begin{equation}
+                      
+
+LaTeX Warning: Reference `relAA' on page 9 undefined on input line 813.
+
+
+LaTeX Warning: Reference `relAA' on page 9 undefined on input line 814.
+
+
+LaTeX Warning: Reference `qmin' on page 9 undefined on input line 816.
+
+
+LaTeX Warning: Reference `H1' on page 9 undefined on input line 820.
+
+
+LaTeX Warning: Reference `lem:cross' on page 9 undefined on input line 821.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.822 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.822 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.822 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.822 \begin{equation}
+                      
+
+LaTeX Warning: Reference `A2' on page 9 undefined on input line 830.
+
+
+LaTeX Warning: Reference `H1pm' on page 9 undefined on input line 843.
+
+[9]
+
+LaTeX Warning: Reference `H1pm' on page 10 undefined on input line 853.
+
+
+LaTeX Warning: Reference `lem:cross' on page 10 undefined on input line 856.
+
+
+LaTeX Warning: Reference `relAA' on page 10 undefined on input line 875.
+
+
+LaTeX Warning: Reference `rem:verify' on page 10 undefined on input line 877.
+
+
+LaTeX Warning: Reference `H1pm' on page 10 undefined on input line 879.
+
+
+LaTeX Warning: Reference `H3' on page 10 undefined on input line 881.
+
+
+LaTeX Warning: Reference `qmin' on page 10 undefined on input line 884.
+
+
+LaTeX Warning: Reference `H1pm' on page 10 undefined on input line 886.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.903 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.903 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.903 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.903 \begin{equation}
+                      
+Overfull \hbox (38.15868pt too wide) detected at line 925
+\OML/cmm/m/it/10.95 s[]s[] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 F[][]F[][] 
+\OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 q[]F[]F[][][] \OT1/cmr/m/n/10.95 = \OM
+L/cmm/m/it/10.95 q[]F[]F[][][];
+
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.931 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.931 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.931 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.931 \begin{equation}
+                      
+
+LaTeX Warning: Reference `rem:verify' on page 10 undefined on input line 940.
+
+
+LaTeX Warning: Reference `H1pm' on page 10 undefined on input line 941.
+
+
+LaTeX Warning: Reference `qmin' on page 10 undefined on input line 943.
+
+
+LaTeX Warning: Reference `M0' on page 10 undefined on input line 944.
+
+
+LaTeX Warning: Reference `M3' on page 10 undefined on input line 944.
+
+
+LaTeX Warning: Reference `M2' on page 10 undefined on input line 947.
+
+
+LaTeX Warning: Reference `M3' on page 10 undefined on input line 947.
+
+
+LaTeX Warning: Reference `def:phi' on page 10 undefined on input line 952.
+
+[10]
+
+LaTeX Warning: Reference `H1pm' on page 11 undefined on input line 972.
+
+
+LaTeX Warning: Reference `lem:cross' on page 11 undefined on input line 973.
+
+
+LaTeX Warning: Reference `aInv' on page 11 undefined on input line 973.
+
+
+LaTeX Warning: Reference `bInv' on page 11 undefined on input line 973.
+
+
+Overfull \hbox (51.87718pt too wide) detected at line 980
+[]\OML/cmm/m/it/10.95 E[] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 q[]E[][];  E
+[][] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 q[][]E[];  []F[] \OT1/cmr/m/n/10.
+95 = \OML/cmm/m/it/10.95 q[]F[][];  F[][] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10
+.95 q[][]F[];
+
+Overfull \hbox (140.7766pt too wide) detected at line 986
+[]\OML/cmm/m/it/10.95 E[] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 q[]E[][];  E
+[][] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 q[][]E[];  []F[] \OT1/cmr/m/n/10.
+95 = \OML/cmm/m/it/10.95 q[]F[][];  F[][] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10
+.95 q[][]F[];
+
+LaTeX Warning: Reference `lem:cross' on page 11 undefined on input line 988.
+
+
+LaTeX Warning: Reference `aInv' on page 11 undefined on input line 988.
+
+
+LaTeX Warning: Reference `H1pm' on page 11 undefined on input line 989.
+
+
+LaTeX Warning: Reference `lem:cross' on page 11 undefined on input line 991.
+
+
+LaTeX Warning: Reference `lem:cross' on page 11 undefined on input line 993.
+
+
+LaTeX Warning: Reference `lem:cross' on page 11 undefined on input line 997.
+
+
+LaTeX Warning: Reference `lem:cross' on page 11 undefined on input line 997.
+
+
+LaTeX Warning: Reference `bInv' on page 11 undefined on input line 1005.
+
+
+LaTeX Warning: Reference `rem:verify' on page 11 undefined on input line 1007.
+
+
+LaTeX Warning: Reference `lem:cross' on page 11 undefined on input line 1012.
+
+
+LaTeX Warning: Reference `rem:verify' on page 11 undefined on input line 1022.
+
+
+LaTeX Warning: Reference `prop:EF' on page 11 undefined on input line 1024.
+
+
+LaTeX Warning: Reference `aInv' on page 11 undefined on input line 1035.
+
+
+LaTeX Warning: Reference `H1pm' on page 11 undefined on input line 1038.
+
+
+LaTeX Warning: Reference `H1' on page 11 undefined on input line 1049.
+
+
+LaTeX Warning: Reference `lem:cross' on page 11 undefined on input line 1050.
+
+[11]
+
+LaTeX Warning: Reference `A2' on page 12 undefined on input line 1062.
+
+
+LaTeX Warning: Reference `rem:verify' on page 12 undefined on input line 1066.
+
+
+LaTeX Warning: Reference `M2' on page 12 undefined on input line 1071.
+
+
+LaTeX Warning: Reference `EFrule' on page 12 undefined on input line 1078.
+
+
+LaTeX Warning: Reference `lem:cross' on page 12 undefined on input line 1080.
+
+
+LaTeX Warning: Reference `lem:cross' on page 12 undefined on input line 1088.
+
+
+Overfull \hbox (4.64767pt too wide) in paragraph at lines 1077--1089
+\OT1/cmr/m/n/10.95 by [] ap-plied to $\OML/cmm/m/it/10.95 F[]E[]$ \OT1/cmr/m/n/
+10.95 and the free cross of the two torus fac-tors $[]\OML/cmm/m/it/10.95 ; []$
+ \OT1/cmr/m/n/10.95 (Lemma [](a),(b),(c):
+
+Overfull \hbox (13.31429pt too wide) in paragraph at lines 1077--1089
+[]$ \OT1/cmr/m/n/10.95 crosses $\OML/cmm/m/it/10.95 E[]$ \OT1/cmr/m/n/10.95 at 
+$\OML/cmm/m/it/10.95 q[]$ \OT1/cmr/m/n/10.95 and $\OML/cmm/m/it/10.95 F[]$ \OT1
+/cmr/m/n/10.95 crosses $[]$ at $\OML/cmm/m/it/10.95 q[]$\OT1/cmr/m/n/10.95 , ca
+n-celling). Rear-reducing $\OML/cmm/m/it/10.95 t[]s[] \OT1/cmr/m/n/10.95 =
+
+Overfull \hbox (100.18518pt too wide) detected at line 1097
+\OML/cmm/m/it/10.95 ^^R[]\OMS/cmsy/m/n/10.95 K[] ^^@ K[][][][] \OT1/cmr/m/n/10.
+95 = \OML/cmm/m/it/10.95 ^^R[]\OMS/cmsy/m/n/10.95 K[][] ^^@ K[][][][] \OT1/cmr/
+m/n/10.95 = \OML/cmm/m/it/10.95 ^^R[][][] \OMS/cmsy/m/n/10.95 ^^@ [][][][][][]\
+OML/cmm/m/it/10.95 :
+
+LaTeX Warning: Reference `M2' on page 12 undefined on input line 1113.
+
+
+LaTeX Warning: Reference `rem:verify' on page 12 undefined on input line 1116.
+
+
+Overfull \hbox (27.28062pt too wide) in paragraph at lines 1097--1117
+\OT1/cmr/m/n/10.95 Since the torus is com-mu-ta-tive, $\OMS/cmsy/m/n/10.95 K[][
+][] \OT1/cmr/m/n/10.95 = [][][][][][]$ and $\OMS/cmsy/m/n/10.95 K[][][] \OT1/cm
+r/m/n/10.95 =
+
+Overfull \hbox (26.19353pt too wide) in paragraph at lines 1097--1117
+\OT1/cmr/m/n/10.95 tions), the two $\OML/cmm/m/it/10.95 ^^R$\OT1/cmr/m/n/10.95 
+-summands are ex-actly $\OML/cmm/m/it/10.95 ^^R t[][]t[]t[][]s[]$ \OT1/cmr/m/n/
+10.95 and $\OMS/cmsy/m/n/10.95 ^^@\OML/cmm/m/it/10.95 ^^R t[][]s[]s[][]s[]$\OT1
+/cmr/m/n/10.95 .
+
+LaTeX Warning: Reference `PA' on page 12 undefined on input line 1122.
+
+
+LaTeX Warning: Reference `P' on page 12 undefined on input line 1122.
+
+
+LaTeX Warning: Reference `C' on page 12 undefined on input line 1122.
+
+
+LaTeX Warning: Reference `S' on page 12 undefined on input line 1122.
+
+
+LaTeX Warning: Reference `SK' on page 12 undefined on input line 1122.
+
+
+LaTeX Warning: Reference `P0' on page 12 undefined on input line 1124.
+
+
+LaTeX Warning: Reference `SK' on page 12 undefined on input line 1125.
+
+
+LaTeX Warning: Reference `PA' on page 12 undefined on input line 1126.
+
+
+LaTeX Warning: Reference `P' on page 12 undefined on input line 1126.
+
+
+LaTeX Warning: Reference `C' on page 12 undefined on input line 1126.
+
+
+LaTeX Warning: Reference `SK' on page 12 undefined on input line 1127.
+
+
+LaTeX Warning: Reference `lem:cross' on page 12 undefined on input line 1131.
+
+
+LaTeX Warning: Reference `prop:EF' on page 12 undefined on input line 1131.
+
+
+LaTeX Warning: Reference `lem:T' on page 12 undefined on input line 1134.
+
+
+LaTeX Warning: Reference `H1' on page 12 undefined on input line 1135.
+
+
+LaTeX Warning: Reference `lem:compat' on page 12 undefined on input line 1135.
+
+
+LaTeX Warning: Reference `lem:cross' on page 12 undefined on input line 1137.
+
+
+LaTeX Warning: Reference `SK' on page 12 undefined on input line 1137.
+
+
+LaTeX Warning: Reference `prop:EF' on page 12 undefined on input line 1140.
+
+
+LaTeX Warning: Reference `thm:mixed' on page 12 undefined on input line 1141.
+
+
+LaTeX Warning: Reference `relAA' on page 12 undefined on input line 1143.
+
+
+LaTeX Warning: Reference `qmin' on page 12 undefined on input line 1144.
+
+
+LaTeX Warning: Reference `lem:loops' on page 12 undefined on input line 1145.
+
+
+LaTeX Warning: Reference `lem:diag' on page 12 undefined on input line 1147.
+
+
+LaTeX Warning: Reference `H2' on page 12 undefined on input line 1147.
+
+
+LaTeX Warning: Reference `M2' on page 12 undefined on input line 1151.
+
+
+LaTeX Warning: Reference `M2' on page 12 undefined on input line 1153.
+
+
+LaTeX Warning: Reference `minT' on page 12 undefined on input line 1155.
+
+
+LaTeX Warning: Reference `minS' on page 12 undefined on input line 1155.
+
+
+LaTeX Warning: Reference `sec:cross' on page 12 undefined on input line 1157.
+
+[12]
+
+LaTeX Warning: Reference `relAA' on page 13 undefined on input line 1173.
+
+
+LaTeX Warning: Reference `prop:t' on page 13 undefined on input line 1173.
+
+
+LaTeX Warning: Reference `M0' on page 13 undefined on input line 1174.
+
+
+LaTeX Warning: Reference `M3' on page 13 undefined on input line 1174.
+
+
+LaTeX Warning: Reference `thm:mixed' on page 13 undefined on input line 1174.
+
+
+LaTeX Warning: Reference `M0' on page 13 undefined on input line 1178.
+
+
+LaTeX Warning: Reference `M3' on page 13 undefined on input line 1178.
+
+
+LaTeX Warning: Reference `M0' on page 13 undefined on input line 1179.
+
+
+LaTeX Warning: Reference `M1' on page 13 undefined on input line 1179.
+
+
+LaTeX Warning: Reference `M3' on page 13 undefined on input line 1179.
+
+
+LaTeX Warning: Reference `M2' on page 13 undefined on input line 1180.
+
+
+LaTeX Warning: Reference `rem:pbwD' on page 13 undefined on input line 1186.
+
+
+LaTeX Warning: Reference `minT' on page 13 undefined on input line 1191.
+
+
+LaTeX Warning: Reference `minS' on page 13 undefined on input line 1191.
+
+
+LaTeX Warning: Reference `prop:t' on page 13 undefined on input line 1192.
+
+
+LaTeX Warning: Reference `M2' on page 13 undefined on input line 1194.
+
+
+LaTeX Warning: Reference `M0' on page 13 undefined on input line 1208.
+
+
+LaTeX Warning: Reference `lem:cross' on page 13 undefined on input line 1226.
+
+
+LaTeX Warning: Reference `H1' on page 13 undefined on input line 1227.
+
+
+LaTeX Warning: Reference `lem:cross' on page 13 undefined on input line 1229.
+
+
+LaTeX Warning: Reference `lem:cross' on page 13 undefined on input line 1232.
+
+
+LaTeX Warning: Reference `H1' on page 13 undefined on input line 1233.
+
+
+LaTeX Warning: Reference `thm:one' on page 13 undefined on input line 1239.
+
+[13]
+
+LaTeX Warning: Reference `rem:pbwD' on page 14 undefined on input line 1253.
+
+
+LaTeX Warning: Reference `lem:loops' on page 14 undefined on input line 1258.
+
+
+LaTeX Warning: Reference `rem:pbwD' on page 14 undefined on input line 1262.
+
+
+LaTeX Warning: Reference `lem:cross' on page 14 undefined on input line 1275.
+
+
+LaTeX Warning: Reference `prop:EF' on page 14 undefined on input line 1275.
+
+
+LaTeX Warning: Reference `H1' on page 14 undefined on input line 1276.
+
+
+LaTeX Warning: Reference `prop:EF' on page 14 undefined on input line 1277.
+
+
+LaTeX Warning: Reference `H2' on page 14 undefined on input line 1283.
+
+
+LaTeX Warning: Reference `def:H' on page 14 undefined on input line 1283.
+
+
+LaTeX Warning: Reference `H1' on page 14 undefined on input line 1284.
+
+
+LaTeX Warning: Reference `H3' on page 14 undefined on input line 1284.
+
+
+LaTeX Warning: Reference `def:H' on page 14 undefined on input line 1285.
+
+
+LaTeX Warning: Reference `lem:loops' on page 14 undefined on input line 1295.
+
+
+LaTeX Warning: Reference `thm:one' on page 14 undefined on input line 1296.
+
+
+LaTeX Warning: Reference `thm:one' on page 14 undefined on input line 1310.
+
+
+LaTeX Warning: Reference `lem:diag' on page 14 undefined on input line 1310.
+
+
+LaTeX Warning: Reference `lem:split' on page 14 undefined on input line 1311.
+
+[14] (/tmp/first-proof-latex-1xgdm8ex/solution.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
+(see the transcript file for additional information) </root/.texlive2022/texmf-
+var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/
+eufm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/m
+sbm10.pfb>
+Output written on /tmp/first-proof-latex-1xgdm8ex/solution.pdf (14 pages, 28656
+1 bytes).
+Transcript written on /tmp/first-proof-latex-1xgdm8ex/solution.log.
+Latexmk: Getting log file '/tmp/first-proof-latex-1xgdm8ex/solution.log'
+Latexmk: Examining '/tmp/first-proof-latex-1xgdm8ex/solution.fls'
+Latexmk: Examining '/tmp/first-proof-latex-1xgdm8ex/solution.log'
+Latexmk: References changed.
+Latexmk: Log file says output to '/tmp/first-proof-latex-1xgdm8ex/solution.pdf'
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Changed files or newly in use/created:
+  /tmp/first-proof-latex-1xgdm8ex/solution.aux
+  /tmp/first-proof-latex-1xgdm8ex/solution.out
+
+------------
+Run number 2 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex -no-shell-escape  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/tmp/first-proof-latex-1xgdm8ex"  "/work/first-proof-humanize-tdgou2bu/002-prob-003/solution.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex)
+entering extended mode
+(/work/first-proof-humanize-tdgou2bu/002-prob-003/solution.tex
+LaTeX2e <2022-11-01> patch level 1
+L3 programming layer <2023-01-16>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mathtools.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(/tmp/first-proof-latex-1xgdm8ex/solution.aux)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+))))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/tmp/first-proof-latex-1xgdm8ex/solution.out)
+(/tmp/first-proof-latex-1xgdm8ex/solution.out)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueuf.fd) [1{/var/lib/texmf/fo
+nts/map/pdftex/updmap/pdftex.map}]
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.124 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.124 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.124 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.124 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.130 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.130 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.130 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.130 \begin{equation}
+                       [2
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.210 \end{align}
+                 ]
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.235 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.235 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.235 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.235 \begin{equation}
+                       [3]
+Overfull \hbox (15.26941pt too wide) in paragraph at lines 296--300
+[]$\OMS/cmsy/m/n/10.95 h[]\OML/cmm/m/it/10.95 ; []\OMS/cmsy/m/n/10.95 i \OT1/cm
+r/m/n/10.95 = \OML/cmm/m/it/10.95 q[] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 
+q[]$\OT1/cmr/m/it/10.95 , where $[] \OT1/cmr/m/n/10.95 = [][] []$\OT1/cmr/m/it/
+10.95 ; by [], $\OMS/cmsy/m/n/10.95 hK[]\OML/cmm/m/it/10.95 ; []\OMS/cmsy/m/n/1
+0.95 i \OT1/cmr/m/n/10.95 =
+
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.327 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.327 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.327 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.327 \begin{equation}
+                       [4]
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.443 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.443 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.443 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.443 \begin{equation}
+                      
+Overfull \hbox (28.18951pt too wide) in paragraph at lines 447--455
+\OT1/cmr/m/n/10.95 Lemma [][]1.6[][](b) and the sur-viv-ing chan-nel is $\OMS/c
+msy/m/n/10.95 h\OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 ; []\OMS/cmsy/m/n/10.95 
+ih\OML/cmm/m/it/10.95 F[]; E[][]\OMS/cmsy/m/n/10.95 i \OT1/cmr/m/n/10.95 = \OMS
+/cmsy/m/n/10.95 h\OML/cmm/m/it/10.95 F[]; E[][]\OMS/cmsy/m/n/10.95 i$\OT1/cmr/m
+/n/10.95 ; the lat-ter is Lemma [][]1.6[][](d).
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 479.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 479.
+
+[5]
+Overfull \hbox (23.02582pt too wide) in paragraph at lines 495--501
+[]\OT1/cmr/m/n/10.95 Each claim is a one-channel eval-u-a-tion of []: by the tr
+i-an-gu-lar-ity of the pair-ing (Lemma [][]1.6[][](b))
+
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.531 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.531 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.531 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.531 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.564 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.564 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.564 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.564 \begin{equation}
+                       [6]
+Overfull \hbox (17.3484pt too wide) in paragraph at lines 601--610
+[]$\OT1/cmr/m/n/10.95 ((\OML/cmm/m/it/10.95 F[]; \OMS/cmsy/m/n/10.95 K[]\OML/cm
+m/m/it/10.95 ; \OMS/cmsy/m/n/10.95 K[]\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ;
+ \OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 E[]; \OT1/cmr/m/n/10.95 1\OML/cmm/m/it
+/10.95 ; \OT1/cmr/m/n/10.95 1))$: first scalar $\OMS/cmsy/m/n/10.95 h\OML/cmm/m
+/it/10.95 F[]; S[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 E[]\OT1/cmr/m/n/10.95
+ )\OMS/cmsy/m/n/10.95 i \OT1/cmr/m/n/10.95 = \OMS/cmsy/m/n/10.95 ^^@h\OML/cmm/m
+/it/10.95 F[]; E[]\OMS/cmsy/m/n/10.95 K[]i \OT1/cmr/m/n/10.95 = \OMS/cmsy/m/n/1
+0.95 ^^@\OML/cmm/m/it/10.95 ^^N[]^^R$ \OT1/cmr/m/n/10.95 by [] ($\OML/cmm/m/it/
+10.95 S[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 E[]\OT1/cmr/m/n/10.95 ) =
+
+Overfull \hbox (36.18042pt too wide) in paragraph at lines 619--625
+\OT1/cmr/m/n/10.95 Every other chan-nel con-tains a grou-p-like paired against 
+a charged word | e.g. $((\OML/cmm/m/it/10.95 F[]; \OMS/cmsy/m/n/10.95 K[]\OML/c
+mm/m/it/10.95 ; \OMS/cmsy/m/n/10.95 K[]\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 
+; \OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 K[]\OML/cmm/m/it/10.95 ; \OMS/cmsy/m/
+n/10.95 K[]\OML/cmm/m/it/10.95 ; E[]\OT1/cmr/m/n/10.95 ))$
+
+Overfull \hbox (24.04997pt too wide) in paragraph at lines 619--625
+\OT1/cmr/m/n/10.95 has first scalar $\OMS/cmsy/m/n/10.95 h\OML/cmm/m/it/10.95 F
+[]; S[]\OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 K[]\OT1/cmr/m/n/10.95 )\OMS/cmsy
+/m/n/10.95 i \OT1/cmr/m/n/10.95 = \OMS/cmsy/m/n/10.95 h\OML/cmm/m/it/10.95 F[];
+ \OMS/cmsy/m/n/10.95 K[]i \OT1/cmr/m/n/10.95 = 0$ by [] | or a van-ish-ing $\OM
+L/cmm/m/it/10.95 "$\OT1/cmr/m/n/10.95 -scalar, e.g. $((1\OML/cmm/m/it/10.95 ; \
+OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 ; F[]\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/1
+0.95 ; \OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 K[]\OML/cmm/m/it/10.95 ; E[]; \O
+T1/cmr/m/n/10.95 1))$
+
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.625 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.625 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.625 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.625 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.635 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.635 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.635 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.635 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.644 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.644 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.644 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.644 \begin{equation}
+                       [7]
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.656 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.656 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.656 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.656 \begin{equation}
+                       [8]
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.801 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.801 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.801 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.801 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.822 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.822 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.822 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.822 \begin{equation}
+                       [9]
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.903 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.903 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.903 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.903 \begin{equation}
+                      
+Overfull \hbox (38.15868pt too wide) detected at line 925
+\OML/cmm/m/it/10.95 s[]s[] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 F[][]F[][] 
+\OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 q[]F[]F[][][] \OT1/cmr/m/n/10.95 = \OM
+L/cmm/m/it/10.95 q[]F[]F[][][];
+
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.931 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.931 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.931 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.931 \begin{equation}
+                       [10]
+Overfull \hbox (51.87718pt too wide) detected at line 980
+[]\OML/cmm/m/it/10.95 E[] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 q[]E[][];  E
+[][] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 q[][]E[];  []F[] \OT1/cmr/m/n/10.
+95 = \OML/cmm/m/it/10.95 q[]F[][];  F[][] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10
+.95 q[][]F[];
+
+Overfull \hbox (140.7766pt too wide) detected at line 986
+[]\OML/cmm/m/it/10.95 E[] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 q[]E[][];  E
+[][] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 q[][]E[];  []F[] \OT1/cmr/m/n/10.
+95 = \OML/cmm/m/it/10.95 q[]F[][];  F[][] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10
+.95 q[][]F[];
+[11]
+Overfull \hbox (12.2593pt too wide) in paragraph at lines 1077--1089
+\OT1/cmr/m/n/10.95 by [] ap-plied to $\OML/cmm/m/it/10.95 F[]E[]$ \OT1/cmr/m/n/
+10.95 and the free cross of the two torus fac-tors $[]\OML/cmm/m/it/10.95 ; []$
+ \OT1/cmr/m/n/10.95 (Lemma [][]1.9[][](a),(b),(c):
+
+Overfull \hbox (13.31429pt too wide) in paragraph at lines 1077--1089
+[]$ \OT1/cmr/m/n/10.95 crosses $\OML/cmm/m/it/10.95 E[]$ \OT1/cmr/m/n/10.95 at 
+$\OML/cmm/m/it/10.95 q[]$ \OT1/cmr/m/n/10.95 and $\OML/cmm/m/it/10.95 F[]$ \OT1
+/cmr/m/n/10.95 crosses $[]$ at $\OML/cmm/m/it/10.95 q[]$\OT1/cmr/m/n/10.95 , ca
+n-celling). Rear-reducing $\OML/cmm/m/it/10.95 t[]s[] \OT1/cmr/m/n/10.95 =
+
+Overfull \hbox (100.18518pt too wide) detected at line 1097
+\OML/cmm/m/it/10.95 ^^R[]\OMS/cmsy/m/n/10.95 K[] ^^@ K[][][][] \OT1/cmr/m/n/10.
+95 = \OML/cmm/m/it/10.95 ^^R[]\OMS/cmsy/m/n/10.95 K[][] ^^@ K[][][][] \OT1/cmr/
+m/n/10.95 = \OML/cmm/m/it/10.95 ^^R[][][] \OMS/cmsy/m/n/10.95 ^^@ [][][][][][]\
+OML/cmm/m/it/10.95 :
+
+Overfull \hbox (27.28062pt too wide) in paragraph at lines 1097--1117
+\OT1/cmr/m/n/10.95 Since the torus is com-mu-ta-tive, $\OMS/cmsy/m/n/10.95 K[][
+][] \OT1/cmr/m/n/10.95 = [][][][][][]$ and $\OMS/cmsy/m/n/10.95 K[][][] \OT1/cm
+r/m/n/10.95 =
+
+Overfull \hbox (26.19353pt too wide) in paragraph at lines 1097--1117
+\OT1/cmr/m/n/10.95 tions), the two $\OML/cmm/m/it/10.95 ^^R$\OT1/cmr/m/n/10.95 
+-summands are ex-actly $\OML/cmm/m/it/10.95 ^^R t[][]t[]t[][]s[]$ \OT1/cmr/m/n/
+10.95 and $\OMS/cmsy/m/n/10.95 ^^@\OML/cmm/m/it/10.95 ^^R t[][]s[]s[][]s[]$\OT1
+/cmr/m/n/10.95 .
+[12]
+Overfull \hbox (5.03224pt too wide) in paragraph at lines 1173--1177
+[]\OT1/cmr/m/it/10.95 Well-defined. [] \OT1/cmr/m/n/10.95 by Propo-si-tion [][]
+2.3[][]; []--[] by The-o-rem [][]2.4[][](a)--(e), us-ing $\OML/cmm/m/it/10.95 t
+[]s[] \OT1/cmr/m/n/10.95 =
+[13] [14] (/tmp/first-proof-latex-1xgdm8ex/solution.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
+(see the transcript file for additional information)
+pdfTeX warning (dest): name{theorem.1.6} has been referenced but does not exist
+, replaced by a fixed one
+
+ </root/.texlive2022/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/euler/eufm10.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/symbols/msbm10.pfb>
+Output written on /tmp/first-proof-latex-1xgdm8ex/solution.pdf (14 pages, 29641
+8 bytes).
+Transcript written on /tmp/first-proof-latex-1xgdm8ex/solution.log.
+Latexmk: Getting log file '/tmp/first-proof-latex-1xgdm8ex/solution.log'
+Latexmk: Examining '/tmp/first-proof-latex-1xgdm8ex/solution.fls'
+Latexmk: Examining '/tmp/first-proof-latex-1xgdm8ex/solution.log'
+Latexmk: References changed.
+Latexmk: Log file says output to '/tmp/first-proof-latex-1xgdm8ex/solution.pdf'
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Changed files or newly in use/created:
+  /tmp/first-proof-latex-1xgdm8ex/solution.aux
+
+------------
+Run number 3 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex -no-shell-escape  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/tmp/first-proof-latex-1xgdm8ex"  "/work/first-proof-humanize-tdgou2bu/002-prob-003/solution.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex)
+entering extended mode
+(/work/first-proof-humanize-tdgou2bu/002-prob-003/solution.tex
+LaTeX2e <2022-11-01> patch level 1
+L3 programming layer <2023-01-16>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mathtools.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(/tmp/first-proof-latex-1xgdm8ex/solution.aux)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+))))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/tmp/first-proof-latex-1xgdm8ex/solution.out)
+(/tmp/first-proof-latex-1xgdm8ex/solution.out)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueuf.fd) [1{/var/lib/texmf/fo
+nts/map/pdftex/updmap/pdftex.map}]
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.124 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.124 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.124 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.124 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.130 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.130 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.130 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.130 \begin{equation}
+                       [2
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.210 \end{align}
+                 ]
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.235 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.235 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.235 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.235 \begin{equation}
+                       [3]
+Overfull \hbox (15.26941pt too wide) in paragraph at lines 296--300
+[]$\OMS/cmsy/m/n/10.95 h[]\OML/cmm/m/it/10.95 ; []\OMS/cmsy/m/n/10.95 i \OT1/cm
+r/m/n/10.95 = \OML/cmm/m/it/10.95 q[] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 
+q[]$\OT1/cmr/m/it/10.95 , where $[] \OT1/cmr/m/n/10.95 = [][] []$\OT1/cmr/m/it/
+10.95 ; by [], $\OMS/cmsy/m/n/10.95 hK[]\OML/cmm/m/it/10.95 ; []\OMS/cmsy/m/n/1
+0.95 i \OT1/cmr/m/n/10.95 =
+
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.327 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.327 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.327 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.327 \begin{equation}
+                       [4]
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.443 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.443 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.443 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.443 \begin{equation}
+                      
+Overfull \hbox (28.18951pt too wide) in paragraph at lines 447--455
+\OT1/cmr/m/n/10.95 Lemma [][]1.6[][](b) and the sur-viv-ing chan-nel is $\OMS/c
+msy/m/n/10.95 h\OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 ; []\OMS/cmsy/m/n/10.95 
+ih\OML/cmm/m/it/10.95 F[]; E[][]\OMS/cmsy/m/n/10.95 i \OT1/cmr/m/n/10.95 = \OMS
+/cmsy/m/n/10.95 h\OML/cmm/m/it/10.95 F[]; E[][]\OMS/cmsy/m/n/10.95 i$\OT1/cmr/m
+/n/10.95 ; the lat-ter is Lemma [][]1.6[][](d).
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 479.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 479.
+
+[5]
+Overfull \hbox (23.02582pt too wide) in paragraph at lines 495--501
+[]\OT1/cmr/m/n/10.95 Each claim is a one-channel eval-u-a-tion of []: by the tr
+i-an-gu-lar-ity of the pair-ing (Lemma [][]1.6[][](b))
+
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.531 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.531 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.531 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.531 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.564 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.564 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.564 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.564 \begin{equation}
+                       [6]
+Overfull \hbox (17.3484pt too wide) in paragraph at lines 601--610
+[]$\OT1/cmr/m/n/10.95 ((\OML/cmm/m/it/10.95 F[]; \OMS/cmsy/m/n/10.95 K[]\OML/cm
+m/m/it/10.95 ; \OMS/cmsy/m/n/10.95 K[]\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ;
+ \OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 E[]; \OT1/cmr/m/n/10.95 1\OML/cmm/m/it
+/10.95 ; \OT1/cmr/m/n/10.95 1))$: first scalar $\OMS/cmsy/m/n/10.95 h\OML/cmm/m
+/it/10.95 F[]; S[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 E[]\OT1/cmr/m/n/10.95
+ )\OMS/cmsy/m/n/10.95 i \OT1/cmr/m/n/10.95 = \OMS/cmsy/m/n/10.95 ^^@h\OML/cmm/m
+/it/10.95 F[]; E[]\OMS/cmsy/m/n/10.95 K[]i \OT1/cmr/m/n/10.95 = \OMS/cmsy/m/n/1
+0.95 ^^@\OML/cmm/m/it/10.95 ^^N[]^^R$ \OT1/cmr/m/n/10.95 by [] ($\OML/cmm/m/it/
+10.95 S[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 E[]\OT1/cmr/m/n/10.95 ) =
+
+Overfull \hbox (36.18042pt too wide) in paragraph at lines 619--625
+\OT1/cmr/m/n/10.95 Every other chan-nel con-tains a grou-p-like paired against 
+a charged word | e.g. $((\OML/cmm/m/it/10.95 F[]; \OMS/cmsy/m/n/10.95 K[]\OML/c
+mm/m/it/10.95 ; \OMS/cmsy/m/n/10.95 K[]\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 
+; \OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 K[]\OML/cmm/m/it/10.95 ; \OMS/cmsy/m/
+n/10.95 K[]\OML/cmm/m/it/10.95 ; E[]\OT1/cmr/m/n/10.95 ))$
+
+Overfull \hbox (24.04997pt too wide) in paragraph at lines 619--625
+\OT1/cmr/m/n/10.95 has first scalar $\OMS/cmsy/m/n/10.95 h\OML/cmm/m/it/10.95 F
+[]; S[]\OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 K[]\OT1/cmr/m/n/10.95 )\OMS/cmsy
+/m/n/10.95 i \OT1/cmr/m/n/10.95 = \OMS/cmsy/m/n/10.95 h\OML/cmm/m/it/10.95 F[];
+ \OMS/cmsy/m/n/10.95 K[]i \OT1/cmr/m/n/10.95 = 0$ by [] | or a van-ish-ing $\OM
+L/cmm/m/it/10.95 "$\OT1/cmr/m/n/10.95 -scalar, e.g. $((1\OML/cmm/m/it/10.95 ; \
+OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 ; F[]\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/1
+0.95 ; \OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 K[]\OML/cmm/m/it/10.95 ; E[]; \O
+T1/cmr/m/n/10.95 1))$
+
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.625 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.625 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.625 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.625 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.635 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.635 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.635 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.635 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.644 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.644 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.644 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.644 \begin{equation}
+                       [7]
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.656 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.656 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.656 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.656 \begin{equation}
+                       [8]
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.801 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.801 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.801 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.801 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.822 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.822 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.822 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.822 \begin{equation}
+                       [9]
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.903 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.903 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.903 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.903 \begin{equation}
+                      
+Overfull \hbox (38.15868pt too wide) detected at line 925
+\OML/cmm/m/it/10.95 s[]s[] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 F[][]F[][] 
+\OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 q[]F[]F[][][] \OT1/cmr/m/n/10.95 = \OM
+L/cmm/m/it/10.95 q[]F[]F[][][];
+
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.931 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.931 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.931 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1}
+) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.931 \begin{equation}
+                       [10]
+Overfull \hbox (51.87718pt too wide) detected at line 980
+[]\OML/cmm/m/it/10.95 E[] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 q[]E[][];  E
+[][] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 q[][]E[];  []F[] \OT1/cmr/m/n/10.
+95 = \OML/cmm/m/it/10.95 q[]F[][];  F[][] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10
+.95 q[][]F[];
+
+Overfull \hbox (140.7766pt too wide) detected at line 986
+[]\OML/cmm/m/it/10.95 E[] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 q[]E[][];  E
+[][] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 q[][]E[];  []F[] \OT1/cmr/m/n/10.
+95 = \OML/cmm/m/it/10.95 q[]F[][];  F[][] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10
+.95 q[][]F[];
+[11]
+Overfull \hbox (12.2593pt too wide) in paragraph at lines 1077--1089
+\OT1/cmr/m/n/10.95 by [] ap-plied to $\OML/cmm/m/it/10.95 F[]E[]$ \OT1/cmr/m/n/
+10.95 and the free cross of the two torus fac-tors $[]\OML/cmm/m/it/10.95 ; []$
+ \OT1/cmr/m/n/10.95 (Lemma [][]1.9[][](a),(b),(c):
+
+Overfull \hbox (13.31429pt too wide) in paragraph at lines 1077--1089
+[]$ \OT1/cmr/m/n/10.95 crosses $\OML/cmm/m/it/10.95 E[]$ \OT1/cmr/m/n/10.95 at 
+$\OML/cmm/m/it/10.95 q[]$ \OT1/cmr/m/n/10.95 and $\OML/cmm/m/it/10.95 F[]$ \OT1
+/cmr/m/n/10.95 crosses $[]$ at $\OML/cmm/m/it/10.95 q[]$\OT1/cmr/m/n/10.95 , ca
+n-celling). Rear-reducing $\OML/cmm/m/it/10.95 t[]s[] \OT1/cmr/m/n/10.95 =
+
+Overfull \hbox (100.18518pt too wide) detected at line 1097
+\OML/cmm/m/it/10.95 ^^R[]\OMS/cmsy/m/n/10.95 K[] ^^@ K[][][][] \OT1/cmr/m/n/10.
+95 = \OML/cmm/m/it/10.95 ^^R[]\OMS/cmsy/m/n/10.95 K[][] ^^@ K[][][][] \OT1/cmr/
+m/n/10.95 = \OML/cmm/m/it/10.95 ^^R[][][] \OMS/cmsy/m/n/10.95 ^^@ [][][][][][]\
+OML/cmm/m/it/10.95 :
+
+Overfull \hbox (27.28062pt too wide) in paragraph at lines 1097--1117
+\OT1/cmr/m/n/10.95 Since the torus is com-mu-ta-tive, $\OMS/cmsy/m/n/10.95 K[][
+][] \OT1/cmr/m/n/10.95 = [][][][][][]$ and $\OMS/cmsy/m/n/10.95 K[][][] \OT1/cm
+r/m/n/10.95 =
+
+Overfull \hbox (26.19353pt too wide) in paragraph at lines 1097--1117
+\OT1/cmr/m/n/10.95 tions), the two $\OML/cmm/m/it/10.95 ^^R$\OT1/cmr/m/n/10.95 
+-summands are ex-actly $\OML/cmm/m/it/10.95 ^^R t[][]t[]t[][]s[]$ \OT1/cmr/m/n/
+10.95 and $\OMS/cmsy/m/n/10.95 ^^@\OML/cmm/m/it/10.95 ^^R t[][]s[]s[][]s[]$\OT1
+/cmr/m/n/10.95 .
+[12]
+Overfull \hbox (5.03224pt too wide) in paragraph at lines 1173--1177
+[]\OT1/cmr/m/it/10.95 Well-defined. [] \OT1/cmr/m/n/10.95 by Propo-si-tion [][]
+2.3[][]; []--[] by The-o-rem [][]2.4[][](a)--(e), us-ing $\OML/cmm/m/it/10.95 t
+[]s[] \OT1/cmr/m/n/10.95 =
+[13] [14] (/tmp/first-proof-latex-1xgdm8ex/solution.aux) )
+(see the transcript file for additional information)
+pdfTeX warning (dest): name{theorem.1.6} has been referenced but does not exist
+, replaced by a fixed one
+
+ </root/.texlive2022/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/euler/eufm10.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/symbols/msbm10.pfb>
+Output written on /tmp/first-proof-latex-1xgdm8ex/solution.pdf (14 pages, 29641
+8 bytes).
+Transcript written on /tmp/first-proof-latex-1xgdm8ex/solution.log.
+Latexmk: Getting log file '/tmp/first-proof-latex-1xgdm8ex/solution.log'
+Latexmk: Examining '/tmp/first-proof-latex-1xgdm8ex/solution.fls'
+Latexmk: Examining '/tmp/first-proof-latex-1xgdm8ex/solution.log'
+Latexmk: Log file says output to '/tmp/first-proof-latex-1xgdm8ex/solution.pdf'
+Latexmk: All targets () are up-to-date
+
+
+=== pdfinfo ===
+Title:           
+Subject:         
+Keywords:        
+Author:          
+Creator:         LaTeX with hyperref
+Producer:        pdfTeX-1.40.24
+CreationDate:    Sat Oct  3 17:55:17 2026 UTC
+ModDate:         Sat Oct  3 17:55:17 2026 UTC
+Custom Metadata: yes
+Metadata Stream: no
+Tagged:          no
+UserProperties:  no
+Suspects:        no
+Form:            none
+JavaScript:      no
+Pages:           14
+Encrypted:       no
+Page size:       612 x 792 pts (letter)
+Page rot:        0
+File size:       296418 bytes
+Optimized:       no
+PDF version:     1.5

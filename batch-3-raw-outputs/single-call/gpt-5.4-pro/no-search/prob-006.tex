@@ -1,0 +1,148 @@
+```latex
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amsthm,amssymb,mathtools}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\HF}{\widehat{HF}}
+
+\title{Surgeries on L-space knots have at most two prime summands}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We prove that if $K\subset S^3$ is an L-space knot and $r$ is any Dehn surgery slope, then the surgery manifold $S^3_r(K)$ has at most two prime summands. The proof is a short deduction from Hoffman's theorem on reducible surgeries on L-space knots, together with standard facts about $0$-surgery on fibered knots and the Gordon--Luecke integrality theorem.
+\end{abstract}
+
+\paragraph{Convention.}
+Throughout, an \emph{L-space knot} means a knot in $S^3$ admitting a positive Dehn surgery to an L-space. We write $S^3_r(K)$ for the closed $3$-manifold obtained by Dehn surgery on $K$ with slope $r\in \Q\cup\{\infty\}$.
+
+\begin{theorem}[Hoffman {\cite{Hoffman}}]\label{thm:Hoffman}
+Let $K\subset S^3$ be an L-space knot. If $S^3_r(K)$ is reducible, then $S^3_r(K)$ has at most two irreducible summands.
+\end{theorem}
+
+The theorem just cited is the essential Heegaard--Floer-theoretic input. To convert it into the desired statement about \emph{prime} summands, we only need to rule out the possibility of an $S^1\times S^2$ factor. For L-space knots this is straightforward.
+
+\begin{lemma}\label{lem:zero-irred}
+If $K\subset S^3$ is a nontrivial L-space knot, then $S^3_0(K)$ is irreducible.
+\end{lemma}
+
+\begin{proof}
+By Ozsv\'ath--Szab\'o's description of knot Floer homology for knots admitting L-space surgeries \cite{OS} and Ni's fibred-knot detection theorem \cite{Ni}, every nontrivial L-space knot is fibered.
+
+Let $F$ be a fiber surface for $K$. Then the knot exterior $S^3\setminus \nu K$ is the mapping torus of a homeomorphism $\varphi\colon F\to F$. Performing $0$-surgery caps off $\partial F$ by a disk, so $S^3_0(K)$ is the mapping torus of the induced homeomorphism of the closed surface
+\[
+\widehat F = F\cup_{\partial F} D^2.
+\]
+Since $K$ is nontrivial, $g(\widehat F)=g(K)\ge 1$. A surface bundle over $S^1$ with closed fiber of genus at least $1$ is irreducible; see, for example, Hempel \cite[Chapter~10]{Hempel}. Hence $S^3_0(K)$ is irreducible.
+\end{proof}
+
+We can now prove the desired statement.
+
+\begin{theorem}\label{thm:main}
+Let $K\subset S^3$ be an L-space knot, and let $r\in \Q\cup\{\infty\}$. Then $S^3_r(K)$ has at most two prime summands.
+\end{theorem}
+
+\begin{proof}
+If $r=\infty$, then $S^3_r(K)=S^3$, which is prime.
+
+If $K$ is the unknot, then every surgery on $K$ is a lens space (or $S^1\times S^2$ in the case $r=0$), so again there is only one prime summand.
+
+Hence assume $K$ is nontrivial and $r\in \Q$. If $S^3_r(K)$ is irreducible, there is nothing to prove. So suppose that $S^3_r(K)$ is reducible.
+
+By Lemma~\ref{lem:zero-irred}, the slope $r$ cannot be $0$. On the other hand, Gordon and Luecke proved that a reducible surgery on a knot in $S^3$ must have \emph{integral} slope \cite{GL}. Therefore
+\[
+r\in \Z\setminus\{0\}.
+\]
+It follows that
+\[
+H_1\!\left(S^3_r(K);\Z\right)\cong \Z/|r|\Z
+\]
+is finite.
+
+Now recall the standard fact from prime decomposition theory that the only orientable prime closed $3$-manifold which is not irreducible is $S^1\times S^2$; see, e.g., Hempel \cite{Hempel}. Since
+\[
+H_1(S^1\times S^2;\Z)\cong \Z
+\]
+is infinite, $S^1\times S^2$ cannot occur as a prime summand of $S^3_r(K)$. Consequently, for this manifold the prime summands and irreducible summands are the same.
+
+Applying Hoffman's theorem (Theorem~\ref{thm:Hoffman}), we conclude that $S^3_r(K)$ has at most two irreducible summands, hence at most two prime summands.
+\end{proof}
+
+\begin{remark}
+If one adopts the broader convention that also calls the mirror of a positive L-space knot an ``L-space knot,'' the same conclusion still holds, because
+\[
+S^3_r(\overline K)\cong -\,S^3_{-r}(K),
+\]
+and orientation reversal does not change the number of prime summands.
+\end{remark}
+
+\begin{remark}
+For context, the torus and satellite cases are already classical. Moser proved that the only reducible surgery on a nontrivial torus knot $T_{p,q}$ is $pq$-surgery, and
+\[
+S^3_{pq}(T_{p,q})\cong L(p,q)\# L(q,p)
+\]
+\cite{Moser}. Scharlemann proved that if a satellite knot admits a reducible surgery, then it is a cable knot and the reducing slope is the cabling slope \cite{Scharlemann}; Gordon's cabling formula identifies that surgery as
+\[
+L(p,q)\# S^3_{q/p}(J)
+\]
+for the companion knot $J$ \cite{GordonSatellite}, and Gordon--Luecke imply that the second factor is irreducible because $q/p\notin \Z$ \cite{GL}. Thus the genuinely nonclassical input needed for Theorem~\ref{thm:main} is precisely Hoffman's Heegaard--Floer-theoretic result.
+\end{remark}
+
+\begin{thebibliography}{99}
+
+\bibitem{GL}
+C.~McA. Gordon and J.~Luecke,
+\emph{Only integral Dehn surgeries can yield reducible manifolds},
+Math. Proc. Cambridge Philos. Soc. \textbf{102} (1987), no.~1, 97--101.
+
+\bibitem{GordonSatellite}
+C.~McA. Gordon,
+\emph{Dehn surgery and satellite knots},
+Trans. Amer. Math. Soc. \textbf{275} (1983), no.~2, 687--708.
+
+\bibitem{Hempel}
+J.~Hempel,
+\emph{3-Manifolds},
+Annals of Mathematics Studies, No.~86,
+Princeton University Press, Princeton, N.J., 1976.
+
+\bibitem{Hoffman}
+C.~M. Hoffman,
+\emph{Reducible surgeries and Heegaard Floer homology},
+Algebr. Geom. Topol. \textbf{16} (2016), no.~6, 3431--3456.
+
+\bibitem{Moser}
+L.~Moser,
+\emph{Elementary surgery along a torus knot},
+Pacific J. Math. \textbf{38} (1971), 737--745.
+
+\bibitem{Ni}
+Y.~Ni,
+\emph{Knot Floer homology detects fibred knots},
+Invent. Math. \textbf{170} (2007), no.~3, 577--608.
+
+\bibitem{OS}
+P.~Ozsv\'ath and Z.~Szab\'o,
+\emph{On knot Floer homology and lens space surgeries},
+Topology \textbf{44} (2005), no.~6, 1281--1300.
+
+\bibitem{Scharlemann}
+M.~Scharlemann,
+\emph{Producing reducible $3$-manifolds by surgery on a knot},
+Topology \textbf{29} (1990), no.~4, 481--500.
+
+\end{thebibliography}
+
+\end{document}
+```

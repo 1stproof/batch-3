@@ -1,0 +1,80 @@
+\documentclass[reqno]{amsart}
+
+\usepackage{amsmath, amsfonts, amssymb, mathrsfs, stmaryrd, wasysym, mathtools}
+\usepackage{enumerate}
+\usepackage{accents}
+\usepackage{centernot}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{standalone}
+\usetikzlibrary{calc}
+\usepackage{graphicx}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5\baselineskip}
+
+\usepackage{amsrefs}
+
+\makeatletter \renewcommand{\appendix}{
+\par \setcounter{section}{0}
+\setcounter{subsection}{0}
+\def\thesection{}
+\def\sectionname{Appendix:}
+\def\@seccntformat##1{}
+} \makeatother
+
+\newtheorem{Thm}{Theorem}
+\newtheorem{Prop}[Thm]{Proposition}
+\newtheorem{Lm}[Thm]{Lemma}
+\newtheorem{Cor}[Thm]{Corollary}
+\newtheorem{Ques}[Thm]{Question}
+\newtheorem*{prop}{Proposition}
+\newtheorem*{lm}{Lemma}
+\newtheorem*{thm}{Theorem}
+\newtheorem*{cor}{Corollary}
+\newtheorem*{ques}{Question}
+
+\theoremstyle{definition}
+\newtheorem{Df}[Thm]{Definition}
+\newtheorem{Obs}[Thm]{Observation}
+\newtheorem*{df}{Definition}
+\newtheorem*{obs}{Observation}
+\newtheorem*{fact}{Fact}
+\newtheorem*{prob}{Problem}
+\newtheorem{Ex}[Thm]{Example}
+\newtheorem*{ex}{Example}
+\newtheorem*{claim}{Claim}
+\newtheorem{Claim}{Claim}
+
+\theoremstyle{remark}
+\newtheorem{Rmk}[Thm]{Remark}
+\newtheorem*{rmk}{Remark}
+\newtheorem*{concl}{Conclusion}
+\newtheorem{clm}[Thm]{Claim}
+
+\newcommand{\abs}[1]{\lvert #1 \rvert}
+\newcommand{\del}{\backslash}
+\newcommand{\Nc}{\mathcal{N}}
+\DeclareMathOperator{\deq}{\vcentcolon=}
+
+\DeclareFontFamily{U}{mathx}{}
+\DeclareFontShape{U}{mathx}{m}{n}{<-> mathx10}{}
+\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+\DeclareMathAccent{\widehat}{0}{mathx}{"70}
+\DeclareMathAccent{\widecheck}{0}{mathx}{"71}
+
+\title{An elementary property of hyperfields.}
+
+
+\begin{document}
+    \begin{Ques}\label[Ques]{ques:main}
+    Let $\mathbb{H}$ be a hyperfield with multivalued addition operator $\boxplus$.
+    Let $x, y, z \in \mathbb{H}$ be elements. Suppose that 
+    $0 \in x \boxplus y \boxplus z$. Does it then follow that
+    \[
+        0 \in x^3 \boxplus y^3 \boxplus z^3 \boxplus -xyz \boxplus -xyz \boxplus -xyz\text{?}
+    \]
+    \end{Ques}
+\end{document}

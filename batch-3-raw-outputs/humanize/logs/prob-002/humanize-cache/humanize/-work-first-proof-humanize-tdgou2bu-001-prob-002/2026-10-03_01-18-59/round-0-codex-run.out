@@ -1,0 +1,25 @@
+The review result and tracker updates are written. Here is my review summary.
+
+## Review Summary (Audit #3 — this round)
+
+I independently re-derived the load-bearing steps of the current `solution.tex` (HEAD `13876cd`) and confirmed **every finding of the prior audit (G1–G7, B-5..B-8) persists verbatim**, plus found one new item. Findings written to `round-0-review-result.md`; tracker updated (B-9 added, G1 annotations, Plan Evolution entry "2 (review #3)").
+
+**Mainline Gaps** (all confirmed by independent re-derivation):
+- **G1**: The §5(C) display $c\delta\|h\|_2 \lesssim n^{-1/2}\|\xi_\delta\| + \delta^\alpha + r(\|h\|_2+r)$ is vacuous for fixed $r$, $\delta\to 0$; the subsequent dichotomy (a) substitutes a different remainder bound never reconciled with the display, and (b) rests on a false threshold: with the document's own GN exponent $\theta=\alpha/(\alpha+d/2)$, the absorption at $\|h\|_2\asymp\delta_*^\alpha$ needs $\alpha\theta>1$, i.e. $\alpha>\frac{1+\sqrt{1+2d}}{2}$ (e.g. $>1.62$ for $d=2$), **not** "$\alpha>1$".
+- **G2/G3**: Exact radial computation re-verified: an origin-centred scale-$\delta$ bump gives $\|Tg\|_2\asymp\delta^2\|g\|_2$ — the claimed two-sided $\delta$-gain fails near the origin (the true gain $\delta(\delta+|x_\lambda|)$ is *stronger*, so the rate survives, but `lem:scale2`'s lower bound and `lem:invert` (i)/(ii) are false as stated; the spectral-tail "choose $K$ with $C_K\delta^{K-1}\le c/2$" is disconnected from the derived $C_K\delta$-bound).
+- **G4**: The AO proof's "rapid decay" of the ball-indicator transform is false (jinc decay $|y|^{-(d+1)/2}$; the printed Schur sum diverges); fixed-$v$ weight statement vs $\xi$-dependent usage mismatch (one-line fixed-coordinate fix exists).
+- **G5/G6**: U-term display chain off by one power of $\delta$ (spurious $\cdot\delta^{-1}$); `eq:shell` stated for all $h\in C^\alpha$ but proved only for packets (false in general).
+- **G7**: "$\widehat f$ computed by linear least squares" false; log-free $\Phi_n$ unsupported until G1 lands.
+
+**Blocking Side Issues**: B-5 ($4d^2$/$2d$ Cesàro factor, 5 sites), B-6 (source-sign vs `problem.tex`: $u_0=(1-|x|^2)/(2d)$ solves source $-1$), B-7 ("bounded isomorphism of $L^2$" for unbounded $L$), B-8 (garbled duplicate fragment), **B-9 (new)**: two literal "$=$" displays in Prop 4.1 Steps 1–2 that are only $\asymp$.
+
+**Verified sound**: the Fano lower bound pipeline (only the *upper* scale bound is used); the printed rate $n^{-2\alpha/(2\alpha+d+2)}$ is consistent (annulus bulk gives the rate; origin modes only easier). AC-5 met (13pp, clean compile, re-run by me).
+
+```
+ACs: 1/5 met (AC-5) | AC-2 near-met | AC-1/AC-3 open at G1–G7 + B-5..B-9 | Forgotten items: 0 | Unjustified deferrals: 0
+Capability anchor: N/A | Dependency gaps: 0 | Scope drift: no
+```
+
+A singular directive Round-2 repair plan (6 commit-ordered steps: sweep → AO/U-term/fourier fixes → annulus jinc-packet lower bound → mode-wise inversion with gains → comparison-point risk rebuild with multiplicative-r and per-scale absorption → final audit) is in Part 2 of the review file.
+
+Mainline Progress Verdict: ADVANCED

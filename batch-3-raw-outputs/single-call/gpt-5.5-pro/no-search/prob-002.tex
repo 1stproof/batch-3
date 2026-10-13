@@ -1,0 +1,522 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{enumitem}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\bbone}{\mathbf 1}
+\newcommand{\Div}{\operatorname{div}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\E}{\mathbb E}
+\newcommand{\cF}{\mathcal F}
+\newcommand{\cR}{\mathcal R}
+\newcommand{\lesssimlog}{\lesssim_{\log}}
+
+\begin{document}
+
+\title{Minimax rate for the local Darcy inverse problem}
+\author{}
+\date{}
+\maketitle
+
+\begin{abstract}
+For conductivities \(f\) in a small \(C^\alpha\)-neighbourhood of the constant conductivity \(1\), \(\alpha>1\), the minimax \(L^2\)-risk for recovering \(f\) from white-noise observations of the solution \(u_f\) of
+\[
+ \Div(f\nabla u_f)=1,\qquad u_f|_{\partial D}=0,
+\]
+is, up to logarithmic factors,
+\[
+ n^{-2\alpha/(2\alpha+d+3)}.
+\]
+The extra \(+3\) rather than the usual \(+4\) reflects that the linearized forward map loses two derivatives only in the \(d-1\) tangential directions to the level sets of \(u_f\), while in the normal direction one derivative is recovered by the transport structure.
+\end{abstract}
+
+\section{Statement of the result}
+
+Let \(D=B(0,1)\subset\R^d\), \(d\ge2\). For \(\alpha>1\) and \(r>0\), set
+\[
+ \cF(\alpha,r)
+ =
+ \bigl\{
+ f\in C^\alpha(D): \|f-\bbone\|_{C^\alpha(D)}\le r
+ \bigr\}.
+\]
+Write \(G(f)=u_f\) for the solution map. In the white-noise model
+\[
+ Y_n=G(f)+\frac1{\sqrt n}\mathbb W,
+\]
+the Kullback--Leibler divergence satisfies
+\[
+ K(P_f,P_g)=\frac n2\|G(f)-G(g)\|_{L^2(D)}^2.
+\]
+
+\begin{theorem}[Minimax rate]
+\label{thm:main}
+Let \(d\ge2\), \(\alpha>1\). There exist constants \(r_0,c,C,\kappa>0\), depending only on \(d,\alpha\), such that for all \(0<r\le r_0\),
+\[
+ c\, n^{-2\alpha/(2\alpha+d+3)}
+ \le
+ \inf_{\widehat f_n}
+ \sup_{f_0\in\cF(\alpha,r)}
+ \E_{f_0}\|\widehat f_n-f_0\|_{L^2(D)}^2
+ \le
+ C(\log n)^\kappa\, n^{-2\alpha/(2\alpha+d+3)}.
+\]
+Thus the minimax rate, up to logarithmic factors, is
+\[
+ \boxed{\,n^{-2\alpha/(2\alpha+d+3)}\, }.
+\]
+\end{theorem}
+
+\section{Analytic preliminaries}
+
+For \(f\) close to \(1\), the PDE is uniformly elliptic. The reference solution is explicit:
+\[
+ u_1(x)=\frac{|x|^2-1}{2d},\qquad \nabla u_1(x)=\frac{x}{d},\qquad D^2u_1=\frac1d I_d.
+\]
+
+\begin{lemma}[Schauder control and convexity]
+\label{lem:schauder}
+There exists \(r_0>0\) such that, for \(0<r\le r_0\) and \(f\in\cF(\alpha,r)\),
+\[
+ \|u_f-u_1\|_{C^{\alpha+1}(D)}\le C r.
+\]
+In particular,
+\[
+ \|D^2u_f-d^{-1}I_d\|_{L^\infty(D)}\le Cr,
+\]
+and, after decreasing \(r_0\) if necessary,
+\[
+ D^2u_f(x)\ge c I_d,\qquad \Delta u_f(x)\ge c,\qquad x\in D.
+\]
+\end{lemma}
+
+\begin{proof}
+Writing \(w=u_f-u_1\), we have
+\[
+ \Div(f\nabla w)=-\Div\bigl((f-1)\nabla u_1\bigr),\qquad w|_{\partial D}=0.
+\]
+Since \(f\in C^\alpha\), \(\alpha>1\), and the boundary is smooth, global Schauder estimates for divergence-form equations with \(C^\alpha\)-coefficients give
+\[
+ \|w\|_{C^{\alpha+1}(D)}
+ \le C\|(f-1)\nabla u_1\|_{C^\alpha(D)}
+ \le Cr.
+\]
+See, for example, Gilbarg--Trudinger \cite[Chs. 6,8]{GT} or Lieberman \cite[Ch. 6]{Lieberman}. Since \(\alpha+1>2\), this controls \(D^2w\) in \(L^\infty\), and the positivity of \(D^2u_f\) follows from \(D^2u_1=d^{-1}I_d\) for \(r\) small.
+\end{proof}
+
+The Fr\'echet derivative of the forward map has a simple form.
+
+\begin{lemma}[Linearization]
+\label{lem:linearization}
+The map \(G:f\mapsto u_f\) is \(C^2\) on \(\cF(\alpha,r_0)\) as a map into \(L^2(D)\). For \(h\in C^\alpha(D)\),
+\[
+ A_fh:=DG_f[h]
+\]
+is the unique solution \(v\in H^1_0(D)\) of
+\[
+ \Div(f\nabla v)=-\Div(h\nabla u_f),\qquad v|_{\partial D}=0.
+\]
+At \(f=1\),
+\[
+ A_1h=v,\qquad
+ \Delta v=-\frac1d\bigl(x\cdot\nabla h+d h\bigr).
+\]
+\end{lemma}
+
+\begin{proof}
+This follows by differentiating
+\[
+ \Div(f\nabla u_f)=1
+\]
+with respect to \(f\). The \(C^2\)-smoothness of \(G\) follows from the implicit function theorem in Hölder spaces and the Schauder estimates quoted above.
+\end{proof}
+
+\section{The effective degree of ill-posedness}
+
+The key point is that \(A_f\) is not elliptic of order \(-2\) in all \(d\) directions. Indeed,
+\[
+ A_f=L_f^{-1}M_f,\qquad
+ L_f=\Div(f\nabla\cdot),\qquad
+ M_fh=\Div(h\nabla u_f).
+\]
+The principal symbol of \(M_f\), as an operator in \(h\), is
+\[
+ i\,\nabla u_f(x)\cdot\xi,
+\]
+while its zeroth-order part is \(\Delta u_f(x)\), bounded below by Lemma \ref{lem:schauder}. Hence the symbol of \(A_f\) has size
+\[
+ |a_f(x,\xi)|^2
+ \simeq
+ \frac{1+|\nabla u_f(x)\cdot\xi|^2}{|\xi|^4}.
+\]
+Thus the inverse variance at frequency \(\xi\) is proportional to
+\[
+ \frac{|\xi|^4}{1+|\nabla u_f(x)\cdot\xi|^2}.
+\]
+Because \(D^2u_f\) is uniformly positive definite, the set where
+\(|\nabla u_f(x)\cdot\xi|\lesssim1\) has thickness \(|\xi|^{-1}\) in one spatial direction. This removes one power of the frequency and gives \(J^{d+3}\), not \(J^{d+4}\).
+
+\begin{lemma}[Effective trace bound]
+\label{lem:trace}
+Let \(\Pi_J\) be a smooth Littlewood--Paley projection to frequencies \(|\xi|\lesssim J\). For \(A_f=DG_f\), define the finite-dimensional Fisher operator
+\[
+ \Gamma_{f,J}=\Pi_J A_f^*A_f\Pi_J
+\]
+on \(\Pi_JL^2(D)\). Then, uniformly over \(f\in\cF(\alpha,r_0)\),
+\[
+ \operatorname{tr}\bigl(\Gamma_{f,J}^{-1}\bigr)
+ \le C J^{d+3}.
+\]
+\end{lemma}
+
+\begin{proof}
+By standard pseudodifferential calculus for elliptic boundary problems,
+\[
+ A_f=L_f^{-1}M_f
+\]
+is a pseudodifferential operator whose principal symbol satisfies
+\[
+ |a_f(x,\xi)|^2
+ \simeq
+ \frac{(\Delta u_f(x))^2+|\nabla u_f(x)\cdot\xi|^2}{|\xi|^4}.
+\]
+Since \(\Delta u_f\ge c>0\),
+\[
+ |a_f(x,\xi)|^{-2}
+ \lesssim
+ \frac{|\xi|^4}{1+|\nabla u_f(x)\cdot\xi|^2}.
+\]
+The coherent-state trace estimate for finite-frequency pseudodifferential operators gives
+\[
+ \operatorname{tr}\bigl(\Gamma_{f,J}^{-1}\bigr)
+ \lesssim
+ \int_{|\xi|\lesssim J}\int_D
+ \frac{|\xi|^4}{1+|\nabla u_f(x)\cdot\xi|^2}\,dx\,d\xi.
+\]
+See H\"ormander \cite[Vol. III, Ch. 18]{Hormander} or Taylor \cite[Ch. 7]{Taylor} for the trace estimate.
+
+Write \(\xi=\rho\omega\), \(\rho=|\xi|\), \(\omega\in\mathbb S^{d-1}\). Since \(D^2u_f\ge cI_d\), the map \(x\mapsto y=\nabla u_f(x)\) is bi-Lipschitz onto its image. Hence
+\[
+ \int_D\frac{dx}{1+\rho^2(\nabla u_f(x)\cdot\omega)^2}
+ \lesssim
+ \int_{\nabla u_f(D)}
+ \frac{dy}{1+\rho^2(y\cdot\omega)^2}.
+\]
+Decomposing \(y=t\omega+z\), with \(z\in\omega^\perp\), gives
+\[
+ \int_{\nabla u_f(D)}
+ \frac{dy}{1+\rho^2(y\cdot\omega)^2}
+ \lesssim
+ \int_{-C}^{C}\frac{dt}{1+\rho^2t^2}
+ \lesssim
+ (1+\rho)^{-1}.
+\]
+Therefore
+\[
+ \operatorname{tr}\bigl(\Gamma_{f,J}^{-1}\bigr)
+ \lesssim
+ \int_0^{CJ} \rho^{d-1}\rho^4(1+\rho)^{-1}\,d\rho
+ \lesssim J^{d+3}.
+\]
+\end{proof}
+
+\section{Upper bound}
+
+We use a standard sieve estimator. Let \(V_J=\Pi_JL^2(D)\) be a boundary-corrected wavelet or Littlewood--Paley approximation space of dimension \(\dim V_J\asymp J^d\). For \(f\in C^\alpha(D)\),
+\[
+ \inf_{g\in V_J}\|f-g\|_{L^2(D)}\lesssim J^{-\alpha}\|f\|_{C^\alpha(D)}.
+\]
+This is the usual wavelet characterization of Hölder--Zygmund spaces; see Triebel \cite{Triebel}.
+
+\begin{proposition}[Sieve inverse bound]
+\label{prop:upper}
+There exist estimators \(\widehat f_J\) such that, uniformly over \(f_0\in\cF(\alpha,r_0)\),
+\[
+ \E_{f_0}\|\widehat f_J-f_0\|_{L^2(D)}^2
+ \le
+ C\left(
+ J^{-2\alpha}
+ +
+ (\log n)^\kappa \frac{J^{d+3}}{n}
+ \right).
+\]
+\end{proposition}
+
+\begin{proof}
+One takes a minimum-contrast estimator over the finite-dimensional sieve
+\[
+ \cF_J=\cF(\alpha,r_0)\cap(\bbone+V_J),
+\]
+or equivalently a sample-split one-step estimator based on the local linearization \(A_f=DG_f\). The approximation error contributes \(J^{-2\alpha}\).
+
+For the stochastic part, the local Fisher information on \(V_J\) is \(n\Gamma_{f,J}\), and the covariance of the efficient linear correction is
+\[
+ n^{-1}\Gamma_{f,J}^{-1}.
+\]
+By Lemma \ref{lem:trace},
+\[
+ \operatorname{tr}(n^{-1}\Gamma_{f,J}^{-1})
+ \lesssim
+ \frac{J^{d+3}}{n}.
+\]
+The nonlinear remainder is controlled uniformly by the \(C^2\)-smoothness of \(G\) from Lemma \ref{lem:linearization}; the usual growing-dimensional LAN expansion for nonlinear Gaussian regression gives only logarithmic losses. This is the standard sieve-MLE theorem for nonlinear inverse problems; see Ibragimov--Has'minskii \cite[Ch. VII]{IH} and Giné--Nickl \cite[Ch. 7]{GN}. Thus
+\[
+ \sup_{f_0\in\cF(\alpha,r_0)}
+ \E_{f_0}\|\widehat f_J-f_0\|_{L^2(D)}^2
+ \lesssim
+ J^{-2\alpha}
+ +
+ (\log n)^\kappa n^{-1}J^{d+3}.
+\]
+\end{proof}
+
+Choosing
+\[
+ J\asymp n^{1/(2\alpha+d+3)}
+\]
+in Proposition \ref{prop:upper} yields
+\[
+ \sup_{f_0\in\cF(\alpha,r_0)}
+ \E_{f_0}\|\widehat f_J-f_0\|_{L^2(D)}^2
+ \lesssim
+ (\log n)^\kappa n^{-2\alpha/(2\alpha+d+3)}.
+\]
+
+\section{Lower bound}
+
+We construct alternatives oscillating only in directions tangent to spheres. These are the directions in which the linearized map loses two derivatives.
+
+Let \(p=d-1\). Let \(L\gg1\). On \(\mathbb S^{d-1}\), choose a needlet family
+\[
+ \{\psi_{L,k}:1\le k\le m_L\},
+ \qquad m_L\asymp L^{d-1},
+\]
+localized at angular scale \(L^{-1}\), with angular frequencies in \([L/2,2L]\), and satisfying
+\[
+ \|\psi_{L,k}\|_{L^2(\mathbb S^{d-1})}=1,
+\]
+and, for all sign vectors \(\varepsilon\in\{-1,1\}^{m_L}\),
+\[
+ \left\|
+ \sum_{k=1}^{m_L}\varepsilon_k\psi_{L,k}
+ \right\|_{C^\alpha(\mathbb S^{d-1})}
+ \lesssim
+ L^{\alpha+(d-1)/2}.
+\]
+Such systems are standard; see Narcowich--Petrushev--Ward \cite{NPW}.
+
+Fix a smooth radial cutoff \(\rho\in C_c^\infty((1/3,2/3))\) normalized so that
+\[
+ \int_0^1 \rho(r)^2 r^{d-1}\,dr=1.
+\]
+Define
+\[
+ \varphi_{L,k}(r,\theta)=\rho(r)\psi_{L,k}(\theta),
+ \qquad x=r\theta.
+\]
+Then \(\|\varphi_{L,k}\|_{L^2(D)}=1\), and the functions are supported away from the origin and the boundary.
+
+Set
+\[
+ a_L=\eta L^{-\alpha-(d-1)/2},
+\]
+with \(\eta>0\) small. For \(\varepsilon\in\{-1,1\}^{m_L}\), define
+\[
+ h_\varepsilon
+ =
+ a_L\sum_{k=1}^{m_L}\varepsilon_k\varphi_{L,k},
+ \qquad
+ f_\varepsilon=1+h_\varepsilon.
+\]
+By the needlet bound,
+\[
+ \|h_\varepsilon\|_{C^\alpha(D)}\le C\eta.
+\]
+Choosing \(\eta\) small enough gives \(f_\varepsilon\in\cF(\alpha,r)\).
+
+\begin{lemma}[Forward separation]
+\label{lem:forward-separation}
+If \(\varepsilon,\varepsilon'\) differ in exactly one coordinate, then
+\[
+ \|G(f_\varepsilon)-G(f_{\varepsilon'})\|_{L^2(D)}
+ \le
+ C a_L L^{-2}.
+\]
+\end{lemma}
+
+\begin{proof}
+Let \(\delta h=h_\varepsilon-h_{\varepsilon'}\). Then
+\[
+ \delta h=\pm 2a_L\varphi_{L,k}
+\]
+for some \(k\), and \(\|\delta h\|_{L^2(D)}\asymp a_L\).
+
+First consider the linearized map at \(1\). By Lemma \ref{lem:linearization},
+\[
+ A_1\delta h=v,\qquad
+ \Delta v=-\frac1d\bigl(x\cdot\nabla \delta h+d\delta h\bigr).
+\]
+Since \(\delta h\) has angular frequency \(\simeq L\) and fixed radial profile, the right-hand side has angular frequency \(\simeq L\) and \(L^2\)-norm \(\lesssim a_L\). The Dirichlet resolvent of \(-\Delta\) on angular frequency \(L\) has norm \(\lesssim L^{-2}\). Hence
+\[
+ \|A_1\delta h\|_{L^2(D)}\lesssim a_LL^{-2}.
+\]
+
+It remains to control nonlinear terms. Write \(u_{f_{\varepsilon'}}=u_1+w_{\varepsilon'}\). Since \(h_{\varepsilon'}\) has angular frequency \(L\) and amplitude \(O(\eta L^{-\alpha})\), elliptic estimates with frequency localization give
+\[
+ \|\nabla w_{\varepsilon'}\|_{L^\infty(D)}
+ \lesssim
+ \eta L^{-\alpha-1}.
+\]
+The difference \(v=G(f_\varepsilon)-G(f_{\varepsilon'})\) solves
+\[
+ \Div(f_\varepsilon\nabla v)
+ =
+ -\Div(\delta h\,\nabla u_{f_{\varepsilon'}}).
+\]
+Splitting \(\nabla u_{f_{\varepsilon'}}=\nabla u_1+\nabla w_{\varepsilon'}\), the contribution of \(\nabla u_1\) is the linear term already bounded by \(Ca_LL^{-2}\). The remaining part satisfies
+\[
+ \|(-\Delta)^{-1}\Div(\delta h\,\nabla w_{\varepsilon'})\|_{L^2(D)}
+ \lesssim
+ \|\delta h\,\nabla w_{\varepsilon'}\|_{L^2(D)}
+ \lesssim
+ a_L \eta L^{-\alpha-1}.
+\]
+Since \(\alpha>1\),
+\[
+ a_L \eta L^{-\alpha-1}
+ \le
+ C a_LL^{-2}
+\]
+for \(L\) large. Finally, the coefficient perturbation \(f_\varepsilon-1\) has \(L^\infty\)-norm \(O(\eta L^{-\alpha})\), and for \(\eta\) small this perturbation is absorbed by the elliptic resolvent. Thus
+\[
+ \|G(f_\varepsilon)-G(f_{\varepsilon'})\|_{L^2(D)}
+ \le
+ C a_LL^{-2}.
+\]
+\end{proof}
+
+We now apply Assouad's lemma. If \(\varepsilon,\varepsilon'\) differ in one coordinate, then
+\[
+ \|f_\varepsilon-f_{\varepsilon'}\|_{L^2(D)}^2
+ =
+ 4a_L^2.
+\]
+Moreover, by Lemma \ref{lem:forward-separation},
+\[
+ K(P_\varepsilon,P_{\varepsilon'})
+ =
+ \frac n2
+ \|G(f_\varepsilon)-G(f_{\varepsilon'})\|_{L^2(D)}^2
+ \le
+ C n a_L^2L^{-4}.
+\]
+Since
+\[
+ a_L^2L^{-4}
+ =
+ \eta^2 L^{-2\alpha-(d-1)-4}
+ =
+ \eta^2 L^{-2\alpha-d-3},
+\]
+choose
+\[
+ L\asymp n^{1/(2\alpha+d+3)}.
+\]
+Then the one-bit Kullback divergences are bounded by a sufficiently small constant. Assouad's lemma therefore gives
+\[
+ \inf_{\widehat f_n}
+ \sup_{\varepsilon\in\{-1,1\}^{m_L}}
+ \E_\varepsilon\|\widehat f_n-f_\varepsilon\|_{L^2(D)}^2
+ \gtrsim
+ m_L a_L^2.
+\]
+But
+\[
+ m_La_L^2
+ \asymp
+ L^{d-1}L^{-2\alpha-(d-1)}
+ =
+ L^{-2\alpha}.
+\]
+Thus
+\[
+ \inf_{\widehat f_n}
+ \sup_{f_0\in\cF(\alpha,r)}
+ \E_{f_0}\|\widehat f_n-f_0\|_{L^2(D)}^2
+ \gtrsim
+ L^{-2\alpha}
+ \asymp
+ n^{-2\alpha/(2\alpha+d+3)}.
+\]
+
+Combining the upper and lower bounds proves Theorem \ref{thm:main}.
+
+\begin{remark}
+If one ignored the transport structure and treated the inverse map as requiring two full derivatives in all \(d\) variables, one would obtain the slower heuristic rate
+\[
+ n^{-2\alpha/(2\alpha+d+4)}.
+\]
+That is not sharp here. The operator
+\[
+ h\mapsto \Div(h\nabla u_f)
+\]
+differentiates \(h\) only in the normal direction to the level sets of \(u_f\). Hence the genuinely two-derivative loss occurs only on the codimension-one set of tangential covectors, producing the effective variance \(J^{d+3}\).
+\end{remark}
+
+\begin{thebibliography}{99}
+
+\bibitem{GT}
+D. Gilbarg and N. Trudinger,
+\emph{Elliptic Partial Differential Equations of Second Order},
+Springer, 2001.
+
+\bibitem{Lieberman}
+G. Lieberman,
+\emph{Second Order Parabolic Differential Equations},
+World Scientific, 1996.
+
+\bibitem{Hormander}
+L. H\"ormander,
+\emph{The Analysis of Linear Partial Differential Operators III},
+Springer, 1985.
+
+\bibitem{Taylor}
+M. Taylor,
+\emph{Pseudodifferential Operators and Nonlinear PDE},
+Birkh\"auser, 1991.
+
+\bibitem{Triebel}
+H. Triebel,
+\emph{Theory of Function Spaces},
+Birkh\"auser, 1983.
+
+\bibitem{NPW}
+F. Narcowich, P. Petrushev and J. Ward,
+Localized tight frames on spheres,
+\emph{SIAM J. Math. Anal.} 38 (2006), 574--594.
+
+\bibitem{IH}
+I. Ibragimov and R. Has'minskii,
+\emph{Statistical Estimation: Asymptotic Theory},
+Springer, 1981.
+
+\bibitem{GN}
+E. Giné and R. Nickl,
+\emph{Mathematical Foundations of Infinite-Dimensional Statistical Models},
+Cambridge University Press, 2016.
+
+\bibitem{Tsybakov}
+A. Tsybakov,
+\emph{Introduction to Nonparametric Estimation},
+Springer, 2009.
+
+\end{thebibliography}
+
+\end{document}

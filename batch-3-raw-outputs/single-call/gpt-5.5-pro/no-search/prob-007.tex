@@ -1,0 +1,131 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+
+\newcommand{\Teich}{\operatorname{Teich}}
+\newcommand{\Mod}{\operatorname{Mod}}
+\newcommand{\D}{\mathcal D}
+\newcommand{\id}{\operatorname{id}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+
+\begin{document}
+
+\title{A Dehn twist preserving the period-four deformation space}
+\author{}
+\date{}
+\maketitle
+
+Let
+\[
+a_0=c_1,\qquad a_1=f(c_1),\qquad a_2=f^{\circ 2}(c_1),\qquad a_3=f^{\circ 3}(c_1),
+\]
+so that \(f(a_j)=a_{j+1}\) with indices modulo \(4\), and let
+\[
+v=f(c_2).
+\]
+Thus
+\[
+A=\{a_0,a_1,a_2,a_3\},\qquad B=A\cup\{v\},
+\]
+and \(v\notin A\) by hypothesis.
+
+We claim that one can take \(\gamma\) to be the isotopy class of the essential simple closed curve separating
+\[
+\{v,a_2\}=\{v,f^{\circ 2}(c_1)\}
+\]
+from
+\[
+\{a_0,a_1,a_3\}=\{c_1,f(c_1),f^{\circ 3}(c_1)\}.
+\]
+Equivalently, \(\gamma=\partial \Delta\), where \(\Delta\subset S^2\) is a closed topological disk with
+\[
+\Delta\cap B=\{v,a_2\}.
+\]
+Let \(T_\gamma\) denote the positive Dehn twist about \(\gamma\). The required power is \(T_\gamma^2\).
+
+\begin{lemma}
+The mapping class \(T_\gamma^2\) preserves the deformation space \(\D_f\).
+\end{lemma}
+
+\begin{proof}
+First observe that, after forgetting the marked point \(v\), the curve \(\gamma\) becomes peripheral: it bounds a disk containing only the single marked point \(a_2\in A\). Hence
+\[
+i_*(T_\gamma^2)=\id\in \Mod(S^2,A).
+\]
+
+We now compute the lift of \(T_\gamma^2\) under \(f\). The disk \(\Delta\) contains exactly one critical value of \(f\), namely \(v=f(c_2)\), because the other critical value is \(a_1=f(c_1)\notin\Delta\). Since \(f\) has degree \(2\), the full preimage
+\[
+\widetilde\Delta:=f^{-1}(\Delta)
+\]
+is a topological disk mapping to \(\Delta\) with degree \(2\), branched at \(c_2\). Its boundary
+\[
+\delta:=\partial\widetilde\Delta=f^{-1}(\gamma)
+\]
+maps to \(\gamma\) with degree \(2\).
+
+Moreover,
+\[
+\widetilde\Delta\cap A=\{a_1\}.
+\]
+Indeed, the only point of \(A\) mapping to \(a_2\) is \(a_1\), and \(v\notin A\). Therefore \(\delta\) is peripheral relative to \(A\).
+
+In an annular neighborhood of \(\gamma\), the map \(f\) is a degree \(2\) covering from an annular neighborhood of \(\delta\). Hence the square \(T_\gamma^2\) lifts to the Dehn twist \(T_\delta\). Since \(\delta\) is peripheral relative to \(A\), the class of \(T_\delta\) in \(\Mod(S^2,A)\) is trivial. Thus the pullback action of \(T_\gamma^2\) on \(\Teich(A)\) is trivial.
+
+Consequently, for every \(\tau\in\D_f\),
+\[
+f^*(T_\gamma^2\cdot \tau)=f^*(\tau)
+\quad\text{and}\quad
+i_*(T_\gamma^2\cdot \tau)=i_*(\tau).
+\]
+Since \(f^*(\tau)=i_*(\tau)\), it follows that
+\[
+f^*(T_\gamma^2\cdot \tau)=i_*(T_\gamma^2\cdot \tau).
+\]
+Thus \(T_\gamma^2\cdot \tau\in\D_f\). The same argument applies to \(T_\gamma^{-2}\), so \(T_\gamma^2\) preserves \(\D_f\).
+\end{proof}
+
+The remaining assertion is the known infinite-orbit theorem for the period-four quadratic family.
+
+\begin{theorem}[Koch--Pilgrim--Selinger, specialized form]
+Let \(f\) be a quadratic rational map with one critical point of exact period \(4\), and let \(A,B\) be as above. Let \(\gamma\) be the curve separating \(\{v,f^{\circ 2}(c_1)\}\) from the other three marked points. Then the homeomorphism of \(\D_f\) induced by \(T_\gamma^2\) has an infinite orbit on the set of connected components \(\pi_0(\D_f)\).
+
+This is the period-four case of the main computation in S.~Koch, K.~Pilgrim and N.~Selinger, \emph{A disconnected deformation space of rational maps}, Theorem~1.1 and Section~6.
+\end{theorem}
+
+Combining the lemma with the quoted theorem gives the desired conclusion.
+
+\begin{remark}
+In the standard normalization
+\[
+a_0=0,\qquad a_1=\infty,\qquad a_2=1,\qquad a_3=\lambda,
+\]
+the family is
+\[
+F_\lambda(z)
+=
+1-\frac{\lambda^2+\lambda-1}{\lambda-1}\frac1z
++\frac{\lambda(2\lambda-1)}{\lambda-1}\frac1{z^2},
+\]
+and the free critical value is
+\[
+v(\lambda)
+=
+-\frac{(\lambda^2-3\lambda+1)^2}
+{4\lambda(2\lambda-1)(\lambda-1)}.
+\]
+In these coordinates, the curve \(\gamma\) is simply the curve surrounding the two points \(1\) and \(v(\lambda)\).
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{KPS}
+S.~Koch, K.~M. Pilgrim and N.~Selinger,
+\emph{A disconnected deformation space of rational maps},
+Theorem~1.1 and Section~6.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,405 @@
+```latex
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{convention}[theorem]{Convention}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\F}{\mathbb F}
+\newcommand{\Spin}{\operatorname{Spin}^{c}}
+\newcommand{\HFhat}{\widehat{HF}}
+
+\title{Prime summands in Dehn surgeries on \(L\)-space knots}
+\author{}
+\date{October 2, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+With the standard convention that an \(L\)-space knot is a knot
+\(K\subset S^{3}\) admitting a positive \(L\)-space surgery, the assertion that
+every Dehn surgery on an \(L\)-space knot has at most two non-trivial prime
+summands is not presently a theorem: it is precisely the \(L\)-space-knot case
+of the two-summands problem for reducible surgery.  This note gives the
+complete known reduction.  If a surgery on an \(L\)-space knot in \(S^{3}\)
+has more than two prime summands, then the knot is hyperbolic, the slope is
+\(2g(K)-1\), and the surgered manifold has the form
+\[
+        L(p,a)\# L(q,b)\# Y,
+        \qquad pq=2g(K)-1,\quad (p,q)=1,\quad p,q>1,
+\]
+where \(Y\) is an integer homology sphere \(L\)-space.  Thus the original
+question is equivalent to ruling out exactly this remaining case.  If
+``\(L\)-space knot'' is interpreted more broadly as a knot in an \(L\)-space
+homology sphere admitting an \(L\)-space surgery, then the answer is negative:
+a regular fiber in the Poincare homology sphere admits a surgery to
+\(L(2,1)\#L(3,2)\#L(5,4)\).
+\end{abstract}
+
+\section{Conventions and basic facts}
+
+\begin{convention}
+Unless explicitly stated otherwise, an \(L\)-space knot means a knot
+\(K\subset S^{3}\) for which \(S^{3}_{n}(K)\) is an \(L\)-space for some
+positive integer \(n\).  We write \(S^{3}_{r}(K)\) for \(r\)-surgery on \(K\).
+Prime summands always means non-\(S^{3}\) prime summands in the
+Kneser--Milnor decomposition.
+\end{convention}
+
+\begin{lemma}[Connected sums of \(L\)-spaces]
+Let \(Y_{1},Y_{2}\) be rational homology spheres.  Then
+\(Y_{1}\#Y_{2}\) is an \(L\)-space if and only if both \(Y_{1}\) and \(Y_{2}\)
+are \(L\)-spaces.
+\end{lemma}
+
+\begin{proof}
+Ozsvath and Szabo proved a Kunneth formula for Heegaard Floer homology:
+over \(\F=\Z/2\Z\),
+\[
+ \HFhat(Y_{1}\#Y_{2},\mathfrak s_{1}\#\mathfrak s_{2})
+ \cong
+ \HFhat(Y_{1},\mathfrak s_{1})\otimes_{\F}
+ \HFhat(Y_{2},\mathfrak s_{2});
+\]
+see \cite[Theorem 1.5]{OSClosed}.  Also
+\[
+ |H_{1}(Y_{1}\#Y_{2};\Z)|
+ =
+ |H_{1}(Y_{1};\Z)|\,|H_{1}(Y_{2};\Z)|.
+\]
+Thus, if both factors are \(L\)-spaces, the connected sum is an \(L\)-space.
+Conversely, for every \(\mathfrak s\in\Spin(Y)\), \(\HFhat(Y,\mathfrak s)\)
+is nonzero for a rational homology sphere \(Y\).  Hence all ranks in the
+tensor product above are positive integers.  If the product rank is equal to
+\(1\) for every pair \((\mathfrak s_{1},\mathfrak s_{2})\), then each factor
+rank is equal to \(1\).  Therefore both \(Y_{1}\) and \(Y_{2}\) are
+\(L\)-spaces.
+\end{proof}
+
+\section{The standard reducible-surgery input}
+
+We use the following package of classical results.
+
+\begin{theorem}[Reducible surgery package]\label{thm:package}
+Let \(K\subset S^{3}\) be a nontrivial knot, and suppose \(S^{3}_{r}(K)\) is
+reducible.  Then:
+\begin{enumerate}[label=(\roman*)]
+\item \(r\in \Z\) and \(r\neq 0\);
+\item \(S^{3}_{r}(K)\) has a nontrivial lens-space summand;
+\item \(S^{3}_{r}(K)\) has at most three nontrivial prime summands; if it has
+three, then two are lens spaces and the third is an integer homology sphere.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+The integrality of a reducing slope is due to Gordon--Luecke
+\cite{GLIntegral}.  The exclusion of \(r=0\) for nontrivial knots follows from
+Gabai's Property \(R\) theorem \cite{Gabai}.  The existence of a nontrivial
+lens-space summand is due to Gordon--Luecke \cite{GLReducible}.  The bound of
+three summands, with the stated structure in the three-summand case, is
+Howie's Corollary 5.3 in \cite{HowieSW}, combining work of Sayari and Valdez
+Sanchez.
+\end{proof}
+
+\begin{lemma}\label{lem:homology}
+Suppose
+\[
+        S^{3}_{n}(K)\cong L(p,a)\#L(q,b)\#Y,
+\]
+where \(Y\) is an integer homology sphere and \(p,q>1\).  Then
+\[
+        \gcd(p,q)=1,\qquad |n|=pq .
+\]
+\end{lemma}
+
+\begin{proof}
+For integer surgery on a knot in \(S^{3}\),
+\[
+        H_{1}(S^{3}_{n}(K);\Z)\cong \Z/|n|\Z .
+\]
+On the other hand,
+\[
+        H_{1}(L(p,a)\#L(q,b)\#Y;\Z)
+        \cong \Z/p\Z\oplus \Z/q\Z .
+\]
+The direct sum \(\Z/p\Z\oplus \Z/q\Z\) is cyclic if and only if
+\(\gcd(p,q)=1\), in which case it is cyclic of order \(pq\).  Hence
+\(|n|=pq\).
+\end{proof}
+
+\section{Reduction for \(L\)-space knots in \(S^{3}\)}
+
+\begin{lemma}[Non-hyperbolic \(L\)-space knots]\label{lem:nonhyp}
+Let \(K\subset S^{3}\) be an \(L\)-space knot.  If \(K\) is not hyperbolic,
+then every reducible surgery on \(K\) has at most two nontrivial prime
+summands.
+\end{lemma}
+
+\begin{proof}
+By Krcatovich, a knot in \(S^{3}\) admitting an \(L\)-space surgery is prime
+\cite[Theorem 1.2]{Krcatovich}.  Thus a nontrivial non-hyperbolic \(L\)-space
+knot is either a torus knot or a satellite knot.
+
+If \(K\) is a torus knot, Moser's classification of surgeries on torus knots
+shows that the unique reducible surgery is the cabling slope and gives a
+connected sum of two lens spaces \cite{Moser}.
+
+If \(K\) is a satellite knot, Scharlemann proved the cabling conjecture for
+satellite knots \cite{Scharlemann}.  Thus \(K\) is a cable knot and the
+reducing slope is the cabling slope.  If \(K=C_{u,v}(J)\) is the
+\((u,v)\)-cable of \(J\), with \(u>1\), then the cabling-slope surgery has
+the standard form
+\[
+        S^{3}_{uv}(C_{u,v}(J))
+        \cong L(u,v)\# S^{3}_{v/u}(J).
+\]
+The slope \(v/u\) is nonintegral, so by Gordon--Luecke's integrality theorem
+\cite{GLIntegral}, the second summand is irreducible unless it is \(S^{3}\).
+Hence the surgery has at most two nontrivial prime summands.
+\end{proof}
+
+\begin{theorem}[Hom--Lidman--Zufelt]\label{thm:HLZ}
+Let \(K\subset S^{3}\) be a hyperbolic \(L\)-space knot of genus \(g\).
+If \(S^{3}_{r}(K)\) is reducible, then
+\[
+        r=2g-1 .
+\]
+\end{theorem}
+
+\begin{proof}
+This is \cite[Theorem 1.3]{HLZ}.
+\end{proof}
+
+\begin{theorem}[Ozsvath--Szabo]\label{thm:OSinterval}
+Let \(K\subset S^{3}\) be a nontrivial \(L\)-space knot of genus \(g\).
+Then every integer surgery with slope \(n\ge 2g-1\) is an \(L\)-space.
+\end{theorem}
+
+\begin{proof}
+This is the integer-surgery part of the \(L\)-space surgery interval theorem
+for knots in \(S^{3}\), proved by Ozsvath--Szabo in
+\cite[Proposition 9.6]{OSLens}.
+\end{proof}
+
+\begin{theorem}[Precise reduction]\label{thm:reduction}
+Let \(K\subset S^{3}\) be an \(L\)-space knot.  Suppose some surgery
+\(S^{3}_{r}(K)\) has more than two nontrivial prime summands.  Then:
+\begin{enumerate}[label=(\roman*)]
+\item \(K\) is hyperbolic;
+\item \(r=2g(K)-1\);
+\item there exist relatively prime odd integers \(p,q>1\), lens spaces
+\(L(p,a)\), \(L(q,b)\), and a nontrivial prime integer homology sphere
+\(Y\), such that
+\[
+        S^{3}_{2g(K)-1}(K)\cong L(p,a)\#L(q,b)\#Y,
+        \qquad pq=2g(K)-1;
+\]
+\item \(Y\) is an \(L\)-space.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+If \(r=\infty\), then \(S^{3}_{r}(K)\cong S^{3}\).  If \(r=0\), Gabai's
+Property \(R\) theorem implies that reducibility forces \(K\) to be the unknot,
+and \(0\)-surgery on the unknot is \(S^{1}\times S^{2}\), which is prime.
+Thus \(r\neq 0,\infty\).
+
+Assume \(S^{3}_{r}(K)\) has more than two nontrivial prime summands.  By
+Theorem~\ref{thm:package}, \(r\) is a nonzero integer and the manifold has
+exactly three nontrivial prime summands, two of which are lens spaces and the
+third an integer homology sphere.  By Lemma~\ref{lem:nonhyp}, \(K\) cannot be
+non-hyperbolic.  Hence \(K\) is hyperbolic.  Theorem~\ref{thm:HLZ} then gives
+\[
+        r=2g(K)-1.
+\]
+
+The structural statement from Theorem~\ref{thm:package} gives
+\[
+        S^{3}_{2g(K)-1}(K)\cong L(p,a)\#L(q,b)\#Y,
+\]
+where \(p,q>1\) and \(Y\) is an integer homology sphere.  Lemma~\ref{lem:homology}
+implies
+\[
+        \gcd(p,q)=1,\qquad pq=2g(K)-1.
+\]
+Since \(2g(K)-1\) is odd, both \(p\) and \(q\) are odd.  The third summand
+\(Y\) is nontrivial because the prime decomposition has three nontrivial
+summands.
+
+Finally, by Theorem~\ref{thm:OSinterval}, the surgery
+\(S^{3}_{2g(K)-1}(K)\) is an \(L\)-space.  Lens spaces are \(L\)-spaces, and
+Lemma 1.1 shows that in a connected sum of rational homology spheres, the
+whole connected sum is an \(L\)-space if and only if every summand is an
+\(L\)-space.  Therefore \(Y\) is an \(L\)-space.
+\end{proof}
+
+\begin{corollary}[Equivalence with the remaining open case]\label{cor:equiv}
+For \(L\)-space knots in \(S^{3}\), the following are equivalent:
+\begin{enumerate}[label=(\alph*)]
+\item every Dehn surgery has at most two nontrivial prime summands;
+\item there is no hyperbolic \(L\)-space knot \(K\) for which
+\[
+        S^{3}_{2g(K)-1}(K)
+        \cong L(p,a)\#L(q,b)\#Y
+\]
+with \(p,q>1\), \(\gcd(p,q)=1\), \(pq=2g(K)-1\), and \(Y\) a nontrivial
+integer homology sphere \(L\)-space.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+The implication \((a)\Rightarrow(b)\) is immediate.  Conversely, if \((a)\)
+fails, then Theorem~\ref{thm:reduction} produces exactly a configuration of
+the form excluded in \((b)\).
+\end{proof}
+
+\begin{remark}
+Corollary~\ref{cor:equiv} is the precise present status of the original
+question under the standard \(S^{3}\)-convention.  The two-summands
+conjecture predicts that no reducible surgery on a knot in \(S^{3}\) has more
+than two prime summands.  Theorem~\ref{thm:reduction} shows that the
+\(L\)-space-knot case is reduced to a narrow hyperbolic case, but that case is
+not presently ruled out in general.
+\end{remark}
+
+\section{Known Floer-theoretic obstruction in the remaining case}
+
+The following theorem illustrates the strongest currently available
+Floer-theoretic obstruction relevant to Theorem~\ref{thm:reduction}.
+
+\begin{theorem}[Bodish--DeYeso]\label{thm:BD}
+Let \(K\subset S^{3}\) be an \(L\)-space knot of genus \(g\).  Suppose
+\[
+        S^{3}_{2g-1}(K)\cong Y_{p}\#Y_{q},
+\]
+where \(p>q>1\), \(\gcd(p,q)=1\), and
+\(|H_{1}(Y_{p};\Z)|=p\), \(|H_{1}(Y_{q};\Z)|=q\).  Then
+\[
+        q-1\le \operatorname{th}(K)\le \frac{p+q}{2},
+\]
+where \(\operatorname{th}(K)\) denotes the knot Floer thickness.  In particular,
+if \(t\) is the smallest prime divisor of \(2g(K)-1\) and
+\(\operatorname{th}(K)<t-1\), then \(K\) has no reducible surgery.
+\end{theorem}
+
+\begin{proof}
+This is \cite[Theorem 1.9 and Corollary 1.11]{BodishDeYeso}.
+\end{proof}
+
+\section{A counterexample in the broader ambient-manifold sense}
+
+If one allows \(L\)-space knots in arbitrary \(L\)-space homology spheres, the
+answer to the question is negative.
+
+\begin{theorem}\label{thm:counterexample}
+There is a knot in an \(L\)-space integer homology sphere which admits an
+\(L\)-space surgery with three prime summands.
+\end{theorem}
+
+\begin{proof}
+Let \(P\) be the Poincare homology sphere.  It is a spherical manifold and is
+an \(L\)-space.  Caudell proved that a regular fiber of the Seifert fibration
+of \(P\) admits a Dehn surgery to
+\[
+        L(2,1)\#L(3,2)\#L(5,4);
+\]
+see \cite{Caudell}.  Each lens space is prime and is an \(L\)-space.  By
+Lemma 1.1, their connected sum is an \(L\)-space.  Thus the regular fiber is
+an \(L\)-space knot in the broader sense of a knot in an \(L\)-space homology
+sphere admitting an \(L\)-space surgery, and the surgery has exactly three
+nontrivial prime summands.
+\end{proof}
+
+\section*{Conclusion}
+
+Under the standard convention \(K\subset S^{3}\), the requested affirmative
+statement is open and is equivalent to excluding the hyperbolic configuration
+in Corollary~\ref{cor:equiv}.  Under the broader convention allowing knots in
+arbitrary \(L\)-space homology spheres, the statement is false by
+Theorem~\ref{thm:counterexample}.
+
+\begin{thebibliography}{99}
+
+\bibitem{BodishDeYeso}
+H. Bodish and R. DeYeso III,
+\emph{Obstructing reducible surgeries: slice genus and thickness bounds},
+arXiv:2209.01672.
+
+\bibitem{Caudell}
+J. Caudell,
+\emph{Three lens space summands from the Poincare homology sphere},
+arXiv:2101.01256.
+
+\bibitem{Gabai}
+D. Gabai,
+\emph{Foliations and the topology of \(3\)-manifolds. III},
+J. Differential Geom. \textbf{26} (1987), no. 3, 479--536.
+
+\bibitem{GLIntegral}
+C. McA. Gordon and J. Luecke,
+\emph{Only integral Dehn surgeries can yield reducible manifolds},
+Math. Proc. Cambridge Philos. Soc. \textbf{102} (1987), no. 1, 97--101.
+
+\bibitem{GLReducible}
+C. McA. Gordon and J. Luecke,
+\emph{Reducible manifolds and Dehn surgery},
+Topology \textbf{35} (1996), no. 2, 385--409.
+
+\bibitem{HLZ}
+J. Hom, T. Lidman, and N. Zufelt,
+\emph{Reducible surgeries and Heegaard Floer homology},
+Math. Res. Lett. \textbf{22} (2015), no. 3.
+
+\bibitem{HowieSW}
+J. Howie,
+\emph{A proof of the Scott--Wiegold conjecture on free products of cyclic groups},
+J. Pure Appl. Algebra \textbf{173} (2002), no. 2, 167--176.
+
+\bibitem{Krcatovich}
+P. Krcatovich,
+\emph{The reduced knot Floer complex},
+Topology Appl. \textbf{194} (2015), 171--201.
+
+\bibitem{Milnor}
+J. Milnor,
+\emph{A unique decomposition theorem for \(3\)-manifolds},
+Amer. J. Math. \textbf{84} (1962), 1--7.
+
+\bibitem{Moser}
+L. Moser,
+\emph{Elementary surgery along a torus knot},
+Pacific J. Math. \textbf{38} (1971), 737--745.
+
+\bibitem{OSClosed}
+P. Ozsvath and Z. Szabo,
+\emph{Holomorphic disks and topological invariants for closed three-manifolds},
+Ann. of Math. (2) \textbf{159} (2004), no. 3, 1027--1158.
+
+\bibitem{OSLens}
+P. Ozsvath and Z. Szabo,
+\emph{On knot Floer homology and lens space surgeries},
+Topology \textbf{44} (2005), no. 6, 1281--1300.
+
+\bibitem{Scharlemann}
+M. Scharlemann,
+\emph{Producing reducible \(3\)-manifolds by surgery on a knot},
+Topology \textbf{29} (1990), no. 4, 481--500.
+
+\end{thebibliography}
+
+\end{document}
+```

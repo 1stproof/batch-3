@@ -1,0 +1,33 @@
+The statement is true and my deeper algebraic route (sum-of-two-cubes: $-w=\alpha^3+\beta^3$ with $\alpha+\beta=-z$) is sound, but requires a new hyperfield lemma (sum-of-two-cubes absorption: $1\in\alpha^3{+}\beta^3\Rightarrow\alpha^3{+}\beta^3\subseteq(\alpha\beta)^{\boxplus 3}$) that is not proved and fails in fields of size $\equiv 1 \bmod 3$ where `1` is never a sum of two nonzero cubes. So the next round cannot rely on my proposal either; it must find a genuinely complete proof or downgrade. With this understanding:
+
+**ACs: 1 of 5 substantively addressed; Forgotten items: 0; Unjustified deferrals: 1 (the Exchange Lemma — the entire free case). Capability anchor: N/A | Dependency gaps: 0 | Scope drift: yes.**
+
+**Mainline Progress Verdict: STALLED**
+
+## Mainline Gaps
+
+**M1. The free case is unproved — AC-1 fails verbatim.** The main theorem is proved only in the degenerate and collapse cases; the free case (the substantive one) is "granted" via Exchange Lemma `lem:swap`, which is stated but not proved. The plan's AC-1 negative test — *"leaves a substantive case or lemma unproved"* — is triggered exactly. This is not a minor combinatorial leftover; Lemma 4.4 is the entire free case, and its (S1)/(S2) clauses are descriptions of observed breadth-first behavior ("as in the verified breadth-first data", "whenever the descent stalls"), not mathematical statements with proofs.
+
+**M2. AC-3 fails — numerical evidence substitutes for proof.** Proposition `prop:verif` is an exhaustive-enumeration "proof" ("The verifying program is auxiliary to this document; the enumeration is finite and reproducible") used to support the unproved lemma. The plan's AC-3 negative test is triggered. AC-2 also fails: the "evidence" narrative leans on an unstated external structure theorem (see B2).
+
+## Blocking Side Issues
+
+**B1. The unproved Exchange Lemma blocks AC-1/AC-3/AC-4.** This is the single blocker.
+
+**B2. Remark 5.1 asserts a false general theorem.** "`G := H\times/\langle g^3\rangle` has order 1 or 3 (structure theory of Massouros and Baker–Bowler)" is false: for the field $\mathbb Q$ (a hyperfield), $Q^\times/(Q^\times)^3 \cong \bigoplus_{p} \mathbb Z/3$ is infinite. The misattributed claim is used as supporting evidence and must be removed.
+
+**B3. Smaller errata:** (i) `lem:basic`(iv) proof has a garbled parenthetical; (ii) `prop:degen` begins with the stray fragment "Since − , permuting"; (iii) the `(A1)` k-block argument is not fully justified at the element level as written (the cited reason is (H2) with singletons, which does not yield the claimed block decomposition); the valid route is induction via (iii).
+
+## Implementation direction (revised after reviewer verification)
+
+Do **not** leave in place any directive that asserts a simple shortcut. My own checks confirm the assertion is true and that the classical algebraic content is the factorization
+$$-xyz=\frac{x^3+y^3+z^3}{3},$$
+respectively $-w=\alpha^3+\beta^3$ with $\alpha+\beta=-z$, giving $-xyz = 3x^2y^2\alpha\beta =(\text{cube})+(\text{cube})+(\text{cube})$. However, turning this into a hyperfield proof needs a lemma that is false in some fields where no unit is a sum of two nonzero cubes (e.g. $\#H\le 13$ with $\#H\equiv 7 \bmod 12$). There is **no** four-line field-identity shortcut, and the review file must not claim one.
+
+The next round must do exactly one of:
+- find and write a **complete** element-level proof for the free case (the truth is not in doubt; a proof exists — the class-field/algebra argument above shows the obstruction is only the "sum of two cubes" absorption, whose hyperfield version needs care and possibly a subdivision argument), or
+- if that fails after genuine effort, apply AC-4 faithfully: **stop asserting "Yes" as proved**, keep the proved degenerate and collapse cases, state the free case as a precisely isolated open statement, and drop all enumeration. (This satisfies honesty but not AC-1; it is strictly a fallback.)
+
+In either case: delete Proposition 4.6 (enumeration), delete Section 5 (false cube-subgroup claims and misattributions), delete the "granting Lemma 4.4" conditional proof, fix B3, and keep the result ≤ 16 pages.
+
+I will now correct the review file to encode these findings accurately.

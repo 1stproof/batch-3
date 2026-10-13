@@ -1,0 +1,28 @@
+{
+  "arm64": {
+    "codex": {
+      "url": "https://github.com/openai/codex/releases/download/rust-v0.159.2/codex-package-aarch64-unknown-linux-musl.tar.zst",
+      "digest": "sha256:1017b8175e4c4c6529866ed4b67c8e93ad7f0169ad89888068f0ad9707c5999d",
+      "size": 109213770
+    },
+    "lean": {
+      "name": "lean-4.34.0-rc1-linux_aarch64.tar.zst",
+      "size": 581125635,
+      "digest": "sha256:e5b8ca631c1a5dce9e8477664f01543cf192737d63b3fbef43f3fae176efdabe",
+      "url": "https://github.com/leanprover/lean4/releases/download/v4.34.0-rc1/lean-4.34.0-rc1-linux_aarch64.tar.zst"
+    }
+  },
+  "amd64": {
+    "codex": {
+      "url": "https://github.com/openai/codex/releases/download/rust-v0.159.2/codex-package-x86_64-unknown-linux-musl.tar.zst",
+      "digest": "sha256:fbca2d1e23dc9f827fe6eb19cbca2942140f99a48769f62355d647f5d75ee91e",
+      "size": 115217118
+    },
+    "lean": {
+      "name": "lean-4.34.0-rc1-linux.tar.zst",
+      "size": 575410932,
+      "digest": "sha256:41dc6a6ec143ece8ed4ba4c4c6978c91f21ad5cbe3c4e7728ad31b869961dc17",
+      "url": "https://github.com/leanprover/lean4/releases/download/v4.34.0-rc1/lean-4.34.0-rc1-linux.tar.zst"
+    }
+  }
+}

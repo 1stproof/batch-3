@@ -1,0 +1,256 @@
+\documentclass[10pt]{article}
+
+\usepackage{amsthm}
+\usepackage[all]{xy}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+\usepackage[colorlinks=true]{hyperref}
+\usetikzlibrary{patterns}
+\usetikzlibrary{arrows.meta,angles,quotes,calc}
+\usepackage{comment}
+\usepackage{extarrows}
+\usepackage{mathtools}
+\usepackage{seqsplit}
+\usepackage{xstring}
+\usepackage[normalem]{ulem}
+\usepackage{dutchcal}
+\usepackage[margin=1in]{geometry}
+
+\newcommand{\derlog}{{\rm DerLog}}
+\newcommand{\logder}{\derlog}
+
+\newcommand{\action}{\:\rotatebox[origin=c]{-90}{$\circlearrowright$}\:}
+
+\newcommand{\heart}{\ensuremath\heartsuit}
+
+\usepackage{pgfplots}
+
+
+\setlength{\marginparwidth}{2cm}
+
+
+
+\setcounter{secnumdepth}{4}
+\renewcommand{\theparagraph}{\thesubsection.\arabic{paragraph}}
+
+\numberwithin{equation}{section}
+
+
+
+\newcommand{\img}{{\rm Im}}
+\newcommand{\valcat}[1]{{\rm Val}(#1)}
+
+\newtheorem{theorem}[paragraph]{Theorem}
+\newtheorem{proposition}[paragraph]{Proposition}
+\newtheorem{question}[paragraph]{Question}
+\newtheorem{conjecture}[paragraph]{Conjecture}
+\newtheorem{lemma}[paragraph]{Lemma}
+\newtheorem{corollary}[paragraph]{Corollary}
+\newtheorem{assumption}[paragraph]{Assumption}
+\newtheorem{reduction}[paragraph]{Reduction}
+
+\theoremstyle{definition} 
+\newtheorem{definition}[paragraph]{Definition}
+\newtheorem{example}[paragraph]{Example}
+\newtheorem{warning}[paragraph]{Warning}
+\newtheorem{situation}[paragraph]{Situation}
+\newtheorem{construction}[paragraph]{Construction}
+
+\theoremstyle{remark}
+\newtheorem{remark}[paragraph]{Remark}
+
+
+\def\id{\mathrm{id}}
+\def\Mon{\mathbf{Mon}}
+\def\Ext{\operatorname{Ext}}
+\def\Hom{\operatorname{Hom}}
+\def\Cone{\operatorname{Cone}}
+\def\cone{\Cone}
+\def\Spec{\operatorname{Spec}}
+\def\spec{\Spec}
+\def\SSpec{\underline{\operatorname{Spec}}}
+\def\Cones{\mathbf{Cones}}
+\def\Sets{\mathbf{Sets}}
+\def\LogSch{\mathbf{LogSch}}
+\def\logGm{\mathbf{G}_{\log}}
+\def\Gm{\mathbf{G}_m}
+\def\Pic{\mathrm{Pic}}
+\def\LogPic{\mathrm{LogPic}}
+\def\TroPic{\mathrm{TroPic}}
+\DeclareMathOperator*{\colim}{colim}
+\def\tropGm{\mathbf{G}_{\rm trop}}
+\def\et{\operatorname{\acute{e}t}}
+\def\Et{\operatorname{\acute{E}t}}
+\def\bExt{\operatorname{\mathbf{Ext}}}
+\def\Rh{\operatorname{Rhiz}}
+\def\rh{\operatorname{rhiz}}
+\def\Opens{\operatorname{Opens}}
+
+\newcommand{\sharpish}[1]{#1^{\# \rm ish}}
+
+
+\newcommand{\pt}{{\rm pt}}
+
+
+\let \varinjlim \relax 
+\DeclareMathOperator*{\varinjlim}{colim}
+
+
+\renewcommand{\frak}[1]{\ensuremath{\mathfrak{#1}}}
+
+
+
+\newcommand{\norm}[1]{\left\|{#1}\right\|}
+
+
+
+
+\ExplSyntaxOn
+\cs_new_eq:NN \Repeat \prg_replicate:nn
+\ExplSyntaxOff
+
+\newlist{variantenum}{enumerate}{1}
+\setlist[variantenum,1]{label=(\roman*), ref=(\roman*)}
+
+\newcounter{primecnt}[variantenumi]
+
+
+
+
+
+
+\newcommand{\face}[1]{{#1}_{\rm face}}
+\newcommand{\tropet}[1]{{#1}_{{\rm trop}\et}}
+
+
+
+%to control the style of bold text
+\newcommand{\mbold}[1]{\mathbf{#1}}
+\newcommand{\GG}{\mbold{G}}
+\newcommand{\kah}[1]{\Omega_{#1}}
+\newcommand{\lkah}[1]{\Omega^\ell_{#1}}
+\newcommand{\lccx}[1]{\mbold{L}^\ell_{#1}}
+\newcommand{\glccx}[1]{\mbold{L}^G_{#1}}
+\def\Glog{\mbold{G}_{\log}}
+\def\Gtrop{\mbold{G}_{\rm trop}}
+\newcommand{\gp}[1]{#1^{\rm gp}}
+\newcommand{\Aff}{\mbold{A}}
+\newcommand{\NN}{\mbold{N}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\usch}[1]{#1^\circ}
+\newcommand{\ZZ}{\mbold{Z}}
+\newcommand{\CC}{\mbold{C}}
+\newcommand{\QQ}{\mbold{Q}}
+\newcommand{\RR}{\mbold{R}}
+\newcommand{\PP}{\mbold{P}}
+\newcommand{\Blog}{Bl}
+\newcommand{\HHom}{\underline{\rm Hom}}
+
+\newcommand{\pb}{\ar[dr, phantom, very near start, "\ulcorner"]}
+\newcommand{\lpb}{\ar[dr, phantom, very near start, "\ulcorner \ell"]}
+\newcommand{\msout}[1]{\text{\sout{\ensuremath{#1}}}}
+\newcommand{\lpbstrict}{\ar[dr, phantom, very near start, "\ulcorner \msout{\ell}"]}
+
+\renewcommand{\tilde}[1]{\ensuremath{\widetilde{#1}}}
+\renewcommand{\hat}[1]{\ensuremath{\widehat{#1}}}
+\newcommand{\scr}[1]{\ensuremath{\mathscr{#1}}}
+\newcommand{\af}[1]{\Theta_{#1}}
+
+
+\newcommand{\utopcone}[1]{\left\vert\Cone #1 \right\vert}
+\newcommand{\utopocone}[1]{\left\vert\Cone^\circ #1\right\vert}
+
+\newcommand{\num}[1]{\langle #1 \rangle}
+\newcommand{\bra}[1]{\left[ {#1} \right]}
+\newcommand{\pra}[1]{\left( {#1} \right)}
+\newcommand{\longequals}{\xlongequal{\: \:}}
+\newcommand{\longsimeq}{\xrightarrow\sim}
+
+\newcommand{\sharpening}{makeover}
+
+\newcommand{\baroplus}{\overnorm{\oplus}}
+\newcommand{\barbigoplus}{\overnorm{\bigoplus}}
+
+
+\renewcommand{\bar}[1]{\overnorm{#1}\vphantom{#1}}
+
+\renewcommand{\iff}{\Leftrightarrow}
+
+\newcommand{\shp}[1]{#1_\sharp}
+\newcommand{\gs}[1]{\gp{\shp{#1}}}
+\newcommand{\inr}[1]{#1^\square}
+\newcommand{\inrp}[1]{#1^{\square+}}
+
+
+\newcommand{\smet}[1]{#1_{\acute{e}t}}
+
+\newcommand{\PSh}[1]{\hat{#1}}
+
+
+\newcommand{\val}[1]{#1^{\rm val}}
+
+
+
+%declares a command \cursive that works in text mode that gives a script r
+\usepackage{frcursive}
+\newcommand{\Tr}[1]{T^{\text{\textit{\cursive{r}}}}_{#1}}
+\newcommand{\Nr}[1]{N^{\text{\textit{\cursive{r}}}}_{#1}}
+
+\newcommand{\varv}{v}
+
+
+
+
+
+
+\def\overnorm#1{\overline{#1}\vphantom{#1}}
+
+\def\ologGm{{\mathbf G}_{\rm trop}}
+
+
+\newcommand{\loc}[2]{#1_{(#2)}}
+
+\newcommand{\Log}{{\cal L}og}
+
+\frenchspacing
+
+
+
+
+\begin{document}
+\section{Problem statement}
+
+In the following, a monoid is an integral, saturated, sharp, commutative, unital semigroup.  Monoids are written additively.  A monoid $M$ induces a translation invariant partial order on its associated group $M^{\rm gp}$ such that $x \geq 0$ if and only if $x \in M$.  A valuative monoid is a monoid in which the associated partial order is a total order.
+
+If $M$ is a monoid, $x \in M^{\rm gp}$, and $y \in M$, we write $x \prec y$ to mean that there are integers $m$ and $n$ such that $my \leq x \leq ny$.
+
+
+
+A monoid homomorphism $f : M \to N$ is called \emph{infinitesimal} if the following condition holds:
+\begin{enumerate}[label=$\bullet$]
+\item If there are $x \in M^{\rm gp}$ and $y \in M$ such that $f(x) \in N$ and $x \prec y$ and $f(y) \prec f(x)$ then $x \in M$.
+\end{enumerate}
+
+If $P \xrightarrow f Q \xrightarrow g N$ are monoid homomorphisms, we say that $f$ is \emph{birhizomic} at $g$ if it is of finite presentation in the category of (integral, saturated, sharp) monoids and, for every factorization of $gf$ through monoid homomorphisms $P \xrightarrow h M \xrightarrow p N$ with $p$ infinitesimal, there is a unique monoid homomorphism $u : Q \to M$ with $pu = g$ and $uf = h$.
+
+A family of morphisms $P \rightarrow Q_i$ is called a birhizomic cover if, for every valuative monoid $V$ and every homomorphism $v : P \to V$, there is a factorization of $v$ through some $Q_i \to V$ such that $P \to Q_i$ is birhizomic at $Q_i \to V$.
+
+Let $P$ be a monoid.  Let $A_P$ be the category of monoid homomorphisms $P \to Q$.  The birhizomic covers form a Grothendieck topology on $A_P^{\rm op}$.
+
+
+
+Let $P$ be a monoid.  For any $x$ in $P$, there is an initial monoid homomorphism $P \to P[-x]^\sharp$ that sends $x$ to $0$.  Let $B_P$ be the full subcategory of $A_P$ consisting of homomorphisms $P \to P[-x]^\sharp$, for $x \in P$.
+
+We have given $A_P^{\rm op}$ the birhizomic topology and $B_P^{\rm op}$ the trivial topology in which all presheaves are sheaves.  The inclusion $B_P^{\rm op} \subset A_P^{\rm op}$ is left exact.  By left Kan extension and sheafification, it extends to a functor $\pi^{-1} : \operatorname{Sh}(B_P) \to \operatorname{Sh}(A_P)$ on the categories of sheaves.   Let $\pi_\ast$ be the right adjoint of $\pi^{-1}$.
+
+
+
+\paragraph{Question}
+
+\em
+Is it the case that, for all presheaves of abelian groups $F$ on $B_P^{\rm op}$, the morphism $$F \to \mathrm R \pi_\ast \pi^{-1} F$$ is a quasi-isomorphism?
+\end{document}

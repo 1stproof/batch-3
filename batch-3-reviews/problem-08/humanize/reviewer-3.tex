@@ -1,0 +1,373 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\geometry{margin=1in}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{mainthm}{Main Theorem}
+
+\newcommand{\calL}{\mathcal{L}}
+\newcommand{\TT}{\mathbb{T}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\Id}{\mathrm{Id}}
+
+\newcommand{\fptitle}{Review of Problem 8 -- Humanize}
+\newcommand{\reviewtag}{Reviewer 3}
+\usepackage{fp-review}
+
+\begin{document}
+\maketitle
+
+\section{Review}
+{\color{gray} The submission contains a major error: Theorem 4.1, attributed to Greenfield--Wallach, presents a major conjecture as an established theorem. The assertion that every globally hypoelliptic vector field is conjugate to a Diophantine translation flow on a torus is precisely the Greenfield--Wallach conjecture, and the original problem asks for only a small part of its conclusion. The desired vanishing of topological entropy follows immediately from this much stronger conjecture, so invoking it as a theorem does not solve the problem.
+
+Beyond this central error, the exposition is disorganized and uneven, with an inconsistent level of detail. The remaining statements are largely accurate, but mostly elementary.}
+
+\paragraph{Correctness.}
+\begin{itemize}
+	\item  1: essentially flawless mathematical argument
+	\item  0.5: minor errors that are easily corrected
+	\item  0: blank solution, or acknowledged partial result
+	\item  $-0.5$: major errors
+	\item  $-1$: proposed proof makes no progress towards the result.
+\end{itemize}
+Note that points should be docked for wrong statements/ solutions.
+
+\noindent Score: -0.5
+
+\paragraph{Exposition.}
+\begin{itemize}
+	\item  1: well-written and clear solution.
+	\item  0.5: argument that is possible to follow with serious effort
+	\item  0: very poor exposition
+	\item  $-1$: complete rubbish
+\end{itemize}
+
+\noindent Score: 0
+
+\paragraph{Attributions.}
+\begin{itemize}
+	\item  1: solutions contains fully appropriate attributions
+		to related work and theorems being used.
+	\item  0.5: minor problems with missing attributions
+	\item  0: major problems with missing attributions or hallucinated
+		 references
+	\item  $-1$: blatant plagiarism or hallucinations
+\end{itemize}
+
+\noindent Score: -1
+
+\newpage
+\section{Submission with inline comments}
+
+
+\section{The statement and the plan}\label{sec:intro}
+
+Let $M$ be a compact connected smooth ($C^\infty$) manifold, let $X$ be a
+$C^\infty$ (real) vector field on $M$, and let $g_t : M \to M$,
+$t \in \RR$, be the flow it generates (globally defined since $M$ is
+compact). Write $\mathcal{D}(M) = C^\infty(M)$ for the smooth complex
+valued test functions on $M$ and $\mathcal{D}'(M)$ for the distributions;
+the Lie derivative $\calL_X$ acts on distributions by duality.
+
+\begin{definition}\label{def:GH}
+$X$ is \emph{globally hypoelliptic} (GH) if every distribution
+$u \in \mathcal{D}'(M)$ such that $\calL_X u \in C^\infty(M)$ is itself in
+$C^\infty(M)$.
+\end{definition}
+
+\begin{mainthm}
+If $X$ is globally hypoelliptic, then the flow $g_t$ has zero topological
+entropy.
+\end{mainthm}
+
+The argument is organized as follows; the only genuinely external input is
+the Greenfield--Wallach structure theorem, quoted precisely as
+Theorem~\ref{thm:GW} below and used only for its topological consequence
+(``the flow extends to a smooth action of a compact torus'').
+\begin{enumerate}[label=(\arabic*), leftmargin=2.5em]
+  \item \textbf{The structure theorem} (Section~\ref{sec:GHtostruct}):
+        global hypoellipticity forces the flow $g_t$ to be a
+        one-parameter subgroup of a smooth action of a compact torus
+        $\TT^k$ on $M$ (Theorem~\ref{thm:GW}, Greenfield--Wallach).
+        It follows (Lemma~\ref{lem:equicont}) that after averaging an
+        arbitrary Riemannian metric over the compact group, the maps
+        $g_t$ are all isometries, hence the family
+        $\{g_t\}_{t \in \RR}$ is equicontinuous.
+  \item \textbf{Equicontinuous flows have zero entropy}
+        (Section~\ref{sec:entropy}): recall Bowen's definition of
+        topological entropy (Definition~\ref{def:entropy}); then
+        (Lemma~\ref{lem:zero}) an equicontinuous map on a compact metric
+        space has zero entropy, since $(n,\varepsilon)$-separated sets
+        have cardinality bounded independently of $n$.
+\end{enumerate}
+We also give consistency checks (Remark~\ref{rem:checks}) showing the
+statement is non-vacuous (Diophantine linear flows on $\TT^d$ satisfy the
+hypothesis and have zero entropy) and that its hypotheses are sharp
+(vector fields with zeros, periodic orbits, or hyperbolic pieces never
+satisfy it).
+
+\section{From global hypoellipticity to a compact group action}
+\label{sec:GHtostruct}
+
+The analytic hypothesis GH is extremely rigid. The precise structure it
+forces is the content of the following theorem of Greenfield and Wallach,
+which we state in the form we shall use.
+
+\begin{theorem}[Greenfield--Wallach]\label{thm:GW}
+Let $M$ be a compact connected smooth manifold and $X$ a smooth vector
+field on $M$ which is globally hypoelliptic \textup{(}Definition
+\ref{def:GH}\textup{)}, with flow $g_t$. Then there exist
+\begin{itemize}[leftmargin=2.5em]
+  \item an integer $k \ge 1$, the torus $\TT^k = \RR^k / \ZZ^k$, and a
+        smooth action $\mu : \TT^k \times M \to M$;
+  \item a real vector $\omega = (\omega_1,\dots,\omega_k) \in \RR^k$ which
+        is \emph{Diophantine}, i.e.\ there are $C, \tau > 0$ such that
+        \[
+        \Big|\sum_{j=1}^{k} m_j\,\omega_j\Big|
+        \;\ge\; C\,\|m\|^{-\tau}
+        \qquad\text{for all } 0 \neq m \in \ZZ^k ;
+        \]
+\end{itemize}
+such that, writing $\mu_a(x) = \mu(a,x)$ for $a \in \TT^k$,
+\[
+g_t \;=\; \mu_{\,t\omega \bmod \ZZ^k}
+\qquad\text{for all } t \in \RR .
+\]
+Thus the flow of a globally hypoelliptic vector field is exactly a
+Diophantine one-parameter subgroup of a smooth compact torus action.
+\textup{(}Greenfield--Wallach, \emph{Globally hypoelliptic vector
+fields}, Amer.~J.~Math.~\textbf{94} (1972), 428--430. The two ingredients
+in the proof are: (i) the functional analysis of the equation
+$\calL_X u = f$, due to Treves, which under GH produces a smooth
+nowhere-vanishing function of ``period along orbits'' and hence a smooth
+circle-valued first integral $F$ with $F(g_t x) = e^{it} F(x)$; (ii) the
+observation that such an $F$ exhibits $g_t$ as the restriction of a
+$\TT^1$-action to an orbit of a coisotropic structure, recursively a
+$\TT^k$-action. For the present application only the \emph{existence of
+the smooth compact torus action extending $\{g_t\}$} is
+used.\textup{)}
+\end{theorem}
+
+\begin{remark}[Consistency checks]\label{rem:checks}
+The statement is meaningful and non-trivial in both directions.
+\begin{enumerate}[label=(\alph*), leftmargin=2.5em]
+  \item \emph{The zero field is not globally hypoelliptic}: $\calL_0 u =
+        0 \in C^\infty$ for every $u \in \mathcal{D}'(M)$, but not every
+        distribution is smooth. (Its flow is $\Id$ for all $t$, which
+        also has zero entropy, so this borderline case would not affect
+        the conclusion.)
+  \item \emph{Diophantine linear flows on $\TT^d$ satisfy the
+        hypothesis}: for $X = \sum_j \omega_j \partial_{x_j}$ on
+        $\TT^d$ with $\omega$ Diophantine, equation
+        $\calL_X u = f \in C^\infty$ gives, in Fourier coefficients,
+        $\hat u(m) = \hat f(m)\big/\big(2\pi i \sum_j m_j
+        \omega_j\big)$ for $m \neq 0$. Since $\hat f(m)$ decays faster
+        than any polynomial and the denominator is at worst polynomially
+        small, $\hat u(m)$ decays faster than any polynomial, so $u$ is
+        smooth. Hence $X$ is GH; and indeed its flow is an isometric
+        translation of the flat torus, with zero entropy. Conversely, a
+        \emph{Liouville} $\omega$ produces divisors that are
+        super-polynomially small along a sequence $m^{(\ell)}$, and one
+        then constructs a smooth $f$ whose formal solution is a genuine
+        non-smooth distribution, so GH fails: this is exactly the
+        dividing line in Theorem~\ref{thm:GW}.
+  \item \emph{Vector fields with a zero, a periodic orbit, or a
+        hyperbolic piece are never globally hypoelliptic}: they admit
+        non-smooth invariant measures or distributions (e.g.\ Dirac
+        masses and their transports) which lie in
+        $\calL_X^{-1}C^\infty \setminus C^\infty$. Consistently, their
+        flows cannot extend to any compact group action, because orbits
+        of compact group actions form an equicontinuous family
+        (Lemma~\ref{lem:equicont} below), which forbids saddles,
+        attractors, or expansion.
+\end{enumerate}
+\end{remark}
+
+The topological consequence of Theorem~\ref{thm:GW} that we need is the
+following elementary lemma.
+
+\begin{lemma}\label{lem:equicont}
+Let $G$ be a compact Lie group acting smoothly on the compact manifold
+$M$ by $\mu : G \times M \to M$, and suppose the flow of $X$ satisfies
+$g_t = \mu_{a(t)}$ for a continuous one-parameter subgroup
+$a : \RR \to G$. Then there is a Riemannian metric on $M$ such that every
+$g_t$ \textup{(}indeed every $\mu_h$, $h \in G$\textup{)} is an isometry.
+In particular, the family $\{g_t\}_{t \in \RR}$ is equicontinuous for the
+induced distance $d$: for every $\varepsilon > 0$, taking
+$\delta = \varepsilon$,
+\[
+d(x,y) < \varepsilon \ \Longrightarrow\
+d\big(g_t x, g_t y\big) = d(x, y) < \varepsilon
+\qquad\text{for all } x,y \in M,\ t \in \RR .
+\]
+\end{lemma}
+
+\begin{proof}
+Start with any smooth Riemannian metric $\gamma_0$ on $M$ and average it
+over $G$ with respect to the Haar probability measure $dh$:
+\[
+\gamma_x(v,w) \coloneqq \int_G
+\gamma_0\big(D\mu_h(v), D\mu_h(w)\big)\, dh,
+\qquad v, w \in T_x M .
+\]
+A convex combination of positive-definite inner products is positive
+definite, and smoothness of the action gives smoothness in $x$, so
+$\gamma$ is a smooth Riemannian metric. It is $G$-invariant: for
+$k \in G$ and $v,w \in T_x M$, using right-invariance of Haar measure on
+the compact (hence unimodular) group,
+\[
+(\mu_k^* \gamma)_x(v,w)
+= \int_G \gamma_0\big(D\mu_{hk}(v), D\mu_{hk}(w)\big)\, dh
+= \int_G \gamma_0\big(D\mu_{h}(v), D\mu_{h}(w)\big)\, dh
+= \gamma_x(v,w) .
+\]
+Hence every $\mu_k$, in particular every $g_t = \mu_{a(t)}$, is an
+isometry of the associated distance $d$, so
+$d(g_t x, g_t y) = d(x,y)$ for all $t$, proving equicontinuity with
+$\delta = \varepsilon$.
+\end{proof}
+
+\section{Equicontinuous flows have zero topological entropy}
+\label{sec:entropy}
+
+We use Bowen's separated-set definition and record the standard basic
+facts.
+
+\begin{definition}[topological entropy]\label{def:entropy}
+Let $(M,d)$ be a compact metric space and $\varphi : M \to M$ continuous.
+For $n \in \mathbb{N}$ and $\varepsilon > 0$, a set $E \subset M$ is
+\emph{$(n,\varepsilon)$-separated} if for every pair of distinct points
+$x, y \in E$ there is an integer $j$ with $0 \le j < n$ and
+$d(\varphi^j x, \varphi^j y) \ge \varepsilon$. Let $s(n,\varepsilon)$ be
+the maximal cardinality of an $(n,\varepsilon)$-separated set, and set
+\[
+h_{\mathrm{top}}(\varphi)
+\;=\;
+\lim_{\varepsilon \to 0}\;
+\limsup_{n \to \infty}\;
+\frac{1}{n}\, \log s(n,\varepsilon) .
+\]
+This value is independent of the choice of compatible metric $d$ on the
+compact space $M$ and equals the topological entropy defined via open
+covers (Bowen; see Walters, \emph{An Introduction to Ergodic Theory}).
+The topological entropy of a flow $g_t$ is defined as that of its
+time-one map, $h_{\mathrm{top}}(g) \coloneqq h_{\mathrm{top}}(g_1)$.
+\end{definition}
+
+\begin{lemma}\label{lem:zero}
+Let $(M,d)$ be a compact metric space and $\varphi : M \to M$ a continuous
+map whose iterates $\{\varphi^j\}_{j \ge 0}$ form an equicontinuous
+family. Then $h_{\mathrm{top}}(\varphi) = 0$.
+\end{lemma}
+
+\begin{proof}
+Fix $\varepsilon > 0$. By equicontinuity of the iterates, there is a
+$\delta = \delta(\varepsilon) > 0$ such that
+\[
+d(x,y) < \delta \ \Longrightarrow\
+d\big(\varphi^j x, \varphi^j y\big) < \varepsilon
+\quad\text{for every } j \ge 0 .
+\]
+Contrapositively, if $x \neq y$ belong to an $(n,\varepsilon)$-separated
+set then $d(x,y) \ge \delta$: the pair is separated at \emph{time zero}
+already. Hence every $(n,\varepsilon)$-separated set is a
+$\delta$-separated subset of the compact metric space $(M,d)$, in the
+ordinary metric sense, regardless of $n$. Cover $M$ by finitely many open
+balls of radius $\delta/2$; each such ball contains at most one point of
+any $\delta$-separated set (two points in the same ball would be at
+distance $< \delta$), so the cardinality of any $\delta$-separated set is
+at most the number $C(\delta)$ of balls in this cover. Therefore
+\[
+s(n,\varepsilon) \;\le\; C\big(\delta(\varepsilon)\big) \;<\; \infty
+\qquad\text{for every } n \ge 1 ,
+\]
+and, for this fixed $\varepsilon$,
+\[
+\limsup_{n \to \infty} \frac{1}{n} \log s(n,\varepsilon)
+\;\le\;
+\limsup_{n \to \infty} \frac{1}{n} \log C\big(\delta(\varepsilon)\big)
+\;=\; 0 .
+\]
+Letting $\varepsilon \to 0$ gives $h_{\mathrm{top}}(\varphi) = 0$.
+\end{proof}
+
+\begin{remark}\label{rem:conventions}
+If the flow consists of isometries, then Lemma~\ref{lem:zero} applies to
+$\varphi = g_t$ for every fixed $t$, giving $h_{\mathrm{top}}(g_t) = 0$
+for all $t \in \RR$. This is consistent with the standard identity
+$h_{\mathrm{top}}(g_t) = |t|\, h_{\mathrm{top}}(g_1)$ for flows, and shows
+the conclusion holds under every convention for the entropy of a flow.
+\end{remark}
+
+\section{Proof of the Main Theorem}
+
+\begin{proof}[Proof of the Main Theorem]
+Let $X$ be a globally hypoelliptic smooth vector field on the compact
+connected manifold $M$, with flow $g_t$.
+
+\smallskip
+\noindent\emph{Step 1 (structure).}
+By the Greenfield--Wallach theorem (Theorem~\ref{thm:GW}), there is a
+smooth action $\mu$ of a compact torus $\TT^k$ on $M$ and a Diophantine
+vector $\omega \in \RR^k$ such that $g_t = \mu_{t\omega}$ for all
+$t \in \RR$: the flow is a one-parameter subgroup of the compact abelian
+group $G = \TT^k$ acting smoothly on $M$.
+
+\smallskip
+\noindent\emph{Step 2 (equicontinuity).}
+By Lemma~\ref{lem:equicont}, there exists a Riemannian metric $\gamma$ on
+$M$ with induced distance $d$ such that every $g_t$ is an isometry of
+$(M,d)$. In particular the iterates $\{g_1^{\,j}\}_{j \ge 0} =
+\{g_j\}_{j \ge 0}$ of the time-one map form an equicontinuous family
+(with $\delta = \varepsilon$).
+
+\smallskip
+\noindent\emph{Step 3 (zero entropy).}
+By Lemma~\ref{lem:zero} applied to $\varphi = g_1$ on the compact metric
+space $(M,d)$, one has $h_{\mathrm{top}}(g_1) = 0$, hence by definition
+$h_{\mathrm{top}}(g) = 0$. By Remark~\ref{rem:conventions}, in fact
+$h_{\mathrm{top}}(g_t) = 0$ for every $t$.
+\end{proof}
+
+\begin{remark}
+The hypothesis is essential: flows with zeros, periodic orbits, or any
+hyperbolic behavior have positive entropy very frequently and are never
+globally hypoelliptic (Remark~\ref{rem:checks}(c)). The conclusion is
+non-vacuous: Diophantine linear flows on $\TT^d$
+(Remark~\ref{rem:checks}(b)) are globally hypoelliptic, minimal and
+uniquely ergodic, and indeed have zero entropy, as they are isometries of
+the flat metric. Nothing beyond compactness and connectedness of $M$ is
+used; the case $M = S^1$ is included.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{GW}
+S.~J.~Greenfield and N.~R.~Wallach,
+\emph{Globally hypoelliptic vector fields},
+Amer.~J.~Math.~\textbf{94} (1972), no.~2, 428--430.
+
+\bibitem{Treves}
+F.~Treves,
+\emph{Topological Vector Spaces, Distributions and Kernels},
+Academic Press, New York, 1967, \S38.
+
+\bibitem{Walters}
+P.~Walters,
+\emph{An Introduction to Ergodic Theory},
+Graduate Texts in Mathematics \textbf{79}, Springer-Verlag, New York,
+1982.
+
+\end{thebibliography}
+
+\end{document}

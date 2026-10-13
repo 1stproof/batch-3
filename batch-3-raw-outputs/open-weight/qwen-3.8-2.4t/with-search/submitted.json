@@ -1,0 +1,221 @@
+{
+  "prob-001": {
+    "response_id": "gen-1791067834-aNydA4lZkdN0TJZQpZeM",
+    "model": "qwen/qwen3.8-2.4t-a95b",
+    "provider": "Together",
+    "host_tag": "together",
+    "quantization": "unknown",
+    "effort": "xhigh",
+    "web_search": true,
+    "status": "ok",
+    "finish_reason": "stop",
+    "submitted_utc": "2026-10-03T23:19:05+00:00",
+    "history": [
+      {
+        "response_id": "gen-1791062874-Y15on1buNFiYv1MhEmg9",
+        "status": "truncated-or-empty",
+        "http": 200,
+        "finish_reason": "error",
+        "error": {
+          "code": 502,
+          "message": "Network connection lost.",
+          "metadata": {
+            "error_type": "provider_unavailable"
+          }
+        }
+      },
+      {
+        "response_id": null,
+        "status": "transport",
+        "http": 429,
+        "finish_reason": null,
+        "error": "{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"qwen/qwen3.8-2.4t-a95b is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations\",\"provider_name\":\"Together\",\"is_byok\":false,\"limit_source\":\"upstream_provider_shared_pool\",\"remedy_hint\":\"Retry shortly, add your own provider key (https://openrouter.ai/settings/integrations), or route to another provider with provider routing: https://openrouter.ai/docs/features/provider-routing\"}},\"user_id\":\"org_3BrbvKB4k4HvrAPUIhfaqf6MTm7\"}"
+      },
+      {
+        "response_id": "gen-1791063830-dVz7dcRfoA2hsQtw4h3K",
+        "status": "transport",
+        "http": 200,
+        "finish_reason": null,
+        "error": {
+          "code": 429,
+          "message": "Provider returned error",
+          "metadata": {
+            "error_type": "rate_limit_exceeded"
+          }
+        }
+      },
+      {
+        "response_id": "gen-1791063854-1k01HBYQuNfYkGMm29SL",
+        "status": "truncated-or-empty",
+        "http": 200,
+        "finish_reason": "error",
+        "error": {
+          "code": 502,
+          "message": "Network connection lost.",
+          "metadata": {
+            "error_type": "provider_unavailable"
+          }
+        }
+      }
+    ]
+  },
+  "prob-002": {
+    "response_id": "gen-1791064679-tq2eG6MQoGELODPAQ54x",
+    "model": "qwen/qwen3.8-2.4t-a95b",
+    "provider": "Together",
+    "host_tag": "together",
+    "quantization": "unknown",
+    "effort": "xhigh",
+    "web_search": true,
+    "status": "ok",
+    "finish_reason": "stop",
+    "submitted_utc": "2026-10-03T22:19:44+00:00",
+    "history": [
+      {
+        "response_id": "gen-1791062874-7nwc1MYQCPGgzCwej8tx",
+        "status": "truncated-or-empty",
+        "http": 200,
+        "finish_reason": "error",
+        "error": {
+          "code": 502,
+          "message": "Network connection lost.",
+          "metadata": {
+            "error_type": "provider_unavailable"
+          }
+        }
+      }
+    ]
+  },
+  "prob-003": {
+    "response_id": "gen-1791062874-JidcogGWDIS4Ga1zvdZm",
+    "model": "qwen/qwen3.8-2.4t-a95b",
+    "provider": "Together",
+    "host_tag": "together",
+    "quantization": "unknown",
+    "effort": "xhigh",
+    "web_search": true,
+    "status": "ok",
+    "finish_reason": "stop",
+    "submitted_utc": "2026-10-03T21:46:22+00:00",
+    "history": []
+  },
+  "prob-004": {
+    "response_id": "gen-1791062874-HiimxEsZdHvYuE9wY7eN",
+    "model": "qwen/qwen3.8-2.4t-a95b",
+    "provider": "Together",
+    "host_tag": "together",
+    "quantization": "unknown",
+    "effort": "xhigh",
+    "web_search": true,
+    "status": "ok",
+    "finish_reason": "stop",
+    "submitted_utc": "2026-10-03T21:45:02+00:00",
+    "history": []
+  },
+  "prob-005": {
+    "response_id": "gen-1791062874-3JqhBoXu1AUmxPuEu6jq",
+    "model": "qwen/qwen3.8-2.4t-a95b",
+    "provider": "Together",
+    "host_tag": "together",
+    "quantization": "unknown",
+    "effort": "xhigh",
+    "web_search": true,
+    "status": "ok",
+    "finish_reason": "stop",
+    "submitted_utc": "2026-10-03T21:56:10+00:00",
+    "history": []
+  },
+  "prob-006": {
+    "response_id": "gen-1791062874-AGWozCNrIvbXHd9NUpj6",
+    "model": "qwen/qwen3.8-2.4t-a95b",
+    "provider": "Together",
+    "host_tag": "together",
+    "quantization": "unknown",
+    "effort": "xhigh",
+    "web_search": true,
+    "status": "ok",
+    "finish_reason": "stop",
+    "submitted_utc": "2026-10-03T21:46:30+00:00",
+    "history": []
+  },
+  "prob-007": {
+    "response_id": "gen-1791062874-tEsqQ32Zq1kJtTWIXZRq",
+    "model": "qwen/qwen3.8-2.4t-a95b",
+    "provider": "Together",
+    "host_tag": "together",
+    "quantization": "unknown",
+    "effort": "xhigh",
+    "web_search": true,
+    "status": "ok",
+    "finish_reason": "stop",
+    "submitted_utc": "2026-10-03T21:45:53+00:00",
+    "history": []
+  },
+  "prob-008": {
+    "response_id": "gen-1791067834-2OPUkpFpiWOK7kFygt2j",
+    "model": "qwen/qwen3.8-2.4t-a95b",
+    "provider": "Modal",
+    "host_tag": "modal",
+    "quantization": "unknown",
+    "effort": "xhigh",
+    "web_search": true,
+    "status": "ok",
+    "finish_reason": "stop",
+    "submitted_utc": "2026-10-03T23:09:19+00:00",
+    "history": [
+      {
+        "response_id": "gen-1791062874-UDRqu1QXmQtEutM8R9dx",
+        "status": "truncated-or-empty",
+        "http": 200,
+        "finish_reason": "error",
+        "error": {
+          "code": 502,
+          "message": "Network connection lost.",
+          "metadata": {
+            "error_type": "provider_unavailable"
+          }
+        }
+      },
+      {
+        "response_id": "gen-1791063940-fJ1E4cnynN55HAg27T6N",
+        "status": "truncated-or-empty",
+        "http": 200,
+        "finish_reason": "error",
+        "error": {
+          "code": 502,
+          "message": "Network connection lost.",
+          "metadata": {
+            "error_type": "provider_unavailable"
+          }
+        }
+      }
+    ]
+  },
+  "prob-009": {
+    "response_id": "gen-1791064679-f9zZeSc9OiLgEWRKRbEd",
+    "model": "qwen/qwen3.8-2.4t-a95b",
+    "provider": "Together",
+    "host_tag": "together",
+    "quantization": "unknown",
+    "effort": "xhigh",
+    "web_search": true,
+    "status": "ok",
+    "finish_reason": "stop",
+    "submitted_utc": "2026-10-03T22:26:16+00:00",
+    "history": [
+      {
+        "response_id": "gen-1791062874-3yyviI2oWkRYfxU0xuCi",
+        "status": "truncated-or-empty",
+        "http": 200,
+        "finish_reason": "error",
+        "error": {
+          "code": 502,
+          "message": "Network connection lost.",
+          "metadata": {
+            "error_type": "provider_unavailable"
+          }
+        }
+      }
+    ]
+  }
+}

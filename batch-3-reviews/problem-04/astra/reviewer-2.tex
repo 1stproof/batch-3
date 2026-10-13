@@ -1,0 +1,917 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\PD}{\operatorname{PD}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\End}{\operatorname{End}}
+
+\newcommand{\fptitle}{Review of Problem 4 -- Astra}
+\newcommand{\reviewtag}{Reviewer 2}
+\usepackage{fp-review}
+
+\begin{document}
+\maketitle
+
+\section{Review}
+The paper presents a correct and very elegant solution to the problem. The application of the matrix $B$ from Lemma 5.3 in Proposition 7.1 is most notable. This argument appears to work very directly and is extremely novel compared to the human solution. It allows the entire argument to sidestep a complicated induction procedure which is found in the human-written solution as well as in other plausibly correct approaches.
+
+Aside from a few non-standard uses of notation and terminology, the exposition is excellent and there are no major attribution errors. We award full points in all categories.
+
+\paragraph{Correctness.}
+\begin{itemize}
+	\item  1: essentially flawless mathematical argument
+	\item  0.5: minor errors that are easily corrected
+	\item  0: blank solution, or acknowledged partial result
+	\item  $-0.5$: major errors
+	\item  $-1$: proposed proof makes no progress towards the result.
+\end{itemize}
+Note that points should be docked for wrong statements/ solutions.
+
+\noindent Score: 1
+
+\paragraph{Exposition.}
+\begin{itemize}
+	\item  1: well-written and clear solution.
+	\item  0: argument that is possible to follow with serious effort
+	\item  $-1$: very poor exposition
+\end{itemize}
+
+\noindent Score: 1
+
+\paragraph{Attributions.}
+\begin{itemize}
+	\item  1: solutions contains fully appropriate attributions
+		to related work and theorems being used.
+	\item  0: moderate issues with missing attributions or hallucinated references
+	\item  $-1$: blatant plagiarism or hallucinations
+\end{itemize}
+
+\noindent Score: 1
+
+\newpage
+\section{Submission with inline comments}
+
+
+\begin{abstract}
+The answer is affirmative, with the cohomologous deformation allowed in
+the question.  The proof first enlarges the divisor by auxiliary
+symplectic hypersurfaces so that their cohomology classes satisfy a
+redundancy condition.  An integral matrix of relations among these
+classes then produces globally defined, smooth, nonvanishing functions
+on the divisor complement.  Locally, suitable roots of monomials in
+these functions are defining coordinates.  A convexity argument for
+tame almost complex structures makes the required functions
+holomorphic simultaneously.
+\end{abstract}
+
+
+\section{Statement and conventions}
+
+A \emph{symplectic simple normal-crossings divisor} will mean a finite
+union
+\[
+D=\bigcup_{i=1}^{m}D_i
+\]
+of closed embedded symplectic submanifolds of real codimension two,
+such that every intersection
+\[
+D_I:=\bigcap_{i\in I}D_i
+\]
+is transverse and symplectic, and its symplectic orientation agrees
+with its intersection orientation.  Empty intersections are permitted.
+A labelled hypersurface may be disconnected; this convention does not
+change the notion, since its connected components are disjoint.
+
+A smooth complex coordinate system means a smooth real coordinate
+system with its coordinates grouped into complex-valued functions.
+It is not understood to be holomorphic unless this is explicitly
+stated.
+
+\begin{theorem}\label{thm:main}
+Let $(M^{2n},\omega)$ be a closed symplectic manifold, and let
+$D\subset M$ be a symplectic simple normal-crossings divisor.
+There exist a smooth path of symplectic forms $\omega_t$, $0\leq t\leq1$,
+and an $\omega_1$-tame almost complex structure $J$ such that:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $\omega_0=\omega$ and $[\omega_t]=[\omega]$ for every $t$;
+\item $D$ remains a symplectic simple normal-crossings divisor for
+      every $\omega_t$;
+\item every point of $M$ has smooth complex coordinates
+      $(z_1,\ldots,z_n)$ in which
+      \[
+      D=\{z_1\cdots z_r=0\}
+      \]
+      for some $0\leq r\leq n$, and
+      \[
+      \dd z_j\circ J=i\,\dd z_j,\qquad 1\leq j\leq r.
+      \]
+\end{enumerate}
+\end{theorem}
+
+We use two established results from symplectic geometry:
+regularization of symplectic normal-crossings divisors, and relative
+approximately holomorphic hypersurface constructions.  We state
+precisely the consequences needed below, including an explanation of
+the relative and nonintegral versions of the latter.  The remaining
+argument is elementary.
+
+\section{Geometric preliminaries}
+
+\subsection{Regularization and compatible almost complex structures}
+
+\begin{lemma}\label{lem:regularization}
+Let $E$ be a symplectic simple normal-crossings divisor in a closed
+symplectic manifold $(X,\Omega)$.  There is a path
+\[
+\Omega_t=\Omega+\dd\mu_t,\qquad \mu_0=0,
+\]
+through symplectic forms for which $E$ remains a symplectic simple
+normal-crossings divisor, such that $E$ admits a symplectic
+regularization for $\Omega_1$.
+
+Moreover, an $\Omega_1$-compatible almost complex structure $K$ can
+be chosen to preserve the tangent bundle of every component of $E$.
+\end{lemma}
+
+\begin{proof}
+The existence of the exact deformation and the regularization is
+\cite[Theorem~2.13]{TMZ}, with the parameter space reduced to a point.
+Here and below the numbering refers to the version specified in the
+bibliography.
+
+We explain the last assertion.  A regularization supplies, near a
+point lying on the components indexed by $I$, a split normal-bundle
+model
+\[
+N=\bigoplus_{i\in I}N_i\longrightarrow E_I,
+\]
+with the components given by the hyperplane subbundles $v_i=0$.
+The symplectic form in this model is
+\[
+\pi^*\Omega_I+\frac12\sum_{i\in I}\dd(\rho_i\alpha_i),
+\]
+where $\rho_i$ is a squared Hermitian norm and $\alpha_i$ is the
+angular form of a unitary connection; see \cite[Section~2.2]{TMZ}.
+In particular, along $v_i=0$, the vertical $i$th line is the
+symplectic orthogonal complement of the tangent bundle of that
+hyperplane.
+
+Using the connection splitting, choose a local Riemannian metric
+making the horizontal space and the individual vertical lines
+mutually orthogonal.  Along each component this metric makes
+$TE_i$ orthogonal to $(TE_i)^{\Omega_1}$.  Cover $X$ by such
+neighborhoods and by neighborhoods disjoint from $E$.  A partition
+of unity gives a global metric $h$ with the same orthogonality
+property: that property is a linear condition on a metric at a
+point of $E_i$.
+
+Define $A\in\End(TX)$ by
+\[
+h(Au,v)=\Omega_1(u,v).
+\]
+Then $A$ is invertible and $h$-skew-adjoint.  Set
+\[
+P=(-A^2)^{1/2},\qquad K=AP^{-1}.
+\]
+The positive square root is smooth, and $A$ commutes with $P$.
+Consequently $K^2=-\id$, $K$ is $h$-orthogonal, and
+\[
+\Omega_1(u,Ku)=h(Pu,u)>0,\qquad
+\Omega_1(Ku,Kv)=\Omega_1(u,v).
+\]
+Thus $K$ is $\Omega_1$-compatible.
+
+At a point of $E_i$, the orthogonality property of $h$ implies that
+$A$ preserves $TE_i$: if $u\in TE_i$ and
+$v\in(TE_i)^{\Omega_1}$, then
+\[
+h(Au,v)=\Omega_1(u,v)=0.
+\]
+\review{Stating "functional calculus now shows..." is highly non-standard in this field. More needs to be said.}
+Functional calculus now shows that $P$ and $K$ preserve $TE_i$
+as well.
+\end{proof}
+
+\subsection{Divisor line bundles}
+
+We use the standard classification of smooth complex line bundles by
+their first Chern class, the equality of the first Chern class with
+the Euler class of the underlying oriented plane bundle, and the
+Chern--Weil formula
+\[
+c_1(L)_{\R}=\left[\frac{i}{2\pi}F_\nabla\right].
+\]
+References are \cite[Sections~9 and~14]{MS} and
+\cite[Chapter~XII]{KN}.  In particular, a complex line bundle with
+vanishing integral first Chern class is smoothly trivial, not merely
+trivial after tensoring its cohomology with $\R$.
+
+\begin{lemma}\label{lem:divisor-bundle}
+Let $Y\subset X$ be a closed embedded codimension-two submanifold
+with a complex structure on its normal bundle $N_Y$.  There are a
+smooth complex line bundle $L(Y)\to X$ and a transverse section
+$\sigma_Y$ such that
+\[
+\sigma_Y^{-1}(0)=Y,\qquad c_1(L(Y))=\PD[Y].
+\]
+The intrinsic derivative along its zero set identifies
+\[
+\dd\sigma_Y:TX|_Y/TY\longrightarrow L(Y)|_Y
+\]
+with the identity of $N_Y$.
+
+In particular, if an almost complex structure $K$ preserves $TY$
+and the normal complex structure is induced by $K$, then
+\[
+\dd\sigma_Y\circ K=i\,\dd\sigma_Y
+\quad\text{along }Y.
+\]
+\end{lemma}
+
+\begin{proof}
+Identify a tubular neighborhood $T$ of $Y$ with a disk neighborhood
+of the zero section of $N_Y$.  On $T$ take the bundle $\pi^*N_Y$
+and its tautological section $v\mapsto v$.  On $X\setminus Y$
+take the trivial line bundle with section $1$.  Over
+$T\setminus Y$, glue these bundles by identifying $1$ with the
+nonzero vector $v$.  The sections glue to $\sigma_Y$.
+Its derivative on the normal bundle is the identity.
+
+The zero locus of a transverse section represents the Euler class
+of the underlying oriented plane bundle, hence the first Chern
+class of this complex line bundle.  This gives the asserted
+Poincar\'e duality formula, with the orientation determined by
+the specified normal complex structure.
+\end{proof}
+
+\subsection{The relative hypersurface input}
+
+\review{The notation $O_{C^\infty}(1)$ is also highly nonstandard and might be confused with line bundle notation. I would suggest something different here but it's not obvious what an economical alternative is.}
+
+For a sequence of tensor fields, the notation $O_{C^\infty}(1)$
+means boundedness in every fixed derivative norm, with respect to
+fixed geometric data on the base.
+
+\begin{lemma}[Relative approximately holomorphic hypersurfaces]
+\label{lem:relative-AH}
+Let $(X,\Omega,K)$ be a closed symplectic manifold with $K$
+$\Omega$-compatible.  Let $Y_1,\ldots,Y_q$ be a finite collection
+of closed $K$-invariant submanifolds, including $X$ itself if
+desired.  Let $L_k$ be Hermitian line bundles with unitary
+connections satisfying
+\[
+F_{L_k}=-ik\Omega+O_{C^\infty}(1).
+\]
+For every sufficiently large $k$, there is a smooth section $s_k$
+of $L_k$ which is transverse to zero on $X$ and whose restriction
+to every $Y_a$ is transverse to zero.  All the resulting zero
+sets in $X$ and in the $Y_a$ are symplectic, with their
+complex-normal zero-set orientations.
+\end{lemma}
+
+\begin{proof}
+We recall the precise approximately holomorphic input and its
+relative application.  Put $g=\Omega(\,\cdot\,,K\,\cdot\,)$ and
+$g_k=kg$.  The curvature hypothesis makes $L_k$ an
+asymptotically very ample sequence in the sense of
+\cite[Definition~2.1]{Auroux01}: its curvature is positive of
+order $k$, its $(0,2)$-part is bounded, and its curvature
+derivatives are $O(k)$.
+
+Estimated transversality gives approximately holomorphic sections,
+with arbitrarily small approximately holomorphic perturbations
+available, for which the restrictions in question are uniformly
+transverse.  The relevant general construction is
+\cite[Theorem~1.1 and Section~4]{Auroux01}; the
+restriction-to-a-prescribed-submanifold version is the main
+relative transversality theorem of \cite{Mohsen}.
+
+For clarity, the passage to the particular formulation above
+requires no extension theorem for holomorphic sections.
+Use the ambient Gaussian peak sections centered at points of
+$Y_a$, supplied by \cite[Lemma~2.3]{Auroux01}.  Their restrictions
+to the $K$-invariant submanifold $Y_a$ have the same local
+approximately holomorphic estimates and nonvanishing lower
+bounds.  Thus the local perturbations for transversality on
+$Y_a$ are restrictions of ambient perturbations.  The
+Gaussian-decay globalization argument applies with centers on
+$Y_a$.  Apply this successively to the finite list of submanifolds,
+taking each perturbation sufficiently small to preserve the
+previous uniform transversality bounds.  The openness and
+successive-perturbation argument is the one used in
+\cite[proof of Theorem~2]{Auroux97}.
+
+More explicitly, the resulting sections satisfy, for constants
+independent of $k$,
+\[
+\|s_k\|_{C^2(g_k)}\leq C,\qquad
+\|\bar\partial_Ks_k\|_{C^1(g_k)}\leq Ck^{-1/2},
+\]
+and their derivatives, restricted to each $TY_a$, have right
+inverses of uniformly bounded norm wherever the restricted
+section is sufficiently small.  This also explains why the
+construction applies to the above general sequence $L_k$, rather
+than only to tensor powers of one line bundle.
+
+At a zero in $Y_a$, the derivative of $s_k|_{Y_a}$ is therefore
+a uniformly surjective real-linear map whose antilinear part
+tends to zero.  Its kernel is close to the kernel of a surjective
+complex-linear map.  For large $k$ this kernel is symplectic.
+The homotopy which removes the small antilinear part stays
+surjective, so its zero-set orientation is the symplectic
+orientation.  The same argument applies on $X$.  For a
+zero-dimensional $Y_a$, transversality means that the section
+has no zero there.
+\end{proof}
+
+\begin{remark}\label{rem:relative-SNC}
+Suppose $E$ is a symplectic simple normal-crossings divisor and
+$K$ is compatible with $\Omega$ and preserves all its components.
+Apply Lemma~\ref{lem:relative-AH} to all the nonempty intersections
+$E_I$, including $E_\varnothing=X$.  The new zero set $H$
+then enlarges $E$ to a symplectic simple normal-crossings divisor.
+
+Indeed, transversality on $E_I$ is exactly the additional
+transversality required for $E_I\cap H$.  The orientation assertion
+in the lemma gives the required agreement of intersection and
+symplectic orientations.
+\end{remark}
+
+\section{A cohomologically redundant enlargement}
+
+The purpose of the auxiliary hypersurfaces is purely
+cohomological.  Importantly, their construction does not require
+the original symplectic class to be rational.
+
+\begin{lemma}\label{lem:outside-subspace}
+Suppose $E$ is a symplectic simple normal-crossings divisor in
+$(X,\Omega)$ and there is an $\Omega$-compatible almost complex
+structure preserving its components.  Let
+\[
+W\subsetneq H^2(X;\Q)
+\]
+be a proper rational vector subspace.  There is a closed embedded
+symplectic hypersurface $H$ such that $E\cup H$ is a symplectic
+simple normal-crossings divisor and
+\[
+\PD[H]\notin W.
+\]
+\end{lemma}
+
+\begin{proof}
+Choose integral classes $\xi_1,\ldots,\xi_b$ whose images form a
+basis of $H^2(X;\Z)$ modulo torsion.  Choose closed real forms
+$\beta_j$ representing $\xi_j$, and write
+\[
+[\Omega]=2\pi\sum_{j=1}^{b}\lambda_j\xi_j
+\quad\text{in }H^2(X;\R).
+\]
+There is a real one-form $\eta$ such that
+\[
+\Omega=2\pi\sum_{j=1}^{b}\lambda_j\beta_j+\dd\eta.
+\]
+
+Choose Hermitian line bundles $B_j$ with $c_1(B_j)=\xi_j$ and
+unitary connections of curvature $-2\pi i\beta_j$.
+Such connections exist: start with any unitary connection and
+correct it by an imaginary-valued one-form, using the
+Chern--Weil formula.
+
+Let $m_j(k)$ be an integer nearest to $k\lambda_j$, and set
+\[
+L_k=\bigotimes_{j=1}^{b}B_j^{\otimes m_j(k)}.
+\]
+Equip $L_k$ with the tensor-product connection, modified by
+the imaginary-valued one-form $-ik\eta$.  Its curvature is
+\begin{align*}
+F_{L_k}
+&=-2\pi i\sum_j m_j(k)\beta_j-ik\,\dd\eta\\
+&=-ik\Omega
+  -2\pi i\sum_j\bigl(m_j(k)-k\lambda_j\bigr)\beta_j\\
+&=-ik\Omega+O_{C^\infty}(1).
+\end{align*}
+Write $h_k=c_1(L_k)$.
+
+Choose an integral class $a$ whose rational image is not in $W$,
+and a Hermitian line bundle $A$ with $c_1(A)=a$, equipped with
+any unitary connection.  The sequence $L_k\otimes A$ satisfies
+the same curvature estimate.
+
+By Lemma~\ref{lem:relative-AH} and
+Remark~\ref{rem:relative-SNC}, for all sufficiently large $k$
+both classes
+\[
+h_k,\qquad h_k+a
+\]
+are represented by hypersurfaces which can separately be added
+to $E$ as symplectic simple normal-crossings components.
+They cannot both belong to $W$, since their difference is $a$.
+Choose the hypersurface corresponding to a class outside $W$.
+\end{proof}
+
+\review{This lemma is confusingly written but is in principal correct. We are building (n+1) different groups of spanning sets. We just start from an empty spanning set and repeatedly apply Lemma 5.1 to get the first group to enlarge to a divisor $D \cup G_1$ where $G_1$ consists of the spanning divisors from the first group. We then start over again from nothing and form another spanning set and enlarge the divisor to $D \cup G_1 \cup G_2$. The groups $G_1$ and $G_2$ need not be geometrically distinct (they can contain the same divisors) but their individual labels are different. What is written in this lemma is sloppy. For example, $\ell$ is introduced without much definition or description.}
+\begin{lemma}\label{lem:redundant-enlargement}
+Starting with $(M^{2n},\omega,D)$, one can make a finite sequence
+of the exact deformations allowed in Theorem~\ref{thm:main} and
+add finitely many auxiliary hypersurfaces to obtain a symplectic
+simple normal-crossings divisor
+\[
+E=\bigcup_{i=1}^{N}E_i,\qquad D\subset E,
+\]
+in $(M,\Omega)$ with the following properties:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item there is an $\Omega$-compatible almost complex structure
+      preserving every $E_i$;
+\item for every $I\subset\{1,\ldots,N\}$ with $|I|\leq n$,
+      the classes
+      \[
+      \{\PD[E_j]:j\notin I\}
+      \]
+      span $H^2(M;\Q)$.
+\end{enumerate}
+Throughout the deformations, the original divisor $D$ is fixed
+as a subset and remains symplectic simple normal crossings.
+\end{lemma}
+
+\begin{proof}
+Set $b=\dim H^2(M;\Q)$.  First apply
+Lemma~\ref{lem:regularization} to the current divisor.
+We construct $n+1$ disjoint groups of auxiliary labels, each
+group containing $b$ hypersurfaces whose classes form a basis
+of $H^2(M;\Q)$.
+
+Within one group, suppose $\ell<b$ linearly independent classes
+have already been obtained.  Apply
+Lemma~\ref{lem:outside-subspace} with $W$ their span.  Add the
+resulting hypersurface to the current divisor.  Apply
+Lemma~\ref{lem:regularization} to this enlarged divisor before
+proceeding to the next step.  Its deformation is exact and
+preserves all the components already constructed.  This
+procedure constructs the required basis group, and repeating
+it constructs all $n+1$ groups.
+
+At the end, the compatible almost complex structure from the
+last regularization gives (a).  Deleting at most $n$ labels can
+meet at most $n$ of the $n+1$ groups, so at least one complete
+basis group remains.  This proves (b).  If $b=0$, the spanning
+condition is vacuous and no auxiliary components are necessary.
+
+All forms encountered have cohomology class $[\omega]$.
+The finitely many deformation paths can be concatenated
+smoothly by making their parametrizations constant near their
+endpoints.
+\end{proof}
+
+\subsection{An integral relation matrix}
+
+\begin{lemma}\label{lem:matrix}
+Let $c_1,\ldots,c_N\in H^2(M;\Z)$.  Suppose that, after deleting
+any set of at most $n$ indices, the remaining rational classes
+still span the rational span of all the $c_i$.
+There is a symmetric integer matrix
+\[
+B=(b_{ij})_{1\leq i,j\leq N}
+\]
+such that
+\[
+\sum_{j=1}^{N}b_{ij}c_j=0
+\quad\text{in }H^2(M;\Z),\qquad 1\leq i\leq N,
+\]
+and every nonempty principal submatrix
+\[
+B_I=(b_{ij})_{i,j\in I},\qquad |I|\leq n,
+\]
+is positive definite.
+\end{lemma}
+
+\begin{proof}
+Choose a rational basis of the span of the classes and let $C$
+be the matrix whose $j$th column is the coordinate vector of
+$c_j$.  Thus $C$ has full row rank.  The orthogonal projection
+onto its kernel is the rational symmetric matrix
+\[
+P=I_N-C^{\mathsf T}(CC^{\mathsf T})^{-1}C.
+\]
+If the rational span is zero, use $P=I_N$.
+
+We claim that $P_I$ is positive definite when $|I|\leq n$.
+If $v\in\R^N$ is supported on $I$ and
+$v^{\mathsf T}Pv=0$, then $Pv=0$, since $P$ is an orthogonal
+projection.  Hence $v=C^{\mathsf T}u$ for some $u$.
+For $j\notin I$ the $j$th entry of $v$ is zero, so $u$ is
+orthogonal to every column of $C$ outside $I$.  Those columns
+span the whole column space, by hypothesis.  Thus $u=0$ and
+$v=0$, proving the claim.
+
+Multiply $P$ by a positive integer to clear its denominators.
+Every resulting row gives an integral combination of the $c_j$
+which vanishes rationally, hence is torsion.  The torsion
+subgroup of $H^2(M;\Z)$ is finite.  Multiplying once more by
+its exponent kills all these torsion classes.  The resulting
+integer matrix $B$ has the asserted properties.
+\end{proof}
+
+\section{Gluing tame structures while preserving holomorphic functions}
+
+The following observation is the gluing mechanism in the proof.
+It is useful that holomorphicity of a fixed function becomes an
+affine-linear condition in suitable coordinates on the space of
+tame almost complex structures.
+
+\review{This lemma looks so standard that it could probably be found in a textbook or may already in the literature as a standard technique. What is written here is probably overkill.}
+\begin{lemma}\label{lem:tame-gluing}
+Let $(X,\Omega)$ be a symplectic manifold.  Suppose $\{U_\alpha\}$
+is a locally finite open cover, $J_\alpha$ is an $\Omega$-tame
+almost complex structure on $U_\alpha$, and $\{\rho_\alpha\}$
+is a subordinate smooth partition of unity.
+
+There is a smooth $\Omega$-tame almost complex structure $J$
+with the following pointwise property.  If
+$\lambda:T_xX\to\C$ is a complex-valued real-linear covector and
+\[
+\lambda\circ J_\alpha(x)=i\lambda
+\]
+for every $\alpha$ with $\rho_\alpha(x)>0$, then
+\[
+\lambda\circ J(x)=i\lambda.
+\]
+\end{lemma}
+
+\begin{proof}
+Choose an $\Omega$-compatible reference structure $J_*$.
+Write
+\[
+TX\otimes_{\R}\C=V_-\oplus V_+,
+\]
+where $V_-$ and $V_+$ are the $-i$ and $+i$ eigenbundles of
+$J_*$.  On the complexified tangent bundle consider the
+Hermitian form
+\[
+H(v,w)=i\Omega_{\C}(v,\overline w).
+\]
+It is positive definite on $V_-$, negative definite on $V_+$,
+and these two subbundles are $H$-orthogonal.
+
+For any $\Omega$-tame almost complex structure $J'$, its
+$-i$ eigenspace is $H$-positive.  Indeed, its vectors have the
+form $u+iJ'u$, and
+\[
+H(u+iJ'u,u+iJ'u)=2\Omega(u,J'u)>0
+\]
+when $u\neq0$.  Projection to $V_-$ therefore identifies this
+eigenspace with the graph of a complex-linear map
+\[
+A':V_-\longrightarrow V_+,\qquad \|A'\|<1,
+\]
+where the norms come from $H$ on $V_-$ and $-H$ on $V_+$.
+
+Conversely, the graph of any such contraction is $H$-positive.
+Its conjugate is $H$-negative, so the two graphs are
+complementary.  They define a real almost complex structure,
+which is tame by the same calculation.
+
+Let $A_\alpha$ represent $J_\alpha$ in these graph coordinates,
+and set
+\[
+A=\sum_\alpha\rho_\alpha A_\alpha.
+\]
+The products are extended by zero outside their respective
+domains.  This is smooth and satisfies
+\[
+\|A\|\leq\sum_\alpha\rho_\alpha\|A_\alpha\|<1.
+\]
+Let $J$ be the tame structure defined by its graph.
+
+The condition $\lambda\circ J_\alpha=i\lambda$ is equivalent
+to the complex-linear extension of $\lambda$ vanishing on the
+$-i$ eigenspace, or
+\[
+\lambda(v)+\lambda(A_\alpha v)=0
+\qquad(v\in V_-).
+\]
+This is affine-linear in $A_\alpha$.  Taking the weighted sum
+proves the corresponding identity for $A$, and hence the
+claimed property of $J$.
+\end{proof}
+
+\section{Monomial functions and holomorphic normal coordinates}
+
+\begin{proposition}\label{prop:redundant-case}
+Let $E=\bigcup_{i=1}^{N}E_i$ be a symplectic simple
+normal-crossings divisor in a closed symplectic manifold
+$(X^{2n},\Omega)$.  Assume:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item there is an $\Omega$-compatible almost complex structure
+      $K$ preserving every $E_i$;
+\item the classes $c_i=\PD[E_i]$ satisfy the hypothesis of
+      Lemma~\ref{lem:matrix}.
+\end{enumerate}
+Then there is an $\Omega$-tame almost complex structure $J$
+for which, near every point, all the local branches of $E$
+have simultaneous $J$-holomorphic defining coordinates.
+\end{proposition}
+
+\begin{proof}
+We divide the argument into four steps.
+
+\medskip
+\noindent\textbf{Step 1: global functions on the complement.}
+For each $E_i$, use the normal complex structure induced by $K$
+and Lemma~\ref{lem:divisor-bundle} to obtain a complex line bundle
+$L_i$ and a section $\sigma_i$ satisfying
+\[
+\sigma_i^{-1}(0)=E_i,\qquad
+c_1(L_i)=c_i,\qquad
+\dd\sigma_i\circ K=i\,\dd\sigma_i\quad\text{along }E_i.
+\]
+Choose the matrix $B$ from Lemma~\ref{lem:matrix}.  Each line
+bundle
+\[
+P_i:=\bigotimes_{j=1}^{N}L_j^{\otimes b_{ij}}
+\]
+has zero integral first Chern class, and is therefore smoothly
+trivial.  Choose a complex-linear trivialization
+\[
+\tau_i:P_i\longrightarrow X\times\C.
+\]
+A negative tensor power denotes a power of the dual line.
+
+On $X\setminus E$, all the sections $\sigma_j$ are nonzero.
+They therefore define smooth functions
+\[
+f_i
+=
+\tau_i\!\left(\bigotimes_{j=1}^{N}\sigma_j^{\otimes b_{ij}}\right)
+:
+X\setminus E\longrightarrow\C^*.
+\]
+For negative exponents, the inverse section of the dual line
+is used.  No holomorphicity is asserted yet.
+
+\medskip
+\noindent\textbf{Step 2: local simultaneous monomialization.}
+Fix $p\in E$, and put
+\[
+I=I(p):=\{i:p\in E_i\}.
+\]
+Then $1\leq |I|\leq n$.  Take a sufficiently small neighborhood
+$U$ of $p$ which meets no component $E_j$ with $j\notin I$,
+and trivialize all the $L_j$ there.  Write
+\[
+\sigma_j=g_j e_j
+\]
+in these frames.  For $j\in I$, put $z_j=g_j$.
+Transversality of the divisor means that the map
+$(z_j)_{j\in I}$ is a submersion near $p$.  Moreover,
+\[
+\dd z_j(p)\circ K(p)=i\,\dd z_j(p),\qquad j\in I.
+\]
+
+Complete these functions to smooth complex coordinates
+\[
+\bigl((z_j)_{j\in I},y_1,\ldots,y_{n-|I|}\bigr)
+\]
+whose differential at $p$ is complex-linear for $K(p)$.
+To do this, extend the independent complex covectors
+$\dd z_j(p)$ to a complex basis of the cotangent space, choose
+smooth functions with these additional differentials, and
+apply the inverse function theorem.
+
+For $i\in I$, the definition of $f_i$ gives
+\[
+f_i=a_i\prod_{j\in I}z_j^{b_{ij}}
+\quad\text{on }U\setminus E,
+\]
+where each $a_i:U\to\C^*$ is smooth: all factors belonging to
+indices outside $I$ are nonvanishing and are absorbed into
+$a_i$.
+
+Shrink $U$ so that $a_i$ admits a smooth logarithm $h_i$ for
+each $i\in I$.  Since $B_I$ is invertible, define
+\[
+u_j=\sum_{i\in I}(B_I^{-1})_{ji}h_i,\qquad
+w_j=z_j e^{u_j},\qquad j\in I.
+\]
+Then
+\begin{equation}\label{eq:monomial}
+f_i=\prod_{j\in I}w_j^{b_{ij}},
+\qquad i\in I,
+\quad\text{on }U\setminus E.
+\end{equation}
+Also,
+\[
+\{w_j=0\}=E_j\cap U,\qquad
+\dd w_j(p)=e^{u_j(p)}\dd z_j(p).
+\]
+Thus, after shrinking once more,
+\[
+\bigl((w_j)_{j\in I},y_1,\ldots,y_{n-|I|}\bigr)
+\]
+is a smooth complex coordinate system whose differential at
+$p$ is complex-linear for $K(p)$.
+
+Let $J_p$ be the pullback of the standard complex structure
+in these coordinates.  It agrees with $K$ at $p$, so it is
+$\Omega$-tame on a sufficiently small neighborhood $U_p$.
+Every $f_i$ with $i\in I(p)$ is $J_p$-holomorphic on
+$U_p\setminus E$, by \eqref{eq:monomial}.
+
+At a point outside $E$, choose any local $\Omega$-tame almost
+complex structure and give the corresponding neighborhood the
+empty label set.  We have therefore constructed an open cover
+by neighborhoods $U_\alpha$, with label sets $I_\alpha$, such
+that:
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item $U_\alpha\cap E_i=\varnothing$ if $i\notin I_\alpha$;
+\item $J_\alpha$ is $\Omega$-tame on $U_\alpha$;
+\item $f_i$ is $J_\alpha$-holomorphic on $U_\alpha\setminus E$
+      whenever $i\in I_\alpha$.
+\end{enumerate}
+Take a finite such cover, using compactness of $X$.
+
+\medskip
+\noindent\textbf{Step 3: gluing.}
+Choose a smooth partition of unity $\{\rho_\alpha\}$
+subordinate to this finite cover, with
+$\supp\rho_\alpha\subset U_\alpha$.  Apply
+Lemma~\ref{lem:tame-gluing} to obtain an $\Omega$-tame almost
+complex structure $J$.
+
+For each $i$, define the open neighborhood
+\[
+V_i
+=
+X\setminus
+\bigcup_{\alpha:\,i\notin I_\alpha}\supp\rho_\alpha.
+\]
+Property (1) above shows that $E_i\subset V_i$.
+If $x\in V_i\setminus E$, every index with
+$\rho_\alpha(x)>0$ has $i\in I_\alpha$.  Thus every contributing
+$J_\alpha$ satisfies
+\[
+\dd f_i(x)\circ J_\alpha(x)=i\,\dd f_i(x).
+\]
+The gluing lemma gives
+\begin{equation}\label{eq:f-holomorphic}
+\dd f_i\circ J=i\,\dd f_i
+\quad\text{on }V_i\setminus E.
+\end{equation}
+
+\medskip
+\noindent\textbf{Step 4: recovery of the defining coordinates.}
+Return to $p\in E$, set $I=I(p)$, and use the local coordinates
+constructed in Step~2.  Restrict their neighborhood to
+\[
+U\cap\bigcap_{i\in I}V_i.
+\]
+On its complement of $E$, all the functions $f_i$ and $w_j$
+appearing in \eqref{eq:monomial} are nonzero.  Logarithmic
+differentiation yields
+\[
+\frac{\dd f_i}{f_i}
+=
+\sum_{j\in I}b_{ij}\frac{\dd w_j}{w_j},
+\qquad i\in I.
+\]
+By \eqref{eq:f-holomorphic}, the covectors on the left are
+complex-linear for $J$.  Since $B_I$ is invertible, the same
+is true of every $\dd w_j/w_j$, and hence of every $\dd w_j$:
+\[
+\dd w_j\circ J=i\,\dd w_j
+\quad\text{on }U\setminus E.
+\]
+Both sides are smooth on all of $U$.  The complement of the
+finite union of codimension-two submanifolds $E$ is dense.
+Consequently this identity holds throughout $U$.
+
+The functions $w_j$, $j\in I$, are therefore simultaneous
+$J$-holomorphic defining coordinates, and
+\[
+E\cap U=\left\{\prod_{j\in I}w_j=0\right\}.
+\]
+This proves the proposition.
+\end{proof}
+
+\section{Proof of the main theorem}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+If $D$ is empty, choose any $\omega$-compatible almost complex
+structure and take $r=0$ everywhere.  The zero-dimensional
+case is likewise immediate.  Assume henceforth that $n\geq1$
+and $D\neq\varnothing$.
+
+Apply Lemma~\ref{lem:redundant-enlargement}.  It produces an
+endpoint symplectic form $\Omega$, connected to $\omega$ by a
+smooth path of cohomologous symplectic forms preserving the
+original divisor, and an enlarged divisor
+\[
+E=D\cup E_{\mathrm{aux}}
+\]
+satisfying the hypotheses of
+Proposition~\ref{prop:redundant-case}.  Let $J$ be the
+$\Omega$-tame almost complex structure provided by that
+proposition.
+
+At a point $p\in D$, the proposition gives smooth complex
+coordinates in which every branch of the enlarged divisor
+through $p$ is a coordinate hyperplane, with its defining
+coordinate $J$-holomorphic.  Retain as the first
+$z_1,\ldots,z_r$ precisely the coordinates corresponding to
+the original components of $D$ through $p$.  Use the remaining
+coordinates, including any auxiliary defining coordinates, to
+complete the smooth complex coordinate system.  Shrinking
+the neighborhood to avoid all other original components gives
+\[
+D=\{z_1\cdots z_r=0\},\qquad
+\dd z_j\circ J=i\,\dd z_j\quad(1\leq j\leq r).
+\]
+At a point outside $D$, choose a neighborhood disjoint from
+$D$ and take $r=0$.
+
+Finally, set $\omega_1=\Omega$ and use the concatenated path
+from Lemma~\ref{lem:redundant-enlargement}.  It has all the
+properties asserted in the theorem.
+\end{proof}
+
+\begin{remark}
+The argument does not confuse holomorphic defining functions
+with the weaker condition that the Nijenhuis tensor have
+tangential image along the divisor.  Holomorphicity here holds
+on actual open neighborhoods.  It follows from the global
+functions $f_i$, the gluing identity
+\eqref{eq:f-holomorphic}, and the invertibility of the principal
+matrices $B_I$.
+\end{remark}
+
+\begin{remark}
+Neither the deformation nor the auxiliary construction changes
+the cohomology class of the symplectic form.  The rounding
+construction in Lemma~\ref{lem:outside-subspace} is what permits
+approximately holomorphic hypersurfaces to be used without
+assuming that $[\omega]$ is rational.  Separately, the
+torsion-killing step in Lemma~\ref{lem:matrix} ensures that the
+tensor-product line bundles used to define the functions
+$f_i$ are genuinely trivial.
+\end{remark}
+
+\begin{thebibliography}{99}
+
+\bibitem{Auroux97}
+D.~Auroux,
+\emph{Asymptotically holomorphic families of symplectic submanifolds},
+Geom. Funct. Anal. \textbf{7} (1997), 971--995.
+
+\bibitem{Auroux01}
+D.~Auroux,
+\emph{Estimated transversality in symplectic geometry and projective maps},
+in \emph{Symplectic Geometry and Mirror Symmetry}
+(Seoul, 2000), World Scientific, Singapore, 2001, pp.~1--30;
+arXiv:math/0010052.
+
+\bibitem{TMZ}
+M.~Farajzadeh Tehrani, M.~McLean, and A.~Zinger,
+\emph{Normal crossings singularities for symplectic topology},
+arXiv:1410.0609.
+The references to Theorem~2.13 and Section~2.2 use the authors'
+version dated April~30, 2017.
+
+\bibitem{KN}
+S.~Kobayashi and K.~Nomizu,
+\emph{Foundations of Differential Geometry}, Vol.~II,
+Wiley, New York, 1969.
+
+\bibitem{MS}
+J.~W.~Milnor and J.~D.~Stasheff,
+\emph{Characteristic Classes},
+Annals of Mathematics Studies, vol.~76,
+Princeton University Press, Princeton, NJ, 1974.
+
+\bibitem{Mohsen}
+J.-P.~Mohsen,
+\emph{Transversalit\'e quantitative en g\'eom\'etrie symplectique:
+sous-vari\'et\'es et hypersurfaces},
+Ann. Fac. Sci. Toulouse Math. (6) \textbf{28} (2019), no.~4.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,355 @@
+{
+  "prob-001": {
+    "response_id": "gen-1791067834-D4LMT8jvTPRiq3olDsNN",
+    "model": "z-ai/glm-5.3",
+    "provider": "Together",
+    "host_tag": "together",
+    "quantization": "unknown",
+    "effort": "xhigh",
+    "web_search": true,
+    "status": "ok",
+    "finish_reason": "stop",
+    "submitted_utc": "2026-10-03T23:10:33+00:00",
+    "history": [
+      {
+        "response_id": "gen-1791062874-ms4OIYLBSnJxd2ROawy0",
+        "status": "truncated-or-empty",
+        "http": 200,
+        "finish_reason": "error",
+        "error": {
+          "code": 502,
+          "message": "Network connection lost.",
+          "metadata": {
+            "error_type": "provider_unavailable"
+          }
+        }
+      },
+      {
+        "response_id": "gen-1791063794-hh6qSY7rpUJNmPPYg9TZ",
+        "status": "truncated-or-empty",
+        "http": 200,
+        "finish_reason": "error",
+        "error": {
+          "code": 502,
+          "message": "Network connection lost.",
+          "metadata": {
+            "error_type": "provider_unavailable"
+          }
+        }
+      }
+    ]
+  },
+  "prob-002": {
+    "response_id": "gen-1791072334-VlwdDcFEF4F5t5hDD3WN",
+    "model": "z-ai/glm-5.3",
+    "provider": "Together",
+    "host_tag": "together",
+    "quantization": "unknown",
+    "effort": "xhigh",
+    "web_search": true,
+    "status": "ok",
+    "finish_reason": "stop",
+    "submitted_utc": "2026-10-04T00:20:40+00:00",
+    "history": [
+      {
+        "response_id": "gen-1791062874-rsl01mFeRsDfB0NeOrpS",
+        "status": "truncated-or-empty",
+        "http": 200,
+        "finish_reason": "error",
+        "error": {
+          "code": 502,
+          "message": "Network connection lost.",
+          "metadata": {
+            "error_type": "provider_unavailable"
+          }
+        }
+      },
+      {
+        "response_id": "gen-1791063954-CBrtxG0HirWpbCuQxREy",
+        "status": "truncated-or-empty",
+        "http": 200,
+        "finish_reason": "error",
+        "error": {
+          "code": 502,
+          "message": "Network connection lost.",
+          "metadata": {
+            "error_type": "provider_unavailable"
+          }
+        }
+      },
+      {
+        "response_id": "gen-1791067834-8BjeeVEBcbtOlBXhaeLP",
+        "status": "transport",
+        "http": 200,
+        "finish_reason": "error",
+        "error": {
+          "code": 502,
+          "message": "Network connection lost.",
+          "metadata": {
+            "error_type": "provider_unavailable"
+          }
+        }
+      }
+    ]
+  },
+  "prob-003": {
+    "response_id": "gen-1791064075-WUudPvVVguM7PqRh68mY",
+    "model": "z-ai/glm-5.3",
+    "provider": "Together",
+    "host_tag": "together",
+    "quantization": "unknown",
+    "effort": "xhigh",
+    "web_search": true,
+    "status": "ok",
+    "finish_reason": "stop",
+    "submitted_utc": "2026-10-03T22:09:03+00:00",
+    "history": [
+      {
+        "response_id": "gen-1791062874-SU9fIr9dlry7u6zaE9Om",
+        "status": "truncated-or-empty",
+        "http": 200,
+        "finish_reason": "error",
+        "error": {
+          "code": 502,
+          "message": "Network connection lost.",
+          "metadata": {
+            "error_type": "provider_unavailable"
+          }
+        }
+      }
+    ]
+  },
+  "prob-004": {
+    "response_id": "gen-1791067834-UXBUddotk9vX27ZiELFu",
+    "model": "z-ai/glm-5.3",
+    "provider": "Together",
+    "host_tag": "together",
+    "quantization": "unknown",
+    "effort": "xhigh",
+    "web_search": true,
+    "status": "ok",
+    "finish_reason": "stop",
+    "submitted_utc": "2026-10-03T23:08:50+00:00",
+    "history": [
+      {
+        "response_id": "gen-1791062874-P3492SJuNdP3m6V2ADs5",
+        "status": "truncated-or-empty",
+        "http": 200,
+        "finish_reason": "error",
+        "error": {
+          "code": 502,
+          "message": "Network connection lost.",
+          "metadata": {
+            "error_type": "provider_unavailable"
+          }
+        }
+      },
+      {
+        "response_id": "gen-1791063796-fr6QNesguAkn3xiM47NO",
+        "status": "truncated-or-empty",
+        "http": 200,
+        "finish_reason": "error",
+        "error": {
+          "code": 502,
+          "message": "Network connection lost.",
+          "metadata": {
+            "error_type": "provider_unavailable"
+          }
+        }
+      }
+    ]
+  },
+  "prob-005": {
+    "response_id": "gen-1791075966-LLsAGOIFTEGTzTFDYJ7w",
+    "model": "z-ai/glm-5.3",
+    "provider": "Together",
+    "host_tag": "together",
+    "quantization": "unknown",
+    "effort": "xhigh",
+    "web_search": true,
+    "status": "transport",
+    "finish_reason": "error",
+    "submitted_utc": "2026-10-04T01:36:09+00:00",
+    "history": [
+      {
+        "response_id": "gen-1791062874-jNN8DLvi3UGArb3MoTkK",
+        "status": "truncated-or-empty",
+        "http": 200,
+        "finish_reason": "error",
+        "error": {
+          "code": 502,
+          "message": "Network connection lost.",
+          "metadata": {
+            "error_type": "provider_unavailable"
+          }
+        }
+      },
+      {
+        "response_id": "gen-1791064682-wN8Jb0soJPLGEQg4rMCU",
+        "status": "truncated-or-empty",
+        "http": 200,
+        "finish_reason": "error",
+        "error": {
+          "code": 502,
+          "message": "Network connection lost.",
+          "metadata": {
+            "error_type": "provider_unavailable"
+          }
+        }
+      },
+      {
+        "response_id": "gen-1791067834-zMDGzupzXiTMppbjtXv5",
+        "status": "transport",
+        "http": 200,
+        "finish_reason": "error",
+        "error": null
+      },
+      {
+        "response_id": "gen-1791072334-Le5Sf2XF8Z1xLU6dGbca",
+        "status": "transport",
+        "http": 200,
+        "finish_reason": "error",
+        "error": {
+          "code": 502,
+          "message": "Network connection lost.",
+          "metadata": {
+            "error_type": "provider_unavailable"
+          }
+        }
+      },
+      {
+        "response_id": "gen-1791074148-uaQIx6teBZvI5pzd5mn7",
+        "status": "transport",
+        "http": 200,
+        "finish_reason": "error",
+        "error": {
+          "code": 502,
+          "message": "Network connection lost.",
+          "metadata": {
+            "error_type": "provider_unavailable"
+          }
+        }
+      }
+    ]
+  },
+  "prob-006": {
+    "response_id": "gen-1791062164-xy9SXifwPzzsNbrFO1XK",
+    "model": "z-ai/glm-5.3",
+    "provider": "Together",
+    "host_tag": "together",
+    "quantization": "unknown",
+    "effort": "xhigh",
+    "web_search": true,
+    "status": "ok",
+    "finish_reason": "stop",
+    "submitted_utc": "2026-10-03T21:27:08+00:00",
+    "history": []
+  },
+  "prob-007": {
+    "response_id": "gen-1791072334-DoCX450FTxn1qfUCcayH",
+    "model": "z-ai/glm-5.3",
+    "provider": "Together",
+    "host_tag": "together",
+    "quantization": "unknown",
+    "effort": "xhigh",
+    "web_search": true,
+    "status": "ok",
+    "finish_reason": "stop",
+    "submitted_utc": "2026-10-04T00:26:37+00:00",
+    "history": [
+      {
+        "response_id": "gen-1791062874-mvH5bi68a9mqvAmcbxZR",
+        "status": "truncated-or-empty",
+        "http": 200,
+        "finish_reason": "error",
+        "error": {
+          "code": 502,
+          "message": "Network connection lost.",
+          "metadata": {
+            "error_type": "provider_unavailable"
+          }
+        }
+      },
+      {
+        "response_id": "gen-1791064681-IMFXpVCXlaITfY0GmB9K",
+        "status": "truncated-or-empty",
+        "http": 200,
+        "finish_reason": "error",
+        "error": {
+          "code": 502,
+          "message": "Network connection lost.",
+          "metadata": {
+            "error_type": "provider_unavailable"
+          }
+        }
+      },
+      {
+        "response_id": "gen-1791067834-WYrRn9HOFojod6Ox33bx",
+        "status": "transport",
+        "http": 200,
+        "finish_reason": "error",
+        "error": null
+      }
+    ]
+  },
+  "prob-008": {
+    "response_id": "gen-1791073240-IHi1BdKElaP4R2FqtMvK",
+    "model": "z-ai/glm-5.3",
+    "provider": "Together",
+    "host_tag": "together",
+    "quantization": "unknown",
+    "effort": "xhigh",
+    "web_search": true,
+    "status": "ok",
+    "finish_reason": "stop",
+    "submitted_utc": "2026-10-04T00:43:30+00:00",
+    "history": [
+      {
+        "response_id": "gen-1791062874-lwFvqOf91Xfl4n4sqRoI",
+        "status": "truncated-or-empty",
+        "http": 200,
+        "finish_reason": "error",
+        "error": {
+          "code": 502,
+          "message": "Network connection lost.",
+          "metadata": {
+            "error_type": "provider_unavailable"
+          }
+        }
+      },
+      {
+        "response_id": "gen-1791064321-012UTKOckesyhQgOf8oh",
+        "status": "truncated-or-empty",
+        "http": 200,
+        "finish_reason": "error",
+        "error": {
+          "code": 502,
+          "message": "Network connection lost.",
+          "metadata": {
+            "error_type": "provider_unavailable"
+          }
+        }
+      },
+      {
+        "response_id": "gen-1791067834-5TUBBzdEnTT6eOx129vC",
+        "status": "transport",
+        "http": 200,
+        "finish_reason": "error",
+        "error": null
+      }
+    ]
+  },
+  "prob-009": {
+    "response_id": "gen-1791062874-VbO2HGV1HIQEYpF1YEkA",
+    "model": "z-ai/glm-5.3",
+    "provider": "Together",
+    "host_tag": "together",
+    "quantization": "unknown",
+    "effort": "xhigh",
+    "web_search": true,
+    "status": "ok",
+    "finish_reason": "stop",
+    "submitted_utc": "2026-10-03T21:51:36+00:00",
+    "history": []
+  }
+}

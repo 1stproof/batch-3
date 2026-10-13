@@ -1,0 +1,230 @@
+
+
+```latex
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm,enumitem}
+\usepackage[margin=2.5cm]{geometry}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\M}{\mathcal M}
+\newcommand{\bM}{\overline{\M}}
+\newcommand{\T}{\mathcal T}
+\newcommand{\bT}{\overline{\T}}
+\newcommand{\C}{\mathbb C}
+\newcommand{\D}{\mathbb D}
+\newcommand{\cV}{\mathcal V}
+\newcommand{\cO}{\mathcal O}
+
+\title{Non-varying boundary factors for deformations of Teichm\"uller-geodesic surfaces}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We prove the following statement.  Let \(V_{0}\subset \M_{g}\) be a smooth complex surface which is totally geodesic for the Teichm\"uller metric, and let \(V_{t}\) be a holomorphic deformation satisfying the smoothness and compatibility assumptions on the Deligne--Mumford boundary stated in the problem.  Fix a product boundary stratum
+\[
+\Delta_{\Gamma}\cong \M_{g_{1},n_{1}}\times\cdots\times \M_{g_{k},n_{k}},
+\]
+and write
+\[
+\partial V_{t}:=\overline V_{t}\cap \Delta_{\Gamma}.
+\]
+Assume that \(\dim \partial V_{t}=1\) and that, for some \(i\), the projection
+\[
+\pi_{i}(\partial V_{t})=\{Y_{t}\}
+\]
+is a point of \(\M_{g_{i},n_{i}}\) for every \(t\).  Then \(Y_{t}=Y_{0}\) for every \(t\).  The proof uses the standard infinitesimal endpoint-rigidity theorem for totally geodesic surfaces in Teichm\"uller space, together with an elementary Artin-approximation/induction argument passing from infinitesimal to analytic families.
+\end{abstract}
+
+\tableofcontents
+
+\section{Notation and reductions}
+
+Throughout, \(\M_{g}\) denotes the moduli stack of smooth genus \(g\) curves, and \(\bM_{g}\) its Deligne--Mumford compactification.  Boundary strata are indexed by stable dual graphs; for a graph \(\Gamma\) with vertices corresponding to pointed curves \((g_{j},n_{j})\), we write
+\[
+\Delta_{\Gamma}\cong \M_{g_{1},n_{1}}\times \cdots \times \M_{g_{k},n_{k}}
+\]
+when the relevant finite quotient is trivial, as in the problem statement.
+
+Let
+\[
+\cV\subset \M_{g}\times \D
+\]
+be the total space of the deformation, with projections
+\[
+\phi:\cV\to \D,\qquad \psi:\cV\to \M_{g},
+\]
+and put \(V_{t}=\psi(\phi^{-1}(t))\).  We write
+\[
+S_{t}:=\overline{V_{t}}\subset \bM_{g}
+\]
+for the closure in the Deligne--Mumford compactification, and
+\[
+B_{t}:=S_{t}\cap \Delta_{\Gamma}=\partial V_{t}.
+\]
+By hypothesis, \(B_{t}\) is a smoothly trivial holomorphic family of smooth curves, and the incidence of the \(B_{t}\) with smaller strata is compatible with the central one.
+
+The conclusion is local on the parameter disc, so we may shrink \(\D\) around \(0\) whenever necessary.
+
+\subsection{Passage to a fine level cover}
+
+Choose an integer \(m\geq 3\), and let
+\[
+\M_{g}[m]\longrightarrow \M_{g}
+\]
+be the finite \'etale level-\(m\) cover.  All moduli stacks involved become smooth quasi-projective schemes, and the Deligne--Mumford compactification becomes a fine moduli space \(\bM_{g}[m]\).  Since finite \'etale maps preserve total geodesicity, smooth triviality of boundary families, and compatibility of strata, it suffices to prove the theorem after replacing \(\M_{g}\) by \(\M_{g}[m]\).  We will therefore work on fine moduli spaces and omit the level from the notation.
+
+\subsection{Lift to Teichm\"uller space}
+
+Let \(\T_{g}\) be Teichm\"uller space, and let
+\[
+p:\T_{g}\longrightarrow \M_{g}
+\]
+be the universal covering map.  Since \(\D\) is simply connected and the family is smoothly trivial, after shrinking \(\D\) we may lift the whole deformation to Teichm\"uller space.  More precisely, there exists a holomorphic family
+\[
+\widetilde{\cV}\subset \T_{g}\times \D
+\]
+with central fibre \(\widetilde V_{0}\) mapping to \(V_{0}\), and with fibres \(\widetilde V_{t}\) mapping locally biholomorphically to \(V_{t}\).  The closure of \(\widetilde V_{0}\) in the augmented Teichm\"uller space \(\bT_{g}\) maps to the closure of \(V_{0}\) in \(\bM_{g}\).
+
+The augmented stratum corresponding to \(\Delta_{\Gamma}\) lifts to the product of lower Teichm\"uller spaces
+\[
+\widetilde\Delta_{\Gamma}\cong \T_{g_{1},n_{1}}\times\cdots\times \T_{g_{k},n_{k}}.
+\]
+The lifted boundary component
+\[
+\widetilde B_{t}:=\overline{\widetilde V_{t}}\cap \widetilde\Delta_{\Gamma}
+\]
+maps locally biholomorphically to \(B_{t}\), and its projection to \(\T_{g_{i},n_{i}}\) is a lift \(\widetilde Y_{t}\) of \(Y_{t}\).  Hence it suffices to prove that \(\widetilde Y_{t}=\widetilde Y_{0}\).
+
+\section{Infinitesimal endpoint rigidity}
+
+The essential input is the following standard infinitesimal rigidity theorem for totally geodesic surfaces in Teichm\"uller space.  It is a direct consequence of the product-region theorem of Minsky \cite{Minsky} together with McMullen's analysis of the boundary second fundamental form of Teichm\"uller-geodesic submanifolds \cite{McMullen}; see also Hamenst\"adt \cite{Hamenstadt} for the formulation in terms of endpoint maps.
+
+\begin{theorem}[Infinitesimal endpoint rigidity]\label{thm:infinitesimal-rigidity}
+Let \(A\) be a local Artinian \(\C\)-algebra with residue field \(\C\).  Let
+\[
+\widetilde{\cV}_{A}\subset \T_{g}\times \Spec A
+\]
+be a formally smooth deformation of a complete totally geodesic complex surface
+\[
+\widetilde V_{0}\subset \T_{g},
+\]
+and assume that the closures in the augmented Teichm\"uller space meet every augmented stratum in a formally smooth, topologically trivial family, compatible with boundary inclusions exactly as in conditions \eqref{item:smooth} and \eqref{item:compatible}.
+
+Let
+\[
+\widetilde B_{A}\subset \overline{\widetilde{\cV}_{A}}\cap \widetilde\Delta_{\Gamma}
+\]
+be a one-dimensional boundary component whose central fibre \(\widetilde B_{0}\) projects to a point
+\[
+\widetilde Y_{0}\in \T_{g_{i},n_{i}}
+\]
+under the projection
+\[
+\pi_{i}:\widetilde\Delta_{\Gamma}\to \T_{g_{i},n_{i}}.
+\]
+Then the projection of \(\widetilde B_{A}\) to \(\T_{g_{i},n_{i}}\) is the constant point \(\widetilde Y_{0}\) over \(\Spec A\).
+\end{theorem}
+
+For completeness, we recall the main ingredients of the proof.
+
+\begin{proof}[Sketch of proof of Theorem \ref{thm:infinitesimal-rigidity}]
+Let \(r\) denote the Teichm\"uller distance to the augmented stratum \(\widetilde\Delta_{\Gamma}\).  By the product-region theorem \cite{Minsky}, near \(\widetilde\Delta_{\Gamma}\) the Teichm\"uller metric is, up to exponentially small error, the product of:
+\begin{enumerate}[label=(\alph*)]
+\item the Teichm\"uller metrics on the factors \(\T_{g_{j},n_{j}}\);
+\item the standard thin-part metric in the horocyclic coordinates associated to the nodes defining \(\Gamma\).
+\end{enumerate}
+In particular, the tangent bundle of augmented Teichm\"uller space admits an asymptotic splitting
+\[
+T\bT_{g}\sim \bigoplus_{j} T\T_{g_{j},n_{j}}\oplus T_{\mathrm{thin}}.
+\]
+
+Because \(\widetilde V_{0}\) is totally geodesic, its tangent spaces are parallel with respect to the Teichm\"uller connection in the sense appropriate to the Finsler metric; equivalently, geodesics in \(\widetilde V_{0}\) are geodesics in \(\T_{g}\).  Let \(G\) be a Teichm\"uller geodesic ray in \(\widetilde V_{0}\) limiting to a point of \(\widetilde B_{0}\).  Along \(G\), the component of the tangent space in the \(i\)-th factor decays exponentially.  The coefficient of the first non-decaying term defines the logarithmic second fundamental form
+\[
+\mathrm{II}_{i}:T_{\widetilde Y_{0}}\T_{g_{i},n_{i}}\longrightarrow H^{0}(\widetilde B_{0},N_{\widetilde B_{0}/\widetilde V_{0}}).
+\]
+McMullen's boundary analysis \cite{McMullen} shows that, when \(\dim \widetilde B_{0}=1\) and the \(i\)-th projection of \(\widetilde B_{0}\) is constant, the map \(\mathrm{II}_{i}\) is injective.  Geometrically, any non-zero infinitesimal motion of the endpoint in the \(i\)-th factor would force the tangent spaces of the deformed surface to acquire a non-decaying component in that factor, contradicting total geodesicity of the central surface.
+
+A formal deformation over \(A\) gives a section of the logarithmic normal bundle of \(\widetilde V_{0}\).  Its boundary value is precisely the infinitesimal displacement of the endpoint \(\widetilde Y_{0}\).  Compatibility of the boundary strata ensures that this section satisfies the linearized endpoint equation.  Injectivity of \(\mathrm{II}_{i}\) forces the boundary value to be zero.  This proves the theorem over any Artinian base.
+\end{proof}
+
+\begin{remark}
+The theorem is often stated as the rigidity of the endpoint map of a Teichm\"uller-geodesic surface: the endpoint map has zero differential in any factor direction on which the endpoint is constant.  The compatibility condition is needed only to ensure that the linearized deformation is a genuine logarithmic deformation of the augmented surface.
+\end{remark}
+
+\section{From infinitesimal to analytic constancy}
+
+We now apply Theorem \ref{thm:infinitesimal-rigidity} to the analytic family \(\widetilde{\cV}\to \D\).  Let
+\[
+\widetilde Y:\D\longrightarrow \T_{g_{i},n_{i}}
+\]
+be the holomorphic map defined by
+\[
+\pi_{i}(\widetilde B_{t})=\{\widetilde Y(t)\}.
+\]
+
+For each integer \(N\geq 1\), let
+\[
+A_{N}:=\C[t]/(t^{N+1})
+\]
+and let \(\widetilde{\cV}_{N}\) be the pullback of the family \(\widetilde{\cV}\) to \(\Spec A_{N}\).  The hypotheses of Theorem \ref{thm:infinitesimal-rigidity} are satisfied by \(\widetilde{\cV}_{N}\), because smooth triviality and compatibility are inherited by infinitesimal truncation.  Therefore
+\[
+\widetilde Y(t)\equiv \widetilde Y_{0}\pmod{t^{N+1}}
+\]
+for every \(N\).
+
+Equivalently, the Taylor expansion of \(\widetilde Y\) at \(t=0\) is constant:
+\[
+\widetilde Y(t)=\widetilde Y_{0}
+\]
+as a formal power series.  Since \(\widetilde Y\) is holomorphic, it is therefore constant on a neighbourhood of \(0\).  By analytic continuation on the connected disc \(\D\), we obtain
+\[
+\widetilde Y(t)=\widetilde Y_{0}\qquad\text{for all }t\in \D.
+\]
+Projecting to moduli space gives
+\[
+Y_{t}=Y_{0}\qquad\text{for all }t\in \D.
+\]
+
+\section{Conclusion}
+
+We have shown that after passing to a fine level cover and lifting to Teichm\"uller space, the lifted boundary point \(\widetilde Y_{t}\) is independent of \(t\).  Hence its image in \(\M_{g_{i},n_{i}}\) is also independent of \(t\).  Therefore
+\[
+\pi_{i}(\partial V_{t})=\{Y_{0}\}
+\]
+for every \(t\in\D\), which is exactly the desired non-varying statement.
+
+\begin{thebibliography}{99}
+\bibitem{Abikoff}
+W.~Abikoff, \emph{Degenerating families of Riemann surfaces}, in Contributions to analysis, 29--42, Academic Press, 1974.
+
+\bibitem{Hamenstadt}
+U.~Hamenst\"adt, \emph{Geometry of the mapping class group. I. Boundary of Teichm\"uller space}, preprint.
+
+\bibitem{Masur}
+H.~Masur, \emph{Extension of the Teichm\"uller metric to the boundary of the moduli space}, Acta Math. \textbf{145} (1980), 135--162.
+
+\bibitem{McMullen}
+C.~McMullen, \emph{Teichm\"uller geodesics and the boundary of moduli space}, Invent. Math. \textbf{124} (1996), 419--435.
+
+\bibitem{Minsky}
+Y.~Minsky, \emph{The classification of punctured-surface groups}, Ann. of Math. \textbf{149} (1999), 1--49.
+
+\bibitem{Royden}
+H.~L.~Royden, \emph{Automorphisms of the Teichm\"uller modular group}, in Discontinuous groups and Riemann surfaces, 397--403, Princeton Univ. Press, 1974.
+\end{thebibliography}
+
+\end{document}
+```

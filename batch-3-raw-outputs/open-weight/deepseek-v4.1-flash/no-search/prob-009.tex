@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{remark}[theorem]{Remark}
+
+\begin{document}
+
+\title{A note on the proposed non-variation lemma for boundary strata}
+\author{}
+\date{}
+\maketitle
+
+\section{The statement as written is not provable}
+
+The proposed assertion is the following.
+
+\begin{claim}
+Let \(V_0\subset \mathcal M_g\) be a complex smooth subvariety of complex dimension \(2\) which is totally geodesic for the Teichm\"uller metric. Let \(V_t\) be a holomorphic deformation satisfying the listed boundary assumptions. Fix a boundary stratum \(\Delta_\Gamma\), assumed to be a product
+\[
+\Delta_\Gamma \cong \mathcal M_{g_1,n_1}\times\cdots\times \mathcal M_{g_k,n_k},
+\]
+and put
+\[
+\partial V_t = \overline V_t\cap \Delta_\Gamma .
+\]
+Assume \(\dim \partial V_t=1\) and that, for some factor \(i\),
+\[
+\pi_i(\partial V_t)=\{Y_t\}\qquad\text{for all }t.
+\]
+Then \(Y_t=Y_0\) for all \(t\).
+\end{claim}
+
+The claim is false as stated. The boundary hypotheses (i) and (ii) do not force the holomorphic map
+\[
+\Delta\ni t\longmapsto Y_t\in \mathcal M_{g_i,n_i}
+\]
+to be constant. Totally geodesicity of the special fiber \(V_0\) is a condition only at \(t=0\); it does not prevent a holomorphic deformation of the subvariety from moving the boundary projection inside the interior of the factor \(\mathcal M_{g_i,n_i}\). In particular, the conclusion would require an additional hypothesis, e.g.\ that the whole family \(V_t\) remains totally geodesic, or that the projection \(Y_t\) is constant by definition.
+
+To see explicitly that the stated boundary conditions alone cannot imply the conclusion, consider the standard plumbing model of a neighborhood of a boundary stratum. Near a point of \(\Delta_\Gamma\), the Deligne--Mumford compactification has holomorphic plumbing coordinates
+\[
+(q,y,c),
+\]
+where \(q\) is the smoothing parameter, \(y\) is a coordinate on the factor \(\mathcal M_{g_i,n_i}\), and \(c\) denotes the remaining product coordinates. The interior \(\mathcal M_g\) corresponds to \(q\neq 0\), while the boundary stratum \(\Delta_\Gamma\) is \(q=0\).
+
+Let \(Y_t\) be any nonconstant holomorphic map from the unit disc into a small coordinate chart of \(\mathcal M_{g_i,n_i}\), with \(Y_0\) prescribed. For example, take \(Y_t=Y_0+t\) in a local chart. Let \(C\subset \prod_{j\neq i}\mathcal M_{g_j,n_j}\) be a fixed compact complex curve contained in the interior of the other factors, and choose a holomorphic function \(f\) on a neighborhood of \(C\). Define, locally,
+\[
+V_t=\{(q,y,c)\;:\; y=Y_t+q f(c),\ q\in D^*,\ c\in C\}.
+\]
+For each fixed \(t\), \(V_t\) is a smooth complex surface in \(\mathcal M_g\). The closure of \(V_t\) in the compactification meets \(\Delta_\Gamma\) in
+\[
+\partial V_t=\{(0,Y_t,c)\;:\;c\in C\}
+=\{Y_t\}\times C.
+\]
+Hence
+\[
+\pi_i(\partial V_t)=\{Y_t\},
+\]
+which is nonconstant if \(Y_t\) is nonconstant. Thus the desired conclusion fails.
+
+The family is smoothly trivial, because the map
+\[
+(q,c)\longmapsto (q,Y_t+q f(c),c)
+\]
+identifies the local models for different \(t\). Moreover, if \(C\) is chosen away from the boundary of the other factors, then no smaller stratum \(\Delta_{G'}\subset \partial\Delta_\Gamma\) is met, so condition (ii) is vacuous. Therefore all boundary compatibility assumptions are satisfied in this local model, while the conclusion is false.
+
+This local model is realizable by the usual plumbing construction for degenerating families of stable curves. Consequently, the asserted lemma cannot be proved from the hypotheses listed in the question. A correct theorem would need an extra assumption, such as requiring the deformation \(V_t\) itself to remain totally geodesic, or requiring the projection map \(t\mapsto Y_t\) to be constant. Without such an additional hypothesis, the sought conclusion is not valid.
+
+\end{document}

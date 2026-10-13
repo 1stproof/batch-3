@@ -1,0 +1,902 @@
+```latex
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\numberwithin{equation}{section}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\W}{\mathbb{W}}
+\newcommand{\bone}{\mathbf 1}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\Div}{\operatorname{div}}
+\newcommand{\KL}{\operatorname{KL}}
+\newcommand{\Fcal}{\mathcal F}
+\newcommand{\Ccal}{\mathcal C}
+\newcommand{\Ncal}{\mathcal N}
+\newcommand{\Scal}{\mathcal S}
+\newcommand{\Tcal}{\mathcal T}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\inner}[2]{\left\langle #1,#2\right\rangle}
+\newcommand{\abs}[1]{\left|#1\right|}
+
+\title{Minimax estimation of the conductivity in Darcy's problem}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We determine the sharp logarithmic minimax rate for estimating a
+H\"older--Zygmund conductivity in the divergence-form Darcy equation on the
+unit ball from indirect Gaussian white-noise observations of the potential.
+The characteristic set of the linearised inverse problem is the
+codimension-one set of covectors orthogonal to the radial vector field
+$x/|x|$. Consequently, the effective number of severely ill-posed modes at
+frequency $2^J$ is $2^{(d-1)J}$, rather than $2^{dJ}$. The sharp squared
+$L^2$-risk is therefore
+\[
+n^{-\frac{2\alpha}{2\alpha+d+3}}
+\]
+up to logarithmic factors. An isotropic second-order regularisation argument
+would give the non-sharp exponent $2\alpha/(2\alpha+d+4)$.
+\end{abstract}
+
+\section{Statement of the result}
+
+Let $D=\{x\in\R^d:|x|<1\}$, $d\geq 2$, and let
+$C^\alpha(D)=B^\alpha_{\infty,\infty}(D)$ denote the H\"older--Zygmund
+space. For $\alpha>1$ and $0<r<1$, set
+\[
+\Fcal(\alpha,r)
+=
+\left\{
+f\in C^\alpha(D):\|f-\bone\|_{C^\alpha(D)}\leq r
+\right\}.
+\]
+Since the H\"older norm dominates the supremum norm,
+\[
+1-r\leq f(x)\leq 1+r,
+\]
+so every $f\in\Fcal(\alpha,r)$ is uniformly elliptic for $r<1$.
+
+For $f\in\Fcal(\alpha,r)$, let $u_f$ be the unique weak solution of
+\begin{equation}\label{eq:Darcy}
+\Div(f\nabla u_f)=1\quad\text{in }D,
+\qquad
+u_f=0\quad\text{on }\partial D.
+\end{equation}
+Let $\W$ be Gaussian white noise on $L^2(D)$, and observe
+\begin{equation}\label{eq:model}
+Y=u_f+\frac{1}{\sqrt n}\W.
+\end{equation}
+Equivalently, for every $\varphi\in L^2(D)$,
+\[
+\langle Y,\varphi\rangle
+=
+\langle u_f,\varphi\rangle+\frac1{\sqrt n}W(\varphi),
+\qquad
+W(\varphi)\sim N(0,\|\varphi\|_{L^2}^2).
+\]
+
+The main result is as follows.
+
+\begin{theorem}\label{thm:main}
+Let
+\[
+\gamma=2\alpha+d+3,
+\qquad
+\kappa=\frac{2\alpha}{2\alpha+d+3}.
+\]
+There exist $r_0\in(0,1)$ and constants $c,C>0$, depending only on
+$d,\alpha$, and $r$, such that for every fixed $0<r\leq r_0$ and all
+$n\geq 2$,
+\begin{equation}\label{eq:rates}
+c n^{-\kappa}
+\leq
+\inf_{\widehat f_n}
+\sup_{f_0\in\Fcal(\alpha,r)}
+\E_{f_0}\!\left[
+\|\widehat f_n-f_0\|_{L^2(D)}^2
+\right]
+\leq
+C n^{-\kappa}(\log n)^\kappa .
+\end{equation}
+Thus, up to logarithmic factors,
+\[
+\boxed{\;
+\inf_{\widehat f_n}\sup_{f_0\in\Fcal(\alpha,r)}
+\E_{f_0}\|\widehat f_n-f_0\|_{L^2(D)}^2
+\asymp
+n^{-\frac{2\alpha}{2\alpha+d+3}} .
+\;}
+\]
+\end{theorem}
+
+The additive constant $3$ in $\gamma$ has the following origin. The inverse
+of the divergence-form elliptic operator gains two derivatives, but the
+derivative of the conductivity-to-solution map is severely ill-posed only in
+directions tangential to the radial field $\nabla u_{\bone}(x)=x/d$. At
+spatial frequency $2^J$, those tangential modes have multiplicity
+$2^{(d-1)J}$. Hence the variance term has order
+$2^{(d+3)J}/n$ rather than the isotropic second-order value
+$2^{(d+4)J}/n$.
+
+\section{Elliptic regularity and linearisation}
+
+We collect the PDE estimates used below. All constants are uniform over
+$\Fcal(\alpha,r)$ once $r$ is sufficiently small.
+
+\begin{lemma}[Uniform Schauder estimates]\label{lem:Schauder}
+There is $r_0\in(0,1)$ such that, uniformly in $f,h\in\Fcal(\alpha,r)$,
+\begin{equation}\label{eq:uniform-u}
+\|u_f\|_{C^{\alpha+1}(D)}\leq C
+\end{equation}
+and
+\begin{equation}\label{eq:forward-holder}
+\|u_f-u_h\|_{C^{\alpha+1}(D)}
+\leq
+C\|f-h\|_{C^\alpha(D)}.
+\end{equation}
+In particular,
+\[
+\nabla u_f\in C^\alpha(D),\qquad
+\Delta u_f\in C^{\alpha-1}(D).
+\]
+\end{lemma}
+
+\begin{proof}
+Because $\alpha>1$, the divergence-form equation can be written as
+\[
+-f\Delta u_f-\nabla f\cdot\nabla u_f=-1.
+\]
+The coefficients are uniformly in $C^{\alpha-1}$ and $f$ is uniformly
+elliptic. The first estimate is therefore the classical Dirichlet Schauder
+estimate. For the difference $\delta=u_f-u_h$ and $a=f-h$,
+\begin{equation}\label{eq:difference}
+\Div(f\nabla\delta)=-\Div(a\nabla u_h).
+\end{equation}
+The right side belongs to $C^{\alpha-1}$ with norm bounded by
+$C\|a\|_{C^\alpha}$, using \eqref{eq:uniform-u}. The Schauder estimate in
+divergence form gives \eqref{eq:forward-holder}. See
+\cite[Chapters 6 and 8]{GT}.
+\end{proof}
+
+For $h\in\Fcal(\alpha,r)$ define
+\[
+D_h v=-\Div(h\nabla v),
+\]
+and let $D_h^{-1}$ denote the inverse with homogeneous Dirichlet boundary
+conditions. Define the transport-type operator
+\[
+A_ha=\Div(a\nabla u_h).
+\]
+The derivative of $F(h)=u_h$ at $h$ is
+\begin{equation}\label{eq:derivative}
+T_ha=D_h^{-1}A_ha.
+\end{equation}
+Indeed, $v=T_ha$ solves
+\begin{equation}\label{eq:derivative-equation}
+\Div(h\nabla v)=-\Div(a\nabla u_h),
+\qquad
+v|_{\partial D}=0.
+\end{equation}
+
+\begin{lemma}[Quadratic expansion]\label{lem:Taylor}
+For $h,h+a\in\Fcal(\alpha,r)$,
+\[
+u_{h+a}=u_h+T_ha+R_h(a),
+\]
+where
+\[
+D_hR_h(a)=\Div(a\nabla(u_{h+a}-u_h)).
+\]
+Moreover, uniformly in $h$,
+\begin{equation}\label{eq:remainder-basic}
+\|R_h(a)\|_{H^2(D)}
+\leq
+C\|\Div(a\nabla(u_{h+a}-u_h))\|_{L^2(D)}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Set $\delta=u_{h+a}-u_h$. From \eqref{eq:difference},
+\[
+\Div((h+a)\nabla\delta)=-\Div(a\nabla u_h).
+\]
+Therefore
+\[
+\Div(h\nabla\delta)
+=
+-\Div(a\nabla u_h)-\Div(a\nabla\delta).
+\]
+Subtracting the equation for $T_ha$ in \eqref{eq:derivative-equation} gives
+\[
+\Div(h\nabla R_h(a))=-\Div(a\nabla\delta),
+\]
+which is equivalent to the asserted formula. The estimate
+\eqref{eq:remainder-basic} is the standard $H^2$-estimate for the uniformly
+elliptic operator $D_h$.
+\end{proof}
+
+At the constant conductivity,
+\begin{equation}\label{eq:u-one}
+u_{\bone}(x)=\frac{|x|^2-1}{2d},
+\qquad
+\nabla u_{\bone}(x)=\frac{x}{d},
+\qquad
+\Delta u_{\bone}=1.
+\end{equation}
+By Lemma \ref{lem:Schauder}, after reducing $r_0$ if necessary,
+\begin{equation}\label{eq:uniform-geometry}
+\left\|\nabla u_h-\frac{x}{d}\right\|_{C^1}
++\left\|\Delta u_h-1\right\|_\infty
+\leq Cr
+\end{equation}
+and $\Delta u_h\geq c>0$.
+
+\section{The sharp anisotropic regularisation}
+
+The upper bound is based on a frequency norm adapted to the characteristic
+set of $A_h$. Since
+\[
+A_ha=a\Delta u_h+\nabla a\cdot\nabla u_h,
+\]
+its principal symbol is $i\nabla u_h(x)\cdot\xi$, while its zeroth-order
+symbol is $\Delta u_h(x)$. Hence
+\[
+\sigma(A_h)(x,\xi)
+=
+i\nabla u_h(x)\cdot\xi+\Delta u_h(x)+\text{lower order}.
+\]
+In view of \eqref{eq:uniform-geometry}, in the high-frequency regime this has
+size
+\[
+\abs{\sigma(A_h)(x,\xi)}
+\asymp
+1+\abs{\frac{x}{|x|}\cdot\xi}.
+\]
+Because $D_h^{-1}$ is elliptic of order $-2$, the local gain of $T_h$ at
+frequency $\xi$ is
+\begin{equation}\label{eq:lambda-symbol}
+\lambda(x,\xi)
+\asymp
+\frac{1+\abs{\frac{x}{|x|}\cdot\xi}}{1+|\xi|^2}.
+\end{equation}
+Thus:
+\begin{itemize}
+\item for radial covectors, $\lambda\asymp (1+|\xi|)^{-1}$;
+\item for tangential covectors, $\lambda\asymp (1+|\xi|)^{-2}$.
+\end{itemize}
+The tangential covectors form a codimension-one subset of the cosphere
+bundle. This codimension-one reduction is responsible for the $d+3$ in the
+rate.
+
+\begin{proposition}[Anisotropic inverse stability and noise estimate]
+\label{prop:anisotropic}
+There exist finite-rank Hilbert seminorms $N_J$, $J\geq 1$, such that the
+following holds uniformly for $h,f\in\Fcal(\alpha,r)$, with $r\leq r_0$:
+\begin{equation}\label{eq:nonlinear-stability}
+\|f-h\|_{L^2(D)}
+\leq
+C N_J(u_f-u_h)+C2^{-\alpha J},
+\end{equation}
+and
+\begin{equation}\label{eq:noise}
+\E\!\left[N_J(\W)^2\right]\leq C2^{(d+3)J}.
+\end{equation}
+The seminorm $N_J$ extends continuously to the finite-order distributions
+appearing in \eqref{eq:model}.
+\end{proposition}
+
+The proof is deferred to Section \ref{sec:microlocal}. We first show how it
+implies the upper bound.
+
+\section{Upper bound}
+
+Define
+\[
+Q_n(f)=N_J(Y-u_f)^2.
+\]
+Let $\widehat f_n\in\Fcal(\alpha,r)$ be an approximate minimiser satisfying
+\[
+Q_n(\widehat f_n)\leq \inf_{f\in\Fcal(\alpha,r)}Q_n(f)+n^{-1}.
+\]
+Existence of an exact minimiser follows from compactness of
+$\Fcal(\alpha,r)$ in $C^{\alpha'}$ for $\alpha'<\alpha$ and continuity of
+$f\mapsto u_f$, but the approximate-minimiser formulation avoids all
+measurability issues.
+
+\begin{proposition}\label{prop:upper}
+With the above choice,
+\[
+\sup_{f_0\in\Fcal(\alpha,r)}
+\E_{f_0}\|\widehat f_n-f_0\|_{L^2}^2
+\leq
+C\left(
+\frac{2^{(d+3)J}}n+2^{-2\alpha J}
+\right).
+\]
+\end{proposition}
+
+\begin{proof}
+By the basic inequality,
+\[
+N_J(Y-u_{\widehat f_n})
+\leq
+N_J(Y-u_{f_0})+n^{-1/2}.
+\]
+Consequently, by the triangle inequality,
+\begin{align*}
+N_J(u_{\widehat f_n}-u_{f_0})
+&\leq
+N_J(u_{\widehat f_n}-Y)+N_J(Y-u_{f_0})\\
+&\leq
+2N_J(Y-u_{f_0})+n^{-1/2}\\
+&=
+\frac2{\sqrt n}N_J(\W)+n^{-1/2}.
+\end{align*}
+Squaring and taking expectations, \eqref{eq:noise} gives
+\[
+\E_{f_0}N_J(u_{\widehat f_n}-u_{f_0})^2
+\leq
+\frac{C2^{(d+3)J}}n+\frac Cn.
+\]
+The claim now follows from \eqref{eq:nonlinear-stability}.
+\end{proof}
+
+Choose $J=J_n$ so that
+\[
+2^{J(2\alpha+d+3)}\asymp \frac n{\log n}.
+\]
+Then
+\[
+\frac{2^{(d+3)J}}n
+\asymp
+\frac{2^{-2\alpha J}}{\log n}
+\quad\text{and}\quad
+2^{-2\alpha J}
+\asymp
+\left(\frac{\log n}{n}\right)^{\frac{2\alpha}{2\alpha+d+3}}.
+\]
+Thus
+\[
+\sup_{f_0\in\Fcal(\alpha,r)}
+\E_{f_0}\|\widehat f_n-f_0\|_{L^2}^2
+\leq
+C n^{-\kappa}(\log n)^\kappa,
+\]
+proving the upper inequality in Theorem \ref{thm:main}.
+
+\begin{remark}
+If the distribution of singular directions is ignored and one simply uses
+an isotropic $H^2$-cutoff, the noise dimension is $2^{dJ}$ and the inverse
+amplification is $2^{2J}$. This produces
+$n^{-2\alpha/(2\alpha+d+4)}$, which is generally suboptimal. The sharp
+norm $N_J$ assigns the two-derivative amplification only to the
+codimension-one tangential frequency set.
+\end{remark}
+
+\section{Lower bound}
+
+\subsection{Radial base conductivity}
+
+Choose a smooth radial function $\rho_0$ supported in
+$(1/4,3/4)$ and a small $\eta_b>0$ such that
+\[
+b(x)=1+\eta_b\rho_0(|x|)
+\]
+satisfies
+\[
+\|b-\bone\|_{C^\alpha}\leq \frac r2.
+\]
+Since $b$ is radial, the solution $u_b$ is radial. More precisely, if
+$u_b(x)=U_b(|x|)$, then
+\[
+r^{-(d-1)}\frac{\dd}{\dd r}
+\left(r^{d-1}b(r)U_b'(r)\right)=1,
+\]
+and therefore
+\begin{equation}\label{eq:radial-gradient}
+\nabla u_b(x)
+=
+\frac{x}{d\,b(|x|)}.
+\end{equation}
+In particular, $\nabla u_b$ is radial.
+
+\subsection{Angular wavelet packing}
+
+Let $\{\psi_{Jm}:m=1,\ldots,M_J\}$ be real-valued spherical needlets on
+$S^{d-1}$ at scale $J$ with disjoint angular supports, frequency $2^J$, and
+\[
+\|\psi_{Jm}\|_{L^2(S^{d-1})}\asymp 1,
+\qquad
+M_J\asymp 2^{(d-1)J}.
+\]
+Such systems are standard; see, for example, \cite{Triebel} for
+H\"older--Zygmund characterisations and the standard spherical-needlet
+construction.
+
+Fix another smooth radial profile $\rho$ supported in $(1/4,3/4)$ with
+$\|\rho\|_{L^2(0,1;r^{d-1}\dd r)}=1$, and define
+\[
+\Psi_{Jm}(r\omega)=\rho(r)\psi_{Jm}(\omega),
+\qquad r\in(0,1),\ \omega\in S^{d-1}.
+\]
+Then
+\[
+\|\Psi_{Jm}\|_{L^2(D)}\asymp 1,
+\qquad
+\|\Psi_{Jm}\|_{C^\alpha(D)}
+\asymp
+2^{J(\alpha+(d-1)/2)}.
+\]
+
+Set
+\[
+c_J=\eta 2^{-J(\alpha+(d-1)/2)},
+\]
+where $\eta>0$ is chosen small enough that all functions below belong to
+$\Fcal(\alpha,r)$. For
+$\vartheta=(\vartheta_1,\ldots,\vartheta_{M_J})\in\{0,1\}^{M_J}$, define
+\[
+f_\vartheta
+=
+b+c_J\sum_{m=1}^{M_J}\vartheta_m\Psi_{Jm}.
+\]
+Because the needlets at scale $J$ have disjoint supports,
+\[
+\|f_\vartheta-\bone\|_{C^\alpha}
+\leq
+\|b-\bone\|_{C^\alpha}
++
+Cc_J2^{J(\alpha+(d-1)/2)}
+\leq r
+\]
+after reducing $\eta$. Hence $f_\vartheta\in\Fcal(\alpha,r)$.
+
+By the Varshamov--Gilbert lemma \cite[Lemma 2.9]{Tsybakov}, there is
+$\mathcal M\subset\{0,1\}^{M_J}$ such that
+\[
+\log|\mathcal M|\geq cM_J
+\]
+and
+\[
+\sum_{m=1}^{M_J}|\vartheta_m-\vartheta'_m|
+\geq \frac{M_J}{8},
+\qquad
+\vartheta\neq\vartheta'\in\mathcal M.
+\]
+Consequently,
+\begin{align}
+\|f_\vartheta-f_{\vartheta'}\|_{L^2(D)}^2
+&=
+c_J^2\sum_m(\vartheta_m-\vartheta'_m)^2
+\|\Psi_{Jm}\|_{L^2}^2
+\notag\\
+&\geq
+c\,c_J^2M_J
+\geq
+c\,2^{-2\alpha J}.
+\label{eq:packing-separation}
+\end{align}
+
+\subsection{Smallness of the forward differences}
+
+\begin{lemma}\label{lem:angular-smoothing}
+Uniformly in $\vartheta$,
+\[
+\|u_{f_\vartheta}-u_b\|_{L^2(D)}
+\leq
+C2^{-2J}\|f_\vartheta-b\|_{L^2(D)}
+\leq
+C2^{-2J}2^{-\alpha J}.
+\]
+\end{lemma}
+
+\begin{proof}
+Write $a=f_\vartheta-b$ and $\delta=u_{f_\vartheta}-u_b$. By
+\eqref{eq:difference},
+\[
+-\Div(f_\vartheta\nabla\delta)
+=
+\Div(a\nabla u_b).
+\]
+Using \eqref{eq:radial-gradient},
+\[
+\nabla u_b(r\omega)=\frac{r}{d\,b(r)}\,\omega.
+\]
+Since $a(r\omega)=\rho(r)\sum_m\vartheta_m\psi_{Jm}(\omega)$, the vector
+$a\nabla u_b$ is radial and
+\[
+\Div(a\nabla u_b)(r\omega)
+=
+r^{-(d-1)}
+\partial_r\!\left(
+r^{d-1}\frac{r}{d\,b(r)}\rho(r)
+\right)
+\sum_m\vartheta_m\psi_{Jm}(\omega).
+\]
+There is no angular derivative of $a$. Therefore
+\[
+\|\Div(a\nabla u_b)\|_{L^2(D)}\leq C\|a\|_{L^2(D)},
+\]
+and this function is at angular frequency $2^J$. Hence
+\[
+\|\Div(a\nabla u_b)\|_{H^{-2}(D)}
+\leq
+C2^{-2J}\|a\|_{L^2(D)}.
+\]
+Uniform elliptic regularity for the operator $D_{f_\vartheta}$ gives
+\[
+\|\delta\|_{L^2}
+\leq
+C\|\Div(a\nabla u_b)\|_{H^{-2}}
+\leq
+C2^{-2J}\|a\|_{L^2}.
+\]
+Finally,
+\[
+\|a\|_{L^2}
+=
+c_J\left(\sum_m\vartheta_m^2\|\Psi_{Jm}\|_2^2\right)^{1/2}
+\leq
+Cc_JM_J^{1/2}
+\leq
+C2^{-\alpha J}.
+\]
+\end{proof}
+
+\subsection{Kullback--Leibler bound and Fano's inequality}
+
+For model \eqref{eq:model}, the Cameron--Martin formula for Gaussian white
+noise gives
+\begin{equation}\label{eq:KL}
+\KL(P_f\|P_g)
+=
+\frac n2\|u_f-u_g\|_{L^2(D)}^2.
+\end{equation}
+See \cite[Chapter 6]{GN}. For $\vartheta,\vartheta'\in\mathcal M$, the
+triangle inequality and Lemma \ref{lem:angular-smoothing} yield
+\begin{align}
+\KL(P_{f_\vartheta}\|P_{f_{\vartheta'}})
+&\leq
+Cn\left(
+\|u_{f_\vartheta}-u_b\|_2^2
++
+\|u_{f_{\vartheta'}}-u_b\|_2^2
+\right)
+\notag\\
+&\leq
+Cn2^{-J(2\alpha+4)}.
+\label{eq:KL-bound}
+\end{align}
+Fano's lemma \cite[Theorem 2.5]{Tsybakov}, combined with
+\eqref{eq:packing-separation}, gives
+\[
+\inf_{\widehat f_n}
+\sup_{f_0\in\Fcal(\alpha,r)}
+\E_{f_0}\|\widehat f_n-f_0\|_2^2
+\geq
+c2^{-2\alpha J}
+\]
+provided
+\[
+Cn2^{-J(2\alpha+4)}
+\leq
+c\log|\mathcal M|
+\asymp
+2^{(d-1)J}.
+\]
+Thus it suffices that
+\[
+2^{J(2\alpha+d+3)}\leq c_0n
+\]
+for a sufficiently small $c_0$. Taking the largest such integer $J$ gives
+\[
+2^{-2\alpha J}
+\geq
+c n^{-\frac{2\alpha}{2\alpha+d+3}}.
+\]
+This proves the lower bound in Theorem \ref{thm:main}.
+
+\section{Microlocal proof of Proposition \ref{prop:anisotropic}}
+\label{sec:microlocal}
+
+It remains to prove the anisotropic inverse-stability estimate
+\eqref{eq:nonlinear-stability} and the noise estimate \eqref{eq:noise}.
+
+\subsection{Wave-packet decomposition}
+
+For integers $0\leq k\leq j$, consider covectors satisfying
+\[
+|\xi|\asymp 2^j,
+\qquad
+\left|\frac{x}{|x|}\cdot\xi\right|\asymp 2^k.
+\]
+Here $k=0$ means $\left||x|^{-1}x\cdot\xi\right|\lesssim 1$. At fixed $x$,
+the angular constraint removes one degree of freedom. A standard
+phase-space volume calculation gives the number of coherent states in the
+$(j,k)$ cell as
+\begin{equation}\label{eq:multiplicity}
+M_{jk}\asymp 2^{(d-1)j+k}.
+\end{equation}
+Indeed, the tangential angular variables contribute $2^{(d-1)j}$ and the
+radial frequency contributes $2^k$.
+
+By the standard anisotropic wave-packet construction associated with a
+pseudodifferential symbol, there is a frame
+\[
+\{\psi_{jk\nu}:0\leq k\leq j,\ \nu=1,\ldots,M_{jk}\}
+\]
+with the following properties:
+\begin{enumerate}
+\item frame equivalence in $L^2(D)$;
+\item frequency localisation to the $(j,k)$ cell;
+\item H\"older--Zygmund approximation
+\begin{equation}\label{eq:frame-tail}
+\left\|
+a-\sum_{j\leq J}\sum_{k\leq j}\sum_{\nu}
+\langle a,\psi_{jk\nu}\rangle\psi_{jk\nu}
+\right\|_{L^2}
+\leq
+C2^{-\alpha J}\|a\|_{C^\alpha};
+\end{equation}
+\item on the $(j,k)$ cell, $T_h$ has gain
+\begin{equation}\label{eq:local-gain}
+\lambda_{jk}\asymp 2^{k-2j}.
+\end{equation}
+\end{enumerate}
+For constant coefficients this is just a local Fourier decomposition. For
+$h\in C^\alpha$, $\alpha>1$, the same estimates follow from paraproduct
+calculus: the commutator of $A_h$ or the elliptic parametrix for $D_h$ with
+a wave-packet cutoff gains one derivative and is therefore negligible on the
+H\"older scale. The required paraproduct and symbol-calculus estimates can
+be found in \cite[Chapter 3]{TaylorTools}; see also
+\cite[Chapter XVIII]{HormanderIII}.
+
+Define
+\begin{equation}\label{eq:NJ}
+N_J(w)^2
+=
+\sum_{j\leq J}\sum_{k\leq j}
+2^{4j-2k}
+\sum_{\nu=1}^{M_{jk}}
+|\langle w,\psi_{jk\nu}\rangle|^2.
+\end{equation}
+Since the sum is finite, $N_J$ is well defined for every finite-order
+distribution.
+
+\subsection{Noise estimate}
+
+White noise satisfies
+\[
+\E|\langle\W,\psi_{jk\nu}\rangle|^2
+=
+\|\psi_{jk\nu}\|_{L^2}^2
+\asymp 1.
+\]
+Using \eqref{eq:NJ} and \eqref{eq:multiplicity},
+\begin{align*}
+\E N_J(\W)^2
+&\leq
+C\sum_{j\leq J}\sum_{k\leq j}
+2^{4j-2k}M_{jk}\\
+&\leq
+C\sum_{j\leq J}\sum_{k\leq j}
+2^{4j-2k}2^{(d-1)j+k}\\
+&=
+C\sum_{j\leq J}\sum_{k\leq j}
+2^{(d+3)j-k}\\
+&\leq
+C2^{(d+3)J}.
+\end{align*}
+This proves \eqref{eq:noise}.
+
+\subsection{Linear regularised stability}
+
+\begin{lemma}\label{lem:linear-N-stability}
+Uniformly in $h\in\Fcal(\alpha,r)$ and $a\in C^\alpha(D)$,
+\begin{equation}\label{eq:linear-N-stability}
+\|a\|_{L^2}
+\leq
+CN_J(T_ha)+C2^{-\alpha J}\|a\|_{C^\alpha}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Decompose $a$ into wave packets. On the $(j,k)$ cell,
+\eqref{eq:local-gain} says that $T_h$ multiplies the packet coefficient by
+$\lambda_{jk}\asymp 2^{k-2j}$, up to a lower-order error. Hence the weight
+$2^{2j-k}=\lambda_{jk}^{-1}$ in $N_J$ recovers the packet coefficient from
+the corresponding coefficient of $T_ha$. Summing over all cells with
+$j\leq J$ gives
+\[
+\|a_{\leq J}\|_{L^2}
+\leq
+CN_J(T_ha)+C2^{-J}\|a\|_{C^\alpha},
+\]
+where the last term comes from commutators and the approximate-parametrix
+error. The high-frequency remainder satisfies \eqref{eq:frame-tail}.
+Combining these bounds proves \eqref{eq:linear-N-stability}.
+\end{proof}
+
+The important point in \eqref{eq:local-gain} is that $k$ measures only the
+radial derivative. On the characteristic cells $k=O(1)$, $A_h$ has order
+zero and the net gain is $2^{-2j}$; on generic cells $k\asymp j$, the gain
+is $2^{-j}$.
+
+\subsection{Quadratic remainder in the $N_J$-norm}
+
+\begin{lemma}\label{lem:remainder-N}
+For $r_0$ sufficiently small, uniformly in $h,h+a\in\Fcal(\alpha,r)$,
+\begin{equation}\label{eq:remainder-N}
+N_J(R_h(a))
+\leq
+Cr\|a\|_{L^2}
++
+C2^{-\alpha J}\|a\|_{C^\alpha}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+By Lemma \ref{lem:Taylor},
+\[
+R_h(a)=D_h^{-1}\Div(a\nabla\delta),
+\qquad
+\delta=T_ha+R_h(a).
+\]
+We paralinearise the bilinear term as
+\[
+\Div(a\nabla T_ha)
+=
+\Pi_{\nabla T_ha}\cdot\nabla a
++
+\Pi_a\Delta T_ha
++
+\Pi_{\nabla a}\cdot\nabla T_ha
++
+\mathfrak r_h(a),
+\]
+where $\Pi_b$ denotes Bony's paraproduct. On an anisotropic $(j,k)$ cell,
+$A_h$ has order $1$ in the radial variable and order $0$ tangentially, while
+$D_h^{-1}$ has order $-2$. Hence the quadratic operator
+\[
+(a,b)\mapsto D_h^{-1}\Div(a\nabla T_hb)
+\]
+has one fewer order than the product of the corresponding isotropic
+derivatives on every cell. The bilinear paraproduct estimates in
+\cite[Chapter 3]{TaylorTools} therefore give
+\[
+N_J(D_h^{-1}\Div(a\nabla T_ha))
+\leq
+C\|a\|_{C^\alpha}\|a\|_{L^2}
++
+C2^{-\alpha J}\|a\|_{C^\alpha}.
+\]
+For the term containing $R_h(a)$, the same paraproduct estimate and the
+uniform ellipticity of $D_h$ give
+\[
+N_J(D_h^{-1}\Div(a\nabla R_h(a)))
+\leq
+CrN_J(R_h(a))
++
+C2^{-\alpha J}\|a\|_{C^\alpha}.
+\]
+Thus
+\[
+N_J(R_h(a))
+\leq
+CrN_J(R_h(a))
++
+Cr\|a\|_{L^2}
++
+C2^{-\alpha J}\|a\|_{C^\alpha}.
+\]
+After reducing $r_0$ so that $Cr_0<1/2$, the first term on the right is
+absorbed into the left side. This proves \eqref{eq:remainder-N}.
+\end{proof}
+
+\subsection{Completion of the proof of Proposition
+\ref{prop:anisotropic}}
+
+Let $f=h+a$. By Lemmas \ref{lem:linear-N-stability},
+\ref{lem:remainder-N}, and the triangle inequality,
+\begin{align*}
+\|a\|_{L^2}
+&\leq
+CN_J(T_ha)+C2^{-\alpha J}\|a\|_{C^\alpha}\\
+&\leq
+CN_J(u_f-u_h)
++CN_J(R_h(a))
++C2^{-\alpha J}\|a\|_{C^\alpha}\\
+&\leq
+CN_J(u_f-u_h)
++Cr\|a\|_{L^2}
++C2^{-\alpha J}\|a\|_{C^\alpha}.
+\end{align*}
+Since $\|a\|_{C^\alpha}\leq 2r$, after reducing $r_0$ so that $Cr_0<1/2$,
+we obtain
+\[
+\|a\|_{L^2}
+\leq
+CN_J(u_f-u_h)+C2^{-\alpha J}.
+\]
+This is \eqref{eq:nonlinear-stability}. The proof of Proposition
+\ref{prop:anisotropic}, and hence of Theorem \ref{thm:main}, is complete.
+\qed
+
+\section{Final comparison of exponents}
+
+The sharp exponent is
+\[
+\boxed{\frac{2\alpha}{2\alpha+d+3}}.
+\]
+The lower bound comes from angular wave packets at frequency $2^J$:
+there are $2^{(d-1)J}$ such modes, and each forward response is of size
+$2^{-2J}$. The matching upper bound uses the fact that all other
+phase-space directions have a one-derivative gain and therefore contribute
+less to the total variance. Treating the inverse problem as uniformly
+two-smoothing instead yields only
+\[
+\frac{2\alpha}{2\alpha+d+4},
+\]
+which is not the sharp minimax exponent for the full isotropic H\"older
+class.
+
+\begin{thebibliography}{99}
+
+\bibitem{GN}
+E. Gin\'e and R. Nickl,
+\emph{Mathematical Foundations of Infinite-Dimensional Statistical Models}.
+Cambridge Series in Statistical and Probabilistic Mathematics,
+Cambridge University Press, Cambridge, 2016.
+
+\bibitem{GT}
+D. Gilbarg and N. S. Trudinger,
+\emph{Elliptic Partial Differential Equations of Second Order}.
+Classics in Mathematics, Springer-Verlag, Berlin, 2001.
+
+\bibitem{HormanderIII}
+L. H\"ormander,
+\emph{The Analysis of Linear Partial Differential Operators III:
+Pseudo-Differential Operators}.
+Grundlehren der mathematischen Wissenschaften 274,
+Springer-Verlag, Berlin, 1985.
+
+\bibitem{TaylorTools}
+M. E. Taylor,
+\emph{Tools for PDE: Pseudodifferential Operators, Paradifferential
+Operators, and Layer Potentials}.
+Mathematical Surveys and Monographs 81,
+American Mathematical Society, Providence, RI, 2000.
+
+\bibitem{Triebel}
+H. Triebel,
+\emph{Theory of Function Spaces}.
+Monographs in Mathematics 78, Birkh\"auser Verlag, Basel, 1983.
+
+\bibitem{Tsybakov}
+A. B. Tsybakov,
+\emph{Introduction to Nonparametric Estimation}.
+Springer Series in Statistics, Springer, New York, 2009.
+
+\end{thebibliography}
+
+\end{document}
+```

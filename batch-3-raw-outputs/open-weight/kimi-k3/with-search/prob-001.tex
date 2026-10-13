@@ -1,0 +1,323 @@
+```latex
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\op}{{\mathrm{op}}}
+\newcommand{\Sh}{\operatorname{Sh}}
+\newcommand{\PSh}{\operatorname{PSh}}
+\newcommand{\Lan}{\operatorname{Lan}}
+\newcommand{\colim}{\operatorname{colim}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+
+\begin{document}
+
+\title{A counterexample to the proposed derived unit isomorphism}
+\author{}
+\date{}
+\maketitle
+
+\section*{Answer}
+
+The answer is \emph{no}.  Already for \(P=\N\), the left Kan
+extension used in the definition of \(\pi^{-1}\) can discard all the
+values of a presheaf except its value at the zero monoid.  We give an
+explicit presheaf \(F\) on \(B_{\N}^{\op}\) for which
+\[
+\pi^{-1}F=0
+\quad\text{but}\quad F\neq 0.
+\]
+Consequently
+\[
+F\longrightarrow \mathrm R\pi_{\ast}\pi^{-1}F
+\]
+cannot be a quasi-isomorphism.
+
+The standard definition of valuative monoids used here agrees with the
+usual formulation, namely integrality together with the condition that
+for every \(m\in M^{\mathrm{gp}}\), either \(m\in M\) or \(-m\in M\);
+compare
+[pub.math.leidenuniv.nl](https://pub.math.leidenuniv.nl/~holmesdst/notes_from_talks/valuativisations_talk.pdf).
+
+\section{The zero monoid lies in \(B_{\N}\)}
+
+Let
+\[
+P=\N
+\]
+under addition.  It is integral, saturated, sharp, commutative, and
+unital.
+
+Write \(0\) for the one-element monoid.  It is also integral,
+saturated, and sharp.
+
+\begin{lemma}\label{lem:zero-in-B}
+The object
+\[
+t=(\N\longrightarrow 0)
+\]
+belongs to \(B_{\N}\).
+\end{lemma}
+
+\begin{proof}
+Take \(x=1\in\N\).  Localization at \(1\) gives
+\[
+\N[-1]\simeq \Z.
+\]
+Every element of \(\Z\) is a unit of the additive monoid \(\Z\), so
+\[
+\Z^\sharp=\Z/\Z^\times=0.
+\]
+Hence
+\[
+\N[-1]^\sharp\simeq 0,
+\]
+and the canonical localization map \(\N\to\N[-1]^\sharp\) is the
+unique map \(\N\to0\).  Thus \(t\in B_{\N}\).
+\end{proof}
+
+Also, the identity object
+\[
+e=(\N\xrightarrow{\id}\N)
+\]
+belongs to \(B_{\N}\): localization at \(0\) does not change a monoid,
+and \(\N^\sharp=\N\).
+
+\section{The left Kan extension sees only \(F(t)\)}
+
+Put
+\[
+\mathcal A=A_{\N},\qquad \mathcal B=B_{\N},
+\]
+and let
+\[
+i\colon \mathcal B\hookrightarrow \mathcal A
+\]
+be the full inclusion.  The functor in the statement is
+\[
+i^\op\colon\mathcal B^\op\longrightarrow\mathcal A^\op.
+\]
+
+Recall that a presheaf on \(\mathcal B^\op\) is a functor
+\[
+F\colon(\mathcal B^\op)^\op=\mathcal B\longrightarrow \mathbf{Ab}.
+\]
+For \(q\in\mathcal A^\op\), the pointwise left Kan extension is
+\[
+(\Lan_{i^\op}F)(q)
+=
+\colim_{(d,\alpha)\in(i^\op\downarrow q)}F(d),
+\]
+where an object of the comma category consists of \(d\in\mathcal B\)
+and an arrow
+\[
+\alpha\colon i^\op(d)\longrightarrow q
+\]
+in \(\mathcal A^\op\).
+
+\begin{lemma}\label{lem:terminal}
+The object \(t=(\N\to0)\) is terminal in \(\mathcal A\), and hence
+initial in \(\mathcal A^\op\).
+\end{lemma}
+
+\begin{proof}
+For every monoid \(Q\), there is a unique monoid homomorphism
+\(Q\to0\).  Therefore for every object \(q=(\N\to Q)\) of
+\(\mathcal A\), there is a unique morphism \(q\to t\) in
+\(\mathcal A\), given by \(Q\to0\).  Thus \(t\) is terminal in
+\(\mathcal A\), and therefore initial in \(\mathcal A^\op\).
+\end{proof}
+
+\begin{lemma}\label{lem:initial-comma}
+For every \(q\in\mathcal A^\op\), the object
+\[
+\bigl(t,\;i^\op(t)\to q\bigr)
+\]
+is initial in the comma category \((i^\op\downarrow q)\).
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:terminal}, there is a unique arrow
+\(i^\op(t)\to q\) in \(\mathcal A^\op\).
+
+Let \((d,\alpha\colon i^\op(d)\to q)\) be any object of the comma
+category.  Since \(t\) is terminal in \(\mathcal A\), there is a
+unique morphism
+\[
+i(d)\longrightarrow i(t)
+\]
+in \(\mathcal A\), namely the map to the zero monoid.  Reversing the
+arrow gives a unique morphism
+\[
+i^\op(t)\longrightarrow i^\op(d)
+\]
+in \(\mathcal A^\op\).  The triangle
+\[
+i^\op(t)\longrightarrow i^\op(d)\xrightarrow{\alpha}q
+\]
+commutes because \(t\) is initial in \(\mathcal A^\op\).  Hence the
+object indexed by \(t\) maps uniquely to every object of the comma
+category, so it is initial.
+\end{proof}
+
+\begin{lemma}\label{lem:initial-colimit}
+Let \(J\) be a category with an initial object \(j_0\), and let
+\(G\colon J\to\mathbf{Ab}\) be a functor.  Then the canonical map
+\[
+G(j_0)\longrightarrow\colim_JG
+\]
+is an isomorphism.
+\end{lemma}
+
+\begin{proof}
+The maps \(G(j_0)\to G(j)\) induced by the unique morphisms
+\(j_0\to j\) form a cocone.  Given any cocone
+\(\{\psi_j\colon G(j)\to X\}\), compatibility forces
+\[
+\psi_j\circ G(j_0\to j)=\psi_{j_0}.
+\]
+Thus every cocone is uniquely determined by \(\psi_{j_0}\), proving
+the universal property.
+\end{proof}
+
+\begin{proposition}\label{prop:Lan-constant}
+For every presheaf \(F\) on \(B_{\N}^{\op}\),
+\[
+\Lan_{i^\op}F
+\]
+is the constant presheaf on \(A_{\N}^{\op}\) with value \(F(t)\).
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{lem:initial-comma}, the indexing category for
+\((\Lan_{i^\op}F)(q)\) has initial object indexed by \(t\).  By
+Lemma~\ref{lem:initial-colimit},
+\[
+(\Lan_{i^\op}F)(q)\simeq F(t).
+\]
+These isomorphisms are natural in \(q\), since the initial objects
+and the comparison maps are unique.
+\end{proof}
+
+\section{An explicit nonzero presheaf killed by \(\pi^{-1}\)}
+
+Define a functor
+\[
+F\colon B_{\N}\longrightarrow\mathbf{Ab}
+\]
+by
+\[
+F(e)=\Z,\qquad F(t)=0,
+\]
+and \(F(s)=0\) for every object \(s\in B_{\N}\) other than \(e\) and
+\(t\).  Send every identity morphism to the corresponding identity map
+and every nonidentity morphism to the zero homomorphism.
+
+\begin{lemma}
+The assignment \(F\) is a functor, hence a presheaf of abelian groups
+on \(B_{\N}^{\op}\).
+\end{lemma}
+
+\begin{proof}
+Identities are sent to identities by definition.  A composite
+involving a nonidentity morphism is sent to a composite of zero maps,
+hence to zero.  Thus composition is preserved.  Since a presheaf on
+\(B_{\N}^{\op}\) is a covariant functor on \(B_{\N}\), this proves the
+claim.
+\end{proof}
+
+In particular, the map associated to the unique localization morphism
+\(e\to t\) is the zero map
+\[
+\Z=F(e)\longrightarrow F(t)=0.
+\]
+
+\begin{proposition}\label{prop:pi-inverse-zero}
+For the presheaf \(F\) above,
+\[
+\pi^{-1}F=0.
+\]
+\end{proposition}
+
+\begin{proof}
+By Proposition~\ref{prop:Lan-constant},
+\[
+\Lan_{i^\op}F
+\]
+is the constant presheaf with value
+\[
+F(t)=0.
+\]
+Hence \(\Lan_{i^\op}F=0\).  By construction, \(\pi^{-1}F\) is the
+birhizomic sheafification of this left Kan extension.  Sheafification
+of the zero presheaf is the zero sheaf, so
+\[
+\pi^{-1}F=0.
+\]
+\end{proof}
+
+\begin{theorem}
+For \(P=\N\), there exists a presheaf \(F\) of abelian groups on
+\(B_P^{\op}\) such that
+\[
+F\longrightarrow\mathrm R\pi_{\ast}\pi^{-1}F
+\]
+is not a quasi-isomorphism.
+\end{theorem}
+
+\begin{proof}
+Let \(F\) be the presheaf constructed above.  By
+Proposition~\ref{prop:pi-inverse-zero},
+\[
+\pi^{-1}F=0.
+\]
+Therefore
+\[
+\mathrm R\pi_{\ast}\pi^{-1}F
+=
+\mathrm R\pi_{\ast}(0)
+=
+0.
+\]
+Thus the derived unit morphism is
+\[
+F\longrightarrow 0.
+\]
+Since the topology on \(B_{\N}^{\op}\) is trivial, its category of
+sheaves is its category of presheaves.  The object \(F\), regarded as
+a complex concentrated in degree \(0\), satisfies
+\[
+H^0(F)(e)=F(e)=\Z\neq0,
+\]
+whereas \(H^0(0)(e)=0\).  Hence \(F\to0\) is not a
+quasi-isomorphism.
+\end{proof}
+
+\begin{corollary}
+The asserted statement is false in general.
+\end{corollary}
+
+\begin{remark}
+The failure occurs before sheafification and before any derived
+functor is applied: the terminal localization \(\N\to0\) lies in
+\(B_{\N}\), and the pointwise left Kan extension along
+\(B_{\N}^{\op}\hookrightarrow A_{\N}^{\op}\) is constant with value at
+that terminal localization.  Consequently, no property of the
+birhizomic topology can repair the loss of the value \(F(\N)\) for the
+particular presheaf above.
+\end{remark}
+
+\end{document}
+```

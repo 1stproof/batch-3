@@ -1,0 +1,212 @@
+```latex
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage[enumitem]{enumerate}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{A counterexample to the derived unit comparison for the birhizomic site}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $P$ be a (integral, saturated, sharp, commutative) monoid and consider the sites
+$A_P^{\mathrm{op}}$ (with the birhizomic topology) and $B_P^{\mathrm{op}}\subset A_P^{\mathrm{op}}$
+(with the trivial topology), where $B_P$ consists of the morphisms $P\to P[-x]^\sharp$.
+Let $\pi^{-1}\colon \mathrm{Sh}(B_P)\to \mathrm{Sh}(A_P)$ be defined by left Kan extension
+followed by sheafification, and let $\pi_*$ be its right adjoint.
+We show that, as soon as $P\neq\{0\}$, there exists a presheaf $F$ of abelian groups on
+$B_P^{\mathrm{op}}$ such that the canonical morphism
+$F\to \mathbf{R}\pi_*\pi^{-1}F$ is \emph{not} a quasi-isomorphism. The obstruction is
+purely categorical and does not use any special feature of the birhizomic topology.
+\end{abstract}
+
+\section{The categorical input: Kan extension collapses}
+
+Fix a monoid $P$ as in the problem statement.
+
+\subsection*{The categories $A_P$ and $B_P$}
+Let $A_P$ be the category whose objects are homomorphisms $P\to Q$ (with $Q$ again integral,
+saturated, sharp) and whose morphisms are commutative triangles over $P$; thus $A_P$ is a
+coslice category $P/\mathbf{Mon}$.
+
+For each $x\in P$ let $f_x\colon P\to P[-x]^\sharp$ be the initial homomorphism sending $x$
+to $0$, and let $B_P\subset A_P$ be the full subcategory spanned by the objects $f_x$.
+
+The sites in the question are $A_P^{\mathrm{op}}$ with the birhizomic topology and
+$B_P^{\mathrm{op}}$ with the trivial topology (so \emph{every} presheaf on $B_P^{\mathrm{op}}$
+is a sheaf).
+
+\subsection*{Presheaves on $B_P^{\mathrm{op}}$ as functors on $B_P$}
+Recall the standard convention: a presheaf on a site $\mathcal{C}$ is a contravariant functor
+$\mathcal{C}^{\mathrm{op}}\to \mathbf{Ab}$. Thus
+\[
+\mathrm{PSh}(B_P^{\mathrm{op}};\mathbf{Ab})=\mathrm{Fun}((B_P^{\mathrm{op}})^{\mathrm{op}},\mathbf{Ab})
+=\mathrm{Fun}(B_P,\mathbf{Ab}).
+\]
+Similarly, presheaves on $A_P^{\mathrm{op}}$ are the same as functors $A_P\to\mathbf{Ab}$.
+
+Let $j\colon B_P\hookrightarrow A_P$ be the inclusion (equivalently, $j=i^{\mathrm{op}}$ if
+$i\colon B_P^{\mathrm{op}}\hookrightarrow A_P^{\mathrm{op}}$ is the inclusion of sites).
+
+At the level of presheaves of abelian groups, the functor $\pi^{-1}$ from the question is
+given by
+\[
+\pi^{-1}F \;=\; a\bigl(\mathrm{Lan}_j(F)\bigr),
+\]
+where $\mathrm{Lan}_j$ denotes left Kan extension along $j$ and $a$ denotes sheafification
+on the site $A_P^{\mathrm{op}}$. (This is precisely the ``left Kan extension and
+sheafification'' described in the problem statement.)
+
+\begin{lemma}\label{lem:initial}
+The object $\eta:=(P\xrightarrow{\mathrm{id}}P)$ is an initial object of $A_P$ and of $B_P$.
+\end{lemma}
+
+\begin{proof}
+In the coslice category $A_P=P/\mathbf{Mon}$, a morphism $\eta\to (P\to Q)$ is exactly a
+monoid homomorphism $P\to Q$ whose composite with $\mathrm{id}_P$ equals the structure map
+$P\to Q$; hence there is exactly one such morphism. Thus $\eta$ is initial in $A_P$.
+Since $B_P$ is a full subcategory containing $\eta$ (the case $x=0$ gives
+$P[-0]^\sharp=P$ and $f_0=\mathrm{id}_P$), it is also initial in $B_P$.
+\end{proof}
+
+\begin{lemma}\label{lem:Lan_constant}
+Let $j\colon B_P\hookrightarrow A_P$ be the inclusion. For any functor
+$F\colon B_P\to \mathbf{Ab}$, the left Kan extension $\mathrm{Lan}_j(F)\colon A_P\to\mathbf{Ab}$
+is canonically isomorphic to the constant functor with value $F(\eta)$.
+\end{lemma}
+
+\begin{proof}
+We use the pointwise formula for left Kan extensions (see e.g.\
+Mac\,Lane, \emph{Categories for the Working Mathematician}, Ch.~X, \S3):
+for each object $a\in A_P$,
+\[
+(\mathrm{Lan}_jF)(a)\;\cong\;\varinjlim_{(j\downarrow a)} F,
+\]
+where $(j\downarrow a)$ is the comma category of pairs $(b,\,j(b)\to a)$ with $b\in B_P$.
+
+Fix $a\in A_P$. By Lemma~\ref{lem:initial} there is a unique arrow $\eta\to a$ in $A_P$,
+hence an object $(\eta,\eta\to a)\in (j\downarrow a)$.
+We claim it is initial in $(j\downarrow a)$.
+Indeed, given any object $(b,\,b\to a)$ with $b\in B_P$, there is a unique morphism
+$\eta\to b$ in $B_P$ (Lemma~\ref{lem:initial}), and the required commutativity condition
+\[
+\eta \longrightarrow b \longrightarrow a \;=\; \eta \longrightarrow a
+\]
+holds because both composites are the unique morphism $\eta\to a$ in $A_P$.
+
+Since a colimit over a category with an initial object is canonically isomorphic to the
+value at that initial object, we obtain $(\mathrm{Lan}_jF)(a)\cong F(\eta)$ for all $a$, and
+naturality in $a$ is immediate from the construction.
+\end{proof}
+
+\begin{corollary}\label{cor:pi-inv-zero}
+For any $F\in \mathrm{Sh}(B_P)=\mathrm{PSh}(B_P^{\mathrm{op}};\mathbf{Ab})$, if $F(\eta)=0$
+then $\pi^{-1}F=0$ in $\mathrm{Sh}(A_P)$.
+\end{corollary}
+
+\begin{proof}
+By Lemma~\ref{lem:Lan_constant}, $\mathrm{Lan}_j(F)$ is the constant presheaf with value
+$F(\eta)$. If $F(\eta)=0$, then $\mathrm{Lan}_j(F)=0$.
+Sheafification $a$ preserves the zero object (it is a left adjoint, hence preserves all
+colimits, in particular the initial object), so $\pi^{-1}F=a(0)=0$.
+\end{proof}
+
+\section{A presheaf on $B_P^{\mathrm{op}}$ killed by $\pi^{-1}$}
+
+Assume now that $P\neq \{0\}$, i.e.\ $P$ contains some element $x\neq 0$.
+
+Let $b_x:=(P\to P[-x]^\sharp)\in B_P$.
+
+\begin{lemma}\label{lem:no-map}
+If $x\neq 0$, then there is no morphism $b_x\to \eta$ in $A_P$ (hence none in $B_P$).
+\end{lemma}
+
+\begin{proof}
+A morphism $b_x\to \eta$ in $A_P$ is a monoid homomorphism $u\colon P[-x]^\sharp\to P$
+satisfying $u\circ f_x=\mathrm{id}_P$, where $f_x\colon P\to P[-x]^\sharp$ is the structure map.
+Evaluating at $x\in P$ gives
+\[
+x=(\mathrm{id}_P)(x)=(u\circ f_x)(x)=u(f_x(x)).
+\]
+But by definition $f_x(x)=0$, and any monoid homomorphism sends $0$ to $0$, so the right-hand
+side is $u(0)=0$. Hence $x=0$, contradicting the assumption.
+\end{proof}
+
+Define a presheaf of abelian groups on $B_P^{\mathrm{op}}$ (i.e.\ a functor $B_P\to\mathbf{Ab}$)
+by the free abelian group on the covariant representable functor:
+\[
+F(c) \;:=\; \mathbb{Z}^{(\mathrm{Hom}_{B_P}(b_x,c))}\qquad (c\in B_P).
+\]
+This is indeed a functor $B_P\to\mathbf{Ab}$ because postcomposition induces maps
+$\mathrm{Hom}(b_x,c)\to \mathrm{Hom}(b_x,c')$ for any morphism $c\to c'$.
+
+\begin{lemma}\label{lem:F-values}
+With $F$ as above, one has $F(\eta)=0$ but $F(b_x)\neq 0$.
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:no-map}, $\mathrm{Hom}_{B_P}(b_x,\eta)=\varnothing$, hence
+$F(\eta)=\mathbb{Z}^{(\varnothing)}=0$.
+
+On the other hand, $\mathrm{Hom}_{B_P}(b_x,b_x)$ contains $\mathrm{id}_{b_x}$, so it is nonempty
+and therefore $F(b_x)\neq 0$.
+\end{proof}
+
+\section{Failure of the derived unit}
+
+\begin{theorem}\label{thm:main}
+If $P\neq\{0\}$, then there exists a presheaf $F$ of abelian groups on $B_P^{\mathrm{op}}$ such that
+the canonical morphism
+\[
+F \longrightarrow \mathbf{R}\pi_*\pi^{-1}F
+\]
+is \emph{not} a quasi-isomorphism. Hence the answer to the question is \emph{no} for every
+nontrivial monoid $P$.
+\end{theorem}
+
+\begin{proof}
+Let $x\neq 0$ and $F$ be as in Lemma~\ref{lem:F-values}. Then $F(\eta)=0$, so
+$\pi^{-1}F=0$ by Corollary~\ref{cor:pi-inv-zero}. Consequently
+\[
+\mathbf{R}\pi_*\pi^{-1}F = \mathbf{R}\pi_*(0)=0
+\]
+in the derived category $D(\mathrm{Sh}(B_P))$ (indeed, $0$ has the injective resolution $0\to 0$).
+
+Thus the unit morphism is the morphism $F\to 0$ in $D(\mathrm{Sh}(B_P))$.
+
+Because the topology on $B_P^{\mathrm{op}}$ is trivial, $\mathrm{Sh}(B_P)$ is just the functor
+category $\mathrm{Fun}(B_P,\mathbf{Ab})$, and cohomology of complexes is computed objectwise.
+Evaluating at $b_x$ yields the map of complexes of abelian groups
+\[
+F(b_x)[0] \longrightarrow 0,
+\]
+which is not a quasi-isomorphism since $H^0(F(b_x)[0])=F(b_x)\neq 0$ by Lemma~\ref{lem:F-values}.
+Therefore $F\to \mathbf{R}\pi_*\pi^{-1}F$ is not a quasi-isomorphism.
+\end{proof}
+
+\begin{remark}
+The failure is independent of the birhizomic topology: it arises already from the fact that
+$B_P$ contains the initial object $\eta=(P\to P)$ of $A_P$, which forces the left Kan
+extension step in $\pi^{-1}$ to depend only on the single value $F(\eta)$
+(Lemma~\ref{lem:Lan_constant}).
+\end{remark}
+
+\begin{thebibliography}{9}
+\bibitem{MacLane}
+S.~Mac\,Lane,
+\emph{Categories for the Working Mathematician},
+2nd ed., Graduate Texts in Mathematics~5, Springer, 1998.
+\end{thebibliography}
+
+\end{document}
+```

@@ -1,0 +1,7 @@
+PROVED: Reduction: since id_P is terminal in A_P^op and B_P^op and slices over P[-x]^sharp are the sites of P[-x]^sharp, the headline claim is equivalent to H^0(A_P, pi^{-1}F) = F(P) and H^i(A_P, pi^{-1}F) = 0 (i > 0) for every monoid P and every F (modulo standard slice facts) — round1_q1
+PROVED: A homomorphism f : M -> N with M valuative is infinitesimal iff f^{-1}(0) = {0}; more generally every infinitesimal p kills no nonzero element of its source — round1_q2
+PROVED: For P = N the map N -> 0 is birhizomic at every map 0 -> V, and {id_N} together with it accounts for all valuations of N (classification of all covers of N not checked) — round1_q3
+PROVED: For a fan Sigma subdividing a rational cone sigma and r(c) the smallest face containing c, R lim over Sigma^op of G o r is G(sigma) in degree 0 (Quillen A plus star-shapedness; two standard results quoted from memory) — round1_q4
+OPEN: Every finitely presented P -> Q is birhizomic at the zero map, and localizations P -> P[-x]^sharp are birhizomic at every point (director's proof, to be confirmed by a worker) — round2_plan
+OPEN: Closed subdivision charts are not birhizomic at wall valuations (P = N^2, Q = <e2, e1-e2>, test object M = {x1+x2 > 0} u {0}), so covers are not refinements of subdivision covers and the finite-poset lemma does not apply directly (director's computation, to be confirmed) — round2_plan
+OPEN: For finitely generated P, characterize birhizomic morphisms/covers and points of the birhizomic topos, and prove H^i(A_P, pi^{-1}F) = F(P) for i = 0 and 0 for i > 0 — round2_plan

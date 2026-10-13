@@ -1,0 +1,627 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[shortlabels]{enumitem}
+\usepackage[pdfauthor={},pdftitle={Solution},pdfcreator={},pdfproducer={}]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{fact}[theorem]{Fact}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\E}{\mathbb E}
+\newcommand{\W}{\mathbb W}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\Fc}{\mathcal F}
+\newcommand{\dv}{\operatorname{div}}
+\newcommand{\KL}{\mathrm{KL}}
+\newcommand{\TV}{\mathrm{TV}}
+\newcommand{\rate}{n^{-2\alpha/(2\alpha+d+3)}}
+\newcommand{\cA}{\mathcal A}
+\newcommand{\cB}{\mathcal B}
+\newcommand{\Dint}{D^{\circ}}
+
+\newcommand{\fptitle}{Review of Problem 2 -- Siege}
+\newcommand{\reviewtag}{Reviewer 1}
+\usepackage{fp-review}
+
+\begin{document}
+\maketitle
+
+\section{Review}
+
+The paper gives the correct solution of the requested minimax rate (up to log factors) using novel ideas for estimation and lower bound alternatives, compared to the published literature. The estimation relies on a plugin approach for the explicit reconstruction and detailed arguments to derive the correct convergence rate. The error decomposition is different from the human proof and simplifies some of their upper bounds. The lower bound relies on spherical perturbations in the functional class, i.e. the domain of the underlying nonlinear forward operator and uses Assouad cube techniques, which differs from the human and most AI proofs. 
+
+\paragraph{Correctness.}
+
+The stated result is correct. For the upper bound, the construction of the estimator, the error decomposition and the treatment of the different error terms are novel and generally correct. Some arguments would require more details, but could be worked out quickly, as it seems. The only clear mathematical mistake is in Section 7.1: the notation $\partial^m\chi_k$ for a multivariate function $\chi_k$ and integer $m$, where partial derivatives with multi-indices $m$ are expected. The lower bound proof is innovative with its forward estimate to control the KL divergence, but seems correct as well. All proofs are very dense and even a reviewer working in the field has difficulties to check precisely without too much own work. The overall assessment is that there are minor gaps which seem relatively easy to fill.
+
+\begin{itemize}
+	\item  1: essentially flawless mathematical argument
+	\item  0.5: minor errors that are easily corrected
+	\item  0: blank solution, or acknowledged partial result
+	\item  $-0.5$: major errors
+	\item  $-1$: proposed proof makes no progress towards the result.
+\end{itemize}
+Note that points should be docked for wrong statements/ solutions.
+
+\noindent Score: 0.5
+
+\paragraph{Exposition.}
+
+The human language presentation is not well done, putting short phrases, short arguments and inline formulas densely together. Section 6 lists standard facts without introducing certain notation or the meaning of the statements. A good point are references to equation numbers and general properties as well as Section 5 with an overview. Overall, the exposition is ok, but requires substantial efforts to follow and especially to verify.
+\begin{itemize}
+	\item  1: well-written and clear solution.
+	\item  0: argument that is possible to follow with serious effort
+	\item  $-1$: very poor exposition
+\end{itemize}
+
+\noindent Score: 0
+
+\paragraph{Attributions.}
+
+The paper lists used tools with correct references. Some results, e.g. Lemma 8.1, 8.3, 8.5(4) are stated as is or very similarly in the literature. This should be cited and in case of differences discussed. There is no reference to prior (suboptimal) solutions of the problem (exist for the upper bound) or related approaches.
+\begin{itemize}
+	\item  1: solutions contains fully appropriate attributions
+		to related work and theorems being used.
+	\item  0: moderate issues with missing attributions or hallucinated references
+	\item  $-1$: blatant plagiarism or hallucinations
+\end{itemize}
+
+\noindent Score: 0
+
+\newpage
+\section{Submission with inline comments}
+
+
+\section{The problem}
+
+Let $D\subseteq\R^d$, $d\ge2$, be the closed Euclidean unit ball. For $f\in C^\alpha(D)$ with H\"older--Zygmund smoothness $\alpha>1$ (and $f$ bounded away from $0$), let $u=u_f$ be the unique solution of Darcy's problem
+\[
+\dv(f\nabla u)=1\ \text{ on }D,\qquad u|_{\partial D}=0 .
+\]
+We observe
+\[
+Y_n=u_f+\tfrac1{\sqrt n}\,\W ,
+\]
+where $\W$ is a Gaussian white noise on $L^2(D)$. For $r\in(0,1)$ let
+\[
+\Fc(\alpha,r)=\{h\in C^\alpha(D):\ \|h-\one\|_{C^\alpha(D)}\le r\},
+\]
+where $\one$ is the constant function $1$. For small but fixed $r\in(0,1)$, the question is: what is the minimax rate, as $n\to\infty$ and up to logarithmic factors, of
+\[
+\inf_{\hat f_n}\ \sup_{f_0\in\Fc(\alpha,r)}\E_{f_0}\big[\|\hat f_n-f_0\|^2_{L^2(D)}\big]\ ?
+\]
+
+\section{Result}
+
+\begin{theorem}\label{thm:main}
+Fix $\alpha>1$ and $d\ge2$.
+\begin{enumerate}[(i)]
+\item \textbf{(Lower bound.)} For every $r\in(0,1)$ there are $c>0$ and $n_0$ such that for $n\ge n_0$
+\[
+\inf_{\hat f}\ \sup_{f\in\Fc(\alpha,r)}\E_f\|\hat f-f\|^2_{L^2(D)}\ \ge\ c\,\rate .
+\]
+\item \textbf{(Upper bound.)} There is $r_0=r_0(d,\alpha)>0$ such that for every $r\in(0,r_0]$ an explicit estimator $\tilde f$ (Definition~\ref{def:est}) satisfies, for $n\ge n_0$,
+\[
+\sup_{f\in\Fc(\alpha,r)}\E_f\|\tilde f-f\|^2_{L^2(D)}\ \le\ C(\log n)^4\,\rate .
+\]
+If $\alpha$ is not an integer, the factor $(\log n)^4$ can be dropped.
+\end{enumerate}
+The constants $r_0,c,C,n_0$ depend only on $d$, $\alpha$, $r$ and on fixed auxiliary profiles and kernels chosen below.
+\end{theorem}
+
+\begin{corollary}[Answer]
+For every fixed $r\in(0,r_0]$, up to logarithmic factors,
+\[
+\inf_{\hat f_n}\sup_{f_0\in\Fc(\alpha,r)}\E_{f_0}\|\hat f_n-f_0\|^2_{L^2(D)}\ \asymp\ n^{-\frac{2\alpha}{2\alpha+d+3}} .
+\]
+\end{corollary}
+
+Everything in Sections~\ref{sec:lower}--\ref{sec:upper} is argued here; the only external inputs are the standard facts collected, with references, in Section~\ref{sec:facts}.
+
+\section{Overview of the proof}
+
+\paragraph{Where $d+3$ comes from.} Near $f=\one$ the solution is close to $u_1:=(|x|^2-1)/(2d)$, so $\nabla u_f\approx x/d$, a radial field with a single source at the origin. The linearised forward map $h\mapsto -L_f^{-1}\dv(h\nabla u_f)$, with $L_f=\dv(f\nabla\,\cdot)$ (Dirichlet), therefore smooths by order $2$ for perturbations oscillating across the rays (in the $d-1$ angular directions), but only by order $1$ along the rays, because $\dv(h\,x/d)$ is a first-order operator along the rays. Heuristically, the symbol of the linearisation at $f=\one$ is $\asymp(1+|\xi_{\rm rad}|)/|\xi|^2$, and the exponent $d+3$ lies between the isotropic values $d+4$ and $d+2$. This heuristic only motivates the construction; it is not used in the proofs.
+
+\paragraph{Lower bound.} We perturb $\one$ by $M\asymp2^{j(d-1)}$ disjoint bumps that oscillate at frequency $2^j$ in the angular directions only. Each has the form $2^{-j(\alpha+2)}b(|x|)\Delta\Phi_k$ with $\Phi_k$ homogeneous of degree $0$; because of this form, the radial transport term $\dv(h\,x/d)$ is again a Laplacian of a function of size $2^{-j(\alpha+2)}$. A duality argument then shows that the forward map shrinks each bump by $2^{-2j}$ in $L^2$. Balancing the Kullback--Leibler divergence with Assouad's lemma gives $2^j\asymp n^{1/(2\alpha+d+3)}$ and risk $2^{-2j\alpha}$.
+
+\paragraph{Upper bound.} We smooth the data at resolution $2^{-J}$, $2^J\asymp n^{1/(2\alpha+d+3)}$, and estimate $\nabla u$ by $\hat V=\nabla K_JY$. For $r$ small, $\hat V$ is $C^1$-close to $x/d$, and the transport equation $\dv(g\hat V)=1$ has an explicit solution $T^{-1}_{\hat V}\one$, obtained by integrating along the backward flow of $\hat V$, which runs into a single sink. We linearise around the deterministic centring function $\bar f=T^{-1}_{V_J}\one$, where $V_J=\nabla K_Ju$. This gives an exact decomposition: a bias $\bar f-f=O(J^22^{-J\alpha})$, a linear Gaussian term $Z$ and a quadratic remainder. The variance of $Z$ is the key point. $Z$ integrates $\Delta\xi$ along rays, where $\xi$ is the smoothed noise. Now $\Delta\xi$ has pointwise variance $n^{-1}2^{J(d+4)}$ and correlation length $2^{-J}$, and integrating it along a ray of length $O(1)$ gains one factor $2^{-J}$. Hence $\E\|Z\|_2^2\lesssim n^{-1}2^{J(d+3)}$: the noise is smoothed by one order along the flow, and this produces $d+3$. The quadratic remainder is negligible because $\alpha>1$.
+
+\section{Conventions and standard facts}\label{sec:facts}
+
+$C^s$ denotes the H\"older--Zygmund space $B^s_{\infty\infty}$; on $D$ it consists of restrictions, with the quotient norm. Constants $c,C$ may change from line to line. They never depend on $j$, $J$, $n$ or on $f\in\Fc(\alpha,r)$. $\Dint$ denotes the open unit ball. We write $u_1:=(|x|^2-1)/(2d)$, the solution for $f=\one$, so that $\nabla u_1=x/d$. For $g\ge 1-r$ write $L_g=\dv(g\nabla\,\cdot)$ with Dirichlet boundary conditions. Expectation is $\E$, and $P_f$ is the law of $Y_n$. In the white-noise model, by the Cameron--Martin theorem (see e.g.\ \cite{GN16}),
+\[
+\KL(P_f,P_g)=\tfrac n2\|u_f-u_g\|_{L^2}^2 .
+\]
+We use the following known results without proof.
+
+\begin{enumerate}[label=\textbf{(\arabic*)},leftmargin=2.2em]
+\item[\textbf{(E1)}] \emph{Global $H^2$ regularity} \cite[Theorem 8.12]{GT}, combined with the energy estimate. Let $g\in C^{0,1}(D)$ with $g\ge1-r$. The solution $w\in H^1_0(D)$ of $\dv(g\nabla w)=F\in L^2$ satisfies $\|w\|_{H^2}\le C\|F\|_2$, where $C$ depends only on $d$, $1-r$ and an upper bound for $\|g\|_{C^{0,1}}$.
+\item[\textbf{(E2)}] \emph{$W^{2,p}$ theory}, $1<p<\infty$ \cite[Theorem 9.15, Lemma 9.17]{GT}. Let $g\in C^1(D)$ with $g\ge1-r$. The Dirichlet problem $g\Delta w+\nabla g\cdot\nabla w=F\in L^p$, $w\in W^{2,p}\cap W^{1,p}_0$, has a unique solution, and $\|w\|_{W^{2,p}}\le C\|F\|_p$. The constant is uniform over $\Fc(\alpha,r)$, which is bounded in $C^\alpha$ and hence precompact in $C^1$.
+\item[\textbf{(GN)}] \emph{Gagliardo--Nirenberg inequality on the ball} \cite{Gag59,Nir59}. For $p>d$ and $t=(1+d/p)/2$,
+$\|\nabla w\|_\infty\le C\|w\|^t_{W^{2,p}}\|w\|^{1-t}_p+C\|w\|_p$.
+\item[\textbf{(As)}] \emph{Assouad's lemma} \cite{Ass83}; see also \cite[Ch.~2]{Tsy09}. Let $\{P_\theta:\theta\in\{0,1\}^M\}$ be probability measures with $\TV(P_\theta,P_{\theta'})\le\tau<1$ whenever $\theta,\theta'$ differ in exactly one coordinate. Then for every estimator $\hat\theta$ with values in $\{0,1\}^M$,
+$\max_\theta\E_\theta\sum_k\one\{\hat\theta_k\neq\theta_k\}\ge\frac M2(1-\tau)$.
+We also use Pinsker's inequality $\TV\le\sqrt{\KL/2}$ \cite[Ch.~2]{Tsy09}.
+\item[\textbf{(C1)}] \emph{Seeley-type extension} \cite{See64}; see also \cite{Tri83}. There is a linear operator $E$ with $Eg=g$ on $D$ that is bounded $C^s(D)\to C^s(\R^d)$ for $0<s\le S_0$, where we fix $S_0>\alpha+2$. It has the form $Eg(t)=\chi(|t|)\sum_ia_i\,g(R_it)$ for $|t|>1$, where $R_it=(1-\lambda_i(|t|-1))\,t/|t|$, finitely many $\lambda_i>0$, and $\chi$ is a smooth cutoff vanishing for $|t|\ge1+\eta$, with $\lambda_i\eta<1$.
+\item[\textbf{(C2)}] \emph{Kernel approximation} (see e.g.\ \cite{GN16}). Let $k\in C^\infty_c(\R^d)$ with $\int k=1$ and vanishing moments of orders $1,\dots,N_0$, where we fix an integer $N_0\ge2\alpha+2$. Put $k_J=2^{Jd}k(2^J\cdot)$. Then $\|D^m(k_J*g-g)\|_\infty\le C2^{-J(s-m)}\|g\|_{C^s}$ for integers $0\le m<s$ and $0<s\le N_0$.
+\item[\textbf{(LP)}] \emph{Littlewood--Paley theory} \cite{Tri83,GN16}. For a fixed Littlewood--Paley decomposition $g=\sum_{j\ge0}\Delta_jg$ we have $\|g\|_{C^s}\asymp\sup_j2^{js}\|\Delta_jg\|_\infty$ for $s>0$. Bernstein's inequality gives $\|D^m\Delta_jg\|_\infty\le C2^{jm}\|\Delta_jg\|_\infty$. Moreover $C^s\subset C^{1,\beta_0}$ for $s>1$, with $\beta_0=\min(s-1,1/2)$. \review{Here and later: $C^{m,\alpha}$ never introduced.}
+\item[\textbf{(C3)}] \emph{Taylor formula in Zygmund spaces; algebra property} (standard; see \cite{Tri83}). Let $\phi\in C^s$, $s>0$, and $|h|\le1$. Then
+$\Delta_h\phi(x):=\phi(x+h)-\phi(x)=P_\phi(x,h)+r_\phi(x,h)$,
+where $P_\phi(x,h)=\sum_{1\le|\iota|<s}\partial^\iota\phi(x)h^\iota/\iota!$ and $|r_\phi(x,h)|\le C\|\phi\|_{C^s}|h|^s\Lambda(h)$ with $\Lambda(h)=1+\log(1/|h|)$; the logarithm is needed only when $s$ is an integer. Also $C^s\cdot C^s\subset C^s$, with $\|\phi\psi\|_{C^s}\le C\|\phi\|_{C^s}\|\psi\|_{C^s}$.
+\item[\textbf{(S)}] \emph{Schauder estimate in Zygmund spaces} (standard). The Dirichlet Laplacian satisfies: $\Delta_D^{-1}:C^{\alpha-1}(D)\to C^{\alpha+1}(D)$ is bounded for $\alpha-1>0$. For non-integer $\alpha$ this is classical Schauder theory \cite[Ch.~6]{GT}.\review{What about integer $\alpha$?}
+\item[\textbf{(ODE)}] \emph{$C^k$ dependence of flows on initial data}, with the variational equations \cite[Ch.~V]{Har64}.\review{Details should be specified.}
+\item[\textbf{(G)}] \emph{Gaussian facts} \cite{GN16}. Let $y\mapsto\varphi_y\in L^2(D)$ be $C^{m+1}$ on an open set, with locally Lipschitz derivatives. Then $\W(\varphi_y)$ has a $C^m$ version with $\partial^\iota_y\W(\varphi_y)=\W(\partial_y^\iota\varphi_y)$ for $|\iota|\le m$. Bochner integrals in $L^2$ commute with $\W$. We also use Dudley's entropy bound \cite{Dud67} and the Borell--Tsirelson--Ibragimov--Sudakov (Borell--TIS) inequality \cite{Bor75,TIS76}.
+\end{enumerate}
+
+\section{The lower bound}\label{sec:lower}
+
+Throughout this section $\alpha>1$, $d\ge2$ and $r\in(0,1)$ are fixed, and $j\ge j_0$ is large.
+
+\subsection{The hypercube}
+
+\paragraph{Directions and bumps.} Choose $\omega_1,\dots,\omega_M\in S^{d-1}$ with pairwise geodesic distance $\ge2\cdot2^{-j}$ and $M\ge c_d2^{j(d-1)}$ (a maximal separated set). Fix $\varphi_0\in C^\infty_c([0,1/2))$ that is constant near $0$ and not identically $0$. Let $\Phi_k(\omega)=\varphi_0(2^jd_S(\omega,\omega_k))$, where $d_S$ is the geodesic distance. The $\Phi_k$ are smooth, are rotations of one another, and have pairwise disjoint supports, which are caps of radius $2^{-j}/2$.
+
+\paragraph{Extension and scaling.} Extend each $\Phi_k$ to $\R^d\setminus\{0\}$ as a function homogeneous of degree $0$. Then
+\[
+\Delta\Phi_k(x)=|x|^{-2}(\Delta_S\Phi_k)(x/|x|),
+\]
+where $\Delta_S$ is the Laplace--Beltrami operator. Put $\chi_k:=2^{-2j}\Delta_S\Phi_k$. In rescaled normal coordinates this is the flat Laplacian of a fixed nonzero compactly supported bump, up to $O(2^{-j})$ metric corrections. Hence $\|\partial^m\chi_k\|_\infty\le C_m2^{jm}$, and for $j\ge j_0$ \review{$\chi_k$ is multivariate and $\partial^m$ for integer $m$ is not well defined, please use multi-indices!}
+\[
+c2^{-j(d-1)}\le\|\chi_k\|^2_{L^2(S^{d-1})}\le C2^{-j(d-1)} .
+\]
+The lower bound holds because the Laplacian of a nonzero compactly supported function is nonzero, and the value does not depend on $k$ by rotation invariance.
+
+\paragraph{The perturbations.} Fix $b\in C^\infty_c((1/4,3/4))$, not identically $0$. Define
+\[
+h_k(x):=\kappa2^{-j(\alpha+2)}b(|x|)\,\Delta\Phi_k(x)=\kappa2^{-j\alpha}b(|x|)|x|^{-2}\chi_k(x/|x|),
+\qquad f_\theta:=\one+\sum_{k=1}^M\theta_kh_k,\quad\theta\in\{0,1\}^M .
+\]
+
+\begin{lemma}\label{lem:cube}
+There is $\kappa=\kappa(r)>0$ such that $f_\theta\in\Fc(\alpha,r)$ for all $\theta$ and all $j$. The supports $S_k$ of the $h_k$ are pairwise disjoint, and
+\[
+\|h_k\|_2^2\asymp2^{-j(2\alpha+d-1)},\qquad\|\Phi_k\|_{L^2(\{1/4<|x|<3/4\})}\asymp2^{-j(d-1)/2},\qquad\Big\|\sum_k\theta_k\Phi_k\Big\|_\infty\le\|\varphi_0\|_\infty .
+\]
+\end{lemma}
+
+\begin{proof}
+Let $G_\theta=\sum_k\theta_k\chi_k$. Each point of the sphere has a neighbourhood meeting at most one support, so $\|D^mG_\theta\|_\infty\le C2^{jm}$ and $\|G_\theta\|_\infty\le C$. Take an integer $m>\alpha$. Then
+$|\Delta^m_h(2^{-j\alpha}G_\theta)|\le C2^{-j\alpha}\min((2^j|h|)^m,1)\le C|h|^\alpha$.
+Hence $\|2^{-j\alpha}G_\theta\|_{C^\alpha(S^{d-1})}\le C$ uniformly in $\theta$ and $j$. Composing with $x\mapsto x/|x|$ and multiplying by the smooth function $b(|x|)|x|^{-2}$, supported in the annulus, keeps this bounded. Choosing $\kappa$ small gives $\|f_\theta-\one\|_{C^\alpha(D)}\le r$. Disjointness of the supports is clear. In polar coordinates,
+$\|h_k\|^2_2=\kappa^22^{-2j\alpha}\int b(\rho)^2\rho^{d-5}d\rho\,\|\chi_k\|^2_{L^2(S^{d-1})}\asymp2^{-j(2\alpha+d-1)}$.
+The remaining two statements are immediate from the construction.
+\end{proof}
+
+By disjointness, $\|f_\theta-f_{\theta'}\|_2^2=\sum_{k:\theta_k\ne\theta'_k}\|h_k\|_2^2$.
+
+\subsection{The key estimate}
+
+\begin{proposition}\label{prop:key}
+If $\theta,\theta'\in\{0,1\}^M$ differ only in coordinate $k$, then $\|u_{f_\theta}-u_{f_{\theta'}}\|_2\le C2^{-2j}\|h_k\|_2$. Consequently
+$\|u_{f_\theta}-u_{f_{\theta'}}\|_2^2\le C2^{-j(2\alpha+d+3)}$.
+\end{proposition}
+
+\begin{proof}
+\emph{Exact identity.} Let $f=f_{\theta'}$, $g=f_\theta=f+h$ with $h=\pm h_k$, and $V=\nabla u_f$. Subtracting the two equations gives $\dv(g\nabla(u_g-u_f))=1-\dv(g\nabla u_f)=-\dv(hV)$. Hence
+\[
+u_g-u_f=-L_g^{-1}\dv(hV).
+\]
+
+\emph{(i) Duality.} $L_g$ is self-adjoint on $H^1_0$, so
+$\|L_g^{-1}F\|_2=\sup_{\|\phi\|_2\le1}\langle F,\psi\rangle$ with $\psi:=L_g^{-1}\phi$.
+Since $g\ge1-r$ and $g$ is Lipschitz (as $\alpha>1$), (E1) gives $\|\psi\|_{H^2}\le C$. It therefore suffices to show
+\begin{equation}\label{eq:dual}
+|\langle\dv(h_kV),\psi\rangle|\le C2^{-2j}\|h_k\|_2\|\psi\|_{H^2}\qquad\text{for }\psi\in H^2\cap H^1_0 .
+\end{equation}
+Split $V=x/d+\nabla v$ with $v:=u_f-u_1$.
+
+\emph{(ii) Radial part.} For $G=b(|x|)\Delta\Phi_k$ we claim
+\begin{equation}\label{eq:radial}
+\dv(G\,x/d)=b_1(|x|)\Delta\Phi_k,\qquad b_1(\rho):=\frac{\rho b'(\rho)+(d-2)b(\rho)}{d}\in C^\infty_c((1/4,3/4)).
+\end{equation}
+Indeed, $\Psi:=\Delta\Phi_k$ is homogeneous of degree $-2$, so Euler's relation gives $x\cdot\nabla G=\rho b'\Psi-2b\Psi$. \review{The last derivation is very quick and some intermediate steps should be given.} Since $\dv(G\,x)=x\cdot\nabla G+dG$, dividing by $d$ gives \eqref{eq:radial}. The function $b_1\psi$ has compact support in the annulus, where $\Phi_k$ is smooth. Integrating by parts twice and using Lemma~\ref{lem:cube},
+\[
+|\langle\dv(h_k\,x/d),\psi\rangle|=\kappa2^{-j(\alpha+2)}\Big|\int\Phi_k\,\Delta(b_1\psi)\Big|\le C2^{-j(\alpha+2)}2^{-j(d-1)/2}\|\psi\|_{H^2}\le C2^{-2j}\|h_k\|_2\|\psi\|_{H^2}.
+\]
+
+\emph{(iii) Drift part.} Since $h_k$ has compact support,
+$|\langle\dv(h_k\nabla v),\psi\rangle|=|\int h_k\nabla v\cdot\nabla\psi|\le\|h_k\|_2\|\nabla v\|_\infty\|\psi\|_{H^1}$.
+It therefore suffices to show $\|\nabla v\|_\infty\le C2^{-j(\alpha+1-d/p)}$ for every $p>d$, and then to take $p>d$ with $d/p\le\alpha-1$.
+
+\emph{Equation for $v$.} We have $\dv(f\nabla v)=1-\dv(f\,x/d)=-\dv((f-1)x/d)=:-q$. By \eqref{eq:radial} applied termwise,
+$q=\kappa2^{-j(\alpha+2)}b_1(|x|)\Delta\Phi_{\theta'}$ with $\Phi_{\theta'}=\sum_l\theta'_l\Phi_l$.
+
+\emph{$W^{2,p}$ bound.} Since $q=\kappa2^{-j\alpha}b_1(|x|)|x|^{-2}\sum_l\theta'_l\chi_l(x/|x|)$ and the $\chi_l$ are bounded with disjoint supports, $\|q\|_p\le C2^{-j\alpha}$. Hence $\|v\|_{W^{2,p}}\le C2^{-j\alpha}$ by (E2).
+
+\emph{$L^p$ bound.} Take $\phi$ with $\|\phi\|_{p'}\le1$ and let $\psi=L_f^{-1}\phi\in W^{2,p'}\cap W^{1,p'}_0$, so that $\|\psi\|_{W^{2,p'}}\le C$ by (E2). By Green's identity, and integrating by parts twice as in (ii),
+\[
+\Big|\int v\phi\Big|=\Big|\int q\psi\Big|=\kappa2^{-j(\alpha+2)}\Big|\int\Phi_{\theta'}\,\Delta(b_1\psi)\Big|\le C2^{-j(\alpha+2)}\|\varphi_0\|_\infty\|\psi\|_{W^{2,p'}}\le C2^{-j(\alpha+2)} .
+\]
+So $\|v\|_p\le C2^{-j(\alpha+2)}$.
+
+\emph{Interpolation.} By (GN),
+$\|\nabla v\|_\infty\le C2^{-j\alpha t}2^{-j(\alpha+2)(1-t)}+C2^{-j(\alpha+2)}\le C2^{-j(\alpha+1-d/p)}$, since $2(1-t)=1-d/p$.
+
+Combining (ii) and (iii) proves \eqref{eq:dual}, hence the first claim. The second follows from $\|h_k\|_2^2\le C2^{-j(2\alpha+d-1)}$.
+\end{proof}
+
+\subsection{Conclusion via Assouad's lemma}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}(i)]
+By Proposition~\ref{prop:key}, $\KL(P_{f_\theta},P_{f_{\theta'}})\le Cn2^{-j(2\alpha+d+3)}$ for neighbours $\theta,\theta'$. Choose $2^j\asymp n^{1/(2\alpha+d+3)}$, with a constant large enough that $\KL\le1/8$ for all neighbours. Pinsker's inequality then gives $\TV\le1/4$.
+
+Given any estimator $\hat f$, let $\hat\theta_k$ minimise $\|(\hat f-1-t h_k)\one_{S_k}\|_2$ over $t\in\{0,1\}$. On $S_k$ we have $f_\theta=1+\theta_kh_k$. If $\hat\theta_k\neq\theta_k$, the triangle inequality gives
+$\|h_k\|_2\le\|(\hat f-1-\hat\theta_kh_k)\one_{S_k}\|_2+\|(\hat f-1-\theta_kh_k)\one_{S_k}\|_2\le2\|(\hat f-f_\theta)\one_{S_k}\|_2$.
+Since the $S_k$ are disjoint,
+\[
+\|\hat f-f_\theta\|_2^2\ge\tfrac14\sum_k\|h_k\|_2^2\,\one\{\hat\theta_k\neq\theta_k\} .
+\]
+By (As) with $\tau=1/4$ and Lemma~\ref{lem:cube},
+\[
+\sup_{f\in\Fc(\alpha,r)}\E_f\|\hat f-f\|_2^2\ge\max_\theta\E_\theta\|\hat f-f_\theta\|^2_2\ge\tfrac14\min_k\|h_k\|^2_2\cdot\tfrac M2\cdot\tfrac34\ge c2^{j(d-1)}2^{-j(2\alpha+d-1)}=c2^{-2j\alpha}\asymp\rate .
+\]
+The condition $\alpha>1$ was used only in (iii), and to make $f\in C^1$ for (E1) and (E2).
+\end{proof}
+
+\section{The upper bound}\label{sec:upper}
+
+Throughout, $\alpha>1$ and $d\ge2$ are fixed, $f\in\Fc(\alpha,r)$, and $r\le r_0$, where $r_0$ is reduced finitely many times below.
+
+\subsection{A Schauder bound}
+
+\begin{lemma}\label{lem:C4}
+There is $r_0=r_0(d,\alpha)$ such that for $r\le r_0$ and all $f\in\Fc(\alpha,r)$,
+\begin{equation}\label{eq:C4}
+\|u_f-u_1\|_{C^{\alpha+1}(D)}\le Cr,\qquad\|u_f\|_{C^{\alpha+1}(D)}\le C .
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Write $L_f=\Delta+\dv((f-1)\nabla\,\cdot)$. By the algebra property (C3),
+$\|\dv((f-1)\nabla v)\|_{C^{\alpha-1}}\le C_1\|f-1\|_{C^\alpha}\|v\|_{C^{\alpha+1}}\le C_1r\|v\|_{C^{\alpha+1}}$.
+Take $r_0$ with $C_1r_0\|\Delta_D^{-1}\|\le1/2$. Writing $L_fv=F$ as $(I+\Delta_D^{-1}\dv((f-1)\nabla\,\cdot))v=\Delta_D^{-1}F$ on the closed subspace of $C^{\alpha+1}(D)$ with zero trace, a Neumann series using (S) shows that $L_f^{-1}:C^{\alpha-1}(D)\to C^{\alpha+1}(D)$ (Dirichlet data) has norm $\le2\|\Delta_D^{-1}\|$. The solution so obtained is classical, hence equal to the weak solution. As in Proposition~\ref{prop:key}, $u_f-u_1=-L_f^{-1}\dv((f-1)x/d)$, and the right-hand side has $C^{\alpha-1}$ norm $\le Cr$.
+\end{proof}
+
+This is the first place where smallness of $r$ enters.
+
+\subsection{Smoothing, noise and the estimator}
+
+\paragraph{Resolution and smoother.} Let $J:=\lfloor\log_2n/(2\alpha+d+3)\rfloor$. Then
+\begin{equation}\label{eq:J}
+n^{-1/2}\le2^{-J(\alpha+(d+3)/2)},\qquad n^{-1}2^{J(d+3)}\le2^{-2J\alpha},\qquad 2^{-2J\alpha}\le 2^{2\alpha}\rate,\qquad J\le\log_2n .
+\end{equation}
+Put $K_Jg:=(k_J*Eg)|_D$, with $k_J$ from (C2) and $E$ from (C1). On data, $K_JY(x)=\langle Y,k_J(x,\cdot)\rangle$, where $k_J(x,\cdot):=E^*[k_J(x-\cdot)]\in L^2(D)$; this is defined for all $x\in\R^d$. By the change of variables $z=R_it$, $E^*$ is the identity on $D$ plus finitely many terms of the form $a_i(\chi\varphi)(R_i^{-1}z)|\det DR_i^{-1}(z)|$. These are supported on shells $\{1-\lambda_i\eta<|z|<1\}$ and have bounded Jacobians. This gives the following kernel bounds.
+\begin{enumerate}[leftmargin=3.2em]
+\item[\textbf{(K1)}] $|\partial^\iota_xk_J(x,z)|\le C2^{J(d+|\iota|)}$ for $|\iota|\le4$.
+\item[\textbf{(K2)}] $\partial^\iota_xk_J(x,z)=0$ unless $|x-z|\le C_02^{-J}$. Indeed, for the reflected terms let $t=R_i^{-1}z$, so $|t|>1$. If $x\in D$ and $|x-t|\le C2^{-J}$, then $|t|-1\le C2^{-J}$ and $|z-t|=(1+\lambda_i)(|t|-1)\le C2^{-J}$.
+\item[\textbf{(K3)}] $\|\partial^\iota_xk_J(x,\cdot)\|^2_2\le C2^{J(d+2|\iota|)}$, and $x\mapsto\partial_x^\iota k_J(x,\cdot)$ is Lipschitz into $L^2$ with constant $C2^{J(d/2+|\iota|+1)}$, for $|\iota|\le3$. This follows from (K1), (K2) and the fact that the support in $z$ has volume $\le C2^{-Jd}$.
+\end{enumerate}
+
+\paragraph{Notation.} Let $U=Eu$, $F=Ef$, $V=\nabla u$ and $V^E=\nabla U$. By (C1) and \eqref{eq:C4}, $\|F\|_{C^\alpha}+\|V^E\|_{C^\alpha}\le C$. Let
+\[
+V_J:=\nabla K_Ju=(k_J*V^E)|_D,\qquad e:=K_Ju-u,\qquad \xi:=n^{-1/2}K_J\W,\qquad\hat V:=\nabla K_JY=V_J+\nabla\xi .
+\]
+$V_J$ is the restriction of a $C^\infty$ field on $\R^d$. By (G) and (K1)--(K3), $\xi$ is a centred Gaussian field with $C^3$ sample paths on a neighbourhood of $D$ (it is in fact smooth), and $\xi$ does not depend on $f$.
+
+\paragraph{Good event.} Let
+\[
+\cA:=\Big\{\max_{|\iota|=m}\sup_D|\partial^\iota\xi|\le Jn^{-1/2}2^{J(d/2+m)},\ m=1,2,3\Big\}.
+\]
+On $\cA$, by \eqref{eq:J} and after adjusting constants for operator norms,
+\begin{equation}\label{eq:xi}
+\|\nabla\xi\|_\infty\le CJ2^{-J(\alpha+1/2)},\qquad\|D^2\xi\|_\infty\le CJ2^{-J(\alpha-1/2)},\qquad\|D^3\xi\|_\infty\le CJ2^{-J(\alpha-3/2)} .
+\end{equation}
+
+\begin{definition}[Estimator]\label{def:est}
+Let $\varepsilon_0:=1/(8d)$, and define the observable event $\cB:=\{\|\hat V-x/d\|_{C^1(D)}\le\varepsilon_0\}$. On $\cB$ set $\hat f:=T^{-1}_{\hat V}\one$ (Definition~\ref{def:T}); off $\cB$ set $\hat f:=\one$. Let $\tilde f:=\min(\max(\hat f,1-r),1+r)$.
+\end{definition}
+
+Since $\|f-1\|_\infty\le r$, clipping can only decrease $|\tilde f-f|$ pointwise. The estimator uses only $Y$, $n$, $\alpha$, $r$ and the fixed kernels. The event $\cA$ itself is not observable: $\xi$ does not depend on $f$, but $\xi=K_JY-K_Ju$ cannot be computed from the data because $u$ is unknown. This is why the estimator is defined on $\cB$; Lemma~\ref{lem:fields} shows $\cA\subset\cB$.
+
+\subsection{The smoothed fields}
+
+\begin{lemma}\label{lem:LP}
+Let $g\in C^s(\R^d)$, $s>0$, and let $m\ge1$ be an integer. Then $\|D^m(k_J*g)\|_\infty$ is at most $C2^{J(m-s)}\|g\|_{C^s}$ if $m>s$, at most $C(J+1)\|g\|_{C^s}$ if $m=s$, and at most $C\|g\|_{C^s}$ if $m<s$.
+\end{lemma}
+
+\begin{proof}
+By (LP), $D^m(k_J*g)=\sum_j(D^mk_J)*\Delta_jg$, and the series converges uniformly because each term is $\le\|D^mk_J\|_1\|\Delta_jg\|_\infty\le C2^{Jm}2^{-js}\|g\|_{C^s}$. For $j\le J$, write the term as $k_J*D^m\Delta_jg$; by Bernstein it is $\le C2^{j(m-s)}\|g\|_{C^s}$. For $j>J$, the first bound gives $C2^{Jm-js}\|g\|_{C^s}$, and summing over $j>J$ gives $C2^{J(m-s)}\|g\|_{C^s}$. Summing the bound $C2^{j(m-s)}$ over $j\le J$ gives the three cases.
+\end{proof}
+
+\begin{lemma}\label{lem:fields}
+Let $\varepsilon\le\varepsilon_0$. There are $r_0$ and $J_0$ such that for $r\le r_0$ and $J\ge J_0$:
+\begin{enumerate}[(1)]
+\item $\|V_J-x/d\|_{C^1(D)}\le\varepsilon/2$;
+\item on $\cA$, $\|\hat V-x/d\|_{C^1(D)}\le\varepsilon$; in particular (with $\varepsilon=\varepsilon_0$) $\cA\subset\cB$;
+\item $\|D^mV_J\|_\infty\le CJ2^{J(m-\alpha)_+}$ for $m=2,3$, with no factor $J$ unless $\alpha=m$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Item (3) is Lemma~\ref{lem:LP} with $g=V^E$ and $s=\alpha$. For (1), on $D$ we have $V_J-x/d=(k_J*V^E-V^E)+\nabla(u-u_1)$. By (LP), $D^iV^E$ is $\beta_0$-H\"older for $i=0,1$, with $\beta_0=\min(\alpha-1,1/2)$. Hence $|D^i(k_J*V^E-V^E)|\le C\int|k_J(y)||y|^{\beta_0}dy\le C2^{-J\beta_0}$. By \eqref{eq:C4}, $\|\nabla(u-u_1)\|_{C^1}\le Cr$. Take $r_0$ and $J_0$ such that $C(2^{-J_0\beta_0}+r_0)\le\varepsilon/2$. For (2), on $\cA$, \eqref{eq:xi} gives $\|\nabla\xi\|_{C^1}\le CJ2^{-J(\alpha-1/2)}\le\varepsilon/2$ for $J\ge J_0$.
+\end{proof}
+
+\subsection{Geometry of the flow and the transport inverse}
+
+\paragraph{Setting.} Let $X$ be the restriction to $D$ of a $C^k$ field ($k\ge1$) on a neighbourhood of $D$, with
+\review{Double use of symbol 'D', comment or rename.}
+\[
+\|X-x/d\|_{C^1(D)}:=\max\big(\sup_D|X-x/d|,\ \sup_D\|DX-I/d\|\big)\le\varepsilon\le1/(8d).
+\]
+Put $\nu:=1/d-\varepsilon\ge7/(8d)$. Let $\Phi_t$ be the flow of $X$, let $\gamma(s)=\gamma_x(s)=\Phi_{-s}x$ be the backward ray from $x$, and let
+\[
+w(s,x):=\exp\Big(-\int_0^s\dv X(\Phi_{-\sigma}x)\,d\sigma\Big).
+\]
+
+\begin{lemma}\label{lem:geom}
+In this setting the following hold.
+\begin{enumerate}[(1)]
+\item $X$ has exactly one zero $x_X\in D$, and $|x_X|\le d\varepsilon$.
+\item With $\rho(y)=|y-x_X|$: $(y-x_X)\cdot X(y)\ge(1/d-\varepsilon)\rho^2$ and $|X(y)|\le(1/d+\varepsilon)\rho$ on $D$.
+\item For $x\in D$, $\Phi_{-s}x$ exists for all $s\ge0$ and stays in $D$. It lies in $\Dint$ for $s>0$, and $\Dint$ is invariant.
+\item $\varrho(s):=\rho(\gamma(s))$ satisfies $\varrho(0)e^{-(1/d+\varepsilon)s}\le\varrho(s)\le\varrho(0)e^{-(1/d-\varepsilon)s}$. If $\varrho(0)>0$, then $-(1/d+\varepsilon)\varrho\le\varrho'\le-\nu\varrho$.
+\item The propagator $P(s,\sigma)$ of $y'=-DX(\gamma)y$ satisfies $\|P(s,\sigma)\|\le e^{-\nu(s-\sigma)}$. In particular $\|D\Phi_{-s}\|\le e^{-\nu s}$.
+\item $1-d\varepsilon\le\dv X\le1+d\varepsilon$, so $e^{-(1+d\varepsilon)s}\le w\le e^{-(1-d\varepsilon)s}\le e^{-7s/8}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}\review{This proof is {\it very} dense and parts require some intermediate steps or references.}
+(1) The map $x\mapsto x-dX(x)=-d(X-x/d)$ sends $D$ into $B(0,d\varepsilon)\subset D$ and is a $d\varepsilon$-contraction on the convex set $D$. Its unique fixed point is the unique zero of $X$.
+(2) $X(y)=Q(y)(y-x_X)$ with $Q=\int_0^1DX(x_X+t(y-x_X))\,dt$ and $\|Q-I/d\|\le\varepsilon$; the segment lies in $D$ by convexity.
+(3) For $|z|=1$, $z\cdot X(z)\ge1/d-\varepsilon>0$, so $\frac{d}{ds}|\gamma|^2=-2\gamma\cdot X(\gamma)<0$ whenever $|\gamma|=1$. A first-exit-time argument gives invariance of $D$ and of $\Dint$, and shows that boundary points enter $\Dint$ immediately. Global existence holds because $D$ is compact.
+(4) $(\varrho^2)'=-2(\gamma-x_X)\cdot X(\gamma)$; apply (2) and Gronwall's inequality.
+(5) $v\cdot DX\,v\ge\nu|v|^2$ on $D$, so $(|y|^2)'\le-2\nu|y|^2$. Also $D\Phi_{-s}=P(s,0)$.
+(6) $\dv X=1+\operatorname{tr}(DX-I/d)$ and $|\operatorname{tr}A|\le d\|A\|$.
+\end{proof}
+
+\begin{definition}\label{def:T}
+For $g\in C^1(D)$ put $T_Xg:=\dv(gX)$. For $H\in C(D)$ put
+\[
+T_X^{-1}H(x):=\int_0^\infty H(\Phi_{-s}x)\,w(s,x)\,ds .
+\]
+By Lemma~\ref{lem:geom}(6) the integral converges absolutely and uniformly, and $T^{-1}_XH\in C(D)$.
+\end{definition}
+
+Since $w(s,\Phi_{-t}x)=w(s+t,x)/w(t,x)$, we have the semigroup identity
+\begin{equation}\label{eq:SG}
+w(t,x)\,T^{-1}_XH(\Phi_{-t}x)=\int_t^\infty H(\Phi_{-s}x)\,w(s,x)\,ds .
+\end{equation}
+
+\begin{lemma}\label{lem:T}
+In the setting of Lemma~\ref{lem:geom}:
+\begin{enumerate}[(a)]
+\item[\textup{(a)}] \textup{(Uniqueness.)} If $g\in C^1(D)$ and $\dv(gX)=H$ on $\Dint$ with $H\in C(D)$, then $g=T^{-1}_XH$.
+\item[\textup{(a$'$)}] \textup{(Right inverse.)} If $H\in C(D)$ and $g:=T^{-1}_XH\in C^1(D)$, then $\dv(gX)=H$ on $D$.
+\item[\textup{(b)}] $\|T^{-1}_XH\|_\infty\le\frac87\|H\|_\infty\le2\|H\|_\infty$.
+\item[\textup{(c)}] \textup{(Boundary layer.)} If $H=0$ on $\{|x|\le1-\delta\}$, then $\|T^{-1}_XH\|_\infty\le6d\delta\|H\|_\infty$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Fix $x\in D$. For $s>0$, $\gamma(s)\in\Dint$, and $\psi(s)=g(\gamma(s))w(s,x)$ satisfies
+$\psi'=-(X\cdot\nabla g+g\dv X)(\gamma)\,w=-H(\gamma)\,w$.
+Integrate over $[\delta,S]$, then let $\delta\to0$ (by continuity) and $S\to\infty$ (using $|\psi(S)|\le\|g\|_\infty e^{-7S/8}$). This gives $g(x)=\int_0^\infty H(\gamma(s))w(s,x)\,ds$.
+
+(a$'$) Fix $x\in\Dint$ and differentiate \eqref{eq:SG} at $t=0^+$. The right side gives $-H(x)$. Since $w(0,x)=1$ and $\partial_tw(0,x)=-\dv X(x)$, the left side gives $-\nabla g(x)\cdot X(x)-g(x)\dv X(x)$. Extend to $D$ by continuity.
+
+(b) Use $w\le e^{-7s/8}$.
+
+(c) The case $\delta>1/2$ follows from (b), since then $6d\delta>2$. Let $\delta\le1/2$ and $\phi=|\gamma|^2$. Where $|\gamma|\ge1/2$, $\gamma\cdot X(\gamma)\ge|\gamma|(|\gamma|/d-\varepsilon)\ge3/(16d)$, so $\phi'\le-3/(8d)$. Hence $\phi$ drops below $(1-\delta)^2$ within time $\le(1-(1-\delta)^2)\cdot8d/3\le6d\delta$, and by the same sign argument it never returns. Since $H(\gamma(s))=0$ afterwards and $w\le1$, the claim follows.
+\end{proof}
+
+\begin{lemma}[Flow derivatives, uniform in $s$]\label{lem:flowder}
+Let $M=D\Phi_{-s}$, $N=D^2\Phi_{-s}$ and $\ell=\log w$, all differentiated in $x$.
+\begin{enumerate}[(1)]
+\item If $X\in C^2$: $\|N(s)\|\le\|D^2X\|_\infty e^{-\nu s}/\nu$ and $|D_x\ell|\le\|D\dv X\|_\infty/\nu$.
+\item If $X\in C^3$: $\|D_x^2\ell\|\le\|D^2\dv X\|_\infty/(2\nu)+\|D\dv X\|_\infty\|D^2X\|_\infty/\nu^2$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+$N$ solves $N'=-DX(\gamma)N-D^2X(\gamma)[M\cdot,M\cdot]$ with $N(0)=0$. By Duhamel's formula and Lemma~\ref{lem:geom}(5),
+$\|N(s)\|\le\int_0^se^{-\nu(s-\sigma)}\|D^2X\|_\infty e^{-2\nu\sigma}d\sigma\le\|D^2X\|_\infty e^{-\nu s}/\nu$.
+Next, $D_x\ell[v]=-\int_0^sD\dv X(\gamma)[Mv]\,d\sigma$, and $\int_0^\infty e^{-\nu\sigma}d\sigma=1/\nu$. Finally,
+$D^2_x\ell[v,v']=-\int_0^s\big(D^2\dv X(\gamma)[Mv,Mv']+D\dv X(\gamma)[N[v,v']]\big)d\sigma$; bound this with the two previous estimates.
+\end{proof}
+
+\paragraph{Differentiation under the integral.} Let the integrand be $H(\Phi_{-s}x)w(s,x)$ or $w(s,x)$. By (ODE), and since the flow is defined on a neighbourhood of $D$, its $x$-derivatives up to the relevant order are jointly continuous on $[0,\infty)\times D$. By Lemma~\ref{lem:flowder} and the identities $D_xw=w\,D_x\ell$ and $D_x^2w=w(D_x^2\ell+D_x\ell\otimes D_x\ell)$, they are dominated by $Ke^{-7s/8}$. Truncating the integral at $S$, differentiating, and passing to the uniform limit gives the following.
+
+\begin{lemma}\label{lem:Treg}
+All constants below depend only on $d$, uniformly over $\|X-x/d\|_{C^1}\le\varepsilon\le1/(8d)$.
+\begin{enumerate}[(a)]
+\item[\textup{(d)}] If $X\in C^2$ and $H\in C^1(D)$, then $T^{-1}_XH\in C^1(D)$ and
+$\|\nabla T^{-1}_XH\|_\infty\le C_d(\|\nabla H\|_\infty+\|H\|_\infty\|D\dv X\|_\infty)$.
+\item[\textup{(e)}] If $X\in C^3$, then $T^{-1}_X\one\in C^2(D)$, $\|\nabla T^{-1}_X\one\|_\infty\le C_d\|D\dv X\|_\infty$, and
+$\|D^2T_X^{-1}\one\|_\infty\le C_d\big(\|D^2\dv X\|_\infty+\|D\dv X\|_\infty^2+\|D\dv X\|_\infty\|D^2X\|_\infty\big)$.
+\end{enumerate}
+\end{lemma}
+
+\subsection{The centring function and an exact decomposition}
+
+Fix $\varepsilon=\varepsilon_0$ in Lemma~\ref{lem:fields}, so that Lemmas~\ref{lem:geom}--\ref{lem:Treg} apply to $X=V_J$ (with $\varepsilon_0/2$), and on $\cA$ also to $X=\hat V$. Let
+\[
+\bar f:=T^{-1}_{V_J}\one .
+\]
+Using $\|D^m\dv V_J\|_\infty\le d\|D^{m+1}V_J\|_\infty$, Lemma~\ref{lem:fields}(3) and Lemma~\ref{lem:Treg}(e),
+\begin{equation}\label{eq:fbar}
+\|\bar f\|_\infty\le2,\qquad\|\nabla\bar f\|_\infty\le CJ2^{J(2-\alpha)_+},\qquad\|D^2\bar f\|_\infty\le CJ^22^{J(3-\alpha)_+} .
+\end{equation}
+The last bound uses $2(2-\alpha)_+\le(3-\alpha)_+$ for $\alpha\ge1$. Moreover $\bar f\in C^2(D)$, and $\dv(\bar fV_J)=1$ by Lemma~\ref{lem:T}(a$'$).
+
+\paragraph{Noise term.} Let $G_\xi:=\dv(\bar f\nabla\xi)=\bar f\Delta\xi+\nabla\bar f\cdot\nabla\xi\in C^1(D)$ and $Z:=T^{-1}_{V_J}G_\xi$. Since $V_J$ is deterministic, $Z$ is defined for every realisation. By Lemma~\ref{lem:Treg}(d), $Z\in C^1(D)$, and $T_{V_J}Z=G_\xi$ by Lemma~\ref{lem:T}(a$'$).
+
+\begin{proposition}\label{prop:star}
+On $\cA$ (so that $\hat V$ satisfies the hypotheses of Lemma~\ref{lem:geom} and $\hat f=T^{-1}_{\hat V}\one$),
+\begin{equation}\label{eq:star}
+\hat f-f=(\bar f-f)-Z+T^{-1}_{\hat V}\dv(Z\nabla\xi).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+$\hat V$ is $C^3$ on a neighbourhood of $D$, so $\hat f\in C^2$ by Lemma~\ref{lem:Treg}(e), and $T_{\hat V}\hat f=1$ by Lemma~\ref{lem:T}(a$'$). Hence
+$T_{\hat V}(\hat f-\bar f)=1-\dv(\bar fV_J)-\dv(\bar f\nabla\xi)=-G_\xi$.
+Also $T_{\hat V}Z=T_{V_J}Z+\dv(Z\nabla\xi)=G_\xi+\dv(Z\nabla\xi)$. Therefore $T_{\hat V}(\hat f-\bar f+Z)=\dv(Z\nabla\xi)$, which is continuous. Since $\hat f-\bar f+Z\in C^1$, Lemma~\ref{lem:T}(a) with $X=\hat V$ gives $\hat f-\bar f+Z=T^{-1}_{\hat V}\dv(Z\nabla\xi)$, which is \eqref{eq:star}.
+\end{proof}
+
+\subsection{\texorpdfstring{The bias: $\|\bar f-f\|_\infty\le CJ^22^{-J\alpha}$}{The bias}}
+
+\begin{proposition}\label{prop:bias}
+Uniformly over $f\in\Fc(\alpha,r)$, $\|\bar f-f\|_\infty\le CJ^22^{-J\alpha}$, with no factor $J^2$ when $\alpha\notin\mathbb N$.
+\end{proposition}
+
+\begin{proof}
+\emph{Reduction.} $f\in C^1$ (as $\alpha>1$), $u\in C^{\alpha+1}\subset C^2$ by \eqref{eq:C4}, $\dv(fV)=1$, and $V_J-V=\nabla e$ on $D$. So
+$T_{V_J}(\bar f-f)=1-\dv(fV_J)=-\dv(f\nabla e)$, and by Lemma~\ref{lem:T}(a), $\bar f-f=-T^{-1}_{V_J}\dv(f\nabla e)$.
+
+\emph{Commutator.} Let $g:=F-k_J*F$ and $R(x):=-\int k_J(-h)\Delta_hF(x)\Delta_hV^E(x)\,dh$. Then
+\[
+F\,(k_J*V^E)=k_J*(FV^E)+gV^E+R .
+\]
+Indeed, $F(x)(k_J*V^E)(x)-k_J*(FV^E)(x)=\int k_J(y)[F(x)-F(x-y)]V^E(x-y)\,dy$. Insert $F(x)-F(x-y)=-\Delta_{-y}F(x)$ and $V^E(x-y)=V^E(x)+\Delta_{-y}V^E(x)$, and use $\int k_J=1$; the first part gives $gV^E$ and the second, after $h=-y$, gives $R$. Let $\Gamma:=\dv(FV^E)-1$, which lies in $C^{\alpha-1}(\R^d)$ by the algebra property and vanishes on $D$. Since $\dv(k_J*(FV^E))=k_J*\Gamma+1$, on $D$
+\[
+\dv(f\nabla e)=\dv(fV_J)-1=k_J*\Gamma+\dv(gV)+\dv R .
+\]
+We treat the three terms in turn, using linearity of $T^{-1}_{V_J}$.
+
+\emph{(i) The term $\dv(gV)$.} Since $V=V_J-\nabla e$, we have $\dv(gV)=T_{V_J}g-\dv(g\nabla e)$. As $g\in C^1$, Lemma~\ref{lem:T}(a) gives $T^{-1}_{V_J}\dv(gV)=g-T^{-1}_{V_J}\dv(g\nabla e)$. By (C2) (applied to $F\in C^\alpha$ and $U\in C^{\alpha+1}$): $\|g\|_\infty\le C2^{-J\alpha}$, $\|\nabla g\|_\infty\le C2^{-J(\alpha-1)}$, $\|\nabla e\|_\infty\le C2^{-J\alpha}$ and $\|D^2e\|_\infty\le C2^{-J(\alpha-1)}$. By Lemma~\ref{lem:T}(b), the contribution is $\le C2^{-J\alpha}+C2^{-J(2\alpha-1)}$.
+
+\emph{(ii) The term $\dv R$.} We have
+$\partial R=-\int k_J(-h)\big[\Delta_h\partial F\,\Delta_hV^E+\Delta_hF\,\Delta_h\partial V^E\big]dh$.
+Each product has the form $\Delta_h\phi_1\,\Delta_h\phi_2$ with $\phi_i\in C^{s_i}$ and $(s_1,s_2)=(\alpha-1,\alpha)$ or $(\alpha,\alpha-1)$. By (C3), and using $|P_{\phi_i}|\le C|h|$ for $|h|\le1$, the product equals a polynomial in $h$ (with coefficients depending on $x$) whose monomials have degrees in $[2,s_1+s_2)=[2,2\alpha-1)$. The remainder is bounded by
+$C|h|^{\min(1+s_1,\,1+s_2,\,s_1+s_2)}\Lambda(h)^2=C|h|^\alpha\Lambda(h)^2$.
+When $s_i<1$, $P_{\phi_i}$ is empty. The polynomial terms integrate to $0$ against $k_J(-h)$, because $N_0\ge2\alpha+2$. Since $k_J$ is supported in $|h|\le C2^{-J}$, the substitution $h=2^{-J}y$ gives
+$\int|k_J(h)||h|^\alpha\Lambda(h)^2dh\le CJ^22^{-J\alpha}$.
+So $\|\dv R\|_\infty\le CJ^22^{-J\alpha}$, with no $J^2$ for non-integer $\alpha$ (then no logarithm appears in (C3)). By Lemma~\ref{lem:T}(b), the contribution is $\le CJ^22^{-J\alpha}$.
+
+\emph{(iii) The term $k_J*\Gamma$.} On $D$, $k_J*\Gamma=k_J*\Gamma-\Gamma$, so by (C2) with $s=\alpha-1$ and $m=0$ it is $O(2^{-J(\alpha-1)})$. By the support of $k_J$, it vanishes at points of $D$ at distance $>C2^{-J}$ from $\partial D$. By Lemma~\ref{lem:T}(c) with $\delta=C2^{-J}$, the contribution is $\le C2^{-J}2^{-J(\alpha-1)}=C2^{-J\alpha}$.
+
+Adding (i)--(iii) gives the claim.
+\end{proof}
+
+\subsection{\texorpdfstring{The variance: $\E\|Z\|^2_2\le Cn^{-1}2^{J(d+3)}\le C2^{-2J\alpha}$}{The variance}}
+
+\begin{proposition}\label{prop:var}
+$\E\|Z\|^2_{L^2(D)}\le Cn^{-1}2^{J(d+3)}\le C2^{-2J\alpha}$.
+\end{proposition}
+
+\begin{proof}
+\emph{Representation.} Let $\mathcal D_y:=\bar f(y)\Delta_y+\nabla\bar f(y)\cdot\nabla_y$. By (G), $G_\xi(y)=n^{-1/2}\W(\mathcal D_yk_J(y,\cdot))$, and since Bochner integrals commute with $\W$,
+\[
+Z(x)=n^{-1/2}\W(h_x),\qquad h_x=\int_0^\infty w(s,x)\,\mathcal D_yk_J(y,\cdot)\big|_{y=\gamma_x(s)}\,ds,
+\]
+where $\gamma_x$ is the backward ray of $V_J$. Hence $\E Z(x)^2=n^{-1}\|h_x\|_2^2$.
+\review{Define 'backward ray' mathematically, maybe 'characteristics' is the more appropriate term.}
+
+\emph{Kernel bound.} Since $(2-\alpha)_+<1$, \eqref{eq:fbar} gives $\|\nabla\bar f\|_\infty\le CJ2^{J(2-\alpha)_+}\le C2^J$. With (K1) and (K2), $|\mathcal D_yk_J(y,z)|\le C2^{J(d+2)}\one\{|y-z|\le\delta_J\}$, where $\delta_J:=C_02^{-J}$. Let $\mu_x:=\int_0^\infty w(s,x)\,\delta_{\gamma_x(s)}\,ds$, a measure on $D$ of mass $\le 8/7$. Then
+\[
+|h_x(z)|\le C2^{J(d+2)}\mu_x(B(z,\delta_J)),\qquad
+\|h_x\|_2^2\le C2^{2J(d+2)}\!\int\mu_x(B(z,\delta_J))^2dz\le C2^{2J(d+2)}\delta_J^d\!\int\mu_x(B(y,2\delta_J))\,\mu_x(dy).
+\]
+The last step is Fubini: $\int\mu(B(z,\delta))^2dz=\iint|B(y,\delta)\cap B(y',\delta)|\,\mu(dy)\mu(dy')$, and the intersection is empty unless $|y-y'|\le2\delta$.
+
+\emph{Ray measure.} Let $x_J$ be the zero of $V_J$, $\rho=|\cdot-x_J|$, and $\rho_x=\rho(x)>0$. Let $\varrho(s)=\rho(\gamma_x(s))$. By Lemma~\ref{lem:geom}(4),(6), $w(s,x)\le(\varrho(s)/\rho_x)^\beta$ with $\beta=d(1-d\varepsilon)/(1+d\varepsilon)\ge7d/9>1$. Moreover $\varrho$ decreases strictly from $\rho_x$ to $0$, with $|\varrho'|\ge\nu\varrho$. Changing variables $t=\varrho(s)$, for every $\varphi\ge0$,
+\begin{equation}\label{eq:M}
+\int\varphi\,d\mu_x\le\frac1\nu\int_0^{\rho_x}\varphi(\gamma_x\text{ at radius }t)\,(t/\rho_x)^\beta\,\frac{dt}{t}.
+\end{equation}
+\review{What do you mean exactly by '$\gamma_x\text{ at radius }t$', why is it unique?}
+
+\emph{Small-ball mass.} If $|\gamma_x(s)-y|\le2\delta_J$, then $|\varrho(s)-\rho(y)|\le2\delta_J$. Hence, by \eqref{eq:M}, $m(y):=\mu_x(B(y,2\delta_J))$ satisfies
+\[
+m(y)\le C\delta_J\rho(y)^{\beta-1}\rho_x^{-\beta}\ \text{ if }\rho(y)\ge4\delta_J,\qquad m(y)\le C\min(1,\delta_J/\rho_x)^\beta\ \text{ if }\rho(y)<4\delta_J .
+\]
+(In the first case $t\in[\rho(y)/2,3\rho(y)/2]$ ranges over an interval of length $4\delta_J$; in the second $t\le\min(6\delta_J,\rho_x)$.)
+
+\emph{Integration.} Apply \eqref{eq:M} once more, with $\varphi=m$. The part with $t\ge4\delta_J$ is
+$\le C\delta_J\rho_x^{-2\beta}\int_0^{\rho_x}t^{2\beta-2}dt\le C\delta_J/\rho_x$, since $2\beta-1>0$.
+The part with $t<4\delta_J$ is $\le C\min(1,\delta_J/\rho_x)^{2\beta}\le C\min(1,\delta_J/\rho_x)$. Trivially, $\int m\,d\mu_x\le\mu_x(D)^2\le4$. Hence $\int m\,d\mu_x\le C\min(1,\delta_J/\rho_x)$, and
+\[
+\|h_x\|_2^2\le C2^{J(d+4)}\min(1,2^{-J}/\rho_x)\le C2^{J(d+3)}|x-x_J|^{-1}.
+\]
+Since $\int_D|x-x_J|^{-1}dx\le C$ for $d\ge2$, Tonelli's theorem and \eqref{eq:J} give $\E\|Z\|_2^2\le Cn^{-1}2^{J(d+3)}\le C2^{-2J\alpha}$.
+\end{proof}
+
+\subsection{The remainder and the bad event}
+
+\begin{lemma}\label{lem:rem}
+On $\cA$, $\|T^{-1}_{\hat V}\dv(Z\nabla\xi)\|_\infty\le CJ^42^{-J(2\alpha-1)}$. This is $o(2^{-J\alpha})$ because $\alpha>1$.
+\end{lemma}
+
+\begin{proof}
+We use \eqref{eq:xi}, \eqref{eq:fbar}, $(2-\alpha)_+<1$ and $(3-\alpha)_+\le2$. First,
+\[
+\|G_\xi\|_\infty\le\|\bar f\|_\infty\|\Delta\xi\|_\infty+\|\nabla\bar f\|_\infty\|\nabla\xi\|_\infty\le CJ2^{-J(\alpha-1/2)}+CJ^22^{J(2-\alpha)_+-J(\alpha+1/2)}\le CJ^22^{-J(\alpha-1/2)} .
+\]
+Next, $\|\nabla G_\xi\|_\infty\le C(\|D^3\xi\|_\infty+\|\nabla\bar f\|_\infty\|D^2\xi\|_\infty+\|D^2\bar f\|_\infty\|\nabla\xi\|_\infty)\le CJ^32^{-J(\alpha-3/2)}$. Here each cross term has exponent $\le-(\alpha-3/2)$ because $\alpha\ge1$.
+
+By Lemma~\ref{lem:T}(b) and Lemma~\ref{lem:Treg}(d), with $\|D\dv V_J\|_\infty\le d\|D^2V_J\|_\infty\le CJ2^{J(2-\alpha)_+}$ from Lemma~\ref{lem:fields}(3), we get
+$\|Z\|_\infty\le CJ^22^{-J(\alpha-1/2)}$ and
+$\|\nabla Z\|_\infty\le C(\|\nabla G_\xi\|_\infty+\|G_\xi\|_\infty J2^{J(2-\alpha)_+})\le CJ^32^{-J(\alpha-3/2)}$.
+Hence
+\[
+\|\dv(Z\nabla\xi)\|_\infty\le\|\nabla Z\|_\infty\|\nabla\xi\|_\infty+\|Z\|_\infty\|\Delta\xi\|_\infty\le CJ^42^{-J(2\alpha-1)}+CJ^32^{-J(2\alpha-1)}\le CJ^42^{-J(2\alpha-1)} .
+\]
+Lemma~\ref{lem:T}(b) for $X=\hat V$ concludes the proof.
+\end{proof}
+
+\begin{lemma}\label{lem:bad}
+$P(\cA^c)\le Ce^{-cJ^2}$, uniformly in $f$.
+\end{lemma}
+
+\begin{proof}
+Each component $\partial^\iota\xi(x)=n^{-1/2}\W(\partial^\iota_xk_J(x,\cdot))$, $|\iota|=m$, is centred Gaussian. By (K3) its standard deviation is $\le C\bar\sigma_m$, where $\bar\sigma_m:=n^{-1/2}2^{J(d/2+m)}$, and its canonical metric is $\le C\bar\sigma_m2^J|x-x'|$. The covering numbers of $D$ in this metric are therefore $\le(C\bar\sigma_m2^J/\eta)^d$, and Dudley's bound gives $\E\sup_D|\partial^\iota\xi|\le C\bar\sigma_m\sqrt J\le J\bar\sigma_m/2$ for large $J$. The Borell--TIS inequality at deviation $J\bar\sigma_m/2$ gives $P(\sup_D|\partial^\iota\xi|>J\bar\sigma_m)\le2e^{-cJ^2}$. A union bound over the finitely many $\iota$ with $1\le|\iota|\le3$ concludes the proof.
+\end{proof}
+
+\subsection{Assembly}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}(ii)]
+Let $r\le r_0$ (the minimum of the values required in Lemmas~\ref{lem:C4} and~\ref{lem:fields}) and $J\ge J_0$. On $\cA$ we have $\cA\subset\cB$, so \eqref{eq:star} applies. Clipping only decreases $|\tilde f-f|$, so Proposition~\ref{prop:bias} and Lemma~\ref{lem:rem} give
+\[
+\|\tilde f-f\|_2^2\le3|D|\big(CJ^22^{-J\alpha}\big)^2+3\|Z\|_2^2+3|D|\big(CJ^42^{-J(2\alpha-1)}\big)^2 .
+\]
+Off $\cA$, $|\tilde f-f|\le2r$ pointwise, so $\|\tilde f-f\|_2^2\le4r^2|D|$. Taking expectations, using Proposition~\ref{prop:var}, Lemma~\ref{lem:bad} and \eqref{eq:J},
+\[
+\E_f\|\tilde f-f\|_2^2\le CJ^42^{-2J\alpha}+C2^{-2J\alpha}+CJ^82^{-2J(2\alpha-1)}+Ce^{-cJ^2}\le CJ^42^{-2J\alpha}\le C(\log n)^4\rate,
+\]
+uniformly over $\Fc(\alpha,r)$. The finitely many $n$ with $J<J_0$ are covered by the trivial bound $4r^2|D|$. For non-integer $\alpha$, Lemma~\ref{lem:LP} and (C3) produce no logarithm. Then the bias is $\le C2^{-J\alpha}$, and the remaining powers of $J$ multiply terms of strictly smaller order. So the bound is $C\rate$.
+\end{proof}
+
+Theorem~\ref{thm:main} follows from Sections~\ref{sec:lower} and~\ref{sec:upper}.
+
+\begin{thebibliography}{99}
+
+\bibitem{Ass83} P.~Assouad, Deux remarques sur l'estimation, \emph{C. R. Acad. Sci. Paris S\'er. I Math.} \textbf{296} (1983), 1021--1024.
+
+\bibitem{Bor75} C.~Borell, The Brunn--Minkowski inequality in Gauss space, \emph{Invent. Math.} \textbf{30} (1975), 207--216.
+
+\bibitem{Dud67} R.~M.~Dudley, The sizes of compact subsets of Hilbert space and continuity of Gaussian processes, \emph{J. Funct. Anal.} \textbf{1} (1967), 290--330.
+
+\bibitem{Gag59} E.~Gagliardo, Ulteriori propriet\`a di alcune classi di funzioni in pi\`u variabili, \emph{Ricerche Mat.} \textbf{8} (1959), 24--51.
+
+\bibitem{GT} D.~Gilbarg and N.~S.~Trudinger, \emph{Elliptic Partial Differential Equations of Second Order}, 2nd ed., Springer, Berlin, 1983.
+
+\bibitem{GN16} E.~Gin\'e and R.~Nickl, \emph{Mathematical Foundations of Infinite-Dimensional Statistical Models}, Cambridge University Press, 2016.
+
+\bibitem{Har64} P.~Hartman, \emph{Ordinary Differential Equations}, Wiley, New York, 1964.
+
+\bibitem{Nir59} L.~Nirenberg, On elliptic partial differential equations, \emph{Ann. Scuola Norm. Sup. Pisa (3)} \textbf{13} (1959), 115--162.
+
+\bibitem{See64} R.~T.~Seeley, Extension of $C^\infty$ functions defined in a half space, \emph{Proc. Amer. Math. Soc.} \textbf{15} (1964), 625--626.
+
+\bibitem{Tri83} H.~Triebel, \emph{Theory of Function Spaces}, Birkh\"auser, Basel, 1983.
+
+\bibitem{TIS76} B.~S.~Tsirelson, I.~A.~Ibragimov and V.~N.~Sudakov, Norms of Gaussian sample functions, in: \emph{Proceedings of the Third Japan--USSR Symposium on Probability Theory}, Lecture Notes in Math. \textbf{550}, Springer, 1976, 20--41.
+
+\bibitem{Tsy09} A.~B.~Tsybakov, \emph{Introduction to Nonparametric Estimation}, Springer, New York, 2009.
+
+\end{thebibliography}
+
+\end{document}

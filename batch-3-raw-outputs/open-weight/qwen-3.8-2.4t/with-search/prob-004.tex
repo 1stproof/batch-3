@@ -1,0 +1,249 @@
+
+
+```latex
+% Sources used:
+% [mathoverflow.com](https://mathoverflow.net/questions/154302/local-holomorphic-equations-for-symplectic-divisors)
+% [numdam.org](https://www.numdam.org/item/10.1016/j.crma.2018.02.009.pdf)
+% [ar5iv.labs.arxiv.org](https://ar5iv.labs.arxiv.org/html/1710.00224)
+% [ar5iv.labs.arxiv.org](https://ar5iv.labs.arxiv.org/html/2112.13125)
+% [par.nsf.gov](https://par.nsf.gov/servlets/purl/10430629)
+
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Local holomorphic coordinates for symplectic simple normal crossings divisors}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove that if \(D\) is a symplectic simple normal crossings divisor in a closed symplectic manifold \((M,\omega)\), then, after replacing \(\omega\) by a cohomologous symplectic form joined to \(\omega\) by a path along which \(D\) remains symplectic simple normal crossings, there exists a tame almost complex structure \(J\) for which \(D\) is locally cut out by \(J\)-holomorphic coordinate functions.  The proof combines the regularization theorem for simple normal crossings symplectic divisors with the local holomorphic-line-bundle model supplied by a compatible almost complex structure.
+\end{abstract}
+
+\section{Statement of the result}
+
+Throughout, a \emph{smooth complex coordinate chart} on a smooth \(2n\)-manifold is a diffeomorphism
+\[
+\phi:U\longrightarrow \Omega\subset \mathbb C^n
+\]
+onto an open subset; its coordinate functions are denoted \(z_1,\dots,z_n\).  For an almost complex structure \(J\), a smooth function \(f:U\to \mathbb C\) is called \emph{\(J\)-holomorphic} if
+\[
+df\circ J=i\,df,
+\]
+equivalently \(\bar\partial_J f=0\).
+
+\begin{theorem}\label{thm:main}
+Let \((M,\omega)\) be a closed symplectic manifold and let
+\[
+D=\bigcup_{\alpha\in S}D_\alpha
+\]
+be a symplectic simple normal crossings divisor.  Then there exist
+\begin{itemize}
+\item a smooth path \((\omega_t)_{t\in[0,1]}\) of symplectic forms on \(M\) such that
+\[
+\omega_0=\omega,\qquad [\omega_t]=[\omega]\in H^2_{\mathrm{dR}}(M;\mathbb R),
+\]
+and \(D\) is a symplectic simple normal crossings divisor with respect to every \(\omega_t\);
+\item an \(\omega_1\)-tame almost complex structure \(J\) on \(M\),
+\end{itemize}
+such that for every point \(p\in M\) there is a smooth complex coordinate chart
+\[
+(z_1,\dots,z_n):U\longrightarrow \Omega\subset \mathbb C^n
+\]
+centered at \(p\) and an integer \(0\le r\le n\) with the following properties:
+\begin{enumerate}
+\item the coordinate functions \(z_1,\dots,z_r\) are \(J\)-holomorphic on \(U\);
+\item after possibly shrinking \(U\),
+\[
+D\cap U=\{z_1\cdots z_r=0\}.
+\]
+\end{enumerate}
+If \(p\notin D\), one takes \(r=0\) and \(U\cap D=\varnothing\).  If \(p\) lies in exactly the components \(D_{\alpha_1},\dots,D_{\alpha_r}\), then after relabeling one has
+\[
+D_{\alpha_j}\cap U=\{z_j=0\},\qquad j=1,\dots,r.
+\]
+\end{theorem}
+
+The proof is a direct application of the regularization theory for simple normal crossings symplectic divisors.  We recall the needed facts in Section~\ref{sec:regularization}, prove the local coordinate consequence in Section~\ref{sec:local}, and then finish the proof in Section~\ref{sec:proof}.
+
+\section{Regularization of symplectic SNC divisors}\label{sec:regularization}
+
+We first fix terminology.  Let
+\[
+D=\bigcup_{\alpha\in S}D_\alpha
+\]
+be a finite union of closed codimension-\(2\) submanifolds of \(M\).  We say that \(D\) is a \emph{symplectic simple normal crossings divisor} for a symplectic form \(\eta\) if:
+\begin{itemize}
+\item each \(D_\alpha\) is a symplectic submanifold of \((M,\eta)\);
+\item for every subset \(I\subset S\), the intersection
+\[
+D_I:=\bigcap_{\alpha\in I}D_\alpha
+\]
+is either empty or a symplectic submanifold of real codimension \(2|I|\);
+\item the components meet transversely, so that near any point of \(D_I\) the divisor is a transverse union of smooth symplectic hypersurfaces.
+\end{itemize}
+We write \(\operatorname{Symp}^+(M,D)\) for the space of symplectic forms on \(M\) for which \(D\) is a symplectic simple normal crossings divisor.  The cited literature often uses the abbreviation SC divisor; this is the same notion as SNC divisor in the present context.
+
+The fundamental input is the following regularization theorem.
+
+\begin{theorem}[Regularization theorem]\label{thm:regularization}
+Let \((M,\omega)\) be a closed symplectic manifold and let \(D\subset M\) be a symplectic simple normal crossings divisor.  Then there exist a path
+\[
+\omega_t\in \operatorname{Symp}^+(M,D),\qquad t\in[0,1],
+\]
+with
+\[
+\omega_0=\omega,\qquad [\omega_t]=[\omega]\in H^2_{\mathrm{dR}}(M;\mathbb R),
+\]
+and an \(\omega_1\)-regularization \(\mathcal R\) of \(D\).  Moreover, for every such regularization \(\mathcal R\), the space of \(\mathcal R\)-compatible \(\omega_1\)-tame almost complex structures is nonempty.  In the notation of the literature, the space
+\[
+\operatorname{AK}(M,D)
+\]
+of triples \((\eta,\mathcal R,J)\), where \(\eta\in\operatorname{Symp}^+(M,D)\), \(\mathcal R\) is an \(\eta\)-regularization of \(D\), and \(J\) is an \(\eta\)-tame \(\mathcal R\)-compatible almost complex structure, is nonempty over the endpoint \(\eta=\omega_1\).
+\end{theorem}
+
+\begin{proof}[References]
+This is Theorem~7 in Tehrani et al., \emph{Singularities and semistable degenerations for symplectic topology}, C.~R.~Acad.~Sci.~Paris Ser.~I 356 (2018), 420--432; see \href{https://www.numdam.org/item/10.1016/j.crma.2018.02.009.pdf}{numdam.org}.  The full definition of regularization and the construction of compatible almost complex structures are developed in \href{https://ar5iv.labs.arxiv.org/html/2112.13125}{ar5iv.labs.arxiv.org}, arXiv:2112.13125, and in \href{https://ar5iv.labs.arxiv.org/html/1710.00224}{ar5iv.labs.arxiv.org}, arXiv:1710.00224.  In particular, the projection
+\[
+\operatorname{AK}(M,D)\longrightarrow \operatorname{Aux}(M,D)
+\]
+to the space of auxiliary data \((\eta,\mathcal R)\) is a weak homotopy equivalence; hence once an \(\omega_1\)-regularization \(\mathcal R\) exists, there is an \(\omega_1\)-tame \(\mathcal R\)-compatible almost complex structure \(J\).
+\end{proof}
+
+\begin{remark}
+The compatible almost complex structures produced in Theorem~\ref{thm:regularization} are often taken to be \(\omega_1\)-compatible, which is stronger than \(\omega_1\)-tame.  Since compatibility implies tameness, this is more than sufficient for Theorem~\ref{thm:main}.
+\end{remark}
+
+\section{Local holomorphic model for a regularized divisor}\label{sec:local}
+
+We now record the local consequence of an \(\omega\)-regularization and a compatible almost complex structure.  This is the precise point at which the regularization machinery produces actual \(J\)-holomorphic functions.
+
+\begin{proposition}\label{prop:localmodel}
+Let \(\eta\) be a symplectic form on \(M\) for which \(D=\bigcup_{\alpha\in S}D_\alpha\) is a symplectic simple normal crossings divisor.  Suppose \(\mathcal R\) is an \(\eta\)-regularization of \(D\), and \(J\) is an \(\eta\)-tame \(\mathcal R\)-compatible almost complex structure.  Then for every \(p\in M\) there is a smooth complex coordinate chart \((z_1,\dots,z_n)\) near \(p\) satisfying the conclusions of Theorem~\ref{thm:main}, with \(\eta\) in place of \(\omega_1\).
+\end{proposition}
+
+\begin{proof}
+If \(p\notin D\), choose any smooth complex coordinate chart around \(p\) and take \(r=0\).  Hence assume \(p\in D_I\), where
+\[
+I=\{\alpha_1,\dots,\alpha_r\}\subset S
+\]
+is the set of components containing \(p\).  By shrinking neighborhoods, we may assume no other component of \(D\) meets the neighborhood.
+
+By the definition of an \(\eta\)-regularization, see \href{https://ar5iv.labs.arxiv.org/html/2112.13125}{ar5iv.labs.arxiv.org}, arXiv:2112.13125, the regularization \(\mathcal R\) determines, for each component \(D_\alpha\), a complex line bundle
+\[
+\mathcal O_{\mathcal R} (D_\alpha)\longrightarrow M
+\]
+and a smooth section
+\[
+s_\alpha\in \Gamma\bigl(M,\mathcal O_{\mathcal R}(D_\alpha)\bigr)
+\]
+whose zero locus is exactly \(D_\alpha\), and whose zero is transverse.  The compatibility of \(J\) with \(\mathcal R\) endows these line bundles with \(J\)-holomorphic structures and makes the sections \(s_\alpha\) \(J\)-holomorphic.  Equivalently, in local \(J\)-holomorphic trivializations of \(\mathcal O_{\mathcal R}(D_\alpha)\), the coefficient functions of \(s_\alpha\) are \(J\)-holomorphic functions.  This is one of the standard formulations of an \(\mathcal R\)-compatible almost complex structure; see again arXiv:2112.13125, \S2, and arXiv:1710.00224, \S3.
+
+Choose a neighborhood \(U\) of \(p\) small enough that for every \(\alpha\in I\) there exists a nowhere-vanishing local \(J\)-holomorphic frame
+\[
+e_\alpha\in \Gamma\bigl(U,\mathcal O_{\mathcal R}(D_\alpha)\bigr).
+\]
+Writing
+\[
+s_\alpha=z_\alpha e_\alpha
+\]
+defines smooth complex-valued functions
+\[
+z_\alpha:U\longrightarrow \mathbb C.
+\]
+Since both \(s_\alpha\) and \(e_\alpha\) are \(J\)-holomorphic, the functions \(z_\alpha\) are \(J\)-holomorphic.  Indeed, in a holomorphic frame the Cauchy--Riemann operator on the line bundle is the ordinary \(\bar\partial_J\) on functions, so
+\[
+0=\bar\partial_J s_\alpha=(\bar\partial_J z_\alpha)e_\alpha,
+\]
+and therefore \(\bar\partial_J z_\alpha=0\).
+
+Because the section \(s_\alpha\) vanishes transversely along \(D_\alpha\), the differentials \(dz_\alpha\) are nonzero along \(D_\alpha\).  Since \(D\) is simple normal crossings, at a point of \(D_I\) the differentials
+\[
+dz_{\alpha_1},\dots,dz_{\alpha_r}
+\]
+are linearly independent over \(\mathbb C\), and their common kernel is \(T D_I\).  Relabeling, we write these functions as
+\[
+z_1,\dots,z_r.
+\]
+By construction,
+\[
+D_{\alpha_j}\cap U=\{z_j=0\},\qquad j=1,\dots,r.
+\]
+Thus
+\[
+D\cap U=\bigcup_{j=1}^r \{z_j=0\}=\{z_1\cdots z_r=0\}.
+\]
+
+It remains to complete \(z_1,\dots,z_r\) to a smooth complex coordinate system.  The regularization \(\mathcal R\) supplies a tubular neighborhood projection
+\[
+\pi_I:U\longrightarrow D_I
+\]
+near \(p\).  Choose arbitrary smooth complex coordinates
+\[
+w_1,\dots,w_{n-r}
+\]
+on the smooth manifold \(D_I\) near \(p\).  Pull them back to \(U\) by \(\pi_I\), and define
+\[
+\Phi:U\longrightarrow \mathbb C^n,\qquad
+\Phi(q)=\bigl(z_1(q),\dots,z_r(q),\, w_1(\pi_I(q)),\dots,w_{n-r}(\pi_I(q))\bigr).
+\]
+At \(p\), the differential of \(\Phi\) is an isomorphism: the \(dz_j\) span the complex conormal directions to \(D_I\), while the \(dw_k\circ d\pi_I\) span the cotangent space of \(D_I\).  Hence, after shrinking \(U\), the inverse function theorem implies that \(\Phi\) is a diffeomorphism onto an open subset of \(\mathbb C^n\).  Thus \((z_1,\dots,z_r,w_1\circ\pi_I,\dots,w_{n-r}\circ\pi_I)\) is a smooth complex coordinate chart.  The first \(r\) coordinate functions are \(J\)-holomorphic, and the divisor is given by \(z_1\cdots z_r=0\).
+\end{proof}
+
+\begin{remark}
+The almost complex structure \(J\) produced by the regularization is not required to be integrable on all of \(M\).  The local statement only asserts that the defining functions of the divisor are \(J\)-holomorphic.  In particular, the remaining coordinates along the strata need not be \(J\)-holomorphic.
+\end{remark}
+
+\section{Proof of Theorem~\ref{thm:main}}\label{sec:proof}
+
+By Theorem~\ref{thm:regularization}, there exist a path
+\[
+\omega_t\in\operatorname{Symp}^+(M,D),\qquad t\in[0,1],
+\]
+with \(\omega_0=\omega\), \([\omega_t]=[\omega]\), and an \(\omega_1\)-regularization \(\mathcal R\) of \(D\).  Again by Theorem~\ref{thm:regularization}, choose an \(\omega_1\)-tame almost complex structure \(J\) compatible with \(\mathcal R\).
+
+Applying Proposition~\ref{prop:localmodel} to the symplectic manifold \((M,\omega_1)\), the divisor \(D\), the regularization \(\mathcal R\), and the compatible almost complex structure \(J\), we obtain around every point \(p\in M\) a smooth complex coordinate chart
+\[
+(z_1,\dots,z_n)
+\]
+and an integer \(0\le r\le n\) such that \(z_1,\dots,z_r\) are \(J\)-holomorphic and
+\[
+D\cap U=\{z_1\cdots z_r=0\}.
+\]
+This is exactly the desired conclusion.  The path \(\omega_t\) is the permitted cohomologically trivial deformation of the original symplectic form.  Therefore Theorem~\ref{thm:main} is proved.
+\qed
+
+\begin{thebibliography}{9}
+
+\bibitem{CRAS}
+M.~F.~Tehrani et al., \emph{Singularities and semistable degenerations for symplectic topology}, C.~R.~Acad.~Sci.~Paris, Ser.~I 356 (2018), 420--432.
+\href{https://www.numdam.org/item/10.1016/j.crma.2018.02.009.pdf}{numdam.org}.
+
+\bibitem{structures}
+M.~F.~Tehrani et al., \emph{Normal crossings singularities for symplectic topology: structures}, arXiv:2112.13125.
+\href{https://ar5iv.labs.arxiv.org/html/2112.13125}{ar5iv.labs.arxiv.org}.
+
+\bibitem{compactification}
+M.~F.~Tehrani et al., \emph{Pseudoholomorphic curves relative to a normal crossings symplectic divisor: compactification}, arXiv:1710.00224.
+\href{https://ar5iv.labs.arxiv.org/html/1710.00224}{ar5iv.labs.arxiv.org}.
+
+\bibitem{MO}
+MathOverflow discussion, \emph{Local holomorphic equations for symplectic divisors}.
+\href{https://mathoverflow.net/questions/154302/local-holomorphic-equations-for-symplectic-divisors}{mathoverflow.com}.
+
+\end{thebibliography}
+
+\end{document}
+```

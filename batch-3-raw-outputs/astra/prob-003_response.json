@@ -1,0 +1,981 @@
+{
+  "id": "resp_0b0faa8638b119d1006abfbbfa47f487d189c504bdf39f5888",
+  "access_programs": null,
+  "created_at": 1790950394.0,
+  "error": null,
+  "incomplete_details": null,
+  "instructions": null,
+  "metadata": {},
+  "model": "gpt-6-astra",
+  "object": "response",
+  "output": [
+    {
+      "id": "rs_0b0faa8638b119d1006abfbbffb06c87d1815bad95b20ca582",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "ws_0b0faa8638b119d1006abfbc02566887d1ac944c0772f5ba31",
+      "action": {
+        "type": "search",
+        "queries": [
+          "skein algebra punctured bigon quantum double SL n Borel",
+          "\"skein\" \"Drinfeld–Tanisaki\"",
+          "\"BigonPGens\""
+        ],
+        "query": "skein algebra punctured bigon quantum double SL n Borel",
+        "sources": null
+      },
+      "status": "completed",
+      "type": "web_search_call"
+    },
+    {
+      "id": "ws_0b0faa8638b119d1006abfbc0d1a3487d1847ff22323c38f1d",
+      "action": {
+        "type": "search",
+        "queries": [
+          "\"SL(n)\" \"skein\" \"double\" \"Borel\"",
+          "\"skein\" \"Tanisaki\"",
+          "\"skein\" \"punctured bigon\" \"n\" \"reduced\""
+        ],
+        "query": "\"SL(n)\" \"skein\" \"double\" \"Borel\"",
+        "sources": null
+      },
+      "status": "completed",
+      "type": "web_search_call"
+    },
+    {
+      "id": "ws_0b0faa8638b119d1006abfbc11ca0887d1afe314cfcbd4ee5b",
+      "action": {
+        "type": "search",
+        "queries": [
+          "\"Quantum traces for\" \"SL_n\"",
+          "\"skein\" \"generalized quantum double\"",
+          "\"skein\" \"Drinfeld double\" \"Yu\""
+        ],
+        "query": "\"Quantum traces for\" \"SL_n\"",
+        "sources": null
+      },
+      "status": "completed",
+      "type": "web_search_call"
+    },
+    {
+      "id": "ws_0b0faa8638b119d1006abfbc1731c887d1aa6431b6d3231bc1",
+      "action": {
+        "pattern": "double",
+        "type": "find_in_page",
+        "url": "https://arxiv.org/pdf/2303.08082"
+      },
+      "status": "completed",
+      "type": "web_search_call"
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbc1c139087d1b0294cf798b89a2a",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "ws_0b0faa8638b119d1006abfbc1ce52487d1a5299acdcc0cc9e0",
+      "action": {
+        "type": "search",
+        "queries": [
+          "\"Le\" \"Sikora\" \"quantum\" \"double\"",
+          "\"Lê\" \"Sikora\" \"Borel\"",
+          "\"skein\" \"Schmüdgen\" \"Borel\"",
+          "\"skein\" \"Tanisaki\" \"pairing\""
+        ],
+        "query": "\"Le\" \"Sikora\" \"quantum\" \"double\"",
+        "sources": null
+      },
+      "status": "completed",
+      "type": "web_search_call"
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbc23905487d1bf5aa03ce383495f",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "ws_0b0faa8638b119d1006abfbc27fd0887d1a5256d97db0772fe",
+      "action": {
+        "type": "open_page",
+        "url": "https://arxiv.org/pdf/2201.00045"
+      },
+      "status": "completed",
+      "type": "web_search_call"
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbc2a31f887d1947eb866b0fdb1fd",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "ws_0b0faa8638b119d1006abfbc2cf40887d183f926f54c22fb9d",
+      "action": {
+        "pattern": "Reduced",
+        "type": "find_in_page",
+        "url": "https://arxiv.org/pdf/2201.00045"
+      },
+      "status": "completed",
+      "type": "web_search_call"
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbc30110c87d181a2fb805a06f162",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "ws_0b0faa8638b119d1006abfbc3b399c87d19ecece4fd6770936",
+      "action": {
+        "type": "search",
+        "queries": [
+          "Klimyk Schmudgen \"L\" \"hat\" \"ext\" quantum groups",
+          "\"U_q^{ext}\" \"L\"",
+          "\"quantum groups and their representations\" \"pdf\"",
+          "\"FRT\" \"simply connected\" \"Borel\""
+        ],
+        "query": "Klimyk Schmudgen \"L\" \"hat\" \"ext\" quantum groups",
+        "sources": null
+      },
+      "status": "completed",
+      "type": "web_search_call"
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbc45457487d1848be96b61f48781",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "ws_0b0faa8638b119d1006abfbc46393087d18e40e7e0ba71976f",
+      "action": {
+        "type": "search",
+        "queries": [
+          "Klimyk Schmudgen filetype:pdf",
+          "\"U_q^{ext}\"",
+          "\"FRT presentation\" \"L\" \"sl\""
+        ],
+        "query": "Klimyk Schmudgen filetype:pdf",
+        "sources": null
+      },
+      "status": "completed",
+      "type": "web_search_call"
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbc4af46087d191ae2d734fd2f848",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "ws_0b0faa8638b119d1006abfbc4bc7f087d18953b6ee7486e6bd",
+      "action": {
+        "type": "search",
+        "queries": [
+          "\"Presentation by Borel subalgebras and Chevalley generators\"",
+          "\"Klimyk\" \"hat K\"",
+          "\"Klimyk\" \"L-operators\""
+        ],
+        "query": "\"Presentation by Borel subalgebras and Chevalley generators\"",
+        "sources": null
+      },
+      "status": "completed",
+      "type": "web_search_call"
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbc53ff8487d18b7f92072b63a30a",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "ws_0b0faa8638b119d1006abfbc55d67487d1a6c3426e04c3c138",
+      "action": {
+        "type": "open_page",
+        "url": "https://arxiv.org/pdf/math/0403346"
+      },
+      "status": "completed",
+      "type": "web_search_call"
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbc58784087d1b3ff539797b1961b",
+      "summary": [
+        {
+          "text": "**Analyzing orientation challenges**\n\nI'm noticing that for bad arcs in C, both orientations have the same indices, which complicates things. The right-oriented arcs b and c seem to differentiate based on whether they are in the lower versus upper sections. It looks like the lower one might be the one swapped around. I think I need to capture a picture screenshot to help visualize this situation better! That could really clarify things.",
+          "type": "summary_text"
+        }
+      ],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "ws_0b0faa8638b119d1006abfbc5b610c87d1a4f4eafb52df3d49",
+      "action": {
+        "type": "open_page",
+        "url": "https://arxiv.org/pdf/math/0403346"
+      },
+      "status": "completed",
+      "type": "web_search_call"
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbc5e6d5887d18c311de117298a99",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "ws_0b0faa8638b119d1006abfbc64873087d18468d2926b9b6a41",
+      "action": {
+        "type": "open_page",
+        "url": "https://arxiv.org/pdf/math/0403346"
+      },
+      "status": "completed",
+      "type": "web_search_call"
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbc6be6d487d1ba60722521a32116",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbc768e5c87d1b30f52cf8db21dd5",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbc82e7b487d18afb2621e0389256",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbc904ab487d1a9ba6a3a23bf6ed2",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbc9a720487d1ac16e07e70888b1a",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbca8ef4887d1a7cdb1eacd4a154a",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbcb3c69487d1bfadc5dc46f05bfb",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbcbeaec487d1bc600ad89a4f1f7b",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbcc918fc87d1bf5af1587e159c89",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbcd8c87887d1a1f2a5b771d6e6a6",
+      "summary": [
+        {
+          "text": "**Explaining mixed R formula**\n\nI'm thinking about how to prove the mixed R formula by writing the boundary exchange two different ways using the braid operator. I see that \\check R equals P times R_l, with components q. I can visualize setting b on top and c on the bottom from the diagram. There’s an n-web where the b path is above the puncture and the c path is below, and the heights are swapped at just one edge. It's a neat setup!",
+          "type": "summary_text"
+        }
+      ],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbce8508c87d195ad83d6948b44fe",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbcf61d1487d1af044b7355682e52",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbd0482d487d196f590a0835764d5",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbd11953487d1885ce0b313964371",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbd1c1a1087d1917527419bcb15c0",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbd27acec87d1bedc2010f5dc48f2",
+      "summary": [
+        {
+          "text": "**Clarifying mathematical citations**\n\nI need to cite Gavarini's iso handles effectively. It's important to ensure that the maps extend properly and that the theorem utilizes the E sign correctly. I should explicitly demonstrate how the change in q works. Since the Gavarini formula is already in place for b and c, this should help clarify my approach. Getting these details right is key!",
+          "type": "summary_text"
+        }
+      ],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbd321d5487d199176feb6fb24599",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbd3bb33087d190bd406d1b6130af",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbd46a9a087d18ede7c1a7958f5c5",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbd4fbdbc87d1bd9afd367b2d736a",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbd5c2a7487d1912f1c05be5fa448",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbd687f7887d1b16d4e02275596cb",
+      "summary": [
+        {
+          "text": "**Clarifying macro assumptions**\n\nI can't just assume what the user means when there's missing information. It's essential to provide a clear, precise answer for reliability. I’ll define terms like \\(\\mathfrak B^*\\) as the bigon with one puncture and \\(\\overline{\\mathscr S}_n\\) as the reduced stated algebra. I should also create a TikZ diagram to illustrate the disk boundaries, marking the puncture and arcs accurately. It's important to advise on label interchanges if the user reverses anything but with caution about how that affects the isomorphism.",
+          "type": "summary_text"
+        }
+      ],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbd76f4f887d1b52df1b505ff4a16",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbd85a57c87d1aceeb4a4397eb3d5",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbd94cb1487d1a1554b9a524ac1e3",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbda2e80087d1bc57586e7319946b",
+      "summary": [
+        {
+          "text": "**Clarifying LaTeX requirements**\n\nI’m considering how to prove the associativity for the multiplication formula without needing external assumptions. It’s defined already. I plan to state that \"by definition of the generalized double, multiplication gives a vector-space isomorphism.” We’ll cover the four main theorems, along with explicit forward and inverse proofs. \n\nOh, and we need compilable LaTeX code for everything, with standard citations formatted properly. It looks like I should keep external references separate after a source note.",
+          "type": "summary_text"
+        },
+        {
+          "text": "**Compiling LaTeX document format**\n\nI can output a raw LaTeX document without using code fences and include web citations formatted as comments. These will appear as `% Source: ... (website)` within the document comments, and the system's requirements state it must be compilable. I'm considering how to position these citations after supporting paragraphs. \n\nI'll make sure that when I deliver the complete document, the LaTeX code goes into a code block while keeping web sources outside it. The user’s emphasis on needing a compilable LaTeX document means I should focus solely on the code.",
+          "type": "summary_text"
+        },
+        {
+          "text": "**Formatting web citations in LaTeX**\n\nI'm focusing on using raw LaTeX while including web citations in comment lines. These won’t be placed inside code fences, so they'll show as links within the comments. I think copying the raw LaTeX directly might look a bit strange, but I’ll ensure that the citations are correctly formatted. I can cite five key statements right after the lemma statements or proofs in the comments. Since these are comments, I don't need to provide internet citations for every derived fact in the proofs—just the important ones.",
+          "type": "summary_text"
+        }
+      ],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbdb3988887d1a2e1dfdffb07fcb3",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbdbc3f8487d180e428a59f15877e",
+      "summary": [
+        {
+          "text": "**Evaluating saturation definition**\n\nI'm considering the saturation definition, where arcs b and c cut S into two ideal triangles. If I remove b from the top and c from the bottom of a punctured bigon, it leaves two monogons at the corners. I need to check the saturated system definition to ensure no arc is homotopic, and I wonder if it's likely a maximal cardinality of 2. These cuts must leave every boundary component intact, and I need to verify the proof regarding the arcs being saturated.",
+          "type": "summary_text"
+        }
+      ],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbdcd8a5887d1a12147af2e0b34ec",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbddb441087d1b36bcce7e66e7766",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbdebbfe087d18c7b2a30ae76ff7f",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbdfa463487d1afa237b4bcd5e1c8",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbe0879ec87d184d63a7cc94ae5e5",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbe1649d487d196c6b4bb472f4f66",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbe24027887d19ff47fdf0d2dfe90",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbe32a5b087d1af265923db539ebe",
+      "summary": [
+        {
+          "text": "**Rethinking diagonal matrices**\n\nI'm considering how to have the unchanged diagonal elements b_ii and c_kk for i≠k, which should lead me to D=q^-1/n BC from both sides, thus showing BC=CB. When i equals k, I have D=q^{1-1/n} BC for both parts. It seems like I'm making sense of how these diagonal matrices interact! There's a lot to unpack here, but I'm getting there step by step.",
+          "type": "summary_text"
+        }
+      ],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbe445a6887d19b4d44f1e2f3c591",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbe51893487d1b83af3a2bd066db0",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbe5f6f3487d1b609d47845400181",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbe6dfc3c87d19f9149cfd1113082",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbe7d0f2087d18e70429e1551f884",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbe897a5487d18dd6f74d42102175",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbe9536d887d19deeb0dc239544f4",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbea4211c87d194eab4fa7c386aa2",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbeb31f0487d1a7eaa408336d5fda",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbebffb7087d1a957edb070cdcb26",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbed0e54887d18864eac3908e05cf",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbedcb0dc87d18eb29e5d1dd9c0b3",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbee964bc87d1a469d610e7d08d14",
+      "summary": [
+        {
+          "text": "**Considering LaTeX formatting**\n\nI'm thinking about how to handle common tasks in LaTeX. Instead of creating fenced code blocks for each, I might just output one complete LaTeX document along with references in normal format but keep the sources separate. There’s a challenge in ensuring the output is compilable, but I believe we can use raw LaTeX setups for that. I need to make sure everything is accurate, especially with mathematical equations, and carefully consider how to integrate the citations effectively.",
+          "type": "summary_text"
+        }
+      ],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbef8b7bc87d1b6e0821840e7ce29",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbf00fa9087d1a02df2d21de8a82c",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbf103a1c87d1a111bdf91aaaf7ae",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbf1c4b8c87d1afab4641eb4f2f24",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbf2b3a5c87d18c0c12105540795f",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbf3b0de087d1957c434c9c63a92c",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbf48a36c87d1bcaf64fed259a1f9",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbf57f2dc87d1b965b99498fc0b1b",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbf652b5887d1880a9470c6f16423",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbf74b3b887d1b33d19c1db4652f6",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbf7f25d887d1a2f19cf880959aba",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbf8ca9e887d184e1b5c0f06679fe",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbf9b272c87d19edd21cb92d04c15",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbfaa6c3087d189a475cb54ee8bdd",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbfba7a8887d18e6cb0176d188798",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbfc943bc87d1a607f2ad2829490c",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbfd9e92087d1889bd99791b5c51f",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "rs_0b0faa8638b119d1006abfbfea6a1887d194bea0001bc70612",
+      "summary": [],
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "msg_0b0faa8638b119d1006abfbfee5fc887d1bfebc6eaf73ccc21",
+      "content": [
+        {
+          "annotations": [
+            {
+              "end_index": 7754,
+              "start_index": 7707,
+              "title": "",
+              "type": "url_citation",
+              "url": "https://arxiv.org/pdf/2201.00045"
+            },
+            {
+              "end_index": 9229,
+              "start_index": 9182,
+              "title": "",
+              "type": "url_citation",
+              "url": "https://arxiv.org/pdf/2201.00045"
+            },
+            {
+              "end_index": 10080,
+              "start_index": 10033,
+              "title": "",
+              "type": "url_citation",
+              "url": "https://arxiv.org/pdf/2201.00045"
+            },
+            {
+              "end_index": 10911,
+              "start_index": 10864,
+              "title": "",
+              "type": "url_citation",
+              "url": "https://arxiv.org/pdf/2303.08082"
+            },
+            {
+              "end_index": 14353,
+              "start_index": 14304,
+              "title": "https://arxiv.org/pdf/math/0403346",
+              "type": "url_citation",
+              "url": "https://arxiv.org/pdf/math/0403346"
+            }
+          ],
+          "text": "\\documentclass[11pt]{amsart}\n\n\\usepackage[T1]{fontenc}\n\\usepackage{amsmath,amssymb,amscd,mathtools,mathrsfs}\n\\usepackage{tikz}\n\\usepackage{hyperref}\n\\usepackage[margin=1.15in]{geometry}\n\n\\newtheorem{theorem}{Theorem}[section]\n\\newtheorem{lemma}[theorem]{Lemma}\n\\newtheorem{proposition}[theorem]{Proposition}\n\\newtheorem{corollary}[theorem]{Corollary}\n\\theoremstyle{remark}\n\\newtheorem{remark}[theorem]{Remark}\n\n\\newcommand{\\kk}{\\mathbb{K}}\n\\newcommand{\\UU}{\\mathcal U_q}\n\\newcommand{\\OO}{\\mathcal O_q(\\mathrm{SL}_n)}\n\\newcommand{\\Sk}{\\mathscr S_n}\n\\newcommand{\\rSk}{\\overline{\\mathscr S}_n}\n\\newcommand{\\Bstar}{\\mathfrak B^{*}}\n\\newcommand{\\bplus}{\\mathfrak b_+}\n\\newcommand{\\bminus}{\\mathfrak b_-}\n\\newcommand{\\slie}{\\mathfrak{sl}_n}\n\\newcommand{\\ind}{\\mathbf 1}\n\\DeclareMathOperator{\\Span}{span}\n\\DeclareMathOperator{\\id}{id}\n\n\\title{The reduced skein algebra of the once-punctured bigon\\\\\nand the simply-connected quantum double}\n\\date{}\n\n\\begin{document}\n\\maketitle\n\n\\begin{abstract}\nWe give an explicit identification of the reduced stated\n$\\mathrm{SL}_n$-skein algebra of the once-punctured bigon with the\ngeneralized quantum double of the two simply-connected quantum\nBorel algebras.  The identification is specified on every horizontal\nmatrix-coefficient arc.  Its injectivity follows from an ordered\ntwo-arc factorization of the skein algebra, rather than from a\ncomparison of defining relations alone.  The prescribed diagonal\nquotient then identifies the two Cartan tori and gives the\nsimply-connected quantized enveloping algebra.\n\\end{abstract}\n\n\\section{Coefficients and conventions}\n\nFix $n\\geq 2$.  We give the proof over\n\\[\n  \\kk=\\mathbb Q(v),\\qquad q=v^{2n},\\qquad\n  \\lambda=q-q^{-1}.\n\\]\nThus all fractional powers needed in the stated skein relations are\navailable, and $\\lambda$ is invertible.  The same argument applies\nat non-root-of-unity specializations over a common ground field\ncontaining the required fractional powers.  Throughout,\n$\\UU(\\slie)$ means the unrestricted, simply-connected quantum group,\nnot a small quantum group.\n\nWe use the stated skein conventions of L\\^e--Sikora\n\\cite{LS}: the product $xy$ places $x$ above $y$.\nThe reduced algebra is the quotient by the bad corner arcs, as in\n\\cite[Section~7.1]{LY}.\n\nThe surface $\\Bstar$ is a disk with its top and bottom boundary\npoints and one interior point removed.  We fix the following\nlabeling of the horizontal arcs.  Both arcs point to the right;\nthe first index is the left state and the second is the right state.\n\n\\begin{figure}[ht]\n\\centering\n\\begin{tikzpicture}[scale=1.05]\n  \\draw (0,0) circle (1.5);\n  \\filldraw[fill=white] (0,1.5) circle (.045);\n  \\filldraw[fill=white] (0,-1.5) circle (.045);\n  \\filldraw[fill=white] (0,0) circle (.045);\n  \\node[above right] at (.03,.03) {$p$};\n\n  \\draw (-1.375,.6)--(1.375,.6);\n  \\draw[->] (-.25,.6)--(.25,.6);\n  \\node[above] at (0,.69) {$b_{ij}$};\n  \\node[left] at (-1.375,.6) {$i$};\n  \\node[right] at (1.375,.6) {$j$};\n\n  \\draw (-1.375,-.6)--(1.375,-.6);\n  \\draw[->] (-.25,-.6)--(.25,-.6);\n  \\node[below] at (0,-.69) {$c_{kl}$};\n  \\node[left] at (-1.375,-.6) {$k$};\n  \\node[right] at (1.375,-.6) {$l$};\n\n  \\node[left] at (-1.5,0) {$e_{\\mathrm l}$};\n  \\node[right] at (1.5,0) {$e_{\\mathrm r}$};\n\\end{tikzpicture}\n\\caption{The labeling used in the formulas below.}\n\\label{fig:bigon}\n\\end{figure}\n\nAt the upper corner the bad right-directed arcs are $b_{ij}$ with\n$i<j$.  At the lower corner they are $c_{ij}$ with $i>j$.\nConsequently,\n\\begin{equation}\\label{eq:triangular}\n b_{ij}=0\\quad(i<j),\\qquad\n c_{ij}=0\\quad(i>j)\n \\qquad\\text{in }\\rSk(\\Bstar).\n\\end{equation}\nThe reversal of the inequality at the lower corner is due to the\n$180^\\circ$ rotation identifying that corner with the standard\nupper-corner picture.  If the two letters in a different drawing\nare interchanged, the formulas below are to be read with that\ninterchange.\n\nFor the quantum group, put\n\\[\n \\omega_{ai}=\\delta_{a,i}-\\delta_{a,i+1},\n \\qquad\n K_i=\\widehat K_i\\widehat K_{i+1}^{-1}.\n\\]\nThe simply-connected presentation uses\n\\[\n \\widehat K_a^{\\pm1}\\quad(1\\leq a\\leq n),\n \\qquad E_i,F_i\\quad(1\\leq i<n),\n\\]\nwith commuting toral generators and\n\\begin{align}\n &\\prod_{a=1}^n\\widehat K_a=1,\n \\label{eq:torus-product}\\\\\n &\\widehat K_a E_i\\widehat K_a^{-1}=q^{\\omega_{ai}}E_i,\n \\qquad\n \\widehat K_a F_i\\widehat K_a^{-1}=q^{-\\omega_{ai}}F_i,\n \\label{eq:torus-weights}\\\\\n &[E_i,F_j]=\\delta_{ij}\\frac{K_i-K_i^{-1}}{\\lambda}.\n \\label{eq:DJ-comm}\n\\end{align}\nFor $X=E$ and $X=F$ the remaining relations are\n\\begin{align}\n X_iX_j&=X_jX_i &&(|i-j|>1),\\label{eq:far}\\\\\n X_i^2X_j-(q+q^{-1})X_iX_jX_i+X_jX_i^2&=0\n &&(|i-j|=1).\\label{eq:Serre}\n\\end{align}\nOur coproduct convention is\n\\begin{equation}\\label{eq:coproduct}\n \\begin{split}\n \\Delta(\\widehat K_a)&=\\widehat K_a\\otimes\\widehat K_a,\\\\\n \\Delta(E_i)&=E_i\\otimes K_i+1\\otimes E_i,\\\\\n \\Delta(F_i)&=F_i\\otimes1+K_i^{-1}\\otimes F_i.\n \\end{split}\n\\end{equation}\nThese conventions specify the extended quantum group in the\nquestion; see \\cite{KS}.  The corresponding Borel presentations\nuse the toral relations and the respective $E$- or $F$-relations.\nThey also follow from the quantum-matrix realizations recalled in\nLemma~\\ref{lem:borel} below.\n\n\\section{The skein-theoretic matrix calculation}\n\nLet $V=\\kk^n$, let $e_{ab}$ denote its matrix units, and set\n\\begin{equation}\\label{eq:R}\n R=q^{-1/n}\\left(\n       \\sum_{a,b=1}^n q^{\\delta_{ab}}e_{aa}\\otimes e_{bb}\n       +\\lambda\\sum_{a>b}e_{ab}\\otimes e_{ba}\n     \\right).\n\\end{equation}\nThe braiding matrix is $PR$, where $P$ interchanges the tensor\nfactors.  This is the normalization used in\n\\cite[Equation~(9)]{LS}.\n\nFor a matrix $T=(t_{ij})$, write\n$T_1=T\\otimes I_n$ and $T_2=I_n\\otimes T$.\nThe standard quantum coordinate algebra $\\OO$ has presentation\n\\begin{equation}\\label{eq:FRT}\n RT_1T_2=T_2T_1R,\\qquad\n \\det\\nolimits_q(T)=1,\n\\end{equation}\nwhere\n\\[\n \\det\\nolimits_q(T)\n   =\\sum_{\\sigma\\in S_n}(-q)^{\\ell(\\sigma)}\n       t_{1,\\sigma(1)}\\cdots t_{n,\\sigma(n)}.\n\\]\nDefine its triangular quotients\n\\begin{equation}\\label{eq:triangular-algebras}\n \\mathcal T^-=\\OO/(t_{ij}:i<j),\n \\qquad\n \\mathcal T^+=\\OO/(t_{ij}:i>j).\n\\end{equation}\n\n\\begin{lemma}[Two-arc matrix calculation]\\label{lem:skein}\nLet $A=\\rSk(\\Bstar)$, and let\n$B=(b_{ij})$ and $C=(c_{ij})$ be as in\nFigure~\\ref{fig:bigon}.\n\\begin{enumerate}\n\\item\n$B$ and $C$ satisfy \\eqref{eq:FRT}.  Moreover, $B$ is lower\ntriangular and $C$ is upper triangular.\n\\item\nThe mixed relation is\n\\begin{equation}\\label{eq:mixed-matrix}\n RB_1C_2=C_2B_1R.\n\\end{equation}\nEquivalently, for all $i,j,k,l$,\n\\begin{equation}\\label{eq:mixed-components}\n \\begin{split}\n q^{\\delta_{ik}}b_{ij}c_{kl}\n -q^{\\delta_{jl}}c_{kl}b_{ij}\n =\\lambda\\bigl(\n       \\ind_{j<l}c_{kj}b_{il}\n       -\\ind_{k<i}b_{kj}c_{il}\n     \\bigr).\n \\end{split}\n\\end{equation}\n\\item\nThe homomorphisms from $\\mathcal T^-$ and $\\mathcal T^+$ determined\nby $T\\mapsto B$ and $T\\mapsto C$ are injective, and multiplication\ninduces a vector-space isomorphism\n\\begin{equation}\\label{eq:skein-factorization}\n \\mathcal T^-\\otimes_\\kk\\mathcal T^+\n       \\xrightarrow{\\ \\sim\\ } A,\\qquad\n f\\otimes g\\longmapsto f(B)g(C).\n\\end{equation}\nThis is a vector-space assertion, not an assertion that the\nordinary tensor-product multiplication is preserved.\n\\end{enumerate}\n\\end{lemma}\n\n\\begin{proof}\nA thin neighborhood of either horizontal arc is an ideal bigon.\nThe bigon theorem \\cite[Theorem~6.3]{LS} identifies its stated skein\nalgebra with $\\OO$, with the right-directed stated arcs as the\nmatrix generators.  This proves the quantum-matrix and determinant\nrelations.  Equation~\\eqref{eq:triangular} gives the asserted\ntriangularity.\n\n% Online source for the bigon theorem and its matrix-coefficient normalization: ([arxiv.org](https://arxiv.org/pdf/2201.00045))\n\nHere are the boundary-exchange details for the mixed relation.\nThey hold already in the unreduced algebra.  Consider the two\ndisjoint arcs with $c$ higher than $b$ at the left boundary and $b$\nhigher than $c$ at the right boundary.  Denote the resulting\nmixed-height diagram, with external state pairs $(i,k)$ and\n$(j,l)$, by $W_{ik;jl}$.  Applying the boundary height-exchange\nrelation at the left or at the right gives, respectively,\n\\begin{equation}\\label{eq:two-exchanges}\n W_{ik;jl}\n   =\\sum_{a,b}R_{ik,ab}\\,b_{aj}c_{bl}\n   =\\sum_{a,b}c_{kb}b_{ia}\\,R_{ab,jl}.\n\\end{equation}\nHere the flip in the braiding $PR$ has been removed by recording\nthe indices in the order of the two arcs.  Thus the coefficients\nappearing in the two exchanges are\n\\[\n \\begin{split}\n R_{ik,ab}\n &=q^{-1/n}\\left(\n      q^{\\delta_{ik}}\\delta_{ia}\\delta_{kb}\n      +\\lambda\\ind_{k<i}\\delta_{ka}\\delta_{ib}\n   \\right),\\\\\n R_{ab,jl}\n &=q^{-1/n}\\left(\n      q^{\\delta_{jl}}\\delta_{aj}\\delta_{bl}\n      +\\lambda\\ind_{j<l}\\delta_{al}\\delta_{bj}\n   \\right).\n \\end{split}\n\\]\nThese are precisely the boundary braiding coefficients\n\\eqref{eq:R}; the boundary relations and their braiding\ninterpretation are those of \\cite[Section~4 and Theorem~6.4]{LS}.\nSubstitution into \\eqref{eq:two-exchanges}, followed by cancellation\nof $q^{-1/n}$, proves \\eqref{eq:mixed-components}.\n\n% Online source for the braiding matrix used in the boundary-exchange calculation: ([arxiv.org](https://arxiv.org/pdf/2201.00045))\n\nIt remains to prove the vector-space assertion, including the\nabsence of additional relations after reduction.\nWrite $S=\\Sk(\\Bstar)$ for the unreduced algebra, and temporarily\nuse $b,c$ for the unreduced arcs.  They form the standard saturated\ntwo-arc system for $\\Bstar$: together with the boundary edges they\ngive a groupoid spine of the punctured bigon.  The ordered-arc\nfactorization theorem, with the $b$-neighborhood above the\n$c$-neighborhood at both boundary edges, gives\n\\begin{equation}\\label{eq:unreduced-factorization}\n m:\\OO\\otimes_\\kk\\OO\\xrightarrow{\\ \\sim\\ }S,\\qquad\n f\\otimes g\\longmapsto f(B)g(C).\n\\end{equation}\nThe relevant result permits arbitrary orders at the boundary\nedges; see \\cite[Corollary~8.14]{LS}.\n\n% Online source for the arbitrary-boundary-order factorization theorem: ([arxiv.org](https://arxiv.org/pdf/2201.00045))\n\nLet $J_b$ be the ideal of the first copy of $\\OO$ generated by\n$t_{ij}$ with $i<j$, and let $J_c$ be the ideal of the second copy\ngenerated by $t_{ij}$ with $i>j$.\nLet $I_{\\mathrm{top}}$ and $I_{\\mathrm{bottom}}$ be the respective\nbad-corner ideals in $S$.\n\nThe bad-arc normality theorem\n\\cite[Theorem~7.2, especially Equation~(128)]{LY} says that each\ncorner ideal is both the left and the right ideal generated by\neither one of its two oriented families of bad arcs.  In our\nnotation this gives\n\\[\n I_{\\mathrm{top}}\n   =\\Span_\\kk\\{b_{ij}:i<j\\}\\,S,\n \\qquad\n I_{\\mathrm{bottom}}\n   =S\\,\\Span_\\kk\\{c_{ij}:i>j\\}.\n\\]\nIn particular, reversed orientations introduce no further ideal.\n\n% Online source for the bad-arc normality theorem, including the equivalence of the two orientations: ([arxiv.org](https://arxiv.org/pdf/2303.08082))\n\nUsing \\eqref{eq:unreduced-factorization}, the first equality implies\n\\[\n I_{\\mathrm{top}}\\subseteq m(J_b\\otimes\\OO).\n\\]\nThe reverse inclusion holds because $I_{\\mathrm{top}}$ is a\ntwo-sided ideal containing the generators of $J_b$.  Hence\n\\[\n I_{\\mathrm{top}}=m(J_b\\otimes\\OO).\n\\]\nThe same argument, using the displayed right-ideal description at\nthe lower corner, gives\n\\[\n I_{\\mathrm{bottom}}=m(\\OO\\otimes J_c).\n\\]\nTherefore\n\\[\n I^{\\mathrm{bad}}\n   =m\\bigl(J_b\\otimes\\OO+\\OO\\otimes J_c\\bigr).\n\\]\nTaking the quotient of the vector-space isomorphism\n\\eqref{eq:unreduced-factorization} proves\n\\eqref{eq:skein-factorization}.  The injectivity of the two factor\nmaps follows as well.\n\\end{proof}\n\nWe record two elementary consequences that will also make the\neventual isomorphism explicit on all the arcs.  The diagonal\nentries of either triangular quantum matrix commute, and\n\\begin{equation}\\label{eq:diagonal-units}\n \\prod_{a=1}^n b_{aa}=\\prod_{a=1}^n c_{aa}=1.\n\\end{equation}\nThus every diagonal entry is invertible.  Expanding the\nquantum-matrix relation on the indicated $2\\times2$ submatrices\ngives, for $i<j-1$,\n\\begin{align}\n b_{ji}\n &=\\lambda^{-1}b_{j-1,j-1}^{-1}\n     [b_{j-1,i},b_{j,j-1}],\n \\label{eq:lower-recursion}\\\\\n c_{ij}\n &=\\lambda^{-1}c_{j-1,j-1}^{-1}\n     [c_{i,j-1},c_{j-1,j}].\n \\label{eq:upper-recursion}\n\\end{align}\nIndeed, these are the relations $ad-da=\\lambda bc$ for rows\n$j-1,j$ and columns $i,j-1$, and for rows $i,j-1$ and columns\n$j-1,j$, respectively.  In each case the diagonal factor on the\nright commutes with the opposite off-diagonal factor.\nConsequently, each triangular algebra is generated by its diagonal\nand immediately adjacent off-diagonal entries.\n\n\\section{The quantum Borel algebras and their double}\n\n\\subsection{Triangular matrix realizations}\n\nWrite\n\\[\n H_-=\\UU(\\bminus),\\qquad H_+=\\UU(\\bplus).\n\\]\n\n\\begin{lemma}[Borel matrix realizations]\\label{lem:borel}\nThere are algebra isomorphisms\n\\[\n \\eta_-:H_-\\xrightarrow{\\ \\sim\\ }\\mathcal T^-,\n \\qquad\n \\eta_+:H_+\\xrightarrow{\\ \\sim\\ }\\mathcal T^+\n\\]\ngiven by\n\\begin{align}\n \\eta_-(\\widehat K_a)&=b_{aa}^{-1},\n &\n \\eta_-(F_i)&=\\lambda^{-1}b_{i+1,i+1}^{-1}b_{i+1,i},\n \\label{eq:eta-minus}\\\\\n \\eta_+(\\widehat K_a)&=c_{aa},\n &\n \\eta_+(E_i)&=-\\lambda^{-1}c_{i,i+1}c_{i+1,i+1}^{-1}.\n \\label{eq:eta-plus}\n\\end{align}\n\\end{lemma}\n\n\\begin{proof}\nFor $\\mathfrak{gl}_n$, with independent toral generators\n$G_1,\\ldots,G_n$, these are exactly the algebra isomorphisms\n$\\zeta_-$ and $\\zeta_+$ in \\cite[Section~2.4]{Gav}.\nTheir inverses on adjacent entries are\n\\[\n t_{i+1,i}\\longmapsto\\lambda G_{i+1}^{-1}F_i,\n \\qquad\n t_{i,i+1}\\longmapsto-\\lambda E_iG_{i+1},\n\\]\nand the diagonal entries map to $G_a^{-1}$ and $G_a$,\nrespectively.\n\nImpose the central relation $\\prod_aG_a=1$.\nOn the matrix sides its image is the relation that the product\nof the diagonal entries is $1$.  For a triangular matrix this is\nexactly the quantum determinant-one relation.  Taking these\nquotients gives \\eqref{eq:eta-minus}--\\eqref{eq:eta-plus}.\nThe toral lattice is\n$\\mathbb Z^n/\\mathbb Z(1,\\ldots,1)$, namely the weight lattice of\ntype $A_{n-1}$, so the resulting Borel algebras are the\nsimply-connected ones.\n\nOnly the algebra assertion of \\cite[Section~2.4]{Gav} is used:\nthe coproduct convention there is opposite to\n\\eqref{eq:coproduct}.\n\\end{proof}\n\n% Online source containing the explicit Borel isomorphisms and their inverses: ([arxiv.org](https://arxiv.org/pdf/math/0403346))\n\n\\subsection{A presentation of the generalized double}\n\nLet\n\\[\n D=H_-\\bowtie H_+\n\\]\nbe the generalized quantum double for the pairing in the question.\nWe denote its two toral copies by $\\widehat K_a^-$ and\n$\\widehat K_a^+$, and set\n\\[\n K_i^-=\\widehat K_i^-(\\widehat K_{i+1}^-)^{-1},\n \\qquad\n K_i^+=\\widehat K_i^+(\\widehat K_{i+1}^+)^{-1}.\n\\]\nThe superscript $-$ labels the negative Borel copy; it does not\nmean an inverse.\n\nFor clarity, we specify the double convention.  The skew pairing\n$\\tau:H_+\\otimes H_-\\to\\kk$ satisfies\n\\[\n \\begin{split}\n \\tau(xx',y)&=\\tau(x,y_{(1)})\\tau(x',y_{(2)}),\\\\\n \\tau(x,yy')&=\\tau(x_{(1)},y')\\tau(x_{(2)},y),\n \\end{split}\n\\]\nand has generator values\n\\begin{equation}\\label{eq:pairing}\n \\begin{split}\n \\tau(\\widehat K_a,\\widehat K_b)&=q^{1/n-\\delta_{ab}},\\\\\n \\tau(E_i,F_j)&=-\\delta_{ij}\\lambda^{-1},\\\\\n \\tau(\\widehat K_a,F_j)&=\\tau(E_i,\\widehat K_b)=0.\n \\end{split}\n\\end{equation}\nThe underlying vector space of $D$ is $H_-\\otimes H_+$, with\nmultiplication identifying each factor with a subalgebra.  Its\nexchange convention is\n\\begin{equation}\\label{eq:double-exchange}\n \\sum\\tau(x_{(1)},y_{(1)})x_{(2)}y_{(2)}\n =\n \\sum y_{(1)}x_{(1)}\\tau(x_{(2)},y_{(2)}),\n \\qquad x\\in H_+,\\quad y\\in H_-.\n\\end{equation}\nWriting this convention explicitly avoids ambiguity with\nopposite-double conventions.\n\n\\begin{lemma}[Presentation of the double]\\label{lem:double}\nThe algebra $D$ is presented by the two Borel presentations and\nthe following mixed relations:\n\\begin{align}\n [\\widehat K_a^+,\\widehat K_b^-]&=0,\n \\label{eq:double-tori}\\\\\n \\widehat K_a^+F_i(\\widehat K_a^+)^{-1}\n   &=q^{-\\omega_{ai}}F_i,\n &\n \\widehat K_a^-E_i(\\widehat K_a^-)^{-1}\n   &=q^{\\omega_{ai}}E_i,\n \\label{eq:double-weights}\\\\\n [E_i,F_j]\n   &=\\delta_{ij}\\frac{K_i^+-(K_i^-)^{-1}}{\\lambda}.\n \\label{eq:double-EF}\n\\end{align}\n\\end{lemma}\n\n\\begin{proof}\nFirst derive the relations in $D$.\nFor the toral terms,\n\\[\n \\tau(\\widehat K_a,K_i)\n  =\\frac{q^{1/n-\\delta_{ai}}}\n         {q^{1/n-\\delta_{a,i+1}}}\n  =q^{-\\omega_{ai}}.\n\\]\nSubstitution into \\eqref{eq:double-exchange} proves\n\\eqref{eq:double-tori} and \\eqref{eq:double-weights}.\n\nFor $x=E_i$ and $y=F_j$, the left and right sides of\n\\eqref{eq:double-exchange}, using \\eqref{eq:coproduct}, are\n\\[\n E_iF_j-\\delta_{ij}\\lambda^{-1}K_i^+,\n \\qquad\n F_jE_i-\\delta_{ij}\\lambda^{-1}(K_j^-)^{-1},\n\\]\nrespectively.  This proves \\eqref{eq:double-EF}.\n\nTo see that these are a complete set of mixed relations, let\n$D_0$ be the algebra given by the two Borel presentations and\n\\eqref{eq:double-tori}--\\eqref{eq:double-EF}.  The derived relations\ngive a surjection $D_0\\to D$.\n\nThey also allow every word in $D_0$ to be written as a sum of\nwords with the negative Borel generators first and the positive\nBorel generators second.  Indeed, the toral exchanges merely\nintroduce scalars; the exchange of $E_i$ with $F_j$ has a reordered\nterm and terms with fewer $E$'s and $F$'s.  Induction first on the\nnumber of such generators and then on the number of mixed\ninversions proves the assertion.  Hence multiplication gives a\nsurjection\n\\[\n H_-\\otimes H_+\\longrightarrow D_0.\n\\]\nIts composition with $D_0\\to D$ is the defining vector-space\nisomorphism $H_-\\otimes H_+\\to D$.  It follows that both maps are\nisomorphisms, proving the presentation.\n\\end{proof}\n\n\\section{The explicit isomorphism}\n\nDefine elements of the two Borel factors, for $1\\leq i<j\\leq n$,\nby\n\\begin{align}\n \\mathsf F_{i,i+1}&=F_i,\n &\n \\mathsf F_{ij}\n   &=\\mathsf F_{i,j-1}F_{j-1}\n       -q^{-1}F_{j-1}\\mathsf F_{i,j-1}\n       &&(j>i+1),\n \\label{eq:F-roots}\\\\\n \\mathsf E_{i,i+1}&=E_i,\n &\n \\mathsf E_{ij}\n   &=E_{j-1}\\mathsf E_{i,j-1}\n       -q\\,\\mathsf E_{i,j-1}E_{j-1}\n       &&(j>i+1).\n \\label{eq:E-roots}\n\\end{align}\nThese recursions fix all root-vector normalizations needed below.\n\n\\begin{theorem}\\label{thm:main}\nThere is an algebra isomorphism\n\\[\n \\Phi:\\rSk(\\Bstar)\\xrightarrow{\\ \\sim\\ }\n       \\UU(\\bminus)\\bowtie\\UU(\\bplus)\n\\]\ngiven on the horizontal arcs by\n\\begin{align}\n \\Phi(b_{aa})&=(\\widehat K_a^-)^{-1},\n &\n \\Phi(c_{aa})&=\\widehat K_a^+,\n \\label{eq:Phi-diagonal}\\\\\n \\Phi(b_{ji})&=\\lambda(\\widehat K_j^-)^{-1}\\mathsf F_{ij},\n &\n \\Phi(c_{ij})&=-\\lambda\\mathsf E_{ij}\\widehat K_j^+\n       &&(i<j).\n \\label{eq:Phi-offdiagonal}\n\\end{align}\nThe other off-diagonal arcs vanish by\n\\eqref{eq:triangular}.\n\nEquivalently, the inverse isomorphism $\\Psi=\\Phi^{-1}$ is\ndetermined by\n\\begin{align}\n \\Psi(\\widehat K_a^-)&=b_{aa}^{-1},\n &\n \\Psi(\\widehat K_a^+)&=c_{aa},\n \\label{eq:Psi-tori}\\\\\n \\Psi(F_i)&=\\lambda^{-1}b_{i+1,i+1}^{-1}b_{i+1,i},\n &\n \\Psi(E_i)&=-\\lambda^{-1}c_{i,i+1}c_{i+1,i+1}^{-1}.\n \\label{eq:Psi-EF}\n\\end{align}\n\\end{theorem}\n\n\\begin{proof}\nWe first construct $\\Psi$ and prove that it is an isomorphism.\n\nFor brevity put, in $A=\\rSk(\\Bstar)$,\n\\[\n d_a=b_{aa},\\qquad t_a=c_{aa},\\qquad\n x_i=b_{i+1,i},\\qquad y_i=c_{i,i+1}.\n\\]\nThe diagonal elements are invertible by\n\\eqref{eq:diagonal-units}.  Lemma~\\ref{lem:borel} gives algebra\nhomomorphisms from the two Borel factors to $A$ with the values\n\\eqref{eq:Psi-tori}--\\eqref{eq:Psi-EF}.  Thus it remains to check the\nmixed relations in Lemma~\\ref{lem:double}.\n\nThe internal quantum-matrix relations and\n\\eqref{eq:mixed-components} give\n\\begin{equation}\\label{eq:diagonal-commute}\n [d_a,d_b]=[t_a,t_b]=[d_a,t_b]=0\n\\end{equation}\nand\n\\begin{equation}\\label{eq:entry-weights}\n \\begin{array}{ll}\n d_ax_i=q^{\\omega_{ai}}x_id_a,\n   & t_ax_i=q^{-\\omega_{ai}}x_it_a,\\\\[2pt]\n d_ay_i=q^{-\\omega_{ai}}y_id_a,\n   & t_ay_i=q^{\\omega_{ai}}y_it_a.\n \\end{array}\n\\end{equation}\nFor example, setting the first matrix entry in\n\\eqref{eq:mixed-components} equal to $b_{aa}$ makes both correction\nterms vanish by lower triangularity, and yields\n\\[\n d_ac_{kl}=q^{\\delta_{al}-\\delta_{ak}}c_{kl}d_a.\n\\]\nSetting the second entry equal to $c_{aa}$ gives\n\\[\n t_ab_{kl}=q^{\\delta_{ak}-\\delta_{al}}b_{kl}t_a.\n\\]\nThese are the mixed assertions in \\eqref{eq:entry-weights}; the\ninternal ones are obtained in the same way from the single-matrix\nrelation.\n\nWrite\n\\[\n \\mathcal F_i=\\lambda^{-1}d_{i+1}^{-1}x_i,\n \\qquad\n \\mathcal E_i=-\\lambda^{-1}y_it_{i+1}^{-1}.\n\\]\nEquations~\\eqref{eq:diagonal-commute} and\n\\eqref{eq:entry-weights} immediately give\n\\[\n t_a\\mathcal F_it_a^{-1}=q^{-\\omega_{ai}}\\mathcal F_i,\n \\qquad\n d_a^{-1}\\mathcal E_id_a=q^{\\omega_{ai}}\\mathcal E_i.\n\\]\nThus the mixed toral relations are satisfied.\n\nFor the remaining mixed relation, substitute\n\\[\n (i,k;j,l)=(j+1,i;j,i+1)\n\\]\ninto \\eqref{eq:mixed-components}.  Triangularity makes both\ncorrection terms vanish unless $i=j$, so that\n\\begin{equation}\\label{eq:simple-mixed}\n q^{\\delta_{i,j+1}}x_jy_i\n -q^{\\delta_{j,i+1}}y_ix_j\n =\\lambda\\delta_{ij}(d_{i+1}t_i-d_it_{i+1}).\n\\end{equation}\nUsing \\eqref{eq:entry-weights} to move the diagonal factors gives\n\\begin{align}\n [\\mathcal E_i,\\mathcal F_j]\n &=\n \\lambda^{-2}d_{j+1}^{-1}\n \\left(\n   x_jy_i\n   -q^{\\delta_{j,i+1}-\\delta_{i,j+1}}y_ix_j\n \\right)t_{i+1}^{-1}\n \\notag\\\\\n &=\n \\delta_{ij}\\lambda^{-1}\n       d_{i+1}^{-1}(d_{i+1}t_i-d_it_{i+1})t_{i+1}^{-1}\n \\notag\\\\\n &=\\delta_{ij}\\frac{\n          t_it_{i+1}^{-1}-d_id_{i+1}^{-1}\n        }{\\lambda}.\n \\label{eq:computed-commutator}\n\\end{align}\nBut under the proposed map,\n\\[\n K_i^+\\longmapsto t_it_{i+1}^{-1},\n \\qquad\n (K_i^-)^{-1}\\longmapsto d_id_{i+1}^{-1}.\n\\]\nTherefore \\eqref{eq:computed-commutator} is precisely\n\\eqref{eq:double-EF}.  Lemma~\\ref{lem:double} now supplies an\nalgebra homomorphism\n\\[\n \\Psi:D\\longrightarrow A\n\\]\nwith the required values.\n\nWe prove its bijectivity without making an unsupported\npresentation claim about $A$.  The following diagram commutes:\n\\[\n\\begin{CD}\n H_-\\otimes_\\kk H_+ @>{m_D}>> D\\\\\n @V{\\eta_-\\otimes\\eta_+}V{\\cong}V @VV{\\Psi}V\\\\\n \\mathcal T^-\\otimes_\\kk\\mathcal T^+\n       @>{m_A}>> A .\n\\end{CD}\n\\]\nThe top arrow is the defining vector-space isomorphism for the\ngeneralized double.  The left arrow is an isomorphism by\nLemma~\\ref{lem:borel}, and the bottom arrow is an isomorphism by\nLemma~\\ref{lem:skein}.  Consequently $\\Psi$ is a vector-space\nisomorphism and hence an algebra isomorphism.\n\nIt remains to verify the formulas for its inverse on the\nnon-adjacent entries.  The inverse formulas on the diagonal and\nadjacent entries follow directly from\n\\eqref{eq:Psi-tori}--\\eqref{eq:Psi-EF}.  For completeness, the\ninduction using \\eqref{eq:lower-recursion} and\n\\eqref{eq:upper-recursion} is as follows.\n\nPut\n\\[\n m_a=(\\widehat K_a^-)^{-1},\n \\qquad p_a=\\widehat K_a^+.\n\\]\nFor $i<j-1$, assume the asserted formulas at distance $j-i-1$.\nThe toral weight relations give\n\\[\n \\begin{split}\n &\\lambda^{-1}m_{j-1}^{-1}\n   [\\,\\lambda m_{j-1}\\mathsf F_{i,j-1},\n      \\lambda m_jF_{j-1}\\,]\\\\\n &\\hspace{25mm}\n =\\lambda m_j\n    \\bigl(\\mathsf F_{i,j-1}F_{j-1}\n            -q^{-1}F_{j-1}\\mathsf F_{i,j-1}\\bigr)\n =\\lambda m_j\\mathsf F_{ij}.\n \\end{split}\n\\]\nHere $m_j$ commutes with $\\mathsf F_{i,j-1}$ and\n$F_{j-1}m_{j-1}=q^{-1}m_{j-1}F_{j-1}$.\nThis proves the lower-triangular formula.\n\nSimilarly,\n\\[\n \\begin{split}\n &\\lambda^{-1}p_{j-1}^{-1}\n   [\\,-\\lambda\\mathsf E_{i,j-1}p_{j-1},\n      -\\lambda E_{j-1}p_j\\,]\\\\\n &\\hspace{25mm}\n =-\\lambda\n   \\bigl(E_{j-1}\\mathsf E_{i,j-1}\n            -q\\mathsf E_{i,j-1}E_{j-1}\\bigr)p_j\n =-\\lambda\\mathsf E_{ij}p_j.\n \\end{split}\n\\]\nIndeed, $p_j$ commutes with $\\mathsf E_{i,j-1}$,\n$p_{j-1}E_{j-1}=qE_{j-1}p_{j-1}$, and the total weight of\n$\\mathsf E_{i,j-1}E_{j-1}$ has zero coefficient at $j-1$.\nThe latter weight statement follows by induction directly from\n\\eqref{eq:E-roots}.  This proves the upper-triangular formula and\ncompletes the proof.\n\\end{proof}\n\n\\section{The diagonal quotient}\n\n\\begin{theorem}\\label{thm:quotient}\nLet $I$ be the two-sided ideal of $\\rSk(\\Bstar)$ generated by\n\\[\n b_{aa}c_{aa}-1,\\qquad 1\\leq a\\leq n.\n\\]\nThen\n\\[\n \\rSk(\\Bstar)/I\\cong\\UU(\\slie),\n\\]\nwhere the quantum group is the simply-connected one.\n\nWriting bars for classes in the quotient, the inverse\nisomorphism from $\\UU(\\slie)$ is explicitly\n\\begin{align}\n \\widehat K_a\n   &\\longmapsto \\overline c_{aa}\n      =\\overline b_{aa}^{\\, -1},\n \\label{eq:quotient-torus}\\\\\n E_i\n   &\\longmapsto\n       -\\lambda^{-1}\\overline c_{i,i+1}\n                         \\overline c_{i+1,i+1}^{\\, -1},\n \\label{eq:quotient-E}\\\\\n F_i\n   &\\longmapsto\n       \\lambda^{-1}\\overline b_{i+1,i+1}^{\\, -1}\n                        \\overline b_{i+1,i}.\n \\label{eq:quotient-F}\n\\end{align}\n\\end{theorem}\n\n\\begin{proof}\nBy Theorem~\\ref{thm:main},\n\\[\n \\Phi(b_{aa}c_{aa}-1)\n   =(\\widehat K_a^-)^{-1}\\widehat K_a^+-1.\n\\]\nSince $\\widehat K_a^-$ is a unit, these elements generate the\nsame ideal of $D$ as\n\\[\n \\widehat K_a^+-\\widehat K_a^-,\n \\qquad 1\\leq a\\leq n.\n\\]\nDenote that ideal by $J$.  Hence $\\Phi(I)=J$ and\n\\begin{equation}\\label{eq:quotient-double}\n \\rSk(\\Bstar)/I\\cong D/J.\n\\end{equation}\n\nThere is a surjective homomorphism\n\\[\n \\pi:D\\longrightarrow\\UU(\\slie)\n\\]\nsending both $\\widehat K_a^-$ and $\\widehat K_a^+$ to\n$\\widehat K_a$ and sending $E_i,F_i$ to the identically named\ngenerators.  To check it, use Lemma~\\ref{lem:double}:\nthe only new commutator becomes\n\\[\n [E_i,F_j]\n   =\\delta_{ij}\\frac{K_i-K_i^{-1}}{\\lambda},\n\\]\nand all the other relations become\n\\eqref{eq:torus-product}--\\eqref{eq:Serre}.\nClearly $J\\subseteq\\ker\\pi$.\n\nConversely, in $D/J$ the two toral copies agree.  Their common\nimages together with the images of $E_i,F_i$ satisfy the entire\npresentation \\eqref{eq:torus-product}--\\eqref{eq:Serre}.  They\ntherefore define a homomorphism\n\\[\n \\UU(\\slie)\\longrightarrow D/J.\n\\]\nThis homomorphism and the map induced by $\\pi$ are inverse on\nevery generator.  Consequently\n\\[\n D/J\\cong\\UU(\\slie)\n \\qquad\\text{and}\\qquad \\ker\\pi=J.\n\\]\nTogether with \\eqref{eq:quotient-double}, this proves the claimed\nquotient, including the assertion that no further relations have\nbeen introduced.  Formulas\n\\eqref{eq:quotient-torus}--\\eqref{eq:quotient-F} are the\nspecializations of \\eqref{eq:Psi-tori}--\\eqref{eq:Psi-EF}.\n\\end{proof}\n\n\\begin{remark}\nThe elements $b_{aa}c_{aa}$ are central.  Under $\\Phi$ they become\n$(\\widehat K_a^-)^{-1}\\widehat K_a^+$, and the two toral copies\nhave identical conjugation actions on every $E_i$ and $F_i$.\nFurthermore,\n\\[\n \\prod_{a=1}^n b_{aa}c_{aa}=1.\n\\]\nThus the quotient identifies the two full weight-lattice tori;\nthere are only $n-1$ independent diagonal identifications.\nThis is also why the conclusion is the simply-connected quantum\ngroup rather than its root-lattice form.\n\\end{remark}\n\n\\begin{remark}[Parameter qualification]\nThe factors $\\lambda^{-1}$ are essential to the identification\nwith the usual Chevalley generators.  At $q=\\pm1$ the skew pairing\ndisplayed in the question itself is undefined.  Statements at\nsuch parameters require an integral-form reformulation and are\nnot obtained by substituting into the formulas above.\n\\end{remark}\n\n\\begin{thebibliography}{99}\n\n\\bibitem{Gav}\nF.~Gavarini,\n\\emph{Presentation by Borel subalgebras and Chevalley generators\nfor quantum enveloping algebras},\nProc. Edinburgh Math. Soc. (2) \\textbf{49} (2006), no.~2,\n291--308.\nSee also arXiv:math/0403346v3; the section numbering cited above\nis that of this version.\n\n\\bibitem{KS}\nA.~Klimyk and K.~Schm\\\"udgen,\n\\emph{Quantum Groups and Their Representations},\nTexts and Monographs in Physics,\nSpringer-Verlag, Berlin, 1997.\n\n\\bibitem{LS}\nT.~T.~Q.~L\\^e and A.~S.~Sikora,\n\\emph{Stated $\\mathrm{SL}(n)$-skein modules and algebras},\nJ. Topol. \\textbf{17} (2024), no.~3, e12350.\nSee also arXiv:2201.00045; the theorem and corollary numbering\ncited above refers to the 85-page arXiv text.\n\n\\bibitem{LY}\nT.~T.~Q.~L\\^e and T.~Yu,\n\\emph{Quantum traces for $\\mathrm{SL}_n$-skein algebras},\narXiv:2303.08082v2, May 28, 2025.\n\n\\end{thebibliography}\n\\end{document}",
+          "type": "output_text",
+          "logprobs": []
+        }
+      ],
+      "role": "assistant",
+      "status": "completed",
+      "type": "message",
+      "phase": "final_answer"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "temperature": 1.0,
+  "tool_choice": "auto",
+  "tools": [
+    {
+      "type": "web_search",
+      "external_web_access": null,
+      "filters": null,
+      "search_context_size": "medium",
+      "user_location": {
+        "city": null,
+        "country": "US",
+        "region": null,
+        "timezone": null,
+        "type": "approximate"
+      },
+      "return_token_budget": "default",
+      "search_content_types": [
+        "text"
+      ]
+    }
+  ],
+  "top_p": 0.98,
+  "background": true,
+  "completed_at": 1790951574.0,
+  "conversation": null,
+  "max_output_tokens": null,
+  "max_tool_calls": null,
+  "moderation": null,
+  "previous_response_id": null,
+  "prompt": null,
+  "prompt_cache_diagnostics": null,
+  "prompt_cache_key": null,
+  "prompt_cache_options": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "max",
+    "generate_summary": null,
+    "mode": "standard",
+    "summary": "detailed"
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "status": "completed",
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "top_logprobs": 0,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 126257,
+    "input_tokens_details": {
+      "cache_write_tokens": 421,
+      "cached_tokens": 4370
+    },
+    "output_tokens": 46375,
+    "output_tokens_details": {
+      "reasoning_tokens": 36649
+    },
+    "total_tokens": 172632
+  },
+  "user": null,
+  "billing": {
+    "payer": "developer"
+  },
+  "frequency_penalty": 0.0,
+  "presence_penalty": 0.0,
+  "store": true,
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 7
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "paid_calls": 0,
+  "backend": "claude_code",
+  "ok": true,
+  "registry_probes": [
+    {
+      "role": "editors",
+      "registry": "/data/output/workflow_runs/.proofcouncil-cleanup-memory/editors",
+      "ok": true,
+      "max_workers": 10,
+      "worker_bytes": 1073741824,
+      "reserve_bytes": 4294967296
+    },
+    {
+      "role": "codex",
+      "registry": "/data/output/workflow_runs/.proofcouncil-cleanup-memory/codex",
+      "ok": true,
+      "max_workers": 10,
+      "worker_bytes": 1073741824,
+      "reserve_bytes": 4294967296
+    }
+  ]
+}

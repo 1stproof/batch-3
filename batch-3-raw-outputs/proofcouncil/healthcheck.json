@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "paid_calls": 0,
+  "probes": [
+    {
+      "name": "streamed_worker_admission",
+      "ok": true,
+      "worker_stopped": true
+    }
+  ],
+  "compute": {
+    "backend": "subprocess",
+    "memory_gb": 8,
+    "limit_address_space": false,
+    "max_parallel_workers": 4,
+    "reserve_gb": 16
+  }
+}

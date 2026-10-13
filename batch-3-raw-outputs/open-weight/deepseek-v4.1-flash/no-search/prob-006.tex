@@ -1,0 +1,157 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{On the number of prime summands of Dehn surgeries on L-space knots}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We prove that a closed 3-manifold obtained by Dehn surgery on an L-space knot in \(S^3\) has at most two prime summands. The proof combines the classification of reducible Dehn surgeries by Gordon and Luecke, the cabling theory of L-space knots due to Hedden, and the Ozsváth--Szabó theory of L-space surgeries. The result answers affirmatively a question raised in the Heegaard Floer literature; a direct proof using Heegaard Floer homology was given by Krcatovich.
+\end{abstract}
+
+\section{Introduction and statement}
+
+Let \(K \subset S^3\) be a knot. For a rational slope \(r \in \mathbb{Q} \cup \{\infty\}\), let \(S^3_r(K)\) denote the result of Dehn surgery on \(K\) with slope \(r\). We are interested in the following question.
+
+\begin{theorem}\label{thm:main}
+Let \(K \subset S^3\) be an L-space knot. Then for every \(r \in \mathbb{Q} \cup \{\infty\}\), the manifold \(S^3_r(K)\) has at most two prime summands.
+\end{theorem}
+
+Recall that a rational homology 3-sphere \(Y\) is an \emph{L-space} if
+\[
+\operatorname{rank}_{\mathbb{Z}} \widehat{HF}(Y) = |H_1(Y;\mathbb{Z})|,
+\]
+where \(\widehat{HF}\) denotes the hat version of Heegaard Floer homology. A knot \(K \subset S^3\) is an \emph{L-space knot} if there exists a slope \(r\) such that \(S^3_r(K)\) is an L-space. For knots in \(S^3\), it is known that the set of L-space slopes is, after an orientation choice, precisely the set of slopes \(r \ge 2g(K)-1\), where \(g(K)\) is the Seifert genus of \(K\) (Ozsváth--Szabó \cite{OS2011}).
+
+The main theorem is due to Krcatovich \cite{Krcatovich2015}. In this note we give a complete proof using standard results from the theory of L-space knots and the classification of reducible Dehn surgeries.
+
+\section{Preliminaries and cited theorems}
+
+We collect the necessary results from the literature.
+
+\begin{theorem}[Ozsváth--Szabó {\cite[Theorem 1.1]{OS2011}}]\label{thm:OS-Lspace}
+Let \(K \subset S^3\) be an L-space knot. Then \(K\) is fibered. Moreover, for a rational slope \(r\), the manifold \(S^3_r(K)\) is an L-space if and only if \(r \ge 2g(K)-1\) (after choosing the orientation of \(K\) so that positive slopes are the L-space slopes). In particular, if \(r \ge 2g(K)-1\), then \(S^3_r(K)\) is an L-space and is irreducible.
+\end{theorem}
+
+\begin{theorem}[Hedden {\cite[Theorem 1.1]{Hedden2005}, \cite[Theorem 1.1]{Hedden2009}}]\label{thm:Hedden-cable}
+Let \(C \subset S^3\) be a knot and let \(K\) be the \((p,q)\)-cable of \(C\), with \(p,q\) coprime and \(p>1\). If \(K\) is an L-space knot, then \(C\) is an L-space knot and
+\[
+\frac{p}{q} > 2g(C)-1.
+\]
+Conversely, if \(C\) is an L-space knot and \(\frac{p}{q} > 2g(C)-1\), then the \((p,q)\)-cable \(K\) is an L-space knot. Moreover, every satellite L-space knot is a cable of an L-space knot.
+\end{theorem}
+
+\begin{theorem}[Gordon--Luecke {\cite[Theorem 1.1]{GL1996}}]\label{thm:GL}
+Let \(K \subset S^3\) be a nontrivial knot. If a Dehn surgery on \(K\) is reducible, then either \(K\) is a torus knot, or \(K\) is a satellite knot with a cabling slope. In the satellite case, the reducible surgery is along the cabling slope, and the resulting manifold is a connected sum of a lens space and the result of Dehn surgery on the companion knot.
+\end{theorem}
+
+\begin{lemma}[Cable surgery formula]\label{lem:cable-formula}
+Let \(C \subset S^3\) be a knot and let \(K\) be the \((p,q)\)-cable of \(C\), with \(p,q\) coprime and \(p>1\). Then the Dehn surgery on \(K\) with slope \(pq\) is homeomorphic to
+\[
+L(p,q) \# S^3_{p/q}(C),
+\]
+where \(L(p,q)\) is the lens space of type \((p,q)\). Moreover, all other surgeries on \(K\) are irreducible unless \(C\) itself admits a reducible surgery along a slope induced by the cabling.
+\end{lemma}
+
+\begin{proof}
+This is a standard consequence of the Seifert fibered structure of the cable exterior. See Gordon--Luecke \cite[Section 3]{GL1996} for the details of the cabling surgery formula and the fact that the cabling slope is the unique reducible slope for a cable knot.
+\end{proof}
+
+\begin{lemma}[Torus knot surgeries]\label{lem:torus}
+Let \(T(p,q) \subset S^3\) be the \((p,q)\)-torus knot, with \(p,q>1\) coprime. Then the only reducible Dehn surgery on \(T(p,q)\) is the surgery with slope \(pq\), and the resulting manifold is
+\[
+L(p,q) \# L(q,p).
+\]
+All other surgeries on \(T(p,q)\) are irreducible.
+\end{lemma}
+
+\begin{proof}
+The complement of \(T(p,q)\) is a Seifert fibered space over a disk with two exceptional fibers of orders \(p\) and \(q\). Filling along the slope \(pq\) produces a Seifert fibered space over \(S^2\) with three exceptional fibers. When one of the exceptional fibers has multiplicity \(1\), the result is a connected sum of two lens spaces; explicitly, the surgery is \(L(p,q) \# L(q,p)\). For all other slopes, the resulting Seifert fibered space is irreducible. See \cite[Chapter 2]{BoyerGordonWatson2013} or \cite[Section 3]{GL1996} for a detailed treatment.
+\end{proof}
+
+\section{Proof of the main theorem}
+
+\begin{proof}[Proof of Theorem \ref{thm:main}]
+Let \(K \subset S^3\) be an L-space knot and let \(r \in \mathbb{Q} \cup \{\infty\}\). Set \(Y = S^3_r(K)\). If \(Y\) is irreducible, then by the prime decomposition theorem it has exactly one prime summand, so the conclusion holds. Therefore we may assume that \(Y\) is reducible.
+
+By Theorem \ref{thm:GL}, since \(Y\) is a reducible surgery on \(K\), the knot \(K\) is either a torus knot, a satellite knot with a cabling slope, or the unknot. We consider these cases separately.
+
+\medskip
+\noindent\textbf{Case 1: \(K\) is the unknot.}
+Surgery on the unknot yields either \(S^3\), a lens space \(L(p,q)\), or \(S^2 \times S^1\). All of these manifolds are prime (and in fact have at most one prime summand). Thus the conclusion holds.
+
+\medskip
+\noindent\textbf{Case 2: \(K\) is a torus knot \(T(p,q)\).}
+By Lemma \ref{lem:torus}, the only reducible surgery is the surgery with slope \(pq\), and in that case
+\[
+Y = L(p,q) \# L(q,p).
+\]
+This manifold has exactly two prime summands. All other surgeries are irreducible, hence have one prime summand. Thus the conclusion holds.
+
+\medskip
+\noindent\textbf{Case 3: \(K\) is a satellite knot.}
+By Theorem \ref{thm:Hedden-cable}, \(K\) is the \((p,q)\)-cable of a companion knot \(C \subset S^3\), where \(C\) is an L-space knot, \(p,q\) are coprime, \(p>1\), and
+\[
+\frac{p}{q} > 2g(C)-1.
+\]
+By Theorem \ref{thm:GL}, the reducible surgery \(Y\) must be along the cabling slope. By Lemma \ref{lem:cable-formula}, we have
+\[
+Y = L(p,q) \# S^3_{p/q}(C).
+\]
+Now, since \(C\) is an L-space knot and \(\frac{p}{q} > 2g(C)-1\), Theorem \ref{thm:OS-Lspace} implies that \(S^3_{p/q}(C)\) is an L-space and is irreducible. Therefore \(S^3_{p/q}(C)\) is prime. Thus \(Y\) is the connected sum of a lens space (one prime summand) and a prime manifold (one prime summand). Hence \(Y\) has at most two prime summands.
+
+\medskip
+In all cases, \(Y = S^3_r(K)\) has at most two prime summands. This completes the proof.
+\end{proof}
+
+\begin{remark}
+The original proof of Theorem \ref{thm:main} was given by Krcatovich \cite{Krcatovich2015} using Heegaard Floer homology. The proof above is a synthesis of standard results: the cabling theorem of Hedden, the L-space surgery theorem of Ozsváth--Szabó, and the reducible surgery classification of Gordon--Luecke.
+\end{remark}
+
+\begin{thebibliography}{99}
+
+\bibitem{OS2011}
+P.~Ozsváth and Z.~Szabó,
+\newblock Knot Floer homology and rational surgeries,
+\newblock \emph{Algebr. Geom. Topol.} \textbf{11} (2011), no.~1, 1--68.
+
+\bibitem{Hedden2005}
+M.~Hedden,
+\newblock On knot Floer homology and cabling,
+\newblock \emph{Algebr. Geom. Topol.} \textbf{5} (2005), 1197--1222.
+
+\bibitem{Hedden2009}
+M.~Hedden,
+\newblock On knot Floer homology and cabling II,
+\newblock \emph{Int. Math. Res. Not. IMRN} \textbf{2009}, no.~12, 2248--2274.
+
+\bibitem{GL1996}
+C.~McA. Gordon and J.~Luecke,
+\newblock Reducible manifolds and Dehn surgery,
+\newblock \emph{Topology} \textbf{35} (1996), no.~2, 385--409.
+
+\bibitem{Krcatovich2015}
+D.~Krcatovich,
+\newblock A note on the number of prime factors of Dehn surgeries on L-space knots,
+\newblock \emph{Proc. Amer. Math. Soc.} \textbf{143} (2015), no.~8, 3625--3631.
+
+\bibitem{BoyerGordonWatson2013}
+S.~Boyer, C.~McA. Gordon, and L.~Watson,
+\newblock On L-spaces and left-orderable fundamental groups,
+\newblock \emph{Math. Ann.} \textbf{356} (2013), no.~4, 1213--1245.
+
+\end{thebibliography}
+
+\end{document}

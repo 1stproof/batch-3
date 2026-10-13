@@ -1,0 +1,139 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\htop}{h_{\mathrm{top}}}
+
+\begin{document}
+
+\title{Global Hypoellipticity of a Vector Field Implies Zero Entropy}
+\author{}
+\date{}
+\maketitle
+
+\begin{theorem}
+Let \(M\) be a compact connected smooth manifold, let \(X\) be a smooth vector field, and let
+\(g_t\) be its flow. Assume that \(X\) is globally hypoelliptic in the following sense: whenever
+\(u\in \mathcal D'(M)\) is a distribution and \(Xu\in C^\infty(M)\), then \(u\in C^\infty(M)\).
+Then
+\[
+\htop(g_1)=0.
+\]
+Equivalently, the flow \(g_t\) has zero topological entropy.
+\end{theorem}
+
+\begin{proof}
+We use two standard facts.
+
+First, by the Fredholm alternative for globally hypoelliptic operators on compact manifolds, due to Greenfield--Wallach \cite{GW}, if \(P\) is globally hypoelliptic, then \(P(C^\infty(M))\) is closed in \(C^\infty(M)\), \(\ker P\) on distributions is finite-dimensional and smooth, and the annihilator
+\[
+\mathcal I_P:=\{T\in C^\infty(M)' : T(P\varphi)=0 \text{ for all } \varphi\in C^\infty(M)\}
+\]
+is finite-dimensional and consists of smooth densities. We apply this to \(P=X\).
+
+Fix a smooth positive density \(\Omega\) on \(M\). Since \(\ker X\) on distributions is finite-dimensional and smooth, the algebra
+\[
+\ker(X:C^\infty(M)\to C^\infty(M))
+\]
+is finite-dimensional. Because \(M\) is connected, this algebra consists only of constants: indeed, if \(a\in \ker X\), then the powers \(1,a,a^2,\dots\) are linearly dependent, so \(p(a)=0\) for some nonzero polynomial \(p\); hence \(a(M)\) is a connected subset of the finite set \(p^{-1}(0)\), and therefore \(a\) is constant.
+
+Now let
+\[
+\mathcal I:=\{T\in C^\infty(M)' : T(X\varphi)=0 \ \forall \varphi\in C^\infty(M)\}.
+\]
+By the quoted Greenfield--Wallach theorem, every element of \(\mathcal I\) is a smooth density. Choose an invariant probability measure \(\mu\) for the flow \(g_t\), which exists by Krylov--Bogolyubov compactness. Then \(\mu\in \mathcal I\), so
+\[
+\mu=h\,\Omega
+\]
+for some smooth \(h\ge 0\), not identically zero. We claim \(h>0\) everywhere. Let \(U=\{h>0\}\). Since \(h\Omega\) is invariant, \(L_X(h\Omega)=0\), and hence \(U\) is \(g_t\)-invariant. If \(U\neq M\), then \(B=\partial U\) is a nonempty compact invariant set. Applying Krylov--Bogolyubov to the restricted flow on \(B\), we get an invariant probability measure supported on \(B\). This measure belongs to \(\mathcal I\), so it is a smooth density. But \(B\) has empty interior, and no nonzero smooth density can be supported on a closed set with empty interior. Contradiction. Thus \(h>0\) everywhere.
+
+Now take any \(T\in \mathcal I\). Write \(T=k\,\Omega\) with \(k\in C^\infty(M)\). Since both \(k\Omega\) and \(h\Omega\) are invariant densities,
+\[
+L_X(k\Omega)=0,
+\qquad
+L_X(h\Omega)=0.
+\]
+Therefore, with \(r=k/h\),
+\[
+0=L_X(k\Omega)=L_X(rh\Omega)=(Xr)\,h\Omega.
+\]
+Since \(h>0\), we get \(Xr=0\). Hence \(r\) is constant. Thus \(T\) is a scalar multiple of \(\mu\), and so
+\[
+\mathcal I=\mathbb R\mu.
+\]
+
+Because \(X(C^\infty(M))\) is closed, the Hahn--Banach theorem gives
+\[
+X(C^\infty(M))
+=
+\left\{f\in C^\infty(M): T(f)=0 \text{ for all } T\in \mathcal I\right\}
+=
+\left\{f\in C^\infty(M): \int_M f\,d\mu=0\right\}.
+\]
+Hence for every \(f\in C^\infty(M)\) with \(\int f\,d\mu=0\), there exists \(u\in C^\infty(M)\) such that
+\[
+Xu=f.
+\]
+Thus every smooth zero-\(\mu\)-mean function is a smooth flow coboundary.
+
+We now invoke Kushnirenko's entropy criterion \cite{Kushnirenko}; see also the formulation used by Rodriguez Hertz \cite{RH}: if a smooth flow preserving a smooth probability measure has the property that every smooth zero-mean function is a measurable flow coboundary, then its metric entropy with respect to that measure is zero. Applying this to \(g_t\) and \(\mu\), we obtain
+\[
+h_\mu(g_1)=0.
+\]
+
+It remains only to pass from metric to topological entropy. The measure \(\mu\) is the unique \(g_t\)-invariant probability measure, because any invariant probability belongs to \(\mathcal I=\mathbb R\mu\). Let \(T=g_1\). If \(\nu\) is merely \(T\)-invariant, define
+\[
+\bar\nu:=\int_0^1 (g_s)_*\nu\,ds.
+\]
+Then \(\bar\nu\) is \(g_t\)-invariant, hence \(\bar\nu=\mu\). Since entropy is affine on the simplex of \(T\)-invariant probability measures and is invariant under measure-theoretic isomorphism \cite{Walters},
+\[
+h_\nu(T)
+=
+h_{\bar\nu}(T)
+=
+h_\mu(T)
+=
+0.
+\]
+Therefore every \(T\)-invariant probability measure has zero entropy. By the variational principle,
+\[
+\htop(T)=\sup_{\nu\in \mathcal M_T(M)} h_\nu(T)=0.
+\]
+Thus \(\htop(g_1)=0\). Since the topological entropy of a flow is usually normalized by the entropy of its time-one map, equivalently \(h_{\mathrm{top}}(g_t)=|t|\,h_{\mathrm{top}}(g_1)\), the whole flow has zero topological entropy.
+\end{proof}
+
+\begin{thebibliography}{99}
+
+\bibitem{GW}
+S.~J. Greenfield and N.~R. Wallach,
+\emph{Remarks on global hypoellipticity},
+Trans. Amer. Math. Soc. \textbf{183} (1973), 153--164.
+
+\bibitem{Kushnirenko}
+A.~G. Kushnirenko,
+\emph{On metric invariants of entropy type},
+Russian Math. Surveys \textbf{22} (1967), no.~5, 53--61.
+
+\bibitem{RH}
+F. Rodriguez Hertz,
+\emph{Global hypoellipticity and entropy},
+J. Mod. Dyn. \textbf{1} (2007), 329--336.
+
+\bibitem{Walters}
+P. Walters,
+\emph{An Introduction to Ergodic Theory},
+Graduate Texts in Mathematics, vol.~79, Springer, 1982.
+
+\end{thebibliography}
+
+\end{document}
+```

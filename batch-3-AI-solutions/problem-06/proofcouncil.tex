@@ -1,0 +1,953 @@
+\documentclass[12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{fullpage}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Prime summands of surgeries on an L-space knot}}
+
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\F}{\mathbb F}
+\newcommand{\Surg}[2]{S^3_{#1}(#2)}
+\newcommand{\HFhat}{\widehat{HF}}
+\newcommand{\Int}{\operatorname{int}}
+\newcommand{\nbd}{\nu}
+\newcommand{\rk}{d}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\title{Problem 6 -- ProofCouncil}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+An \(L\)-space knot is a knot in \(S^3\) with a non-trivial Dehn surgery
+whose Heegaard Floer homology is as small as its first homology allows.
+We show that every Dehn surgery on an \(L\)-space knot has at most two
+non-trivial prime summands. The proof combines published results on
+reducible surgeries (\(L\)-space knots are fibered, by Ni; a reducible
+surgery on a hyperbolic knot with a positive \(L\)-space surgery has slope
+\(2g-1\), by Hom--Lidman--Zufelt; the Cabling Conjecture holds for
+non-trivial non-hyperbolic knots, by Moser and Scharlemann; Gordon's
+formula for
+surgery on a cable; the Gordon--Luecke theorem on non-integral surgeries)
+with an elementary group-theoretic obstruction: if a \(p/q\)-surgery on a
+fibered knot of genus \(g\) has a non-trivial integer homology sphere
+summand, then \(|p|\le g\). The obstruction is proved by estimating the
+minimal number of generators of the commutator subgroup of the
+fundamental group in two ways, through the universal abelian cover and
+Grushko's theorem on free products on one side and through the
+fundamental group of the fiber surface on the other.
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+
+Dehn surgery along a knot \(K\subset S^3\) produces a closed oriented
+\(3\)-manifold \(\Surg{r}{K}\) for every slope
+\(r\in\Q\cup\{\infty\}\) (notation is recalled in
+Section~\ref{sec:surgery}). By the Kneser--Milnor theorem, every closed
+oriented \(3\)-manifold is a connected sum of prime manifolds, unique up to
+order, and a basic question in Dehn surgery theory is how complicated this
+decomposition can be for a surgery on a knot. For a non-trivial knot
+\(K\subset S^3\), the Cabling Conjecture of Gonz\'alez-Acu\~na and Short
+\cite{GAS1986} predicts that \(\Surg{r}{K}\) is reducible only when
+\(K\) is a cable knot and \(r\) is the slope of the cabling annulus (the
+unknot must be excluded, since its \(0\)-surgery is \(S^1\times S^2\)); in
+that case the surgery is a lens space connected-summed
+with a surgery on the companion knot (Gordon \cite{Gordon1983}), and the
+latter surgery is prime, because its slope is non-integral (Gordon--Luecke
+\cite{GordonLuecke1987}) or because the companion is the unknot, so the
+conjecture predicts in particular that a
+surgery on a knot in \(S^3\) never has three non-trivial prime summands.
+The conjecture is known for
+torus knots (Moser \cite{Moser1971}) and for satellite knots (Scharlemann
+\cite{Scharlemann1990}), and it is open for hyperbolic knots. Without any
+hypothesis on the knot, Howie \cite{Howie2002} showed that at most two
+prime summands of a surgery on a knot in \(S^3\) can have non-zero first
+homology, so a third summand would have to be an integer homology sphere;
+see also \cite{Howie2010}.
+
+This note answers the question for knots satisfying a strong
+Heegaard Floer restriction. An \emph{\(L\)-space} is a rational homology
+sphere \(Y\) whose Heegaard Floer homology \(\HFhat(Y)\) has the smallest
+possible dimension, namely \(|H_1(Y;\Z)|\); lens spaces are examples. A knot
+\(K\subset S^3\) is an \emph{\(L\)-space knot} if \(\Surg{r}{K}\) is an
+\(L\)-space for some slope \(r\neq\infty\). We allow \(r\) of either sign;
+some authors require \(r>0\), and we explain at the end of
+Section~\ref{sec:Lspace} and in Step~1 of Section~\ref{sec:proof} why the
+two conventions lead to the same theorem. These notions are recalled in
+Section~\ref{sec:Lspace}. Torus knots are \(L\)-space knots, since
+suitable surgeries on them are lens spaces \cite{Moser1971}.
+
+We count the prime summands of a manifold other than \(S^3\) in its
+Kneser--Milnor decomposition, and we say that \(S^3\) has none
+(Section~\ref{sec:prime}); these are its \emph{non-trivial prime
+summands}.
+
+\begin{theorem}\label{thm:main}
+Let \(K\subset S^3\) be an \(L\)-space knot. For every slope
+\(r\in\Q\cup\{\infty\}\), the manifold \(\Surg{r}{K}\) has at most two
+non-trivial prime summands.
+\end{theorem}
+
+The \(L\)-space hypothesis enters the proof at exactly two points, each
+through a published theorem: \(L\)-space knots are fibered (Ni
+\cite{Ni2007}), and a reducible surgery on a \emph{hyperbolic} knot
+admitting a positive \(L\)-space surgery has slope exactly \(2g-1\), where
+\(g\) is the genus of the knot (Hom--Lidman--Zufelt \cite[Theorem~1.3]{HLZ2015}).
+For non-trivial non-hyperbolic knots no Floer-theoretic input is needed,
+because the Cabling Conjecture is a theorem there. The argument does not identify
+the reducible surgery itself, and it does not prove the Cabling
+Conjecture for hyperbolic \(L\)-space knots; see Remark~\ref{rem:notproved}.
+The main ingredient we prove here is the following statement about
+fibered knots, established in Section~\ref{sec:rank} as
+Proposition~\ref{prop:large}.
+
+\begin{theorem}\label{thm:fibered}
+Let \(K\subset S^3\) be a fibered knot of genus \(g\geq1\), and let
+\(p/q\) be a slope with \(p\neq0\) and \(|p|\geq 2g-1\). Then
+\(\Surg{p/q}{K}\) has at most two non-trivial prime summands.
+\end{theorem}
+
+\paragraph{Strategy.}
+Suppose that \(M=\Surg{p/q}{K}\) has three non-trivial prime summands.
+By Howie's theorem one of them, call it \(\Sigma\), has
+\(H_1(\Sigma;\Z)=0\), so \(M\cong X\#\Sigma\) with \(\Sigma\) an integer
+homology sphere other than \(S^3\) and \(H_1(X;\Z)\cong H_1(M;\Z)\cong\Z/|p|\).
+Let \(G=\pi_1(M)\) and let \(G'\) be its commutator subgroup. We compute
+the minimal number of generators \(\rk(G')\) in two ways.
+\begin{itemize}
+\item \emph{From above}, via the fiber. The group \(G\) is a quotient of
+the knot group \(\pi_1(E_K)\), where \(E_K\) is the knot exterior, whose
+commutator subgroup is the
+fundamental group of the fiber surface, a free group of rank \(2g\). An
+epimorphism maps commutator subgroups onto commutator subgroups, so
+\(\rk(G')\leq 2g\) (Lemma~\ref{lem:fiber}).
+\item \emph{From below}, via the universal abelian cover. The subgroup
+\(G'\) is the fundamental group of the \(|p|\)-fold cover
+\(\widetilde M\to M\) with deck group \(G/G'=H_1(M;\Z)\). Because
+\(\pi_1(\Sigma)\) is perfect, it maps trivially to the deck group, so the
+punctured copy of \(\Sigma\) inside \(M\) lifts to \(|p|\) disjoint copies,
+and \(\widetilde M\cong\widetilde X\#\Sigma^{\#|p|}\). Since
+\(\pi_1(\Sigma)\) is non-trivial and perfect it is not cyclic, so it needs
+at least two generators, and Grushko's theorem gives
+\(\rk(G')\geq 2|p|\) (Lemma~\ref{lem:cover}).
+\end{itemize}
+Hence \(|p|\leq g\). This is incompatible with \(|p|\geq 2g-1\) unless
+\(g=1\) and \(|p|=1\), an endpoint case that is excluded by a direct
+application of Grushko's theorem to the perfect group \(G\).
+
+Theorem~\ref{thm:main} then follows by Thurston's trichotomy, according
+to which every non-trivial knot is a torus knot, a satellite knot or
+hyperbolic (Section~\ref{sec:types}). For a hyperbolic \(L\)-space knot, Ni's theorem and the Hom--Lidman--Zufelt
+theorem put every reducible surgery exactly in the range of
+Theorem~\ref{thm:fibered}; for a torus or satellite knot the Cabling
+Conjecture, Gordon's formula for surgery on a cable, and the
+Gordon--Luecke theorem that non-integral surgeries are irreducible leave
+room for at most two summands.
+
+\paragraph{Outline.}
+Section~\ref{sec:background} fixes
+conventions and recalls the standard facts we use,
+Section~\ref{sec:rank} proves the group-rank obstruction,
+Section~\ref{sec:inputs} states the published theorems that are used as
+black boxes, Section~\ref{sec:proof} proves Theorem~\ref{thm:main}, and
+Section~\ref{sec:comments} discusses what the argument does and does not
+show.
+
+A genus bound of the shape \(|p|\leq g\) for surgeries with a non-trivial
+integer homology sphere summand is attributed to Gonz\'alez-Acu\~na and
+Short \cite[Proposition~1.4]{GAS1986} in \cite[Theorem~1.2]{BodishDeYeso},
+in the case where the complementary summand \(X\) is a lens space. The
+case needed here has \(X\) non-prime, so we prove Lemma~\ref{lem:cover}
+for an arbitrary complementary summand. Related statements about
+homology sphere summands of surgeries on \(L\)-space knots appear in
+\cite[Section~4]{BodishDeYeso}. We make no claim of priority for
+Theorem~\ref{thm:main}; the aim of this note is a complete and
+self-contained argument modulo the cited theorems.
+%% FLAG: The attribution review verified the bibliographic data of GAS1986
+%% and BodishDeYeso and that BodishDeYeso Thm 1.2 attributes the lens-space
+%% form of the genus bound to GAS Prop 1.4, but the original statement of
+%% GAS Prop 1.4 (and its generality) was not inspected.
+
+\section{Conventions and background}\label{sec:background}
+
+\subsection{Dehn surgery}\label{sec:surgery}
+
+Throughout, \(K\subset S^3\) is a tame knot, \(\nbd K\) is a closed
+tubular neighbourhood of \(K\), and \(E_K=S^3\setminus\Int\nbd K\) is the
+\emph{exterior} of \(K\), a compact oriented \(3\)-manifold with torus
+boundary. On \(\partial E_K=\partial\nbd K\) we fix the \emph{meridian}
+\(\mu\), a simple closed curve bounding a disc in \(\nbd K\), and the
+\emph{preferred longitude} \(\lambda\), a simple closed curve isotopic to
+\(K\) in \(\nbd K\) and null-homologous in \(E_K\) (it is the boundary of
+a Seifert surface for \(K\)). A \emph{slope} is an isotopy class of
+unoriented essential simple closed curves on \(\partial E_K\). The curve
+homologous to \(p\mu+q\lambda\), with \(\gcd(p,q)=1\), determines the
+slope \(p/q\in\Q\cup\{\infty\}\), where \(\infty=1/0\) is the meridional
+slope; for finite slopes we normalise \(q>0\), so that
+\(p\in\Z\) is determined.
+
+The \emph{Dehn surgery} on \(K\) with slope \(r\) is the closed oriented
+\(3\)-manifold
+\[
+ \Surg{r}{K}=E_K\cup_\varphi (S^1\times D^2),
+\]
+where the gluing homeomorphism
+\(\varphi\colon\partial(S^1\times D^2)\to\partial E_K\) sends the meridian
+\(\{*\}\times\partial D^2\) of the solid torus to a curve of slope \(r\),
+and the orientation extends that of \(E_K\subset S^3\). Its
+homeomorphism type depends only on \(r\). We use the following standard
+facts.
+
+\begin{enumerate}
+\item[(S1)] \(\Surg{\infty}{K}=S^3\), since filling along the meridian
+undoes the removal of \(\nbd K\).
+\item[(S2)] \(H_1(E_K;\Z)\cong\Z\), generated by \(\mu\), and \(\lambda=0\)
+in \(H_1(E_K;\Z)\). Filling along \(p\mu+q\lambda\) kills the class
+\(p[\mu]\), so
+\[
+ H_1(\Surg{p/q}{K};\Z)\cong\Z/|p|\Z,
+\]
+which is to be read as \(\Z\) when \(p=0\). In particular
+\(\Surg{p/q}{K}\) is a rational homology sphere if and only if \(p\neq0\).
+\item[(S3)] By van Kampen's theorem,
+\(\pi_1(\Surg{p/q}{K})\cong\pi_1(E_K)/\langle\!\langle\gamma_{p/q}\rangle\!\rangle\),
+the quotient by the normal closure of the element \(\gamma_{p/q}\) of
+\(\pi_1(E_K)\) represented by the filling curve of slope \(p/q\) (the
+elements of \(\pi_1(E_K)\) represented by \(\mu\) and \(\lambda\) are
+again denoted \(\mu\) and \(\lambda\)). Applied to \(p/q=\infty\) this
+gives
+\(\pi_1(E_K)/\langle\!\langle\mu\rangle\!\rangle\cong\pi_1(S^3)=1\): the
+knot group is normally generated by a meridian.
+\item[(S4)] Let \(\overline K\) be the mirror image of \(K\). A reflection
+of \(S^3\) carrying \(K\) to \(\overline K\) preserves meridians and
+preferred longitudes but reverses the intersection pairing on the
+boundary torus, so it carries the slope \(r\) of \(K\) to the slope
+\(-r\) of \(\overline K\) and induces an orientation-reversing
+homeomorphism \(\Surg{r}{K}\to\Surg{-r}{\overline K}\); equivalently,
+there is an orientation-preserving identification
+\(\Surg{-r}{\overline K}\cong-\Surg{r}{K}\), where \(-M\) denotes \(M\)
+with the opposite orientation.
+\item[(S5)] For the unknot \(U\), \(\Surg{p/q}{U}\) is a lens space
+with first homology of order \(|p|\) (namely \(L(p,q)\) up to
+orientation) when \(|p|\geq2\), is \(S^3\) when \(|p|=1\), and is
+\(S^1\times S^2\) when \(p=0\). Here, for \(p\geq2\) (negative \(p\)
+differs only by orientation), \(L(p,q)\) denotes the quotient of the
+unit sphere \(S^3\subset\mathbb C^2\) by the free action of \(\Z/p\Z\)
+generated by \((z,w)\mapsto(\zeta z,\zeta^{q}w)\), \(\zeta=e^{2\pi i/p}\);
+it has \(H_1(L(p,q);\Z)\cong\Z/p\Z\) and universal cover \(S^3\).
+Orientation conventions for lens spaces play no role in this note, since
+only the number of prime summands is counted.
+\end{enumerate}
+
+\subsection{Prime decomposition}\label{sec:prime}
+
+Let \(M\) be a closed connected oriented \(3\)-manifold. \(M\) is
+\emph{irreducible} if every embedded \(2\)-sphere in \(M\) bounds a
+\(3\)-ball, and \emph{reducible} otherwise. \(M\) is \emph{prime} if
+\(M\cong M_1\#M_2\) implies \(M_1\cong S^3\) or \(M_2\cong S^3\). An
+irreducible manifold is prime, and conversely a prime closed orientable
+\(3\)-manifold is either irreducible or homeomorphic to \(S^1\times S^2\)
+\cite[\S1.1]{Hatcher3M}. Thus for a rational homology sphere, prime and
+irreducible are the same thing, and non-prime is the same as reducible.
+
+If a covering space of \(M\) is irreducible, so is \(M\)
+\cite[Proposition~1.6]{Hatcher3M}; by Alexander's theorem
+\cite[\S1.1]{Hatcher3M}, \(S^3\) and \(\R^3\) are irreducible. Hence
+lens spaces, which are covered by \(S^3\), are irreducible, and so is
+any closed \(3\)-manifold with universal cover \(\R^3\).
+
+The Kneser--Milnor theorem \cite[Theorem~1.5]{Hatcher3M} states that
+every closed oriented \(3\)-manifold \(M\not\cong S^3\) is a connected sum
+\(M\cong M_1\#\cdots\#M_k\) of prime manifolds \(M_i\not\cong S^3\), and
+that the collection \(\{M_i\}\) is unique up to order and
+orientation-preserving homeomorphism. We call \(M_1,\dots,M_k\) the
+\emph{non-trivial prime summands} of \(M\); by uniqueness their number
+\(k\) is an invariant of \(M\), and we set \(k=0\) for \(M\cong S^3\).
+Reversing the orientation of \(M\) reverses that of each \(M_i\), so
+\(M\) and \(-M\) have the same number of non-trivial prime summands.
+By van Kampen's theorem, for any connected sum of closed oriented
+\(3\)-manifolds \(N_1,\dots,N_k\) (prime or not),
+\begin{equation}\label{eq:vk}
+ \pi_1(N_1\#\cdots\#N_k)\cong\pi_1(N_1)*\cdots*\pi_1(N_k),
+ \qquad
+ H_1(N_1\#\cdots\#N_k;\Z)\cong\bigoplus_{i=1}^k H_1(N_i;\Z),
+\end{equation}
+since the connected sum is formed by gluing punctured copies of the
+\(N_i\) along \(2\)-spheres, and removing a ball from a \(3\)-manifold
+does not change its fundamental group.
+
+A closed connected oriented \(3\)-manifold \(\Sigma\) with
+\(H_1(\Sigma;\Z)=0\) is called an \emph{integer homology sphere}; by
+Poincar\'e duality and the universal coefficient theorem,
+\(H_*(\Sigma;\Z)\cong H_*(S^3;\Z)\).
+
+\subsection{Torus, satellite and hyperbolic knots; cables}\label{sec:types}
+
+A non-trivial knot \(K\subset S^3\) is a \emph{torus knot} if it can be
+isotoped onto the boundary of a standardly embedded solid torus; it is a
+\emph{satellite knot} if \(E_K\) contains an incompressible torus (an
+embedded torus whose fundamental group injects into \(\pi_1(E_K)\)) that
+is not parallel to \(\partial E_K\); and it is \emph{hyperbolic} if
+\(S^3\setminus K\) admits a complete hyperbolic metric of finite volume.
+By Thurston's hyperbolization theorem, every non-trivial knot is of
+exactly one of these three types \cite[Corollary~2.5]{Thurston1982}.
+Composite knots are satellite knots: if \(K=K_1\#K_2\) with both
+summands non-trivial, the boundary of a regular neighbourhood of the
+union of \(K\) with a ball containing the \(K_2\) summand is a torus in
+\(E_K\), knotted like \(K_1\), which is incompressible and not
+boundary-parallel (the ``swallow--follow'' torus).
+
+Let \(J\subset S^3\) be a knot, with meridian \(\mu_J\) and preferred
+longitude \(\lambda_J\) on \(\partial\nbd J\), and let \(w\geq2\) and
+\(t\) be coprime integers (so \(t\neq0\)). The \emph{\((w,t)\)-cable} of
+\(J\) is the knot
+\[
+ C_{w,t}(J)\subset\partial\nbd J\subset S^3
+\]
+given by a simple closed curve on \(\partial\nbd J\) homologous to
+\(t\mu_J+w\lambda_J\) there. Its image in \(H_1(\nbd J;\Z)\cong\Z\) is
+\(w\) times the generator, so \(w\) is the \emph{winding number} of the
+cable. If \(J\) is the unknot, \(C_{w,t}(J)\) is the torus knot
+\(T_{w,t}\); if \(J\) is non-trivial, \(C_{w,t}(J)\) is a satellite knot
+with companion \(J\). We call \(wt\) the \emph{cabling slope} of
+\(C_{w,t}(J)\): it is the framing of the cable induced by the torus
+\(\partial\nbd J\), and the annulus
+\(\partial\nbd J\setminus\Int\nbd C_{w,t}(J)\) has both boundary curves of
+slope \(wt\) on \(\partial\nbd C_{w,t}(J)\). (Several indexing
+conventions for cables are in use; we fix the one above, in which the
+first index is the winding number.)
+
+\subsection{Fibered knots}\label{sec:fibered}
+
+A knot \(K\) is \emph{fibered} if \(E_K\) is the total space of a fiber
+bundle over \(S^1\) whose fibers are Seifert surfaces for \(K\), that is,
+compact connected oriented surfaces \(F\subset E_K\) with
+\(\partial F=\lambda\). The fiber then realises the minimal genus of a
+Seifert surface for \(K\), so its genus is the \emph{genus} \(g=g(K)\)
+of the knot, and \(g\geq1\) when \(K\) is non-trivial. Since \(F\) is a
+compact connected orientable surface of genus \(g\) with one boundary
+component, it deformation retracts onto a wedge of \(2g\) circles, and
+\(\pi_1(F)\) is a free group \(F_{2g}\) of rank \(2g\). The long exact
+homotopy sequence of the bundle gives a short exact sequence
+\begin{equation}\label{eq:fibration}
+ 1\longrightarrow\pi_1(F)\longrightarrow\pi_1(E_K)
+ \longrightarrow\pi_1(S^1)=\Z\longrightarrow1,
+\end{equation}
+because \(\pi_2(S^1)=0\) and \(F\) is connected. The meridian \(\mu\)
+meets each fiber transversally in a single point, so the map to \(\Z\)
+in \eqref{eq:fibration} sends \(\mu\) to a generator.
+
+\subsection{Heegaard Floer homology and \texorpdfstring{\(L\)}{L}-spaces}\label{sec:Lspace}
+
+Heegaard Floer homology \cite{OS2004a} assigns to a closed oriented
+\(3\)-manifold \(Y\) a finite-dimensional vector space \(\HFhat(Y)\) over
+\(\F_2\) (we use \(\F_2\) coefficients throughout), invariant up to
+homeomorphism. If \(Y\) is a rational homology sphere, then
+\(\dim_{\F_2}\HFhat(Y)\geq|H_1(Y;\Z)|\): the group splits as a direct
+sum indexed by the spin\(^c\) structures of \(Y\), of which there are
+\(|H^2(Y;\Z)|=|H_1(Y;\Z)|\), and each summand has Euler characteristic
+\(\pm1\) \cite[Proposition~5.1]{OS2004b}. We call \(Y\) an
+\emph{\(L\)-space} if equality holds. (The original definition
+\cite[Definition~1.1]{OS2005} requires \(\HFhat(Y;\Z)\) to be a free
+abelian group of rank \(|H_1(Y;\Z)|\); the \(\F_2\)-version above is
+the one commonly used in the Heegaard Floer literature, and it is the one
+used in this note.)
+%% FLAG (status): Coefficient conventions for the L-space condition vary
+%% in the literature. The attribution review verified the wording of
+%% OS2005 Def. 1.1 quoted above. The external critic subsequently
+%% confirmed that Hom--Lidman--Zufelt work over F_2 and that the
+%% F_2-minimality used here implies the integral rank condition in Ni's
+%% convention (universal coefficients plus the Euler characteristic
+%% bound), so no gap arises; the text deliberately does not add that
+%% argument. The baseline uses the F_2 convention without comment.
+Lens spaces, including \(S^3\), are \(L\)-spaces
+\cite[Proposition~3.1]{OS2004b}, which explains the name. The group
+\(\HFhat(-Y)\) is the dual of \(\HFhat(Y)\)
+\cite[Proposition~2.5]{OS2004b}, so \(Y\) is an \(L\)-space if and only
+if \(-Y\) is.
+
+A knot \(K\subset S^3\) is an \emph{\(L\)-space knot} if \(\Surg{r}{K}\)
+is an \(L\)-space for some \(r\in\Q\); by (S2) such an \(r\) is
+automatically non-zero. We say that \(K\) admits a \emph{positive}
+\(L\)-space surgery if this holds for some \(r>0\). By (S4) and the
+invariance of the \(L\)-space condition under orientation reversal,
+\(K\) is an \(L\)-space knot if and only if \(K\) or its mirror image
+admits a positive \(L\)-space surgery. The unknot is an \(L\)-space knot
+by (S5), and so is every torus knot, since \((wt\pm1)\)-surgery on
+\(T_{w,t}\) is a lens space \cite{Moser1971}.
+
+\subsection{Group-theoretic tools}\label{sec:groups}
+
+For a finitely generated group \(G\), let \(\rk(G)\) denote the minimal
+number of generators of \(G\), and let \(G'=[G,G]\) denote its commutator
+subgroup. If \(G\to Q\) is an epimorphism, then \(\rk(Q)\leq\rk(G)\).
+Grushko's theorem \cite{Grushko1940} states that for finitely generated
+groups \(A\) and \(B\),
+\begin{equation}\label{eq:grushko}
+ \rk(A*B)=\rk(A)+\rk(B).
+\end{equation}
+We use the following consequence of the Poincar\'e conjecture, proved
+by Perelman (see \cite{MorganTian2007} for a detailed exposition).
+
+\begin{lemma}\label{lem:perfect}
+Let \(\Sigma\) be an integer homology sphere with \(\Sigma\not\cong S^3\).
+Then \(\pi_1(\Sigma)\) is a non-trivial perfect group, and
+\(\rk(\pi_1(\Sigma))\geq2\).
+\end{lemma}
+
+\begin{proof}
+If \(\pi_1(\Sigma)\) were trivial, then \(\Sigma\) would be a simply
+connected closed \(3\)-manifold, hence homeomorphic to \(S^3\) by the
+Poincar\'e conjecture. Its abelianization is
+\(H_1(\Sigma;\Z)=0\), so \(\pi_1(\Sigma)\) is perfect. A non-trivial
+cyclic group has non-trivial abelianization, so \(\pi_1(\Sigma)\) is not
+cyclic, that is, \(\rk(\pi_1(\Sigma))\geq2\).
+\end{proof}
+
+A group \(G\) is \emph{normally generated} by a subset \(S\) if the
+normal closure \(\langle\!\langle S\rangle\!\rangle\) is all of \(G\); the
+\emph{weight} of \(G\) is the minimal size of such an \(S\). If \(G\) is
+normally generated by one element and \(G\to Q\) is an epimorphism, then
+\(Q\) is normally generated by the image of that element. By (S3), the
+fundamental group of every Dehn surgery on a knot in \(S^3\) is normally
+generated by the image of a meridian, that is, has weight at most one.
+The group-theoretic input that limits the number of summands with
+non-zero homology is the following theorem of Howie, previously known as
+the Scott--Wiegold conjecture.
+
+\begin{theorem}[Howie {\cite{Howie2002}}]\label{thm:howie}
+Let \(a,b,c\geq2\). The free product
+\((\Z/a\Z)*(\Z/b\Z)*(\Z/c\Z)\) is not normally generated by a single
+element.
+\end{theorem}
+
+\section{The group-rank obstruction}\label{sec:rank}
+
+In this section \(K\subset S^3\) is a fibered knot of genus \(g\), with
+exterior \(E_K\) and fiber \(F\) as in Section~\ref{sec:fibered}. No
+Floer-theoretic hypothesis is used here.
+
+\begin{lemma}[Upper bound from the fiber]\label{lem:fiber}
+Let \(K\subset S^3\) be a fibered knot of genus \(g\), and let
+\(M=\Surg{r}{K}\) for any slope \(r\in\Q\cup\{\infty\}\). Then
+\[
+ \rk\bigl(\pi_1(M)'\bigr)\leq 2g.
+\]
+\end{lemma}
+
+\begin{proof}
+Put \(\Pi=\pi_1(E_K)\) and \(G=\pi_1(M)\). We first identify \(\Pi'\)
+with the fiber group. Let \(\phi\colon\Pi\to\Z\) be the map in
+\eqref{eq:fibration}, so that \(\ker\phi=\pi_1(F)\cong F_{2g}\). Since
+\(\Z\) is abelian, \(\phi\) factors as \(\phi=\psi\circ\alpha\), where
+\(\alpha\colon\Pi\to\Pi/\Pi'=H_1(E_K;\Z)\cong\Z\) is the abelianization
+and \(\psi\colon\Z\to\Z\) is a homomorphism. Both \(\alpha\) and
+\(\phi\) send the meridian \(\mu\) to a generator (by (S2) and
+Section~\ref{sec:fibered}, respectively), so \(\psi\) is onto, hence
+\(\psi=\pm\mathrm{id}\) and \(\ker\phi=\ker\alpha=\Pi'\). Thus
+\(\Pi'=\pi_1(F)\cong F_{2g}\).
+
+By (S3), Dehn filling induces an epimorphism \(f\colon\Pi\to G\). For
+any epimorphism of groups, \(f(\Pi')=G'\): the inclusion
+\(f(\Pi')\subseteq G'\) is clear, and conversely every commutator
+\([x,y]\) in \(G\) equals \(f([\tilde x,\tilde y])\) for lifts
+\(\tilde x,\tilde y\) of \(x,y\). Hence \(G'\) is a quotient of
+\(F_{2g}\), and \(\rk(G')\leq2g\).
+\end{proof}
+
+The next lemma is the heart of the argument. The idea is that
+\(\pi_1(M)'\) is the fundamental group of the universal abelian cover of
+\(M\), and that in this cover a homology sphere summand of \(M\) is
+replicated once for each sheet, each replica contributing at least two
+generators.
+
+\begin{lemma}[Lower bound from the universal abelian cover]\label{lem:cover}
+Let \(M\) be a closed connected oriented \(3\)-manifold with
+\(H_1(M;\Z)\cong\Z/n\Z\) for some \(n\geq1\), and suppose that
+\[
+ M\cong X\#\Sigma,
+ \qquad H_1(\Sigma;\Z)=0,\qquad \Sigma\not\cong S^3,
+\]
+for some closed oriented \(3\)-manifold \(X\). Then
+\[
+ \rk\bigl(\pi_1(M)'\bigr)\geq 2n.
+\]
+In particular, if \(M=\Surg{p/q}{K}\) with \(p\neq0\) for a fibered knot
+\(K\) of genus \(g\), then a summand \(\Sigma\) as above can occur only if
+\begin{equation}\label{eq:numerator}
+ |p|\leq g.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Choose closed balls \(B_X\subset X\) and \(B_\Sigma\subset\Sigma\) and
+write \(M=X^\circ\cup_S\Sigma^\circ\), where
+\(X^\circ=X\setminus\Int B_X\) and \(\Sigma^\circ=\Sigma\setminus\Int B_\Sigma\)
+are the summands with the interior of a ball removed and \(S\) is the
+common boundary \(2\)-sphere. By \eqref{eq:vk},
+\(H_1(M;\Z)\cong H_1(X;\Z)\oplus H_1(\Sigma;\Z)=H_1(X;\Z)\), so
+\(H_1(X;\Z)\cong\Z/n\Z\) and the inclusion \(X^\circ\hookrightarrow M\)
+induces an isomorphism \(H_1(X^\circ;\Z)\to H_1(M;\Z)\).
+
+Let \(G=\pi_1(M)\) and let \(\rho\colon\widetilde M\to M\) be the
+connected covering space corresponding to the normal subgroup \(G'\)
+(the \emph{universal abelian cover} of \(M\)). It is a regular covering
+with deck group \(G/G'\cong H_1(M;\Z)\cong\Z/n\Z\),
+so it has \(n\) sheets, and \(\pi_1(\widetilde M)\cong G'\). We use the
+following standard fact about a regular covering with deck group \(Q\)
+and a connected codimension-zero submanifold \(A\subseteq M\)
+\cite[\S1.3]{HatcherAT}: if \(Q_A\) is the image of the composite
+\(\pi_1(A)\to\pi_1(M)\to Q\), then \(\rho^{-1}(A)\) has exactly
+\([Q:Q_A]\) components, and each component is the connected covering of
+\(A\) associated with the kernel of that composite.
+
+We apply this to the two pieces of \(M\). For \(A=X^\circ\), the composite
+\(\pi_1(X^\circ)\to G\to G/G'\cong H_1(M;\Z)\) is the abelianization of
+\(\pi_1(X^\circ)\) followed by the isomorphism
+\(H_1(X^\circ;\Z)\to H_1(M;\Z)\) noted above. So it is onto, and its kernel
+is \(\pi_1(X^\circ)'=\pi_1(X)'\). Hence \(\rho^{-1}(X^\circ)\) is
+connected, and it is the covering of \(X^\circ\) associated with
+\(\pi_1(X)'\). If \(\widetilde X\to X\) denotes the connected
+\(n\)-sheeted covering associated with \(\pi_1(X)'\), this says that
+\[
+ \rho^{-1}(X^\circ)\cong\widetilde X^\circ:=\widetilde X\setminus
+ (\text{the \(n\) lifts of }\Int B_X).
+\]
+For \(A=\Sigma^\circ\), the group \(\pi_1(\Sigma^\circ)=\pi_1(\Sigma)\) is
+perfect by Lemma~\ref{lem:perfect}, so it maps trivially to the abelian
+deck group \(G/G'\). Hence \(\rho^{-1}(\Sigma^\circ)\) consists of \(n\)
+components, each mapped homeomorphically onto \(\Sigma^\circ\).
+
+The \(n\) boundary spheres of \(\widetilde X^\circ\) are the lifts of
+\(S\), and each of them is glued to one copy of \(\Sigma^\circ\). Since
+\(\widetilde X^\circ\) is connected, this exhibits
+\begin{equation}\label{eq:cover-sum}
+ \widetilde M\cong
+ \widetilde X\#\underbrace{\Sigma\#\cdots\#\Sigma}_{n\text{ copies}}.
+\end{equation}
+All fundamental groups in sight are finitely generated, being
+fundamental groups of compact manifolds. By \eqref{eq:vk}, Grushko's
+theorem \eqref{eq:grushko} and Lemma~\ref{lem:perfect},
+\[
+ \rk(G')=\rk\bigl(\pi_1(\widetilde M)\bigr)
+ =\rk\bigl(\pi_1(\widetilde X)\bigr)+n\,\rk\bigl(\pi_1(\Sigma)\bigr)
+ \geq 2n.
+\]
+
+Finally, let \(M=\Surg{p/q}{K}\) with \(p\neq0\) and \(K\) fibered of
+genus \(g\). By (S2), \(H_1(M;\Z)\cong\Z/|p|\Z\), so the first part applies
+with \(n=|p|\) and gives \(\rk(G')\geq2|p|\), while
+Lemma~\ref{lem:fiber} gives \(\rk(G')\leq2g\). Hence \(|p|\leq g\).
+\end{proof}
+
+Howie's theorem (Theorem~\ref{thm:howie}) limits the summands with
+non-zero homology; this is what produces the homology sphere summand to
+which Lemma~\ref{lem:cover} applies.
+
+\begin{lemma}[Consequence of Howie's theorem {\cite{Howie2002}}]\label{lem:howie}
+Let \(K\subset S^3\) be any knot and let \(p/q\) be a slope with
+\(p\neq0\). Then at most two non-trivial prime summands of
+\(\Surg{p/q}{K}\) have non-zero first integral homology.
+\end{lemma}
+
+\begin{proof}
+Set \(M=\Surg{p/q}{K}\) and let \(M_1\#\cdots\#M_k\) be its decomposition
+into non-trivial prime summands. By \eqref{eq:vk} and (S2),
+\[
+ \bigoplus_{i=1}^k H_1(M_i;\Z)\cong H_1(M;\Z)\cong\Z/|p|\Z,
+\]
+so each \(H_1(M_i;\Z)\) is a direct summand of a finite cyclic group and
+hence is finite cyclic. Suppose that three of them are non-zero, of
+orders \(a,b,c\geq2\). By \eqref{eq:vk},
+\(\pi_1(M)\cong\pi_1(M_1)*\cdots*\pi_1(M_k)\). Abelianizing those three
+free factors and killing all the others defines an epimorphism
+\[
+ \pi_1(M)\twoheadrightarrow(\Z/a\Z)*(\Z/b\Z)*(\Z/c\Z).
+\]
+By (S3), \(\pi_1(M)\) is normally generated by one element, and this
+property passes to the quotient (Section~\ref{sec:groups}). This
+contradicts Theorem~\ref{thm:howie}.
+\end{proof}
+
+\begin{proposition}\label{prop:large}
+Let \(K\subset S^3\) be a fibered knot of genus \(g\geq1\). If
+\(p\neq0\) and \(|p|\geq2g-1\), then \(\Surg{p/q}{K}\) has at most two
+non-trivial prime summands.
+\end{proposition}
+
+\begin{proof}
+Suppose, for a contradiction, that \(M=\Surg{p/q}{K}\cong M_1\#\cdots\#M_k\)
+with \(k\geq3\) and each \(M_i\) a prime manifold other than \(S^3\). By
+Lemma~\ref{lem:howie}, at most two of the \(M_i\) have non-zero first
+homology, so after renumbering \(H_1(M_k;\Z)=0\); thus \(M_k\) is an
+integer homology sphere (Section~\ref{sec:prime}) with
+\(M_k\not\cong S^3\). Apply Lemma~\ref{lem:cover} with
+\(X=M_1\#\cdots\#M_{k-1}\) and \(\Sigma=M_k\): since \(p\neq0\), it gives
+\(|p|\leq g\), and together with the hypothesis,
+\[
+ 2g-1\leq|p|\leq g .
+\]
+This forces \(g\leq1\), so \(g=1\) and \(|p|=1\).
+
+It remains to rule out this endpoint. If \(|p|=1\), then
+\(H_1(M;\Z)=0\) by (S2), so by \eqref{eq:vk} every \(M_i\) is an integer
+homology sphere other than \(S^3\). Put \(G=\pi_1(M)\). Then \(G\) is
+perfect, so \(G'=G\), and \eqref{eq:vk}, Grushko's theorem
+\eqref{eq:grushko} and Lemma~\ref{lem:perfect} give
+\[
+ \rk(G')=\rk(G)=\sum_{i=1}^k\rk\bigl(\pi_1(M_i)\bigr)\geq2k\geq6.
+\]
+But Lemma~\ref{lem:fiber} gives \(\rk(G')\leq2g=2\), a contradiction.
+\end{proof}
+
+Proposition~\ref{prop:large} is Theorem~\ref{thm:fibered}. Note that it
+makes no assumption on the knot beyond fiberedness. The proof actually
+excludes a homology sphere summand whenever \(|p|>g\), by
+\eqref{eq:numerator}. The threshold \(|p|\geq 2g-1\) in the statement is
+the one that the Hom--Lidman--Zufelt theorem will supply for hyperbolic
+\(L\)-space knots; for \(g=1\) it admits the value \(|p|=1\), which is
+why the endpoint required the separate argument above.
+
+\begin{remark}\label{rem:algebraic}
+Lemma~\ref{lem:cover} has a purely group-theoretic core: if \(G=A*H\)
+with \(H\) perfect and \(A/A'\cong\Z/n\Z\), then
+\(G'\cong A'*H*\cdots*H\) with \(n\) copies of \(H\). This can also be
+derived from the Kurosh subgroup theorem \cite{Kurosh1934}; the covering
+space argument above makes the multiplicity \(n\) visible directly.
+\end{remark}
+
+\begin{example}\label{ex:torus}
+Lemma~\ref{lem:fiber} is sharp: for a torus knot, the cabling surgery
+already exhausts the bound \(\rk(G')\leq2g\) with a free group, leaving
+no room for a homology sphere summand. Let \(T_{a,b}\) be a torus knot
+with \(a,b\geq2\) coprime, so that \(2g(T_{a,b})=(a-1)(b-1)\), and recall
+that \(\Surg{ab}{T_{a,b}}\cong L(a,b)\#L(b,a)\) by Moser's theorem
+\cite{Moser1971}. The fundamental group is \(G=(\Z/a\Z)*(\Z/b\Z)\), and
+the kernel \(G'\) of its abelianization onto \(\Z/ab\Z\) is a free group
+of rank \((a-1)(b-1)=2g\): indeed, in the \(ab\)-fold universal abelian
+cover the punctured \(L(a,b)\) lifts to \(b\) copies of \(S^3\) with
+\(a\) balls removed, the punctured \(L(b,a)\) lifts to \(a\) copies of
+\(S^3\) with \(b\) balls removed, and these are glued along the \(ab\)
+lifts of the separating sphere; the resulting manifold is a connected
+sum of \(ab-(a+b)+1=(a-1)(b-1)\) copies of \(S^1\times S^2\). This is
+consistent with \eqref{eq:numerator}, since \(ab>g\).
+\end{example}
+
+\section{Inputs from Heegaard Floer theory and Dehn surgery}\label{sec:inputs}
+
+We now state the published theorems used in the proof of
+Theorem~\ref{thm:main}. None of them is reproved here.
+
+\begin{theorem}[Ni {\cite[Corollary~1.3]{Ni2007}}]\label{thm:ni}
+Every \(L\)-space knot in \(S^3\) is fibered.
+\end{theorem}
+
+Ni's corollary explicitly allows a rational \(L\)-space surgery slope,
+and its proof uses the structure theorem of Ozsv\'ath and Szab\'o
+\cite{OS2005} for the knot Floer homology (the knot-level refinement of
+\(\HFhat\)) of \(L\)-space knots; see also
+Ni's erratum \cite{NiCorrigendum}, which repairs part of the proof of
+the fiberedness detection theorem without affecting the statement, and
+Ghiggini \cite{Ghiggini2008} for the genus-one case.
+
+\begin{theorem}[Hom--Lidman--Zufelt {\cite[Theorem~1.3]{HLZ2015}}]\label{thm:hlz}
+Let \(K\subset S^3\) be a hyperbolic knot that admits a positive
+\(L\)-space surgery. If \(\Surg{r}{K}\) is reducible, then
+\(r=2g(K)-1\).
+\end{theorem}
+
+Two features of this statement matter for us. First, the reducible
+surgery itself is not assumed to be an \(L\)-space; the theorem
+constrains every reducible slope of \(K\). Second, the hyperbolicity
+hypothesis cannot be dropped: the right-handed trefoil \(T_{2,3}\) has
+genus \(1\) and admits a positive \(L\)-space surgery (its \(5\)- and
+\(7\)-surgeries are lens spaces \cite{Moser1971}), but its reducible
+surgery \(\Surg{6}{T_{2,3}}\cong L(2,3)\#L(3,2)\) has slope
+\(6\neq 2g-1\).
+This is why the proof of Theorem~\ref{thm:main} treats non-hyperbolic
+knots separately, using the following known cases of the Cabling
+Conjecture.
+
+\begin{theorem}[Moser {\cite{Moser1971}}, Scharlemann {\cite[Corollaries~4.4--4.5]{Scharlemann1990}}]\label{thm:cabling}
+Let \(K\subset S^3\) be a non-trivial knot that is not hyperbolic, that
+is, a torus knot or a satellite knot. If \(\Surg{r}{K}\) is reducible,
+then \(K=C_{w,t}(J)\) is a cable, with \(w\geq2\) and \(\gcd(w,t)=1\), of
+some knot \(J\), and \(r=wt\) is the cabling slope.
+\end{theorem}
+
+For torus knots this is Moser's classification of surgeries on
+\(T_{w,t}=C_{w,t}(U)\): only the slope \(wt\) yields a reducible
+manifold. For satellite knots it is Scharlemann's theorem; Corollary~4.4
+of \cite{Scharlemann1990} treats a knot in a solid torus that is not
+contained in a ball, and Corollary~4.5 applies it to satellite knots in
+\(S^3\). Since composite knots are satellite knots
+(Section~\ref{sec:types}), they are covered. The reduction of the
+Cabling Conjecture to hyperbolic knots along these lines is standard and
+is recorded, for instance, in the introduction of \cite{HLZ2015}.
+
+\begin{theorem}[Gordon {\cite[Corollary~7.3]{Gordon1983}}]\label{thm:gordon}
+Let \(J\subset S^3\) be a knot and let \(w\geq2\), \(t\) be coprime
+integers. Then, up to the orientation of the lens space,
+\begin{equation}\label{eq:cable}
+ \Surg{wt}{C_{w,t}(J)}\cong L(w,t)\#\Surg{t/w}{J}.
+\end{equation}
+\end{theorem}
+
+Formula \eqref{eq:cable} is consistent with (S2): both sides have first
+homology of order \(|wt|=w\cdot|t|\), since \(\gcd(w,t)=1\). Geometrically,
+the cabling annulus together with two meridian discs of the filling
+solid torus forms a separating sphere exhibiting the decomposition
+\eqref{eq:cable}: on one side it cuts off a punctured \(\Surg{t/w}{J}\),
+and on the other a punctured lens space of order \(w\), obtained from
+the solid torus \(\nbd J\) by attaching a \(2\)-handle along a curve of
+winding number \(w\). This sphere is a reducing sphere when both factors
+are non-trivial, but not always: for \(J\) the unknot and \(|t|=1\) the
+cable \(C_{w,t}(J)\) is itself the unknot and \(\Surg{t/w}{J}\cong S^3\),
+so the sphere bounds a ball.
+%% FLAG: The attribution review could not access Gordon's original text
+%% for Corollary 7.3; the formula and locator were corroborated through
+%% explicit citations in later papers (Motegi--Teragaito), with the
+%% opposite index order.
+
+\begin{theorem}[Gordon--Luecke {\cite{GordonLuecke1987}}]\label{thm:gl}
+If \(J\subset S^3\) is a non-trivial knot and \(r\in\Q\) is not an
+integer, then \(\Surg{r}{J}\) is irreducible.
+\end{theorem}
+
+\section{Proof of Theorem~\ref{thm:main}}\label{sec:proof}
+
+Let \(K\subset S^3\) be an \(L\)-space knot and \(r\in\Q\cup\{\infty\}\).
+We must show that \(\Surg{r}{K}\) has at most two non-trivial prime
+summands.
+
+\paragraph{Step 1: reduction to a positive \(L\)-space surgery.}
+By the last paragraph of Section~\ref{sec:Lspace}, either \(K\) or its
+mirror image \(\overline K\) admits a positive \(L\)-space surgery. By (S4),
+\(\Surg{-r}{\overline K}\cong-\Surg{r}{K}\), and by
+Section~\ref{sec:prime} a manifold and its orientation reversal have the
+same number of non-trivial prime summands. Mirroring also preserves the
+genus and the type (torus, satellite or hyperbolic) of a knot. Replacing
+\((K,r)\) by \((\overline K,-r)\) if necessary, we may therefore assume
+that \(K\) admits a positive \(L\)-space surgery.
+
+\paragraph{Step 2: the unknot.}
+If \(K\) is the unknot, then by (S5) \(\Surg{r}{K}\) is a lens space,
+\(S^3\) or \(S^1\times S^2\). Lens spaces are irreducible and
+\(S^1\times S^2\) is prime (Section~\ref{sec:prime}), so there is at most
+one non-trivial prime summand. Henceforth \(K\) is non-trivial; by
+Theorem~\ref{thm:ni} it is fibered, of genus \(g\geq1\).
+
+\paragraph{Step 3: the slopes \(\infty\) and \(0\).}
+By (S1), \(\Surg{\infty}{K}=S^3\) has no non-trivial prime summand. For
+the slope \(0\), the filling solid torus has meridian \(\lambda=\partial F\),
+where \(F\) is a fiber; the fibration of \(E_K\) restricts on
+\(\partial E_K\) to the product fibration by longitudes, so the solid
+torus is a union of discs capping off the fibers, and \(\Surg{0}{K}\) is a
+bundle over \(S^1\) with fiber the closed surface \(\widehat F=F\cup D^2\)
+of genus \(g\geq1\). The universal cover of \(\widehat F\) is \(\R^2\),
+so the pull-back of the bundle to the universal cover \(\R\) of \(S^1\)
+is \(\widehat F\times\R\), and the universal cover of \(\Surg{0}{K}\) is
+\(\R^3\). Hence \(\Surg{0}{K}\) is irreducible (Section~\ref{sec:prime};
+\cite[Proposition~1.6]{Hatcher3M}), so it is prime and has exactly one
+non-trivial prime summand (it is not \(S^3\), having \(H_1\cong\Z\)).
+
+\paragraph{Step 4: finite non-zero slopes.}
+Let \(r=p/q\) with \(p\neq0\). If \(\Surg{r}{K}\) is prime, it has at most
+one non-trivial prime summand. Otherwise it is reducible, and we
+distinguish the type of \(K\) (Section~\ref{sec:types}).
+
+\emph{Case 4a: \(K\) is hyperbolic.} By Step~1, \(K\) admits a positive
+\(L\)-space surgery, so Theorem~\ref{thm:hlz} gives \(r=2g-1\), that is,
+\(p=2g-1\geq1\) and \(q=1\). Since \(K\) is fibered of genus \(g\geq1\),
+Proposition~\ref{prop:large} applies and shows that \(\Surg{r}{K}\) has at
+most two non-trivial prime summands.
+
+\emph{Case 4b: \(K\) is a torus knot or a satellite knot.} By
+Theorem~\ref{thm:cabling}, \(K=C_{w,t}(J)\) with \(w\geq2\),
+\(\gcd(w,t)=1\), and \(r=wt\). By Theorem~\ref{thm:gordon},
+\(\Surg{r}{K}\cong L(w,t)\#\Surg{t/w}{J}\). The first factor is a lens
+space with \(|H_1|=w\geq2\), hence a single non-trivial prime summand.
+The slope \(t/w\) is not an integer, because \(w\geq2\) and
+\(\gcd(w,t)=1\). If \(J\) is non-trivial, \(\Surg{t/w}{J}\) is irreducible
+by Theorem~\ref{thm:gl}, hence prime, and contributes at most one
+non-trivial prime summand. If \(J\) is the unknot, then \(t\neq0\) (as
+\(\gcd(w,0)=w\geq2\)), so by (S5) \(\Surg{t/w}{J}\) is a lens space or
+\(S^3\), and again contributes at most one. By uniqueness of the prime
+decomposition, \(\Surg{r}{K}\) has at most two non-trivial prime
+summands.
+
+This completes the proof of Theorem~\ref{thm:main}. \qed
+
+\section{Comments}\label{sec:comments}
+
+\begin{remark}[Where the \(L\)-space hypothesis is used]
+The proof uses the \(L\)-space hypothesis only through
+Theorems~\ref{thm:ni} and~\ref{thm:hlz}, in Steps~2 and~4a (Step~1
+merely arranges the sign of the \(L\)-space slope that
+Theorem~\ref{thm:hlz} requires). Consequently the same argument proves
+the following statement, of which Theorem~\ref{thm:main} is a special
+case: if \(K\) is a non-trivial fibered knot that is either
+non-hyperbolic, or hyperbolic with every reducible slope \(p/q\)
+satisfying \(|p|\geq2g(K)-1\), then every surgery on \(K\) has at most
+two non-trivial prime summands. (Fiberedness is used in Step~3 for the
+slope \(0\) and in Step~4a through Proposition~\ref{prop:large}.)
+\end{remark}
+
+\begin{remark}[What is not proved]\label{rem:notproved}
+The argument does not establish the Cabling Conjecture for hyperbolic
+\(L\)-space knots. In Case~4a it handles a hypothetical reducible surgery
+at slope \(2g-1\) directly, by excluding the integer homology sphere
+summand that a third summand would force, without attempting to identify
+that summand by Heegaard Floer methods. It does not exclude a reducible
+surgery \(\Surg{2g-1}{K}\) on a hyperbolic \(L\)-space knot with exactly
+two non-trivial prime summands, both with non-zero first homology.
+For an arbitrary knot in \(S^3\), a surgery has at most three
+non-trivial prime summands, and three summands would have to be two lens
+spaces of coprime orders and an integer homology sphere; this combines
+results of Sayari, Valdez-S\'anchez and Howie, see the introduction of
+\cite{Howie2010}. Proposition~\ref{prop:large} excludes the last
+configuration in the range \(|p|\geq2g-1\) for fibered knots without
+using this classification.
+\end{remark}
+
+\begin{remark}[The ambient manifold]
+The hypothesis that \(K\) lies in \(S^3\) is used throughout: in (S2) and
+(S3), in Ni's and Hom--Lidman--Zufelt's theorems, and in the Cabling
+Conjecture. For knots in other \(L\)-spaces, a surgery can have three
+non-trivial prime summands: a regular fiber of the Seifert fibration of
+the Poincar\'e homology sphere (itself an \(L\)-space) has a surgery
+homeomorphic to \(L(2,1)\#L(3,2)\#L(5,4)\) \cite{Caudell2021}.
+\end{remark}
+
+\begin{thebibliography}{99}
+
+\bibitem{BodishDeYeso}
+H.~Bodish and R.~DeYeso~III,
+\emph{Obstructing reducible surgeries: slice genus and thickness bounds},
+arXiv:2209.01672 (2022).
+
+\bibitem{Caudell2021}
+J.~Caudell,
+\emph{Three lens space summands from the Poincar\'e homology sphere},
+arXiv:2101.01256 (2021).
+
+\bibitem{GAS1986}
+F.~Gonz\'alez-Acu\~na and H.~Short,
+\emph{Knot surgery and primeness},
+Math.\ Proc.\ Cambridge Philos.\ Soc.\ \textbf{99} (1986), no.~1, 89--102.
+
+\bibitem{Ghiggini2008}
+P.~Ghiggini,
+\emph{Knot Floer homology detects genus-one fibred knots},
+Amer.\ J.\ Math.\ \textbf{130} (2008), no.~5, 1151--1169.
+
+\bibitem{Gordon1983}
+C.~McA.~Gordon,
+\emph{Dehn surgery and satellite knots},
+Trans.\ Amer.\ Math.\ Soc.\ \textbf{275} (1983), no.~2, 687--708.
+
+\bibitem{GordonLuecke1987}
+C.~McA.~Gordon and J.~Luecke,
+\emph{Only integral Dehn surgeries can yield reducible manifolds},
+Math.\ Proc.\ Cambridge Philos.\ Soc.\ \textbf{102} (1987), no.~1, 97--101.
+
+\bibitem{Grushko1940}
+I.~A.~Grushko,
+\emph{On the bases of a free product of groups},
+Mat.\ Sbornik (N.S.) \textbf{8(50)} (1940), no.~1, 169--182 (Russian).
+
+\bibitem{HatcherAT}
+A.~Hatcher,
+\emph{Algebraic topology},
+Cambridge University Press, 2002.
+
+\bibitem{Hatcher3M}
+A.~Hatcher,
+\emph{Notes on basic \(3\)-manifold topology},
+unpublished notes, revised 2000.
+
+\bibitem{HLZ2015}
+J.~Hom, T.~Lidman and N.~Zufelt,
+\emph{Reducible surgeries and Heegaard Floer homology},
+Math.\ Res.\ Lett.\ \textbf{22} (2015), no.~3, 763--788; arXiv:1307.5317.
+
+\bibitem{Howie2002}
+J.~Howie,
+\emph{A proof of the Scott--Wiegold conjecture on free products of
+cyclic groups},
+J.\ Pure Appl.\ Algebra \textbf{173} (2002), no.~2, 167--176.
+
+\bibitem{Howie2010}
+J.~Howie,
+\emph{Can Dehn surgery yield three connected summands?},
+Groups Geom.\ Dyn.\ \textbf{4} (2010), no.~4, 785--797; arXiv:0908.2697.
+
+\bibitem{Kurosh1934}
+A.~Kurosch,
+\emph{Die Untergruppen der freien Produkte von beliebigen Gruppen},
+Math.\ Ann.\ \textbf{109} (1934), 647--660.
+
+\bibitem{MorganTian2007}
+J.~Morgan and G.~Tian,
+\emph{Ricci flow and the Poincar\'e conjecture},
+Clay Mathematics Monographs \textbf{3}, Amer.\ Math.\ Soc., 2007.
+
+\bibitem{Moser1971}
+L.~Moser,
+\emph{Elementary surgery along a torus knot},
+Pacific J.\ Math.\ \textbf{38} (1971), no.~3, 737--745.
+
+\bibitem{Ni2007}
+Y.~Ni,
+\emph{Knot Floer homology detects fibred knots},
+Invent.\ Math.\ \textbf{170} (2007), no.~3, 577--608.
+
+\bibitem{NiCorrigendum}
+Y.~Ni,
+\emph{Erratum: Knot Floer homology detects fibred knots},
+Invent.\ Math.\ \textbf{177} (2009), no.~1, 235--238; arXiv:0808.0940.
+
+\bibitem{OS2004a}
+P.~Ozsv\'ath and Z.~Szab\'o,
+\emph{Holomorphic disks and topological invariants for closed
+three-manifolds},
+Ann.\ of Math.\ (2) \textbf{159} (2004), no.~3, 1027--1158.
+
+\bibitem{OS2004b}
+P.~Ozsv\'ath and Z.~Szab\'o,
+\emph{Holomorphic disks and three-manifold invariants: properties and
+applications},
+Ann.\ of Math.\ (2) \textbf{159} (2004), no.~3, 1159--1245.
+
+\bibitem{OS2005}
+P.~Ozsv\'ath and Z.~Szab\'o,
+\emph{On knot Floer homology and lens space surgeries},
+Topology \textbf{44} (2005), no.~6, 1281--1300.
+
+\bibitem{Scharlemann1990}
+M.~Scharlemann,
+\emph{Producing reducible \(3\)-manifolds by surgery on a knot},
+Topology \textbf{29} (1990), no.~4, 481--500.
+
+\bibitem{Thurston1982}
+W.~P.~Thurston,
+\emph{Three dimensional manifolds, Kleinian groups and hyperbolic
+geometry},
+Bull.\ Amer.\ Math.\ Soc.\ (N.S.) \textbf{6} (1982), no.~3, 357--381.
+
+\end{thebibliography}
+\end{document}

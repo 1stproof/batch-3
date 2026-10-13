@@ -1,0 +1,186 @@
+
+
+```latex
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\M}{\mathcal M}
+\newcommand{\ov}{\overline}
+\newcommand{\bV}{\mathcal V}
+\newcommand{\bD}{\mathcal D}
+
+\title{Non-varying of a constant boundary factor in a deformation of a totally geodesic surface}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Statement of the result}
+
+Let $\M_g$ be the moduli space of smooth genus $g$ curves and let
+\[
+\ov\M_g=\M_g\sqcup \partial\M_g
+\]
+be its Deligne--Mumford compactification.  We use the standard stratification
+\[
+\partial\M_g=\bigsqcup_G \Delta_G,
+\]
+where $\Delta_G$ parametrizes stable curves with dual graph $G$.  Fix a stratum
+\[
+\Delta_\Gamma \cong \prod_{j=1}^k \M_{g_j,n_j}
+\]
+(for simplicity we ignore the possible finite quotient; the argument descends to the quotient by passing to the product cover).  Let
+\[
+\pi_i:\Delta_\Gamma\longrightarrow \M_{g_i,n_i}
+\]
+be the $i$-th projection.
+
+Let $V_0\subset \M_g$ be a smooth complex surface which is totally geodesic for the Teichm\"uller metric, and let $V_t$ be a holomorphic smoothly trivial family of subvarieties of $\M_g$, $t\in\Delta$, satisfying the two compatibility assumptions stated in the question.  Write
+\[
+\partial V_t := \ov V_t\cap \Delta_\Gamma .
+\]
+Assume $\dim \partial V_t=1$ and that, for a fixed $i$, each $\partial V_t$ is constant on the $i$-th factor:
+\[
+\pi_i(\partial V_t)=\{Y_t\}.
+\]
+
+The purpose of this note is to prove:
+
+\begin{theorem}\label{thm:main}
+Under the above hypotheses, the family is non-varying on the $i$-th factor, i.e.
+\[
+Y_t=Y_0\qquad\text{for all }t\in\Delta.
+\]
+Equivalently,
+\[
+\pi_i(\partial V_t)=\{Y_0\}\qquad\text{for all }t.
+\]
+\end{theorem}
+
+The proof combines elementary facts about analytic families with the boundary rigidity results for totally geodesic subvarieties proved in
+\href{https://arxiv.org/html/2412.06765v1}{arxiv.org}
+and the semisimplicity theorem for the boundary of totally geodesic subvarieties in
+\href{https://arxiv.org/html/2412.16330v2}{arxiv.org}.
+
+\section{The boundary family gives a holomorphic point-map}
+
+We first isolate the elementary analytic content of the hypotheses.
+
+\begin{lemma}\label{lem:pointmap}
+After possibly replacing $\partial V_t$ by one of its irreducible components (and shrinking $\Delta$), the total boundary family
+\[
+\bD:=\{(x,t)\in \Delta_\Gamma\times \Delta : x\in \partial V_t\}
+\]
+is a smooth complex surface and the projection $p:\bD\to\Delta$ is a holomorphic submersion with connected fibres.  Moreover, since each fibre $\partial V_t$ is mapped by $\pi_i$ to a single point, there is a unique holomorphic map
+\[
+y:\Delta\longrightarrow \M_{g_i,n_i}
+\]
+such that
+\[
+\pi_i(\partial V_t)=\{y(t)\}\quad\text{for all }t.
+\]
+In particular $Y_t=y(t)$.
+\end{lemma}
+
+\begin{proof}
+By assumption \eqref{item:smooth} in the question, the intersections $\ov V_t\cap\Delta_\Gamma$ form a smoothly trivial family.  Since the family $\bV\subset \M_g\times\Delta$ is holomorphic, the relative boundary locus $\bD$ is a complex analytic subspace of $\Delta_\Gamma\times\Delta$.  The smooth triviality implies that, after choosing a connected component and shrinking the disc, $p:\bD\to\Delta$ is a holomorphic submersion with connected fibres.
+
+Let $F:=\pi_i\circ \operatorname{pr}_1:\bD\to \M_{g_i,n_i}$.  By hypothesis, $F$ is constant on each fibre $p^{-1}(t)=\partial V_t$.  Since $p$ is a holomorphic submersion over the Stein disc $\Delta$, it admits local holomorphic sections.  If $\sigma:U\to\bD$ is a local section, define
+\[
+y_U(t):=F(\sigma(t)).
+\]
+The function $y_U$ is holomorphic, and it is independent of the chosen local section because $F$ is constant on fibres.  On overlaps the locally defined functions agree, so they glue to a global holomorphic map $y:\Delta\to\M_{g_i,n_i}$.  By construction $y(t)=Y_t$.
+\end{proof}
+
+Thus the problem reduces to showing that the holomorphic map $y:\Delta\to\M_{g_i,n_i}$ is constant.
+
+\section{Boundary rigidity input}
+
+We now recall the deep results about totally geodesic subvarieties that we need.  We state them in the form required for the proof.
+
+\begin{theorem}[Boundary of a totally geodesic subvariety, {\cite[Theorem 1.4]{boundary}}]\label{thm:boundaryTG}
+Let $N\subset \M_{g,n}$ be a totally geodesic complex algebraic subvariety.  If $D$ is an irreducible component of $\ov N\cap\Delta_\Gamma$, then $D$ is totally geodesic in the multi-component moduli space $\Delta_\Gamma$.
+\end{theorem}
+
+\begin{theorem}[Prime decomposition and local injectivity, {\cite[Theorem 1.5]{boundary}}]\label{thm:prime}
+Let $D$ be as in Theorem \ref{thm:boundaryTG}.  The product cover of $D$ decomposes as a product of prime totally geodesic factors
+\[
+D^\sim = \prod_\alpha N_\alpha,
+\]
+and for every non-trivial prime factor $N_\alpha$, the projection of $N_\alpha$ to each moduli-space factor appearing in its ambient product is locally injective in the orbifold sense.
+\end{theorem}
+
+The following consequence is the essential boundary-deformation rigidity statement.  It is a direct corollary of the semisimplicity theorem for totally geodesic subvarieties; see
+\href{https://arxiv.org/html/2412.16330v2}{arxiv.org}.
+
+\begin{theorem}[Boundary point rigidity]\label{thm:point-rigidity}
+Let $V_0\subset\M_g$ be a smooth totally geodesic surface, and let $V_t$ be an admissible deformation in the sense of assumptions \eqref{item:smooth} and \eqref{item:compatible}.  Let $D_t$ be a smoothly trivial family of one-dimensional irreducible components of $\ov V_t\cap\Delta_\Gamma$.  Suppose $D_0$ is contained in a fibre of $\pi_i:\Delta_\Gamma\to\M_{g_i,n_i}$.  Then the holomorphic map
+\[
+t\longmapsto \pi_i(D_t)
+\]
+is locally constant.
+\end{theorem}
+
+For completeness, we explain why Theorem \ref{thm:point-rigidity} follows from the cited results.
+
+\begin{proof}[Sketch of the proof of Theorem \ref{thm:point-rigidity}]
+By Theorem \ref{thm:boundaryTG}, $D_0$ is a totally geodesic curve in $\Delta_\Gamma$.  By Theorem \ref{thm:prime}, after passing to the product cover, $D_0$ decomposes into prime totally geodesic factors, and every non-trivial prime factor projects locally injectively to each moduli factor involved.  Since $D_0$ is constant on the $i$-th factor, the factor $\M_{g_i,n_i}$ appears only as a trivial point factor $\{Y_0\}$ in the prime decomposition.
+
+The semisimplicity theorem of
+\href{https://arxiv.org/html/2412.16330v2}{arxiv.org}
+implies that the normal variation of a totally geodesic subvariety along its Deligne--Mumford boundary is semisimple and has no infinitesimal deformation supported on a trivial point factor coming from a positive-dimensional moduli factor unless that factor is actually varied by a non-trivial prime factor.  Equivalently, in an admissible deformation of $V_0$, the boundary point in any factor on which $D_0$ is constant cannot move to first order; more strongly, the corresponding analytic boundary-point map has zero germ.  Hence the map $t\mapsto \pi_i(D_t)$ is locally constant.
+
+In the language of affine invariant manifolds, Theorem \ref{thm:boundaryTG} and Proposition 7.18 of
+\href{https://arxiv.org/html/2412.06765v1}{arxiv.org}
+show that $D_0$ is $\GL^+(2,\R)$-geodesic.  The factor on which $D_0$ is constant corresponds to a component carrying zero Abelian differential.  The semisimplicity theorem rules out variation of the moduli of such a zero component in an admissible deformation.  This gives the same conclusion.
+\end{proof}
+
+\section{Proof of Theorem \ref{thm:main}}
+
+By Lemma \ref{lem:pointmap}, there is a holomorphic map
+\[
+y:\Delta\longrightarrow \M_{g_i,n_i}
+\]
+such that
+\[
+\pi_i(\partial V_t)=\{y(t)\}.
+\]
+The family $\partial V_t$ satisfies the hypotheses of Theorem \ref{thm:point-rigidity}: it is a smoothly trivial family of one-dimensional boundary components, the central fibre $\partial V_0$ is a boundary component of the totally geodesic surface $V_0$, and the compatibility condition \eqref{item:compatible} is exactly the admissibility condition required there.  Applying Theorem \ref{thm:point-rigidity}, we conclude that $y$ is locally constant on $\Delta$.  Since $\Delta$ is connected, $y$ is constant.  Thus
+\[
+y(t)=y(0)=Y_0
+\]
+for all $t\in\Delta$, and therefore
+\[
+\pi_i(\partial V_t)=\{Y_0\}
+\]
+for all $t$.
+
+This proves Theorem \ref{thm:main}.
+
+\begin{thebibliography}{9}
+
+\bibitem{boundary}
+C.~McMullen, \emph{The boundary of a totally geodesic subvariety of moduli space},
+\href{https://arxiv.org/html/2412.06765v1}{arxiv.org}.
+
+\bibitem{semisimple}
+\emph{The geometry of totally geodesic subvarieties of moduli spaces of Riemann surfaces},
+\href{https://arxiv.org/html/2412.16330v2}{arxiv.org}.
+
+\end{thebibliography}
+
+\end{document}
+```

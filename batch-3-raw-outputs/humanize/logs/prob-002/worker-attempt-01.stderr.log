@@ -1,0 +1,415 @@
+2026-10-03T02:20:19.317463Z ERROR codex_core::tools::router: error=apply_patch verification failed: invalid patch: multiple operations target /work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex
+2026-10-03T02:41:03.329315Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/001-prob-002/.humanize/rlcr/2026-10-03_01-18-59/goal-tracker.md:
+| [mainline] Normalize problem statement; derive linearization identities and Schauder/L2 elliptic inequalities | AC-1, AC-2 | in_progress | coding | claude | N/A | Darcy forward map, integral form used to bypass u_f not being H1 |
+| [mainline] Prove Hardy-based L2 estimate for transport operator L, inversion bound, and degree-1 smoothing estimate for T | AC-1, AC-2 | in_progress | coding | claude | N/A | Core analytic input to both bounds; Hardy via Cesaro isometry |
+| [mainline] Prove Fano lower bound (wavelet packing + KL via Gaussian shift) | AC-1, AC-3 | in_progress | coding | claude | N/A | Rate n^{-2a/(2a+d+2)} |
+| [mainline] Prove upper bound (observation discretization, sieve least squares, scale-smoothness induction) | AC-1, AC-3 | in_progress | coding | claude | N/A | Dyadic-to-general f extension; matching rate |
+| [mainline] Write full solution.tex, compile, audit vs 16-page limit, fix all residual risks | AC-1..AC-5 | in_progress | coding | claude | N/A | Draft done (11 pp), residual polish remains |
+2026-10-03T02:41:35.981706Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/001-prob-002/.humanize/rlcr/2026-10-03_01-18-59/round-0-summary.md:
+## Remaining Items
+
+[List any deferred or pending items]
+- Some intermediate estimates (wavelet-packet interference control in
+  Lemma 3.2, the discrete inf-sup Lemma 5.1 boundary handling, and the
+  log-factor entropy step) are sketched rather than fully expanded; a
+  specialist reader can fill them from the stated ingredients, but they can
+  be tightened in a later round if the reviewer requires.
+2026-10-03T03:03:06.148117Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex:
+$A\lesssim B$ means $A\le C B$ with $C$ depending only on $(\alpha,d)$ (and
+possibly an inessential fixed universal parameter); $A\asymp B$ means
+$A\lesssim B\lesssim A$.
+2026-10-03T03:19:42.752921Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex:
+\ \le\ C\,\Phi_{n},
+\qquad
+\Phi_{n}=n^{-\frac{2\alpha}{2\alpha+d+2}}\,(\log n)^{\frac{2\alpha}{2\alpha+d+2}} .
+\end{theorem}
+
+\noindent\textbf{Answer.} The minimax rate is
+\[
+\boxed{\ n^{-\frac{2\alpha}{2\alpha+d+2}}\ }
+\qquad\text{up to logarithmic factors.}
+\]
+The lower bound carries no logarithm and the upper bound carries the stated
+power of $\log n$; both have the same power of $n$, which is the content of
+``the rate up to logarithmic factors.'' This is \emph{faster} than the
+direct white-noise rate $n^{-2\alpha/(2\alpha+d)}$: the denominator gains
+2026-10-03T03:20:53.129376Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex:
+\ \le\ C\,n^{-\frac{2\alpha}{2\alpha+d+2}}\,(\log n)^{\frac{2\alpha}{2\alpha+d+2}} .
+\end{proposition}
+2026-10-03T03:27:55.960360Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/001-prob-002/.humanize/rlcr/2026-10-03_01-18-59/goal-tracker.md:
+| AC-1..5 | solution.tex compiled ≤16pp | 0 | pending | pdflatex OK, 11 pages |
+2026-10-03T04:40:00.347118Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex:
+$\norm{\psi}_2>0$. For $\delta\in(0,\delta_0]$ choose a maximal
+collection $\SET{x_m}_{m=1}^{M}\subset\SET{\abs x\le\tfrac12}$ with
+pairwise distance $\ge4\delta$ (hence $M\asymp\delta^{-d}$), and set
+2026-10-03T04:45:39.141286Z ERROR codex_core::tools::router: error=apply_patch verification failed: invalid hunk at line 30, Expected update hunk to start with a @@ context marker, got: '\ No newline at end of file'
+2026-10-03T04:58:08.244920Z ERROR codex_core::tools::router: error=exec_command failed: CreateProcess { message: "Rejected(\"`/bin/bash -lc \\\"python3 - <<'EOF'\\nimport json,subprocess\\nrecs=[json.loads(l) for l in open('/tmp/post_commit_patches.json')]\\nok,fail=0,[]\\nfor i,r in enumerate(recs):\\n    p=subprocess.run(['patch','--force','-p1','--no-backup-if-mismatch','/work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex'],\\n                     input=r['patch'],capture_output=True,text=True,cwd='…114 chars truncated…stdin\\n    if p.returncode==0: ok+=1\\n    else: fail.append((i,r['ts'],r['ln'],p.stdout[-300:],p.stderr[-300:]))\\nprint('ok',ok,'fail',len(fail))\\nfor f in fail: print(f[0],f[1],'line',f[2]); print(f[3]); print('---')\\nEOF\\nrm -f /work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex.rej /work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex.orig\\\"` rejected: rm -f style commands are not permitted. Use a safer approach\")" }
+2026-10-03T05:02:31.813055Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex:
+\noindent\textbf{Lower bound (interior interior estimates + phase gain).}
+To avoid mixing boundary effects into the algebraic gain, we first prove
+the lower bound under the additional assumption that the packet is supported
+in $\SET{\abs{x}\le\tfrac14}$, and then show that the general annulus case
+reduces to it. Note the centres satisfy $\abs{x_m}\ge c_0$; we take
+$c_0\le\tfrac1{16}$ and $\supp\psi\subset B(0,R)$, $R\le\tfrac18$, so
+$\supp\psi_m\subset B(x_m,\delta R/2)$ --- this is at distance
+$\sim\abs{x_m}\ge c_0$ from the origin but may hug $\partial D$ when
+$\abs{x_m}$ is near $\tfrac12$.
+
+Let $c_1\in(0,\tfrac18]$ be a constant chosen below and apply a smooth
+cut-off: write $\varrho\in C^{\infty}_c(\R^{d})$, $\varrho=1$ on
+$\SET{\abs x\le\tfrac12-2c_1}$, $\varrho=0$ on
+$\SET{\abs x\ge\tfrac12-c_1}$. Split $g=g_1+g_2$, $g_1=\varrho g$
+($g_1$ is the subpacket over the centres with $\abs{x_m}\le\tfrac12-2c_1$;
+by the $4\delta$-separation and smoothness of $\varrho$ these are simply
+those cells wholly inside the cut-off, $\psi_m$ untouched,
+$\norm{g_1}_2^{2}\asymp\sum_{m:\,\abs{x_m}\le\frac12-2c_1}a_m^{2}
+\delta^{d}\norm{\psi}_2^{2}$), $g_2=(1-\varrho)g$ the complementary
+boundary-adjacent subpacket. Both $g_1,g_2$ are packets of
+Lemma~\ref{lem:scale2}-type (same profile, same separation); $g_1$ is
+supported in $\SET{\abs x\le\tfrac12-c_1}$, at distance $c_1$ from
+$\partial D$, and $g_2$ in the annulus $\tfrac12-3c_1\le\abs x\le\tfrac12$.
+
+\smallskip
+\noindent\emph{Lower bound for $g_1$ (interior packet).} Use the exact
+identity \eqref{eq:fourierL} and retain only the loaded shell
+$S_k=\SET{\abs\xi\asymp\delta^{-1}}$ (all terms non-negative), using the
+cut-off physi-cal realization of $Tg_1$: writing $Tg_1=U_1-q_1$ as before,
+$\norm{Tg_1}_2^{2}\ge\tfrac12\norm{U_1}_2^{2}-\norm{q_1}_2^{2}$, and
+$\norm{U_1}_2^{2}\ge\int_{S_k}\abs\xi^{-4}\abs{\widehat{Lg_1}}^{2}d\xi
+\asymp\delta^{4}\int_{S_k}\abs{\widehat{Lg_1}}^2d\xi$; by
+\eqref{eq:fourierL} $\widehat{Lg}=-\frac1d\xi\cdot\nabla_\xi\widehat g$,
+using $\abs{a+b}^{2}\ge\tfrac12\abs{b}^{2}-\abs{a}^{2}$ with
+$b=\delta^{d}\widehat\psi(\delta\xi)\xi\cdot\nabla_\xi\mathbf a_1(\xi)$ and
+$a=\delta^{d}(\Lambda\widehat\psi)(\delta\xi)\mathbf a_1(\xi)$:
+\[
+\norm{U_1}_2^{2}
+\ge\frac{\delta^{4}}{2d^{2}}\int_{S_k}\delta^{2d}
+\abs{\widehat\psi(\delta\xi)}^{2}\abs{\xi\cdot\nabla_\xi\mathbf a_1(\xi)}^{2}d\xi
+-\frac{\delta^{4}}{d^{2}}\int_{S_k}\delta^{2d}
+\abs{(\Lambda\widehat\psi)(\delta\xi)}^{2}\abs{\mathbf a_1(\xi)}^{2}d\xi .
+\]
+Now $\norm{q_1}_2\lesssim\delta\norm{g_1}_2$ trivially
+($\norm{q_1}_2\le\norm{Tg_1}_2+\norm{U_1}_2$), and more precisely, since
+$\supp g_1$ is at distance $\ge c_1$ from $\partial D$ and the kernel of
+$-\Delta^{-1}_{\R^d}$ is smooth there, $U_1$ and all its derivatives are
+$O(\delta)$ on the $c_1$-collar of $\partial D$, and in particular
+$\norm{q_1}_{H^{1}}\lesssim_{c_1}\delta\norm{g_1}_2$; thus
+$\norm{Tg_1}_2\ge\tfrac1{\sqrt2}\norm{U_1}_2-O_{c_1}(\delta\norm{g_1}_2)$,
+and the constant bookkeeping is settled after \eqref{eq:scale2} is proved
+for $g_1$ with the $O_{c_1}$-term absorbed into the choice of $c$ below.
+$\xi\cdot\nabla_\xi\mathbf a(\xi)=-i\sum_m\varepsilon_m a_m(x_m\cdot\xi)
+e^{-ix_m\cdot\xi}$; because the centres lie in the annulus
+$\abs{x_m}\ge c_0$, on the shell
+$\abs{x_m\cdot\xi}\asymp\abs{\xi}\abs{x_m}\ge\tfrac{c_0}{2}\delta^{-1}$ (in
+the diagonal/phase-gradient part). Apply Lemma~\ref{lem:ao}'s weighted
+corollary with the \emph{lower} direction: the oscillatory off-diagonals
+are Schur-summable (by the smooth majorant bound of the lemma) and are
+dominated by the diagonal, so
+\[
+\int_{S_k}\abs{\widehat\psi(\delta\xi)}^{2}
+\abs{\xi\cdot\nabla_\xi\mathbf a(\xi)}^{2}d\xi
+2026-10-03T05:07:14.655612Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex:
+For the scale-$\delta$ annulus packet
+$h=\sum_m a_m\psi_m$, the same single-scale Fourier estimate as
+Lemma~\ref{lem:scale2} (the exact identity \eqref{eq:fourierL} applied to
+the vector source $F=h\nabla(u_m-u_0)$, whose scale is still $\delta$ and
+whose $L^{2}$ norm is
+$\norm{h\nabla(u_m-u_0)}_2\le\norm h_2\norm{\nabla(u_m-u_0)}_{\infty}$)
+gives
+\[
+\norm{-\Delta^{-1}\diver(h\nabla(u_m-u_0))}_2
+\ \lesssim\ \delta\,C_{\nabla(u_m-u_0)}\,\norm{h}_2
+\ \lesssim\ r\delta\norm{h}_2,
+\]
+since $u_m-u_0=-\Delta^{-1}_{f\text{-transp.}}(m-\one)$ satisfies
+$\norm{\nabla(u_m-u_0)}_{\infty}\lesssim\norm{m-\one}_{C^\alpha}
+\lesssim r$ by (T6) applied to
+$\diver(f\nabla(u_m-u_0))=-\diver((m-\one)\nabla u_0)$, whose right side
+has the divergence form $\diver((m-\one)\,x/d)$ with the Hölder
+coefficient $m-\one$. The second term
+$-\Delta^{-1}\diver((m-\one)\nabla u_0)$ is independent of $h$ and is
+absorbed into the comparison with $m$ (it cancels in
+$u_{\widehat f}-u_m-(u_{m'}-u_m)$ when the comparison point is moved);
+e.g.\ it is bounded by $\lesssim r$ and absorbed in the fixed constant of
+the operator-difference estimate. This proves \eqref{eq:opdiff}: the
+$r$-smallness enters \emph{multiplicatively} through the coefficient
+$m-\one=O(r)$, restoring the annulus gain $\tfrac c2\delta\norm h_2$ for
+$r\le r_0$.
+This is the correct mechanism: with the annulus lower bound of
+Lemma~\ref{lem:invert},
+2026-10-03T05:27:44.477821Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex:
+\label{eq:uterm}
+\int_{S_k}\abs\xi^{-4}\abs{\xi\cdot\nabla_\xi\widehat g}^{2}d\xi
+&\lesssim\delta^{2d+4}\Bigl[
+\int_{S_k}\abs{B_1}^{2}+\int_{S_k}\abs{B_2}^{2}\Bigr]
+\nonumber\\
+&\lesssim\delta^{2d+4}\cdot\abs{S_k}\,
+\frac1{\abs{B_\rho}}\Bigl[
+\int_{B_\rho}\abs{\mathbf a}^{2}
++\int_{B_\rho}\abs{\xi\cdot\nabla_\xi\mathbf a}^{2}\Bigr]
+2026-10-03T05:32:38.308090Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex:
+\noindent\textbf{Harmonic correction $q$.} By Lemma~\ref{lem:harmonic}
+(applied with $F=Lg=\frac1d\diver(xg)$, for which the solution $w=Tg$
+splits as $w=U-q$ with exactly the present $U$ and $q$),
+\begin{equation}\label{eq:qbound}
+\norm{q}_{L^{2}(D)}\le C_E\norm{U}_{H^{1}(D)}
+\le C_E\norm{Tg}_{H^{1}}+\norm{q}_{2}),
+\qquad
+\norm{q}_{2}\le C_E''\norm{g}_{2},
+\end{equation}
+with $C_E''=C_E''(d)$; and, because the packet is supported in
+$\SET{\abs x\le\tfrac34}$ at distance
+$\tau:=\tfrac14-\delta R/2\ge\tfrac18$ from $\partial D$ (so
+$\supp g\subset D_{(\tau)}$, $\tau\ge\tau_0:=\tfrac18$ fixed), the
+interior part of Lemma~\ref{lem:harmonic} yields the stronger
+\[
+\norm U_{H^{1}(\partial D)}\lesssim\tau_0^{-(d-1)}\norm{g}_2
+\qquad\text{hence}\qquad
+\norm q_{L^2(D)}\le C_E\norm{q}_{H^{1/2}(D)}
+\lesssim\tau_0^{-(d-1)}\norm g_2 .
+\]
+2026-10-03T05:34:43.024812Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex:
+\smallskip
+\noindent\textbf{Harmonic correction $q$.} By Lemma~\ref{lem:harmonic}
+(applied with $F=Lg=\frac1d\diver(xg)$, for which the solution $w=Tg$
+splits as $w=U-q$ with exactly the present $U$ and $q$),
+the interior part of that lemma applies since
+$\supp g\subset D_{(\tau_0)}$, $\tau_0=\tfrac18$
+($U=-\frac1d(-\Delta_{\R^d})^{-1}\diver(xg)
+=-\frac1d\int\nabla\Phi(\cdot-y)\cdot y\,g(y)dy$,
+the convolution of $Lg=\frac1d\diver(xg)$ with the Poisson kernel, the
+$L^{2}$ field $yg$ integrated against the locally-integrable
+$\nabla\Phi$): for $\abs{x}\ge1-\tau_0/2=\tfrac{15}{16}$, in particular
+on $\partial D$,
+\[
+\abs{U(x)}
+\ \le\ \tfrac1d\,\norm{\nabla\Phi(x-\cdot)\,(\cdot)}_{L^{2}(D_{(\tau_0)})}
+\,\norm g_2
+\ \lesssim\ \tau_0^{-(d-1)}\norm g_2,
+\qquad
+\norm{U}_{L^{\infty}(\partial D)}\lesssim\norm g_2 .
+\]
+To gain one further power of $\delta$, expand bump by bump: on
+$\abs x\ge\tfrac{15}{16}$,
+$U(x)=-\frac1d\sum_m a_m\int\nabla\Phi(x-y)\cdot y\,\psi_m(y)dy$, and the
+zeroth moment $\int\psi_m=0$ kills the monopole term
+$\nabla\Phi(x-x_m)\cdot x_m\int\psi_m$, so a first-order Taylor
+expansion of $\nabla\Phi(x-\cdot)\cdot(\cdot)$ around $x_m$ (smooth on
+$\abs{x-y}\ge\tau_0/2$) gives
+$\bigl|\int\nabla\Phi(x-y)\cdot y\,\psi_m(y)dy\bigr|
+\lesssim\delta\norm{\psi_m}_1=\delta\cdot\delta^{d}\norm\psi_1\abs{a_m}$
+bump by bump, and summing by Cauchy--Schwarz
+($\sum_m\abs{a_m}\delta^{d}\lesssim\bigl(\sum a_m^{2}\delta^{d}\bigr)^{1/2}
+M^{1/2}\delta^{d}\lesssim\norm g_2$ since $M\delta^{d}\lesssim1$)
+\[
+\norm{U}_{L^{\infty}(\partial D)}\ \lesssim\ \delta\,\norm g_2 .
+\]
+The harmonic $q$ with $q=U$ on $\partial D$ satisfies the maximum
+principle $\norm q_{L^{\infty}(D)}\le\norm q_{L^{\infty}(\partial D)}$
+(equivalently $\norm{q}_{L^{2}(D)}\le C_D\norm{q}_{L^{\infty}(\partial D)}$),
+so
+\begin{equation}\label{eq:qbound}
+\norm{q}_{L^{2}(D)}\ \lesssim\ \delta\,\norm g_2
+\qquad\text{with a $(d,\tau_0,\psi)$-dependent constant.}
+\end{equation}
+
+\smallskip
+\noindent Combining,
+$\norm{Tg}_2\le\norm{U}_2+\norm{q}_2\le(C_U+C_q)\,\delta\norm{g}_2$ and
+$\norm{Tg}_2\ge\norm{U}_2-\norm{q}_2\ge(c_U'-C_q\delta\cdot
+\delta^{-1})\delta\norm{g}_2$; more precisely
+$\norm{Tg}_2\ge(c_U'-C_q')\,\delta\norm{g}_2$ where $C_q'$ is the
+constant of \eqref{eq:qbound}. With $c_1:=\tfrac12 c_U'$ and
+$C_1:=C_U+C_q$, and $\delta_0$ shrunk once more to
+$C_q'\le\tfrac12c_U'$ i.e.\
+$\delta_0\le\min\bigl(\delta_0(c_\psi,c_0,C_\psi),\,
+\text{anything}\bigr)$ since $C_q'$ is already
+$\delta$-\emph{independent}, \emph{we may bound}
+$\norm{Tg}_2\ge(c_U'-C_q')\delta\norm{g}_2$; to secure
+$c_U'-C_q'>0$ \emph{without} a fragile constant comparison we instead
+use \eqref{eq:qbound} in the form
+$\norm q_2\lesssim\delta\norm g_2$ and the lower bound
+$\norm U_2\ge c_U'\delta\norm{g}_2$ \emph{proved in the $L^{2}(D)$ norm
+on the slightly shrunk domain} $\SET{\abs x\le\tfrac34}$ (the shell
+energy is supported there by the packet), so that
+$\norm{q}_{L^2(\abs x\le\frac34)}\lesssim\delta\norm{g}_2$ cannot
+cancel the interior shell mass by more than its size:
+$\norm{Tg}_2^{2}\ge\norm{U}_{L^2(\abs x\le\frac34)}^{2}
+-2\norm U_2\norm q_2
+\ge(c_U'^{2}-2C_UC_q')\delta^{2}\norm g_2^{2}$, and
+$c_1^{2}:=c_U'^{2}-2C_UC_q'+(C_q')^{2}$ adjusted to be positive by the
+$(d,\psi,c_0,\tau_0)$-constants of the construction (the profile $\psi$
+and the annulus constant $c_0$ are chosen, in that order, so that the
+phase-gradient gain $c_U'$ dominates the (trace, maximum-principle,
+packet) harmonic constants; this is a finite sequence of
+$(\alpha,d)$-dependent choices, recorded in
+Remark~\ref{rem:const}). Both halves of \eqref{eq:scale2} follow with
+these $c_1,C_1,\delta_0$ depending only on $(d,\psi,c_0)$. (The
+origin-centre
+modes, excluded here by the annulus hypothesis, are treated in
+Lemma~\ref{lem:invert} via the exact radial computation.)
+\end{proof}
+2026-10-03T05:38:54.605023Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex:
+$q_0=\fint_{\partial D}q$ the constant Poisson
+2026-10-03T05:43:38.590233Z ERROR codex_core::tools::router: error=apply_patch verification failed: invalid hunk at line 4, '# Round 1 Summary' is not a valid hunk header. Valid hunk headers: '*** Add File: {path}', '*** Delete File: {path}', '*** Update File: {path}'
+2026-10-03T06:39:37.746471Z ERROR codex_core::tools::router: error=apply_patch verification failed: invalid hunk at line 3, '# Round 2 Contract (post audit #4)' is not a valid hunk header. Valid hunk headers: '*** Add File: {path}', '*** Delete File: {path}', '*** Update File: {path}'
+2026-10-03T06:41:41.136475Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex:
+\item\label{T:weyl}\textbf{Weyl's law.} For the Dirichlet Laplacian on the
+$d$-ball, the eigenvalue counting function satisfies $N(\Lambda)\sim
+c_d\abs D\Lambda^{d/2}$; hence $V_\delta$, the span of eigenfunctions with
+$\lambda_\nu\le\delta^{-2}$, satisfies $\dim V_\delta\asymp\delta^{-d}$.
+2026-10-03T06:42:50.537021Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex:
+\item\label{T:weyl}\textbf{Weyl's law.} For the Dirichlet Laplacian on the
+bounded smooth domain $D$, $\#\SET{\lambda_\nu\le\Lambda}\sim
+c_d\abs D\Lambda^{d/2}$; hence the span $V_\delta$ of the eigenfunctions
+with eigenvalue $\lambda_\nu\le\Lambda_\delta$,
+$\Lambda_\delta:=C_W\delta^{-1}$ (counting at frequency scale
+$\Lambda_\delta^{1/2}\asymp\delta^{-1/2}$, i.e.\ the eigenfunctions
+oscillate at spatial scale $\gtrsim\delta$), satisfies
+$\dim V_\delta\asymp\Lambda_\delta^{d/2}\asymp\delta^{-d/2}$. For the
+noise dimension needed below we use instead the physical-scale cutoff
+$\lambda_\nu\le C_W\delta^{-2}$ with the same Weyl scaling
+$\dim\asymp\delta^{-d}$; the two conventions are kept distinct in the
+proof (see the discussion before \eqref{eq:infsup}).
+\end{itemize}
+2026-10-03T06:45:16.275753Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex:
+the noise finite-dimensional, so the estimator and its risk are well-defined on
+the white-noise model. Define the sieve least-squares estimator
+2026-10-03T07:01:14.349746Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex:
+\frac1{r^{d-1}}\partial_r(r^{d-1}w')=\frac1d\frac1{r^{d-1}}
+\partial_r(r^{d}g)$, so $r^{d-1}w'(r)=\frac1d r^{d}g(r)+C$; regularity at
+$r=0$ forces $C=0$. Since $g\equiv0$ on $[\delta,1]$ and $w(1)=0$ with
+continuous flux, $w'\equiv0$ then $w\equiv0$ on $[\delta,1)$. Hence
+$w(x)=-\frac1d\int_{\abs x}^{\delta}s\,g(s)\,ds$ for $\abs x\le\delta$, and
+2026-10-03T07:18:15.062277Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex:
+\norm{Tg}_2\asymp\delta^{2}\norm{g}_2$. More generally, for a mode
+centred at distance $\abs{x_\lambda}$ with scale $\delta_\lambda$, the
+mode-wise gain is no smaller than the radial endpoint: for an origin-near
+mode ($\abs{x_\lambda}\le\rho\,\delta_\lambda$, $\rho$ fixed),
+\begin{equation}\label{eq:origingain}
+\norm{Th_\lambda}_2\ \gtrsim\ \delta_\lambda^{2}\,\norm{h_\lambda}_2 .
+\end{equation}
+This one-sided bound is the \emph{only} origin statement used below:
+origin-near modes are never inverted in the risk analysis
+(Remark~\ref{rem:modewise}), and \eqref{eq:origingain} is what their
+treatment requires.
+\end{lemma}
+2026-10-03T07:28:07.171669Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex:
+information about $u_{f_0}$ at frequencies $\le\delta^{-2}$ and makes the
+2026-10-03T08:22:02.409641Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex:
+\par\noindent\textbf{Fine-scale bias.} The bias $e=m-f_0$ is interior
+with $\norm{e}_2\lesssim\delta^\alpha$ and $\norm{e}_\infty\lesssim
+\delta^\alpha$ by \eqref{eq:approx}, and $m=f_0$ on the collar
+$\SET{\varphi_0=0}$ near $\partial D$, so $w:=u_{f_0}-u_m\in
+H^{1}_0(D)$ solves $\diver(f_0\nabla w)=\diver(e\nabla u_m)$, with
+$\operatorname{supp}(e\nabla u_m)\subset\operatorname{supp}e$ at
+distance $\gtrsim c_1$ from $\partial D$. The $u$-image of an
+\emph{interior} conductivity perturbation gains a full degree by the
+same mechanism as Lemma~\ref{lem:scale2}: the source
+$F:=e\nabla u_m$ is a vector field oscillating at scale $\delta$ with
+mean zero on each bump (the patches $\psi_m$ have $\int\psi_m=0$, so
+$\int_D e\nabla u_m\,dx=-\int_D u_m\nabla e\,dx$ and the second
+factors are at scale $\gtrsim\delta$; compare the multipole expansion
+in the harmonic-correction step), supported away from $\partial D$.
+Testing against $\phi=-\Delta^{-1}_{f_0}\psi$ as in
+Lemma~\ref{lem:apriori}(iii),
+\[
+\inner{w}{\psi}
+=-\int_D e\nabla u_m\cdot\nabla\phi\,dx ,
+\]
+and the right side is the pairing of $F$ with $\nabla\phi$: since $F$
+is divergence-free to first order on its support (each bump is
+mean-zero and $\nabla u_m$ varies at scale $\gtrsim\delta$), only the
+\emph{variation} of $\nabla\phi$ across a bump contributes --- one
+power of $\delta$ --- while on the boundary $\nabla\phi$ probes $F$
+through the Green kernel, whose mean-zero bump data kills the
+monopole and leaves the dipole term $O(\delta\norm{F}_2)$; all
+monopole/mean contributions vanish exactly as in
+Lemma~\ref{lem:scale2}'s Poisson/mean-oscillation estimate. Hence
+\begin{equation}\label{eq:finebias}
+\norm{w}_2=\norm{u_{f_0}-u_m}_2
+\ \lesssim\ \delta\,\norm{e\nabla u_m}_2
+\ \lesssim\ \delta\,\norm{e}_2
+\ \lesssim\ \delta^{1+\alpha}.
+\end{equation}
+The key point is that $e$ is interior and $m=f_0$ at the boundary, so
+\emph{no collar term} $r\delta^\alpha$ survives: the boundary-layer
+content that would lose the degree has been absorbed into
+$\Pi_\delta$. This bounds every term on the right of \eqref{eq:basic}
+at order $\delta^{1+\alpha}$ (which is $\le\delta^{2\alpha}/\delta$
+after inversion).
+Thus
+$\norm Z_2=\norm{P_\delta(u_{f_0}-u_m)}_2
+\lesssim\delta^{1+\alpha}+r\delta^\alpha$.
+2026-10-03T08:23:41.308265Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex:
+\par\noindent\textbf{Fine-scale bias.} The bias $e=m-f_0$ is interior
+with $\norm{e}_2\lesssim\delta^\alpha$ and $\norm{e}_\infty\lesssim
+\delta^\alpha$ by \eqref{eq:approx}, and $m=f_0$ on the collar
+$\SET{\varphi_0=0}$ near $\partial D$, so $w:=u_{f_0}-u_m\in
+H^{1}_0(D)$ solves $\diver(f_0\nabla w)=\diver(e\nabla u_m)$, with
+$\operatorname{supp}(e\nabla u_m)\subset\operatorname{supp}e$ at
+distance $\gtrsim c_1$ from $\partial D$. The $u$-image of an
+\emph{interior} conductivity perturbation gains a full degree by the
+same mechanism as Lemma~\ref{lem:scale2}: the source
+$F:=e\nabla u_m$ is a vector field oscillating at scale $\delta$ with
+mean zero on each bump (the patches $\psi_m$ have $\int\psi_m=0$, so
+$\int_D e\nabla u_m\,dx=-\int_D u_m\nabla e\,dx$ and the second
+factors are at scale $\gtrsim\delta$; compare the multipole expansion
+in the harmonic-correction step), supported away from $\partial D$.
+Testing against $\phi=-\Delta^{-1}_{f_0}\psi$ as in
+Lemma~\ref{lem:apriori}(iii),
+\[
+\inner{w}{\psi}
+=-\int_D e\nabla u_m\cdot\nabla\phi\,dx ,
+\]
+and the right side is the pairing of $F$ with $\nabla\phi$: since $F$
+is divergence-free to first order on its support (each bump is
+mean-zero and $\nabla u_m$ varies at scale $\gtrsim\delta$), only the
+\emph{variation} of $\nabla\phi$ across a bump contributes --- one
+power of $\delta$ --- while on the boundary $\nabla\phi$ probes $F$
+through the Green kernel, whose mean-zero bump data kills the
+monopole and leaves the dipole term $O(\delta\norm{F}_2)$; all
+monopole/mean contributions vanish exactly as in
+Lemma~\ref{lem:scale2}'s Poisson/mean-oscillation estimate. Hence
+\begin{equation}\label{eq:finebias}
+\norm{w}_2=\norm{u_{f_0}-u_m}_2
+\ \lesssim\ \delta\,\norm{e\nabla u_m}_2
+\ \lesssim\ \delta\,\norm{e}_2
+\ \lesssim\ \delta^{1+\alpha}.
+\end{equation}
+The key point is that $e$ is interior and $m=f_0$ at the boundary, so
+\emph{no collar term} $r\delta^\alpha$ survives: the boundary-layer
+content that would lose the degree has been absorbed into
+$\Pi_\delta$. This bounds every term on the right of \eqref{eq:basic}
+at order $\delta^{1+\alpha}$ (which is $\le\delta^{2\alpha}/\delta$
+after inversion).
+$\norm Z_2=\norm{P_\delta(u_{f_0}-u_m)}_2
+\lesssim\delta^{1+\alpha}+r\delta^\alpha$.
+2026-10-03T08:32:32.983354Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex:
+\begin{remark}[Mode-wise picture; origin modes in the risk
+analysis]\label{rem:modewise}
+Lemma~\ref{lem:origin} records the strongest smoothing at the origin
+(gain $\asymp\delta_\lambda^{2}$ radially, and $\gtrsim\delta_\lambda^{2}$
+for origin-near modes by \eqref{eq:origingain}) while the annulus bulk of
+Lemma~\ref{lem:scale2} has gain $\asymp\delta_\lambda$. In §(C) only the
+\emph{lower} bound of \eqref{eq:infsup} is inverted, and only on the
+annulus bulk (gain $\asymp\delta$); origin-near modes have a comparable
+or larger gain and are never inverted, so no two-sided estimate for them
+is needed. Hence the risk analysis uses the annulus two-sided estimate
+together with \eqref{eq:origingain}, valid for all $\alpha>1$, $d\ge2$
+\end{remark}
+2026-10-03T08:36:56.964267Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex:
+$\Pi_\delta f\ :=\ \one+\bigl(f_{\le\delta}-\one\bigr)\,\varphi_0 ,
+\qquad\text{so near } 0 \text{ and }\partial D,\ \Pi_\delta f=\one
+\ \text{or } f\ (\text{resp., matching }f\text{ at }\partial D).
+\end{equation}
+2026-10-03T08:42:56.221543Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex:
+fixed interior $D_1:=\SET{c_1\le\abs{x}\le1-c_1}$ for a small
+fixed $c_1=c_1(d)>0$, intersected with $\F(\alpha,r)$. Fix a patch
+2026-10-03T08:49:21.493078Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /work/first-proof-humanize-tdgou2bu/001-prob-002/solution.tex:
+$c_1=c_1(d)>0$, intersected with $\F(\alpha,r)$. Fix a patch
+$\varphi_0$, $\equiv1$ on $\operatorname{supp}(\F_\delta-\one)$,
+$\equiv0$ on $B_{c_1/2}\cup\SET{\abs x>\tfrac34}$. For a general
+$f\in\F(\alpha,r)$ write $f=f_{\le\delta}+f_{>\delta}$ (scales
+$\ge\delta$ and $<\delta$; on the sieve $\supp(f_{\le\delta}-\one)
+\subset\SET{\varphi_0=1}$) and set
